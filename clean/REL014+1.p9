@@ -1,0 +1,26 @@
+
+
+
+
+
+6 composition(A,one) = A.  [clausify(2)].
+7 converse(converse(A)) = A.  [clausify(3)].
+8 converse(composition(A,B)) = composition(converse(B),converse(A)).  [clausify(4)].
+9 composition(converse(A),converse(B)) = converse(composition(B,A)).  [copy(8),flip(a)].
+10 composition(composition(A,B),C) = composition(A,composition(B,C)).  [clausify(1)].
+11 composition(c1,one) != c1 | composition(one,c1) != c1.  [clausify(5)].
+12 c1 != c1 | composition(one,c1) != c1.  [para(6(a,1),11(a,1))].
+13 composition(one,c1) != c1.  [copy(12),xx(a)].
+14 composition(converse(A),B) = converse(composition(converse(B),A)).  [para(7(a,1),9(a,1,2))].
+15 converse(composition(converse(A),B)) = composition(converse(B),A).  [copy(14),flip(a)].
+16 composition(A,B) = composition(A,composition(one,B)).  [para(6(a,1),10(a,1,1))].
+17 composition(A,composition(one,B)) = composition(A,B).  [copy(16),flip(a)].
+18 converse(converse(A)) = composition(converse(one),A).  [para(6(a,1),15(a,1,1))].
+19 A = composition(converse(one),A).  [para(7(a,1),18(a,1))].
+20 composition(converse(one),A) = A.  [copy(19),flip(a)].
+21 one = converse(one).  [para(20(a,1),6(a,1))].
+22 converse(one) = one.  [copy(21),flip(a)].
+23 composition(converse(one),composition(one,A)) = A.  [para(20(a,1),17(a,2))].
+24 composition(one,composition(one,A)) = A.  [para(22(a,1),23(a,1,1))].
+25 composition(one,A) = A.  [para(17(a,1),24(a,1))].
+26 $F.  [resolve(25,a,13,a)].

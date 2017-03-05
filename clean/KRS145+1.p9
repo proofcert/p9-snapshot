@@ -1,0 +1,482 @@
+
+
+
+
+
+6 cowlThing(A).  [clausify(2)].
+7 xsd_string(A) | xsd_integer(A).  [clausify(3)].
+8 -cowlNothing(A).  [clausify(2)].
+9 -xsd_string(A) | -xsd_integer(A).  [clausify(3)].
+10 -cc(A) | f2(A) != f1(A).  [clausify(4)].
+11 -cc(A) | rp(A,f1(A)).  [clausify(4)].
+12 -cc(A) | rp(A,f2(A)).  [clausify(4)].
+13 A != B | -rp(C,B) | rp(C,A).  [clausify(1)].
+14 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cc(c3).  [clausify(5)].
+15 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cc(c3).  [resolve(6,a,14,a)].
+16 xsd_string(c2) | -xsd_integer(c2) | cc(c3).  [resolve(8,a,15,a)].
+17 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cc(c3).  [clausify(5)].
+18 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cc(c3).  [resolve(6,a,17,a)].
+19 -xsd_string(c2) | xsd_integer(c2) | cc(c3).  [resolve(8,a,18,a)].
+20 -cc(A) | -rp(A,B) | -rp(A,C) | -rp(A,D) | C = B | D = B | D = C.  [clausify(4)].
+21 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c4).  [clausify(5)].
+22 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c4).  [resolve(6,a,21,a)].
+23 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c4).  [resolve(8,a,22,a)].
+24 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c5).  [clausify(5)].
+25 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c5).  [resolve(6,a,24,a)].
+26 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c5).  [resolve(8,a,25,a)].
+27 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c6).  [clausify(5)].
+28 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c6).  [resolve(6,a,27,a)].
+29 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c6).  [resolve(8,a,28,a)].
+30 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c5 != c4.  [clausify(5)].
+31 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c5 != c4.  [resolve(6,a,30,a)].
+32 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c5 != c4.  [resolve(8,a,31,a)].
+33 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c4.  [clausify(5)].
+34 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c4.  [resolve(6,a,33,a)].
+35 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c4.  [resolve(8,a,34,a)].
+36 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c5.  [clausify(5)].
+37 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c5.  [resolve(6,a,36,a)].
+38 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c5.  [resolve(8,a,37,a)].
+39 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c4).  [clausify(5)].
+40 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c4).  [resolve(6,a,39,a)].
+41 -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c4).  [resolve(8,a,40,a)].
+42 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c5).  [clausify(5)].
+43 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c5).  [resolve(6,a,42,a)].
+44 -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c5).  [resolve(8,a,43,a)].
+45 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c6).  [clausify(5)].
+46 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c6).  [resolve(6,a,45,a)].
+47 -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | rp(c3,c6).  [resolve(8,a,46,a)].
+48 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c5 != c4.  [clausify(5)].
+49 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c5 != c4.  [resolve(6,a,48,a)].
+50 -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c5 != c4.  [resolve(8,a,49,a)].
+51 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c4.  [clausify(5)].
+52 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c4.  [resolve(6,a,51,a)].
+53 -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c4.  [resolve(8,a,52,a)].
+54 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c5.  [clausify(5)].
+55 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c5.  [resolve(6,a,54,a)].
+56 -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c6 != c5.  [resolve(8,a,55,a)].
+57 xsd_integer(c2) | cc(c3) | xsd_integer(c2).  [resolve(19,a,7,a)].
+58 xsd_integer(c2) | cc(c3).  [copy(57),merge(c)].
+59 xsd_integer(c2) | rp(c3,f2(c3)).  [resolve(58,b,12,a)].
+60 xsd_integer(c2) | rp(c3,f1(c3)).  [resolve(58,b,11,a)].
+61 xsd_integer(c2) | f2(c3) != f1(c3).  [resolve(58,b,10,a)].
+62 xsd_integer(c2) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | c5 != c4.  [resolve(59,b,50,d)].
+63 xsd_integer(c2) | -xsd_string(c2) | -rp(c3,A) | f2(c3) = A | c5 != c4.  [copy(62),merge(c)].
+64 xsd_integer(c2) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c6).  [resolve(59,b,47,d)].
+65 xsd_integer(c2) | -xsd_string(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c6).  [copy(64),merge(c)].
+66 xsd_integer(c2) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c5).  [resolve(59,b,44,d)].
+67 xsd_integer(c2) | -xsd_string(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c5).  [copy(66),merge(c)].
+68 xsd_integer(c2) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c4).  [resolve(59,b,41,d)].
+69 xsd_integer(c2) | -xsd_string(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c4).  [copy(68),merge(c)].
+70 xsd_integer(c2) | -cc(c3) | -rp(c3,A) | -rp(c3,B) | B = A | f2(c3) = A | f2(c3) = B.  [resolve(59,b,20,d)].
+71 xsd_integer(c2) | A != f2(c3) | rp(c3,A).  [resolve(59,b,13,b)].
+72 xsd_integer(c2) | f2(c3) != A | rp(c3,A).  [copy(71),flip(b)].
+73 xsd_integer(c2) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c6 != c5.  [resolve(60,b,56,d)].
+74 xsd_integer(c2) | -xsd_string(c2) | -rp(c3,A) | f1(c3) = A | c6 != c5.  [copy(73),merge(c)].
+75 xsd_integer(c2) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c6 != c4.  [resolve(60,b,53,d)].
+76 xsd_integer(c2) | -xsd_string(c2) | -rp(c3,A) | f1(c3) = A | c6 != c4.  [copy(75),merge(c)].
+77 xsd_integer(c2) | -xsd_string(c2) | xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c5 != c4.  [resolve(60,b,50,d)].
+78 xsd_integer(c2) | -xsd_string(c2) | -rp(c3,A) | f1(c3) = A | c5 != c4.  [copy(77),merge(c)].
+79 xsd_integer(c2) | -xsd_string(c2) | f2(c3) = f1(c3) | c5 != c4 | xsd_integer(c2).  [resolve(63,c,60,b)].
+80 xsd_integer(c2) | -xsd_string(c2) | f2(c3) = f1(c3) | c5 != c4.  [copy(79),merge(e)].
+81 xsd_integer(c2) | f2(c3) = f1(c3) | c5 != c4 | xsd_integer(c2).  [resolve(80,b,7,a)].
+82 xsd_integer(c2) | f2(c3) = f1(c3) | c5 != c4.  [copy(81),merge(d)].
+83 xsd_integer(c2) | -xsd_string(c2) | f2(c3) = f1(c3) | rp(c3,c6) | xsd_integer(c2).  [resolve(65,c,60,b)].
+84 xsd_integer(c2) | -xsd_string(c2) | f2(c3) = f1(c3) | rp(c3,c6).  [copy(83),merge(e)].
+85 xsd_integer(c2) | -xsd_string(c2) | f2(c3) = f1(c3) | rp(c3,c5) | xsd_integer(c2).  [resolve(67,c,60,b)].
+86 xsd_integer(c2) | -xsd_string(c2) | f2(c3) = f1(c3) | rp(c3,c5).  [copy(85),merge(e)].
+87 xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c6) | xsd_integer(c2).  [resolve(84,b,7,a)].
+88 xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c6).  [copy(87),merge(d)].
+89 xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c5) | xsd_integer(c2).  [resolve(86,b,7,a)].
+90 xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c5).  [copy(89),merge(d)].
+91 xsd_integer(c2) | -xsd_string(c2) | f2(c3) = f1(c3) | rp(c3,c4) | xsd_integer(c2).  [resolve(69,c,60,b)].
+92 xsd_integer(c2) | -xsd_string(c2) | f2(c3) = f1(c3) | rp(c3,c4).  [copy(91),merge(e)].
+93 xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c4) | xsd_integer(c2).  [resolve(92,b,7,a)].
+94 xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c4).  [copy(93),merge(d)].
+95 xsd_integer(c2) | -cc(c3) | -rp(c3,A) | A = f1(c3) | f2(c3) = f1(c3) | f2(c3) = A | xsd_integer(c2).  [resolve(70,c,60,b)].
+96 xsd_integer(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = f1(c3) | f2(c3) = A | xsd_integer(c2).  [copy(95),flip(d)].
+97 xsd_integer(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = f1(c3) | f2(c3) = A.  [copy(96),merge(g)].
+98 xsd_integer(c2) | -cc(c3) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_integer(c2) | f2(c3) = f1(c3).  [resolve(97,c,94,c)].
+99 xsd_integer(c2) | -cc(c3) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | f2(c3) = f1(c3).  [copy(98),merge(f)].
+100 xsd_integer(c2) | -cc(c3) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4.  [copy(99),merge(f)].
+101 xsd_integer(c2) | -cc(c3) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_integer(c2) | f2(c3) = f1(c3).  [resolve(97,c,90,c)].
+102 xsd_integer(c2) | -cc(c3) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | f2(c3) = f1(c3).  [copy(101),merge(f)].
+103 xsd_integer(c2) | -cc(c3) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5.  [copy(102),merge(f)].
+104 xsd_integer(c2) | -cc(c3) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_integer(c2) | f2(c3) = f1(c3).  [resolve(97,c,88,c)].
+105 xsd_integer(c2) | -cc(c3) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | f2(c3) = f1(c3).  [copy(104),merge(f)].
+106 xsd_integer(c2) | -cc(c3) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6.  [copy(105),merge(f)].
+107 xsd_integer(c2) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_integer(c2).  [resolve(100,b,58,b)].
+108 xsd_integer(c2) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4.  [copy(107),merge(e)].
+109 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | cc(c3).  [resolve(108,a,16,b)].
+110 xsd_integer(c2) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_integer(c2).  [resolve(103,b,58,b)].
+111 xsd_integer(c2) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5.  [copy(110),merge(e)].
+112 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | cc(c3).  [resolve(111,a,16,b)].
+113 xsd_integer(c2) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_integer(c2).  [resolve(106,b,58,b)].
+114 xsd_integer(c2) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6.  [copy(113),merge(e)].
+115 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | cc(c3).  [resolve(114,a,16,b)].
+116 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(109,e,12,a)].
+117 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(109,e,11,a)].
+118 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(112,e,12,a)].
+119 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(112,e,11,a)].
+120 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(115,e,12,a)].
+121 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(115,e,11,a)].
+122 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c4).  [resolve(116,e,23,d)].
+123 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c4).  [copy(122),merge(e)].
+124 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | -rp(c3,B) | B = A | f2(c3) = A | f2(c3) = B.  [resolve(116,e,20,d)].
+125 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c5).  [resolve(118,e,26,d)].
+126 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c5).  [copy(125),merge(e)].
+127 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | -rp(c3,B) | B = A | f2(c3) = A | f2(c3) = B.  [resolve(118,e,20,d)].
+128 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c6).  [resolve(120,e,29,d)].
+129 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | rp(c3,c6).  [copy(128),merge(e)].
+130 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | -rp(c3,B) | B = A | f2(c3) = A | f2(c3) = B.  [resolve(120,e,20,d)].
+131 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c4) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [resolve(123,f,117,e)].
+132 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c4) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(131),merge(f)].
+133 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c4) | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(132),merge(g)].
+134 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c4) | f2(c3) = c4 | xsd_string(c2).  [copy(133),merge(g)].
+135 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c4) | xsd_string(c2).  [copy(134),merge(g)].
+136 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c4).  [copy(135),merge(g)].
+137 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | rp(c3,c4) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4.  [resolve(136,e,108,a)].
+138 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | rp(c3,c4) | f2(c3) = f1(c3) | f2(c3) = c4.  [copy(137),merge(f)].
+139 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | rp(c3,c4) | f2(c3) = c4.  [copy(138),merge(f)].
+140 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | rp(c3,c4).  [copy(139),merge(f)].
+141 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | A = f1(c3) | f2(c3) = f1(c3) | f2(c3) = A | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [resolve(124,f,117,e)].
+142 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = f1(c3) | f2(c3) = A | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(141),flip(g)].
+143 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(142),merge(h)].
+144 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(143),merge(i)].
+145 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f2(c3) = c4 | xsd_string(c2).  [copy(144),merge(i)].
+146 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | xsd_string(c2).  [copy(145),merge(i)].
+147 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A.  [copy(146),merge(i)].
+148 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,c4) | f2(c3) = c4.  [factor(147,a,g)].
+149 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | -rp(c3,c4).  [copy(148),merge(g)].
+150 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [resolve(149,f,140,e)].
+151 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(150),merge(f)].
+152 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(151),merge(f)].
+153 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3) | xsd_string(c2).  [copy(152),merge(f)].
+154 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | -cc(c3).  [copy(153),merge(f)].
+155 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [resolve(154,e,109,e)].
+156 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(155),merge(e)].
+157 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | f2(c3) = c4 | xsd_string(c2).  [copy(156),merge(e)].
+158 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2) | xsd_string(c2).  [copy(157),merge(e)].
+159 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | xsd_string(c2).  [copy(158),merge(e)].
+160 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | -xsd_integer(c2).  [resolve(159,d,9,a)].
+161 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4.  [resolve(160,d,108,a)].
+162 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4.  [copy(161),merge(d)].
+163 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4 | f2(c3) = c4.  [copy(162),merge(d)].
+164 f1(c3) = c4 | f2(c3) = f1(c3) | f2(c3) = c4.  [copy(163),merge(d)].
+165 f1(c3) = c4 | f2(c3) = c4 | xsd_integer(c2).  [resolve(164,b,61,b)].
+166 f1(c3) = c4 | f2(c3) = c4 | xsd_string(c2) | cc(c3).  [resolve(165,c,16,b)].
+167 f1(c3) = c4 | f2(c3) = c4 | xsd_string(c2) | f2(c3) != f1(c3).  [resolve(166,d,10,a)].
+168 f1(c3) = c4 | f2(c3) = c4 | xsd_string(c2) | f1(c3) = c4 | f2(c3) = c4.  [resolve(167,d,164,b)].
+169 f1(c3) = c4 | f2(c3) = c4 | xsd_string(c2) | f2(c3) = c4.  [copy(168),merge(d)].
+170 f1(c3) = c4 | f2(c3) = c4 | xsd_string(c2).  [copy(169),merge(d)].
+171 f1(c3) = c4 | f2(c3) = c4 | -xsd_integer(c2).  [resolve(170,c,9,a)].
+172 f1(c3) = c4 | f2(c3) = c4 | f1(c3) = c4 | f2(c3) = c4.  [resolve(171,c,165,c)].
+173 f1(c3) = c4 | f2(c3) = c4 | f2(c3) = c4.  [copy(172),merge(c)].
+174 f1(c3) = c4 | f2(c3) = c4.  [copy(173),merge(c)].
+175 f1(c3) = c4 | xsd_integer(c2) | rp(c3,c4).  [resolve(174,b,72,b)].
+176 f1(c3) = c4 | xsd_integer(c2) | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c4 | c6 != c5.  [resolve(175,c,74,c)].
+177 f1(c3) = c4 | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c4 | c6 != c5.  [copy(176),merge(c)].
+178 f1(c3) = c4 | xsd_integer(c2) | -xsd_string(c2) | c6 != c5.  [copy(177),merge(d)].
+179 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c5) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [resolve(126,f,119,e)].
+180 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c5) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(179),merge(f)].
+181 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c5) | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(180),merge(g)].
+182 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c5) | f2(c3) = c5 | xsd_string(c2).  [copy(181),merge(g)].
+183 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c5) | xsd_string(c2).  [copy(182),merge(g)].
+184 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c5).  [copy(183),merge(g)].
+185 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | A = f1(c3) | f2(c3) = f1(c3) | f2(c3) = A | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [resolve(127,f,119,e)].
+186 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = f1(c3) | f2(c3) = A | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(185),flip(g)].
+187 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(186),merge(h)].
+188 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(187),merge(i)].
+189 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f2(c3) = c5 | xsd_string(c2).  [copy(188),merge(i)].
+190 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | xsd_string(c2).  [copy(189),merge(i)].
+191 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A.  [copy(190),merge(i)].
+192 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,c5) | f2(c3) = c5.  [factor(191,a,g)].
+193 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | -rp(c3,c5).  [copy(192),merge(g)].
+194 f1(c3) = c4 | xsd_integer(c2) | c6 != c5 | xsd_integer(c2).  [resolve(178,c,7,a)].
+195 f1(c3) = c4 | xsd_integer(c2) | c6 != c5.  [copy(194),merge(d)].
+196 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | f2(c3) = f1(c3) | rp(c3,c6) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [resolve(129,f,121,e)].
+197 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c6) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(196),merge(f)].
+198 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c6) | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(197),merge(g)].
+199 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c6) | f2(c3) = c6 | xsd_string(c2).  [copy(198),merge(g)].
+200 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c6) | xsd_string(c2).  [copy(199),merge(g)].
+201 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c6).  [copy(200),merge(g)].
+202 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | rp(c3,c5) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5.  [resolve(184,e,111,a)].
+203 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | rp(c3,c5) | f2(c3) = f1(c3) | f2(c3) = c5.  [copy(202),merge(f)].
+204 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | rp(c3,c5) | f2(c3) = c5.  [copy(203),merge(f)].
+205 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | rp(c3,c5).  [copy(204),merge(f)].
+206 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | A = f1(c3) | f2(c3) = f1(c3) | f2(c3) = A | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [resolve(130,f,121,e)].
+207 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = f1(c3) | f2(c3) = A | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(206),flip(g)].
+208 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(207),merge(h)].
+209 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(208),merge(i)].
+210 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | f2(c3) = c6 | xsd_string(c2).  [copy(209),merge(i)].
+211 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A | xsd_string(c2).  [copy(210),merge(i)].
+212 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,A) | f1(c3) = A | f2(c3) = A.  [copy(211),merge(i)].
+213 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,c6) | f2(c3) = c6.  [factor(212,a,g)].
+214 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | -rp(c3,c6).  [copy(213),merge(g)].
+215 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [resolve(193,f,205,e)].
+216 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(215),merge(f)].
+217 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(216),merge(f)].
+218 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3) | xsd_string(c2).  [copy(217),merge(f)].
+219 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | -cc(c3).  [copy(218),merge(f)].
+220 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [resolve(219,e,112,e)].
+221 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(220),merge(e)].
+222 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | f2(c3) = c5 | xsd_string(c2).  [copy(221),merge(e)].
+223 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2) | xsd_string(c2).  [copy(222),merge(e)].
+224 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | xsd_string(c2).  [copy(223),merge(e)].
+225 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | -xsd_integer(c2).  [resolve(224,d,9,a)].
+226 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5.  [resolve(225,d,111,a)].
+227 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5.  [copy(226),merge(d)].
+228 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5 | f2(c3) = c5.  [copy(227),merge(d)].
+229 f1(c3) = c5 | f2(c3) = f1(c3) | f2(c3) = c5.  [copy(228),merge(d)].
+230 f1(c3) = c5 | f2(c3) = c5 | xsd_integer(c2).  [resolve(229,b,61,b)].
+231 f1(c3) = c5 | f2(c3) = c5 | f1(c3) = c4 | f1(c3) = c4.  [para(229(b,1),174(b,1))].
+232 f1(c3) = c5 | f2(c3) = c5 | f1(c3) = c4.  [copy(231),merge(d)].
+233 f1(c3) = c5 | f2(c3) = c5 | xsd_string(c2) | cc(c3).  [resolve(230,c,16,b)].
+234 f1(c3) = c5 | f1(c3) = c4 | f1(c3) = c4 | c5 = c4.  [para(232(b,1),174(b,1))].
+235 f1(c3) = c5 | f1(c3) = c4 | c5 = c4.  [copy(234),merge(c)].
+236 f1(c3) = c5 | f2(c3) = c5 | xsd_string(c2) | f2(c3) != f1(c3).  [resolve(233,d,10,a)].
+237 f1(c3) = c5 | f2(c3) = c5 | xsd_string(c2) | f1(c3) = c5 | f2(c3) = c5.  [resolve(236,d,229,b)].
+238 f1(c3) = c5 | f2(c3) = c5 | xsd_string(c2) | f2(c3) = c5.  [copy(237),merge(d)].
+239 f1(c3) = c5 | f2(c3) = c5 | xsd_string(c2).  [copy(238),merge(d)].
+240 f1(c3) = c5 | f2(c3) = c5 | -xsd_integer(c2).  [resolve(239,c,9,a)].
+241 f1(c3) = c5 | f2(c3) = c5 | f1(c3) = c5 | f2(c3) = c5.  [resolve(240,c,230,c)].
+242 f1(c3) = c5 | f2(c3) = c5 | f2(c3) = c5.  [copy(241),merge(c)].
+243 f1(c3) = c5 | f2(c3) = c5.  [copy(242),merge(c)].
+244 f1(c3) = c5 | xsd_integer(c2) | rp(c3,c5).  [resolve(243,b,72,b)].
+245 f1(c3) = c5 | xsd_integer(c2) | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c5 | c5 != c4.  [resolve(244,c,78,c)].
+246 f1(c3) = c5 | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c5 | c5 != c4.  [copy(245),merge(c)].
+247 f1(c3) = c5 | xsd_integer(c2) | -xsd_string(c2) | c5 != c4.  [copy(246),merge(d)].
+248 f1(c3) = c5 | xsd_integer(c2) | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c5 | c6 != c4.  [resolve(244,c,76,c)].
+249 f1(c3) = c5 | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c5 | c6 != c4.  [copy(248),merge(c)].
+250 f1(c3) = c5 | xsd_integer(c2) | -xsd_string(c2) | c6 != c4.  [copy(249),merge(d)].
+251 f1(c3) = c5 | xsd_integer(c2) | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c5 | c6 != c5.  [resolve(244,c,74,c)].
+252 f1(c3) = c5 | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c5 | c6 != c5.  [copy(251),merge(c)].
+253 f1(c3) = c5 | xsd_integer(c2) | -xsd_string(c2) | c6 != c5.  [copy(252),merge(d)].
+254 f1(c3) = c5 | xsd_integer(c2) | c5 != c4 | xsd_integer(c2).  [resolve(247,c,7,a)].
+255 f1(c3) = c5 | xsd_integer(c2) | c5 != c4.  [copy(254),merge(d)].
+256 f1(c3) = c5 | xsd_integer(c2) | c6 != c4 | xsd_integer(c2).  [resolve(250,c,7,a)].
+257 f1(c3) = c5 | xsd_integer(c2) | c6 != c4.  [copy(256),merge(d)].
+258 f1(c3) = c5 | xsd_integer(c2) | c6 != c5 | xsd_integer(c2).  [resolve(253,c,7,a)].
+259 f1(c3) = c5 | xsd_integer(c2) | c6 != c5.  [copy(258),merge(d)].
+260 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | rp(c3,c6) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6.  [resolve(201,e,114,a)].
+261 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | rp(c3,c6) | f2(c3) = f1(c3) | f2(c3) = c6.  [copy(260),merge(f)].
+262 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | rp(c3,c6) | f2(c3) = c6.  [copy(261),merge(f)].
+263 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | rp(c3,c6).  [copy(262),merge(f)].
+264 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [resolve(214,f,263,e)].
+265 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(264),merge(f)].
+266 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(265),merge(f)].
+267 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3) | xsd_string(c2).  [copy(266),merge(f)].
+268 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | -cc(c3).  [copy(267),merge(f)].
+269 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [resolve(268,e,115,e)].
+270 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(269),merge(e)].
+271 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | f2(c3) = c6 | xsd_string(c2).  [copy(270),merge(e)].
+272 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2) | xsd_string(c2).  [copy(271),merge(e)].
+273 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | xsd_string(c2).  [copy(272),merge(e)].
+274 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | -xsd_integer(c2).  [resolve(273,d,9,a)].
+275 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6.  [resolve(274,d,114,a)].
+276 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6.  [copy(275),merge(d)].
+277 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6 | f2(c3) = c6.  [copy(276),merge(d)].
+278 f1(c3) = c6 | f2(c3) = f1(c3) | f2(c3) = c6.  [copy(277),merge(d)].
+279 f1(c3) = c6 | f2(c3) = c6 | xsd_integer(c2).  [resolve(278,b,61,b)].
+280 f1(c3) = c6 | f2(c3) = c6 | f1(c3) = c4 | f1(c3) = c4.  [para(278(b,1),174(b,1))].
+281 f1(c3) = c6 | f2(c3) = c6 | f1(c3) = c4.  [copy(280),merge(d)].
+282 f1(c3) = c6 | f2(c3) = c6 | f1(c3) = c5 | f1(c3) = c5.  [para(278(b,1),243(b,1))].
+283 f1(c3) = c6 | f2(c3) = c6 | f1(c3) = c5.  [copy(282),merge(d)].
+284 f1(c3) = c6 | f2(c3) = c6 | xsd_string(c2) | cc(c3).  [resolve(279,c,16,b)].
+285 f1(c3) = c6 | f1(c3) = c4 | f1(c3) = c4 | c6 = c4.  [para(281(b,1),174(b,1))].
+286 f1(c3) = c6 | f1(c3) = c4 | c6 = c4.  [copy(285),merge(c)].
+287 f1(c3) = c4 | c6 = c4 | c6 = c5 | f1(c3) = c4 | c5 = c4.  [para(286(a,1),235(a,1))].
+288 f1(c3) = c4 | c6 = c4 | c6 = c5 | c5 = c4.  [copy(287),merge(d)].
+289 f1(c3) = c6 | f1(c3) = c5 | f1(c3) = c5 | c6 = c5.  [para(283(b,1),243(b,1))].
+290 f1(c3) = c6 | f1(c3) = c5 | c6 = c5.  [copy(289),merge(c)].
+291 f1(c3) = c6 | f2(c3) = c6 | xsd_string(c2) | f2(c3) != f1(c3).  [resolve(284,d,10,a)].
+292 c6 = c4 | c6 = c5 | c5 = c4 | c4 = c6 | f1(c3) = c5 | c6 = c5.  [para(288(a,1),290(a,1))].
+293 c6 = c4 | c6 = c5 | c5 = c4 | c6 = c4 | f1(c3) = c5 | c6 = c5.  [copy(292),flip(d)].
+294 c6 = c4 | c6 = c5 | c5 = c4 | f1(c3) = c5 | c6 = c5.  [copy(293),merge(d)].
+295 c6 = c4 | c6 = c5 | c5 = c4 | f1(c3) = c5.  [copy(294),merge(e)].
+296 c6 = c4 | c6 = c5 | c5 = c4 | c5 = c4 | c6 = c4 | c6 = c5 | c5 = c4.  [para(295(d,1),288(a,1))].
+297 c6 = c4 | c6 = c5 | c5 = c4 | c6 = c4 | c6 = c5 | c5 = c4.  [copy(296),merge(d)].
+298 c6 = c4 | c6 = c5 | c5 = c4 | c6 = c5 | c5 = c4.  [copy(297),merge(d)].
+299 c6 = c4 | c6 = c5 | c5 = c4 | c5 = c4.  [copy(298),merge(d)].
+300 c6 = c4 | c6 = c5 | c5 = c4.  [copy(299),merge(d)].
+301 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_integer(c2).  [resolve(300,b,259,c)].
+302 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_integer(c2).  [resolve(300,b,195,c)].
+303 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | cc(c3).  [resolve(301,d,16,b)].
+304 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | cc(c3).  [resolve(302,d,16,b)].
+305 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(303,e,12,a)].
+306 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(303,e,11,a)].
+307 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(304,e,12,a)].
+308 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(304,e,11,a)].
+309 f1(c3) = c6 | f2(c3) = c6 | xsd_string(c2) | f1(c3) = c6 | f2(c3) = c6.  [resolve(291,d,278,b)].
+310 f1(c3) = c6 | f2(c3) = c6 | xsd_string(c2) | f2(c3) = c6.  [copy(309),merge(d)].
+311 f1(c3) = c6 | f2(c3) = c6 | xsd_string(c2).  [copy(310),merge(d)].
+312 f1(c3) = c6 | f2(c3) = c6 | -xsd_integer(c2).  [resolve(311,c,9,a)].
+313 f1(c3) = c6 | f2(c3) = c6 | f1(c3) = c6 | f2(c3) = c6.  [resolve(312,c,279,c)].
+314 f1(c3) = c6 | f2(c3) = c6 | f2(c3) = c6.  [copy(313),merge(c)].
+315 f1(c3) = c6 | f2(c3) = c6.  [copy(314),merge(c)].
+316 f1(c3) = c6 | xsd_integer(c2) | rp(c3,c6).  [resolve(315,b,72,b)].
+317 f1(c3) = c6 | xsd_integer(c2) | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c6 | c6 != c4.  [resolve(316,c,76,c)].
+318 f1(c3) = c6 | xsd_integer(c2) | -xsd_string(c2) | f1(c3) = c6 | c6 != c4.  [copy(317),merge(c)].
+319 f1(c3) = c6 | xsd_integer(c2) | -xsd_string(c2) | c6 != c4.  [copy(318),merge(d)].
+320 f1(c3) = c6 | xsd_integer(c2) | c6 != c4 | xsd_integer(c2).  [resolve(319,c,7,a)].
+321 f1(c3) = c6 | xsd_integer(c2) | c6 != c4.  [copy(320),merge(d)].
+322 f1(c3) = c5 | c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,c5).  [para(243(b,1),305(e,2))].
+323 f1(c3) = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c5).  [copy(322),merge(d)].
+324 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c6 != c5.  [resolve(306,e,38,d)].
+325 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c6 != c5.  [copy(324),merge(e)].
+326 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,c5) | c6 != c5.  [factor(325,c,g)].
+327 f1(c3) = c4 | c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | rp(c3,c4).  [para(174(b,1),307(e,2))].
+328 f1(c3) = c4 | c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c4).  [copy(327),merge(d)].
+329 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c6 != c5.  [resolve(308,e,38,d)].
+330 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c6 != c5.  [copy(329),merge(e)].
+331 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,c4) | c6 != c5.  [factor(330,c,g)].
+332 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5 | f1(c3) = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(326,f,323,e)].
+333 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(332),merge(g)].
+334 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5 | c5 = c4 | xsd_string(c2).  [copy(333),merge(g)].
+335 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5 | xsd_string(c2).  [copy(334),merge(g)].
+336 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5.  [copy(335),merge(g)].
+337 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | c6 != c5 | c6 = c4 | c5 = c4 | f1(c3) = c5.  [resolve(336,e,301,d)].
+338 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | c6 != c5 | c5 = c4 | f1(c3) = c5.  [copy(337),merge(f)].
+339 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | c6 != c5 | f1(c3) = c5.  [copy(338),merge(f)].
+340 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | c6 != c5.  [copy(339),merge(f)].
+341 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | c6 = c4 | c5 = c4.  [resolve(340,e,300,b)].
+342 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | c5 = c4.  [copy(341),merge(e)].
+343 c6 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2).  [copy(342),merge(e)].
+344 c6 = c4 | c5 = c4 | f1(c3) = c5 | -xsd_integer(c2).  [resolve(343,d,9,a)].
+345 c6 = c4 | c5 = c4 | f1(c3) = c5 | c6 = c4 | c5 = c4 | f1(c3) = c5.  [resolve(344,d,301,d)].
+346 c6 = c4 | c5 = c4 | f1(c3) = c5 | c5 = c4 | f1(c3) = c5.  [copy(345),merge(d)].
+347 c6 = c4 | c5 = c4 | f1(c3) = c5 | f1(c3) = c5.  [copy(346),merge(d)].
+348 c6 = c4 | c5 = c4 | f1(c3) = c5.  [copy(347),merge(d)].
+349 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5 | f1(c3) = c4 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(331,f,328,e)].
+350 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(349),merge(g)].
+351 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5 | c5 = c4 | xsd_string(c2).  [copy(350),merge(g)].
+352 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5 | xsd_string(c2).  [copy(351),merge(g)].
+353 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c5.  [copy(352),merge(g)].
+354 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | c6 != c5 | c6 = c4 | c5 = c4 | f1(c3) = c4.  [resolve(353,e,302,d)].
+355 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | c6 != c5 | c5 = c4 | f1(c3) = c4.  [copy(354),merge(f)].
+356 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | c6 != c5 | f1(c3) = c4.  [copy(355),merge(f)].
+357 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | c6 != c5.  [copy(356),merge(f)].
+358 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | c6 = c4 | c5 = c4.  [resolve(357,e,300,b)].
+359 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2) | c5 = c4.  [copy(358),merge(e)].
+360 c6 = c4 | c5 = c4 | f1(c3) = c4 | xsd_string(c2).  [copy(359),merge(e)].
+361 c6 = c4 | c5 = c4 | f1(c3) = c4 | -xsd_integer(c2).  [resolve(360,d,9,a)].
+362 c6 = c4 | c5 = c4 | f1(c3) = c4 | c6 = c4 | c5 = c4 | f1(c3) = c4.  [resolve(361,d,302,d)].
+363 c6 = c4 | c5 = c4 | f1(c3) = c4 | c5 = c4 | f1(c3) = c4.  [copy(362),merge(d)].
+364 c6 = c4 | c5 = c4 | f1(c3) = c4 | f1(c3) = c4.  [copy(363),merge(d)].
+365 c6 = c4 | c5 = c4 | f1(c3) = c4.  [copy(364),merge(d)].
+366 c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4 | c4 = c5.  [para(365(c,1),348(c,1))].
+367 c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(366),flip(e)].
+368 c6 = c4 | c5 = c4 | c5 = c4 | c5 = c4.  [copy(367),merge(c)].
+369 c6 = c4 | c5 = c4 | c5 = c4.  [copy(368),merge(c)].
+370 c6 = c4 | c5 = c4.  [copy(369),merge(c)].
+371 c5 = c4 | f1(c3) = c6 | xsd_integer(c2).  [resolve(370,a,321,c)].
+372 c5 = c4 | f1(c3) = c5 | xsd_integer(c2).  [resolve(370,a,257,c)].
+373 c5 = c4 | f1(c3) = c6 | f2(c3) = c4.  [para(370(a,1),315(b,2))].
+374 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | cc(c3).  [resolve(371,c,16,b)].
+375 c5 = c4 | f1(c3) = c5 | xsd_string(c2) | cc(c3).  [resolve(372,c,16,b)].
+376 c5 = c4 | f1(c3) = c6 | f1(c3) = c5 | c4 = c5.  [para(373(c,1),243(b,1))].
+377 c5 = c4 | f1(c3) = c6 | f1(c3) = c5 | c5 = c4.  [copy(376),flip(d)].
+378 c5 = c4 | f1(c3) = c6 | f1(c3) = c5.  [copy(377),merge(d)].
+379 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(374,d,12,a)].
+380 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(374,d,11,a)].
+381 c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(375,d,12,a)].
+382 c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(375,d,11,a)].
+383 f1(c3) = c6 | c5 = c4 | f1(c3) = c6 | xsd_string(c2) | rp(c3,c6).  [para(315(b,1),379(d,2))].
+384 f1(c3) = c6 | c5 = c4 | xsd_string(c2) | rp(c3,c6).  [copy(383),merge(c)].
+385 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c6 != c4.  [resolve(380,d,35,d)].
+386 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | c6 != c4.  [copy(385),merge(d)].
+387 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,c6) | c6 != c4.  [factor(386,b,f)].
+388 f1(c3) = c5 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,c5).  [para(243(b,1),381(d,2))].
+389 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | rp(c3,c5).  [copy(388),merge(c)].
+390 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | c5 = A | c6 != c4.  [resolve(389,d,35,d)].
+391 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | c5 = A | c6 != c4.  [copy(390),merge(d)].
+392 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rp(c3,c4) | c6 != c4.  [factor(391,b,f)].
+393 c5 = c4 | f1(c3) = c5 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,c6).  [para(378(b,1),382(d,2))].
+394 c5 = c4 | f1(c3) = c5 | f1(c3) = c5 | xsd_string(c2) | rp(c3,c6).  [copy(393),merge(c)].
+395 c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,c6).  [copy(394),merge(c)].
+396 c5 = c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,c4).  [para(370(a,1),395(d,2))].
+397 c5 = c4 | f1(c3) = c5 | xsd_string(c2) | rp(c3,c4).  [copy(396),merge(b)].
+398 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | c6 != c4 | f1(c3) = c6 | c5 = c4 | xsd_string(c2).  [resolve(387,e,384,d)].
+399 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | c6 != c4 | c5 = c4 | xsd_string(c2).  [copy(398),merge(f)].
+400 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | c6 != c4 | xsd_string(c2).  [copy(399),merge(f)].
+401 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | -xsd_integer(c2) | c6 != c4.  [copy(400),merge(f)].
+402 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | c6 != c4 | c5 = c4 | f1(c3) = c6.  [resolve(401,d,371,c)].
+403 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | c6 != c4 | f1(c3) = c6.  [copy(402),merge(e)].
+404 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | c6 != c4.  [copy(403),merge(e)].
+405 c5 = c4 | f1(c3) = c6 | xsd_string(c2) | c5 = c4.  [resolve(404,d,370,a)].
+406 c5 = c4 | f1(c3) = c6 | xsd_string(c2).  [copy(405),merge(d)].
+407 c5 = c4 | f1(c3) = c6 | -xsd_integer(c2).  [resolve(406,c,9,a)].
+408 c5 = c4 | f1(c3) = c6 | c5 = c4 | f1(c3) = c6.  [resolve(407,c,371,c)].
+409 c5 = c4 | f1(c3) = c6 | f1(c3) = c6.  [copy(408),merge(c)].
+410 c5 = c4 | f1(c3) = c6.  [copy(409),merge(c)].
+411 c5 = c4 | c5 = c4 | f1(c3) = c4.  [para(370(a,1),410(b,2))].
+412 c5 = c4 | f1(c3) = c4.  [copy(411),merge(b)].
+413 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c4 | c5 = c4 | f1(c3) = c5 | xsd_string(c2).  [resolve(392,e,397,d)].
+414 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c4 | f1(c3) = c5 | xsd_string(c2).  [copy(413),merge(f)].
+415 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c4 | xsd_string(c2).  [copy(414),merge(f)].
+416 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 != c4.  [copy(415),merge(f)].
+417 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | c6 != c4 | c5 = c4 | f1(c3) = c5.  [resolve(416,d,372,c)].
+418 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | c6 != c4 | f1(c3) = c5.  [copy(417),merge(e)].
+419 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | c6 != c4.  [copy(418),merge(e)].
+420 f1(c3) = c5 | c5 = c4 | xsd_string(c2) | c5 = c4.  [resolve(419,d,370,a)].
+421 f1(c3) = c5 | c5 = c4 | xsd_string(c2).  [copy(420),merge(d)].
+422 f1(c3) = c5 | c5 = c4 | -xsd_integer(c2).  [resolve(421,c,9,a)].
+423 f1(c3) = c5 | c5 = c4 | c5 = c4 | f1(c3) = c5.  [resolve(422,c,372,c)].
+424 f1(c3) = c5 | c5 = c4 | f1(c3) = c5.  [copy(423),merge(c)].
+425 f1(c3) = c5 | c5 = c4.  [copy(424),merge(c)].
+426 c5 = c4 | c5 = c4 | c5 = c4.  [para(425(a,1),412(b,1))].
+427 c5 = c4 | c5 = c4.  [copy(426),merge(b)].
+428 c5 = c4.  [copy(427),merge(b)].
+429 f1(c3) = c4 | xsd_integer(c2) | c5 != c4.  [para(428(a,1),255(a,2))].
+430 f1(c3) = c4 | xsd_integer(c2) | c4 != c4.  [para(428(a,1),429(c,1))].
+431 f1(c3) = c4 | xsd_integer(c2).  [copy(430),xx(c)].
+432 xsd_integer(c2) | f2(c3) = f1(c3) | c4 != c4.  [para(428(a,1),82(c,1))].
+433 xsd_integer(c2) | f2(c3) = f1(c3).  [copy(432),xx(c)].
+434 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A | c4 != c4.  [para(428(a,1),32(f,1))].
+435 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | -rp(c3,B) | B = A.  [copy(434),xx(f)].
+436 f1(c3) = c4 | xsd_string(c2) | cc(c3).  [resolve(431,b,16,b)].
+437 f2(c3) = f1(c3) | xsd_string(c2) | cc(c3).  [resolve(433,a,16,b)].
+438 f1(c3) = c4 | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(436,c,12,a)].
+439 f1(c3) = c4 | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(436,c,11,a)].
+440 f2(c3) = f1(c3) | xsd_string(c2) | rp(c3,f2(c3)).  [resolve(437,c,12,a)].
+441 f2(c3) = f1(c3) | xsd_string(c2) | rp(c3,f1(c3)).  [resolve(437,c,11,a)].
+442 f1(c3) = c4 | f1(c3) = c4 | xsd_string(c2) | rp(c3,c4).  [para(174(b,1),438(c,2))].
+443 f1(c3) = c4 | xsd_string(c2) | rp(c3,c4).  [copy(442),merge(b)].
+444 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | A = f2(c3) | f2(c3) = f1(c3) | xsd_string(c2).  [resolve(435,c,440,c)].
+445 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | f2(c3) = f1(c3) | xsd_string(c2).  [copy(444),flip(d)].
+446 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f2(c3) = A | f2(c3) = f1(c3).  [copy(445),merge(f)].
+447 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | A = f1(c3) | f1(c3) = c4 | xsd_string(c2).  [resolve(435,c,439,c)].
+448 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | f1(c3) = c4 | xsd_string(c2).  [copy(447),flip(d)].
+449 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,A) | f1(c3) = A | f1(c3) = c4.  [copy(448),merge(f)].
+450 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,f1(c3)) | f2(c3) = f1(c3).  [factor(446,d,e)].
+451 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,c4) | f1(c3) = c4.  [factor(449,d,e)].
+452 xsd_string(c2) | -xsd_integer(c2) | f1(c3) = c4 | f1(c3) = c4 | xsd_string(c2).  [resolve(451,c,443,c)].
+453 xsd_string(c2) | -xsd_integer(c2) | f1(c3) = c4 | xsd_string(c2).  [copy(452),merge(d)].
+454 xsd_string(c2) | -xsd_integer(c2) | f1(c3) = c4.  [copy(453),merge(d)].
+455 xsd_string(c2) | f1(c3) = c4 | f1(c3) = c4.  [resolve(454,b,431,b)].
+456 xsd_string(c2) | f1(c3) = c4.  [copy(455),merge(c)].
+457 f1(c3) = c4 | -xsd_integer(c2).  [resolve(456,a,9,a)].
+458 f1(c3) = c4 | f1(c3) = c4.  [resolve(457,b,431,b)].
+459 f1(c3) = c4.  [copy(458),merge(b)].
+460 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,c4) | f2(c3) = f1(c3).  [para(459(a,1),450(c,2))].
+461 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,c4) | f2(c3) = c4.  [para(459(a,1),460(d,2))].
+462 f2(c3) = c4 | xsd_string(c2) | rp(c3,f1(c3)).  [para(459(a,1),441(a,2))].
+463 f2(c3) = c4 | xsd_string(c2) | rp(c3,c4).  [para(459(a,1),462(c,2))].
+464 xsd_integer(c2) | f2(c3) = c4.  [para(459(a,1),433(b,2))].
+465 xsd_integer(c2) | f2(c3) != c4.  [para(459(a,1),61(b,2))].
+466 xsd_string(c2) | -xsd_integer(c2) | f2(c3) = c4 | f2(c3) = c4 | xsd_string(c2).  [resolve(461,c,463,c)].
+467 xsd_string(c2) | -xsd_integer(c2) | f2(c3) = c4 | xsd_string(c2).  [copy(466),merge(d)].
+468 xsd_string(c2) | -xsd_integer(c2) | f2(c3) = c4.  [copy(467),merge(d)].
+469 xsd_string(c2) | f2(c3) = c4 | f2(c3) = c4.  [resolve(468,b,464,a)].
+470 xsd_string(c2) | f2(c3) = c4.  [copy(469),merge(c)].
+471 f2(c3) = c4 | -xsd_integer(c2).  [resolve(470,a,9,a)].
+472 f2(c3) = c4 | f2(c3) = c4.  [resolve(471,b,464,a)].
+473 f2(c3) = c4.  [copy(472),merge(b)].
+474 xsd_integer(c2) | c4 != c4.  [para(473(a,1),465(b,1))].
+475 xsd_integer(c2).  [copy(474),xx(b)].
+476 xsd_string(c2) | cc(c3).  [resolve(475,a,16,b)].
+477 -xsd_string(c2).  [resolve(9,b,475,a)].
+478 cc(c3).  [resolve(477,a,476,a)].
+479 f2(c3) != f1(c3).  [resolve(478,a,10,a)].
+480 c4 != f1(c3).  [para(473(a,1),479(a,1))].
+481 c4 != c4.  [para(459(a,1),480(a,2))].
+482 $F.  [copy(481),xx(a)].

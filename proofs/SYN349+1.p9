@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n110.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:34:58 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 10145 was started by sandbox on n110.star.cs.uiowa.edu,
+Fri Jun  6 06:34:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_10113_n110.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 7.
+% Maximum clause weight is 21.000.
+% Given clauses 21.
+
+
+1 -(exists A all B exists C all D ((big_f(A,D) <-> big_f(B,D)) -> (((big_f(A,D) <-> big_f(D,C)) <-> big_f(C,D)) <-> big_f(D,B)))).  [assumption].
+2 big_f(A,f2(A,B)) | big_f(f2(A,B),B) | big_f(B,f2(A,B)) | big_f(f2(A,B),f1(A)).  [clausify(1)].
+3 -big_f(A,f2(A,B)) | -big_f(f2(A,B),B) | -big_f(B,f2(A,B)) | -big_f(f2(A,B),f1(A)).  [clausify(1)].
+4 -big_f(A,f2(A,B)) | big_f(f1(A),f2(A,B)).  [clausify(1)].
+5 big_f(A,f2(A,B)) | -big_f(f1(A),f2(A,B)).  [clausify(1)].
+6 -big_f(A,f2(A,B)) | big_f(f2(A,B),B) | -big_f(B,f2(A,B)) | big_f(f2(A,B),f1(A)).  [clausify(1)].
+7 big_f(A,f2(A,B)) | -big_f(f2(A,B),B) | big_f(B,f2(A,B)) | -big_f(f2(A,B),f1(A)).  [clausify(1)].
+8 big_f(A,f2(A,f1(A))) | big_f(f2(A,f1(A)),f1(A)) | big_f(f1(A),f2(A,f1(A))).  [factor(2,b,d)].
+9 -big_f(A,f2(A,f1(A))) | -big_f(f2(A,f1(A)),f1(A)) | -big_f(f1(A),f2(A,f1(A))).  [factor(3,b,d)].
+10 -big_f(A,f2(A,f1(A))) | big_f(f2(A,f1(A)),f1(A)) | -big_f(f1(A),f2(A,f1(A))).  [factor(6,b,d)].
+11 big_f(A,f2(A,f1(A))) | -big_f(f2(A,f1(A)),f1(A)) | big_f(f1(A),f2(A,f1(A))).  [factor(7,b,d)].
+12 big_f(A,f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))) | big_f(A,f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))).  [resolve(11,b,8,b)].
+13 big_f(A,f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))).  [copy(12),merge(c)].
+14 big_f(A,f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))).  [copy(13),merge(c)].
+15 big_f(A,f2(A,f1(A))) | big_f(A,f2(A,f1(A))).  [resolve(14,b,5,b)].
+16 big_f(A,f2(A,f1(A))).  [copy(15),merge(b)].
+17 big_f(f2(A,f1(A)),f1(A)) | -big_f(f1(A),f2(A,f1(A))).  [resolve(16,a,10,a)].
+18 -big_f(f2(A,f1(A)),f1(A)) | -big_f(f1(A),f2(A,f1(A))).  [resolve(16,a,9,a)].
+19 big_f(f1(A),f2(A,f1(A))).  [resolve(16,a,4,a)].
+20 -big_f(f2(A,f1(A)),f1(A)).  [resolve(19,a,18,b)].
+21 -big_f(f1(A),f2(A,f1(A))).  [resolve(20,a,17,a)].
+22 $F.  [resolve(19,a,21,a)].
+
+============================== end of proof ==========================

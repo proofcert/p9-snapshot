@@ -1,0 +1,61 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n103.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:04:13 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 36986 was started by sandbox on n103.star.cs.uiowa.edu,
+Fri Jun  6 01:04:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_36954_n103.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: bg_2_4_3.
+% Length of proof is 24.
+% Level of proof is 6.
+% Maximum clause weight is 14.000.
+% Given clauses 11.
+
+
+1 (all A all B (basis_of(A,B) -> lin_ind_subset(A,B) & a_subset_of(A,vec_to_class(B)))).  [assumption].
+2 (all A all B all C (lin_ind_subset(A,C) & basis_of(B,C) -> (exists D (a_subset_of(D,B) & basis_of(union(A,D),C))))).  [assumption].
+3 (all A (a_vector_space(A) -> (exists B basis_of(B,A)))).  [assumption].
+4 (all A all B (a_vector_subspace_of(A,B) -> a_vector_space(A))).  [assumption].
+5 (all A all B all C (a_vector_subspace_of(A,B) & a_subset_of(C,vec_to_class(A)) -> (lin_ind_subset(C,A) <-> lin_ind_subset(C,B)))).  [assumption].
+6 -(all A all B (a_vector_subspace_of(A,B) & a_vector_space(B) -> (exists C exists D (basis_of(union(C,D),B) & basis_of(C,A))))).  [assumption].
+7 -a_vector_space(A) | basis_of(f2(A),A).  [clausify(3)].
+8 a_vector_space(c2).  [clausify(6)].
+9 -a_vector_subspace_of(A,B) | a_vector_space(A).  [clausify(4)].
+10 -a_vector_subspace_of(A,B) | -a_subset_of(C,vec_to_class(A)) | -lin_ind_subset(C,A) | lin_ind_subset(C,B).  [clausify(5)].
+11 a_vector_subspace_of(c1,c2).  [clausify(6)].
+12 basis_of(f2(A),A) | -a_vector_subspace_of(A,B).  [resolve(7,a,9,b)].
+13 -a_subset_of(A,vec_to_class(c1)) | -lin_ind_subset(A,c1) | lin_ind_subset(A,c2).  [resolve(10,a,11,a)].
+14 -basis_of(A,B) | a_subset_of(A,vec_to_class(B)).  [clausify(1)].
+15 -basis_of(union(A,B),c2) | -basis_of(A,c1).  [clausify(6)].
+16 -basis_of(A,B) | lin_ind_subset(A,B).  [clausify(1)].
+17 -lin_ind_subset(A,B) | -basis_of(C,B) | basis_of(union(A,f1(A,C,B)),B).  [clausify(2)].
+18 basis_of(f2(c2),c2).  [resolve(7,a,8,a)].
+19 basis_of(f2(c1),c1).  [resolve(12,b,11,a)].
+20 -lin_ind_subset(A,c1) | lin_ind_subset(A,c2) | -basis_of(A,c1).  [resolve(13,a,14,b)].
+21 -basis_of(union(f2(c1),A),c2).  [resolve(19,a,15,b)].
+22 lin_ind_subset(f2(c1),c1).  [resolve(16,a,19,a)].
+23 -lin_ind_subset(A,c2) | basis_of(union(A,f1(A,f2(c2),c2)),c2).  [resolve(17,b,18,a)].
+24 -lin_ind_subset(f2(c1),c2).  [resolve(23,b,21,a)].
+25 -lin_ind_subset(f2(c1),c1) | -basis_of(f2(c1),c1).  [resolve(24,a,20,b)].
+26 -basis_of(f2(c1),c1).  [resolve(22,a,25,a)].
+27 $F.  [resolve(19,a,26,a)].
+
+============================== end of proof ==========================

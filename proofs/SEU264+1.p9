@@ -1,0 +1,50 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n090.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:00:48 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 24380 was started by sandbox on n090.star.cs.uiowa.edu,
+Fri Jun  6 06:00:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_24348_n090.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: t16_relset_1.
+% Length of proof is 14.
+% Level of proof is 4.
+% Maximum clause weight is 12.000.
+% Given clauses 14.
+
+
+1 (all A all B all C (relation_of2_as_subset(C,A,B) -> subset(relation_dom(C),A) & subset(relation_rng(C),B))).  [assumption].
+2 (all A all B all C all D (relation_of2_as_subset(D,C,A) -> (subset(relation_rng(D),B) -> relation_of2_as_subset(D,C,B)))).  [assumption].
+3 (all A all B all C (subset(A,B) & subset(B,C) -> subset(A,C))).  [assumption].
+4 -(all A all B all C all D (relation_of2_as_subset(D,C,A) -> (subset(A,B) -> relation_of2_as_subset(D,C,B)))).  [assumption].
+5 subset(c1,c2).  [clausify(4)].
+6 relation_of2_as_subset(c4,c3,c1).  [clausify(4)].
+7 -relation_of2_as_subset(c4,c3,c2).  [clausify(4)].
+8 -relation_of2_as_subset(A,B,C) | subset(relation_rng(A),C).  [clausify(1)].
+9 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(3)].
+10 -relation_of2_as_subset(A,B,C) | -subset(relation_rng(A),D) | relation_of2_as_subset(A,B,D).  [clausify(2)].
+11 subset(relation_rng(c4),c1).  [resolve(8,a,6,a)].
+12 -subset(relation_rng(c4),A) | relation_of2_as_subset(c4,c3,A).  [resolve(10,a,6,a)].
+13 -subset(relation_rng(c4),c2).  [resolve(12,b,7,a)].
+14 -subset(A,c1) | subset(A,c2).  [resolve(9,b,5,a)].
+15 -subset(relation_rng(c4),c1).  [resolve(14,b,13,a)].
+16 $F.  [resolve(15,a,11,a)].
+
+============================== end of proof ==========================

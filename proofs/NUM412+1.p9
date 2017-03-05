@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n113.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:23:08 CDT 2014
+% CPUTime    : 0.25 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 7809 was started by sandbox on n113.star.cs.uiowa.edu,
+Fri Jun  6 06:23:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_7777_n113.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 23.
+% Level of proof is 5.
+% Maximum clause weight is 14.000.
+% Given clauses 153.
+
+
+1 (all A all B (relation(B) & function(B) & transfinite_sequence(B) -> (transfinite_sequence_of(B,A) <-> subset(relation_rng(B),A)))).  [assumption].
+2 (all A all B (relation(A) & function(A) & transfinite_sequence(A) & ordinal(B) -> transfinite_sequence_of(tseq_dom_restriction(A,B),relation_rng(A)))).  [assumption].
+3 (all A all B (transfinite_sequence_of(B,A) -> relation(B) & function(B) & transfinite_sequence(B))).  [assumption].
+4 (all A all B (subset(A,B) -> (all C (transfinite_sequence_of(C,A) -> transfinite_sequence_of(C,B))))).  [assumption].
+5 -(all A all B (transfinite_sequence_of(B,A) -> (all C (ordinal(C) -> transfinite_sequence_of(tseq_dom_restriction(B,C),A))))).  [assumption].
+6 ordinal(c17).  [clausify(5)].
+7 -relation(A) | -function(A) | -transfinite_sequence(A) | -ordinal(B) | transfinite_sequence_of(tseq_dom_restriction(A,B),relation_rng(A)).  [clausify(2)].
+8 -relation(A) | -function(A) | -transfinite_sequence(A) | -transfinite_sequence_of(A,B) | subset(relation_rng(A),B).  [clausify(1)].
+9 -transfinite_sequence_of(A,B) | transfinite_sequence(A).  [clausify(3)].
+10 -relation(A) | -function(A) | -transfinite_sequence(A) | transfinite_sequence_of(tseq_dom_restriction(A,c17),relation_rng(A)).  [resolve(7,d,6,a)].
+11 transfinite_sequence_of(c16,c15).  [clausify(5)].
+12 -transfinite_sequence_of(tseq_dom_restriction(c16,c17),c15).  [clausify(5)].
+13 -transfinite_sequence_of(A,B) | relation(A).  [clausify(3)].
+14 -transfinite_sequence_of(A,B) | function(A).  [clausify(3)].
+15 -subset(A,B) | -transfinite_sequence_of(C,A) | transfinite_sequence_of(C,B).  [clausify(4)].
+16 -relation(A) | -function(A) | -transfinite_sequence_of(A,B) | subset(relation_rng(A),B) | -transfinite_sequence_of(A,C).  [resolve(8,c,9,b)].
+17 -relation(A) | -function(A) | transfinite_sequence_of(tseq_dom_restriction(A,c17),relation_rng(A)) | -transfinite_sequence_of(A,B).  [resolve(10,c,9,b)].
+18 -relation(A) | -function(A) | -transfinite_sequence_of(A,B) | subset(relation_rng(A),B).  [factor(16,c,e)].
+19 relation(c16).  [resolve(13,a,11,a)].
+20 function(c16).  [resolve(14,a,11,a)].
+21 -relation(c16) | -function(c16) | transfinite_sequence_of(tseq_dom_restriction(c16,c17),relation_rng(c16)).  [resolve(17,d,11,a)].
+22 -function(c16) | transfinite_sequence_of(tseq_dom_restriction(c16,c17),relation_rng(c16)).  [resolve(19,a,21,a)].
+23 transfinite_sequence_of(tseq_dom_restriction(c16,c17),relation_rng(c16)).  [resolve(20,a,22,a)].
+24 -relation(c16) | -function(c16) | subset(relation_rng(c16),c15).  [resolve(18,c,11,a)].
+25 -function(c16) | subset(relation_rng(c16),c15).  [resolve(19,a,24,a)].
+26 subset(relation_rng(c16),c15).  [resolve(20,a,25,a)].
+27 -transfinite_sequence_of(A,relation_rng(c16)) | transfinite_sequence_of(A,c15).  [resolve(15,a,26,a)].
+28 -transfinite_sequence_of(tseq_dom_restriction(c16,c17),relation_rng(c16)).  [resolve(27,b,12,a)].
+29 $F.  [resolve(23,a,28,a)].
+
+============================== end of proof ==========================

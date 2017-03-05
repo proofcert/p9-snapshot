@@ -1,0 +1,65 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n128.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:50:43 CDT 2014
+% CPUTime    : 3.75 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 56704 was started by sandbox on n128.star.cs.uiowa.edu,
+Fri Jun  6 00:50:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_56672_n128.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 3.54 (+ 0.03) seconds.
+% Length of proof is 24.
+% Level of proof is 6.
+% Maximum clause weight is 9.000.
+% Given clauses 858.
+
+
+1 (all A -gt(A,A)).  [assumption].
+2 (all A all B (leq(A,B) -> leq(A,succ(B)))).  [assumption].
+3 (all A all B (leq(A,B) <-> gt(succ(B),A))).  [assumption].
+4 (all A pred(succ(A)) = A).  [assumption].
+5 (all A (leq(n0,A) & leq(A,n0) -> A = n0)).  [assumption].
+6 -(a_select2(rho_defuse,n0) = use & a_select2(rho_defuse,n1) = use & a_select2(rho_defuse,n2) = use & a_select2(sigma_defuse,n0) = use & a_select2(sigma_defuse,n1) = use & a_select2(sigma_defuse,n2) = use & a_select2(sigma_defuse,n3) = use & a_select2(sigma_defuse,n4) = use & a_select2(sigma_defuse,n5) = use & a_select3(u_defuse,n0,n0) = use & a_select3(u_defuse,n1,n0) = use & a_select3(u_defuse,n2,n0) = use & a_select2(xinit_defuse,n3) = use & a_select2(xinit_defuse,n4) = use & a_select2(xinit_defuse,n5) = use & a_select2(xinit_mean_defuse,n0) = use & a_select2(xinit_mean_defuse,n1) = use & a_select2(xinit_mean_defuse,n2) = use & a_select2(xinit_mean_defuse,n3) = use & a_select2(xinit_mean_defuse,n4) = use & a_select2(xinit_mean_defuse,n5) = use & a_select2(xinit_noise_defuse,n0) = use & a_select2(xinit_noise_defuse,n1) = use & a_select2(xinit_noise_defuse,n2) = use & a_select2(xinit_noise_defuse,n3) = use & a_select2(xinit_noise_defuse,n4) = use & a_select2(xinit_noise_defuse,n5) = use & leq(n0,pv5) & leq(pv5,n0) & leq(pv5,n998) & (all A all B (leq(n0,A) & leq(n0,B) & leq(A,n2) & leq(B,pred(pv5)) -> a_select3(u_defuse,A,B) = use)) & (all C all D (leq(n0,C) & leq(n0,D) & leq(C,n2) & leq(D,pred(pv5)) -> a_select3(z_defuse,C,D) = use)) -> (all E all F (leq(n0,E) & leq(n0,F) & leq(E,n2) & leq(F,pred(pv5)) -> (-(n0 = E & pv5 = F) & -(n1 = E & pv5 = F) & -(n2 = E & pv5 = F) -> a_select3(z_defuse,E,F) = use)))).  [assumption].
+7 -gt(A,A).  [clausify(1)].
+8 -leq(A,B) | leq(A,succ(B)).  [clausify(2)].
+9 -leq(A,B) | gt(succ(B),A).  [clausify(3)].
+10 succ(tptp_minus_1) = n0.  [assumption].
+11 pred(succ(A)) = A.  [clausify(4)].
+12 -leq(n0,A) | -leq(A,n0) | n0 = A.  [clausify(5)].
+13 leq(n0,pv5).  [clausify(6)].
+14 leq(pv5,n0).  [clausify(6)].
+15 leq(n0,c2).  [clausify(6)].
+16 leq(c2,pred(pv5)).  [clausify(6)].
+17 pred(n0) = tptp_minus_1.  [para(10(a,1),11(a,1,1))].
+18 -leq(pv5,n0) | n0 = pv5.  [resolve(13,a,12,a)].
+19 -leq(pv5,n0) | pv5 = n0.  [copy(18),flip(b)].
+20 pv5 = n0.  [resolve(14,a,19,a)].
+21 leq(c2,pred(n0)).  [para(20(a,1),16(a,2,1))].
+22 leq(c2,tptp_minus_1).  [para(17(a,1),21(a,2))].
+23 -leq(c2,n0) | n0 = c2.  [resolve(15,a,12,a)].
+24 -leq(c2,n0) | c2 = n0.  [copy(23),flip(b)].
+25 gt(succ(tptp_minus_1),c2).  [resolve(22,a,9,a)].
+26 gt(n0,c2).  [para(10(a,1),25(a,1))].
+27 leq(c2,succ(tptp_minus_1)).  [resolve(22,a,8,a)].
+28 leq(c2,n0).  [para(10(a,1),27(a,2))].
+29 c2 = n0.  [resolve(28,a,24,a)].
+30 gt(n0,n0).  [para(29(a,1),26(a,2))].
+31 $F.  [resolve(7,a,30,a)].
+
+============================== end of proof ==========================

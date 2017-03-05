@@ -1,0 +1,41 @@
+
+
+
+
+
+
+
+
+
+10 test(c2).  [clausify(9)].
+11 test(c1).  [clausify(9)].
+12 -test(A) | c(A) != B | complement(A,B).  [clausify(8)].
+13 addition(A,A) = A.  [clausify(2)].
+14 multiplication(A,one) = A.  [clausify(3)].
+15 multiplication(one,A) = A.  [clausify(4)].
+16 addition(A,B) = addition(B,A).  [clausify(1)].
+17 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(5)].
+18 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(17),flip(a)].
+19 -leq(one,addition(multiplication(addition(c1,c(c1)),c2),multiplication(addition(c1,c(c1)),c(c2)))) | -leq(addition(multiplication(addition(c1,c(c1)),c2),multiplication(addition(c1,c(c1)),c(c2))),one).  [clausify(9)].
+20 -leq(one,multiplication(addition(c1,c(c1)),addition(c2,c(c2)))) | -leq(addition(multiplication(addition(c1,c(c1)),c2),multiplication(addition(c1,c(c1)),c(c2))),one).  [para(18(a,1),19(a,2))].
+21 -leq(one,multiplication(addition(c1,c(c1)),addition(c2,c(c2)))) | -leq(multiplication(addition(c1,c(c1)),addition(c2,c(c2))),one).  [para(18(a,1),20(b,1))].
+22 leq(A,B) | addition(A,B) != B.  [clausify(6)].
+23 -complement(A,B) | addition(B,A) = one.  [clausify(7)].
+24 -complement(A,B) | addition(A,B) = one.  [para(16(a,1),23(b,1))].
+25 c(c2) != A | complement(c2,A).  [resolve(12,a,10,a)].
+26 c(c1) != A | complement(c1,A).  [resolve(12,a,11,a)].
+27 leq(A,A).  [resolve(22,b,13,a)].
+28 complement(c2,multiplication(one,c(c2))).  [resolve(25,a,15,a(flip))].
+29 complement(c2,c(c2)).  [para(15(a,1),28(a,2))].
+30 complement(c1,multiplication(one,c(c1))).  [resolve(26,a,15,a(flip))].
+31 complement(c1,c(c1)).  [para(15(a,1),30(a,2))].
+32 addition(c2,c(c2)) = one.  [resolve(29,a,24,a)].
+33 -leq(one,multiplication(addition(c1,c(c1)),one)) | -leq(multiplication(addition(c1,c(c1)),addition(c2,c(c2))),one).  [para(32(a,1),21(a,2,2))].
+34 -leq(one,addition(c1,c(c1))) | -leq(multiplication(addition(c1,c(c1)),addition(c2,c(c2))),one).  [para(14(a,1),33(a,2))].
+35 -leq(one,addition(c1,c(c1))) | -leq(multiplication(addition(c1,c(c1)),one),one).  [para(32(a,1),34(b,1,2))].
+36 -leq(one,addition(c1,c(c1))) | -leq(addition(c1,c(c1)),one).  [para(14(a,1),35(b,1))].
+37 addition(c1,c(c1)) = one.  [resolve(31,a,24,a)].
+38 -leq(one,one) | -leq(addition(c1,c(c1)),one).  [para(37(a,1),36(a,2))].
+39 -leq(one,one) | -leq(one,one).  [para(37(a,1),38(b,1))].
+40 -leq(one,one).  [copy(39),merge(b)].
+41 $F.  [resolve(27,a,40,a)].

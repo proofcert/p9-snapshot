@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+
+10 -incident_point_and_line(A,B) | -apart_point_and_line(A,B).  [clausify(8)].
+11 incident_point_and_line(c1,c3).  [clausify(9)].
+12 incident_point_and_line(c1,c4).  [clausify(9)].
+13 -equal_points(c1,intersection_point(c3,c4)).  [clausify(9)].
+14 equal_points(A,B) | distinct_points(A,B).  [clausify(7)].
+15 convergent_lines(c3,c4).  [clausify(9)].
+16 -convergent_lines(A,A).  [clausify(1)].
+17 -convergent_lines(A,B) | -apart_point_and_line(intersection_point(A,B),A).  [clausify(3)].
+18 -convergent_lines(A,B) | -apart_point_and_line(intersection_point(A,B),B).  [clausify(4)].
+19 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(2)].
+20 -convergent_lines(A,B) | distinct_lines(B,C) | convergent_lines(A,C).  [clausify(6)].
+21 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(5)].
+22 -apart_point_and_line(c1,c3).  [resolve(10,a,11,a)].
+23 -apart_point_and_line(c1,c4).  [resolve(10,a,12,a)].
+24 distinct_points(c1,intersection_point(c3,c4)).  [resolve(13,a,14,a)].
+25 -apart_point_and_line(intersection_point(c3,c4),c3).  [resolve(17,a,15,a)].
+26 -apart_point_and_line(intersection_point(c3,c4),c4).  [resolve(18,a,15,a)].
+27 convergent_lines(c3,A) | convergent_lines(c4,A).  [resolve(19,a,15,a)].
+28 -distinct_lines(A,B) | apart_point_and_line(c1,A) | apart_point_and_line(c1,B) | apart_point_and_line(intersection_point(c3,c4),A) | apart_point_and_line(intersection_point(c3,c4),B).  [resolve(21,a,24,a)].
+29 -distinct_lines(c3,A) | apart_point_and_line(c1,A) | apart_point_and_line(intersection_point(c3,c4),c3) | apart_point_and_line(intersection_point(c3,c4),A).  [resolve(28,b,22,a)].
+30 -distinct_lines(c3,c4) | apart_point_and_line(intersection_point(c3,c4),c3) | apart_point_and_line(intersection_point(c3,c4),c4).  [resolve(29,b,23,a)].
+31 -distinct_lines(c3,c4) | apart_point_and_line(intersection_point(c3,c4),c4).  [resolve(30,b,25,a)].
+32 -distinct_lines(c3,c4).  [resolve(31,b,26,a)].
+33 convergent_lines(c3,A) | convergent_lines(c4,B) | convergent_lines(A,B).  [resolve(27,b,19,a)].
+34 convergent_lines(c3,c3) | convergent_lines(c4,c3).  [factor(33,a,c)].
+35 convergent_lines(c4,c3).  [resolve(16,a,34,a)].
+36 -convergent_lines(A,c3) | convergent_lines(A,c4).  [resolve(20,b,32,a)].
+37 -convergent_lines(c4,c3).  [resolve(36,b,16,a)].
+38 $F.  [resolve(35,a,37,a)].

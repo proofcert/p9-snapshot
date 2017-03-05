@@ -1,0 +1,20 @@
+
+
+
+
+
+6 subset(A,B) | in(f2(A,B),A).  [clausify(3)].
+7 -empty(powerset(A)).  [clausify(4)].
+8 -element(c3,powerset(c4)).  [clausify(5)].
+9 -in(A,c3) | in(A,c4).  [clausify(5)].
+10 empty(A) | element(B,A) | -in(B,A).  [clausify(2)].
+11 subset(A,B) | -in(f2(A,B),B).  [clausify(3)].
+12 powerset(A) != B | in(C,B) | -subset(C,A).  [clausify(1)].
+13 element(A,powerset(B)) | -in(A,powerset(B)).  [resolve(10,a,7,a)].
+14 -in(c3,powerset(c4)).  [resolve(13,a,8,a)].
+15 in(A,powerset(B)) | -subset(A,B).  [xx_res(12,a)].
+16 -subset(c3,c4).  [resolve(15,a,14,a)].
+17 in(f2(c3,c4),c3).  [resolve(16,a,6,a)].
+18 -in(f2(c3,c4),c4).  [resolve(11,a,16,a)].
+19 in(f2(c3,c4),c4).  [resolve(17,a,9,a)].
+20 $F.  [resolve(18,a,19,a)].

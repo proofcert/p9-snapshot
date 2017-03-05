@@ -1,0 +1,18 @@
+
+
+
+4 -relation(A) | -function(A) | -finite(B) | finite(relation_image(A,B)).  [clausify(1)].
+5 -relation(A) | -function(A) | -subset(B,relation_rng(A)) | relation_image(A,relation_inverse_image(A,B)) = B.  [clausify(2)].
+6 function(c23).  [clausify(3)].
+7 relation(c23).  [clausify(3)].
+8 subset(c22,relation_rng(c23)).  [clausify(3)].
+9 finite(relation_inverse_image(c23,c22)).  [clausify(3)].
+10 -finite(c22).  [clausify(3)].
+11 -relation(c23) | -finite(A) | finite(relation_image(c23,A)).  [resolve(6,a,4,b)].
+12 -finite(A) | finite(relation_image(c23,A)).  [resolve(7,a,11,a)].
+13 -relation(c23) | -subset(A,relation_rng(c23)) | relation_image(c23,relation_inverse_image(c23,A)) = A.  [resolve(6,a,5,b)].
+14 -subset(A,relation_rng(c23)) | relation_image(c23,relation_inverse_image(c23,A)) = A.  [resolve(7,a,13,a)].
+15 finite(relation_image(c23,relation_inverse_image(c23,c22))).  [resolve(12,a,9,a)].
+16 relation_image(c23,relation_inverse_image(c23,c22)) = c22.  [resolve(14,a,8,a)].
+17 finite(c22).  [para(16(a,1),15(a,1))].
+18 $F.  [resolve(10,a,17,a)].

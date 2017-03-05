@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n097.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:04:23 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 51288 was started by sandbox on n097.star.cs.uiowa.edu,
+Fri Jun  6 07:04:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_51256_n097.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 24.
+% Level of proof is 5.
+% Maximum clause weight is 12.000.
+% Given clauses 46.
+
+
+1 (all A -convergent_lines(A,A)).  [assumption].
+2 (all A all B all C (convergent_lines(A,B) -> convergent_lines(A,C) | convergent_lines(B,C))).  [assumption].
+3 (all A all B (convergent_lines(A,B) | unorthogonal_lines(A,B))).  [assumption].
+4 (all A all B all C ((-convergent_lines(A,B) | -unorthogonal_lines(A,B)) & (-convergent_lines(A,C) | -unorthogonal_lines(A,C)) -> -convergent_lines(B,C) | -unorthogonal_lines(B,C))).  [assumption].
+5 (all A all B (parallel_lines(A,B) <-> -convergent_lines(A,B))).  [assumption].
+6 (all A all B (orthogonal_lines(A,B) <-> -unorthogonal_lines(A,B))).  [assumption].
+7 -(all A all B all C (parallel_lines(A,B) & orthogonal_lines(A,C) -> orthogonal_lines(B,C))).  [assumption].
+8 -parallel_lines(A,B) | -convergent_lines(A,B).  [clausify(5)].
+9 parallel_lines(c1,c2).  [clausify(7)].
+10 -orthogonal_lines(c2,c3).  [clausify(7)].
+11 orthogonal_lines(c1,c3).  [clausify(7)].
+12 orthogonal_lines(A,B) | unorthogonal_lines(A,B).  [clausify(6)].
+13 -orthogonal_lines(A,B) | -unorthogonal_lines(A,B).  [clausify(6)].
+14 convergent_lines(A,B) | unorthogonal_lines(A,B).  [clausify(3)].
+15 -convergent_lines(A,A).  [clausify(1)].
+16 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(2)].
+17 convergent_lines(A,B) | unorthogonal_lines(A,C) | -convergent_lines(B,C) | -unorthogonal_lines(B,C).  [clausify(4)].
+18 -convergent_lines(c1,c2).  [resolve(8,a,9,a)].
+19 unorthogonal_lines(c2,c3).  [resolve(10,a,12,a)].
+20 -unorthogonal_lines(c1,c3).  [resolve(13,a,11,a)].
+21 convergent_lines(c1,c3).  [resolve(20,a,14,b)].
+22 unorthogonal_lines(c1,A) | -convergent_lines(c2,A) | -unorthogonal_lines(c2,A).  [resolve(17,a,18,a)].
+23 -convergent_lines(c2,c3) | -unorthogonal_lines(c2,c3).  [resolve(22,a,20,a)].
+24 -convergent_lines(c2,c3).  [resolve(23,b,19,a)].
+25 -convergent_lines(A,B) | convergent_lines(B,A).  [resolve(16,b,15,a)].
+26 -convergent_lines(c3,c2).  [resolve(25,b,24,a)].
+27 -convergent_lines(c1,A) | convergent_lines(A,c2).  [resolve(16,b,18,a)].
+28 -convergent_lines(c1,c3).  [resolve(27,b,26,a)].
+29 $F.  [resolve(21,a,28,a)].
+
+============================== end of proof ==========================

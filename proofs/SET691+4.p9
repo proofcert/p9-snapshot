@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n076.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 21:10:03 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5072 was started by sandbox on n076.star.cs.uiowa.edu,
+Fri Jun  6 21:10:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5040_n076.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 5.
+% Maximum clause weight is 9.000.
+% Given clauses 47.
+
+
+1 (all A all B (subset(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+2 (all A all B (equal_set(A,B) <-> subset(A,B) & subset(B,A))).  [assumption].
+3 (all A -member(A,empty_set)).  [assumption].
+4 -(all A (subset(A,empty_set) <-> equal_set(A,empty_set))).  [assumption].
+5 subset(c1,empty_set) | equal_set(c1,empty_set).  [clausify(4)].
+6 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+7 -member(A,empty_set).  [clausify(3)].
+8 -subset(c1,empty_set) | -equal_set(c1,empty_set).  [clausify(4)].
+9 -equal_set(A,B) | subset(A,B).  [clausify(2)].
+10 equal_set(A,B) | -subset(A,B) | -subset(B,A).  [clausify(2)].
+11 subset(c1,empty_set) | subset(c1,empty_set).  [resolve(9,a,5,b)].
+12 subset(c1,empty_set).  [copy(11),merge(b)].
+13 -equal_set(c1,empty_set).  [resolve(12,a,8,a)].
+14 equal_set(c1,empty_set) | -subset(empty_set,c1).  [resolve(12,a,10,b)].
+15 -subset(empty_set,c1).  [resolve(13,a,14,a)].
+16 member(f1(empty_set,c1),empty_set).  [resolve(15,a,6,a)].
+17 $F.  [resolve(7,a,16,a)].
+
+============================== end of proof ==========================

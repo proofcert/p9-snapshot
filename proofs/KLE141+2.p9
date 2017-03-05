@@ -1,0 +1,66 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n131.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 23:16:03 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 48170 was started by sandbox on n131.star.cs.uiowa.edu,
+Thu Jun  5 23:16:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_48138_n131.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: goals.
+% Length of proof is 25.
+% Level of proof is 7.
+% Maximum clause weight is 14.000.
+% Given clauses 37.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C addition(C,addition(B,A)) = addition(addition(C,B),A)).  [assumption].
+3 (all A addition(A,A) = A).  [assumption].
+4 (all A multiplication(A,one) = A).  [assumption].
+5 (all A multiplication(one,A) = A).  [assumption].
+6 (all A all B all C (leq(C,addition(multiplication(A,C),B)) -> leq(C,multiplication(strong_iteration(A),B)))).  [assumption].
+7 (all A all B (leq(A,B) <-> addition(A,B) = B)).  [assumption].
+8 -(all A (leq(multiplication(strong_iteration(one),A),strong_iteration(one)) & leq(strong_iteration(one),multiplication(strong_iteration(one),A)))).  [assumption].
+9 addition(A,A) = A.  [clausify(3)].
+10 multiplication(A,one) = A.  [clausify(4)].
+11 multiplication(one,A) = A.  [clausify(5)].
+12 addition(A,B) = addition(B,A).  [clausify(1)].
+13 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+14 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(12(a,1),13(a,1))].
+15 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(14),flip(a)].
+16 -leq(multiplication(strong_iteration(one),c1),strong_iteration(one)) | -leq(strong_iteration(one),multiplication(strong_iteration(one),c1)).  [clausify(8)].
+17 leq(A,B) | addition(A,B) != B.  [clausify(7)].
+18 -leq(A,addition(multiplication(B,A),C)) | leq(A,multiplication(strong_iteration(B),C)).  [clausify(6)].
+19 -leq(A,addition(B,multiplication(C,A))) | leq(A,multiplication(strong_iteration(C),B)).  [para(12(a,1),18(a,2))].
+20 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(15(a,1),9(a,1))].
+21 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(12(a,1),20(a,1,2,1))].
+22 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(12(a,1),21(a,1,2))].
+23 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(15(a,2),22(a,1,2))].
+24 addition(A,addition(A,B)) = addition(B,A).  [para(9(a,1),23(a,1,2,2))].
+25 addition(A,addition(A,B)) = addition(A,B).  [para(12(a,1),24(a,2))].
+26 -leq(A,addition(B,A)) | leq(A,multiplication(strong_iteration(one),B)).  [para(11(a,1),19(a,2,2))].
+27 -leq(A,addition(A,B)) | leq(A,multiplication(strong_iteration(one),B)).  [para(12(a,1),26(a,2))].
+28 leq(A,addition(A,B)).  [resolve(17,b,25,a)].
+29 leq(A,multiplication(strong_iteration(one),B)).  [resolve(28,a,27,a)].
+30 -leq(multiplication(strong_iteration(one),c1),strong_iteration(one)).  [resolve(29,a,16,b)].
+31 leq(A,strong_iteration(one)).  [para(10(a,1),29(a,2))].
+32 $F.  [resolve(31,a,30,a)].
+
+============================== end of proof ==========================

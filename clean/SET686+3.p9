@@ -1,0 +1,100 @@
+
+
+
+
+
+
+
+
+
+10 -ilf_type(A,set_type) | ilf_type(A,binary_relation_type) | -relation_like(A).  [clausify(5)].
+11 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | relation_like(C).  [clausify(6)].
+12 ilf_type(A,set_type).  [clausify(8)].
+13 ilf_type(c5,relation_type(c2,c4)).  [clausify(9)].
+14 member(c6,inverse4(c2,c4,c5,c3)) | member(c7,c3).  [clausify(9)].
+15 member(c6,inverse4(c2,c4,c5,c3)) | member(ordered_pair(c6,c7),c5).  [clausify(9)].
+16 -empty(c3).  [clausify(9)].
+17 -empty(c4).  [clausify(9)].
+18 -member(c6,inverse4(c2,c4,c5,c3)) | -ilf_type(A,member_type(c4)) | -member(ordered_pair(c6,A),c5) | -member(A,c3).  [clausify(9)].
+19 -ilf_type(A,set_type) | empty(B) | -ilf_type(B,set_type) | -ilf_type(A,member_type(B)) | member(A,B).  [clausify(4)].
+20 empty(A) | -ilf_type(A,set_type) | -ilf_type(B,member_type(A)) | member(B,A).  [resolve(12,a,19,a)].
+21 empty(A) | -ilf_type(B,member_type(A)) | member(B,A).  [resolve(12,a,20,b)].
+22 -ilf_type(A,set_type) | empty(B) | -ilf_type(B,set_type) | ilf_type(A,member_type(B)) | -member(A,B).  [clausify(4)].
+23 empty(A) | -ilf_type(A,set_type) | ilf_type(B,member_type(A)) | -member(B,A).  [resolve(12,a,22,a)].
+24 empty(A) | ilf_type(B,member_type(A)) | -member(B,A).  [resolve(12,a,23,b)].
+25 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | ilf_type(C,subset_type(cross_product(A,B))).  [clausify(3)].
+26 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | ilf_type(B,subset_type(cross_product(C,A))).  [resolve(12,a,25,a)].
+27 -ilf_type(A,relation_type(B,C)) | ilf_type(A,subset_type(cross_product(B,C))).  [resolve(12,a,26,a)].
+28 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,binary_relation_type) | -member(B,inverse2(C,A)) | member(f1(A,B,C),A).  [clausify(1)].
+29 -ilf_type(A,set_type) | -ilf_type(B,binary_relation_type) | -member(A,inverse2(B,C)) | member(f1(C,A,B),C).  [resolve(12,a,28,a)].
+30 -ilf_type(A,binary_relation_type) | -member(B,inverse2(A,C)) | member(f1(C,B,A),C).  [resolve(12,a,29,a)].
+31 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,binary_relation_type) | -member(B,inverse2(C,A)) | member(ordered_pair(B,f1(A,B,C)),C).  [clausify(1)].
+32 -ilf_type(A,set_type) | -ilf_type(B,binary_relation_type) | -member(A,inverse2(B,C)) | member(ordered_pair(A,f1(C,A,B)),B).  [resolve(12,a,31,a)].
+33 -ilf_type(A,binary_relation_type) | -member(B,inverse2(A,C)) | member(ordered_pair(B,f1(C,B,A)),A).  [resolve(12,a,32,a)].
+34 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | -ilf_type(D,set_type) | inverse4(A,B,C,D) = inverse2(C,D).  [clausify(7)].
+35 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | -ilf_type(D,set_type) | inverse4(C,A,B,D) = inverse2(B,D).  [resolve(12,a,34,a)].
+36 -ilf_type(A,relation_type(B,C)) | -ilf_type(D,set_type) | inverse4(B,C,A,D) = inverse2(A,D).  [resolve(12,a,35,a)].
+37 -ilf_type(A,relation_type(B,C)) | inverse4(B,C,A,D) = inverse2(A,D).  [resolve(12,a,36,b)].
+38 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,binary_relation_type) | member(B,inverse2(C,A)) | -ilf_type(D,set_type) | -member(ordered_pair(B,D),C) | -member(D,A).  [clausify(1)].
+39 -ilf_type(A,set_type) | -ilf_type(B,binary_relation_type) | member(A,inverse2(B,C)) | -ilf_type(D,set_type) | -member(ordered_pair(A,D),B) | -member(D,C).  [resolve(12,a,38,a)].
+40 -ilf_type(A,binary_relation_type) | member(B,inverse2(A,C)) | -ilf_type(D,set_type) | -member(ordered_pair(B,D),A) | -member(D,C).  [resolve(12,a,39,a)].
+41 -ilf_type(A,binary_relation_type) | member(B,inverse2(A,C)) | -member(ordered_pair(B,D),A) | -member(D,C).  [resolve(12,a,40,c)].
+42 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,set_type) | -ilf_type(E,relation_type(A,B)) | -member(ordered_pair(C,D),E) | member(D,B).  [clausify(2)].
+43 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,relation_type(E,A)) | -member(ordered_pair(B,C),D) | member(C,A).  [resolve(12,a,42,a)].
+44 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(D,E)) | -member(ordered_pair(A,B),C) | member(B,E).  [resolve(12,a,43,a)].
+45 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,D)) | -member(ordered_pair(E,A),B) | member(A,D).  [resolve(12,a,44,a)].
+46 -ilf_type(A,relation_type(B,C)) | -member(ordered_pair(D,E),A) | member(E,C).  [resolve(12,a,45,a)].
+47 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | -ilf_type(C,set_type) | ilf_type(C,binary_relation_type).  [resolve(11,d,10,c)].
+48 -ilf_type(A,set_type) | -ilf_type(B,subset_type(cross_product(C,A))) | -ilf_type(B,set_type) | ilf_type(B,binary_relation_type).  [resolve(12,a,47,a)].
+49 -ilf_type(A,subset_type(cross_product(B,C))) | -ilf_type(A,set_type) | ilf_type(A,binary_relation_type).  [resolve(12,a,48,a)].
+50 -ilf_type(A,subset_type(cross_product(B,C))) | ilf_type(A,binary_relation_type).  [resolve(12,a,49,b)].
+51 -ilf_type(A,member_type(c4)) | -member(ordered_pair(c6,A),c5) | -member(A,c3) | member(c7,c3).  [resolve(18,a,14,a)].
+52 ilf_type(c5,subset_type(cross_product(c2,c4))).  [resolve(27,a,13,a)].
+53 inverse4(c2,c4,c5,A) = inverse2(c5,A).  [resolve(37,a,13,a)].
+54 -member(c6,inverse2(c5,c3)) | -ilf_type(A,member_type(c4)) | -member(ordered_pair(c6,A),c5) | -member(A,c3).  [para(53(a,1),18(a,2))].
+55 member(c6,inverse2(c5,c3)) | member(ordered_pair(c6,c7),c5).  [para(53(a,1),15(a,2))].
+56 member(c6,inverse2(c5,c3)) | member(c7,c3).  [para(53(a,1),14(a,2))].
+57 ilf_type(c5,binary_relation_type).  [resolve(52,a,50,a)].
+58 member(c7,c3) | -ilf_type(c5,binary_relation_type) | member(ordered_pair(c6,f1(c3,c6,c5)),c5).  [resolve(56,a,33,b)].
+59 member(c7,c3) | member(ordered_pair(c6,f1(c3,c6,c5)),c5).  [resolve(57,a,58,b)].
+60 member(c7,c3) | -ilf_type(c5,binary_relation_type) | member(f1(c3,c6,c5),c3).  [resolve(56,a,30,b)].
+61 member(c7,c3) | member(f1(c3,c6,c5),c3).  [resolve(57,a,60,b)].
+62 member(c7,c3) | empty(c3) | ilf_type(f1(c3,c6,c5),member_type(c3)).  [resolve(61,b,24,c)].
+63 member(c7,c3) | ilf_type(f1(c3,c6,c5),member_type(c3)).  [resolve(16,a,62,b)].
+64 member(c6,inverse2(c5,c3)) | -ilf_type(c5,binary_relation_type) | member(c6,inverse2(c5,A)) | -member(c7,A).  [resolve(55,b,41,c)].
+65 member(c6,inverse2(c5,c3)) | member(c6,inverse2(c5,A)) | -member(c7,A).  [resolve(57,a,64,b)].
+66 member(c6,inverse2(c5,c3)) | -member(c7,c3).  [factor(65,a,b)].
+67 ilf_type(f1(c3,c6,c5),member_type(c3)) | member(c6,inverse2(c5,c3)).  [resolve(63,a,66,b)].
+68 member(c7,c3) | -ilf_type(f1(c3,c6,c5),member_type(c4)) | -member(f1(c3,c6,c5),c3) | member(c7,c3).  [resolve(59,b,51,b)].
+69 member(c7,c3) | -ilf_type(f1(c3,c6,c5),member_type(c4)) | -member(f1(c3,c6,c5),c3).  [copy(68),merge(d)].
+70 member(c7,c3) | -ilf_type(c5,relation_type(A,B)) | member(f1(c3,c6,c5),B).  [resolve(59,b,46,b)].
+71 ilf_type(f1(c3,c6,c5),member_type(c3)) | -ilf_type(c5,binary_relation_type) | member(f1(c3,c6,c5),c3).  [resolve(67,b,30,b)].
+72 ilf_type(f1(c3,c6,c5),member_type(c3)) | member(f1(c3,c6,c5),c3).  [resolve(57,a,71,b)].
+73 ilf_type(f1(c3,c6,c5),member_type(c3)) | empty(c3) | ilf_type(f1(c3,c6,c5),member_type(c3)).  [resolve(72,b,24,c)].
+74 ilf_type(f1(c3,c6,c5),member_type(c3)) | empty(c3).  [copy(73),merge(c)].
+75 ilf_type(f1(c3,c6,c5),member_type(c3)).  [resolve(16,a,74,b)].
+76 empty(c3) | member(f1(c3,c6,c5),c3).  [resolve(75,a,21,b)].
+77 member(f1(c3,c6,c5),c3).  [resolve(16,a,76,a)].
+78 member(c7,c3) | -ilf_type(f1(c3,c6,c5),member_type(c4)).  [resolve(77,a,69,c)].
+79 member(c7,c3) | member(f1(c3,c6,c5),c4).  [resolve(70,b,13,a)].
+80 member(c7,c3) | empty(c4) | ilf_type(f1(c3,c6,c5),member_type(c4)).  [resolve(79,b,24,c)].
+81 member(c7,c3) | ilf_type(f1(c3,c6,c5),member_type(c4)).  [resolve(17,a,80,b)].
+82 ilf_type(f1(c3,c6,c5),member_type(c4)) | empty(c3) | ilf_type(c7,member_type(c3)).  [resolve(81,a,24,c)].
+83 ilf_type(f1(c3,c6,c5),member_type(c4)) | ilf_type(c7,member_type(c3)).  [resolve(16,a,82,b)].
+84 ilf_type(c7,member_type(c3)) | member(c7,c3).  [resolve(83,a,78,b)].
+85 ilf_type(c7,member_type(c3)) | empty(c3) | ilf_type(c7,member_type(c3)).  [resolve(84,b,24,c)].
+86 ilf_type(c7,member_type(c3)) | empty(c3).  [copy(85),merge(c)].
+87 ilf_type(c7,member_type(c3)).  [resolve(16,a,86,b)].
+88 empty(c3) | member(c7,c3).  [resolve(87,a,21,b)].
+89 member(c7,c3).  [resolve(16,a,88,a)].
+90 member(c6,inverse2(c5,c3)).  [resolve(89,a,66,b)].
+91 -ilf_type(A,member_type(c4)) | -member(ordered_pair(c6,A),c5) | -member(A,c3).  [resolve(90,a,54,a)].
+92 -ilf_type(c5,binary_relation_type) | member(ordered_pair(c6,f1(c3,c6,c5)),c5).  [resolve(90,a,33,b)].
+93 member(ordered_pair(c6,f1(c3,c6,c5)),c5).  [resolve(57,a,92,a)].
+94 -ilf_type(f1(c3,c6,c5),member_type(c4)) | -member(f1(c3,c6,c5),c3).  [resolve(93,a,91,b)].
+95 -ilf_type(f1(c3,c6,c5),member_type(c4)).  [resolve(77,a,94,b)].
+96 ilf_type(A,member_type(c4)) | -member(A,c4).  [resolve(24,a,17,a)].
+97 -member(f1(c3,c6,c5),c4).  [resolve(96,a,95,a)].
+98 -ilf_type(c5,relation_type(A,B)) | member(f1(c3,c6,c5),B).  [resolve(46,b,93,a)].
+99 -ilf_type(c5,relation_type(A,c4)).  [resolve(98,b,97,a)].
+100 $F.  [resolve(99,a,13,a)].

@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n121.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:42:53 CDT 2014
+% CPUTime    : 0.23 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 64979 was started by sandbox on n121.star.cs.uiowa.edu,
+Fri Jun  6 00:42:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_64947_n121.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.09 (+ 0.00) seconds.
+% Length of proof is 20.
+% Level of proof is 6.
+% Maximum clause weight is 11.000.
+% Given clauses 164.
+
+
+1 (all A all B (subclass(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+2 (all A subclass(A,universal_class)).  [assumption].
+3 (all A all B all C (member(A,unordered_pair(B,C)) <-> member(A,universal_class) & (A = B | A = C))).  [assumption].
+4 -(all A all B subclass(unordered_pair(A,A),unordered_pair(A,B))).  [assumption].
+5 subclass(A,universal_class).  [clausify(2)].
+6 subclass(A,B) | member(f1(A,B),A).  [clausify(1)].
+7 -subclass(unordered_pair(c3,c3),unordered_pair(c3,c4)).  [clausify(4)].
+8 subclass(A,B) | -member(f1(A,B),B).  [clausify(1)].
+9 -subclass(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+10 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(3)].
+11 member(A,unordered_pair(B,C)) | -member(A,universal_class) | A != B.  [clausify(3)].
+12 -member(A,unordered_pair(B,B)) | A = B.  [factor(10,b,c)].
+13 member(f1(unordered_pair(c3,c3),unordered_pair(c3,c4)),unordered_pair(c3,c3)).  [resolve(7,a,6,a)].
+14 -member(f1(unordered_pair(c3,c3),unordered_pair(c3,c4)),unordered_pair(c3,c4)).  [resolve(8,a,7,a)].
+15 -member(A,B) | member(A,universal_class).  [resolve(9,a,5,a)].
+16 f1(unordered_pair(c3,c3),unordered_pair(c3,c4)) = c3.  [resolve(13,a,12,a)].
+17 -member(c3,unordered_pair(c3,c4)).  [para(16(a,1),14(a,1))].
+18 member(c3,unordered_pair(c3,c3)).  [para(16(a,1),13(a,1))].
+19 member(c3,universal_class).  [resolve(15,a,18,a)].
+20 -member(c3,universal_class) | c3 != c3.  [resolve(11,a,17,a)].
+21 -member(c3,universal_class).  [xx_res(20,b)].
+22 $F.  [resolve(19,a,21,a)].
+
+============================== end of proof ==========================

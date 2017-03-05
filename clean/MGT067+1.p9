@@ -1,0 +1,58 @@
+
+
+
+
+
+
+
+8 -ssSingleRole(singleRoleEntry(A,authObj(B,C,D))) | -ssHolds(E,A) | ssUserProfile(userProfileEntry(E,authObj(B,C,D))).  [clausify(3)].
+9 ssSingleRole(singleRoleEntry(ssZBANF_WRK_INF_ED,authObj(ssS_TCODE,ssTCD,ssME51N))).  [assumption].
+10 ssSingleRole(singleRoleEntry(ssZBANF_WRK_INF_ED,authObj(ssM_BANF_WRK,ssACTVT,np__1))).  [assumption].
+11 ssSingleRole(singleRoleEntry(ssZBANF_WRK_INF_ED,authObj(ssM_BANF_WRK,ssWERKS,ssINF))).  [assumption].
+12 ssSingleRole(singleRoleEntry(ssZBANF_WRK_INF_ED,authObj(ssM_BANF_BSA,ssACTVT,ssSTAR))).  [assumption].
+13 ssSingleRole(singleRoleEntry(ssZBANF_WRK_INF_ED,authObj(ssM_BANF_BSA,ssBSART,ssSTAR))).  [assumption].
+14 ssSingleRole(singleRoleEntry(ssZBANF_WRK_INF_ED,authObj(ssM_BANF_EKG,ssACTVT,ssSTAR))).  [assumption].
+15 ssSingleRole(singleRoleEntry(ssZBANF_WRK_INF_ED,authObj(ssM_BANF_EKG,ssEKGRP,ssI26))).  [assumption].
+16 ssHolds(ssMUELLER,ssZBANF_WRK_INF_ED).  [assumption].
+17 -ssHolds(A,ssZBANF_WRK_INF_ED) | ssUserProfile(userProfileEntry(A,authObj(ssS_TCODE,ssTCD,ssME51N))).  [resolve(8,a,9,a)].
+18 -ssHolds(A,ssZBANF_WRK_INF_ED) | ssUserProfile(userProfileEntry(A,authObj(ssM_BANF_WRK,ssACTVT,np__1))).  [resolve(8,a,10,a)].
+19 -ssHolds(A,ssZBANF_WRK_INF_ED) | ssUserProfile(userProfileEntry(A,authObj(ssM_BANF_WRK,ssWERKS,ssINF))).  [resolve(8,a,11,a)].
+20 -ssHolds(A,ssZBANF_WRK_INF_ED) | ssUserProfile(userProfileEntry(A,authObj(ssM_BANF_BSA,ssACTVT,ssSTAR))).  [resolve(8,a,12,a)].
+21 -ssHolds(A,ssZBANF_WRK_INF_ED) | ssUserProfile(userProfileEntry(A,authObj(ssM_BANF_BSA,ssBSART,ssSTAR))).  [resolve(8,a,13,a)].
+22 -ssHolds(A,ssZBANF_WRK_INF_ED) | ssUserProfile(userProfileEntry(A,authObj(ssM_BANF_EKG,ssACTVT,ssSTAR))).  [resolve(8,a,14,a)].
+23 -ssHolds(A,ssZBANF_WRK_INF_ED) | ssUserProfile(userProfileEntry(A,authObj(ssM_BANF_EKG,ssEKGRP,ssI26))).  [resolve(8,a,15,a)].
+24 -ssRequisition(A,B,C,D,E,F,V6,V7,V8) | -ssStandardPurchase(A) | -ssAccess(V9,ssME51N) | -ssAccess(V9,authObj(ssM_BANF_WRK,ssWERKS,D)) | -ssAccess(V9,authObj(ssM_BANF_BSA,ssBSART,A)) | -ssAccess(V9,authObj(ssM_BANF_EKG,ssEKGRP,E)) | ssRequisitionCreated(V9,A,B,C,D,E,F,V6,V7,V8).  [clausify(5)].
+25 ssStandardPurchase(ssNB).  [assumption].
+26 -ssUserProfile(userProfileEntry(A,authObj(B,C,D))) | ssAccess(A,authObj(B,C,D)).  [clausify(1)].
+27 -ssUserProfile(userProfileEntry(A,authObj(B,C,ssSTAR))) | ssAccess(A,authObj(B,C,D)).  [clausify(2)].
+28 ssUserProfile(userProfileEntry(ssMUELLER,authObj(ssS_TCODE,ssTCD,ssME51N))).  [resolve(17,a,16,a)].
+29 ssUserProfile(userProfileEntry(ssMUELLER,authObj(ssM_BANF_WRK,ssACTVT,np__1))).  [resolve(18,a,16,a)].
+30 ssUserProfile(userProfileEntry(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,ssINF))).  [resolve(19,a,16,a)].
+31 ssUserProfile(userProfileEntry(ssMUELLER,authObj(ssM_BANF_BSA,ssACTVT,ssSTAR))).  [resolve(20,a,16,a)].
+32 ssUserProfile(userProfileEntry(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,ssSTAR))).  [resolve(21,a,16,a)].
+33 ssUserProfile(userProfileEntry(ssMUELLER,authObj(ssM_BANF_EKG,ssACTVT,ssSTAR))).  [resolve(22,a,16,a)].
+34 ssUserProfile(userProfileEntry(ssMUELLER,authObj(ssM_BANF_EKG,ssEKGRP,ssI26))).  [resolve(23,a,16,a)].
+35 -ssRequisitionCreated(ssMUELLER,A,B,C,ssINF,D,E,F,V6,V7).  [clausify(7)].
+36 -ssRequisition(ssNB,A,B,C,D,E,F,V6,V7) | -ssAccess(V8,ssME51N) | -ssAccess(V8,authObj(ssM_BANF_WRK,ssWERKS,C)) | -ssAccess(V8,authObj(ssM_BANF_BSA,ssBSART,ssNB)) | -ssAccess(V8,authObj(ssM_BANF_EKG,ssEKGRP,D)) | ssRequisitionCreated(V8,ssNB,A,B,C,D,E,F,V6,V7).  [resolve(24,b,25,a)].
+37 -ssAccess(A,authObj(ssS_TCODE,ssTCD,ssME51N)) | -ssAccess(A,authObj(ssM_BANF_WRK,ssACTVT,np__1)) | -ssAccess(A,authObj(ssM_BANF_WRK,ssWERKS,B)) | -ssAccess(A,authObj(ssM_BANF_BSA,ssACTVT,np__1)) | -ssAccess(A,authObj(ssM_BANF_BSA,ssBSART,C)) | -ssAccess(A,authObj(ssM_BANF_EKG,ssACTVT,np__1)) | -ssAccess(A,authObj(ssM_BANF_EKG,ssEKGRP,D)) | ssAccess(A,ssME51N).  [clausify(4)].
+38 ssRequisition(A,B,C,D,E,F,V6,V7,V8).  [clausify(6)].
+39 ssAccess(ssMUELLER,authObj(ssS_TCODE,ssTCD,ssME51N)).  [resolve(28,a,26,a)].
+40 ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssACTVT,np__1)).  [resolve(29,a,26,a)].
+41 ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,ssINF)).  [resolve(30,a,26,a)].
+42 ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssACTVT,A)).  [resolve(31,a,27,a)].
+43 ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,A)).  [resolve(32,a,27,a)].
+44 ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssACTVT,A)).  [resolve(33,a,27,a)].
+45 ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssEKGRP,ssI26)).  [resolve(34,a,26,a)].
+46 -ssRequisition(ssNB,A,B,ssINF,C,D,E,F,V6) | -ssAccess(ssMUELLER,ssME51N) | -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,ssINF)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,ssNB)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssEKGRP,C)).  [resolve(36,f,35,a)].
+47 -ssAccess(ssMUELLER,ssME51N) | -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,ssINF)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,ssNB)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssEKGRP,A)).  [resolve(38,a,46,a)].
+48 -ssAccess(ssMUELLER,ssME51N) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,ssNB)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssEKGRP,A)).  [resolve(41,a,47,b)].
+49 -ssAccess(ssMUELLER,ssME51N) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssEKGRP,A)).  [resolve(43,a,48,b)].
+50 -ssAccess(ssMUELLER,authObj(ssS_TCODE,ssTCD,ssME51N)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssACTVT,np__1)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,A)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssACTVT,np__1)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,B)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssACTVT,np__1)) | ssAccess(ssMUELLER,ssME51N).  [resolve(45,a,37,g)].
+51 -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssACTVT,np__1)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,A)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssACTVT,np__1)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,B)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssACTVT,np__1)) | ssAccess(ssMUELLER,ssME51N).  [resolve(39,a,50,a)].
+52 -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,A)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssACTVT,np__1)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,B)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssACTVT,np__1)) | ssAccess(ssMUELLER,ssME51N).  [resolve(40,a,51,a)].
+53 -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,A)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_BSA,ssBSART,B)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssACTVT,np__1)) | ssAccess(ssMUELLER,ssME51N).  [resolve(42,a,52,b)].
+54 -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,A)) | -ssAccess(ssMUELLER,authObj(ssM_BANF_EKG,ssACTVT,np__1)) | ssAccess(ssMUELLER,ssME51N).  [resolve(43,a,53,b)].
+55 -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,A)) | ssAccess(ssMUELLER,ssME51N).  [resolve(44,a,54,b)].
+56 -ssAccess(ssMUELLER,ssME51N).  [resolve(49,b,45,a)].
+57 -ssAccess(ssMUELLER,authObj(ssM_BANF_WRK,ssWERKS,A)).  [resolve(56,a,55,b)].
+58 $F.  [resolve(57,a,41,a)].

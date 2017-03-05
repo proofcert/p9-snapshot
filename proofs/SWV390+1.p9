@@ -1,0 +1,55 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n133.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:08:43 CDT 2014
+% CPUTime    : 0.18 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 6064 was started by sandbox on n133.star.cs.uiowa.edu,
+Fri Jun  6 08:08:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_6032_n133.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 19.
+% Level of proof is 6.
+% Maximum clause weight is 19.000.
+% Given clauses 178.
+
+
+1 (all A less_than(bottom,A)).  [assumption].
+2 (all A all B all C all D all E (less_than(E,D) -> (check_cpq(triple(A,insert_slb(B,pair(D,E)),C)) <-> check_cpq(triple(A,B,C))))).  [assumption].
+3 (all A all B all C all D insert_cpq(triple(A,B,C),D) = triple(insert_pqp(A,D),insert_slb(B,pair(D,bottom)),C)).  [assumption].
+4 (all A all B all C (check_cpq(triple(A,B,C)) <-> (all D all E (pair_in_list(B,D,E) -> less_than(E,D))))).  [assumption].
+5 -(all A all B all C (-check_cpq(triple(A,B,C)) -> (all D -check_cpq(insert_cpq(triple(A,B,C),D))))).  [assumption].
+6 less_than(bottom,A).  [clausify(1)].
+7 check_cpq(insert_cpq(triple(c1,c2,c3),c4)).  [clausify(5)].
+8 check_cpq(triple(A,B,C)) | pair_in_list(B,f1(A,B,C),f2(A,B,C)).  [clausify(4)].
+9 triple(insert_pqp(A,B),insert_slb(C,pair(B,bottom)),D) = insert_cpq(triple(A,C,D),B).  [clausify(3)].
+10 -check_cpq(triple(c1,c2,c3)).  [clausify(5)].
+11 -check_cpq(triple(A,B,C)) | -pair_in_list(B,D,E) | less_than(E,D).  [clausify(4)].
+12 check_cpq(triple(A,B,C)) | -less_than(f2(A,B,C),f1(A,B,C)).  [clausify(4)].
+13 -less_than(A,B) | -check_cpq(triple(C,insert_slb(D,pair(B,A)),E)) | check_cpq(triple(C,D,E)).  [clausify(2)].
+14 -check_cpq(triple(A,B,C)) | less_than(f2(D,B,E),f1(D,B,E)) | check_cpq(triple(D,B,E)).  [resolve(11,b,8,b)].
+15 -check_cpq(triple(A,insert_slb(B,pair(C,bottom)),D)) | check_cpq(triple(A,B,D)).  [resolve(13,a,6,a)].
+16 -check_cpq(triple(c1,insert_slb(c2,pair(A,bottom)),c3)).  [resolve(15,b,10,a)].
+17 -less_than(f2(c1,insert_slb(c2,pair(A,bottom)),c3),f1(c1,insert_slb(c2,pair(A,bottom)),c3)).  [resolve(12,a,16,a)].
+18 -check_cpq(triple(A,insert_slb(c2,pair(B,bottom)),C)) | check_cpq(triple(c1,insert_slb(c2,pair(B,bottom)),c3)).  [resolve(14,b,17,a)].
+19 -check_cpq(triple(A,insert_slb(c2,pair(B,bottom)),C)).  [resolve(18,b,16,a)].
+20 -check_cpq(insert_cpq(triple(A,c2,B),C)).  [para(9(a,1),19(a,1))].
+21 $F.  [resolve(20,a,7,a)].
+
+============================== end of proof ==========================

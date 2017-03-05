@@ -1,0 +1,45 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n083.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:02:03 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 23367 was started by sandbox on n083.star.cs.uiowa.edu,
+Thu Jun  5 18:02:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_23335_n083.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 11.
+% Level of proof is 4.
+% Maximum clause weight is 7.000.
+% Given clauses 0.
+
+
+1 (all A all B all C (organization(A) -> (greater(external_ties(A,C),external_ties(A,B)) -> greater(position(A,C),position(A,B))) & (external_ties(A,C) = external_ties(A,B) -> position(A,C) = position(A,B)))).  [assumption].
+2 (all A all B all C (organization(A) -> external_ties(A,C) = external_ties(A,B))).  [assumption].
+3 -(all A all B all C (organization(A) & greater(age(A,C),age(A,B)) -> position(A,C) = position(A,B))).  [assumption].
+4 -organization(A) | external_ties(A,B) = external_ties(A,C).  [clausify(2)].
+5 organization(c1).  [clausify(3)].
+6 -organization(A) | external_ties(A,B) != external_ties(A,C) | position(A,B) = position(A,C).  [clausify(1)].
+7 position(c1,c3) != position(c1,c2).  [clausify(3)].
+8 external_ties(c1,A) = external_ties(c1,B).  [resolve(4,a,5,a)].
+9 external_ties(c1,A) != external_ties(c1,B) | position(c1,A) = position(c1,B).  [resolve(6,a,5,a)].
+10 position(c1,A) = position(c1,B).  [resolve(8,a,9,a)].
+11 $F.  [resolve(10,a,7,a)].
+
+============================== end of proof ==========================

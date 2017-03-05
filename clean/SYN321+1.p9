@@ -1,0 +1,10 @@
+
+2 -big_f(A,B) | -big_g(A,f1(A,B)).  [clausify(1)].
+3 big_f(A,B) | big_g(A,C).  [clausify(1)].
+4 -big_f(A,B) | big_g(A,C).  [clausify(1)].
+5 -big_g(A,A) | big_f(A,B).  [clausify(1)].
+6 big_g(A,B) | big_g(A,C).  [resolve(4,a,3,a)].
+7 -big_g(A,A) | -big_g(A,f1(A,B)).  [resolve(5,b,2,a)].
+8 big_g(A,B).  [factor(6,a,b)].
+9 -big_g(A,f1(A,B)).  [resolve(8,a,7,a)].
+10 $F.  [resolve(8,a,9,a)].

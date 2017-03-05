@@ -1,0 +1,29 @@
+
+
+
+
+5 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_unionOf,E,A) | -icext(E,F) | icext(B,F) | icext(D,F).  [clausify(1)].
+6 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(2)].
+7 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(2)].
+8 iext(uri_rdf_type,uri_ex_Eagle,uri_ex_Species).  [clausify(3)].
+9 iext(uri_rdf_type,uri_ex_Falcon,uri_ex_Species).  [clausify(3)].
+10 iext(uri_rdf_type,uri_ex_harry,c2).  [clausify(3)].
+11 iext(uri_owl_unionOf,c2,c3).  [clausify(3)].
+12 iext(uri_rdf_first,c3,uri_ex_Eagle).  [clausify(3)].
+13 iext(uri_rdf_rest,c3,c4).  [clausify(3)].
+14 iext(uri_rdf_first,c4,uri_ex_Falcon).  [clausify(3)].
+15 iext(uri_rdf_rest,c4,uri_rdf_nil).  [clausify(3)].
+16 -iext(uri_rdf_type,uri_ex_harry,A) | -iext(uri_rdf_type,A,uri_ex_Species).  [clausify(4)].
+17 icext(c2,uri_ex_harry).  [resolve(10,a,6,a)].
+18 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c3,B) | -iext(uri_rdf_first,B,C) | -iext(uri_rdf_rest,B,uri_rdf_nil) | -icext(c2,D) | icext(A,D) | icext(C,D).  [resolve(11,a,5,e)].
+19 -iext(uri_rdf_type,uri_ex_harry,uri_ex_Falcon).  [resolve(16,b,9,a)].
+20 -iext(uri_rdf_type,uri_ex_harry,uri_ex_Eagle).  [resolve(16,b,8,a)].
+21 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c3,c4) | -iext(uri_rdf_rest,c4,uri_rdf_nil) | -icext(c2,B) | icext(A,B) | icext(uri_ex_Falcon,B).  [resolve(18,c,14,a)].
+22 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c4,uri_rdf_nil) | -icext(c2,B) | icext(A,B) | icext(uri_ex_Falcon,B).  [resolve(13,a,21,b)].
+23 -iext(uri_rdf_first,c3,A) | -icext(c2,B) | icext(A,B) | icext(uri_ex_Falcon,B).  [resolve(15,a,22,b)].
+24 -icext(c2,A) | icext(uri_ex_Eagle,A) | icext(uri_ex_Falcon,A).  [resolve(23,a,12,a)].
+25 icext(uri_ex_Eagle,uri_ex_harry) | icext(uri_ex_Falcon,uri_ex_harry).  [resolve(24,a,17,a)].
+26 icext(uri_ex_Eagle,uri_ex_harry) | iext(uri_rdf_type,uri_ex_harry,uri_ex_Falcon).  [resolve(25,b,7,b)].
+27 icext(uri_ex_Eagle,uri_ex_harry).  [resolve(19,a,26,b)].
+28 iext(uri_rdf_type,uri_ex_harry,uri_ex_Eagle).  [resolve(27,a,7,b)].
+29 $F.  [resolve(20,a,28,a)].

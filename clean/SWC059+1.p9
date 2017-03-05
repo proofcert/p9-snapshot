@@ -1,0 +1,50 @@
+
+
+3 ssList(nil).  [assumption].
+4 -ssList(A) | segmentP(A,A).  [clausify(1)].
+5 ssList(c3).  [clausify(2)].
+6 c6 = c4.  [clausify(2)].
+7 c5 = c3.  [clausify(2)].
+8 nil = c5 | nil != c6.  [clausify(2)].
+9 nil = c3 | nil != c6.  [para(7(a,1),8(a,2))].
+10 nil = c3 | nil != c4.  [para(6(a,1),9(b,2))].
+11 c3 = nil | nil != c4.  [copy(10),flip(a)].
+12 c3 = nil | c4 != nil.  [copy(11),flip(b)].
+13 -neq(c6,nil) | neq(c5,nil).  [clausify(2)].
+14 -neq(c4,nil) | neq(c5,nil).  [para(6(a,1),13(a,1))].
+15 -neq(c4,nil) | neq(c3,nil).  [para(7(a,1),14(b,1))].
+16 -neq(c6,nil) | segmentP(c6,c5).  [clausify(2)].
+17 -neq(c4,nil) | segmentP(c6,c5).  [para(6(a,1),16(a,1))].
+18 -neq(c4,nil) | segmentP(c4,c5).  [para(6(a,1),17(b,1))].
+19 -neq(c4,nil) | segmentP(c4,c3).  [para(7(a,1),18(b,2))].
+20 nil = c4 | neq(c4,nil).  [clausify(2)].
+21 c4 = nil | neq(c4,nil).  [copy(20),flip(a)].
+22 nil = c4 | -ssList(A) | -neq(A,nil) | -segmentP(c4,A) | -segmentP(c3,A).  [clausify(2)].
+23 c4 = nil | -ssList(A) | -neq(A,nil) | -segmentP(c4,A) | -segmentP(c3,A).  [copy(22),flip(a)].
+24 nil != c3 | neq(c4,nil).  [clausify(2)].
+25 c3 != nil | neq(c4,nil).  [copy(24),flip(a)].
+26 nil != c3 | -ssList(A) | -neq(A,nil) | -segmentP(c4,A) | -segmentP(c3,A).  [clausify(2)].
+27 c3 != nil | -ssList(A) | -neq(A,nil) | -segmentP(c4,A) | -segmentP(c3,A).  [copy(26),flip(a)].
+28 segmentP(nil,nil).  [resolve(4,a,3,a)].
+29 segmentP(c3,c3).  [resolve(5,a,4,a)].
+30 c4 = nil | segmentP(c4,c3).  [resolve(21,b,19,a)].
+31 c4 = nil | neq(c3,nil).  [resolve(21,b,15,a)].
+32 c4 = nil | c4 = nil | -ssList(c3) | -segmentP(c4,c3) | -segmentP(c3,c3).  [resolve(31,b,23,c)].
+33 c4 = nil | -ssList(c3) | -segmentP(c4,c3) | -segmentP(c3,c3).  [copy(32),merge(b)].
+34 c4 = nil | -segmentP(c4,c3) | -segmentP(c3,c3).  [resolve(5,a,33,b)].
+35 c4 = nil | -segmentP(c4,c3).  [resolve(29,a,34,c)].
+36 c4 = nil | c4 = nil.  [resolve(35,b,30,b)].
+37 c4 = nil.  [copy(36),merge(b)].
+38 c3 != nil | -ssList(A) | -neq(A,nil) | -segmentP(nil,A) | -segmentP(c3,A).  [para(37(a,1),27(d,1))].
+39 c3 != nil | neq(nil,nil).  [para(37(a,1),25(b,1))].
+40 c3 = nil | nil != nil.  [para(37(a,1),12(b,1))].
+41 c3 = nil.  [copy(40),xx(b)].
+42 nil != nil | neq(nil,nil).  [para(41(a,1),39(a,1))].
+43 neq(nil,nil).  [copy(42),xx(a)].
+44 nil != nil | -ssList(A) | -neq(A,nil) | -segmentP(nil,A) | -segmentP(c3,A).  [para(41(a,1),38(a,1))].
+45 nil != nil | -ssList(A) | -neq(A,nil) | -segmentP(nil,A) | -segmentP(nil,A).  [para(41(a,1),44(e,1))].
+46 -ssList(A) | -neq(A,nil) | -segmentP(nil,A) | -segmentP(nil,A).  [copy(45),xx(a)].
+47 -ssList(A) | -neq(A,nil) | -segmentP(nil,A).  [copy(46),merge(d)].
+48 -ssList(nil) | -segmentP(nil,nil).  [resolve(43,a,47,b)].
+49 -segmentP(nil,nil).  [resolve(3,a,48,a)].
+50 $F.  [resolve(28,a,49,a)].

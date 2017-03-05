@@ -1,0 +1,62 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n070.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:00:13 CDT 2014
+% CPUTime    : 0.19 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 14931 was started by sandbox on n070.star.cs.uiowa.edu,
+Thu Jun  5 14:00:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_14899_n070.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 22.
+% Level of proof is 7.
+% Maximum clause weight is 13.000.
+% Given clauses 348.
+
+
+1 (all A all B all C (happens(A,B) & terminates(A,C,B) -> -holdsAt(C,plus(B,n1)))).  [assumption].
+2 (all A all B all C (terminates(A,B,C) <-> A = push & B = backwards & -happens(pull,C) | A = pull & B = forwards & -happens(push,C) | A = pull & B = forwards & happens(push,C) | A = pull & B = backwards & happens(push,C) | A = push & B = spinning & -happens(pull,C) | A = pull & B = spinning & -happens(push,C))).  [assumption].
+3 (all A all B (happens(A,B) <-> A = push & B = n0 | A = pull & B = n1 | A = pull & B = n2 | A = push & B = n2)).  [assumption].
+4 (all A all B plus(A,B) = plus(B,A)).  [assumption].
+5 --holdsAt(backwards,n3).  [assumption].
+6 -happens(A,B) | -terminates(A,C,B) | -holdsAt(C,plus(B,n1)).  [clausify(1)].
+7 terminates(A,B,C) | pull != A | backwards != B | -happens(push,C).  [clausify(2)].
+8 happens(A,B) | pull != A | n2 != B.  [clausify(3)].
+9 happens(A,B) | push != A | n2 != B.  [clausify(3)].
+10 plus(n0,n2) = n2.  [assumption].
+11 plus(n1,n2) = n3.  [assumption].
+12 plus(A,B) = plus(B,A).  [clausify(4)].
+13 holdsAt(backwards,n3).  [clausify(5)].
+14 plus(n2,n0) = n2.  [para(12(a,1),10(a,1))].
+15 happens(pull,A) | n2 != A.  [xx_res(8,b)].
+16 happens(push,A) | n2 != A.  [xx_res(9,b)].
+17 happens(pull,plus(n2,n0)).  [resolve(15,b,14,a(flip))].
+18 happens(pull,n2).  [para(14(a,1),17(a,2))].
+19 happens(push,plus(n2,n0)).  [resolve(16,b,14,a(flip))].
+20 happens(push,n2).  [para(14(a,1),19(a,2))].
+21 terminates(A,B,n2) | pull != A | backwards != B.  [resolve(20,a,7,d)].
+22 terminates(pull,A,n2) | backwards != A.  [xx_res(21,b)].
+23 terminates(pull,backwards,n2).  [xx_res(22,b)].
+24 -happens(pull,n2) | -holdsAt(backwards,plus(n2,n1)).  [resolve(23,a,6,b)].
+25 -happens(pull,n2) | -holdsAt(backwards,plus(n1,n2)).  [para(12(a,1),24(b,2))].
+26 -happens(pull,n2) | -holdsAt(backwards,n3).  [para(11(a,1),25(b,2))].
+27 -holdsAt(backwards,n3).  [resolve(18,a,26,a)].
+28 $F.  [resolve(13,a,27,a)].
+
+============================== end of proof ==========================

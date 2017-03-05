@@ -1,0 +1,71 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n080.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:35:43 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 49244 was started by sandbox on n080.star.cs.uiowa.edu,
+Thu Jun  5 18:35:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_49212_n080.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 32.
+% Level of proof is 8.
+% Maximum clause weight is 2.000.
+% Given clauses 0.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A (cowlThing(A) -> (all B (rprop(A,B) -> cA(B))))).  [assumption].
+4 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & (all A all B (rprop(A,B) -> cA(B)))).  [assumption].
+5 -cowlThing(A) | -rprop(A,B) | cA(B).  [clausify(3)].
+6 cowlThing(A).  [clausify(1)].
+7 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA(c4).  [clausify(4)].
+8 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA(c4).  [clausify(4)].
+9 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rprop(c3,c4).  [clausify(4)].
+10 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rprop(c3,c4).  [clausify(4)].
+11 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+12 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+13 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA(c4).  [resolve(7,a,6,a)].
+14 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA(c4).  [resolve(8,a,6,a)].
+15 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rprop(c3,c4).  [resolve(9,a,6,a)].
+16 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rprop(c3,c4).  [resolve(10,a,6,a)].
+17 cowlNothing(c1) | -xsd_integer(c2) | -cA(c4) | -xsd_integer(c2).  [resolve(13,b,11,a)].
+18 -cowlNothing(A).  [clausify(1)].
+19 cowlNothing(c1) | xsd_integer(c2) | -cA(c4) | xsd_integer(c2).  [resolve(14,b,12,a)].
+20 cowlNothing(c1) | -xsd_integer(c2) | rprop(c3,c4) | -xsd_integer(c2).  [resolve(15,b,11,a)].
+21 cowlNothing(c1) | xsd_integer(c2) | rprop(c3,c4) | xsd_integer(c2).  [resolve(16,b,12,a)].
+22 -xsd_integer(c2) | rprop(c3,c4) | -xsd_integer(c2).  [resolve(20,a,18,a)].
+23 -rprop(A,B) | cA(B).  [resolve(5,a,6,a)].
+24 xsd_integer(c2) | rprop(c3,c4) | xsd_integer(c2).  [resolve(21,a,18,a)].
+25 -xsd_integer(c2) | -xsd_integer(c2) | cA(c4).  [resolve(22,b,23,a)].
+26 -xsd_integer(c2) | -cA(c4) | -xsd_integer(c2).  [resolve(17,a,18,a)].
+27 xsd_integer(c2) | -cA(c4) | xsd_integer(c2).  [resolve(19,a,18,a)].
+28 xsd_integer(c2) | xsd_integer(c2) | cA(c4).  [resolve(24,b,23,a)].
+29 -xsd_integer(c2) | -xsd_integer(c2) | -xsd_integer(c2) | -xsd_integer(c2).  [resolve(25,c,26,b)].
+30 -xsd_integer(c2) | -xsd_integer(c2) | -xsd_integer(c2).  [copy(29),merge(b)].
+31 -xsd_integer(c2) | -xsd_integer(c2).  [copy(30),merge(b)].
+32 -xsd_integer(c2).  [copy(31),merge(b)].
+33 xsd_integer(c2) | xsd_integer(c2) | xsd_integer(c2) | xsd_integer(c2).  [resolve(28,c,27,b)].
+34 xsd_integer(c2) | xsd_integer(c2) | xsd_integer(c2).  [copy(33),merge(b)].
+35 xsd_integer(c2) | xsd_integer(c2).  [copy(34),merge(b)].
+36 xsd_integer(c2).  [copy(35),merge(b)].
+37 $F.  [resolve(32,a,36,a)].
+
+============================== end of proof ==========================

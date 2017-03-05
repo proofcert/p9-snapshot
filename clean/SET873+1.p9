@@ -1,0 +1,19 @@
+
+
+
+
+
+6 subset(A,A).  [clausify(4)].
+7 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+8 singleton(c3) = set_union2(singleton(c3),singleton(c4)).  [clausify(5)].
+9 set_union2(singleton(c3),singleton(c4)) = singleton(c3).  [copy(8),flip(a)].
+10 c4 != c3.  [clausify(5)].
+11 -subset(set_union2(singleton(A),B),B) | in(A,B).  [clausify(3)].
+12 -subset(set_union2(A,singleton(B)),A) | in(B,A).  [para(7(a,1),11(a,1))].
+13 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+14 -subset(singleton(c3),singleton(c3)) | in(c4,singleton(c3)).  [para(9(a,1),12(a,1))].
+15 in(c4,singleton(c3)).  [resolve(6,a,14,a)].
+16 -in(A,set_union2(singleton(c3),singleton(c4))) | A = c3.  [resolve(13,a,9,a(flip))].
+17 -in(c4,set_union2(singleton(c3),singleton(c4))).  [resolve(16,b,10,a)].
+18 -in(c4,singleton(c3)).  [para(9(a,1),17(a,2))].
+19 $F.  [resolve(15,a,18,a)].

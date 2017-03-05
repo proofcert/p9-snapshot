@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n149.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:52:08 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 52572 was started by sandbox on n149.star.cs.uiowa.edu,
+Fri Jun  6 07:52:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_52540_n149.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 17.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 15.
+
+
+1 (all A all B (equally_directed_lines(A,B) <-> -unequally_directed_lines(A,B))).  [assumption].
+2 (all A all B all C (unequally_directed_lines(A,B) -> unequally_directed_lines(A,C) | unequally_directed_lines(B,C))).  [assumption].
+3 (all A all B (unequally_directed_lines(A,B) | unequally_directed_lines(A,reverse_line(B)))).  [assumption].
+4 (all A all B (unequally_directed_lines(A,B) & unequally_directed_lines(A,reverse_line(B)) -> left_convergent_lines(A,B) | left_convergent_lines(A,reverse_line(B)))).  [assumption].
+5 (all A all B -(left_convergent_lines(A,B) | left_convergent_lines(A,reverse_line(B)))).  [assumption].
+6 -(all A equally_directed_lines(reverse_line(reverse_line(A)),A)).  [assumption].
+7 -equally_directed_lines(reverse_line(reverse_line(c1)),c1).  [clausify(6)].
+8 equally_directed_lines(A,B) | unequally_directed_lines(A,B).  [clausify(1)].
+9 unequally_directed_lines(A,B) | unequally_directed_lines(A,reverse_line(B)).  [clausify(3)].
+10 -left_convergent_lines(A,B).  [clausify(5)].
+11 -unequally_directed_lines(A,B) | unequally_directed_lines(A,C) | unequally_directed_lines(B,C).  [clausify(2)].
+12 -unequally_directed_lines(A,B) | -unequally_directed_lines(A,reverse_line(B)) | left_convergent_lines(A,B) | left_convergent_lines(A,reverse_line(B)).  [clausify(4)].
+13 -unequally_directed_lines(A,B) | -unequally_directed_lines(A,reverse_line(B)) | left_convergent_lines(A,reverse_line(B)).  [resolve(10,a,12,c)].
+14 -unequally_directed_lines(A,B) | -unequally_directed_lines(A,reverse_line(B)).  [resolve(10,a,13,c)].
+15 unequally_directed_lines(reverse_line(reverse_line(c1)),c1).  [resolve(7,a,8,a)].
+16 unequally_directed_lines(A,B) | unequally_directed_lines(reverse_line(C),B) | unequally_directed_lines(A,C).  [resolve(11,a,9,b)].
+17 unequally_directed_lines(reverse_line(A),A) | unequally_directed_lines(reverse_line(A),A).  [factor(16,b,c)].
+18 unequally_directed_lines(reverse_line(A),A).  [copy(17),merge(b)].
+19 -unequally_directed_lines(reverse_line(reverse_line(c1)),reverse_line(c1)).  [resolve(14,a,15,a)].
+20 $F.  [resolve(18,a,19,a)].
+
+============================== end of proof ==========================

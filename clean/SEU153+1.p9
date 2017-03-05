@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+8 in(c3,c4).  [clausify(7)].
+9 disjoint(singleton(c3),c4).  [clausify(7)].
+10 set_intersection2(A,A) = A.  [clausify(6)].
+11 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+12 singleton(A) = B | in(f1(A,B),B) | f1(A,B) = A.  [clausify(2)].
+13 empty_set != A | -in(B,A).  [clausify(3)].
+14 -disjoint(A,B) | set_intersection2(A,B) = empty_set.  [clausify(5)].
+15 singleton(A) != B | in(C,B) | C != A.  [clausify(2)].
+16 set_intersection2(A,B) != C | in(D,C) | -in(D,A) | -in(D,B).  [clausify(4)].
+17 -in(A,set_intersection2(empty_set,empty_set)).  [resolve(13,a,10,a(flip))].
+18 -in(A,empty_set).  [para(10(a,1),17(a,2))].
+19 set_intersection2(singleton(c3),c4) = empty_set.  [resolve(14,a,9,a)].
+20 set_intersection2(c4,singleton(c3)) = empty_set.  [para(11(a,1),19(a,1))].
+21 singleton(A) = empty_set | f1(A,empty_set) = A.  [resolve(18,a,12,b)].
+22 singleton(A) != empty_set | B != A.  [resolve(15,b,18,a)].
+23 singleton(A) != empty_set.  [resolve(22,b,10,a)].
+24 f1(A,empty_set) = A.  [resolve(23,a,21,a)].
+25 in(A,empty_set) | -in(A,c4) | -in(A,singleton(c3)).  [resolve(16,a,20,a)].
+26 -in(A,c4) | -in(A,singleton(c3)).  [resolve(25,a,18,a)].
+27 -in(c3,singleton(c3)).  [resolve(26,a,8,a)].
+28 singleton(A) != singleton(c3) | c3 != A.  [resolve(15,b,27,a)].
+29 singleton(f1(c3,empty_set)) != singleton(c3).  [resolve(28,b,24,a(flip))].
+30 singleton(c3) != singleton(c3).  [para(24(a,1),29(a,1,1))].
+31 $F.  [copy(30),xx(a)].

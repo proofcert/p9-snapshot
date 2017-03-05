@@ -1,0 +1,37 @@
+
+
+
+4 aSubsetOf0(xS,xT).  [assumption].
+5 -aSet0(A) | -aSubsetOf0(B,A) | -aSupremumOfIn0(C,B,A) | aElementOf0(C,A).  [clausify(3)].
+6 -aSet0(A) | -aSubsetOf0(B,A) | -aSupremumOfIn0(C,B,A) | aUpperBoundOfIn0(C,B,A).  [clausify(3)].
+7 -aSet0(A) | -aSubsetOf0(B,A) | -aSupremumOfIn0(C,B,A) | -aUpperBoundOfIn0(D,B,A) | sdtlseqdt0(C,D).  [clausify(3)].
+8 aSet0(xT).  [assumption].
+9 aSupremumOfIn0(xu,xS,xT).  [assumption].
+10 aSupremumOfIn0(xv,xS,xT).  [assumption].
+11 xu != xv.  [assumption].
+12 xv != xu.  [copy(11),flip(a)].
+13 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(1)].
+14 -aElement0(A) | -aElement0(B) | -sdtlseqdt0(A,B) | -sdtlseqdt0(B,A) | B = A.  [clausify(2)].
+15 -aSet0(xT) | -aSupremumOfIn0(A,xS,xT) | aElementOf0(A,xT).  [resolve(5,b,4,a)].
+16 -aSupremumOfIn0(A,xS,xT) | aElementOf0(A,xT).  [resolve(8,a,15,a)].
+17 -aSet0(xT) | -aSupremumOfIn0(A,xS,xT) | aUpperBoundOfIn0(A,xS,xT).  [resolve(6,b,4,a)].
+18 -aSupremumOfIn0(A,xS,xT) | aUpperBoundOfIn0(A,xS,xT).  [resolve(8,a,17,a)].
+19 -aSet0(xT) | -aSupremumOfIn0(A,xS,xT) | -aUpperBoundOfIn0(B,xS,xT) | sdtlseqdt0(A,B).  [resolve(7,b,4,a)].
+20 -aSupremumOfIn0(A,xS,xT) | -aUpperBoundOfIn0(B,xS,xT) | sdtlseqdt0(A,B).  [resolve(8,a,19,a)].
+21 aElementOf0(xv,xT).  [resolve(16,a,10,a)].
+22 aElementOf0(xu,xT).  [resolve(16,a,9,a)].
+23 aUpperBoundOfIn0(xv,xS,xT).  [resolve(18,a,10,a)].
+24 aUpperBoundOfIn0(xu,xS,xT).  [resolve(18,a,9,a)].
+25 -aUpperBoundOfIn0(A,xS,xT) | sdtlseqdt0(xv,A).  [resolve(20,a,10,a)].
+26 -aUpperBoundOfIn0(A,xS,xT) | sdtlseqdt0(xu,A).  [resolve(20,a,9,a)].
+27 -aSet0(xT) | aElement0(xv).  [resolve(21,a,13,b)].
+28 aElement0(xv).  [resolve(8,a,27,a)].
+29 -aSet0(xT) | aElement0(xu).  [resolve(22,a,13,b)].
+30 aElement0(xu).  [resolve(8,a,29,a)].
+31 sdtlseqdt0(xv,xu).  [resolve(25,a,24,a)].
+32 -aElement0(xu) | -aElement0(xv) | -sdtlseqdt0(xu,xv) | xv = xu.  [resolve(31,a,14,d)].
+33 -aElement0(xv) | -sdtlseqdt0(xu,xv) | xv = xu.  [resolve(30,a,32,a)].
+34 -sdtlseqdt0(xu,xv) | xv = xu.  [resolve(28,a,33,a)].
+35 -sdtlseqdt0(xu,xv).  [resolve(12,a,34,b)].
+36 sdtlseqdt0(xu,xv).  [resolve(26,a,23,a)].
+37 $F.  [resolve(35,a,36,a)].

@@ -1,0 +1,29 @@
+
+
+
+4 singleton(A) = unordered_pair(A,A).  [clausify(1)].
+5 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,singleton(B))).  [clausify(2)].
+6 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,singleton(B))).  [para(4(a,1),5(a,2,1))].
+7 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))).  [para(4(a,1),6(a,2,2,2))].
+8 -member(A,universal_class) | -member(B,universal_class) | ordered_pair(A,B) != c3.  [clausify(3)].
+9 -member(A,universal_class) | -member(B,universal_class) | unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))) != c3.  [para(7(a,1),8(c,1))].
+10 member(f6(A,B),universal_class) | A != c3 | B != c3.  [clausify(3)].
+11 member(f6(A,B),universal_class) | c3 != A | B != c3.  [copy(10),flip(b)].
+12 member(f6(A,B),universal_class) | c3 != A | c3 != B.  [copy(11),flip(c)].
+13 member(f7(A,B),universal_class) | A != c3 | B != c3.  [clausify(3)].
+14 member(f7(A,B),universal_class) | c3 != A | B != c3.  [copy(13),flip(b)].
+15 member(f7(A,B),universal_class) | c3 != A | c3 != B.  [copy(14),flip(c)].
+16 ordered_pair(f6(A,B),f7(A,B)) = c3 | A != c3 | B != c3.  [clausify(3)].
+17 unordered_pair(unordered_pair(f6(A,B),f6(A,B)),unordered_pair(f6(A,B),unordered_pair(f7(A,B),f7(A,B)))) = c3 | A != c3 | B != c3.  [para(7(a,1),16(a,1))].
+18 unordered_pair(unordered_pair(f6(A,B),f6(A,B)),unordered_pair(f6(A,B),unordered_pair(f7(A,B),f7(A,B)))) = c3 | c3 != A | B != c3.  [copy(17),flip(b)].
+19 unordered_pair(unordered_pair(f6(A,B),f6(A,B)),unordered_pair(f6(A,B),unordered_pair(f7(A,B),f7(A,B)))) = c3 | c3 != A | c3 != B.  [copy(18),flip(c)].
+20 member(f6(A,A),universal_class) | c3 != A.  [factor(12,b,c)].
+21 member(f7(A,A),universal_class) | c3 != A.  [factor(15,b,c)].
+22 unordered_pair(unordered_pair(f6(A,A),f6(A,A)),unordered_pair(f6(A,A),unordered_pair(f7(A,A),f7(A,A)))) = c3 | c3 != A.  [factor(19,b,c)].
+23 member(f6(c3,c3),universal_class).  [xx_res(20,b)].
+24 member(f7(c3,c3),universal_class).  [xx_res(21,b)].
+25 unordered_pair(unordered_pair(f6(c3,c3),f6(c3,c3)),unordered_pair(f6(c3,c3),unordered_pair(f7(c3,c3),f7(c3,c3)))) = c3.  [xx_res(22,b)].
+26 -member(A,universal_class) | unordered_pair(unordered_pair(f6(c3,c3),f6(c3,c3)),unordered_pair(f6(c3,c3),unordered_pair(A,A))) != c3.  [resolve(9,a,23,a)].
+27 unordered_pair(unordered_pair(f6(c3,c3),f6(c3,c3)),unordered_pair(f6(c3,c3),unordered_pair(f7(c3,c3),f7(c3,c3)))) != c3.  [resolve(26,a,24,a)].
+28 c3 != c3.  [para(25(a,1),27(a,1))].
+29 $F.  [copy(28),xx(a)].

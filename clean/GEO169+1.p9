@@ -1,0 +1,532 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20 incident(a1,a1b1).  [assumption].
+21 incident(b1,a1b1).  [assumption].
+22 incident(a2,a2b2).  [assumption].
+23 incident(b2,a2b2).  [assumption].
+24 incident(a1,a1c1).  [assumption].
+25 incident(c1,a1c1).  [assumption].
+26 incident(a2,a2c2).  [assumption].
+27 incident(c2,a2c2).  [assumption].
+28 incident(c1,b1c1).  [assumption].
+29 incident(b1,b1c1).  [assumption].
+30 incident(c2,b2c2).  [assumption].
+31 incident(b2,b2c2).  [assumption].
+32 incident(o,oa).  [assumption].
+33 incident(o,ob).  [assumption].
+34 incident(o,oc).  [assumption].
+35 incident(a1,oa).  [assumption].
+36 incident(a2,oa).  [assumption].
+37 incident(b1,ob).  [assumption].
+38 incident(b2,ob).  [assumption].
+39 incident(c1,oc).  [assumption].
+40 incident(c2,oc).  [assumption].
+41 incident(bc,b1c1).  [assumption].
+42 incident(bc,b2c2).  [assumption].
+43 incident(ac,a1c1).  [assumption].
+44 incident(ac,a2c2).  [assumption].
+45 incident(ab,a1b1).  [assumption].
+46 incident(ab,a2b2).  [assumption].
+47 incident(a1,b2c2) | incident(b2,a1c1).  [assumption].
+48 incident(b1,a2c2) | incident(c2,a1b1).  [assumption].
+49 incident(c1,a2b2) | incident(a2,b1c1).  [assumption].
+50 -goal.  [assumption].
+51 -point_equal(a2,a1) | goal.  [clausify(6)].
+52 -point_equal(a2,a1).  [resolve(50,a,51,b)].
+53 -point_equal(b2,b1) | goal.  [clausify(7)].
+54 -point_equal(b2,b1).  [resolve(50,a,53,b)].
+55 -point_equal(c2,c1) | goal.  [clausify(8)].
+56 -point_equal(c2,c1).  [resolve(50,a,55,b)].
+57 -line_equal(b1c1,b2c2) | goal.  [clausify(9)].
+58 -line_equal(b1c1,b2c2).  [resolve(50,a,57,b)].
+59 -line_equal(a1c1,a2c2) | goal.  [clausify(10)].
+60 -line_equal(a1c1,a2c2).  [resolve(50,a,59,b)].
+61 -line_equal(a1b1,a2b2) | goal.  [clausify(11)].
+62 -line_equal(a1b1,a2b2).  [resolve(50,a,61,b)].
+63 -point_equal(A,B) | point_equal(B,A).  [clausify(12)].
+64 -incident(A,B) | line_equal(B,B).  [clausify(14)].
+65 -line_equal(A,B) | line_equal(B,A).  [clausify(15)].
+66 -point_equal(A,B) | -point_equal(B,C) | point_equal(A,C).  [clausify(13)].
+67 -line_equal(A,B) | -line_equal(B,C) | line_equal(A,C).  [clausify(16)].
+68 -point_equal(A,B) | -incident(B,C) | incident(A,C).  [clausify(17)].
+69 -incident(A,B) | -line_equal(B,C) | incident(A,C).  [clausify(18)].
+70 -incident(a1,b2c2) | -incident(b1,a2c2) | -incident(c1,a2b2) | goal.  [clausify(2)].
+71 -incident(a1,b2c2) | -incident(b1,a2c2) | -incident(c1,a2b2).  [resolve(50,a,70,d)].
+72 -incident(a2,b1c1) | -incident(b2,a1c1) | -incident(c2,a1b1) | goal.  [clausify(3)].
+73 -incident(a2,b1c1) | -incident(b2,a1c1) | -incident(c2,a1b1).  [resolve(50,a,72,d)].
+74 -incident(a1,A) | -incident(b1,A) | -incident(c1,A) | goal.  [clausify(4)].
+75 -incident(a1,A) | -incident(b1,A) | -incident(c1,A).  [resolve(50,a,74,d)].
+76 -incident(a2,A) | -incident(b2,A) | -incident(c2,A) | goal.  [clausify(5)].
+77 -incident(a2,A) | -incident(b2,A) | -incident(c2,A).  [resolve(50,a,76,d)].
+78 -line_equal(A,A) | -incident(bc,A) | -incident(ac,A) | -incident(ab,A) | goal.  [clausify(1)].
+79 -line_equal(A,A) | -incident(bc,A) | -incident(ac,A) | -incident(ab,A).  [resolve(50,a,78,e)].
+80 -incident(A,B) | -incident(A,C) | -incident(D,B) | -incident(D,C) | point_equal(A,D) | line_equal(B,C).  [clausify(19)].
+81 -point_equal(c1,c2).  [resolve(63,b,56,a)].
+82 -point_equal(b1,b2).  [resolve(63,b,54,a)].
+83 -point_equal(a1,a2).  [resolve(63,b,52,a)].
+84 line_equal(a1b1,a1b1).  [resolve(64,a,45,a)].
+85 line_equal(a2c2,a2c2).  [resolve(64,a,44,a)].
+86 line_equal(a1c1,a1c1).  [resolve(64,a,43,a)].
+87 -line_equal(a2b2,a1b1).  [resolve(65,b,62,a)].
+88 -line_equal(a2c2,a1c1).  [resolve(65,b,60,a)].
+89 -incident(a1,b2c2) | -incident(b1,a2c2) | incident(a2,b1c1).  [resolve(71,c,49,a)].
+90 -incident(a2,b1c1) | -incident(b2,a1c1) | incident(b1,a2c2).  [resolve(73,c,48,b)].
+91 -incident(a1,b1c1) | -incident(b1,b1c1).  [resolve(75,c,28,a)].
+92 -incident(a1,b1c1).  [resolve(29,a,91,b)].
+93 -incident(a1,a1c1) | -incident(b1,a1c1).  [resolve(75,c,25,a)].
+94 -incident(b1,a1c1).  [resolve(24,a,93,a)].
+95 -incident(b1,a1b1) | -incident(c1,a1b1).  [resolve(75,a,20,a)].
+96 -incident(c1,a1b1).  [resolve(95,a,21,a)].
+97 -incident(a2,b2c2) | -incident(b2,b2c2).  [resolve(77,c,30,a)].
+98 -incident(a2,b2c2).  [resolve(31,a,97,b)].
+99 -incident(a2,a2c2) | -incident(b2,a2c2).  [resolve(77,c,27,a)].
+100 -incident(b2,a2c2).  [resolve(26,a,99,a)].
+101 -incident(b2,a2b2) | -incident(c2,a2b2).  [resolve(77,a,22,a)].
+102 -incident(c2,a2b2).  [resolve(101,a,23,a)].
+103 -incident(c1,A) | -incident(B,a2b2) | -incident(B,A) | point_equal(c1,B) | line_equal(a2b2,A) | incident(a2,b1c1).  [resolve(80,a,49,a)].
+104 -incident(c2,A) | -incident(B,a1b1) | -incident(B,A) | point_equal(c2,B) | line_equal(a1b1,A) | incident(b1,a2c2).  [resolve(80,a,48,b)].
+105 -incident(ab,A) | -incident(B,a2b2) | -incident(B,A) | point_equal(ab,B) | line_equal(a2b2,A).  [resolve(80,a,46,a)].
+106 -incident(ac,A) | -incident(B,a1c1) | -incident(B,A) | point_equal(ac,B) | line_equal(a1c1,A).  [resolve(80,a,43,a)].
+107 -incident(bc,A) | -incident(B,b1c1) | -incident(B,A) | point_equal(bc,B) | line_equal(b1c1,A).  [resolve(80,a,41,a)].
+108 -incident(c2,A) | -incident(B,oc) | -incident(B,A) | point_equal(c2,B) | line_equal(oc,A).  [resolve(80,a,40,a)].
+109 -incident(c1,A) | -incident(B,oc) | -incident(B,A) | point_equal(c1,B) | line_equal(oc,A).  [resolve(80,a,39,a)].
+110 -incident(b1,A) | -incident(B,ob) | -incident(B,A) | point_equal(b1,B) | line_equal(ob,A).  [resolve(80,a,37,a)].
+111 -incident(a2,A) | -incident(B,oa) | -incident(B,A) | point_equal(a2,B) | line_equal(oa,A).  [resolve(80,a,36,a)].
+112 -incident(c2,A) | -incident(B,b2c2) | -incident(B,A) | point_equal(c2,B) | line_equal(b2c2,A).  [resolve(80,a,30,a)].
+113 -incident(c1,A) | -incident(B,b1c1) | -incident(B,A) | point_equal(c1,B) | line_equal(b1c1,A).  [resolve(80,a,28,a)].
+114 -incident(c2,A) | -incident(B,a2c2) | -incident(B,A) | point_equal(c2,B) | line_equal(a2c2,A).  [resolve(80,a,27,a)].
+115 -incident(a2,A) | -incident(B,a2b2) | -incident(B,A) | point_equal(a2,B) | line_equal(a2b2,A).  [resolve(80,a,22,a)].
+116 -incident(bc,A) | -incident(B,A) | -incident(B,b2c2) | point_equal(bc,B) | line_equal(A,b2c2).  [resolve(80,b,42,a)].
+117 -incident(bc,A) | -incident(B,A) | -incident(B,b1c1) | point_equal(bc,B) | line_equal(A,b1c1).  [resolve(80,b,41,a)].
+118 -incident(c1,A) | -incident(B,A) | -incident(B,oc) | point_equal(c1,B) | line_equal(A,oc).  [resolve(80,b,39,a)].
+119 -incident(a2,A) | -incident(B,A) | -incident(B,oa) | point_equal(a2,B) | line_equal(A,oa).  [resolve(80,b,36,a)].
+120 -incident(b1,A) | -incident(B,A) | -incident(B,b1c1) | point_equal(b1,B) | line_equal(A,b1c1).  [resolve(80,b,29,a)].
+121 -incident(a2,A) | -incident(B,A) | -incident(B,a2c2) | point_equal(a2,B) | line_equal(A,a2c2).  [resolve(80,b,26,a)].
+122 -incident(a1,A) | -incident(B,A) | -incident(B,a1b1) | point_equal(a1,B) | line_equal(A,a1b1).  [resolve(80,b,20,a)].
+123 -incident(A,a1c1) | -incident(A,B) | -incident(b2,B) | point_equal(A,b2) | line_equal(a1c1,B) | incident(a1,b2c2).  [resolve(80,c,47,b)].
+124 -incident(A,a2b2) | -incident(A,B) | -incident(ab,B) | point_equal(A,ab) | line_equal(a2b2,B).  [resolve(80,c,46,a)].
+125 -incident(A,a2c2) | -incident(A,B) | -incident(ac,B) | point_equal(A,ac) | line_equal(a2c2,B).  [resolve(80,c,44,a)].
+126 -incident(A,oc) | -incident(A,B) | -incident(c2,B) | point_equal(A,c2) | line_equal(oc,B).  [resolve(80,c,40,a)].
+127 -incident(A,ob) | -incident(A,B) | -incident(b2,B) | point_equal(A,b2) | line_equal(ob,B).  [resolve(80,c,38,a)].
+128 -incident(A,ob) | -incident(A,B) | -incident(b1,B) | point_equal(A,b1) | line_equal(ob,B).  [resolve(80,c,37,a)].
+129 -incident(A,oa) | -incident(A,B) | -incident(a2,B) | point_equal(A,a2) | line_equal(oa,B).  [resolve(80,c,36,a)].
+130 -incident(A,oa) | -incident(A,B) | -incident(a1,B) | point_equal(A,a1) | line_equal(oa,B).  [resolve(80,c,35,a)].
+131 -incident(A,b2c2) | -incident(A,B) | -incident(b2,B) | point_equal(A,b2) | line_equal(b2c2,B).  [resolve(80,c,31,a)].
+132 -incident(A,a1c1) | -incident(A,B) | -incident(a1,B) | point_equal(A,a1) | line_equal(a1c1,B).  [resolve(80,c,24,a)].
+133 -incident(A,a2b2) | -incident(A,B) | -incident(a2,B) | point_equal(A,a2) | line_equal(a2b2,B).  [resolve(80,c,22,a)].
+134 -incident(A,B) | -incident(A,oc) | -incident(c1,B) | point_equal(A,c1) | line_equal(B,oc).  [resolve(80,d,39,a)].
+135 -incident(A,B) | -incident(A,ob) | -incident(b2,B) | point_equal(A,b2) | line_equal(B,ob).  [resolve(80,d,38,a)].
+136 -incident(A,B) | -incident(A,oa) | -incident(a2,B) | point_equal(A,a2) | line_equal(B,oa).  [resolve(80,d,36,a)].
+137 -incident(A,B) | -incident(A,oa) | -incident(o,B) | point_equal(A,o) | line_equal(B,oa).  [resolve(80,d,32,a)].
+138 -incident(A,B) | -incident(A,b1c1) | -incident(b1,B) | point_equal(A,b1) | line_equal(B,b1c1).  [resolve(80,d,29,a)].
+139 -line_equal(oa,A) | incident(a1,A).  [resolve(69,a,35,a)].
+140 -line_equal(oa,b1c1).  [resolve(139,b,92,a)].
+141 -line_equal(a1b1,A) | incident(a1,A).  [resolve(69,a,20,a)].
+142 -line_equal(a1b1,b1c1).  [resolve(141,b,92,a)].
+143 -point_equal(A,bc) | incident(A,b1c1).  [resolve(68,b,41,a)].
+144 -point_equal(a1,bc).  [resolve(143,b,92,a)].
+145 -line_equal(ob,A) | incident(b1,A).  [resolve(69,a,37,a)].
+146 -line_equal(ob,a1c1).  [resolve(145,b,94,a)].
+147 -point_equal(A,ac) | incident(A,a1c1).  [resolve(68,b,43,a)].
+148 -point_equal(b1,ac).  [resolve(147,b,94,a)].
+149 -point_equal(A,a1) | incident(A,a1c1).  [resolve(68,b,24,a)].
+150 -point_equal(b1,a1).  [resolve(149,b,94,a)].
+151 -line_equal(oc,A) | incident(c1,A).  [resolve(69,a,39,a)].
+152 -line_equal(oc,a1b1).  [resolve(151,b,96,a)].
+153 -line_equal(a1c1,A) | incident(c1,A).  [resolve(69,a,25,a)].
+154 -line_equal(a1c1,a1b1).  [resolve(153,b,96,a)].
+155 -point_equal(A,ab) | incident(A,a1b1).  [resolve(68,b,45,a)].
+156 -point_equal(c1,ab).  [resolve(155,b,96,a)].
+157 -point_equal(A,b1) | incident(A,a1b1).  [resolve(68,b,21,a)].
+158 -point_equal(c1,b1).  [resolve(157,b,96,a)].
+159 -line_equal(oa,A) | incident(a2,A).  [resolve(69,a,36,a)].
+160 -line_equal(oa,b2c2).  [resolve(159,b,98,a)].
+161 -point_equal(A,bc) | incident(A,b2c2).  [resolve(68,b,42,a)].
+162 -point_equal(a2,bc).  [resolve(161,b,98,a)].
+163 -point_equal(A,b2) | incident(A,b2c2).  [resolve(68,b,31,a)].
+164 -point_equal(a2,b2).  [resolve(163,b,98,a)].
+165 -line_equal(ob,A) | incident(b2,A).  [resolve(69,a,38,a)].
+166 -line_equal(ob,a2c2).  [resolve(165,b,100,a)].
+167 -point_equal(A,ac) | incident(A,a2c2).  [resolve(68,b,44,a)].
+168 -point_equal(b2,ac).  [resolve(167,b,100,a)].
+169 -line_equal(oc,A) | incident(c2,A).  [resolve(69,a,40,a)].
+170 -line_equal(oc,a2b2).  [resolve(169,b,102,a)].
+171 -point_equal(A,ab) | incident(A,a2b2).  [resolve(68,b,46,a)].
+172 -point_equal(c2,ab).  [resolve(171,b,102,a)].
+173 -point_equal(A,a2) | incident(A,a2b2).  [resolve(68,b,22,a)].
+174 -point_equal(c2,a2).  [resolve(173,b,102,a)].
+175 -incident(bc,a1b1) | -incident(ac,a1b1) | -incident(ab,a1b1).  [resolve(84,a,79,a)].
+176 -incident(bc,a1b1) | -incident(ac,a1b1).  [resolve(45,a,175,c)].
+177 -incident(bc,a2c2) | -incident(ac,a2c2) | -incident(ab,a2c2).  [resolve(85,a,79,a)].
+178 -incident(bc,a2c2) | -incident(ab,a2c2).  [resolve(44,a,177,b)].
+179 -incident(bc,a1c1) | -incident(ac,a1c1) | -incident(ab,a1c1).  [resolve(86,a,79,a)].
+180 -incident(bc,a1c1) | -incident(ab,a1c1).  [resolve(43,a,179,b)].
+181 -line_equal(b1c1,oa).  [resolve(65,b,140,a)].
+182 -point_equal(bc,a1).  [resolve(63,b,144,a)].
+183 -incident(a2,b1c1) | incident(b1,a2c2) | incident(a1,b2c2).  [resolve(90,b,47,b)].
+184 -line_equal(a1c1,ob).  [resolve(65,b,146,a)].
+185 -incident(ab,a1b1) | -incident(b1,a2b2) | point_equal(ab,b1) | line_equal(a2b2,a1b1).  [resolve(105,c,21,a)].
+186 -incident(b1,a2b2) | point_equal(ab,b1) | line_equal(a2b2,a1b1).  [resolve(45,a,185,a)].
+187 -incident(b1,a2b2) | point_equal(ab,b1).  [resolve(87,a,186,c)].
+188 -point_equal(ac,b1).  [resolve(63,b,148,a)].
+189 -line_equal(a1b1,oc).  [resolve(65,b,152,a)].
+190 -point_equal(ab,c1).  [resolve(63,b,156,a)].
+191 -incident(c1,a1c1) | -incident(b2,a2b2) | point_equal(c1,b2) | line_equal(a2b2,a1c1) | incident(a2,b1c1) | incident(a1,b2c2).  [resolve(103,c,47,b)].
+192 -incident(b2,a2b2) | point_equal(c1,b2) | line_equal(a2b2,a1c1) | incident(a2,b1c1) | incident(a1,b2c2).  [resolve(25,a,191,a)].
+193 point_equal(c1,b2) | line_equal(a2b2,a1c1) | incident(a2,b1c1) | incident(a1,b2c2).  [resolve(23,a,192,a)].
+194 -incident(c1,oc) | -incident(o,a2b2) | point_equal(c1,o) | line_equal(a2b2,oc) | incident(a2,b1c1).  [resolve(103,c,34,a)].
+195 -incident(o,a2b2) | point_equal(c1,o) | line_equal(a2b2,oc) | incident(a2,b1c1).  [resolve(39,a,194,a)].
+196 -line_equal(b2c2,oa).  [resolve(65,b,160,a)].
+197 -incident(c2,oc) | -incident(o,a1b1) | point_equal(c2,o) | line_equal(a1b1,oc) | incident(b1,a2c2).  [resolve(104,c,34,a)].
+198 -incident(o,a1b1) | point_equal(c2,o) | line_equal(a1b1,oc) | incident(b1,a2c2).  [resolve(40,a,197,a)].
+199 -incident(o,a1b1) | point_equal(c2,o) | incident(b1,a2c2).  [resolve(189,a,198,c)].
+200 -point_equal(bc,a2).  [resolve(63,b,162,a)].
+201 -line_equal(a2c2,ob).  [resolve(65,b,166,a)].
+202 -point_equal(ac,b2).  [resolve(63,b,168,a)].
+203 -line_equal(a2b2,oc).  [resolve(65,b,170,a)].
+204 -incident(o,a2b2) | point_equal(c1,o) | incident(a2,b1c1).  [resolve(203,a,195,c)].
+205 -point_equal(ab,c2).  [resolve(63,b,172,a)].
+206 -incident(ac,a2c2) | -incident(c2,a1c1) | point_equal(ac,c2) | line_equal(a1c1,a2c2).  [resolve(106,c,27,a)].
+207 -incident(c2,a1c1) | point_equal(ac,c2) | line_equal(a1c1,a2c2).  [resolve(44,a,206,a)].
+208 -incident(c2,a1c1) | point_equal(ac,c2).  [resolve(60,a,207,c)].
+209 -incident(bc,b2c2) | -incident(b2,b1c1) | point_equal(bc,b2) | line_equal(b1c1,b2c2).  [resolve(107,c,31,a)].
+210 -incident(b2,b1c1) | point_equal(bc,b2) | line_equal(b1c1,b2c2).  [resolve(42,a,209,a)].
+211 -incident(b2,b1c1) | point_equal(bc,b2).  [resolve(58,a,210,c)].
+212 -incident(c2,b1c1) | -incident(c1,oc) | point_equal(c2,c1) | line_equal(oc,b1c1).  [resolve(108,c,28,a)].
+213 -incident(c2,b1c1) | point_equal(c2,c1) | line_equal(oc,b1c1).  [resolve(39,a,212,b)].
+214 -incident(c2,b1c1) | line_equal(oc,b1c1).  [resolve(56,a,213,b)].
+215 -incident(c2,a2c2) | -incident(a2,oc) | point_equal(c2,a2) | line_equal(oc,a2c2).  [resolve(108,c,26,a)].
+216 -incident(a2,oc) | point_equal(c2,a2) | line_equal(oc,a2c2).  [resolve(27,a,215,a)].
+217 -incident(a2,oc) | line_equal(oc,a2c2).  [resolve(174,a,216,b)].
+218 -incident(c2,a1c1) | -incident(c1,oc) | point_equal(c2,c1) | line_equal(oc,a1c1).  [resolve(108,c,25,a)].
+219 -incident(c2,a1c1) | point_equal(c2,c1) | line_equal(oc,a1c1).  [resolve(39,a,218,b)].
+220 -incident(c2,a1c1) | line_equal(oc,a1c1).  [resolve(56,a,219,b)].
+221 -incident(c1,b2c2) | -incident(c2,oc) | point_equal(c1,c2) | line_equal(oc,b2c2).  [resolve(109,c,30,a)].
+222 -incident(c1,b2c2) | point_equal(c1,c2) | line_equal(oc,b2c2).  [resolve(40,a,221,b)].
+223 -incident(c1,b2c2) | line_equal(oc,b2c2).  [resolve(81,a,222,b)].
+224 -incident(b1,a2c2) | -incident(a2,ob) | point_equal(b1,a2) | line_equal(ob,a2c2).  [resolve(110,c,26,a)].
+225 -incident(b1,a2c2) | -incident(a2,ob) | point_equal(b1,a2).  [resolve(166,a,224,d)].
+226 -incident(b1,a1b1) | -incident(a1,ob) | point_equal(b1,a1) | line_equal(ob,a1b1).  [resolve(110,c,20,a)].
+227 -incident(a1,ob) | point_equal(b1,a1) | line_equal(ob,a1b1).  [resolve(21,a,226,a)].
+228 -incident(a1,ob) | line_equal(ob,a1b1).  [resolve(150,a,227,b)].
+229 -incident(a2,ob) | -incident(o,oa) | point_equal(a2,o) | line_equal(oa,ob).  [resolve(111,c,33,a)].
+230 -incident(a2,ob) | point_equal(a2,o) | line_equal(oa,ob).  [resolve(32,a,229,b)].
+231 -incident(c2,a1b1) | -incident(a1,b2c2) | point_equal(c2,a1) | line_equal(b2c2,a1b1).  [resolve(112,c,20,a)].
+232 -incident(c1,oa) | -incident(a2,b1c1) | point_equal(c1,a2) | line_equal(b1c1,oa).  [resolve(113,c,36,a)].
+233 -incident(c1,oa) | -incident(a2,b1c1) | point_equal(c1,a2).  [resolve(181,a,232,d)].
+234 -incident(c2,oc) | -incident(c1,a2c2) | point_equal(c2,c1) | line_equal(a2c2,oc).  [resolve(114,c,39,a)].
+235 -incident(c1,a2c2) | point_equal(c2,c1) | line_equal(a2c2,oc).  [resolve(40,a,234,a)].
+236 -incident(c1,a2c2) | line_equal(a2c2,oc).  [resolve(56,a,235,b)].
+237 -incident(a2,ob) | -incident(b2,a2b2) | point_equal(a2,b2) | line_equal(a2b2,ob).  [resolve(115,c,38,a)].
+238 -incident(a2,ob) | point_equal(a2,b2) | line_equal(a2b2,ob).  [resolve(23,a,237,b)].
+239 -incident(a2,ob) | line_equal(a2b2,ob).  [resolve(164,a,238,b)].
+240 -incident(bc,A) | -incident(b1,A) | point_equal(bc,b1) | line_equal(A,b1c1).  [resolve(117,c,29,a)].
+241 -incident(a2,oc) | -incident(o,oa) | point_equal(a2,o) | line_equal(oc,oa).  [resolve(119,b,34,a)].
+242 -incident(a2,oc) | point_equal(a2,o) | line_equal(oc,oa).  [resolve(32,a,241,b)].
+243 -incident(b1,A) | -incident(bc,A) | point_equal(b1,bc) | line_equal(A,b1c1).  [resolve(120,c,41,a)].
+244 -incident(a2,b1c1) | -incident(b1,a2c2) | point_equal(a2,b1) | line_equal(b1c1,a2c2).  [resolve(121,b,29,a)].
+245 -incident(a1,A) | -incident(ab,A) | point_equal(a1,ab) | line_equal(A,a1b1).  [resolve(122,c,45,a)].
+246 -incident(A,a1c1) | -incident(A,ob) | point_equal(A,b2) | line_equal(a1c1,ob) | incident(a1,b2c2).  [resolve(123,c,38,a)].
+247 -incident(A,a1c1) | -incident(A,ob) | point_equal(A,b2) | incident(a1,b2c2).  [resolve(184,a,246,d)].
+248 -incident(A,a2b2) | -incident(A,a1b1) | point_equal(A,ab) | line_equal(a2b2,a1b1).  [resolve(124,c,45,a)].
+249 -incident(A,a2b2) | -incident(A,a1b1) | point_equal(A,ab).  [resolve(87,a,248,d)].
+250 -incident(A,a2c2) | -incident(A,a1c1) | point_equal(A,ac) | line_equal(a2c2,a1c1).  [resolve(125,c,43,a)].
+251 -incident(A,a2c2) | -incident(A,a1c1) | point_equal(A,ac).  [resolve(88,a,250,d)].
+252 -incident(A,ob) | -incident(A,a2b2) | point_equal(A,b2) | line_equal(ob,a2b2).  [resolve(127,c,23,a)].
+253 -incident(A,ob) | -incident(A,b1c1) | point_equal(A,b1) | line_equal(ob,b1c1).  [resolve(128,c,29,a)].
+254 -incident(A,oa) | -incident(A,a2c2) | point_equal(A,a2) | line_equal(oa,a2c2).  [resolve(129,c,26,a)].
+255 -incident(A,oa) | -incident(A,a1b1) | point_equal(A,a1) | line_equal(oa,a1b1).  [resolve(130,c,20,a)].
+256 -incident(A,b2c2) | -incident(A,ob) | point_equal(A,b2) | line_equal(b2c2,ob).  [resolve(131,c,38,a)].
+257 -incident(A,a1c1) | -incident(A,a1b1) | point_equal(A,a1) | line_equal(a1c1,a1b1).  [resolve(132,c,20,a)].
+258 -incident(A,a1c1) | -incident(A,a1b1) | point_equal(A,a1).  [resolve(154,a,257,d)].
+259 -incident(A,a2b2) | -incident(A,oa) | point_equal(A,a2) | line_equal(a2b2,oa).  [resolve(133,c,36,a)].
+260 line_equal(a2b2,a1c1) | incident(a2,b1c1) | incident(a1,b2c2) | -incident(b2,A) | incident(c1,A).  [resolve(193,a,68,a)].
+261 -incident(a1,b2c2) | point_equal(c2,a1) | line_equal(b2c2,a1b1) | incident(b1,a2c2).  [resolve(231,a,48,b)].
+262 line_equal(a2b2,a1c1) | incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob).  [resolve(260,d,38,a)].
+263 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -incident(A,a2b2) | incident(A,a1c1).  [resolve(262,a,69,b)].
+264 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | incident(ab,a1c1).  [resolve(263,d,46,a)].
+265 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -incident(ab,a1b1) | point_equal(ab,a1).  [resolve(264,d,258,a)].
+266 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | point_equal(ab,a1).  [resolve(45,a,265,d)].
+267 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -incident(a1,a1c1) | point_equal(a1,ab) | line_equal(a1c1,a1b1).  [resolve(264,d,245,b)].
+268 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | point_equal(a1,ab) | line_equal(a1c1,a1b1).  [resolve(24,a,267,d)].
+269 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | point_equal(a1,ab).  [resolve(154,a,268,e)].
+270 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -incident(a1,A) | incident(ab,A).  [resolve(266,d,68,a)].
+271 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -point_equal(ab,A) | point_equal(a1,A).  [resolve(269,d,66,a)].
+272 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | incident(ab,oa).  [resolve(270,d,35,a)].
+273 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -incident(ab,a2b2) | point_equal(ab,a2) | line_equal(a2b2,oa).  [resolve(272,d,259,b)].
+274 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | point_equal(ab,a2) | line_equal(a2b2,oa).  [resolve(46,a,273,d)].
+275 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | line_equal(a2b2,oa) | incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | point_equal(a1,a2).  [resolve(274,d,271,d)].
+276 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | line_equal(a2b2,oa) | incident(a1,b2c2) | incident(c1,ob) | point_equal(a1,a2).  [copy(275),merge(e)].
+277 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | line_equal(a2b2,oa) | incident(c1,ob) | point_equal(a1,a2).  [copy(276),merge(e)].
+278 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | line_equal(a2b2,oa) | point_equal(a1,a2).  [copy(277),merge(e)].
+279 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | line_equal(a2b2,oa).  [resolve(83,a,278,e)].
+280 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | line_equal(oa,a2b2).  [resolve(279,d,65,a)].
+281 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -incident(A,oa) | incident(A,a2b2).  [resolve(280,d,69,b)].
+282 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | incident(o,a2b2).  [resolve(281,d,32,a)].
+283 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | point_equal(c1,o) | incident(a2,b1c1).  [resolve(282,d,204,a)].
+284 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | point_equal(c1,o).  [copy(283),merge(e)].
+285 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -incident(o,A) | incident(c1,A).  [resolve(284,d,68,a)].
+286 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob) | -incident(o,ob).  [factor(285,c,e)].
+287 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,ob).  [resolve(33,a,286,d)].
+288 incident(a2,b1c1) | incident(a1,b2c2) | -incident(c1,b1c1) | point_equal(c1,b1) | line_equal(ob,b1c1).  [resolve(287,c,253,a)].
+289 incident(a2,b1c1) | incident(a1,b2c2) | point_equal(c1,b1) | line_equal(ob,b1c1).  [resolve(28,a,288,c)].
+290 incident(a2,b1c1) | incident(a1,b2c2) | line_equal(ob,b1c1).  [resolve(158,a,289,c)].
+291 incident(a2,b1c1) | incident(a1,b2c2) | -incident(c1,a1c1) | point_equal(c1,b2) | incident(a1,b2c2).  [resolve(287,c,247,b)].
+292 incident(a2,b1c1) | incident(a1,b2c2) | -incident(c1,a1c1) | point_equal(c1,b2).  [copy(291),merge(e)].
+293 incident(a2,b1c1) | incident(a1,b2c2) | point_equal(c1,b2).  [resolve(25,a,292,c)].
+294 incident(a2,b1c1) | incident(a1,b2c2) | -incident(A,ob) | incident(A,b1c1).  [resolve(290,c,69,b)].
+295 incident(a2,b1c1) | incident(a1,b2c2) | -incident(b2,A) | incident(c1,A).  [resolve(293,c,68,a)].
+296 incident(a2,b1c1) | incident(a1,b2c2) | incident(b2,b1c1).  [resolve(294,c,38,a)].
+297 incident(a2,b1c1) | incident(a1,b2c2) | incident(o,b1c1).  [resolve(294,c,33,a)].
+298 incident(a2,b1c1) | incident(a1,b2c2) | point_equal(bc,b2).  [resolve(296,c,211,a)].
+299 incident(a2,b1c1) | incident(a1,b2c2) | -incident(bc,b1c1) | -incident(o,b2c2) | point_equal(bc,o) | line_equal(b1c1,b2c2).  [resolve(297,c,116,b)].
+300 incident(a2,b1c1) | incident(a1,b2c2) | -incident(o,b2c2) | point_equal(bc,o) | line_equal(b1c1,b2c2).  [resolve(41,a,299,c)].
+301 incident(a2,b1c1) | incident(a1,b2c2) | -incident(o,b2c2) | point_equal(bc,o).  [resolve(58,a,300,e)].
+302 incident(a2,b1c1) | incident(a1,b2c2) | -incident(b2,A) | incident(bc,A).  [resolve(298,c,68,a)].
+303 incident(a2,b1c1) | incident(a1,b2c2) | incident(c1,b2c2).  [resolve(295,c,31,a)].
+304 incident(a2,b1c1) | incident(a1,b2c2) | line_equal(oc,b2c2).  [resolve(303,c,223,a)].
+305 incident(a2,b1c1) | incident(a1,b2c2) | -incident(A,oc) | incident(A,b2c2).  [resolve(304,c,69,b)].
+306 incident(a2,b1c1) | incident(a1,b2c2) | incident(bc,a1c1) | incident(a1,b2c2).  [resolve(302,c,47,b)].
+307 incident(a2,b1c1) | incident(a1,b2c2) | incident(bc,a1c1).  [copy(306),merge(d)].
+308 incident(a2,b1c1) | incident(a1,b2c2) | incident(bc,a2b2).  [resolve(302,c,23,a)].
+309 incident(a2,b1c1) | incident(a1,b2c2) | -incident(ab,a1c1).  [resolve(307,c,180,a)].
+310 incident(a2,b1c1) | incident(a1,b2c2) | -incident(bc,oa) | -incident(a1,a1c1) | point_equal(bc,a1) | line_equal(oa,a1c1).  [resolve(307,c,130,b)].
+311 incident(a2,b1c1) | incident(a1,b2c2) | -incident(bc,oa) | point_equal(bc,a1) | line_equal(oa,a1c1).  [resolve(24,a,310,d)].
+312 incident(a2,b1c1) | incident(a1,b2c2) | -incident(bc,oa) | line_equal(oa,a1c1).  [resolve(182,a,311,d)].
+313 incident(a2,b1c1) | incident(a1,b2c2) | -incident(bc,oa) | -incident(a2,a2b2) | point_equal(bc,a2) | line_equal(a2b2,oa).  [resolve(308,c,136,a)].
+314 incident(a2,b1c1) | incident(a1,b2c2) | -incident(bc,oa) | point_equal(bc,a2) | line_equal(a2b2,oa).  [resolve(22,a,313,d)].
+315 incident(a2,b1c1) | incident(a1,b2c2) | -incident(bc,oa) | line_equal(a2b2,oa).  [resolve(200,a,314,d)].
+316 incident(a2,b1c1) | incident(a1,b2c2) | incident(o,b2c2).  [resolve(305,c,34,a)].
+317 incident(a2,b1c1) | incident(a1,b2c2) | incident(a2,b1c1) | incident(a1,b2c2) | point_equal(bc,o).  [resolve(316,c,301,c)].
+318 incident(a2,b1c1) | incident(a1,b2c2) | incident(a1,b2c2) | point_equal(bc,o).  [copy(317),merge(c)].
+319 incident(a2,b1c1) | incident(a1,b2c2) | point_equal(bc,o).  [copy(318),merge(c)].
+320 incident(a2,b1c1) | incident(a1,b2c2) | -incident(o,A) | incident(bc,A).  [resolve(319,c,68,a)].
+321 incident(a2,b1c1) | incident(a1,b2c2) | incident(bc,oa).  [resolve(320,c,32,a)].
+322 incident(a2,b1c1) | incident(a1,b2c2) | incident(a2,b1c1) | incident(a1,b2c2) | line_equal(a2b2,oa).  [resolve(321,c,315,c)].
+323 incident(a2,b1c1) | incident(a1,b2c2) | incident(a1,b2c2) | line_equal(a2b2,oa).  [copy(322),merge(c)].
+324 incident(a2,b1c1) | incident(a1,b2c2) | line_equal(a2b2,oa).  [copy(323),merge(c)].
+325 incident(a2,b1c1) | incident(a1,b2c2) | incident(a2,b1c1) | incident(a1,b2c2) | line_equal(oa,a1c1).  [resolve(321,c,312,c)].
+326 incident(a2,b1c1) | incident(a1,b2c2) | incident(a1,b2c2) | line_equal(oa,a1c1).  [copy(325),merge(c)].
+327 incident(a2,b1c1) | incident(a1,b2c2) | line_equal(oa,a1c1).  [copy(326),merge(c)].
+328 incident(a2,b1c1) | incident(a1,b2c2) | -incident(A,a2b2) | incident(A,oa).  [resolve(324,c,69,b)].
+329 incident(a2,b1c1) | incident(a1,b2c2) | -incident(A,oa) | incident(A,a1c1).  [resolve(327,c,69,b)].
+330 incident(a2,b1c1) | incident(a1,b2c2) | incident(ab,oa).  [resolve(328,c,46,a)].
+331 incident(a2,b1c1) | incident(a1,b2c2) | incident(ab,a1c1) | incident(a2,b1c1) | incident(a1,b2c2).  [resolve(329,c,330,c)].
+332 incident(a2,b1c1) | incident(a1,b2c2) | incident(ab,a1c1) | incident(a1,b2c2).  [copy(331),merge(d)].
+333 incident(a2,b1c1) | incident(a1,b2c2) | incident(ab,a1c1).  [copy(332),merge(d)].
+334 incident(a2,b1c1) | incident(a1,b2c2) | incident(a2,b1c1) | incident(a1,b2c2).  [resolve(333,c,309,c)].
+335 incident(a2,b1c1) | incident(a1,b2c2) | incident(a1,b2c2).  [copy(334),merge(c)].
+336 incident(a2,b1c1) | incident(a1,b2c2).  [copy(335),merge(c)].
+337 incident(a1,b2c2) | incident(b1,a2c2) | incident(a1,b2c2).  [resolve(336,a,183,a)].
+338 incident(a1,b2c2) | incident(b1,a2c2).  [copy(337),merge(c)].
+339 incident(a1,b2c2) | -incident(a2,A) | -incident(b1,A) | point_equal(a2,b1) | line_equal(A,b1c1).  [resolve(336,a,138,b)].
+340 incident(a1,b2c2) | -incident(a2,oa) | -incident(o,b1c1) | point_equal(a2,o) | line_equal(b1c1,oa).  [resolve(336,a,137,a)].
+341 incident(a1,b2c2) | -incident(o,b1c1) | point_equal(a2,o) | line_equal(b1c1,oa).  [resolve(36,a,340,b)].
+342 incident(a1,b2c2) | -incident(o,b1c1) | point_equal(a2,o).  [resolve(181,a,341,d)].
+343 incident(a1,b2c2) | -incident(b1,A) | -incident(B,a2c2) | -incident(B,A) | point_equal(b1,B) | line_equal(a2c2,A).  [resolve(338,b,80,a)].
+344 incident(a1,b2c2) | -incident(a2,a2c2) | point_equal(a2,b1) | line_equal(a2c2,b1c1) | incident(a1,b2c2).  [resolve(339,c,338,b)].
+345 incident(a1,b2c2) | -incident(a2,a2c2) | point_equal(a2,b1) | line_equal(a2c2,b1c1).  [copy(344),merge(e)].
+346 incident(a1,b2c2) | point_equal(a2,b1) | line_equal(a2c2,b1c1).  [resolve(26,a,345,b)].
+347 incident(a1,b2c2) | line_equal(a2c2,b1c1) | -incident(b1,A) | incident(a2,A).  [resolve(346,b,68,a)].
+348 incident(a1,b2c2) | line_equal(a2c2,b1c1) | incident(a2,ob).  [resolve(347,c,37,a)].
+349 incident(a1,b2c2) | incident(a2,ob) | -incident(A,a2c2) | incident(A,b1c1).  [resolve(348,b,69,b)].
+350 incident(a1,b2c2) | incident(a2,ob) | incident(c2,b1c1).  [resolve(349,c,27,a)].
+351 incident(a1,b2c2) | incident(a2,ob) | line_equal(oc,b1c1).  [resolve(350,c,214,a)].
+352 incident(a1,b2c2) | incident(a2,ob) | -incident(A,oc) | incident(A,b1c1).  [resolve(351,c,69,b)].
+353 incident(a1,b2c2) | incident(a2,ob) | incident(o,b1c1).  [resolve(352,c,34,a)].
+354 incident(a1,b2c2) | incident(a2,ob) | incident(a1,b2c2) | point_equal(a2,o).  [resolve(353,c,342,b)].
+355 incident(a1,b2c2) | incident(a2,ob) | point_equal(a2,o).  [copy(354),merge(c)].
+356 incident(a1,b2c2) | incident(a2,ob) | -incident(o,A) | incident(a2,A).  [resolve(355,c,68,a)].
+357 incident(a1,b2c2) | incident(a2,ob) | -incident(o,ob).  [factor(356,b,d)].
+358 incident(a1,b2c2) | incident(a2,ob).  [resolve(33,a,357,c)].
+359 incident(a1,b2c2) | incident(a1,b2c2) | -incident(b1,ob) | -incident(a2,a2c2) | point_equal(b1,a2) | line_equal(a2c2,ob).  [resolve(358,b,343,d)].
+360 incident(a1,b2c2) | -incident(b1,ob) | -incident(a2,a2c2) | point_equal(b1,a2) | line_equal(a2c2,ob).  [copy(359),merge(b)].
+361 incident(a1,b2c2) | -incident(a2,a2c2) | point_equal(b1,a2) | line_equal(a2c2,ob).  [resolve(37,a,360,b)].
+362 incident(a1,b2c2) | point_equal(b1,a2) | line_equal(a2c2,ob).  [resolve(26,a,361,b)].
+363 incident(a1,b2c2) | point_equal(b1,a2).  [resolve(201,a,362,c)].
+364 incident(a1,b2c2) | -incident(a2,a2b2) | point_equal(a2,b2) | line_equal(ob,a2b2).  [resolve(358,b,252,a)].
+365 incident(a1,b2c2) | point_equal(a2,b2) | line_equal(ob,a2b2).  [resolve(22,a,364,b)].
+366 incident(a1,b2c2) | line_equal(ob,a2b2).  [resolve(164,a,365,b)].
+367 incident(a1,b2c2) | -incident(a2,A) | incident(b1,A).  [resolve(363,b,68,a)].
+368 incident(a1,b2c2) | -incident(A,ob) | incident(A,a2b2).  [resolve(366,b,69,b)].
+369 incident(a1,b2c2) | incident(b1,oa).  [resolve(367,b,36,a)].
+370 incident(a1,b2c2) | incident(b1,a2b2).  [resolve(367,b,22,a)].
+371 incident(a1,b2c2) | -incident(b1,a1b1) | point_equal(b1,a1) | line_equal(oa,a1b1).  [resolve(369,b,255,a)].
+372 incident(a1,b2c2) | point_equal(b1,a1) | line_equal(oa,a1b1).  [resolve(21,a,371,b)].
+373 incident(a1,b2c2) | line_equal(oa,a1b1).  [resolve(150,a,372,b)].
+374 incident(a1,b2c2) | point_equal(ab,b1).  [resolve(370,b,187,a)].
+375 incident(a1,b2c2) | -incident(A,oa) | incident(A,a1b1).  [resolve(373,b,69,b)].
+376 incident(a1,b2c2) | -incident(b1,A) | incident(ab,A).  [resolve(374,b,68,a)].
+377 incident(a1,b2c2) | incident(o,a2b2).  [resolve(368,b,33,a)].
+378 incident(a1,b2c2) | -incident(o,a1b1) | point_equal(o,ab).  [resolve(377,b,249,a)].
+379 incident(a1,b2c2) | incident(o,a1b1).  [resolve(375,b,32,a)].
+380 incident(a1,b2c2) | incident(ab,a2c2) | incident(a1,b2c2).  [resolve(376,b,338,b)].
+381 incident(a1,b2c2) | incident(ab,a2c2).  [copy(380),merge(c)].
+382 incident(a1,b2c2) | incident(ab,b1c1).  [resolve(376,b,29,a)].
+383 incident(a1,b2c2) | -incident(ab,oc) | -incident(c2,a2c2) | point_equal(ab,c2) | line_equal(oc,a2c2).  [resolve(381,b,126,b)].
+384 incident(a1,b2c2) | -incident(ab,oc) | point_equal(ab,c2) | line_equal(oc,a2c2).  [resolve(27,a,383,c)].
+385 incident(a1,b2c2) | -incident(ab,oc) | line_equal(oc,a2c2).  [resolve(205,a,384,c)].
+386 incident(a1,b2c2) | -incident(ab,oc) | -incident(c1,b1c1) | point_equal(ab,c1) | line_equal(b1c1,oc).  [resolve(382,b,134,a)].
+387 incident(a1,b2c2) | -incident(ab,oc) | point_equal(ab,c1) | line_equal(b1c1,oc).  [resolve(28,a,386,c)].
+388 incident(a1,b2c2) | -incident(ab,oc) | line_equal(b1c1,oc).  [resolve(190,a,387,c)].
+389 incident(a1,b2c2) | point_equal(o,ab) | incident(a1,b2c2).  [resolve(378,b,379,b)].
+390 incident(a1,b2c2) | point_equal(o,ab).  [copy(389),merge(c)].
+391 incident(a1,b2c2) | point_equal(ab,o).  [resolve(390,b,63,a)].
+392 incident(a1,b2c2) | -incident(o,A) | incident(ab,A).  [resolve(391,b,68,a)].
+393 incident(a1,b2c2) | incident(ab,oc).  [resolve(392,b,34,a)].
+394 incident(a1,b2c2) | incident(a1,b2c2) | line_equal(b1c1,oc).  [resolve(393,b,388,b)].
+395 incident(a1,b2c2) | line_equal(b1c1,oc).  [copy(394),merge(b)].
+396 incident(a1,b2c2) | incident(a1,b2c2) | line_equal(oc,a2c2).  [resolve(393,b,385,b)].
+397 incident(a1,b2c2) | line_equal(oc,a2c2).  [copy(396),merge(b)].
+398 incident(a1,b2c2) | -incident(A,b1c1) | incident(A,oc).  [resolve(395,b,69,b)].
+399 incident(a1,b2c2) | -incident(A,oc) | incident(A,a2c2).  [resolve(397,b,69,b)].
+400 incident(a1,b2c2) | incident(bc,oc).  [resolve(398,b,41,a)].
+401 incident(a1,b2c2) | incident(bc,a2c2) | incident(a1,b2c2).  [resolve(399,b,400,b)].
+402 incident(a1,b2c2) | incident(bc,a2c2).  [copy(401),merge(c)].
+403 incident(a1,b2c2) | -incident(ab,a2c2).  [resolve(402,b,178,a)].
+404 incident(a1,b2c2) | incident(a1,b2c2).  [resolve(403,b,381,b)].
+405 incident(a1,b2c2).  [copy(404),merge(b)].
+406 point_equal(c2,a1) | line_equal(b2c2,a1b1) | incident(b1,a2c2).  [resolve(405,a,261,a)].
+407 -incident(b1,a2c2) | incident(a2,b1c1).  [resolve(405,a,89,a)].
+408 -incident(b1,a2c2) | -incident(c1,a2b2).  [resolve(405,a,71,a)].
+409 -incident(A,b2c2) | -incident(A,B) | -incident(a1,B) | point_equal(A,a1) | line_equal(b2c2,B).  [resolve(405,a,80,c)].
+410 line_equal(b2c2,a1b1) | incident(b1,a2c2) | -incident(a1,A) | incident(c2,A).  [resolve(406,a,68,a)].
+411 line_equal(b2c2,a1b1) | incident(b1,a2c2) | incident(c2,oa).  [resolve(410,c,35,a)].
+412 incident(b1,a2c2) | incident(c2,oa) | -incident(A,b2c2) | incident(A,a1b1).  [resolve(411,a,69,b)].
+413 incident(b1,a2c2) | incident(c2,oa) | incident(bc,a1b1).  [resolve(412,c,42,a)].
+414 incident(b1,a2c2) | incident(c2,oa) | -incident(b1,a1b1) | point_equal(b1,bc) | line_equal(a1b1,b1c1).  [resolve(413,c,243,b)].
+415 incident(b1,a2c2) | incident(c2,oa) | point_equal(b1,bc) | line_equal(a1b1,b1c1).  [resolve(21,a,414,c)].
+416 incident(b1,a2c2) | incident(c2,oa) | point_equal(b1,bc).  [resolve(142,a,415,d)].
+417 incident(b1,a2c2) | incident(c2,oa) | -incident(b1,a1b1) | point_equal(bc,b1) | line_equal(a1b1,b1c1).  [resolve(413,c,240,a)].
+418 incident(b1,a2c2) | incident(c2,oa) | point_equal(bc,b1) | line_equal(a1b1,b1c1).  [resolve(21,a,417,c)].
+419 incident(b1,a2c2) | incident(c2,oa) | point_equal(bc,b1).  [resolve(142,a,418,d)].
+420 incident(b1,a2c2) | incident(c2,oa) | -point_equal(bc,A) | point_equal(b1,A).  [resolve(416,c,66,a)].
+421 incident(b1,a2c2) | incident(c2,oa) | -incident(b1,A) | incident(bc,A).  [resolve(419,c,68,a)].
+422 incident(b1,a2c2) | incident(c2,oa) | incident(bc,ob).  [resolve(421,c,37,a)].
+423 incident(b1,a2c2) | incident(c2,oa) | -incident(bc,b2c2) | point_equal(bc,b2) | line_equal(b2c2,ob).  [resolve(422,c,256,b)].
+424 incident(b1,a2c2) | incident(c2,oa) | point_equal(bc,b2) | line_equal(b2c2,ob).  [resolve(42,a,423,c)].
+425 incident(b1,a2c2) | incident(c2,oa) | line_equal(b2c2,ob) | incident(b1,a2c2) | incident(c2,oa) | point_equal(b1,b2).  [resolve(424,c,420,c)].
+426 incident(b1,a2c2) | incident(c2,oa) | line_equal(b2c2,ob) | incident(c2,oa) | point_equal(b1,b2).  [copy(425),merge(d)].
+427 incident(b1,a2c2) | incident(c2,oa) | line_equal(b2c2,ob) | point_equal(b1,b2).  [copy(426),merge(d)].
+428 incident(b1,a2c2) | incident(c2,oa) | line_equal(b2c2,ob).  [resolve(82,a,427,d)].
+429 incident(b1,a2c2) | incident(c2,oa) | line_equal(ob,b2c2).  [resolve(428,c,65,a)].
+430 incident(b1,a2c2) | incident(c2,oa) | -incident(A,ob) | incident(A,b2c2).  [resolve(429,c,69,b)].
+431 incident(b1,a2c2) | incident(c2,oa) | incident(o,b2c2).  [resolve(430,c,33,a)].
+432 incident(b1,a2c2) | incident(c2,oa) | incident(b1,a2c2) | incident(c2,oa) | incident(o,a1b1).  [resolve(431,c,412,c)].
+433 incident(b1,a2c2) | incident(c2,oa) | incident(c2,oa) | incident(o,a1b1).  [copy(432),merge(c)].
+434 incident(b1,a2c2) | incident(c2,oa) | incident(o,a1b1).  [copy(433),merge(c)].
+435 incident(b1,a2c2) | incident(c2,oa) | point_equal(c2,o) | incident(b1,a2c2).  [resolve(434,c,199,a)].
+436 incident(b1,a2c2) | incident(c2,oa) | point_equal(c2,o).  [copy(435),merge(d)].
+437 incident(b1,a2c2) | incident(c2,oa) | -incident(o,A) | incident(c2,A).  [resolve(436,c,68,a)].
+438 incident(b1,a2c2) | incident(c2,oa) | -incident(o,oa).  [factor(437,b,d)].
+439 incident(b1,a2c2) | incident(c2,oa).  [resolve(32,a,438,c)].
+440 incident(b1,a2c2) | -incident(c2,b2c2) | -incident(a1,oa) | point_equal(c2,a1) | line_equal(b2c2,oa).  [resolve(439,b,409,b)].
+441 incident(b1,a2c2) | -incident(a1,oa) | point_equal(c2,a1) | line_equal(b2c2,oa).  [resolve(30,a,440,b)].
+442 incident(b1,a2c2) | point_equal(c2,a1) | line_equal(b2c2,oa).  [resolve(35,a,441,b)].
+443 incident(b1,a2c2) | point_equal(c2,a1).  [resolve(196,a,442,c)].
+444 incident(b1,a2c2) | -incident(c2,a2c2) | point_equal(c2,a2) | line_equal(oa,a2c2).  [resolve(439,b,254,a)].
+445 incident(b1,a2c2) | point_equal(c2,a2) | line_equal(oa,a2c2).  [resolve(27,a,444,b)].
+446 incident(b1,a2c2) | line_equal(oa,a2c2).  [resolve(174,a,445,b)].
+447 incident(b1,a2c2) | -incident(a1,A) | incident(c2,A).  [resolve(443,b,68,a)].
+448 incident(b1,a2c2) | -incident(A,oa) | incident(A,a2c2).  [resolve(446,b,69,b)].
+449 incident(b1,a2c2) | incident(c2,a1c1).  [resolve(447,b,24,a)].
+450 incident(b1,a2c2) | line_equal(oc,a1c1).  [resolve(449,b,220,a)].
+451 incident(b1,a2c2) | point_equal(ac,c2).  [resolve(449,b,208,a)].
+452 incident(b1,a2c2) | -incident(A,oc) | incident(A,a1c1).  [resolve(450,b,69,b)].
+453 incident(b1,a2c2) | -incident(c2,A) | incident(ac,A).  [resolve(451,b,68,a)].
+454 incident(b1,a2c2) | incident(o,a2c2).  [resolve(448,b,32,a)].
+455 incident(b1,a2c2) | -incident(o,a1c1) | point_equal(o,ac).  [resolve(454,b,251,a)].
+456 incident(b1,a2c2) | incident(o,a1c1).  [resolve(452,b,34,a)].
+457 incident(b1,a2c2) | incident(ac,a1b1) | incident(b1,a2c2).  [resolve(453,b,48,b)].
+458 incident(b1,a2c2) | incident(ac,a1b1).  [copy(457),merge(c)].
+459 incident(b1,a2c2) | incident(ac,b2c2).  [resolve(453,b,30,a)].
+460 incident(b1,a2c2) | -incident(ac,ob) | -incident(b1,a1b1) | point_equal(ac,b1) | line_equal(ob,a1b1).  [resolve(458,b,128,b)].
+461 incident(b1,a2c2) | -incident(ac,ob) | point_equal(ac,b1) | line_equal(ob,a1b1).  [resolve(21,a,460,c)].
+462 incident(b1,a2c2) | -incident(ac,ob) | line_equal(ob,a1b1).  [resolve(188,a,461,c)].
+463 incident(b1,a2c2) | -incident(ac,ob) | -incident(b2,b2c2) | point_equal(ac,b2) | line_equal(b2c2,ob).  [resolve(459,b,135,a)].
+464 incident(b1,a2c2) | -incident(ac,ob) | point_equal(ac,b2) | line_equal(b2c2,ob).  [resolve(31,a,463,c)].
+465 incident(b1,a2c2) | -incident(ac,ob) | line_equal(b2c2,ob).  [resolve(202,a,464,c)].
+466 incident(b1,a2c2) | point_equal(o,ac) | incident(b1,a2c2).  [resolve(455,b,456,b)].
+467 incident(b1,a2c2) | point_equal(o,ac).  [copy(466),merge(c)].
+468 incident(b1,a2c2) | point_equal(ac,o).  [resolve(467,b,63,a)].
+469 incident(b1,a2c2) | -incident(o,A) | incident(ac,A).  [resolve(468,b,68,a)].
+470 incident(b1,a2c2) | incident(ac,ob).  [resolve(469,b,33,a)].
+471 incident(b1,a2c2) | incident(b1,a2c2) | line_equal(b2c2,ob).  [resolve(470,b,465,b)].
+472 incident(b1,a2c2) | line_equal(b2c2,ob).  [copy(471),merge(b)].
+473 incident(b1,a2c2) | incident(b1,a2c2) | line_equal(ob,a1b1).  [resolve(470,b,462,b)].
+474 incident(b1,a2c2) | line_equal(ob,a1b1).  [copy(473),merge(b)].
+475 incident(b1,a2c2) | -incident(A,b2c2) | incident(A,ob).  [resolve(472,b,69,b)].
+476 incident(b1,a2c2) | -incident(A,ob) | incident(A,a1b1).  [resolve(474,b,69,b)].
+477 incident(b1,a2c2) | incident(bc,ob).  [resolve(475,b,42,a)].
+478 incident(b1,a2c2) | incident(bc,a1b1) | incident(b1,a2c2).  [resolve(476,b,477,b)].
+479 incident(b1,a2c2) | incident(bc,a1b1).  [copy(478),merge(c)].
+480 incident(b1,a2c2) | -incident(ac,a1b1).  [resolve(479,b,176,a)].
+481 incident(b1,a2c2) | incident(b1,a2c2).  [resolve(480,b,458,b)].
+482 incident(b1,a2c2).  [copy(481),merge(b)].
+483 -incident(c1,a2b2).  [resolve(482,a,408,a)].
+484 incident(a2,b1c1).  [resolve(482,a,407,a)].
+485 -incident(b1,a2c2) | point_equal(a2,b1) | line_equal(b1c1,a2c2).  [resolve(484,a,244,a)].
+486 point_equal(a2,b1) | line_equal(b1c1,a2c2).  [resolve(482,a,485,a)].
+487 -incident(a2,ob) | point_equal(b1,a2).  [resolve(482,a,225,a)].
+488 -incident(c1,oa) | point_equal(c1,a2).  [resolve(484,a,233,b)].
+489 -point_equal(A,a2) | incident(A,a2b2).  [resolve(68,b,22,a)].
+490 -point_equal(c1,a2).  [resolve(489,b,483,a)].
+491 -incident(c1,oa).  [resolve(490,a,488,b)].
+492 -incident(c1,b1c1) | -incident(a2,oc) | point_equal(c1,a2) | line_equal(b1c1,oc).  [resolve(484,a,118,b)].
+493 -incident(a2,oc) | point_equal(c1,a2) | line_equal(b1c1,oc).  [resolve(28,a,492,a)].
+494 -incident(a2,oc) | line_equal(b1c1,oc).  [resolve(490,a,493,b)].
+495 line_equal(b1c1,a2c2) | -incident(b1,A) | incident(a2,A).  [resolve(486,a,68,a)].
+496 -line_equal(oc,A) | incident(c1,A).  [resolve(69,a,39,a)].
+497 -line_equal(oc,oa).  [resolve(496,b,491,a)].
+498 -incident(a2,oc) | point_equal(a2,o).  [resolve(497,a,242,c)].
+499 line_equal(b1c1,a2c2) | incident(a2,ob).  [resolve(495,b,37,a)].
+500 incident(a2,ob) | -incident(A,b1c1) | incident(A,a2c2).  [resolve(499,a,69,b)].
+501 incident(a2,ob) | incident(c1,a2c2).  [resolve(500,b,28,a)].
+502 incident(a2,ob) | line_equal(a2c2,oc).  [resolve(501,b,236,a)].
+503 incident(a2,ob) | -incident(A,a2c2) | incident(A,oc).  [resolve(502,b,69,b)].
+504 incident(a2,ob) | incident(a2,oc).  [resolve(503,b,26,a)].
+505 incident(a2,ob) | point_equal(a2,o).  [resolve(504,b,498,a)].
+506 incident(a2,ob) | -incident(o,A) | incident(a2,A).  [resolve(505,b,68,a)].
+507 incident(a2,ob) | -incident(o,ob).  [factor(506,a,c)].
+508 incident(a2,ob).  [resolve(33,a,507,b)].
+509 point_equal(b1,a2).  [resolve(508,a,487,a)].
+510 line_equal(a2b2,ob).  [resolve(508,a,239,a)].
+511 point_equal(a2,o) | line_equal(oa,ob).  [resolve(508,a,230,a)].
+512 -incident(a2,A) | incident(b1,A).  [resolve(509,a,68,a)].
+513 -line_equal(ob,A) | line_equal(a2b2,A).  [resolve(67,a,510,a)].
+514 -line_equal(ob,a1b1).  [resolve(513,b,87,a)].
+515 -incident(a1,ob).  [resolve(514,a,228,b)].
+516 line_equal(oa,ob) | -incident(o,A) | incident(a2,A).  [resolve(511,a,68,a)].
+517 -line_equal(oa,A) | incident(a1,A).  [resolve(69,a,35,a)].
+518 -line_equal(oa,ob).  [resolve(517,b,515,a)].
+519 -incident(o,A) | incident(a2,A).  [resolve(518,a,516,a)].
+520 incident(b1,a2b2).  [resolve(512,a,22,a)].
+521 point_equal(ab,b1).  [resolve(520,a,187,a)].
+522 -incident(b1,A) | incident(ab,A).  [resolve(521,a,68,a)].
+523 incident(a2,oc).  [resolve(519,a,34,a)].
+524 line_equal(b1c1,oc).  [resolve(523,a,494,a)].
+525 line_equal(oc,a2c2).  [resolve(523,a,217,a)].
+526 incident(ab,a2c2).  [resolve(522,a,482,a)].
+527 -incident(bc,a2c2).  [resolve(526,a,178,b)].
+528 -incident(A,oc) | incident(A,a2c2).  [resolve(69,b,525,a)].
+529 -incident(bc,oc).  [resolve(528,b,527,a)].
+530 -incident(A,b1c1) | incident(A,oc).  [resolve(69,b,524,a)].
+531 -incident(bc,b1c1).  [resolve(530,b,529,a)].
+532 $F.  [resolve(41,a,531,a)].

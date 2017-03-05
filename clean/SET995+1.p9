@@ -1,0 +1,127 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15 empty(empty_set).  [assumption].
+16 relation(empty_set).  [assumption].
+17 relation(c8).  [clausify(14)].
+18 function(c8).  [clausify(14)].
+19 relation(c9).  [clausify(14)].
+20 function(c9).  [clausify(14)].
+21 element(f5(A),A).  [clausify(4)].
+22 relation_dom(c9) = relation_dom(c8).  [clausify(14)].
+23 relation_rng(c8) = singleton(c7).  [clausify(14)].
+24 singleton(c7) = relation_rng(c8).  [copy(23),flip(a)].
+25 relation_rng(c9) = singleton(c7).  [clausify(14)].
+26 relation_rng(c9) = relation_rng(c8).  [para(24(a,1),25(a,2))].
+27 empty(A) | element(f6(A),powerset(A)).  [clausify(8)].
+28 singleton(A) = B | in(f1(A,B),B) | f1(A,B) = A.  [clausify(2)].
+29 -empty(singleton(A)).  [clausify(5)].
+30 c9 != c8.  [clausify(14)].
+31 -in(A,B) | -empty(B).  [clausify(12)].
+32 -empty(A) | function(A).  [clausify(1)].
+33 -empty(A) | empty(relation_dom(A)).  [clausify(6)].
+34 -empty(A) | empty(relation_rng(A)).  [clausify(7)].
+35 empty(A) | -empty(f6(A)).  [clausify(8)].
+36 -empty(A) | empty_set = A.  [clausify(11)].
+37 -element(A,B) | empty(B) | in(A,B).  [clausify(9)].
+38 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+39 singleton(A) != B | in(C,B) | C != A.  [clausify(2)].
+40 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(10)].
+41 -relation(A) | -function(A) | relation_rng(A) = B | in(f3(A,B),B) | in(f4(A,B),relation_dom(A)).  [clausify(3)].
+42 -relation(A) | -function(A) | relation_rng(A) != B | in(C,B) | -in(D,relation_dom(A)) | apply(A,D) != C.  [clausify(3)].
+43 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom(B) != relation_dom(A) | in(f8(A,B),relation_dom(A)) | B = A.  [clausify(13)].
+44 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom(B) != relation_dom(A) | apply(B,f8(A,B)) != apply(A,f8(A,B)) | B = A.  [clausify(13)].
+45 -in(A,empty_set).  [resolve(31,b,15,a)].
+46 function(empty_set).  [resolve(32,a,15,a)].
+47 empty(relation_dom(empty_set)).  [resolve(33,a,15,a)].
+48 empty(relation_rng(empty_set)).  [resolve(34,a,15,a)].
+49 -empty(f6(singleton(A))).  [resolve(35,a,29,a)].
+50 empty(A) | in(f5(A),A).  [resolve(37,a,21,a)].
+51 -in(A,f6(B)) | element(A,B) | empty(B).  [resolve(40,b,27,b)].
+52 -relation(c9) | -function(c9) | relation_rng(c9) != A | in(B,A) | -in(C,relation_dom(c8)) | apply(c9,C) != B.  [para(22(a,1),42(e,2))].
+53 -relation(c9) | -function(c9) | relation_rng(c8) != A | in(B,A) | -in(C,relation_dom(c8)) | apply(c9,C) != B.  [para(26(a,1),52(c,1))].
+54 -function(c9) | relation_rng(c8) != A | in(B,A) | -in(C,relation_dom(c8)) | apply(c9,C) != B.  [resolve(19,a,53,a)].
+55 relation_rng(c8) != A | in(B,A) | -in(C,relation_dom(c8)) | apply(c9,C) != B.  [resolve(20,a,54,a)].
+56 -relation(c9) | -relation(A) | -function(A) | relation_dom(A) != relation_dom(c9) | in(f8(c9,A),relation_dom(c9)) | A = c9.  [resolve(43,b,20,a)].
+57 -relation(c9) | -relation(A) | -function(A) | relation_dom(A) != relation_dom(c8) | in(f8(c9,A),relation_dom(c9)) | A = c9.  [para(22(a,1),56(d,2))].
+58 -relation(c9) | -relation(A) | -function(A) | relation_dom(A) != relation_dom(c8) | in(f8(c9,A),relation_dom(c8)) | A = c9.  [para(22(a,1),57(e,2))].
+59 -relation(c9) | -relation(A) | -function(A) | relation_dom(c8) != relation_dom(A) | in(f8(c9,A),relation_dom(c8)) | A = c9.  [copy(58),flip(d)].
+60 -relation(c9) | -relation(A) | -function(A) | relation_dom(c8) != relation_dom(A) | in(f8(c9,A),relation_dom(c8)) | c9 = A.  [copy(59),flip(f)].
+61 -relation(A) | -function(A) | relation_dom(c8) != relation_dom(A) | in(f8(c9,A),relation_dom(c8)) | c9 = A.  [resolve(19,a,60,a)].
+62 -function(c9) | -relation(A) | -function(A) | relation_dom(A) != relation_dom(c9) | apply(A,f8(c9,A)) != apply(c9,f8(c9,A)) | A = c9.  [resolve(44,a,19,a)].
+63 -relation(A) | -function(A) | relation_dom(A) != relation_dom(c9) | apply(A,f8(c9,A)) != apply(c9,f8(c9,A)) | A = c9.  [resolve(62,a,20,a)].
+64 -function(c8) | relation_dom(c8) != relation_dom(c9) | apply(c8,f8(c9,c8)) != apply(c9,f8(c9,c8)) | c8 = c9.  [resolve(63,a,17,a)].
+65 relation_dom(c8) != relation_dom(c9) | apply(c8,f8(c9,c8)) != apply(c9,f8(c9,c8)) | c8 = c9.  [resolve(64,a,18,a)].
+66 apply(c8,f8(c9,c8)) != apply(c9,f8(c9,c8)) | c8 = c9.  [resolve(65,a,22,a(flip))].
+67 apply(c8,f8(c9,c8)) != apply(c9,f8(c9,c8)).  [resolve(66,b,30,a(flip))].
+68 apply(c9,f8(c9,c8)) != apply(c8,f8(c9,c8)).  [copy(67),flip(a)].
+69 singleton(A) = empty_set | f1(A,empty_set) = A.  [resolve(45,a,28,b)].
+70 singleton(A) != empty_set | B != A.  [resolve(39,b,45,a)].
+71 singleton(A) != empty_set.  [xx_res(70,b)].
+72 f1(A,empty_set) = A.  [resolve(71,a,69,a)].
+73 -relation(empty_set) | relation_rng(empty_set) = A | in(f3(empty_set,A),A) | in(f4(empty_set,A),relation_dom(empty_set)).  [resolve(46,a,41,b)].
+74 relation_rng(empty_set) = A | in(f3(empty_set,A),A) | in(f4(empty_set,A),relation_dom(empty_set)).  [resolve(16,a,73,a)].
+75 empty_set = relation_dom(empty_set).  [resolve(47,a,36,a)].
+76 relation_dom(empty_set) = empty_set.  [copy(75),flip(a)].
+77 relation_rng(empty_set) = A | in(f3(empty_set,A),A) | in(f4(empty_set,A),empty_set).  [para(76(a,1),74(c,2))].
+78 relation_rng(empty_set) = A | in(f3(empty_set,A),A).  [resolve(45,a,77,c)].
+79 empty_set = relation_rng(empty_set).  [resolve(48,a,36,a)].
+80 relation_rng(empty_set) = empty_set.  [copy(79),flip(a)].
+81 empty_set = A | in(f3(empty_set,A),A).  [para(80(a,1),78(a,1))].
+82 empty(A) | singleton(B) != A | f5(A) = B.  [resolve(50,b,38,b)].
+83 empty_set = A | singleton(B) != A | f3(empty_set,A) = B.  [resolve(81,b,38,b)].
+84 element(f5(f6(A)),A) | empty(A) | empty(f6(A)).  [resolve(51,a,50,b)].
+85 empty(f1(singleton(A),empty_set)) | f5(f1(singleton(A),empty_set)) = A.  [resolve(82,b,72,a(flip))].
+86 empty(singleton(A)) | f5(f1(singleton(A),empty_set)) = A.  [para(72(a,1),85(a,1))].
+87 empty(singleton(A)) | f5(singleton(A)) = A.  [para(72(a,1),86(b,1,1))].
+88 f5(singleton(A)) = A.  [resolve(29,a,87,a)].
+89 empty(A) | empty(f6(A)) | empty(A) | in(f5(f6(A)),A).  [resolve(84,a,37,a)].
+90 empty(A) | empty(f6(A)) | in(f5(f6(A)),A).  [copy(89),merge(c)].
+91 empty(A) | empty(f6(A)) | singleton(B) != A | f5(f6(A)) = B.  [resolve(90,c,38,b)].
+92 empty_set = f5(singleton(singleton(A))) | f3(empty_set,f5(singleton(singleton(A)))) = A.  [resolve(83,b,88,a(flip))].
+93 empty_set = singleton(A) | f3(empty_set,f5(singleton(singleton(A)))) = A.  [para(88(a,1),92(a,2))].
+94 empty_set = singleton(A) | f3(empty_set,singleton(A)) = A.  [para(88(a,1),93(b,1,2))].
+95 singleton(A) = empty_set | f3(empty_set,singleton(A)) = A.  [copy(94),flip(a)].
+96 f3(empty_set,singleton(A)) = A.  [resolve(71,a,95,a)].
+97 -relation(c8) | relation_dom(c8) != relation_dom(c8) | in(f8(c9,c8),relation_dom(c8)) | c9 = c8.  [resolve(61,b,18,a)].
+98 -relation(c8) | in(f8(c9,c8),relation_dom(c8)) | c9 = c8.  [copy(97),xx(b)].
+99 in(f8(c9,c8),relation_dom(c8)) | c9 = c8.  [resolve(17,a,98,a)].
+100 in(f8(c9,c8),relation_dom(c8)).  [resolve(30,a,99,b)].
+101 relation_rng(c8) != A | in(B,A) | apply(c9,f8(c9,c8)) != B.  [resolve(100,a,55,c)].
+102 -relation(c8) | -function(c8) | relation_rng(c8) != A | in(B,A) | apply(c8,f8(c9,c8)) != B.  [resolve(100,a,42,e)].
+103 -function(c8) | relation_rng(c8) != A | in(B,A) | apply(c8,f8(c9,c8)) != B.  [resolve(17,a,102,a)].
+104 relation_rng(c8) != A | in(B,A) | apply(c8,f8(c9,c8)) != B.  [resolve(18,a,103,a)].
+105 -in(A,f3(empty_set,singleton(singleton(B)))) | A = B.  [resolve(38,a,96,a(flip))].
+106 -in(apply(c8,f8(c9,c8)),f3(empty_set,singleton(singleton(apply(c9,f8(c9,c8)))))).  [resolve(105,b,68,a(flip))].
+107 -in(apply(c8,f8(c9,c8)),singleton(apply(c9,f8(c9,c8)))).  [para(96(a,1),106(a,2))].
+108 empty(f3(empty_set,singleton(singleton(A)))) | empty(f6(f3(empty_set,singleton(singleton(A))))) | f5(f6(f3(empty_set,singleton(singleton(A))))) = A.  [resolve(91,c,96,a(flip))].
+109 empty(singleton(A)) | empty(f6(f3(empty_set,singleton(singleton(A))))) | f5(f6(f3(empty_set,singleton(singleton(A))))) = A.  [para(96(a,1),108(a,1))].
+110 empty(singleton(A)) | empty(f6(singleton(A))) | f5(f6(f3(empty_set,singleton(singleton(A))))) = A.  [para(96(a,1),109(b,1,1))].
+111 empty(singleton(A)) | empty(f6(singleton(A))) | f5(f6(singleton(A))) = A.  [para(96(a,1),110(c,1,1,1))].
+112 empty(f6(singleton(A))) | f5(f6(singleton(A))) = A.  [resolve(29,a,111,a)].
+113 f5(f6(singleton(A))) = A.  [resolve(49,a,112,a)].
+114 in(A,f5(f6(singleton(relation_rng(c8))))) | apply(c9,f8(c9,c8)) != A.  [resolve(101,a,113,a(flip))].
+115 in(A,relation_rng(c8)) | apply(c9,f8(c9,c8)) != A.  [para(113(a,1),114(a,2))].
+116 in(f5(f6(singleton(apply(c9,f8(c9,c8))))),relation_rng(c8)).  [resolve(115,b,113,a(flip))].
+117 in(apply(c9,f8(c9,c8)),relation_rng(c8)).  [para(113(a,1),116(a,1))].
+118 singleton(A) != relation_rng(c8) | apply(c9,f8(c9,c8)) = A.  [resolve(117,a,38,b)].
+119 relation_rng(c8) != singleton(A) | apply(c9,f8(c9,c8)) = A.  [copy(118),flip(a)].
+120 apply(c9,f8(c9,c8)) = c7.  [resolve(119,a,24,a(flip))].
+121 -in(apply(c8,f8(c9,c8)),singleton(c7)).  [para(120(a,1),107(a,2,1))].
+122 -in(apply(c8,f8(c9,c8)),relation_rng(c8)).  [para(24(a,1),121(a,2))].
+123 in(A,f5(f6(singleton(relation_rng(c8))))) | apply(c8,f8(c9,c8)) != A.  [resolve(104,a,113,a(flip))].
+124 in(A,relation_rng(c8)) | apply(c8,f8(c9,c8)) != A.  [para(113(a,1),123(a,2))].
+125 in(f5(f6(singleton(apply(c8,f8(c9,c8))))),relation_rng(c8)).  [resolve(124,b,113,a(flip))].
+126 in(apply(c8,f8(c9,c8)),relation_rng(c8)).  [para(113(a,1),125(a,1))].
+127 $F.  [resolve(122,a,126,a)].

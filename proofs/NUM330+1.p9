@@ -1,0 +1,55 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n069.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 04:25:18 CDT 2014
+% CPUTime    : 39.62 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 30893 was started by sandbox on n069.star.cs.uiowa.edu,
+Fri Jun  6 04:25:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_30861_n069.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 39.30 (+ 0.09) seconds.
+% Length of proof is 19.
+% Level of proof is 7.
+% Maximum clause weight is 27.000.
+% Given clauses 29375.
+
+
+1 (all A all B all C all D all E all F (rdn_translate(A,rdn_pos(D)) & rdn_translate(B,rdn_pos(E)) & rdn_add_with_carry(rdnn(n0),D,E,F) & rdn_translate(C,rdn_pos(F)) -> sum(A,B,C))).  [assumption].
+2 (all A all B all C all D all E (rdn_digit_add(rdnn(B),rdnn(C),rdnn(E),rdnn(n0)) & rdn_digit_add(rdnn(E),rdnn(A),rdnn(D),rdnn(n0)) -> rdn_add_with_carry(rdnn(A),rdnn(B),rdnn(C),rdnn(D)))).  [assumption].
+3 -(exists A exists B (sum(A,B,n8) & A = n4 & B = n4)).  [assumption].
+4 rdn_translate(n4,rdn_pos(rdnn(n4))).  [assumption].
+5 rdn_translate(n8,rdn_pos(rdnn(n8))).  [assumption].
+6 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_add_with_carry(rdnn(n0),B,D,E) | -rdn_translate(F,rdn_pos(E)) | sum(A,C,F).  [clausify(1)].
+7 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(C),rdnn(n0)) | -rdn_digit_add(rdnn(C),rdnn(D),rdnn(E),rdnn(n0)) | rdn_add_with_carry(rdnn(D),rdnn(A),rdnn(B),rdnn(E)).  [clausify(2)].
+8 rdn_digit_add(rdnn(n4),rdnn(n4),rdnn(n8),rdnn(n0)).  [assumption].
+9 rdn_digit_add(rdnn(n8),rdnn(n0),rdnn(n8),rdnn(n0)).  [assumption].
+10 -sum(A,B,n8) | A != n4 | B != n4.  [clausify(3)].
+11 -sum(A,B,n8) | n4 != A | B != n4.  [copy(10),flip(b)].
+12 -sum(A,B,n8) | n4 != A | n4 != B.  [copy(11),flip(c)].
+13 -rdn_translate(A,rdn_pos(B)) | -rdn_add_with_carry(rdnn(n0),B,B,C) | -rdn_translate(D,rdn_pos(C)) | sum(A,A,D).  [factor(6,a,b)].
+14 -sum(A,A,n8) | n4 != A.  [factor(12,b,c)].
+15 -rdn_digit_add(rdnn(n8),rdnn(A),rdnn(B),rdnn(n0)) | rdn_add_with_carry(rdnn(A),rdnn(n4),rdnn(n4),rdnn(B)).  [resolve(8,a,7,a)].
+16 rdn_add_with_carry(rdnn(n0),rdnn(n4),rdnn(n4),rdnn(n8)).  [resolve(15,a,9,a)].
+17 -rdn_translate(A,rdn_pos(rdnn(n4))) | -rdn_translate(B,rdn_pos(rdnn(n8))) | sum(A,A,B).  [resolve(16,a,13,b)].
+18 -rdn_translate(A,rdn_pos(rdnn(n8))) | sum(n4,n4,A).  [resolve(17,a,4,a)].
+19 sum(n4,n4,n8).  [resolve(18,a,5,a)].
+20 n4 != n4.  [resolve(19,a,14,a)].
+21 $F.  [copy(20),xx(a)].
+
+============================== end of proof ==========================

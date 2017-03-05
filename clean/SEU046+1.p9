@@ -1,0 +1,29 @@
+
+
+
+
+
+
+7 relation(c10).  [clausify(6)].
+8 function(c10).  [clausify(6)].
+9 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+10 -subset(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)) | -subset(relation_rng(relation_rng_restriction(c9,c10)),relation_rng(c10)).  [clausify(6)].
+11 -relation(A) | relation(relation_rng_restriction(B,A)).  [clausify(2)].
+12 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+13 -relation(A) | -function(A) | function(relation_rng_restriction(B,A)).  [clausify(3)].
+14 -relation(A) | subset(relation_rng(relation_rng_restriction(B,A)),relation_rng(A)).  [clausify(4)].
+15 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_rng_restriction(C,B) != A | -in(D,relation_dom(A)) | in(D,relation_dom(B)).  [clausify(5)].
+16 relation(relation_rng_restriction(A,c10)).  [resolve(11,a,7,a)].
+17 -relation(c10) | function(relation_rng_restriction(A,c10)).  [resolve(13,b,8,a)].
+18 function(relation_rng_restriction(A,c10)).  [resolve(7,a,17,a)].
+19 subset(relation_rng(relation_rng_restriction(A,c10)),relation_rng(c10)).  [resolve(14,a,7,a)].
+20 -subset(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)).  [resolve(19,a,10,b)].
+21 in(f1(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)),relation_dom(relation_rng_restriction(c9,c10))).  [resolve(20,a,9,a)].
+22 -in(f1(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)),relation_dom(c10)).  [resolve(12,a,20,a)].
+23 -relation(relation_rng_restriction(A,c10)) | -relation(B) | -function(B) | relation_rng_restriction(C,B) != relation_rng_restriction(A,c10) | -in(D,relation_dom(relation_rng_restriction(A,c10))) | in(D,relation_dom(B)).  [resolve(15,b,18,a)].
+24 -relation(relation_rng_restriction(A,c10)) | -function(c10) | relation_rng_restriction(B,c10) != relation_rng_restriction(A,c10) | -in(C,relation_dom(relation_rng_restriction(A,c10))) | in(C,relation_dom(c10)).  [resolve(23,b,7,a)].
+25 -relation(relation_rng_restriction(A,c10)) | relation_rng_restriction(B,c10) != relation_rng_restriction(A,c10) | -in(C,relation_dom(relation_rng_restriction(A,c10))) | in(C,relation_dom(c10)).  [resolve(24,b,8,a)].
+26 -relation(relation_rng_restriction(A,c10)) | -in(B,relation_dom(relation_rng_restriction(A,c10))) | in(B,relation_dom(c10)).  [xx_res(25,b)].
+27 -relation(relation_rng_restriction(c9,c10)) | in(f1(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)),relation_dom(c10)).  [resolve(26,b,21,a)].
+28 -relation(relation_rng_restriction(c9,c10)).  [resolve(27,b,22,a)].
+29 $F.  [resolve(16,a,28,a)].

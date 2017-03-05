@@ -1,0 +1,24 @@
+
+
+
+
+
+
+7 contains_slb(c2,c4).  [clausify(6)].
+8 less_than(A,B) | less_than(B,A).  [clausify(1)].
+9 -pair_in_list(update_slb(c2,findmin_pqp_res(c1)),c4,findmin_pqp_res(c1)).  [clausify(6)].
+10 -pair_in_list(update_slb(c2,findmin_pqp_res(c1)),c4,A) | -less_than(findmin_pqp_res(c1),A).  [clausify(6)].
+11 strictly_less_than(A,B) | -less_than(A,B) | less_than(B,A).  [clausify(2)].
+12 -contains_slb(A,B) | pair_in_list(A,B,f1(A,B)).  [clausify(3)].
+13 -pair_in_list(A,B,C) | -strictly_less_than(C,D) | pair_in_list(update_slb(A,D),B,D).  [clausify(4)].
+14 -pair_in_list(A,B,C) | -less_than(D,C) | pair_in_list(update_slb(A,D),B,C).  [clausify(5)].
+15 strictly_less_than(A,B) | less_than(B,A) | less_than(B,A).  [resolve(11,b,8,b)].
+16 strictly_less_than(A,B) | less_than(B,A).  [copy(15),merge(c)].
+17 pair_in_list(c2,c4,f1(c2,c4)).  [resolve(12,a,7,a)].
+18 -strictly_less_than(f1(c2,c4),A) | pair_in_list(update_slb(c2,A),c4,A).  [resolve(13,a,17,a)].
+19 -strictly_less_than(f1(c2,c4),findmin_pqp_res(c1)).  [resolve(18,b,9,a)].
+20 less_than(findmin_pqp_res(c1),f1(c2,c4)).  [resolve(19,a,16,a)].
+21 -pair_in_list(update_slb(c2,findmin_pqp_res(c1)),c4,f1(c2,c4)).  [resolve(10,b,20,a)].
+22 -pair_in_list(A,B,f1(c2,c4)) | pair_in_list(update_slb(A,findmin_pqp_res(c1)),B,f1(c2,c4)).  [resolve(14,b,20,a)].
+23 -pair_in_list(c2,c4,f1(c2,c4)).  [resolve(22,b,21,a)].
+24 $F.  [resolve(17,a,23,a)].

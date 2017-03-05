@@ -1,0 +1,31 @@
+
+
+
+
+5 iext(uri_rdf_type,uri_ex_w,c1).  [clausify(4)].
+6 iext(uri_owl_intersectionOf,c1,c3).  [clausify(4)].
+7 iext(uri_rdf_first,c3,uri_ex_A).  [clausify(4)].
+8 iext(uri_rdf_rest,c3,c4).  [clausify(4)].
+9 iext(uri_rdf_first,c4,c2).  [clausify(4)].
+10 iext(uri_rdf_rest,c4,uri_rdf_nil).  [clausify(4)].
+11 iext(uri_owl_complementOf,c2,uri_ex_A).  [clausify(4)].
+12 -iext(uri_owl_complementOf,A,B) | -icext(A,C) | -icext(B,C).  [clausify(2)].
+13 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(1)].
+14 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_intersectionOf,E,A) | -icext(E,F) | icext(B,F).  [clausify(3)].
+15 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_intersectionOf,E,A) | -icext(E,F) | icext(D,F).  [clausify(3)].
+16 -icext(c2,A) | -icext(uri_ex_A,A).  [resolve(12,a,11,a)].
+17 icext(c1,uri_ex_w).  [resolve(13,a,5,a)].
+18 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_first,c4,B) | -iext(uri_rdf_rest,c4,uri_rdf_nil) | -iext(uri_owl_intersectionOf,C,c3) | -icext(C,D) | icext(A,D).  [resolve(14,b,8,a)].
+19 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_first,c4,B) | -iext(uri_owl_intersectionOf,C,c3) | -icext(C,D) | icext(A,D).  [resolve(10,a,18,c)].
+20 -iext(uri_rdf_first,c4,A) | -iext(uri_owl_intersectionOf,B,c3) | -icext(B,C) | icext(uri_ex_A,C).  [resolve(19,a,7,a)].
+21 -iext(uri_owl_intersectionOf,A,c3) | -icext(A,B) | icext(uri_ex_A,B).  [resolve(20,a,9,a)].
+22 -icext(c1,A) | icext(uri_ex_A,A).  [resolve(21,a,6,a)].
+23 icext(uri_ex_A,uri_ex_w).  [resolve(22,a,17,a)].
+24 -icext(c2,uri_ex_w).  [resolve(16,b,23,a)].
+25 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_first,c4,B) | -iext(uri_rdf_rest,c4,uri_rdf_nil) | -iext(uri_owl_intersectionOf,C,c3) | -icext(C,D) | icext(B,D).  [resolve(15,b,8,a)].
+26 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c4,uri_rdf_nil) | -iext(uri_owl_intersectionOf,B,c3) | -icext(B,C) | icext(c2,C).  [resolve(25,b,9,a)].
+27 -iext(uri_rdf_first,c3,A) | -iext(uri_owl_intersectionOf,B,c3) | -icext(B,C) | icext(c2,C).  [resolve(26,b,10,a)].
+28 -iext(uri_rdf_first,c3,A) | -icext(c1,B) | icext(c2,B).  [resolve(27,b,6,a)].
+29 -iext(uri_rdf_first,c3,A) | icext(c2,uri_ex_w).  [resolve(28,b,17,a)].
+30 -iext(uri_rdf_first,c3,A).  [resolve(29,b,24,a)].
+31 $F.  [resolve(30,a,7,a)].

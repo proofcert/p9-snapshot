@@ -1,0 +1,15 @@
+
+
+
+4 singleton(c3) = empty_set.  [clausify(3)].
+5 empty_set = singleton(c3).  [copy(4),flip(a)].
+6 empty_set != A | -in(B,A).  [clausify(2)].
+7 singleton(c3) != A | -in(B,A).  [para(5(a,1),6(a,1))].
+8 singleton(A) != B | in(C,B) | C != A.  [clausify(1)].
+9 -in(A,empty_set).  [resolve(7,a,5,a(flip))].
+10 -in(A,singleton(c3)).  [para(5(a,1),9(a,2))].
+11 in(A,empty_set) | A != c3.  [resolve(8,a,5,a(flip))].
+12 in(A,singleton(c3)) | A != c3.  [para(5(a,1),11(a,2))].
+13 in(A,singleton(c3)) | c3 != A.  [copy(12),flip(b)].
+14 c3 != A.  [resolve(10,a,13,a)].
+15 $F.  [xx_res(14,a)].

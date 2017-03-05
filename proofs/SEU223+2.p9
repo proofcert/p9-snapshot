@@ -1,0 +1,57 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n161.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:59:33 CDT 2014
+% CPUTime    : 31.90 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 63783 was started by sandbox on n161.star.cs.uiowa.edu,
+Fri Jun  6 03:59:34 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_63751_n161.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 30.51 (+ 0.39) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 24.000.
+% Given clauses 10203.
+
+
+1 (all A all B (relation(A) -> relation(relation_dom_restriction(A,B)))).  [assumption].
+2 (all A all B (relation(A) & function(A) -> relation(relation_dom_restriction(A,B)) & function(relation_dom_restriction(A,B)))).  [assumption].
+3 (all A all B (relation(B) & function(B) -> (all C (relation(C) & function(C) -> (B = relation_dom_restriction(C,A) <-> relation_dom(B) = set_intersection2(relation_dom(C),A) & (all D (in(D,relation_dom(B)) -> apply(B,D) = apply(C,D)))))))).  [assumption].
+4 -(all A all B all C (relation(C) & function(C) -> (in(B,relation_dom(relation_dom_restriction(C,A))) -> apply(relation_dom_restriction(C,A),B) = apply(C,B)))).  [assumption].
+5 -relation(A) | relation(relation_dom_restriction(A,B)).  [clausify(1)].
+6 -relation(A) | -function(A) | function(relation_dom_restriction(A,B)).  [clausify(2)].
+7 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != A | -in(D,relation_dom(A)) | apply(B,D) = apply(A,D).  [clausify(3)].
+8 relation(c11).  [clausify(4)].
+9 function(c11).  [clausify(4)].
+10 in(c10,relation_dom(relation_dom_restriction(c11,c9))).  [clausify(4)].
+11 apply(relation_dom_restriction(c11,c9),c10) != apply(c11,c10).  [clausify(4)].
+12 relation(relation_dom_restriction(c11,A)).  [resolve(8,a,5,a)].
+13 -relation(c11) | function(relation_dom_restriction(c11,A)).  [resolve(9,a,6,b)].
+14 function(relation_dom_restriction(c11,A)).  [resolve(8,a,13,a)].
+15 -relation(relation_dom_restriction(c11,c9)) | -function(relation_dom_restriction(c11,c9)) | -relation(A) | -function(A) | relation_dom_restriction(A,B) != relation_dom_restriction(c11,c9) | apply(A,c10) = apply(relation_dom_restriction(c11,c9),c10).  [resolve(10,a,7,f)].
+16 -relation(relation_dom_restriction(c11,c9)) | -function(relation_dom_restriction(c11,c9)) | -relation(A) | -function(A) | relation_dom_restriction(c11,c9) != relation_dom_restriction(A,B) | apply(A,c10) = apply(relation_dom_restriction(c11,c9),c10).  [copy(15),flip(e)].
+17 -relation(relation_dom_restriction(c11,c9)) | -function(relation_dom_restriction(c11,c9)) | -relation(A) | -function(A) | relation_dom_restriction(c11,c9) != relation_dom_restriction(A,B) | apply(relation_dom_restriction(c11,c9),c10) = apply(A,c10).  [copy(16),flip(f)].
+18 -function(relation_dom_restriction(c11,c9)) | -relation(A) | -function(A) | relation_dom_restriction(c11,c9) != relation_dom_restriction(A,B) | apply(relation_dom_restriction(c11,c9),c10) = apply(A,c10).  [resolve(12,a,17,a)].
+19 -relation(A) | -function(A) | relation_dom_restriction(c11,c9) != relation_dom_restriction(A,B) | apply(relation_dom_restriction(c11,c9),c10) = apply(A,c10).  [resolve(14,a,18,a)].
+20 -relation(c11) | relation_dom_restriction(c11,c9) != relation_dom_restriction(c11,A) | apply(relation_dom_restriction(c11,c9),c10) = apply(c11,c10).  [resolve(19,b,9,a)].
+21 -relation(c11) | apply(relation_dom_restriction(c11,c9),c10) = apply(c11,c10).  [copy(20),xx(b)].
+22 apply(relation_dom_restriction(c11,c9),c10) = apply(c11,c10).  [resolve(8,a,21,a)].
+23 $F.  [resolve(11,a,22,a)].
+
+============================== end of proof ==========================

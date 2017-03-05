@@ -1,0 +1,62 @@
+
+
+
+
+
+
+
+
+
+
+11 -ir(A) | -ip(B) | -ir(C) | iext(B,A,C) | iext(uri_owl_sourceIndividual,f3(B,A,C),A).  [clausify(8)].
+12 -iext(uri_owl_onProperty,A,B) | ip(B).  [clausify(4)].
+13 -ir(A) | -ip(B) | -ir(C) | iext(B,A,C) | iext(uri_owl_assertionProperty,f3(B,A,C),B).  [clausify(8)].
+14 -ir(A) | -ip(B) | -ir(C) | iext(B,A,C) | iext(uri_owl_targetIndividual,f3(B,A,C),C).  [clausify(8)].
+15 ir(A).  [clausify(1)].
+16 iext(uri_rdf_type,uri_ex_s,c1).  [clausify(9)].
+17 iext(uri_owl_onProperty,c1,uri_ex_p).  [clausify(9)].
+18 iext(uri_owl_allValuesFrom,c1,c2).  [clausify(9)].
+19 iext(uri_owl_complementOf,c2,c3).  [clausify(9)].
+20 iext(uri_owl_oneOf,c3,c4).  [clausify(9)].
+21 iext(uri_rdf_first,c4,uri_ex_o).  [clausify(9)].
+22 iext(uri_rdf_rest,c4,uri_rdf_nil).  [clausify(9)].
+23 -iext(uri_owl_complementOf,A,B) | -icext(A,C) | -icext(B,C).  [clausify(5)].
+24 -iext(uri_rdf_type,A,uri_owl_NegativePropertyAssertion) | -iext(uri_owl_sourceIndividual,A,uri_ex_s) | -iext(uri_owl_assertionProperty,A,uri_ex_p) | -iext(uri_owl_targetIndividual,A,uri_ex_o).  [clausify(10)].
+25 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(2)].
+26 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(2)].
+27 -iext(uri_owl_sourceIndividual,A,B) | icext(uri_owl_NegativePropertyAssertion,A).  [clausify(3)].
+28 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,uri_rdf_nil) | -iext(uri_owl_oneOf,C,A) | icext(C,D) | B != D.  [clausify(6)].
+29 -iext(uri_owl_allValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | -iext(C,D,E) | icext(B,E).  [clausify(7)].
+30 -ir(A) | -ir(B) | iext(C,A,B) | iext(uri_owl_sourceIndividual,f3(C,A,B),A) | -iext(uri_owl_onProperty,D,C).  [resolve(11,b,12,b)].
+31 -ir(A) | iext(B,C,A) | iext(uri_owl_sourceIndividual,f3(B,C,A),C) | -iext(uri_owl_onProperty,D,B).  [resolve(15,a,30,a)].
+32 iext(A,B,C) | iext(uri_owl_sourceIndividual,f3(A,B,C),B) | -iext(uri_owl_onProperty,D,A).  [resolve(15,a,31,a)].
+33 -ir(A) | -ir(B) | iext(C,A,B) | iext(uri_owl_assertionProperty,f3(C,A,B),C) | -iext(uri_owl_onProperty,D,C).  [resolve(13,b,12,b)].
+34 -ir(A) | iext(B,C,A) | iext(uri_owl_assertionProperty,f3(B,C,A),B) | -iext(uri_owl_onProperty,D,B).  [resolve(15,a,33,a)].
+35 iext(A,B,C) | iext(uri_owl_assertionProperty,f3(A,B,C),A) | -iext(uri_owl_onProperty,D,A).  [resolve(15,a,34,a)].
+36 -ir(A) | -ir(B) | iext(C,A,B) | iext(uri_owl_targetIndividual,f3(C,A,B),B) | -iext(uri_owl_onProperty,D,C).  [resolve(14,b,12,b)].
+37 -ir(A) | iext(B,C,A) | iext(uri_owl_targetIndividual,f3(B,C,A),A) | -iext(uri_owl_onProperty,D,B).  [resolve(15,a,36,a)].
+38 iext(A,B,C) | iext(uri_owl_targetIndividual,f3(A,B,C),C) | -iext(uri_owl_onProperty,D,A).  [resolve(15,a,37,a)].
+39 -icext(c2,A) | -icext(c3,A).  [resolve(23,a,19,a)].
+40 icext(c1,uri_ex_s).  [resolve(25,a,16,a)].
+41 -iext(uri_rdf_rest,c4,uri_rdf_nil) | -iext(uri_owl_oneOf,A,c4) | icext(A,B) | uri_ex_o != B.  [resolve(28,a,21,a)].
+42 -iext(uri_owl_oneOf,A,c4) | icext(A,B) | uri_ex_o != B.  [resolve(22,a,41,a)].
+43 -iext(uri_owl_onProperty,c1,A) | -icext(c1,B) | -iext(A,B,C) | icext(c2,C).  [resolve(29,a,18,a)].
+44 iext(uri_ex_p,A,B) | iext(uri_owl_sourceIndividual,f3(uri_ex_p,A,B),A).  [resolve(32,c,17,a)].
+45 iext(uri_ex_p,A,B) | iext(uri_owl_assertionProperty,f3(uri_ex_p,A,B),uri_ex_p).  [resolve(35,c,17,a)].
+46 iext(uri_ex_p,A,B) | iext(uri_owl_targetIndividual,f3(uri_ex_p,A,B),B).  [resolve(38,c,17,a)].
+47 icext(c3,A) | uri_ex_o != A.  [resolve(42,a,20,a)].
+48 icext(c3,uri_ex_o).  [xx_res(47,b)].
+49 -icext(c2,uri_ex_o).  [resolve(48,a,39,b)].
+50 -icext(c1,A) | -iext(uri_ex_p,A,B) | icext(c2,B).  [resolve(43,a,17,a)].
+51 -iext(uri_ex_p,uri_ex_s,A) | icext(c2,A).  [resolve(50,a,40,a)].
+52 -iext(uri_ex_p,uri_ex_s,uri_ex_o).  [resolve(51,b,49,a)].
+53 iext(uri_ex_p,A,B) | icext(uri_owl_NegativePropertyAssertion,f3(uri_ex_p,A,B)).  [resolve(44,b,27,a)].
+54 icext(uri_owl_NegativePropertyAssertion,f3(uri_ex_p,uri_ex_s,uri_ex_o)).  [resolve(53,a,52,a)].
+55 iext(uri_rdf_type,f3(uri_ex_p,uri_ex_s,uri_ex_o),uri_owl_NegativePropertyAssertion).  [resolve(54,a,26,b)].
+56 iext(uri_ex_p,A,uri_ex_o) | -iext(uri_rdf_type,f3(uri_ex_p,A,uri_ex_o),uri_owl_NegativePropertyAssertion) | -iext(uri_owl_sourceIndividual,f3(uri_ex_p,A,uri_ex_o),uri_ex_s) | -iext(uri_owl_assertionProperty,f3(uri_ex_p,A,uri_ex_o),uri_ex_p).  [resolve(46,b,24,d)].
+57 iext(uri_ex_p,A,uri_ex_o) | -iext(uri_rdf_type,f3(uri_ex_p,A,uri_ex_o),uri_owl_NegativePropertyAssertion) | -iext(uri_owl_sourceIndividual,f3(uri_ex_p,A,uri_ex_o),uri_ex_s) | iext(uri_ex_p,A,uri_ex_o).  [resolve(56,d,45,b)].
+58 iext(uri_ex_p,A,uri_ex_o) | -iext(uri_rdf_type,f3(uri_ex_p,A,uri_ex_o),uri_owl_NegativePropertyAssertion) | -iext(uri_owl_sourceIndividual,f3(uri_ex_p,A,uri_ex_o),uri_ex_s).  [copy(57),merge(d)].
+59 iext(uri_ex_p,uri_ex_s,uri_ex_o) | -iext(uri_rdf_type,f3(uri_ex_p,uri_ex_s,uri_ex_o),uri_owl_NegativePropertyAssertion) | iext(uri_ex_p,uri_ex_s,uri_ex_o).  [resolve(58,c,44,b)].
+60 iext(uri_ex_p,uri_ex_s,uri_ex_o) | -iext(uri_rdf_type,f3(uri_ex_p,uri_ex_s,uri_ex_o),uri_owl_NegativePropertyAssertion).  [copy(59),merge(c)].
+61 -iext(uri_rdf_type,f3(uri_ex_p,uri_ex_s,uri_ex_o),uri_owl_NegativePropertyAssertion).  [resolve(52,a,60,a)].
+62 $F.  [resolve(55,a,61,a)].

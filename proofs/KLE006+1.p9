@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n080.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:12:48 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 1848 was started by sandbox on n080.star.cs.uiowa.edu,
+Thu Jun  5 13:12:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_1816_n080.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 8.000.
+% Given clauses 20.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A multiplication(one,A) = A).  [assumption].
+3 (all A all B (complement(B,A) <-> multiplication(A,B) = zero & multiplication(B,A) = zero & addition(A,B) = one)).  [assumption].
+4 (all A all B (test(A) -> (c(A) = B <-> complement(A,B)))).  [assumption].
+5 -(all A (test(A) -> one = addition(A,c(A)))).  [assumption].
+6 test(c1).  [clausify(5)].
+7 -test(A) | c(A) != B | complement(A,B).  [clausify(4)].
+8 multiplication(one,A) = A.  [clausify(2)].
+9 addition(A,B) = addition(B,A).  [clausify(1)].
+10 addition(c1,c(c1)) != one.  [clausify(5)].
+11 -complement(A,B) | addition(B,A) = one.  [clausify(3)].
+12 -complement(A,B) | addition(A,B) = one.  [para(9(a,1),11(b,1))].
+13 c(c1) != A | complement(c1,A).  [resolve(7,a,6,a)].
+14 -complement(c1,c(c1)).  [resolve(12,b,10,a)].
+15 complement(c1,multiplication(one,c(c1))).  [resolve(13,a,8,a(flip))].
+16 complement(c1,c(c1)).  [para(8(a,1),15(a,2))].
+17 $F.  [resolve(14,a,16,a)].
+
+============================== end of proof ==========================

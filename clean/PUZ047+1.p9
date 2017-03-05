@@ -1,0 +1,17 @@
+
+2 p(south,south,south,south,start).  [clausify(1)].
+3 -p(north,north,north,north,A).  [clausify(1)].
+4 -p(north,north,south,north,A) | p(south,north,south,north,go_alone(A)).  [clausify(1)].
+5 -p(north,south,north,south,A) | p(south,south,north,south,go_alone(A)).  [clausify(1)].
+6 -p(south,south,north,south,A) | p(north,north,north,south,take_wolf(A)).  [clausify(1)].
+7 -p(south,A,south,B,C) | p(north,A,north,B,take_goat(C)).  [clausify(1)].
+8 -p(north,A,north,B,C) | p(south,A,south,B,take_goat(C)).  [clausify(1)].
+9 -p(south,north,south,south,A) | p(north,north,south,north,take_cabbage(A)).  [clausify(1)].
+10 -p(south,north,south,north,A).  [resolve(7,b,3,a)].
+11 p(north,south,north,south,take_goat(start)).  [resolve(7,a,2,a)].
+12 -p(north,north,south,north,A).  [resolve(10,a,4,b)].
+13 -p(south,north,south,south,A).  [resolve(12,a,9,b)].
+14 -p(north,north,north,south,A).  [resolve(13,a,8,b)].
+15 -p(south,south,north,south,A).  [resolve(14,a,6,b)].
+16 p(south,south,north,south,go_alone(take_goat(start))).  [resolve(5,a,11,a)].
+17 $F.  [resolve(16,a,15,a)].

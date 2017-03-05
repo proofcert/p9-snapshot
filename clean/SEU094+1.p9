@@ -1,0 +1,34 @@
+
+
+
+
+
+
+7 -subset(A,B) | -finite(B) | finite(A).  [clausify(3)].
+8 subset(A,powerset(union(A))).  [clausify(2)].
+9 -in(A,B) | subset(A,union(B)).  [clausify(5)].
+10 -finite(A) | in(f2(A),A) | finite(union(A)).  [clausify(1)].
+11 -finite(A) | -finite(f2(A)) | finite(union(A)).  [clausify(1)].
+12 -finite(A) | finite(powerset(A)).  [clausify(4)].
+13 finite(c22) | finite(union(c22)).  [clausify(6)].
+14 -in(A,c22) | finite(A) | finite(union(c22)).  [clausify(6)].
+15 -finite(c22) | in(c23,c22) | -finite(union(c22)).  [clausify(6)].
+16 -finite(c22) | -finite(c23) | -finite(union(c22)).  [clausify(6)].
+17 -finite(powerset(union(A))) | finite(A).  [resolve(7,a,8,a)].
+18 -in(A,B) | -finite(union(B)) | finite(A).  [resolve(9,b,7,a)].
+19 finite(c22) | finite(powerset(union(c22))).  [resolve(13,b,12,a)].
+20 finite(c22) | finite(c22).  [resolve(19,b,17,a)].
+21 finite(c22).  [copy(20),merge(b)].
+22 -finite(c23) | -finite(union(c22)).  [resolve(21,a,16,a)].
+23 in(c23,c22) | -finite(union(c22)).  [resolve(21,a,15,a)].
+24 in(f2(c22),c22) | finite(union(c22)).  [resolve(21,a,10,a)].
+25 finite(union(c22)) | finite(f2(c22)) | finite(union(c22)).  [resolve(24,a,14,a)].
+26 finite(union(c22)) | finite(f2(c22)).  [copy(25),merge(c)].
+27 finite(union(c22)) | -finite(c22) | finite(union(c22)).  [resolve(26,b,11,b)].
+28 finite(union(c22)) | -finite(c22).  [copy(27),merge(c)].
+29 finite(union(c22)).  [resolve(21,a,28,b)].
+30 in(c23,c22).  [resolve(29,a,23,b)].
+31 -finite(c23).  [resolve(29,a,22,b)].
+32 -in(A,c22) | finite(A).  [resolve(18,b,29,a)].
+33 -in(c23,c22).  [resolve(32,b,31,a)].
+34 $F.  [resolve(30,a,33,a)].

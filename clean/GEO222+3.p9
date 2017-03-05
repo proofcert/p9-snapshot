@@ -1,0 +1,26 @@
+
+
+
+
+
+
+
+
+9 parallel_lines(A,B) | convergent_lines(A,B).  [clausify(7)].
+10 -parallel_lines(c2,orthogonal_through_point(orthogonal_through_point(c2,c1),c1)).  [clausify(8)].
+11 convergent_lines(A,B) | unorthogonal_lines(A,B).  [clausify(3)].
+12 -convergent_lines(A,A).  [clausify(1)].
+13 -unorthogonal_lines(orthogonal_through_point(A,B),A).  [clausify(4)].
+14 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(2)].
+15 unorthogonal_lines(A,B) | unorthogonal_lines(A,C) | -convergent_lines(B,C).  [clausify(6)].
+16 unorthogonal_lines(A,B) | convergent_lines(A,C) | -convergent_lines(B,C) | -unorthogonal_lines(B,C).  [clausify(5)].
+17 convergent_lines(c2,orthogonal_through_point(orthogonal_through_point(c2,c1),c1)).  [resolve(10,a,9,a)].
+18 convergent_lines(orthogonal_through_point(A,B),A).  [resolve(13,a,11,b)].
+19 convergent_lines(orthogonal_through_point(A,B),C) | convergent_lines(A,C).  [resolve(18,a,14,a)].
+20 convergent_lines(A,orthogonal_through_point(A,B)).  [resolve(19,a,12,a)].
+21 convergent_lines(orthogonal_through_point(A,B),C) | -convergent_lines(A,C) | -unorthogonal_lines(A,C).  [resolve(16,a,13,a)].
+22 -convergent_lines(A,orthogonal_through_point(A,B)) | -unorthogonal_lines(A,orthogonal_through_point(A,B)).  [resolve(21,a,12,a)].
+23 -unorthogonal_lines(A,orthogonal_through_point(A,B)).  [resolve(22,a,20,a)].
+24 unorthogonal_lines(orthogonal_through_point(A,B),C) | -convergent_lines(A,C).  [resolve(15,a,13,a)].
+25 -convergent_lines(A,orthogonal_through_point(orthogonal_through_point(A,B),C)).  [resolve(24,a,23,a)].
+26 $F.  [resolve(25,a,17,a)].

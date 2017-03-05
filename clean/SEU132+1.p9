@@ -1,0 +1,42 @@
+
+
+
+
+5 subset(c3,c4).  [clausify(4)].
+6 set_difference(A,empty_set) = A.  [clausify(3)].
+7 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+8 set_difference(A,B) = C | in(f2(A,B,C),C) | in(f2(A,B,C),A).  [clausify(2)].
+9 -subset(set_difference(c3,c5),set_difference(c4,c5)).  [clausify(4)].
+10 set_difference(A,B) != C | -in(D,C) | -in(D,B).  [clausify(2)].
+11 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+12 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(1)].
+13 set_difference(A,B) != C | -in(D,C) | in(D,A).  [clausify(2)].
+14 set_difference(A,B) != C | in(D,C) | -in(D,A) | in(D,B).  [clausify(2)].
+15 set_difference(A,B) = C | -in(f2(A,B,C),C) | -in(f2(A,B,C),A) | in(f2(A,B,C),B).  [clausify(2)].
+16 set_difference(A,B) = A | in(f2(A,B,A),A).  [factor(8,b,c)].
+17 set_difference(A,B) = A | -in(f2(A,B,A),A) | in(f2(A,B,A),B).  [factor(15,b,c)].
+18 in(f1(set_difference(c3,c5),set_difference(c4,c5)),set_difference(c3,c5)).  [resolve(9,a,7,a)].
+19 -in(f1(set_difference(c3,c5),set_difference(c4,c5)),set_difference(c4,c5)).  [resolve(11,a,9,a)].
+20 -in(A,c3) | in(A,c4).  [resolve(12,a,5,a)].
+21 set_difference(A,B) = A | set_difference(C,A) != D | -in(f2(A,B,A),D).  [resolve(16,b,10,c)].
+22 set_difference(A,B) = A | in(f2(A,B,A),B) | set_difference(A,B) = A.  [resolve(17,b,16,b)].
+23 set_difference(A,B) = A | in(f2(A,B,A),B).  [copy(22),merge(c)].
+24 -in(A,set_difference(set_difference(B,C),empty_set)) | in(A,B).  [resolve(13,a,6,a(flip))].
+25 -in(f1(set_difference(c3,c5),set_difference(c4,c5)),set_difference(set_difference(set_difference(c4,c5),A),empty_set)).  [resolve(24,b,19,a)].
+26 -in(f1(set_difference(c3,c5),set_difference(c4,c5)),set_difference(set_difference(c4,c5),A)).  [para(6(a,1),25(a,2))].
+27 set_difference(A,B) != set_difference(c3,c5) | in(f1(set_difference(c3,c5),set_difference(c4,c5)),A).  [resolve(18,a,13,b)].
+28 set_difference(c3,c5) != set_difference(A,B) | in(f1(set_difference(c3,c5),set_difference(c4,c5)),A).  [copy(27),flip(a)].
+29 -in(A,set_difference(B,C)) | -in(A,C).  [xx_res(10,a)].
+30 -in(f1(set_difference(c3,c5),set_difference(c4,c5)),c5).  [resolve(29,a,18,a)].
+31 set_difference(A,B) = A | set_difference(C,A) != B | set_difference(A,B) = A.  [resolve(21,c,23,b)].
+32 set_difference(A,B) = A | set_difference(C,A) != B.  [copy(31),merge(c)].
+33 set_difference(A,set_difference(set_difference(B,A),empty_set)) = A.  [resolve(32,b,6,a(flip))].
+34 set_difference(A,set_difference(B,A)) = A.  [para(6(a,1),33(a,1,2))].
+35 set_difference(set_difference(A,B),B) = set_difference(A,B).  [resolve(34,a,32,b)].
+36 in(f1(set_difference(c3,c5),set_difference(c4,c5)),c3).  [xx_res(28,a)].
+37 in(f1(set_difference(c3,c5),set_difference(c4,c5)),c4).  [resolve(36,a,20,a)].
+38 set_difference(A,B) != set_difference(set_difference(c4,c5),C) | -in(f1(set_difference(c3,c5),set_difference(c4,c5)),A) | in(f1(set_difference(c3,c5),set_difference(c4,c5)),B).  [resolve(14,b,26,a)].
+39 set_difference(c4,A) != set_difference(set_difference(c4,c5),B) | in(f1(set_difference(c3,c5),set_difference(c4,c5)),A).  [resolve(38,b,37,a)].
+40 set_difference(c4,c5) != set_difference(set_difference(c4,c5),A).  [resolve(39,b,30,a)].
+41 set_difference(set_difference(c4,c5),A) != set_difference(c4,c5).  [copy(40),flip(a)].
+42 $F.  [resolve(41,a,35,a)].

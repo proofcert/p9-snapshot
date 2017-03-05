@@ -1,0 +1,27 @@
+
+
+
+4 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(1)].
+5 -aSet0(A) | -aSubsetOf0(B,A) | aSet0(B).  [clausify(2)].
+6 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) != C | -aElementOf0(D,C) | D != B.  [clausify(3)].
+7 aSet0(xO).  [assumption].
+8 aSubsetOf0(xQ,xO).  [assumption].
+9 xp = szmzizndt0(xQ).  [assumption].
+10 szmzizndt0(xQ) = xp.  [copy(9),flip(a)].
+11 aSet0(xP).  [assumption].
+12 xP = sdtmndt0(xQ,szmzizndt0(xQ)).  [assumption].
+13 xP = sdtmndt0(xQ,xp).  [para(10(a,1),12(a,2,2))].
+14 sdtmndt0(xQ,xp) = xP.  [copy(13),flip(a)].
+15 aElementOf0(xx,xP).  [assumption].
+16 xp = xx.  [assumption].
+17 sdtmndt0(xQ,xx) = xP.  [para(16(a,1),14(a,1,2))].
+18 -aSet0(xO) | aSet0(xQ).  [resolve(8,a,5,b)].
+19 aSet0(xQ).  [resolve(7,a,18,a)].
+20 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) != xP | xx != B.  [resolve(15,a,6,d)].
+21 -aSet0(xP) | aElement0(xx).  [resolve(15,a,4,b)].
+22 aElement0(xx).  [resolve(11,a,21,a)].
+23 -aSet0(A) | sdtmndt0(A,xx) != xP | xx != xx.  [resolve(20,b,22,a)].
+24 -aSet0(A) | sdtmndt0(A,xx) != xP.  [copy(23),xx(c)].
+25 sdtmndt0(xQ,xx) != xP.  [resolve(24,a,19,a)].
+26 xP != xP.  [para(17(a,1),25(a,1))].
+27 $F.  [copy(26),xx(a)].

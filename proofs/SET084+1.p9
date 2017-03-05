@@ -1,0 +1,70 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n131.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:04:34 CDT 2014
+% CPUTime    : 0.22 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 34122 was started by sandbox on n131.star.cs.uiowa.edu,
+Fri Jun  6 02:04:35 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_34090_n131.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.08 (+ 0.00) seconds.
+% Length of proof is 30.
+% Level of proof is 7.
+% Maximum clause weight is 19.000.
+% Given clauses 148.
+
+
+1 (all A all B all C (member(A,unordered_pair(B,C)) <-> member(A,universal_class) & (A = B | A = C))).  [assumption].
+2 (all A all B member(unordered_pair(A,B),universal_class)).  [assumption].
+3 (all A singleton(A) = unordered_pair(A,A)).  [assumption].
+4 (all A all B ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,singleton(B)))).  [assumption].
+5 (all A all B all C all D (member(ordered_pair(A,B),cross_product(C,D)) <-> member(A,C) & member(B,D))).  [assumption].
+6 (all A (member(A,universal_class) -> member(sum_class(A),universal_class))).  [assumption].
+7 -(all A all B (singleton(A) = singleton(B) & member(B,universal_class) -> A = B)).  [assumption].
+8 member(c4,universal_class).  [clausify(7)].
+9 member(unordered_pair(A,B),universal_class).  [clausify(2)].
+10 singleton(c4) = singleton(c3).  [clausify(7)].
+11 singleton(A) = unordered_pair(A,A).  [clausify(3)].
+12 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,singleton(B))).  [clausify(4)].
+13 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,singleton(B))).  [para(11(a,1),12(a,2,1))].
+14 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))).  [para(11(a,1),13(a,2,2,2))].
+15 c4 != c3.  [clausify(7)].
+16 -member(A,universal_class) | member(sum_class(A),universal_class).  [clausify(6)].
+17 -member(ordered_pair(A,B),cross_product(C,D)) | member(B,D).  [clausify(5)].
+18 -member(unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))),cross_product(C,D)) | member(B,D).  [para(14(a,1),17(a,1))].
+19 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(1)].
+20 member(A,unordered_pair(B,C)) | -member(A,universal_class) | A != C.  [clausify(1)].
+21 member(ordered_pair(A,B),cross_product(C,D)) | -member(A,C) | -member(B,D).  [clausify(5)].
+22 member(unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))),cross_product(C,D)) | -member(A,C) | -member(B,D).  [para(14(a,1),21(a,1))].
+23 unordered_pair(c4,c4) = singleton(c3).  [para(11(a,1),10(a,1))].
+24 unordered_pair(c4,c4) = unordered_pair(c3,c3).  [para(11(a,1),23(a,2))].
+25 member(sum_class(unordered_pair(A,B)),universal_class).  [resolve(16,a,9,a)].
+26 -member(c3,unordered_pair(c4,A)) | c3 = A.  [resolve(19,b,15,a(flip))].
+27 -member(c3,unordered_pair(c4,c4)).  [resolve(26,b,15,a(flip))].
+28 -member(c3,unordered_pair(c3,c3)).  [para(24(a,1),27(a,2))].
+29 member(unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(c4,c4))),cross_product(B,universal_class)) | -member(A,B).  [resolve(22,c,8,a)].
+30 member(unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(c3,c3))),cross_product(B,universal_class)) | -member(A,B).  [para(24(a,1),29(a,1,2,2))].
+31 member(sum_class(sum_class(unordered_pair(A,B))),universal_class).  [resolve(25,a,16,a)].
+32 -member(c3,universal_class) | c3 != c3.  [resolve(20,a,28,a)].
+33 -member(c3,universal_class).  [xx_res(32,b)].
+34 -member(unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(c3,c3))),cross_product(B,universal_class)).  [resolve(18,b,33,a)].
+35 -member(A,B).  [resolve(34,a,30,a)].
+36 $F.  [resolve(35,a,31,a)].
+
+============================== end of proof ==========================

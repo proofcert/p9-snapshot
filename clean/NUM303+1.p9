@@ -1,0 +1,32 @@
+
+
+
+
+
+
+7 rdn_translate(n21,rdn_pos(rdn(rdnn(n1),rdnn(n2)))).  [assumption].
+8 rdn_translate(n31,rdn_pos(rdn(rdnn(n1),rdnn(n3)))).  [assumption].
+9 rdn_translate(nn21,rdn_neg(rdn(rdnn(n1),rdnn(n2)))).  [assumption].
+10 rdn_translate(nn31,rdn_neg(rdn(rdnn(n1),rdnn(n3)))).  [assumption].
+11 rdn_positive_less(rdnn(n2),rdnn(n3)).  [assumption].
+12 -rdn_positive_less(A,B) | rdn_positive_less(rdn(rdnn(C),A),rdn(rdnn(D),B)).  [clausify(1)].
+13 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_neg(D)) | -rdn_positive_less(D,B) | less(A,C).  [clausify(2)].
+14 -less(A,B) | -less(B,A).  [clausify(3)].
+15 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_neg(B)) | sum(A,C,n0).  [clausify(4)].
+16 -sum(A,B,C) | -sum(A,D,C) | D = B.  [clausify(5)].
+17 n31 = n21.  [clausify(6)].
+18 -less(A,A).  [factor(14,a,b)].
+19 rdn_translate(n21,rdn_pos(rdn(rdnn(n1),rdnn(n3)))).  [para(17(a,1),8(a,1))].
+20 rdn_positive_less(rdn(rdnn(A),rdnn(n2)),rdn(rdnn(B),rdnn(n3))).  [resolve(12,a,11,a)].
+21 -rdn_translate(A,rdn_neg(rdn(rdnn(n1),rdnn(n2)))) | sum(n21,A,n0).  [resolve(15,a,7,a)].
+22 -rdn_translate(A,rdn_pos(rdn(rdnn(n1),rdnn(n3)))) | sum(A,nn31,n0).  [resolve(15,b,10,a)].
+23 -rdn_translate(A,rdn_neg(rdn(rdnn(B),rdnn(n3)))) | -rdn_translate(C,rdn_neg(rdn(rdnn(D),rdnn(n2)))) | less(A,C).  [resolve(20,a,13,c)].
+24 sum(n21,nn21,n0).  [resolve(21,a,9,a)].
+25 sum(n21,nn31,n0).  [resolve(22,a,19,a)].
+26 -sum(n21,A,n0) | nn21 = A.  [resolve(24,a,16,b)].
+27 nn21 = nn31.  [resolve(26,a,25,a)].
+28 nn31 = nn21.  [copy(27),flip(a)].
+29 rdn_translate(nn21,rdn_neg(rdn(rdnn(n1),rdnn(n3)))).  [para(28(a,1),10(a,1))].
+30 -rdn_translate(A,rdn_neg(rdn(rdnn(B),rdnn(n3)))) | less(A,nn21).  [resolve(23,b,9,a)].
+31 less(nn21,nn21).  [resolve(30,a,29,a)].
+32 $F.  [resolve(18,a,31,a)].

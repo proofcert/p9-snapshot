@@ -1,0 +1,22 @@
+
+
+3 -ssList(A) | singletonP(A) | -ssItem(B) | cons(B,nil) != A.  [clausify(1)].
+4 ssList(c3).  [clausify(2)].
+5 c6 = c4.  [clausify(2)].
+6 c5 = c3.  [clausify(2)].
+7 neq(c4,nil).  [clausify(2)].
+8 ssItem(c7) | -neq(c6,nil).  [clausify(2)].
+9 ssItem(c7) | -neq(c4,nil).  [para(5(a,1),8(b,1))].
+10 ssItem(c7).  [resolve(7,a,9,b)].
+11 cons(c7,nil) = c5 | -neq(c6,nil).  [clausify(2)].
+12 cons(c7,nil) = c3 | -neq(c6,nil).  [para(6(a,1),11(a,2))].
+13 cons(c7,nil) = c3 | -neq(c4,nil).  [para(5(a,1),12(b,1))].
+14 cons(c7,nil) = c3.  [resolve(7,a,13,b)].
+15 -singletonP(c3) | -neq(c6,nil).  [clausify(2)].
+16 -singletonP(c3) | -neq(c4,nil).  [para(5(a,1),15(b,1))].
+17 -singletonP(c3).  [resolve(7,a,16,b)].
+18 -ssList(A) | singletonP(A) | cons(c7,nil) != A.  [resolve(10,a,3,c)].
+19 -ssList(A) | singletonP(A) | c3 != A.  [para(14(a,1),18(c,1))].
+20 singletonP(c3) | c3 != c3.  [resolve(19,a,4,a)].
+21 singletonP(c3).  [copy(20),xx(b)].
+22 $F.  [resolve(17,a,21,a)].

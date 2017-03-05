@@ -1,0 +1,29 @@
+
+
+
+
+5 -cat(A) | pet(A).  [clausify(2)].
+6 cat(garfield).  [assumption].
+7 -cat(A) | -dog(B) | -chased(B,A) | hates(owner_of(A),owner_of(B)).  [clausify(3)].
+8 -dog(A) | pet(A).  [clausify(1)].
+9 dog(odie).  [assumption].
+10 -dog(A) | -chased(A,garfield) | hates(owner_of(garfield),owner_of(A)).  [resolve(7,a,6,a)].
+11 -human(A) | -pet(B) | -owner(A,B) | owner_of(B) = A.  [clausify(4)].
+12 pet(garfield).  [resolve(5,a,6,a)].
+13 pet(odie).  [resolve(8,a,9,a)].
+14 human(jon).  [assumption].
+15 -human(A) | -owner(A,garfield) | owner_of(garfield) = A.  [resolve(12,a,11,b)].
+16 -human(A) | -owner(A,odie) | owner_of(odie) = A.  [resolve(13,a,11,b)].
+17 owner(jon,odie).  [assumption].
+18 owner(jon,garfield).  [assumption].
+19 chased(odie,garfield).  [assumption].
+20 -hates(jon,jon).  [assumption].
+21 -chased(odie,garfield) | hates(owner_of(garfield),owner_of(odie)).  [resolve(10,a,9,a)].
+22 hates(owner_of(garfield),owner_of(odie)).  [resolve(19,a,21,a)].
+23 -owner(jon,garfield) | owner_of(garfield) = jon.  [resolve(15,a,14,a)].
+24 owner_of(garfield) = jon.  [resolve(18,a,23,a)].
+25 -owner(jon,odie) | owner_of(odie) = jon.  [resolve(16,a,14,a)].
+26 owner_of(odie) = jon.  [resolve(17,a,25,a)].
+27 hates(jon,owner_of(odie)).  [para(24(a,1),22(a,1))].
+28 hates(jon,jon).  [para(26(a,1),27(a,2))].
+29 $F.  [resolve(20,a,28,a)].

@@ -1,0 +1,23 @@
+
+
+
+4 relation(c8).  [clausify(3)].
+5 -relation(A) | -function(A) | relation_rng(A) != B | in(C,B) | -in(D,relation_dom(A)) | apply(A,D) != C.  [clausify(2)].
+6 function(c8).  [clausify(3)].
+7 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+8 -subset(c7,relation_rng(c8)).  [clausify(3)].
+9 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+10 -in(A,c7) | in(f8(A),relation_dom(c8)).  [clausify(3)].
+11 -in(A,c7) | apply(c8,f8(A)) = A.  [clausify(3)].
+12 -function(c8) | relation_rng(c8) != A | in(B,A) | -in(C,relation_dom(c8)) | apply(c8,C) != B.  [resolve(5,a,4,a)].
+13 relation_rng(c8) != A | in(B,A) | -in(C,relation_dom(c8)) | apply(c8,C) != B.  [resolve(6,a,12,a)].
+14 in(f1(c7,relation_rng(c8)),c7).  [resolve(8,a,7,a)].
+15 apply(c8,f8(f1(c7,relation_rng(c8)))) = f1(c7,relation_rng(c8)).  [resolve(14,a,11,a)].
+16 in(f8(f1(c7,relation_rng(c8))),relation_dom(c8)).  [resolve(14,a,10,a)].
+17 relation_rng(c8) != A | in(B,A) | apply(c8,f8(f1(c7,relation_rng(c8)))) != B.  [resolve(16,a,13,c)].
+18 relation_rng(c8) != A | in(B,A) | f1(c7,relation_rng(c8)) != B.  [para(15(a,1),17(c,1))].
+19 in(A,relation_rng(c8)) | f1(c7,relation_rng(c8)) != A.  [xx_res(18,a)].
+20 in(apply(c8,f8(f1(c7,relation_rng(c8)))),relation_rng(c8)).  [resolve(19,b,15,a(flip))].
+21 in(f1(c7,relation_rng(c8)),relation_rng(c8)).  [para(15(a,1),20(a,1))].
+22 subset(c7,relation_rng(c8)).  [resolve(21,a,9,b)].
+23 $F.  [resolve(8,a,22,a)].

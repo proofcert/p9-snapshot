@@ -1,0 +1,35 @@
+
+
+
+
+
+6 aNaturalNumber0(sz00).  [assumption].
+7 -aNaturalNumber0(A) | sdtpldt0(A,sz00) = A.  [clausify(1)].
+8 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtlseqdt0(A,B) | sdtlseqdt0(B,A).  [clausify(2)].
+9 aNaturalNumber0(xn).  [assumption].
+10 aNaturalNumber0(xm).  [assumption].
+11 aNaturalNumber0(xp).  [assumption].
+12 -aNaturalNumber0(A) | sdtpldt0(xp,A) != xn.  [clausify(3)].
+13 -sdtlseqdt0(xp,xn).  [clausify(3)].
+14 -aNaturalNumber0(A) | sdtpldt0(xp,A) != xm.  [clausify(4)].
+15 -sdtlseqdt0(xp,xm).  [clausify(4)].
+16 xp = xn | -sdtlseqdt0(xn,xp) | xp = xm | -sdtlseqdt0(xm,xp).  [clausify(5)].
+17 xn = xp | -sdtlseqdt0(xn,xp) | xp = xm | -sdtlseqdt0(xm,xp).  [copy(16),flip(a)].
+18 xn = xp | -sdtlseqdt0(xn,xp) | xm = xp | -sdtlseqdt0(xm,xp).  [copy(17),flip(c)].
+19 -aNaturalNumber0(A) | sdtlseqdt0(A,xn) | sdtlseqdt0(xn,A).  [resolve(9,a,8,b)].
+20 -aNaturalNumber0(A) | sdtlseqdt0(A,xm) | sdtlseqdt0(xm,A).  [resolve(10,a,8,b)].
+21 sdtpldt0(xp,sz00) = xp.  [resolve(11,a,7,a)].
+22 sdtpldt0(xp,sz00) != xn.  [resolve(12,a,6,a)].
+23 xp != xn.  [para(21(a,1),22(a,1))].
+24 xn != xp.  [copy(23),flip(a)].
+25 -sdtlseqdt0(xn,xp) | xm = xp | -sdtlseqdt0(xm,xp).  [resolve(24,a,18,a)].
+26 sdtpldt0(xp,sz00) != xm.  [resolve(14,a,6,a)].
+27 xp != xm.  [para(21(a,1),26(a,1))].
+28 xm != xp.  [copy(27),flip(a)].
+29 -sdtlseqdt0(xn,xp) | -sdtlseqdt0(xm,xp).  [resolve(28,a,25,b)].
+30 sdtlseqdt0(xp,xn) | sdtlseqdt0(xn,xp).  [resolve(19,a,11,a)].
+31 sdtlseqdt0(xn,xp).  [resolve(13,a,30,a)].
+32 -sdtlseqdt0(xm,xp).  [resolve(31,a,29,a)].
+33 sdtlseqdt0(xp,xm) | sdtlseqdt0(xm,xp).  [resolve(20,a,11,a)].
+34 sdtlseqdt0(xm,xp).  [resolve(15,a,33,a)].
+35 $F.  [resolve(32,a,34,a)].

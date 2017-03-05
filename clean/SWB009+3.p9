@@ -1,0 +1,22 @@
+
+
+
+
+5 -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | iext(C,D,f17(A,C,B,D)).  [clausify(1)].
+6 -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | icext(B,f17(A,C,B,D)).  [clausify(1)].
+7 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(2)].
+8 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(2)].
+9 iext(uri_rdf_type,uri_ex_s,c2).  [clausify(3)].
+10 iext(uri_owl_onProperty,c2,uri_ex_p).  [clausify(3)].
+11 iext(uri_owl_someValuesFrom,c2,uri_ex_c).  [clausify(3)].
+12 -iext(uri_ex_p,uri_ex_s,A) | -iext(uri_rdf_type,A,uri_ex_c).  [clausify(4)].
+13 icext(c2,uri_ex_s).  [resolve(9,a,7,a)].
+14 -iext(uri_owl_someValuesFrom,c2,A) | -icext(c2,B) | icext(A,f17(c2,uri_ex_p,A,B)).  [resolve(10,a,6,b)].
+15 -iext(uri_owl_someValuesFrom,c2,A) | -icext(c2,B) | iext(uri_ex_p,B,f17(c2,uri_ex_p,A,B)).  [resolve(10,a,5,b)].
+16 -icext(c2,A) | icext(uri_ex_c,f17(c2,uri_ex_p,uri_ex_c,A)).  [resolve(14,a,11,a)].
+17 -icext(c2,A) | iext(uri_ex_p,A,f17(c2,uri_ex_p,uri_ex_c,A)).  [resolve(15,a,11,a)].
+18 icext(uri_ex_c,f17(c2,uri_ex_p,uri_ex_c,uri_ex_s)).  [resolve(16,a,13,a)].
+19 iext(uri_rdf_type,f17(c2,uri_ex_p,uri_ex_c,uri_ex_s),uri_ex_c).  [resolve(18,a,8,b)].
+20 iext(uri_ex_p,uri_ex_s,f17(c2,uri_ex_p,uri_ex_c,uri_ex_s)).  [resolve(17,a,13,a)].
+21 -iext(uri_rdf_type,f17(c2,uri_ex_p,uri_ex_c,uri_ex_s),uri_ex_c).  [resolve(20,a,12,a)].
+22 $F.  [resolve(19,a,21,a)].

@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n060.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:41:28 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 33868 was started by sandbox on n060.star.cs.uiowa.edu,
+Thu Jun  5 16:41:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_33836_n060.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 19.
+% Level of proof is 6.
+% Maximum clause weight is 10.000.
+% Given clauses 3.
+
+
+1 (all A all B all C all D (environment(A) & subpopulations(B,C,A,D) -> subpopulations(C,B,A,D))).  [assumption].
+2 (all A all B all C all D (environment(A) & subpopulations(B,C,A,D) -> (greater_or_equal(growth_rate(C,D),zero) & greater(zero,growth_rate(B,D)) <-> outcompetes(C,B,D)))).  [assumption].
+3 (exists A exists B (environment(A) & subpopulations(first_movers,efficient_producers,A,B) & greater_or_equal(growth_rate(first_movers,B),zero) & greater(zero,growth_rate(efficient_producers,B)))).  [assumption].
+4 -(exists A exists B (environment(A) & subpopulations(first_movers,efficient_producers,A,B) & outcompetes(first_movers,efficient_producers,B))).  [assumption].
+5 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -outcompetes(first_movers,efficient_producers,B).  [clausify(4)].
+6 environment(c1).  [clausify(3)].
+7 -environment(A) | -subpopulations(B,C,A,D) | subpopulations(C,B,A,D).  [clausify(1)].
+8 -environment(A) | -subpopulations(B,C,A,D) | -greater_or_equal(growth_rate(C,D),zero) | -greater(zero,growth_rate(B,D)) | outcompetes(C,B,D).  [clausify(2)].
+9 -subpopulations(A,B,c1,C) | -greater_or_equal(growth_rate(B,C),zero) | -greater(zero,growth_rate(A,C)) | outcompetes(B,A,C).  [resolve(8,a,6,a)].
+10 greater_or_equal(growth_rate(first_movers,c2),zero).  [clausify(3)].
+11 -subpopulations(A,first_movers,c1,c2) | -greater(zero,growth_rate(A,c2)) | outcompetes(first_movers,A,c2).  [resolve(9,b,10,a)].
+12 greater(zero,growth_rate(efficient_producers,c2)).  [clausify(3)].
+13 subpopulations(first_movers,efficient_producers,c1,c2).  [clausify(3)].
+14 -subpopulations(first_movers,efficient_producers,c1,A) | -outcompetes(first_movers,efficient_producers,A).  [resolve(5,a,6,a)].
+15 -subpopulations(A,B,c1,C) | subpopulations(B,A,c1,C).  [resolve(7,a,6,a)].
+16 -subpopulations(efficient_producers,first_movers,c1,c2) | outcompetes(first_movers,efficient_producers,c2).  [resolve(11,b,12,a)].
+17 -outcompetes(first_movers,efficient_producers,c2).  [resolve(14,a,13,a)].
+18 -subpopulations(efficient_producers,first_movers,c1,c2).  [resolve(17,a,16,b)].
+19 subpopulations(efficient_producers,first_movers,c1,c2).  [resolve(15,a,13,a)].
+20 $F.  [resolve(18,a,19,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,29 @@
+
+
+
+
+
+6 not_equal(A,B) | B = A.  [clausify(4)].
+7 intersect(c1,c1) | not_equal(c1,empty_set).  [clausify(5)].
+8 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(3)].
+9 -member(A,empty_set).  [clausify(2)].
+10 -not_equal(A,B) | B != A.  [clausify(4)].
+11 -intersect(c1,c1) | -not_equal(c1,empty_set).  [clausify(5)].
+12 -intersect(A,B) | member(f1(A,B),B).  [clausify(1)].
+13 intersect(A,B) | -member(C,A) | -member(C,B).  [clausify(1)].
+14 intersect(A,A) | -member(B,A).  [factor(13,b,c)].
+15 empty_set = A | member(f2(A,empty_set),A).  [resolve(9,a,8,c)].
+16 empty_set != c1 | intersect(c1,c1).  [resolve(10,a,7,b)].
+17 c1 != empty_set | intersect(c1,c1).  [copy(16),flip(a)].
+18 -intersect(c1,c1) | empty_set = c1.  [resolve(11,b,6,a)].
+19 -intersect(c1,c1) | c1 = empty_set.  [copy(18),flip(b)].
+20 -intersect(A,empty_set).  [resolve(12,b,9,a)].
+21 empty_set = A | intersect(A,A).  [resolve(15,b,14,b)].
+22 empty_set = c1 | c1 = empty_set.  [resolve(21,b,19,a)].
+23 c1 = empty_set | c1 = empty_set.  [copy(22),flip(a)].
+24 c1 = empty_set.  [copy(23),merge(b)].
+25 empty_set != empty_set | intersect(c1,c1).  [para(24(a,1),17(a,1))].
+26 empty_set != empty_set | intersect(empty_set,c1).  [para(24(a,1),25(b,1))].
+27 empty_set != empty_set | intersect(empty_set,empty_set).  [para(24(a,1),26(b,2))].
+28 intersect(empty_set,empty_set).  [copy(27),xx(a)].
+29 $F.  [resolve(20,a,28,a)].

@@ -1,0 +1,19 @@
+
+
+
+
+
+6 in(c3,c4).  [clausify(5)].
+7 in(c5,c4).  [clausify(5)].
+8 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+9 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(2)].
+10 set_intersection2(unordered_pair(c3,c5),c4) != unordered_pair(c3,c5).  [clausify(5)].
+11 set_intersection2(c4,unordered_pair(c3,c5)) != unordered_pair(c3,c5).  [para(9(a,1),10(a,1))].
+12 -subset(A,B) | set_intersection2(A,B) = A.  [clausify(3)].
+13 subset(unordered_pair(A,B),C) | -in(A,C) | -in(B,C).  [clausify(4)].
+14 subset(unordered_pair(c5,A),c4) | -in(A,c4).  [resolve(13,b,7,a)].
+15 subset(unordered_pair(c5,c3),c4).  [resolve(14,b,6,a)].
+16 subset(unordered_pair(c3,c5),c4).  [para(8(a,1),15(a,1))].
+17 set_intersection2(unordered_pair(c3,c5),c4) = unordered_pair(c3,c5).  [resolve(12,a,16,a)].
+18 set_intersection2(c4,unordered_pair(c3,c5)) = unordered_pair(c3,c5).  [para(9(a,1),17(a,1))].
+19 $F.  [resolve(11,a,18,a)].

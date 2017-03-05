@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n071.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:48:18 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 59073 was started by sandbox on n071.star.cs.uiowa.edu,
+Fri Jun  6 08:48:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_59041_n071.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 23.
+% Level of proof is 6.
+% Maximum clause weight is 8.000.
+% Given clauses 112.
+
+
+1 (all A all B all C all D (between_on_line(A,B,C,D) <-> before_on_line(A,B,C) & before_on_line(A,C,D) | before_on_line(A,D,C) & before_on_line(A,C,B))).  [assumption].
+2 -(all A all B all C all D (between_on_line(A,B,C,D) -> between_on_line(A,D,C,B))).  [assumption].
+3 -between_on_line(c1,c4,c3,c2).  [clausify(2)].
+4 between_on_line(c1,c2,c3,c4).  [clausify(2)].
+5 -between_on_line(A,B,C,D) | before_on_line(A,B,C) | before_on_line(A,D,C).  [clausify(1)].
+6 -between_on_line(A,B,C,D) | before_on_line(A,B,C) | before_on_line(A,C,B).  [clausify(1)].
+7 -between_on_line(A,B,C,D) | before_on_line(A,C,D) | before_on_line(A,D,C).  [clausify(1)].
+8 -between_on_line(A,B,C,D) | before_on_line(A,C,D) | before_on_line(A,C,B).  [clausify(1)].
+9 between_on_line(A,B,C,D) | -before_on_line(A,B,C) | -before_on_line(A,C,D).  [clausify(1)].
+10 between_on_line(A,B,C,D) | -before_on_line(A,D,C) | -before_on_line(A,C,B).  [clausify(1)].
+11 before_on_line(c1,c2,c3) | before_on_line(c1,c4,c3).  [resolve(5,a,4,a)].
+12 before_on_line(c1,c2,c3) | before_on_line(c1,c3,c2).  [resolve(6,a,4,a)].
+13 before_on_line(c1,c3,c4) | before_on_line(c1,c4,c3).  [resolve(7,a,4,a)].
+14 before_on_line(c1,c3,c4) | before_on_line(c1,c3,c2).  [resolve(8,a,4,a)].
+15 -before_on_line(c1,c4,c3) | -before_on_line(c1,c3,c2).  [resolve(9,a,3,a)].
+16 -before_on_line(c1,c2,c3) | -before_on_line(c1,c3,c4).  [resolve(10,a,3,a)].
+17 -before_on_line(c1,c3,c2) | before_on_line(c1,c3,c4).  [resolve(15,a,13,b)].
+18 -before_on_line(c1,c3,c2) | before_on_line(c1,c2,c3).  [resolve(15,a,11,b)].
+19 -before_on_line(c1,c2,c3) | before_on_line(c1,c3,c2).  [resolve(16,b,14,a)].
+20 before_on_line(c1,c2,c3) | before_on_line(c1,c2,c3).  [resolve(18,a,12,b)].
+21 before_on_line(c1,c2,c3).  [copy(20),merge(b)].
+22 before_on_line(c1,c3,c2).  [resolve(21,a,19,a)].
+23 -before_on_line(c1,c3,c4).  [resolve(21,a,16,a)].
+24 before_on_line(c1,c3,c4).  [resolve(22,a,17,a)].
+25 $F.  [resolve(23,a,24,a)].
+
+============================== end of proof ==========================

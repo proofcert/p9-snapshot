@@ -1,0 +1,67 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n157.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:49:58 CDT 2014
+% CPUTime    : 9.22 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 16660 was started by sandbox on n157.star.cs.uiowa.edu,
+Fri Jun  6 08:49:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_16628_n157.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 8.92 (+ 0.09) seconds.
+% Length of proof is 23.
+% Level of proof is 8.
+% Maximum clause weight is 8.000.
+% Given clauses 2792.
+
+
+1 (all A (ssItem(A) -> -memberP(nil,A))).  [assumption].
+2 (all A (ssItem(A) -> strictorderedP(cons(A,nil)))).  [assumption].
+3 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (-ssList(D) | B != D | A != C | strictorderedP(A) | (all E (-ssItem(E) | cons(E,nil) != C | -memberP(D,E) | (exists F (ssItem(F) & E != F & memberP(D,F) & leq(F,E))))) & (nil != D | nil != C))))))))).  [assumption].
+4 -ssItem(A) | -memberP(nil,A).  [clausify(1)].
+5 -ssItem(A) | strictorderedP(cons(A,nil)).  [clausify(2)].
+6 strictorderedP(nil).  [assumption].
+7 c6 = c4.  [clausify(3)].
+8 c5 = c3.  [clausify(3)].
+9 -strictorderedP(c3).  [clausify(3)].
+10 ssItem(c7) | nil = c6.  [clausify(3)].
+11 ssItem(c7) | nil = c4.  [para(7(a,1),10(b,2))].
+12 ssItem(c7) | c4 = nil.  [copy(11),flip(b)].
+13 ssItem(c7) | nil = c5.  [clausify(3)].
+14 ssItem(c7) | nil = c3.  [para(8(a,1),13(b,2))].
+15 ssItem(c7) | c3 = nil.  [copy(14),flip(b)].
+16 cons(c7,nil) = c5 | nil = c6.  [clausify(3)].
+17 cons(c7,nil) = c3 | nil = c6.  [para(8(a,1),16(a,2))].
+18 cons(c7,nil) = c3 | nil = c4.  [para(7(a,1),17(b,2))].
+19 cons(c7,nil) = c3 | c4 = nil.  [copy(18),flip(b)].
+20 memberP(c6,c7) | nil = c5.  [clausify(3)].
+21 memberP(c4,c7) | nil = c5.  [para(7(a,1),20(a,1))].
+22 memberP(c4,c7) | nil = c3.  [para(8(a,1),21(b,2))].
+23 memberP(c4,c7) | c3 = nil.  [copy(22),flip(b)].
+24 c4 = nil | strictorderedP(cons(c7,nil)).  [resolve(12,a,5,a)].
+25 c4 = nil | c4 = nil | strictorderedP(c3).  [para(19(a,1),24(b,1))].
+26 c4 = nil | strictorderedP(c3).  [copy(25),merge(b)].
+27 c4 = nil.  [resolve(9,a,26,b)].
+28 memberP(nil,c7) | c3 = nil.  [para(27(a,1),23(a,1))].
+29 c3 = nil | -ssItem(c7).  [resolve(28,a,4,b)].
+30 c3 = nil | c3 = nil.  [resolve(29,b,15,a)].
+31 c3 = nil.  [copy(30),merge(b)].
+32 -strictorderedP(nil).  [para(31(a,1),9(a,1))].
+33 $F.  [resolve(6,a,32,a)].
+
+============================== end of proof ==========================

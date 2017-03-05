@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n163.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 18:06:58 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 47333 was started by sandbox on n163.star.cs.uiowa.edu,
+Fri Jun  6 18:06:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_47301_n163.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 6.
+% Maximum clause weight is 13.000.
+% Given clauses 38.
+
+
+1 (all A all B subset(intersection(A,B),A)).  [assumption].
+2 (all A all B (subset(A,B) -> intersection(A,B) = A)).  [assumption].
+3 (all A union(A,empty_set) = A).  [assumption].
+4 (all A all B all C intersection(A,union(B,C)) = union(intersection(A,B),intersection(A,C))).  [assumption].
+5 (all A all B intersection(A,B) = intersection(B,A)).  [assumption].
+6 -(all A all B all C (subset(A,union(B,C)) & intersection(A,C) = empty_set -> subset(A,B))).  [assumption].
+7 subset(intersection(A,B),A).  [clausify(1)].
+8 union(A,empty_set) = A.  [clausify(3)].
+9 subset(c1,union(c2,c3)).  [clausify(6)].
+10 intersection(c1,c3) = empty_set.  [clausify(6)].
+11 empty_set = intersection(c1,c3).  [copy(10),flip(a)].
+12 intersection(A,B) = intersection(B,A).  [clausify(5)].
+13 union(intersection(A,B),intersection(A,C)) = intersection(A,union(B,C)).  [clausify(4)].
+14 -subset(c1,c2).  [clausify(6)].
+15 -subset(A,B) | intersection(A,B) = A.  [clausify(2)].
+16 union(A,intersection(c1,c3)) = A.  [para(11(a,1),8(a,1,2))].
+17 subset(intersection(A,B),B).  [para(12(a,1),7(a,1))].
+18 intersection(c1,union(c2,c3)) = c1.  [resolve(15,a,9,a)].
+19 intersection(c1,A) = intersection(c1,union(A,c3)).  [para(16(a,1),13(a,1))].
+20 intersection(A,c1) = intersection(c1,union(A,c3)).  [para(12(a,1),19(a,1))].
+21 intersection(c1,union(A,c3)) = intersection(A,c1).  [copy(20),flip(a)].
+22 intersection(c2,c1) = c1.  [para(21(a,1),18(a,1))].
+23 intersection(c1,c2) = c1.  [para(12(a,1),22(a,1))].
+24 subset(c1,c2).  [para(23(a,1),17(a,1))].
+25 $F.  [resolve(14,a,24,a)].
+
+============================== end of proof ==========================

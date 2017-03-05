@@ -1,0 +1,50 @@
+
+2 equalish(c1,c2) | equalish(c2,c1).  [clausify(1)].
+3 equalish(A,B) | a_member_of(f1(A,B),A) | a_member_of(f1(A,B),B).  [clausify(1)].
+4 -equalish(c1,c2) | -equalish(c2,c1).  [clausify(1)].
+5 -equalish(A,B) | -a_member_of(C,A) | a_member_of(C,B).  [clausify(1)].
+6 -equalish(A,B) | a_member_of(C,A) | -a_member_of(C,B).  [clausify(1)].
+7 equalish(A,B) | -a_member_of(f1(A,B),A) | -a_member_of(f1(A,B),B).  [clausify(1)].
+8 -equalish(c1,c2) | a_member_of(f1(c2,c1),c2) | a_member_of(f1(c2,c1),c1).  [resolve(4,b,3,a)].
+9 -a_member_of(A,B) | a_member_of(A,C) | a_member_of(f1(B,C),B) | a_member_of(f1(B,C),C).  [resolve(5,a,3,a)].
+10 -a_member_of(A,c2) | a_member_of(A,c1) | equalish(c1,c2).  [resolve(5,a,2,b)].
+11 a_member_of(A,B) | -a_member_of(A,C) | a_member_of(f1(B,C),B) | a_member_of(f1(B,C),C).  [resolve(6,a,3,a)].
+12 a_member_of(A,c2) | -a_member_of(A,c1) | equalish(c1,c2).  [resolve(6,a,2,b)].
+13 a_member_of(f1(c2,c1),c2) | a_member_of(f1(c2,c1),c1) | a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2).  [resolve(8,a,3,a)].
+14 a_member_of(f1(c2,c1),c1) | a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | a_member_of(f1(c2,c1),A) | a_member_of(f1(A,c2),A) | a_member_of(f1(A,c2),c2).  [resolve(13,a,11,b)].
+15 a_member_of(f1(c2,c1),c1) | a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2).  [factor(14,a,d)].
+16 a_member_of(f1(c2,c1),c1) | a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | a_member_of(f1(c1,c2),c2).  [copy(15),merge(d)].
+17 a_member_of(f1(c2,c1),c1) | a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2).  [copy(16),merge(d)].
+18 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | a_member_of(f1(c2,c1),A) | a_member_of(f1(c1,A),c1) | a_member_of(f1(c1,A),A).  [resolve(17,a,9,a)].
+19 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | equalish(c2,c1) | -a_member_of(f1(c2,c1),c2).  [resolve(17,a,7,c)].
+20 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | a_member_of(f1(c2,c1),c2) | a_member_of(f1(c1,c2),c2).  [factor(18,a,d)].
+21 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | a_member_of(f1(c2,c1),c2).  [copy(20),merge(d)].
+22 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | equalish(c2,c1) | a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2).  [resolve(19,d,21,c)].
+23 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | equalish(c2,c1) | a_member_of(f1(c1,c2),c2).  [copy(22),merge(d)].
+24 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | equalish(c2,c1).  [copy(23),merge(d)].
+25 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | -equalish(c1,c2).  [resolve(24,c,4,b)].
+26 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2).  [resolve(25,c,3,a)].
+27 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2) | a_member_of(f1(c1,c2),c2).  [copy(26),merge(c)].
+28 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c2).  [copy(27),merge(c)].
+29 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c1) | equalish(c1,c2).  [resolve(28,b,10,a)].
+30 a_member_of(f1(c1,c2),c1) | equalish(c1,c2).  [copy(29),merge(b)].
+31 a_member_of(f1(c1,c2),c1) | a_member_of(A,c1) | -a_member_of(A,c2).  [resolve(30,b,6,a)].
+32 a_member_of(f1(c1,c2),c1) | -a_member_of(f1(c1,c2),c2).  [factor(31,a,b)].
+33 a_member_of(f1(c1,c2),c1) | a_member_of(f1(c1,c2),c1).  [resolve(32,b,28,b)].
+34 a_member_of(f1(c1,c2),c1).  [copy(33),merge(b)].
+35 a_member_of(f1(c1,c2),c2) | equalish(c1,c2).  [resolve(34,a,12,b)].
+36 equalish(c1,c2) | -a_member_of(f1(c1,c2),c2).  [resolve(34,a,7,b)].
+37 a_member_of(f1(c1,c2),c2) | -a_member_of(A,c1) | a_member_of(A,c2).  [resolve(35,b,5,a)].
+38 a_member_of(f1(c1,c2),c2) | -a_member_of(f1(c1,c2),c1).  [factor(37,a,c)].
+39 a_member_of(f1(c1,c2),c2).  [resolve(34,a,38,b)].
+40 equalish(c1,c2).  [resolve(39,a,36,b)].
+41 a_member_of(f1(c2,c1),c2) | a_member_of(f1(c2,c1),c1).  [resolve(40,a,8,a)].
+42 -equalish(c2,c1).  [resolve(40,a,4,a)].
+43 a_member_of(A,c1) | -a_member_of(A,c2).  [resolve(40,a,6,a)].
+44 -a_member_of(A,c1) | a_member_of(A,c2).  [resolve(40,a,5,a)].
+45 a_member_of(f1(c2,c1),c1) | a_member_of(f1(c2,c1),c1).  [resolve(41,a,43,b)].
+46 a_member_of(f1(c2,c1),c1).  [copy(45),merge(b)].
+47 a_member_of(f1(c2,c1),c2).  [resolve(46,a,44,a)].
+48 equalish(c2,c1) | -a_member_of(f1(c2,c1),c2).  [resolve(46,a,7,c)].
+49 -a_member_of(f1(c2,c1),c2).  [resolve(42,a,48,a)].
+50 $F.  [resolve(47,a,49,a)].

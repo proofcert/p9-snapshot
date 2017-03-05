@@ -1,0 +1,36 @@
+
+
+
+
+
+
+7 empty(f3(A)).  [clausify(3)].
+8 element(f3(A),powerset(A)).  [clausify(3)].
+9 element(c3,powerset(powerset(c2))).  [clausify(6)].
+10 complements_of_subsets(c2,c3) = empty_set | empty_set = c3.  [clausify(6)].
+11 complements_of_subsets(c2,c3) = empty_set | c3 = empty_set.  [copy(10),flip(b)].
+12 empty_set != c3 | complements_of_subsets(c2,c3) != empty_set.  [clausify(6)].
+13 c3 != empty_set | complements_of_subsets(c2,c3) != empty_set.  [copy(12),flip(a)].
+14 -empty(A) | empty_set = A.  [clausify(5)].
+15 -element(A,powerset(powerset(B))) | element(complements_of_subsets(B,A),powerset(powerset(B))).  [clausify(1)].
+16 -element(A,powerset(powerset(B))) | complements_of_subsets(B,complements_of_subsets(B,A)) = A.  [clausify(2)].
+17 -element(A,powerset(powerset(B))) | empty_set = A | complements_of_subsets(B,A) != empty_set.  [clausify(4)].
+18 empty_set = f3(A).  [resolve(14,a,7,a)].
+19 f3(A) = empty_set.  [copy(18),flip(a)].
+20 element(empty_set,powerset(A)).  [para(19(a,1),8(a,1))].
+21 complements_of_subsets(c2,complements_of_subsets(c2,c3)) = c3.  [resolve(16,a,9,a)].
+22 complements_of_subsets(A,complements_of_subsets(A,empty_set)) = empty_set.  [resolve(20,a,16,a)].
+23 element(complements_of_subsets(A,empty_set),powerset(powerset(A))).  [resolve(20,a,15,a)].
+24 c3 = empty_set | complements_of_subsets(c2,empty_set) = c3.  [para(11(a,1),21(a,1,2))].
+25 empty_set = complements_of_subsets(A,empty_set) | complements_of_subsets(A,complements_of_subsets(A,empty_set)) != empty_set.  [resolve(23,a,17,a)].
+26 empty_set = complements_of_subsets(A,empty_set) | empty_set != empty_set.  [para(22(a,1),25(b,1))].
+27 complements_of_subsets(A,empty_set) = empty_set | empty_set != empty_set.  [copy(26),flip(a)].
+28 complements_of_subsets(A,empty_set) = empty_set.  [copy(27),xx(b)].
+29 c3 = empty_set | empty_set = c3.  [para(28(a,1),24(b,1))].
+30 c3 = empty_set | c3 = empty_set.  [copy(29),flip(b)].
+31 c3 = empty_set.  [copy(30),merge(b)].
+32 empty_set != empty_set | complements_of_subsets(c2,c3) != empty_set.  [para(31(a,1),13(a,1))].
+33 empty_set != empty_set | complements_of_subsets(c2,empty_set) != empty_set.  [para(31(a,1),32(b,1,2))].
+34 empty_set != empty_set | empty_set != empty_set.  [para(28(a,1),33(b,1))].
+35 empty_set != empty_set.  [copy(34),xx(a)].
+36 $F.  [copy(35),xx(a)].

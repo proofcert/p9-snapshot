@@ -1,0 +1,79 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n048.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 23:23:18 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 28626 was started by sandbox on n048.star.cs.uiowa.edu,
+Thu Jun  5 23:23:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_28594_n048.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 34.
+% Level of proof is 9.
+% Maximum clause weight is 9.000.
+% Given clauses 2.
+
+
+1 -((all A (person(A) & property1(A,honest,pos) & property1(A,industrious,pos) -> (exists B (property1(B,healthy,pos) & A = B)))) & (all C (grocer(C) -> -(exists D (property1(D,healthy,pos) & C = D)))) & (all E (grocer(E) & property1(E,industrious,pos) -> (exists F (property1(F,honest,pos) & E = F)))) & (all V6 (cyclist(V6) -> (exists V7 (property1(V7,industrious,pos) & V6 = V7)))) & (all V8 (cyclist(V8) & property1(V8,unhealthy,pos) -> (exists V9 (property1(V9,dishonest,pos) & V8 = V9)))) & (all V10 (person(V10) & property1(V10,healthy,pos) -> -(exists V11 (property1(V11,unhealthy,pos) & V10 = V11)))) & (all V12 (person(V12) & property1(V12,honest,pos) -> -(exists V13 (property1(V13,dishonest,pos) & V12 = V13)))) & (all V14 (grocer(V14) -> (exists V15 (person(V15) & V14 = V15)))) & (all V16 (cyclist(V16) -> (exists V17 (person(V17) & V16 = V17)))) -> (all V18 (grocer(V18) -> -(exists V19 (cyclist(V19) & V18 = V19))))).  [assumption].
+2 -grocer(A) | -property1(B,healthy,pos) | B != A.  [clausify(1)].
+3 grocer(c1).  [clausify(1)].
+4 -grocer(A) | person(f5(A)).  [clausify(1)].
+5 -grocer(A) | f5(A) = A.  [clausify(1)].
+6 -grocer(A) | -property1(A,industrious,pos) | f2(A) = A.  [clausify(1)].
+7 -grocer(A) | -property1(A,industrious,pos) | property1(f2(A),honest,pos).  [clausify(1)].
+8 cyclist(c2).  [clausify(1)].
+9 -cyclist(A) | f3(A) = A.  [clausify(1)].
+10 -cyclist(A) | property1(f3(A),industrious,pos).  [clausify(1)].
+11 person(f5(c1)).  [resolve(4,a,3,a)].
+12 -person(A) | -property1(A,honest,pos) | -property1(A,industrious,pos) | f1(A) = A.  [clausify(1)].
+13 -person(A) | -property1(A,honest,pos) | -property1(A,industrious,pos) | property1(f1(A),healthy,pos).  [clausify(1)].
+14 c2 = c1.  [clausify(1)].
+15 -property1(A,healthy,pos) | A != c1.  [resolve(2,a,3,a)].
+16 -property1(A,healthy,pos) | c1 != A.  [copy(15),flip(b)].
+17 f5(c1) = c1.  [resolve(5,a,3,a)].
+18 -property1(c1,industrious,pos) | f2(c1) = c1.  [resolve(6,a,3,a)].
+19 -property1(c1,industrious,pos) | property1(f2(c1),honest,pos).  [resolve(7,a,3,a)].
+20 f3(c2) = c2.  [resolve(9,a,8,a)].
+21 f3(c1) = c2.  [para(14(a,1),20(a,1,1))].
+22 f3(c1) = c1.  [para(14(a,1),21(a,2))].
+23 property1(f3(c2),industrious,pos).  [resolve(10,a,8,a)].
+24 property1(f3(c1),industrious,pos).  [para(14(a,1),23(a,1,1))].
+25 property1(c1,industrious,pos).  [para(22(a,1),24(a,1))].
+26 -property1(f5(c1),honest,pos) | -property1(f5(c1),industrious,pos) | f1(f5(c1)) = f5(c1).  [resolve(11,a,12,a)].
+27 -property1(c1,honest,pos) | -property1(f5(c1),industrious,pos) | f1(f5(c1)) = f5(c1).  [para(17(a,1),26(a,1))].
+28 -property1(c1,honest,pos) | -property1(c1,industrious,pos) | f1(f5(c1)) = f5(c1).  [para(17(a,1),27(b,1))].
+29 -property1(c1,honest,pos) | -property1(c1,industrious,pos) | f1(c1) = f5(c1).  [para(17(a,1),28(c,1,1))].
+30 -property1(c1,honest,pos) | -property1(c1,industrious,pos) | f1(c1) = c1.  [para(17(a,1),29(c,2))].
+31 -property1(c1,honest,pos) | f1(c1) = c1.  [resolve(25,a,30,b)].
+32 -property1(f5(c1),honest,pos) | -property1(f5(c1),industrious,pos) | property1(f1(f5(c1)),healthy,pos).  [resolve(11,a,13,a)].
+33 -property1(c1,honest,pos) | -property1(f5(c1),industrious,pos) | property1(f1(f5(c1)),healthy,pos).  [para(17(a,1),32(a,1))].
+34 -property1(c1,honest,pos) | -property1(c1,industrious,pos) | property1(f1(f5(c1)),healthy,pos).  [para(17(a,1),33(b,1))].
+35 -property1(c1,honest,pos) | -property1(c1,industrious,pos) | property1(f1(c1),healthy,pos).  [para(17(a,1),34(c,1,1))].
+36 -property1(c1,honest,pos) | property1(f1(c1),healthy,pos).  [resolve(25,a,35,b)].
+37 property1(f2(c1),honest,pos).  [resolve(25,a,19,a)].
+38 f2(c1) = c1.  [resolve(25,a,18,a)].
+39 property1(c1,honest,pos).  [para(38(a,1),37(a,1))].
+40 property1(f1(c1),healthy,pos).  [resolve(39,a,36,a)].
+41 f1(c1) = c1.  [resolve(39,a,31,a)].
+42 property1(c1,healthy,pos).  [para(41(a,1),40(a,1))].
+43 -property1(c2,healthy,pos).  [resolve(16,b,14,a(flip))].
+44 -property1(c1,healthy,pos).  [para(14(a,1),43(a,1))].
+45 $F.  [resolve(42,a,44,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n104.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:25:48 CDT 2014
+% CPUTime    : 2.86 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 26147 was started by sandbox on n104.star.cs.uiowa.edu,
+Fri Jun  6 01:25:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_26115_n104.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 2.58 (+ 0.05) seconds.
+% Length of proof is 18.
+% Level of proof is 5.
+% Maximum clause weight is 12.000.
+% Given clauses 1666.
+
+
+1 (all A all B ((all C (model(C,A) -> model(C,B))) <-> status(A,B,thm))).  [assumption].
+2 (all A all B ((exists C (model(C,A) & model(C,B))) & (exists D (model(D,A) & model(D,not(B)))) <-> status(A,B,noc))).  [assumption].
+3 (all A all B ((all C all D (status(C,D,A) -> -status(C,D,B))) <-> nevera(A,B))).  [assumption].
+4 (all A all B -(model(A,B) <-> model(A,not(B)))).  [assumption].
+5 status(f48(A,B),f49(A,B),A) | nevera(A,B).  [clausify(3)].
+6 status(f48(A,B),f49(A,B),B) | nevera(A,B).  [clausify(3)].
+7 -nevera(noc,thm).  [assumption].
+8 -model(A,B) | model(A,C) | -status(B,C,thm).  [clausify(1)].
+9 model(f41(A,B),A) | -status(A,B,noc).  [clausify(2)].
+10 model(f41(A,B),not(B)) | -status(A,B,noc).  [clausify(2)].
+11 -model(A,B) | -model(A,not(B)).  [clausify(4)].
+12 status(f48(noc,thm),f49(noc,thm),noc).  [resolve(7,a,5,b)].
+13 status(f48(noc,thm),f49(noc,thm),thm).  [resolve(7,a,6,b)].
+14 model(f41(f48(noc,thm),f49(noc,thm)),not(f49(noc,thm))).  [resolve(12,a,10,b)].
+15 model(f41(f48(noc,thm),f49(noc,thm)),f48(noc,thm)).  [resolve(12,a,9,b)].
+16 -model(A,f48(noc,thm)) | model(A,f49(noc,thm)).  [resolve(13,a,8,c)].
+17 -model(f41(f48(noc,thm),f49(noc,thm)),f49(noc,thm)).  [resolve(14,a,11,b)].
+18 model(f41(f48(noc,thm),f49(noc,thm)),f49(noc,thm)).  [resolve(16,a,15,a)].
+19 $F.  [resolve(17,a,18,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,78 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n098.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 21:37:43 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 33737 was started by sandbox on n098.star.cs.uiowa.edu,
+Thu Jun  5 21:37:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_33705_n098.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 38.
+% Level of proof is 9.
+% Maximum clause weight is 4.000.
+% Given clauses 3.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A (cAutomobile(A) -> cCar(A))).  [assumption].
+4 (all A (cCar(A) -> cAutomobile(A))).  [assumption].
+5 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & (all A (cCar(A) <-> cAutomobile(A)))).  [assumption].
+6 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cCar(c3) | cAutomobile(c3).  [clausify(5)].
+7 cowlThing(A).  [clausify(1)].
+8 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cCar(c3) | -cAutomobile(c3).  [clausify(5)].
+9 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cCar(c3) | cAutomobile(c3).  [clausify(5)].
+10 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cCar(c3) | -cAutomobile(c3).  [clausify(5)].
+11 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+12 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+13 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cCar(c3) | cAutomobile(c3).  [resolve(6,a,7,a)].
+14 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cCar(c3) | -cAutomobile(c3).  [resolve(8,a,7,a)].
+15 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cCar(c3) | cAutomobile(c3).  [resolve(9,a,7,a)].
+16 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cCar(c3) | -cAutomobile(c3).  [resolve(10,a,7,a)].
+17 cowlNothing(c1) | -xsd_integer(c2) | cCar(c3) | cAutomobile(c3) | -xsd_integer(c2).  [resolve(13,b,11,a)].
+18 -cowlNothing(A).  [clausify(1)].
+19 cowlNothing(c1) | -xsd_integer(c2) | -cCar(c3) | -cAutomobile(c3) | -xsd_integer(c2).  [resolve(14,b,11,a)].
+20 cowlNothing(c1) | xsd_integer(c2) | cCar(c3) | cAutomobile(c3) | xsd_integer(c2).  [resolve(15,b,12,a)].
+21 cowlNothing(c1) | xsd_integer(c2) | -cCar(c3) | -cAutomobile(c3) | xsd_integer(c2).  [resolve(16,b,12,a)].
+22 -cCar(A) | cAutomobile(A).  [clausify(4)].
+23 -cAutomobile(A) | cCar(A).  [clausify(3)].
+24 -xsd_integer(c2) | cCar(c3) | cAutomobile(c3) | -xsd_integer(c2).  [resolve(17,a,18,a)].
+25 -xsd_integer(c2) | -cCar(c3) | -cAutomobile(c3) | -xsd_integer(c2).  [resolve(19,a,18,a)].
+26 xsd_integer(c2) | cCar(c3) | cAutomobile(c3) | xsd_integer(c2).  [resolve(20,a,18,a)].
+27 xsd_integer(c2) | -cCar(c3) | -cAutomobile(c3) | xsd_integer(c2).  [resolve(21,a,18,a)].
+28 -xsd_integer(c2) | cCar(c3) | -xsd_integer(c2) | cCar(c3).  [resolve(24,c,23,a)].
+29 -xsd_integer(c2) | cCar(c3) | cCar(c3).  [copy(28),merge(c)].
+30 -xsd_integer(c2) | cCar(c3).  [copy(29),merge(c)].
+31 -xsd_integer(c2) | -cCar(c3) | -xsd_integer(c2) | -cCar(c3).  [resolve(25,c,22,b)].
+32 -xsd_integer(c2) | -cCar(c3) | -cCar(c3).  [copy(31),merge(c)].
+33 -xsd_integer(c2) | -cCar(c3).  [copy(32),merge(c)].
+34 xsd_integer(c2) | cCar(c3) | xsd_integer(c2) | cCar(c3).  [resolve(26,c,23,a)].
+35 xsd_integer(c2) | cCar(c3) | cCar(c3).  [copy(34),merge(c)].
+36 xsd_integer(c2) | cCar(c3).  [copy(35),merge(c)].
+37 xsd_integer(c2) | -cCar(c3) | xsd_integer(c2) | -cCar(c3).  [resolve(27,c,22,b)].
+38 xsd_integer(c2) | -cCar(c3) | -cCar(c3).  [copy(37),merge(c)].
+39 xsd_integer(c2) | -cCar(c3).  [copy(38),merge(c)].
+40 cCar(c3) | cCar(c3).  [resolve(36,a,30,a)].
+41 cCar(c3).  [copy(40),merge(b)].
+42 xsd_integer(c2).  [resolve(41,a,39,b)].
+43 -cCar(c3).  [resolve(42,a,33,a)].
+44 $F.  [resolve(41,a,43,a)].
+
+============================== end of proof ==========================

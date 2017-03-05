@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n056.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:07:48 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5850 was started by sandbox on n056.star.cs.uiowa.edu,
+Fri Jun  6 08:07:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5818_n056.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 3.
+% Maximum clause weight is 29.000.
+% Given clauses 53.
+
+
+1 (all A removemin_cpq_eff(A) = remove_cpq(findmin_cpq_eff(A),findmin_cpq_res(A))).  [assumption].
+2 (all A all B all C (check_cpq(removemin_cpq_eff(triple(A,B,C))) & ok(removemin_cpq_eff(triple(A,B,C))) -> check_cpq(triple(A,B,C)))).  [assumption].
+3 -(all A all B all C (-check_cpq(triple(A,B,C)) -> -check_cpq(removemin_cpq_eff(triple(A,B,C))) | -ok(removemin_cpq_eff(triple(A,B,C))))).  [assumption].
+4 check_cpq(removemin_cpq_eff(triple(c1,c2,c3))).  [clausify(3)].
+5 ok(removemin_cpq_eff(triple(c1,c2,c3))).  [clausify(3)].
+6 removemin_cpq_eff(A) = remove_cpq(findmin_cpq_eff(A),findmin_cpq_res(A)).  [clausify(1)].
+7 -check_cpq(triple(c1,c2,c3)).  [clausify(3)].
+8 -check_cpq(removemin_cpq_eff(triple(A,B,C))) | -ok(removemin_cpq_eff(triple(A,B,C))) | check_cpq(triple(A,B,C)).  [clausify(2)].
+9 -check_cpq(remove_cpq(findmin_cpq_eff(triple(A,B,C)),findmin_cpq_res(triple(A,B,C)))) | -ok(removemin_cpq_eff(triple(A,B,C))) | check_cpq(triple(A,B,C)).  [para(6(a,1),8(a,1))].
+10 -check_cpq(remove_cpq(findmin_cpq_eff(triple(A,B,C)),findmin_cpq_res(triple(A,B,C)))) | -ok(remove_cpq(findmin_cpq_eff(triple(A,B,C)),findmin_cpq_res(triple(A,B,C)))) | check_cpq(triple(A,B,C)).  [para(6(a,1),9(b,1))].
+11 ok(remove_cpq(findmin_cpq_eff(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3)))).  [para(6(a,1),5(a,1))].
+12 check_cpq(remove_cpq(findmin_cpq_eff(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3)))).  [para(6(a,1),4(a,1))].
+13 -check_cpq(remove_cpq(findmin_cpq_eff(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3)))) | check_cpq(triple(c1,c2,c3)).  [resolve(11,a,10,b)].
+14 check_cpq(triple(c1,c2,c3)).  [resolve(12,a,13,a)].
+15 $F.  [resolve(7,a,14,a)].
+
+============================== end of proof ==========================

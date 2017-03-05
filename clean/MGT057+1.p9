@@ -1,0 +1,35 @@
+
+
+
+
+
+
+7 organization(c1).  [clausify(6)].
+8 -organization(A) | -has_immunity(A,B) | -has_immunity(A,C) | hazard_of_mortality(A,B) = hazard_of_mortality(A,C).  [clausify(4)].
+9 -organization(A) | -has_immunity(A,B) | has_immunity(A,C) | greater(hazard_of_mortality(A,C),hazard_of_mortality(A,B)).  [clausify(5)].
+10 -has_endowment(A) | -greater(age(A,B),eta) | -has_immunity(A,B).  [clausify(3)].
+11 has_endowment(c1).  [clausify(6)].
+12 -has_endowment(A) | -smaller_or_equal(age(A,B),eta) | has_immunity(A,B).  [clausify(3)].
+13 smaller_or_equal(A,B) | -smaller(A,B).  [clausify(1)].
+14 smaller(A,B) | -greater(B,A).  [clausify(2)].
+15 greater(eta,zero).  [clausify(6)].
+16 age(c1,c2) = zero.  [clausify(6)].
+17 smaller_or_equal(age(c1,c3),eta).  [clausify(6)].
+18 greater(age(c1,c4),eta).  [clausify(6)].
+19 -greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [clausify(6)].
+20 -has_immunity(c1,A) | -has_immunity(c1,B) | hazard_of_mortality(c1,A) = hazard_of_mortality(c1,B).  [resolve(8,a,7,a)].
+21 -has_immunity(c1,A) | has_immunity(c1,B) | greater(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(9,a,7,a)].
+22 -greater(age(c1,A),eta) | -has_immunity(c1,A).  [resolve(10,a,11,a)].
+23 -smaller_or_equal(age(c1,A),eta) | has_immunity(c1,A).  [resolve(12,a,11,a)].
+24 -greater(A,B) | smaller_or_equal(B,A).  [resolve(14,a,13,b)].
+25 -has_immunity(c1,c4).  [resolve(22,a,18,a)].
+26 has_immunity(c1,c3).  [resolve(23,a,17,a)].
+27 -smaller_or_equal(zero,eta) | has_immunity(c1,c2).  [para(16(a,1),23(a,1))].
+28 smaller_or_equal(zero,eta).  [resolve(24,a,15,a)].
+29 has_immunity(c1,c2).  [resolve(28,a,27,a)].
+30 has_immunity(c1,A) | greater(hazard_of_mortality(c1,A),hazard_of_mortality(c1,c3)).  [resolve(26,a,21,a)].
+31 greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)).  [resolve(30,a,25,a)].
+32 hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [resolve(31,a,19,a)].
+33 -has_immunity(c1,A) | hazard_of_mortality(c1,A) = hazard_of_mortality(c1,c2).  [resolve(20,b,29,a)].
+34 -has_immunity(c1,c3).  [resolve(33,b,32,a)].
+35 $F.  [resolve(26,a,34,a)].

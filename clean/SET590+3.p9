@@ -1,0 +1,11 @@
+
+
+
+4 -subset(difference(c1,c2),c1).  [clausify(3)].
+5 subset(A,B) | member(f1(A,B),A).  [clausify(2)].
+6 subset(A,B) | -member(f1(A,B),B).  [clausify(2)].
+7 -member(A,difference(B,C)) | member(A,B).  [clausify(1)].
+8 member(f1(difference(c1,c2),c1),difference(c1,c2)).  [resolve(4,a,5,a)].
+9 -member(f1(difference(c1,c2),c1),c1).  [resolve(6,a,4,a)].
+10 member(f1(difference(c1,c2),c1),c1).  [resolve(8,a,7,a)].
+11 $F.  [resolve(9,a,10,a)].

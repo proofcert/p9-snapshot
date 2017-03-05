@@ -1,0 +1,65 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n170.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:56:53 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 4362 was started by sandbox on n170.star.cs.uiowa.edu,
+Thu Jun  5 15:56:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_4330_n170.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds: goals.
+% Length of proof is 20.
+% Level of proof is 5.
+% Maximum clause weight is 12.000.
+% Given clauses 82.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C addition(C,addition(B,A)) = addition(addition(C,B),A)).  [assumption].
+3 (all A addition(A,A) = A).  [assumption].
+4 (all A all B (leq(A,B) <-> addition(A,B) = B)).  [assumption].
+5 (all A leq(addition(one,multiplication(star(A),A)),star(A))).  [assumption].
+6 -(all A leq(one,star(A))).  [assumption].
+7 addition(A,A) = A.  [clausify(3)].
+8 addition(A,B) = addition(B,A).  [clausify(1)].
+9 leq(addition(one,multiplication(star(A),A)),star(A)).  [clausify(5)].
+10 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+11 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(8(a,1),10(a,1))].
+12 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(11),flip(a)].
+13 -leq(one,star(c1)).  [clausify(6)].
+14 -leq(A,B) | addition(A,B) = B.  [clausify(4)].
+15 leq(A,B) | addition(A,B) != B.  [clausify(4)].
+16 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(12(a,1),7(a,1))].
+17 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(8(a,1),16(a,1,2,1))].
+18 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(8(a,1),17(a,1,2))].
+19 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(12(a,2),18(a,1,2))].
+20 addition(A,addition(A,B)) = addition(B,A).  [para(7(a,1),19(a,1,2,2))].
+21 addition(A,addition(A,B)) = addition(A,B).  [para(8(a,1),20(a,2))].
+22 addition(addition(one,multiplication(star(A),A)),star(A)) = star(A).  [resolve(14,a,9,a)].
+23 addition(star(A),addition(one,multiplication(star(A),A))) = star(A).  [para(8(a,1),22(a,1))].
+24 addition(one,star(c1)) != star(c1).  [resolve(15,a,13,a)].
+25 star(A) = addition(multiplication(star(A),A),addition(star(A),one)).  [para(23(a,1),12(a,1))].
+26 star(A) = addition(one,addition(multiplication(star(A),A),star(A))).  [para(12(a,1),25(a,2))].
+27 star(A) = addition(one,addition(star(A),multiplication(star(A),A))).  [para(8(a,1),26(a,2,2))].
+28 addition(one,addition(star(A),multiplication(star(A),A))) = star(A).  [copy(27),flip(a)].
+29 addition(one,star(A)) = addition(one,addition(star(A),multiplication(star(A),A))).  [para(28(a,1),21(a,1,2))].
+30 addition(one,star(A)) = star(A).  [para(28(a,1),29(a,2))].
+31 $F.  [resolve(30,a,24,a)].
+
+============================== end of proof ==========================

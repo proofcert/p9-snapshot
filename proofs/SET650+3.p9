@@ -1,0 +1,117 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n137.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 19:11:03 CDT 2014
+% CPUTime    : 3.89 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 54847 was started by sandbox on n137.star.cs.uiowa.edu,
+Fri Jun  6 19:11:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_54815_n137.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 3.68 (+ 0.07) seconds.
+% Length of proof is 64.
+% Level of proof is 19.
+% Maximum clause weight is 21.000.
+% Given clauses 2877.
+
+
+1 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,binary_relation_type) -> (member(A,domain_of(B)) <-> (exists C (ilf_type(C,set_type) & member(ordered_pair(A,C),B)))))))).  [assumption].
+2 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,binary_relation_type) -> (member(A,range_of(B)) <-> (exists C (ilf_type(C,set_type) & member(ordered_pair(C,A),B)))))))).  [assumption].
+3 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,set_type) -> (all D (ilf_type(D,set_type) -> (all E (ilf_type(E,relation_type(A,B)) -> (member(ordered_pair(C,D),E) -> member(C,A) & member(D,B)))))))))))).  [assumption].
+4 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,subset_type(cross_product(A,B))) -> ilf_type(C,relation_type(A,B)))) & (all D (ilf_type(D,relation_type(A,B)) -> ilf_type(D,subset_type(cross_product(A,B))))))))).  [assumption].
+5 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (subset(A,B) <-> (all C (ilf_type(C,set_type) -> (member(C,A) -> member(C,B))))))))).  [assumption].
+6 (all A (ilf_type(A,set_type) -> (ilf_type(A,binary_relation_type) <-> relation_like(A) & ilf_type(A,set_type)))).  [assumption].
+7 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (member(A,power_set(B)) <-> (all C (ilf_type(C,set_type) -> (member(C,A) -> member(C,B))))))))).  [assumption].
+8 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,subset_type(cross_product(A,B))) -> relation_like(C))))))).  [assumption].
+9 (all A ilf_type(A,set_type)).  [assumption].
+10 -(all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,relation_type(A,B)) -> subset(domain_of(C),A) & subset(range_of(C),B))))))).  [assumption].
+11 -ilf_type(A,set_type) | ilf_type(A,binary_relation_type) | -relation_like(A).  [clausify(6)].
+12 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | relation_like(C).  [clausify(8)].
+13 ilf_type(A,set_type).  [clausify(9)].
+14 ilf_type(c4,relation_type(c2,c3)).  [clausify(10)].
+15 -subset(domain_of(c4),c2) | -subset(range_of(c4),c3).  [clausify(10)].
+16 -ilf_type(A,set_type) | -ilf_type(B,set_type) | subset(A,B) | member(f6(A,B),A).  [clausify(5)].
+17 -ilf_type(A,set_type) | subset(B,A) | member(f6(B,A),B).  [resolve(13,a,16,a)].
+18 subset(A,B) | member(f6(A,B),A).  [resolve(13,a,17,a)].
+19 -ilf_type(A,set_type) | -ilf_type(B,set_type) | subset(A,B) | -member(f6(A,B),B).  [clausify(5)].
+20 -ilf_type(A,set_type) | subset(B,A) | -member(f6(B,A),A).  [resolve(13,a,19,a)].
+21 subset(A,B) | -member(f6(A,B),B).  [resolve(13,a,20,a)].
+22 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(A,power_set(B)) | member(f8(A,B),A).  [clausify(7)].
+23 -ilf_type(A,set_type) | member(B,power_set(A)) | member(f8(B,A),B).  [resolve(13,a,22,a)].
+24 member(A,power_set(B)) | member(f8(A,B),A).  [resolve(13,a,23,a)].
+25 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(A,power_set(B)) | -member(f8(A,B),B).  [clausify(7)].
+26 -ilf_type(A,set_type) | member(B,power_set(A)) | -member(f8(B,A),A).  [resolve(13,a,25,a)].
+27 member(A,power_set(B)) | -member(f8(A,B),B).  [resolve(13,a,26,a)].
+28 -ilf_type(A,set_type) | -ilf_type(B,binary_relation_type) | -member(A,domain_of(B)) | member(ordered_pair(A,f1(A,B)),B).  [clausify(1)].
+29 -ilf_type(A,binary_relation_type) | -member(B,domain_of(A)) | member(ordered_pair(B,f1(B,A)),A).  [resolve(13,a,28,a)].
+30 -ilf_type(A,set_type) | -ilf_type(B,binary_relation_type) | -member(A,range_of(B)) | member(ordered_pair(f2(A,B),A),B).  [clausify(2)].
+31 -ilf_type(A,binary_relation_type) | -member(B,range_of(A)) | member(ordered_pair(f2(B,A),B),A).  [resolve(13,a,30,a)].
+32 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | ilf_type(C,subset_type(cross_product(A,B))).  [clausify(4)].
+33 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | ilf_type(B,subset_type(cross_product(C,A))).  [resolve(13,a,32,a)].
+34 -ilf_type(A,relation_type(B,C)) | ilf_type(A,subset_type(cross_product(B,C))).  [resolve(13,a,33,a)].
+35 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -member(A,power_set(B)) | -ilf_type(C,set_type) | -member(C,A) | member(C,B).  [clausify(7)].
+36 -ilf_type(A,set_type) | -member(B,power_set(A)) | -ilf_type(C,set_type) | -member(C,B) | member(C,A).  [resolve(13,a,35,a)].
+37 -member(A,power_set(B)) | -ilf_type(C,set_type) | -member(C,A) | member(C,B).  [resolve(13,a,36,a)].
+38 -member(A,power_set(B)) | -member(C,A) | member(C,B).  [resolve(13,a,37,b)].
+39 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,set_type) | -ilf_type(E,relation_type(A,B)) | -member(ordered_pair(C,D),E) | member(C,A).  [clausify(3)].
+40 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,relation_type(E,A)) | -member(ordered_pair(B,C),D) | member(B,E).  [resolve(13,a,39,a)].
+41 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(D,E)) | -member(ordered_pair(A,B),C) | member(A,D).  [resolve(13,a,40,a)].
+42 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,D)) | -member(ordered_pair(E,A),B) | member(E,C).  [resolve(13,a,41,a)].
+43 -ilf_type(A,relation_type(B,C)) | -member(ordered_pair(D,E),A) | member(D,B).  [resolve(13,a,42,a)].
+44 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,set_type) | -ilf_type(E,relation_type(A,B)) | -member(ordered_pair(C,D),E) | member(D,B).  [clausify(3)].
+45 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,relation_type(E,A)) | -member(ordered_pair(B,C),D) | member(C,A).  [resolve(13,a,44,a)].
+46 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(D,E)) | -member(ordered_pair(A,B),C) | member(B,E).  [resolve(13,a,45,a)].
+47 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,D)) | -member(ordered_pair(E,A),B) | member(A,D).  [resolve(13,a,46,a)].
+48 -ilf_type(A,relation_type(B,C)) | -member(ordered_pair(D,E),A) | member(E,C).  [resolve(13,a,47,a)].
+49 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | -ilf_type(C,set_type) | ilf_type(C,binary_relation_type).  [resolve(12,d,11,c)].
+50 -ilf_type(A,set_type) | -ilf_type(B,subset_type(cross_product(C,A))) | -ilf_type(B,set_type) | ilf_type(B,binary_relation_type).  [resolve(13,a,49,a)].
+51 -ilf_type(A,subset_type(cross_product(B,C))) | -ilf_type(A,set_type) | ilf_type(A,binary_relation_type).  [resolve(13,a,50,a)].
+52 -ilf_type(A,subset_type(cross_product(B,C))) | ilf_type(A,binary_relation_type).  [resolve(13,a,51,b)].
+53 member(f6(range_of(c4),c3),range_of(c4)) | -subset(domain_of(c4),c2).  [resolve(18,a,15,b)].
+54 -ilf_type(A,binary_relation_type) | member(ordered_pair(f8(domain_of(A),B),f1(f8(domain_of(A),B),A)),A) | member(domain_of(A),power_set(B)).  [resolve(29,b,24,b)].
+55 -ilf_type(A,binary_relation_type) | member(ordered_pair(f2(f8(range_of(A),B),A),f8(range_of(A),B)),A) | member(range_of(A),power_set(B)).  [resolve(31,b,24,b)].
+56 ilf_type(c4,subset_type(cross_product(c2,c3))).  [resolve(34,a,14,a)].
+57 member(f6(range_of(c4),c3),range_of(c4)) | member(f6(domain_of(c4),c2),domain_of(c4)).  [resolve(53,b,18,a)].
+58 ilf_type(c4,binary_relation_type).  [resolve(56,a,52,a)].
+59 member(ordered_pair(f8(domain_of(c4),A),f1(f8(domain_of(c4),A),c4)),c4) | member(domain_of(c4),power_set(A)).  [resolve(54,a,58,a)].
+60 member(ordered_pair(f2(f8(range_of(c4),A),c4),f8(range_of(c4),A)),c4) | member(range_of(c4),power_set(A)).  [resolve(55,a,58,a)].
+61 member(domain_of(c4),power_set(A)) | -ilf_type(c4,relation_type(B,C)) | member(f8(domain_of(c4),A),B).  [resolve(59,a,43,b)].
+62 member(range_of(c4),power_set(A)) | -ilf_type(c4,relation_type(B,C)) | member(f8(range_of(c4),A),C).  [resolve(60,a,48,b)].
+63 member(domain_of(c4),power_set(A)) | member(f8(domain_of(c4),A),c2).  [resolve(61,b,14,a)].
+64 member(domain_of(c4),power_set(c2)) | member(domain_of(c4),power_set(c2)).  [resolve(63,b,27,b)].
+65 member(domain_of(c4),power_set(c2)).  [copy(64),merge(b)].
+66 -member(A,domain_of(c4)) | member(A,c2).  [resolve(65,a,38,a)].
+67 member(range_of(c4),power_set(A)) | member(f8(range_of(c4),A),c3).  [resolve(62,b,14,a)].
+68 member(range_of(c4),power_set(c3)) | member(range_of(c4),power_set(c3)).  [resolve(67,b,27,b)].
+69 member(range_of(c4),power_set(c3)).  [copy(68),merge(b)].
+70 -member(A,range_of(c4)) | member(A,c3).  [resolve(69,a,38,a)].
+71 member(f6(range_of(c4),c3),c3) | member(f6(domain_of(c4),c2),domain_of(c4)).  [resolve(70,a,57,a)].
+72 member(f6(range_of(c4),c3),c3) | member(f6(domain_of(c4),c2),c2).  [resolve(71,b,66,a)].
+73 member(f6(domain_of(c4),c2),c2) | subset(range_of(c4),c3).  [resolve(72,a,21,b)].
+74 member(f6(domain_of(c4),c2),c2) | -subset(domain_of(c4),c2).  [resolve(73,b,15,b)].
+75 member(f6(domain_of(c4),c2),c2) | member(f6(domain_of(c4),c2),domain_of(c4)).  [resolve(74,b,18,a)].
+76 member(f6(domain_of(c4),c2),c2) | member(f6(domain_of(c4),c2),c2).  [resolve(75,b,66,a)].
+77 member(f6(domain_of(c4),c2),c2).  [copy(76),merge(b)].
+78 subset(domain_of(c4),c2).  [resolve(77,a,21,b)].
+79 member(f6(range_of(c4),c3),range_of(c4)).  [resolve(78,a,53,b)].
+80 -subset(range_of(c4),c3).  [resolve(78,a,15,a)].
+81 member(f6(range_of(c4),c3),c3).  [resolve(79,a,70,a)].
+82 -member(f6(range_of(c4),c3),c3).  [resolve(21,a,80,a)].
+83 $F.  [resolve(81,a,82,a)].
+
+============================== end of proof ==========================

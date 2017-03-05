@@ -1,0 +1,64 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n117.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:39:58 CDT 2014
+% CPUTime    : 20.77 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 28606 was started by sandbox on n117.star.cs.uiowa.edu,
+Fri Jun  6 07:39:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_28574_n117.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 20.39 (+ 0.17) seconds.
+% Length of proof is 22.
+% Level of proof is 6.
+% Maximum clause weight is 11.000.
+% Given clauses 3573.
+
+
+1 (all A (ssList(A) -> (singletonP(A) <-> (exists B (ssItem(B) & cons(B,nil) = A))))).  [assumption].
+2 (all A (ssList(A) -> (all B (ssList(B) -> (neq(A,B) <-> A != B))))).  [assumption].
+3 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | -neq(B,nil) | singletonP(A) | (all E (ssItem(E) -> cons(E,nil) != C | -memberP(D,E))) & (nil != D | nil != C))))))))).  [assumption].
+4 -ssList(A) | -ssList(B) | -neq(A,B) | B != A.  [clausify(2)].
+5 neq(c4,nil).  [clausify(3)].
+6 -ssList(A) | singletonP(A) | -ssItem(B) | cons(B,nil) != A.  [clausify(1)].
+7 ssList(nil).  [assumption].
+8 ssList(c3).  [clausify(3)].
+9 ssList(c4).  [clausify(3)].
+10 c6 = c4.  [clausify(3)].
+11 c5 = c3.  [clausify(3)].
+12 -singletonP(c3).  [clausify(3)].
+13 ssItem(c7) | nil = c6.  [clausify(3)].
+14 ssItem(c7) | nil = c4.  [para(10(a,1),13(b,2))].
+15 ssItem(c7) | c4 = nil.  [copy(14),flip(b)].
+16 cons(c7,nil) = c5 | nil = c6.  [clausify(3)].
+17 cons(c7,nil) = c3 | nil = c6.  [para(11(a,1),16(a,2))].
+18 cons(c7,nil) = c3 | nil = c4.  [para(10(a,1),17(b,2))].
+19 cons(c7,nil) = c3 | c4 = nil.  [copy(18),flip(b)].
+20 -ssList(c4) | -ssList(nil) | nil != c4.  [resolve(5,a,4,c)].
+21 -ssList(c4) | -ssList(nil) | c4 != nil.  [copy(20),flip(c)].
+22 -ssList(nil) | c4 != nil.  [resolve(9,a,21,a)].
+23 c4 != nil.  [resolve(7,a,22,a)].
+24 cons(c7,nil) = c3.  [resolve(23,a,19,b)].
+25 ssItem(c7).  [resolve(23,a,15,b)].
+26 -ssList(A) | singletonP(A) | cons(c7,nil) != A.  [resolve(25,a,6,c)].
+27 -ssList(A) | singletonP(A) | c3 != A.  [para(24(a,1),26(c,1))].
+28 singletonP(c3) | c3 != c3.  [resolve(27,a,8,a)].
+29 singletonP(c3).  [copy(28),xx(b)].
+30 $F.  [resolve(12,a,29,a)].
+
+============================== end of proof ==========================

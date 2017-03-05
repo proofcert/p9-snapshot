@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+9 -rel_str(A) | -strict_rel_str(A) | rel_str_of(the_carrier(A),the_InternalRel(A)) = A.  [clausify(1)].
+10 rel_str(incl_POSet(A)).  [clausify(3)].
+11 -rel_str(A) | relation_of2_as_subset(the_InternalRel(A),the_carrier(A),the_carrier(A)).  [clausify(4)].
+12 -relation_of2_as_subset(A,B,C) | relation_of2(A,B,C).  [clausify(6)].
+13 relation_of2_as_subset(the_InternalRel(incl_POSet(A)),the_carrier(incl_POSet(A)),the_carrier(incl_POSet(A))).  [resolve(11,a,10,a)].
+14 incl_POSet(A) = rel_str_of(A,inclusion_order(A)).  [clausify(2)].
+15 strict_rel_str(incl_POSet(A)).  [clausify(3)].
+16 strict_rel_str(rel_str_of(A,inclusion_order(A))).  [para(14(a,1),15(a,1))].
+17 -relation_of2(A,B,B) | rel_str_of(C,D) != rel_str_of(B,A) | C = B.  [clausify(5)].
+18 boole_POSet(A) = incl_POSet(powerset(A)).  [clausify(7)].
+19 boole_POSet(A) = rel_str_of(powerset(A),inclusion_order(powerset(A))).  [para(14(a,1),18(a,2))].
+20 powerset(c14) != the_carrier(boole_POSet(c14)).  [clausify(8)].
+21 powerset(c14) != the_carrier(rel_str_of(powerset(c14),inclusion_order(powerset(c14)))).  [para(19(a,1),20(a,2,1))].
+22 the_carrier(rel_str_of(powerset(c14),inclusion_order(powerset(c14)))) != powerset(c14).  [copy(21),flip(a)].
+23 -strict_rel_str(incl_POSet(A)) | rel_str_of(the_carrier(incl_POSet(A)),the_InternalRel(incl_POSet(A))) = incl_POSet(A).  [resolve(10,a,9,a)].
+24 -strict_rel_str(rel_str_of(A,inclusion_order(A))) | rel_str_of(the_carrier(incl_POSet(A)),the_InternalRel(incl_POSet(A))) = incl_POSet(A).  [para(14(a,1),23(a,1))].
+25 -strict_rel_str(rel_str_of(A,inclusion_order(A))) | rel_str_of(the_carrier(rel_str_of(A,inclusion_order(A))),the_InternalRel(incl_POSet(A))) = incl_POSet(A).  [para(14(a,1),24(b,1,1,1))].
+26 -strict_rel_str(rel_str_of(A,inclusion_order(A))) | rel_str_of(the_carrier(rel_str_of(A,inclusion_order(A))),the_InternalRel(rel_str_of(A,inclusion_order(A)))) = incl_POSet(A).  [para(14(a,1),25(b,1,2,1))].
+27 -strict_rel_str(rel_str_of(A,inclusion_order(A))) | rel_str_of(the_carrier(rel_str_of(A,inclusion_order(A))),the_InternalRel(rel_str_of(A,inclusion_order(A)))) = rel_str_of(A,inclusion_order(A)).  [para(14(a,1),26(b,2))].
+28 rel_str_of(the_carrier(rel_str_of(A,inclusion_order(A))),the_InternalRel(rel_str_of(A,inclusion_order(A)))) = rel_str_of(A,inclusion_order(A)).  [resolve(16,a,27,a)].
+29 relation_of2(the_InternalRel(incl_POSet(A)),the_carrier(incl_POSet(A)),the_carrier(incl_POSet(A))).  [resolve(13,a,12,a)].
+30 relation_of2(the_InternalRel(rel_str_of(A,inclusion_order(A))),the_carrier(incl_POSet(A)),the_carrier(incl_POSet(A))).  [para(14(a,1),29(a,1,1))].
+31 relation_of2(the_InternalRel(rel_str_of(A,inclusion_order(A))),the_carrier(rel_str_of(A,inclusion_order(A))),the_carrier(incl_POSet(A))).  [para(14(a,1),30(a,2,1))].
+32 relation_of2(the_InternalRel(rel_str_of(A,inclusion_order(A))),the_carrier(rel_str_of(A,inclusion_order(A))),the_carrier(rel_str_of(A,inclusion_order(A)))).  [para(14(a,1),31(a,3,1))].
+33 rel_str_of(A,B) != rel_str_of(the_carrier(rel_str_of(C,inclusion_order(C))),the_InternalRel(rel_str_of(C,inclusion_order(C)))) | A = the_carrier(rel_str_of(C,inclusion_order(C))).  [resolve(32,a,17,a)].
+34 rel_str_of(A,B) != rel_str_of(C,inclusion_order(C)) | A = the_carrier(rel_str_of(C,inclusion_order(C))).  [para(28(a,1),33(a,2))].
+35 rel_str_of(C,inclusion_order(C)) != rel_str_of(A,B) | A = the_carrier(rel_str_of(C,inclusion_order(C))).  [copy(34),flip(a)].
+36 rel_str_of(A,inclusion_order(A)) != rel_str_of(B,C) | the_carrier(rel_str_of(A,inclusion_order(A))) = B.  [copy(35),flip(b)].
+37 the_carrier(rel_str_of(A,inclusion_order(A))) = A.  [xx_res(36,a)].
+38 $F.  [resolve(37,a,22,a)].

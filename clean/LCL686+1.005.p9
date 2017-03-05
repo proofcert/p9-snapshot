@@ -1,0 +1,20 @@
+
+
+3 -r1(c4,A) | -p2(f15(A)) | -p1(f15(A)).  [clausify(2)].
+4 -r1(c4,A) | p1(f15(A)) | p2(f15(A)).  [clausify(2)].
+5 -r1(c4,A) | -r1(A,B) | -p2(B) | p1(B).  [clausify(2)].
+6 -r1(c4,A) | -r1(A,B) | p2(B) | -p1(B).  [clausify(2)].
+7 r1(A,A).  [clausify(1)].
+8 -r1(c4,A) | r1(A,f15(A)).  [clausify(2)].
+9 -r1(c4,A) | -r1(A,f15(B)) | -p2(f15(B)) | -r1(c4,B) | -p2(f15(B)).  [resolve(5,d,3,c)].
+10 -r1(c4,A) | -r1(A,f15(B)) | -p2(f15(B)) | -r1(c4,B).  [copy(9),merge(e)].
+11 -r1(c4,A) | -r1(A,f15(B)) | p2(f15(B)) | -r1(c4,B) | p2(f15(B)).  [resolve(6,d,4,b)].
+12 -r1(c4,A) | -r1(A,f15(B)) | p2(f15(B)) | -r1(c4,B).  [copy(11),merge(e)].
+13 -r1(c4,A) | -r1(A,f15(A)) | p2(f15(A)).  [factor(12,a,d)].
+14 r1(c4,f15(c4)).  [resolve(8,a,7,a)].
+15 -r1(c4,f15(A)) | -p2(f15(A)) | -r1(c4,A).  [resolve(10,b,7,a)].
+16 -p2(f15(c4)) | -r1(c4,c4).  [resolve(14,a,15,a)].
+17 -p2(f15(c4)).  [resolve(7,a,16,b)].
+18 -r1(c4,c4) | p2(f15(c4)).  [resolve(14,a,13,b)].
+19 p2(f15(c4)).  [resolve(7,a,18,a)].
+20 $F.  [resolve(17,a,19,a)].

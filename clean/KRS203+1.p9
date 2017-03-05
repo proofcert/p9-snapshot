@@ -1,0 +1,35 @@
+
+
+
+
+
+
+7 -status(A,B,C) | status(A,B,D) | nota(C,D).  [clausify(4)].
+8 -nota(sat,thm).  [assumption].
+9 -model(A,B) | -model(A,C) | status(B,C,sat).  [clausify(1)].
+10 model(f9(A,B),A) | -status(A,B,sat).  [clausify(1)].
+11 model(f9(A,B),B) | -status(A,B,sat).  [clausify(1)].
+12 -model(A,B) | model(A,C) | -status(B,C,thm).  [clausify(2)].
+13 -model(A,B) | -model(f13(B,C),C) | status(B,C,tac).  [clausify(3)].
+14 model(f14(A,B),A) | -status(A,B,tac).  [clausify(3)].
+15 model(A,c1).  [clausify(5)].
+16 model(c12,c10).  [clausify(6)].
+17 -model(A,c10) | model(A,c11).  [clausify(6)].
+18 -model(c14,c11).  [clausify(6)].
+19 -status(A,B,sat) | status(A,B,thm).  [resolve(8,a,7,c)].
+20 -model(A,B) | status(B,B,sat).  [factor(9,a,b)].
+21 -model(A,B) | status(B,c1,tac).  [resolve(15,a,13,b)].
+22 -model(A,B) | status(B,c1,sat).  [resolve(15,a,9,b)].
+23 -model(A,B) | status(c1,B,sat).  [resolve(15,a,9,a)].
+24 status(c10,c10,sat).  [resolve(20,a,16,a)].
+25 model(f9(c10,c10),c10).  [resolve(24,a,11,b)].
+26 status(c10,c1,tac).  [resolve(21,a,25,a)].
+27 model(f14(c10,c1),c10).  [resolve(26,a,14,b)].
+28 status(c10,c1,sat).  [resolve(22,a,27,a)].
+29 model(f9(c10,c1),c10).  [resolve(28,a,10,b)].
+30 model(f9(c10,c1),c11).  [resolve(29,a,17,a)].
+31 status(c1,c11,sat).  [resolve(23,a,30,a)].
+32 status(c1,c11,thm).  [resolve(31,a,19,a)].
+33 -model(A,c1) | model(A,c11).  [resolve(32,a,12,c)].
+34 model(A,c11).  [resolve(15,a,33,a)].
+35 $F.  [resolve(34,a,18,a)].

@@ -1,0 +1,13 @@
+
+
+
+4 subset(c1,c2).  [clausify(3)].
+5 intersection(c2,c1) = empty_set.  [clausify(3)].
+6 empty_set = intersection(c2,c1).  [copy(5),flip(a)].
+7 intersection(A,B) = intersection(B,A).  [clausify(2)].
+8 empty_set != c1.  [clausify(3)].
+9 intersection(c2,c1) != c1.  [para(6(a,1),8(a,1))].
+10 intersection(c1,c2) != c1.  [para(7(a,1),9(a,1))].
+11 -subset(A,B) | intersection(A,B) = A.  [clausify(1)].
+12 intersection(c1,c2) = c1.  [resolve(11,a,4,a)].
+13 $F.  [resolve(10,a,12,a)].

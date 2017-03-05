@@ -1,0 +1,65 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+14 test(c4).  [clausify(13)].
+15 -test(A) | c(A) != B | complement(A,B).  [clausify(12)].
+16 addition(A,zero) = A.  [clausify(2)].
+17 addition(A,A) = A.  [clausify(3)].
+18 multiplication(A,one) = A.  [clausify(5)].
+19 multiplication(one,A) = A.  [clausify(6)].
+20 multiplication(A,zero) = zero.  [clausify(8)].
+21 multiplication(zero,A) = zero.  [clausify(9)].
+22 addition(A,B) = addition(B,A).  [clausify(1)].
+23 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(4)].
+24 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(7)].
+25 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(24),flip(a)].
+26 -leq(addition(multiplication(c4,addition(multiplication(c4,c1),multiplication(c(c4),c2))),multiplication(c(c4),c3)),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c4,addition(multiplication(c4,c1),multiplication(c(c4),c2))),multiplication(c(c4),c3))).  [clausify(13)].
+27 -leq(addition(multiplication(c(c4),c3),multiplication(c4,addition(multiplication(c4,c1),multiplication(c(c4),c2)))),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c4,addition(multiplication(c4,c1),multiplication(c(c4),c2))),multiplication(c(c4),c3))).  [para(22(a,1),26(a,1))].
+28 -leq(addition(multiplication(c(c4),c3),multiplication(c4,addition(multiplication(c4,c1),multiplication(c(c4),c2)))),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c(c4),c3),multiplication(c4,addition(multiplication(c4,c1),multiplication(c(c4),c2))))).  [para(22(a,1),27(b,2))].
+29 leq(A,B) | addition(A,B) != B.  [clausify(10)].
+30 -complement(A,B) | multiplication(A,B) = zero.  [clausify(11)].
+31 -complement(A,B) | addition(B,A) = one.  [clausify(11)].
+32 -complement(A,B) | addition(A,B) = one.  [para(22(a,1),31(b,1))].
+33 c(c4) != A | complement(c4,A).  [resolve(15,a,14,a)].
+34 addition(multiplication(A,B),multiplication(A,zero)) = multiplication(A,B).  [para(16(a,1),25(a,2,2))].
+35 addition(multiplication(A,B),zero) = multiplication(A,B).  [para(20(a,1),34(a,1,2))].
+36 addition(zero,multiplication(A,B)) = multiplication(A,B).  [para(22(a,1),35(a,1))].
+37 leq(A,A).  [resolve(29,b,17,a)].
+38 complement(c4,multiplication(one,c(c4))).  [resolve(33,a,19,a(flip))].
+39 complement(c4,c(c4)).  [para(19(a,1),38(a,2))].
+40 addition(c4,c(c4)) = one.  [resolve(39,a,32,a)].
+41 multiplication(c4,c(c4)) = zero.  [resolve(39,a,30,a)].
+42 multiplication(zero,A) = multiplication(c4,multiplication(c(c4),A)).  [para(41(a,1),23(a,1,1))].
+43 zero = multiplication(c4,multiplication(c(c4),A)).  [para(21(a,1),42(a,1))].
+44 multiplication(c4,multiplication(c(c4),A)) = zero.  [copy(43),flip(a)].
+45 addition(zero,multiplication(c4,A)) = multiplication(c4,addition(c(c4),A)).  [para(41(a,1),25(a,1,1))].
+46 multiplication(c4,A) = multiplication(c4,addition(c(c4),A)).  [para(36(a,1),45(a,1))].
+47 multiplication(c4,A) = multiplication(c4,addition(A,c(c4))).  [para(22(a,1),46(a,2,2))].
+48 multiplication(c4,addition(A,c(c4))) = multiplication(c4,A).  [copy(47),flip(a)].
+49 addition(zero,multiplication(c4,A)) = multiplication(c4,addition(multiplication(c(c4),B),A)).  [para(44(a,1),25(a,1,1))].
+50 multiplication(c4,A) = multiplication(c4,addition(multiplication(c(c4),B),A)).  [para(36(a,1),49(a,1))].
+51 multiplication(c4,A) = multiplication(c4,addition(A,multiplication(c(c4),B))).  [para(22(a,1),50(a,2,2))].
+52 multiplication(c4,addition(A,multiplication(c(c4),B))) = multiplication(c4,A).  [copy(51),flip(a)].
+53 -leq(addition(multiplication(c(c4),c3),multiplication(c4,multiplication(c4,c1))),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c(c4),c3),multiplication(c4,addition(multiplication(c4,c1),multiplication(c(c4),c2))))).  [para(52(a,1),28(a,1,2))].
+54 -leq(addition(multiplication(c(c4),c3),multiplication(c4,multiplication(c4,c1))),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c(c4),c3),multiplication(c4,multiplication(c4,c1)))).  [para(52(a,1),53(b,2,2))].
+55 multiplication(c4,one) = multiplication(c4,c4).  [para(40(a,1),48(a,1,2))].
+56 c4 = multiplication(c4,c4).  [para(18(a,1),55(a,1))].
+57 multiplication(c4,c4) = c4.  [copy(56),flip(a)].
+58 multiplication(c4,A) = multiplication(c4,multiplication(c4,A)).  [para(57(a,1),23(a,1,1))].
+59 multiplication(c4,multiplication(c4,A)) = multiplication(c4,A).  [copy(58),flip(a)].
+60 -leq(addition(multiplication(c(c4),c3),multiplication(c4,c1)),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c(c4),c3),multiplication(c4,multiplication(c4,c1)))).  [para(59(a,1),54(a,1,2))].
+61 -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c(c4),c3),multiplication(c4,multiplication(c4,c1)))).  [para(22(a,1),60(a,1))].
+62 -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c(c4),c3),multiplication(c4,c1))).  [para(59(a,1),61(b,2,2))].
+63 -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c4,c1),multiplication(c(c4),c3))) | -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c4,c1),multiplication(c(c4),c3))).  [para(22(a,1),62(b,2))].
+64 -leq(addition(multiplication(c4,c1),multiplication(c(c4),c3)),addition(multiplication(c4,c1),multiplication(c(c4),c3))).  [copy(63),merge(b)].
+65 $F.  [resolve(37,a,64,a)].

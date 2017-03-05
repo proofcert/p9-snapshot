@@ -1,0 +1,18 @@
+
+
+
+4 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2).  [clausify(3)].
+5 cowlThing(A).  [clausify(1)].
+6 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2).  [clausify(3)].
+7 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+8 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+9 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2).  [resolve(4,a,5,a)].
+10 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2).  [resolve(6,a,5,a)].
+11 cowlNothing(c1) | -xsd_integer(c2) | -xsd_integer(c2).  [resolve(9,b,7,a)].
+12 -cowlNothing(A).  [clausify(1)].
+13 cowlNothing(c1) | xsd_integer(c2) | xsd_integer(c2).  [resolve(10,b,8,a)].
+14 -xsd_integer(c2) | -xsd_integer(c2).  [resolve(11,a,12,a)].
+15 -xsd_integer(c2).  [copy(14),merge(b)].
+16 xsd_integer(c2) | xsd_integer(c2).  [resolve(13,a,12,a)].
+17 xsd_integer(c2).  [copy(16),merge(b)].
+18 $F.  [resolve(15,a,17,a)].

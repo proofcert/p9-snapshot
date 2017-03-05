@@ -1,0 +1,20 @@
+
+
+
+
+5 subset(c3,c4).  [clausify(4)].
+6 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+7 set_union2(A,B) = C | in(f1(A,B,C),C) | in(f1(A,B,C),A) | in(f1(A,B,C),B).  [clausify(2)].
+8 set_union2(c3,c4) != c4.  [clausify(4)].
+9 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(3)].
+10 set_union2(A,B) = C | -in(f1(A,B,C),C) | -in(f1(A,B,C),B).  [clausify(2)].
+11 set_union2(A,B) = B | -in(f1(A,B,B),B).  [factor(10,b,c)].
+12 -in(A,c3) | in(A,c4).  [resolve(9,a,5,a)].
+13 -in(f1(c3,c4,c4),c4).  [resolve(11,a,8,a)].
+14 in(f1(c3,A,B),c4) | set_union2(c3,A) = B | in(f1(c3,A,B),B) | in(f1(c3,A,B),A).  [resolve(12,a,7,c)].
+15 in(f1(c3,A,B),c4) | set_union2(A,c3) = B | in(f1(c3,A,B),B) | in(f1(c3,A,B),A).  [para(6(a,1),14(b,1))].
+16 in(f1(c3,A,c4),c4) | set_union2(A,c3) = c4 | in(f1(c3,A,c4),A).  [factor(15,a,c)].
+17 in(f1(c3,c4,c4),c4) | set_union2(c4,c3) = c4.  [factor(16,a,c)].
+18 in(f1(c3,c4,c4),c4) | set_union2(c3,c4) = c4.  [para(6(a,1),17(b,1))].
+19 set_union2(c3,c4) = c4.  [resolve(13,a,18,a)].
+20 $F.  [resolve(8,a,19,a)].

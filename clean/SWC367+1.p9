@@ -1,0 +1,24 @@
+
+
+3 ssList(nil).  [assumption].
+4 -ssList(A) | rearsegP(A,A).  [clausify(1)].
+5 c6 = c4.  [clausify(2)].
+6 c5 = c3.  [clausify(2)].
+7 -rearsegP(c4,c3).  [clausify(2)].
+8 nil = c6 | rearsegP(c6,c5).  [clausify(2)].
+9 nil = c4 | rearsegP(c6,c5).  [para(5(a,1),8(a,2))].
+10 nil = c4 | rearsegP(c4,c5).  [para(5(a,1),9(b,1))].
+11 nil = c4 | rearsegP(c4,c3).  [para(6(a,1),10(b,2))].
+12 c4 = nil | rearsegP(c4,c3).  [copy(11),flip(a)].
+13 c4 = nil.  [resolve(7,a,12,b)].
+14 nil = c5 | rearsegP(c6,c5).  [clausify(2)].
+15 nil = c3 | rearsegP(c6,c5).  [para(6(a,1),14(a,2))].
+16 nil = c3 | rearsegP(c4,c5).  [para(5(a,1),15(b,1))].
+17 nil = c3 | rearsegP(nil,c5).  [para(13(a,1),16(b,1))].
+18 nil = c3 | rearsegP(nil,c3).  [para(6(a,1),17(b,2))].
+19 c3 = nil | rearsegP(nil,c3).  [copy(18),flip(a)].
+20 -rearsegP(nil,c3).  [para(13(a,1),7(a,1))].
+21 c3 = nil.  [resolve(20,a,19,b)].
+22 -rearsegP(nil,nil).  [para(21(a,1),20(a,2))].
+23 rearsegP(nil,nil).  [resolve(4,a,3,a)].
+24 $F.  [resolve(22,a,23,a)].

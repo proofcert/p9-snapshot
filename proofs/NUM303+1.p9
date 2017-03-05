@@ -1,0 +1,66 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n137.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:50:13 CDT 2014
+% CPUTime    : 12.66 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 56849 was started by sandbox on n137.star.cs.uiowa.edu,
+Fri Jun  6 03:50:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_56817_n137.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 12.36 (+ 0.06) seconds.
+% Length of proof is 30.
+% Level of proof is 7.
+% Maximum clause weight is 19.000.
+% Given clauses 16585.
+
+
+1 (all A all B all C all D (rdn_positive_less(B,D) -> rdn_positive_less(rdn(rdnn(A),B),rdn(rdnn(C),D)))).  [assumption].
+2 (all A all B all C all D (rdn_translate(A,rdn_neg(C)) & rdn_translate(B,rdn_neg(D)) & rdn_positive_less(D,C) -> less(A,B))).  [assumption].
+3 (all A all B (less(A,B) <-> -less(B,A) & B != A)).  [assumption].
+4 (all A all B all C (rdn_translate(A,rdn_pos(C)) & rdn_translate(B,rdn_neg(C)) -> sum(A,B,n0))).  [assumption].
+5 (all A all B all C all D (sum(A,B,D) & sum(A,C,D) -> B = C)).  [assumption].
+6 -(n31 != n21).  [assumption].
+7 rdn_translate(n21,rdn_pos(rdn(rdnn(n1),rdnn(n2)))).  [assumption].
+8 rdn_translate(n31,rdn_pos(rdn(rdnn(n1),rdnn(n3)))).  [assumption].
+9 rdn_translate(nn21,rdn_neg(rdn(rdnn(n1),rdnn(n2)))).  [assumption].
+10 rdn_translate(nn31,rdn_neg(rdn(rdnn(n1),rdnn(n3)))).  [assumption].
+11 rdn_positive_less(rdnn(n2),rdnn(n3)).  [assumption].
+12 -rdn_positive_less(A,B) | rdn_positive_less(rdn(rdnn(C),A),rdn(rdnn(D),B)).  [clausify(1)].
+13 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_neg(D)) | -rdn_positive_less(D,B) | less(A,C).  [clausify(2)].
+14 -less(A,B) | -less(B,A).  [clausify(3)].
+15 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_neg(B)) | sum(A,C,n0).  [clausify(4)].
+16 -sum(A,B,C) | -sum(A,D,C) | D = B.  [clausify(5)].
+17 n31 = n21.  [clausify(6)].
+18 -less(A,A).  [factor(14,a,b)].
+19 rdn_translate(n21,rdn_pos(rdn(rdnn(n1),rdnn(n3)))).  [para(17(a,1),8(a,1))].
+20 rdn_positive_less(rdn(rdnn(A),rdnn(n2)),rdn(rdnn(B),rdnn(n3))).  [resolve(12,a,11,a)].
+21 -rdn_translate(A,rdn_neg(rdn(rdnn(n1),rdnn(n2)))) | sum(n21,A,n0).  [resolve(15,a,7,a)].
+22 -rdn_translate(A,rdn_pos(rdn(rdnn(n1),rdnn(n3)))) | sum(A,nn31,n0).  [resolve(15,b,10,a)].
+23 -rdn_translate(A,rdn_neg(rdn(rdnn(B),rdnn(n3)))) | -rdn_translate(C,rdn_neg(rdn(rdnn(D),rdnn(n2)))) | less(A,C).  [resolve(20,a,13,c)].
+24 sum(n21,nn21,n0).  [resolve(21,a,9,a)].
+25 sum(n21,nn31,n0).  [resolve(22,a,19,a)].
+26 -sum(n21,A,n0) | nn21 = A.  [resolve(24,a,16,b)].
+27 nn21 = nn31.  [resolve(26,a,25,a)].
+28 nn31 = nn21.  [copy(27),flip(a)].
+29 rdn_translate(nn21,rdn_neg(rdn(rdnn(n1),rdnn(n3)))).  [para(28(a,1),10(a,1))].
+30 -rdn_translate(A,rdn_neg(rdn(rdnn(B),rdnn(n3)))) | less(A,nn21).  [resolve(23,b,9,a)].
+31 less(nn21,nn21).  [resolve(30,a,29,a)].
+32 $F.  [resolve(18,a,31,a)].
+
+============================== end of proof ==========================

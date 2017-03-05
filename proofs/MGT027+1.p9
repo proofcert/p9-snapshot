@@ -1,0 +1,109 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n162.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:30:08 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 13947 was started by sandbox on n162.star.cs.uiowa.edu,
+Thu Jun  5 15:30:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_13915_n162.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 64.
+% Level of proof is 14.
+% Maximum clause weight is 21.000.
+% Given clauses 58.
+
+
+1 (all A all B (environment(A) & stable(A) & in_environment(A,B) & (all C (greater(cardinality_at_time(first_movers,C),zero) & greater_or_equal(C,B) -> greater(zero,growth_rate(first_movers,C)))) -> contracts_from(B,first_movers))).  [assumption].
+2 (all A all B (environment(A) & in_environment(A,B) & greater(cardinality_at_time(first_movers,B),zero) & greater(cardinality_at_time(efficient_producers,B),zero) -> subpopulations(first_movers,efficient_producers,A,B))).  [assumption].
+3 (all A all B all C (environment(A) & stable(A) & in_environment(A,B) & greater(C,B) -> in_environment(A,C))).  [assumption].
+4 (all A (environment(A) & stable(A) -> in_environment(A,appear(efficient_producers,A)))).  [assumption].
+5 (all A all B all C (greater(A,B) & greater(B,C) -> greater(A,C))).  [assumption].
+6 (all A all B (greater_or_equal(A,B) <-> greater(A,B) | A = B)).  [assumption].
+7 (all A all B (environment(A) & in_environment(A,B) & greater_or_equal(B,appear(efficient_producers,A)) -> greater(cardinality_at_time(efficient_producers,B),zero))).  [assumption].
+8 (all A (environment(A) & stable(A) -> (exists B (greater(B,appear(efficient_producers,A)) & (all C (subpopulations(first_movers,efficient_producers,A,C) & greater_or_equal(C,B) -> greater(zero,growth_rate(first_movers,C)))))))).  [assumption].
+9 -(all A (environment(A) & stable(A) -> (exists B (greater(B,appear(efficient_producers,A)) & contracts_from(B,first_movers))))).  [assumption].
+10 -environment(A) | -stable(A) | in_environment(A,appear(efficient_producers,A)).  [clausify(4)].
+11 environment(c1).  [clausify(9)].
+12 -environment(A) | -stable(A) | greater(f2(A),appear(efficient_producers,A)).  [clausify(8)].
+13 -environment(A) | -stable(A) | -in_environment(A,B) | -greater(C,B) | in_environment(A,C).  [clausify(3)].
+14 -environment(A) | -stable(A) | -in_environment(A,B) | greater_or_equal(f1(A,B),B) | contracts_from(B,first_movers).  [clausify(1)].
+15 -environment(A) | -in_environment(A,B) | -greater_or_equal(B,appear(efficient_producers,A)) | greater(cardinality_at_time(efficient_producers,B),zero).  [clausify(7)].
+16 -environment(A) | -stable(A) | -in_environment(A,B) | greater(cardinality_at_time(first_movers,f1(A,B)),zero) | contracts_from(B,first_movers).  [clausify(1)].
+17 -environment(A) | -stable(A) | -in_environment(A,B) | -greater(zero,growth_rate(first_movers,f1(A,B))) | contracts_from(B,first_movers).  [clausify(1)].
+18 -environment(A) | -stable(A) | -subpopulations(first_movers,efficient_producers,A,B) | -greater_or_equal(B,f2(A)) | greater(zero,growth_rate(first_movers,B)).  [clausify(8)].
+19 -environment(A) | -in_environment(A,B) | -greater(cardinality_at_time(first_movers,B),zero) | -greater(cardinality_at_time(efficient_producers,B),zero) | subpopulations(first_movers,efficient_producers,A,B).  [clausify(2)].
+20 stable(c1).  [clausify(9)].
+21 -greater(A,appear(efficient_producers,c1)) | -contracts_from(A,first_movers).  [clausify(9)].
+22 greater_or_equal(A,B) | -greater(A,B).  [clausify(6)].
+23 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(5)].
+24 -greater_or_equal(A,B) | greater(A,B) | B = A.  [clausify(6)].
+25 -stable(c1) | in_environment(c1,appear(efficient_producers,c1)).  [resolve(10,a,11,a)].
+26 in_environment(c1,appear(efficient_producers,c1)).  [resolve(20,a,25,a)].
+27 -stable(c1) | greater(f2(c1),appear(efficient_producers,c1)).  [resolve(12,a,11,a)].
+28 greater(f2(c1),appear(efficient_producers,c1)).  [resolve(20,a,27,a)].
+29 -stable(c1) | -in_environment(c1,A) | -greater(B,A) | in_environment(c1,B).  [resolve(13,a,11,a)].
+30 -in_environment(c1,A) | -greater(B,A) | in_environment(c1,B).  [resolve(20,a,29,a)].
+31 -stable(c1) | -in_environment(c1,A) | greater_or_equal(f1(c1,A),A) | contracts_from(A,first_movers).  [resolve(14,a,11,a)].
+32 -in_environment(c1,A) | greater_or_equal(f1(c1,A),A) | contracts_from(A,first_movers).  [resolve(20,a,31,a)].
+33 -in_environment(c1,A) | -greater_or_equal(A,appear(efficient_producers,c1)) | greater(cardinality_at_time(efficient_producers,A),zero).  [resolve(15,a,11,a)].
+34 -stable(c1) | -in_environment(c1,A) | greater(cardinality_at_time(first_movers,f1(c1,A)),zero) | contracts_from(A,first_movers).  [resolve(16,a,11,a)].
+35 -in_environment(c1,A) | greater(cardinality_at_time(first_movers,f1(c1,A)),zero) | contracts_from(A,first_movers).  [resolve(20,a,34,a)].
+36 -stable(c1) | -in_environment(c1,A) | -greater(zero,growth_rate(first_movers,f1(c1,A))) | contracts_from(A,first_movers).  [resolve(17,a,11,a)].
+37 -in_environment(c1,A) | -greater(zero,growth_rate(first_movers,f1(c1,A))) | contracts_from(A,first_movers).  [resolve(20,a,36,a)].
+38 -stable(c1) | -subpopulations(first_movers,efficient_producers,c1,A) | -greater_or_equal(A,f2(c1)) | greater(zero,growth_rate(first_movers,A)).  [resolve(18,a,11,a)].
+39 -subpopulations(first_movers,efficient_producers,c1,A) | -greater_or_equal(A,f2(c1)) | greater(zero,growth_rate(first_movers,A)).  [resolve(20,a,38,a)].
+40 -in_environment(c1,A) | -greater(cardinality_at_time(first_movers,A),zero) | -greater(cardinality_at_time(efficient_producers,A),zero) | subpopulations(first_movers,efficient_producers,c1,A).  [resolve(19,a,11,a)].
+41 -greater(A,f2(c1)) | greater(A,appear(efficient_producers,c1)).  [resolve(28,a,23,b)].
+42 greater_or_equal(f2(c1),appear(efficient_producers,c1)).  [resolve(28,a,22,b)].
+43 -contracts_from(f2(c1),first_movers).  [resolve(21,a,28,a)].
+44 -greater(A,appear(efficient_producers,c1)) | in_environment(c1,A).  [resolve(30,a,26,a)].
+45 -in_environment(c1,f2(c1)) | greater(cardinality_at_time(efficient_producers,f2(c1)),zero).  [resolve(42,a,33,b)].
+46 in_environment(c1,f2(c1)).  [resolve(44,a,28,a)].
+47 greater(cardinality_at_time(efficient_producers,f2(c1)),zero).  [resolve(46,a,45,a)].
+48 -greater(cardinality_at_time(first_movers,f2(c1)),zero) | -greater(cardinality_at_time(efficient_producers,f2(c1)),zero) | subpopulations(first_movers,efficient_producers,c1,f2(c1)).  [resolve(46,a,40,a)].
+49 -greater(cardinality_at_time(first_movers,f2(c1)),zero) | subpopulations(first_movers,efficient_producers,c1,f2(c1)).  [resolve(47,a,48,b)].
+50 -greater(zero,growth_rate(first_movers,f1(c1,f2(c1)))) | contracts_from(f2(c1),first_movers).  [resolve(46,a,37,a)].
+51 -greater(zero,growth_rate(first_movers,f1(c1,f2(c1)))).  [resolve(43,a,50,b)].
+52 greater(cardinality_at_time(first_movers,f1(c1,f2(c1))),zero) | contracts_from(f2(c1),first_movers).  [resolve(46,a,35,a)].
+53 greater(cardinality_at_time(first_movers,f1(c1,f2(c1))),zero).  [resolve(43,a,52,b)].
+54 greater_or_equal(f1(c1,f2(c1)),f2(c1)) | contracts_from(f2(c1),first_movers).  [resolve(46,a,32,a)].
+55 greater_or_equal(f1(c1,f2(c1)),f2(c1)).  [resolve(43,a,54,b)].
+56 -greater(A,f2(c1)) | in_environment(c1,A).  [resolve(46,a,30,a)].
+57 greater(f1(c1,f2(c1)),f2(c1)) | f2(c1) = f1(c1,f2(c1)).  [resolve(55,a,24,a)].
+58 greater(f1(c1,f2(c1)),f2(c1)) | f1(c1,f2(c1)) = f2(c1).  [copy(57),flip(b)].
+59 -subpopulations(first_movers,efficient_producers,c1,f1(c1,f2(c1))) | greater(zero,growth_rate(first_movers,f1(c1,f2(c1)))).  [resolve(39,b,55,a)].
+60 -subpopulations(first_movers,efficient_producers,c1,f1(c1,f2(c1))).  [resolve(59,b,51,a)].
+61 f1(c1,f2(c1)) = f2(c1) | in_environment(c1,f1(c1,f2(c1))).  [resolve(58,a,56,a)].
+62 f1(c1,f2(c1)) = f2(c1) | greater(f1(c1,f2(c1)),appear(efficient_producers,c1)).  [resolve(58,a,41,a)].
+63 f1(c1,f2(c1)) = f2(c1) | -greater(cardinality_at_time(first_movers,f1(c1,f2(c1))),zero) | -greater(cardinality_at_time(efficient_producers,f1(c1,f2(c1))),zero) | subpopulations(first_movers,efficient_producers,c1,f1(c1,f2(c1))).  [resolve(61,b,40,a)].
+64 f1(c1,f2(c1)) = f2(c1) | -greater(cardinality_at_time(efficient_producers,f1(c1,f2(c1))),zero) | subpopulations(first_movers,efficient_producers,c1,f1(c1,f2(c1))).  [resolve(53,a,63,b)].
+65 f1(c1,f2(c1)) = f2(c1) | -greater(cardinality_at_time(efficient_producers,f1(c1,f2(c1))),zero).  [resolve(60,a,64,c)].
+66 f1(c1,f2(c1)) = f2(c1) | greater_or_equal(f1(c1,f2(c1)),appear(efficient_producers,c1)).  [resolve(62,b,22,b)].
+67 f1(c1,f2(c1)) = f2(c1) | -in_environment(c1,f1(c1,f2(c1))) | greater(cardinality_at_time(efficient_producers,f1(c1,f2(c1))),zero).  [resolve(66,b,33,b)].
+68 f1(c1,f2(c1)) = f2(c1) | greater(cardinality_at_time(efficient_producers,f1(c1,f2(c1))),zero) | f1(c1,f2(c1)) = f2(c1).  [resolve(67,b,61,b)].
+69 f1(c1,f2(c1)) = f2(c1) | greater(cardinality_at_time(efficient_producers,f1(c1,f2(c1))),zero).  [copy(68),merge(c)].
+70 f1(c1,f2(c1)) = f2(c1) | f1(c1,f2(c1)) = f2(c1).  [resolve(69,b,65,b)].
+71 f1(c1,f2(c1)) = f2(c1).  [copy(70),merge(b)].
+72 -subpopulations(first_movers,efficient_producers,c1,f2(c1)).  [para(71(a,1),60(a,4))].
+73 greater(cardinality_at_time(first_movers,f2(c1)),zero).  [para(71(a,1),53(a,1,2))].
+74 subpopulations(first_movers,efficient_producers,c1,f2(c1)).  [resolve(73,a,49,a)].
+75 $F.  [resolve(72,a,74,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,19 @@
+
+
+3 -ssItem(A) | duplicatefreeP(cons(A,nil)).  [clausify(1)].
+4 duplicatefreeP(nil).  [assumption].
+5 c5 = c3.  [clausify(2)].
+6 -duplicatefreeP(c3).  [clausify(2)].
+7 ssItem(c7) | nil = c5.  [clausify(2)].
+8 ssItem(c7) | nil = c3.  [para(5(a,1),7(b,2))].
+9 ssItem(c7) | c3 = nil.  [copy(8),flip(b)].
+10 cons(c7,nil) = c5 | nil = c5.  [clausify(2)].
+11 cons(c7,nil) = c3 | nil = c5.  [para(5(a,1),10(a,2))].
+12 cons(c7,nil) = c3 | nil = c3.  [para(5(a,1),11(b,2))].
+13 cons(c7,nil) = c3 | c3 = nil.  [copy(12),flip(b)].
+14 c3 = nil | duplicatefreeP(cons(c7,nil)).  [resolve(9,a,3,a)].
+15 c3 = nil | c3 = nil | duplicatefreeP(c3).  [para(13(a,1),14(b,1))].
+16 c3 = nil | duplicatefreeP(c3).  [copy(15),merge(b)].
+17 c3 = nil.  [resolve(6,a,16,b)].
+18 -duplicatefreeP(nil).  [para(17(a,1),6(a,1))].
+19 $F.  [resolve(4,a,18,a)].

@@ -1,0 +1,73 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n059.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:24:28 CDT 2014
+% CPUTime    : 7.39 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 392 was started by sandbox on n059.star.cs.uiowa.edu,
+Fri Jun  6 03:24:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_360_n059.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 7.12 (+ 0.13) seconds.
+% Length of proof is 30.
+% Level of proof is 6.
+% Maximum clause weight is 27.000.
+% Given clauses 3928.
+
+
+1 (all A all B (subclass(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+2 (all A subclass(A,universal_class)).  [assumption].
+3 (all A all B all C (member(A,unordered_pair(B,C)) <-> member(A,universal_class) & (A = B | A = C))).  [assumption].
+4 (all A all B member(unordered_pair(A,B),universal_class)).  [assumption].
+5 (all A singleton(A) = unordered_pair(A,A)).  [assumption].
+6 (all A all B ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,singleton(B)))).  [assumption].
+7 (all A (A != null_class -> (exists B (member(B,universal_class) & member(B,A) & disjoint(B,A))))).  [assumption].
+8 -(all A all B (unordered_pair(singleton(A),unordered_pair(A,null_class)) = ordered_pair(A,B) | member(B,universal_class))).  [assumption].
+9 subclass(A,universal_class).  [clausify(2)].
+10 member(unordered_pair(A,B),universal_class).  [clausify(4)].
+11 singleton(A) = unordered_pair(A,A).  [clausify(5)].
+12 null_class = A | member(f5(A),universal_class).  [clausify(7)].
+13 null_class = A | member(f5(A),A).  [clausify(7)].
+14 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,singleton(B))).  [clausify(6)].
+15 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,singleton(B))).  [para(11(a,1),14(a,2,1))].
+16 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))).  [para(11(a,1),15(a,2,2,2))].
+17 -member(c4,universal_class).  [clausify(8)].
+18 ordered_pair(c3,c4) != unordered_pair(singleton(c3),unordered_pair(c3,null_class)).  [clausify(8)].
+19 unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,unordered_pair(c4,c4))) != unordered_pair(singleton(c3),unordered_pair(c3,null_class)).  [para(16(a,1),18(a,1))].
+20 unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,unordered_pair(c4,c4))) != unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)).  [para(11(a,1),19(a,2,1))].
+21 -subclass(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+22 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(3)].
+23 member(A,unordered_pair(B,C)) | -member(A,universal_class) | A != C.  [clausify(3)].
+24 -member(A,B) | member(A,universal_class).  [resolve(21,a,9,a)].
+25 -member(c4,A).  [resolve(24,b,17,a)].
+26 f5(unordered_pair(A,B)) = A | f5(unordered_pair(A,B)) = B | null_class = unordered_pair(A,B).  [resolve(22,a,13,b)].
+27 f5(unordered_pair(A,B)) = A | f5(unordered_pair(A,B)) = B | unordered_pair(A,B) = null_class.  [copy(26),flip(c)].
+28 -member(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)),unordered_pair(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,unordered_pair(c4,c4))),A)) | unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)) = A.  [resolve(22,b,20,a(flip))].
+29 -member(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)),unordered_pair(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,unordered_pair(c4,c4))),unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,unordered_pair(c4,c4))))).  [resolve(28,b,20,a(flip))].
+30 f5(unordered_pair(A,A)) = A | unordered_pair(A,A) = null_class.  [factor(27,a,b)].
+31 member(unordered_pair(A,B),unordered_pair(C,D)) | unordered_pair(A,B) != D.  [resolve(23,b,10,a)].
+32 unordered_pair(A,A) = null_class | null_class = unordered_pair(A,A) | member(A,universal_class).  [para(30(a,1),12(b,1))].
+33 unordered_pair(A,A) = null_class | unordered_pair(A,A) = null_class | member(A,universal_class).  [copy(32),flip(b)].
+34 unordered_pair(A,A) = null_class | member(A,universal_class).  [copy(33),merge(b)].
+35 member(unordered_pair(A,B),unordered_pair(C,unordered_pair(A,B))).  [xx_res(31,b)].
+36 unordered_pair(c4,c4) = null_class.  [resolve(34,b,25,a)].
+37 -member(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)),unordered_pair(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)),unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,unordered_pair(c4,c4))))).  [para(36(a,1),29(a,2,1,2,2))].
+38 -member(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)),unordered_pair(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)),unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,null_class)))).  [para(36(a,1),37(a,2,2,2,2))].
+39 $F.  [resolve(35,a,38,a)].
+
+============================== end of proof ==========================

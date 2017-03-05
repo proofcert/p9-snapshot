@@ -1,0 +1,353 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n143.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 15:52:33 CDT 2014
+% CPUTime    : 1.10 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 899 was started by sandbox on n143.star.cs.uiowa.edu,
+Fri Jun  6 15:52:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_867_n143.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.97 (+ 0.01) seconds: goals.
+% Length of proof is 130.
+% Level of proof is 24.
+% Maximum clause weight is 35.000.
+% Given clauses 138.
+
+
+1 (all A all B mult(B,ld(B,A)) = A).  [assumption].
+2 (all A all B ld(B,mult(B,A)) = A).  [assumption].
+3 (all A all B mult(rd(B,A),A) = B).  [assumption].
+4 (all A all B rd(mult(B,A),A) = B).  [assumption].
+5 (all A all B all C mult(mult(mult(C,B),A),C) = mult(C,mult(B,mult(A,C)))).  [assumption].
+6 -(all A all B (mult(A,ld(B,B)) = A & mult(ld(B,B),A) = A)).  [assumption].
+7 mult(A,ld(A,B)) = B.  [clausify(1)].
+8 ld(A,mult(A,B)) = B.  [clausify(2)].
+9 mult(rd(A,B),B) = A.  [clausify(3)].
+10 rd(mult(A,B),B) = A.  [clausify(4)].
+11 mult(mult(mult(A,B),C),A) = mult(A,mult(B,mult(C,A))).  [clausify(5)].
+12 mult(c1,ld(c2,c2)) != c1 | mult(ld(c2,c2),c1) != c1.  [clausify(6)].
+13 ld(rd(A,B),A) = B.  [para(9(a,1),8(a,1,2))].
+14 rd(A,ld(B,A)) = B.  [para(7(a,1),10(a,1,1))].
+15 mult(mult(A,B),C) = mult(C,mult(ld(C,A),mult(B,C))).  [para(7(a,1),11(a,1,1,1))].
+16 mult(A,mult(ld(A,B),mult(C,A))) = mult(mult(B,C),A).  [copy(15),flip(a)].
+17 mult(A,B) = mult(B,mult(C,mult(ld(mult(B,C),A),B))).  [para(7(a,1),11(a,1,1))].
+18 mult(A,mult(B,mult(ld(mult(A,B),C),A))) = mult(C,A).  [copy(17),flip(a)].
+19 ld(mult(mult(A,B),C),mult(A,mult(B,mult(C,A)))) = A.  [para(11(a,1),8(a,1,2))].
+20 rd(mult(A,mult(B,mult(C,A))),A) = mult(mult(A,B),C).  [para(11(a,1),10(a,1,1))].
+21 mult(ld(A,B),mult(ld(ld(A,B),C),B)) = mult(mult(C,A),ld(A,B)).  [para(7(a,1),16(a,1,2,2))].
+22 ld(A,mult(mult(B,C),A)) = mult(ld(A,B),mult(C,A)).  [para(16(a,1),8(a,1,2))].
+23 mult(A,mult(ld(A,B),C)) = mult(mult(B,rd(C,A)),A).  [para(9(a,1),16(a,1,2,2))].
+24 mult(mult(A,rd(B,C)),C) = mult(C,mult(ld(C,A),B)).  [copy(23),flip(a)].
+25 ld(A,mult(B,A)) = mult(C,mult(ld(mult(A,C),B),A)).  [para(18(a,1),8(a,1,2))].
+26 mult(A,mult(ld(mult(B,A),C),B)) = ld(B,mult(C,B)).  [copy(25),flip(a)].
+27 ld(mult(mult(mult(A,B),B),ld(B,C)),mult(mult(A,B),mult(mult(C,A),B))) = mult(A,B).  [para(16(a,1),19(a,1,2,2))].
+28 rd(mult(A,mult(B,C)),A) = mult(mult(A,B),rd(C,A)).  [para(9(a,1),20(a,1,1,2,2))].
+29 rd(mult(A,B),A) = mult(mult(A,rd(B,mult(C,A))),C).  [para(9(a,1),20(a,1,1,2))].
+30 mult(mult(A,rd(B,mult(C,A))),C) = rd(mult(A,B),A).  [copy(29),flip(a)].
+31 ld(A,mult(B,A)) = mult(ld(A,C),mult(ld(C,B),A)).  [para(7(a,1),22(a,1,2,1))].
+32 mult(ld(A,B),mult(ld(B,C),A)) = ld(A,mult(C,A)).  [copy(31),flip(a)].
+33 ld(A,mult(B,A)) = mult(ld(A,rd(B,C)),mult(C,A)).  [para(9(a,1),22(a,1,2,1))].
+34 mult(ld(A,rd(B,C)),mult(C,A)) = ld(A,mult(B,A)).  [copy(33),flip(a)].
+35 ld(A,ld(B,mult(C,B))) = mult(ld(mult(B,A),C),B).  [para(26(a,1),8(a,1,2))].
+36 mult(A,mult(ld(B,C),rd(B,A))) = ld(rd(B,A),mult(C,rd(B,A))).  [para(9(a,1),26(a,1,2,1,1))].
+37 ld(rd(A,B),mult(C,rd(A,B))) = mult(B,mult(ld(A,C),rd(A,B))).  [copy(36),flip(a)].
+38 rd(mult(A,B),A) = mult(mult(A,C),rd(ld(C,B),A)).  [para(7(a,1),28(a,1,1,2))].
+39 mult(mult(A,B),rd(ld(B,C),A)) = rd(mult(A,C),A).  [copy(38),flip(a)].
+40 rd(mult(A,B),A) = mult(mult(A,rd(B,C)),rd(C,A)).  [para(9(a,1),28(a,1,1,2))].
+41 mult(mult(A,rd(B,C)),rd(C,A)) = rd(mult(A,B),A).  [copy(40),flip(a)].
+42 mult(mult(ld(A,B),rd(C,B)),A) = rd(mult(ld(A,B),C),ld(A,B)).  [para(7(a,1),30(a,1,1,2,2))].
+43 rd(mult(ld(A,B),C),ld(A,B)) = mult(mult(ld(A,B),rd(C,B)),A).  [copy(42),flip(a)].
+44 rd(rd(mult(A,B),A),C) = mult(A,rd(B,mult(C,A))).  [para(30(a,1),10(a,1,1))].
+45 mult(ld(ld(A,B),rd(C,A)),B) = ld(ld(A,B),mult(C,ld(A,B))).  [para(7(a,1),34(a,1,2))].
+46 ld(ld(A,B),mult(C,ld(A,B))) = mult(ld(ld(A,B),rd(C,A)),B).  [copy(45),flip(a)].
+47 mult(ld(A,rd(B,rd(C,A))),C) = ld(A,mult(B,A)).  [para(9(a,1),34(a,1,2))].
+48 ld(A,B) = mult(ld(mult(B,A),B),B).  [para(8(a,1),35(a,1,2))].
+49 mult(ld(mult(A,B),A),A) = ld(B,A).  [copy(48),flip(a)].
+50 ld(A,ld(B,C)) = mult(ld(mult(B,A),rd(C,B)),B).  [para(9(a,1),35(a,1,2,2))].
+51 mult(ld(mult(A,B),rd(C,A)),A) = ld(B,ld(A,C)).  [copy(50),flip(a)].
+52 mult(ld(A,B),B) = ld(ld(B,A),B).  [para(7(a,1),49(a,1,1,1))].
+53 ld(ld(A,B),A) = mult(ld(B,A),A).  [copy(52),flip(a)].
+54 ld(ld(mult(A,B),A),ld(B,A)) = A.  [para(49(a,1),8(a,1,2))].
+55 mult(ld(A,rd(A,B)),rd(A,B)) = ld(B,rd(A,B)).  [para(9(a,1),49(a,1,1,1))].
+56 rd(ld(A,B),B) = ld(mult(B,A),B).  [para(49(a,1),10(a,1,1))].
+57 rd(A,mult(ld(B,A),A)) = ld(A,B).  [para(53(a,1),14(a,1,2))].
+58 ld(mult(ld(A,B),B),ld(B,A)) = mult(ld(B,ld(B,A)),ld(B,A)).  [para(53(a,1),53(a,1,1))].
+59 rd(A,B) = ld(mult(B,rd(B,A)),B).  [para(13(a,1),56(a,1,1))].
+60 ld(mult(A,rd(A,B)),A) = rd(B,A).  [copy(59),flip(a)].
+61 rd(A,mult(B,A)) = ld(A,rd(A,B)).  [para(13(a,1),57(a,1,2,1))].
+62 rd(A,rd(B,A)) = mult(A,rd(A,B)).  [para(60(a,1),14(a,1,2))].
+63 rd(ld(A,B),B) = ld(ld(A,B),rd(ld(A,B),A)).  [para(7(a,1),61(a,1,2))].
+64 ld(mult(B,A),B) = ld(ld(A,B),rd(ld(A,B),A)).  [para(56(a,1),63(a,1))].
+65 ld(ld(A,B),rd(ld(A,B),A)) = ld(mult(B,A),B).  [copy(64),flip(a)].
+66 rd(mult(A,B),rd(B,mult(A,B))) = mult(mult(A,B),A).  [para(10(a,1),62(a,2,2))].
+67 rd(mult(A,B),ld(B,rd(B,A))) = mult(mult(A,B),A).  [para(61(a,1),66(a,1,2))].
+68 mult(A,rd(ld(ld(B,A),C),B)) = rd(mult(B,C),B).  [para(7(a,1),39(a,1,1))].
+69 ld(mult(A,B),rd(mult(A,C),A)) = rd(ld(B,C),A).  [para(39(a,1),8(a,1,2))].
+70 mult(A,rd(ld(B,C),rd(A,B))) = rd(mult(rd(A,B),C),rd(A,B)).  [para(9(a,1),39(a,1,1))].
+71 rd(mult(rd(A,B),C),rd(A,B)) = mult(A,rd(ld(B,C),rd(A,B))).  [copy(70),flip(a)].
+72 rd(rd(A,B),C) = mult(B,rd(ld(B,A),mult(C,B))).  [para(7(a,1),44(a,1,1,1))].
+73 mult(A,rd(ld(A,B),mult(C,A))) = rd(rd(B,A),C).  [copy(72),flip(a)].
+74 rd(ld(A,mult(B,A)),C) = ld(A,rd(B,rd(C,A))).  [para(47(a,1),10(a,1,1))].
+75 mult(ld(A,rd(B,C)),C) = ld(ld(C,A),ld(C,B)).  [para(7(a,1),51(a,1,1,1))].
+76 ld(ld(A,B),ld(A,C)) = mult(ld(B,rd(C,A)),A).  [copy(75),flip(a)].
+77 rd(ld(A,ld(B,C)),B) = ld(mult(B,A),rd(C,B)).  [para(51(a,1),10(a,1,1))].
+78 rd(rd(ld(A,B),A),ld(mult(B,A),B)) = ld(A,B).  [para(65(a,1),14(a,1,2))].
+79 ld(ld(A,A),ld(mult(A,A),A)) = ld(mult(A,A),A).  [para(56(a,1),65(a,1,2))].
+80 rd(ld(A,rd(B,A)),ld(rd(B,A),rd(rd(B,A),ld(B,rd(B,A))))) = mult(mult(ld(B,rd(B,A)),rd(B,A)),ld(B,rd(B,A))).  [para(55(a,1),67(a,1,1))].
+81 rd(ld(A,rd(B,A)),ld(rd(B,A),B)) = mult(mult(ld(B,rd(B,A)),rd(B,A)),ld(B,rd(B,A))).  [para(14(a,1),80(a,1,2,2))].
+82 rd(ld(A,rd(B,A)),A) = mult(mult(ld(B,rd(B,A)),rd(B,A)),ld(B,rd(B,A))).  [para(13(a,1),81(a,1,2))].
+83 rd(ld(A,rd(B,A)),A) = mult(ld(A,rd(B,A)),ld(B,rd(B,A))).  [para(55(a,1),82(a,2,1))].
+84 mult(ld(A,rd(B,A)),ld(B,rd(B,A))) = rd(ld(A,rd(B,A)),A).  [copy(83),flip(a)].
+85 ld(A,rd(mult(B,C),B)) = rd(ld(ld(B,A),C),B).  [para(68(a,1),8(a,1,2))].
+86 rd(ld(ld(A,B),C),A) = ld(B,rd(mult(A,C),A)).  [copy(85),flip(a)].
+87 ld(A,rd(rd(B,A),C)) = rd(ld(A,B),mult(C,A)).  [para(73(a,1),8(a,1,2))].
+88 rd(ld(A,B),mult(C,A)) = ld(A,rd(rd(B,A),C)).  [copy(87),flip(a)].
+89 mult(A,rd(ld(A,B),C)) = rd(rd(B,A),rd(C,A)).  [para(9(a,1),73(a,1,2,2))].
+90 rd(rd(A,B),rd(C,B)) = mult(B,rd(ld(B,A),C)).  [copy(89),flip(a)].
+91 ld(A,rd(B,rd(mult(B,A),A))) = ld(mult(mult(B,A),A),mult(B,A)).  [para(74(a,1),56(a,1))].
+92 ld(A,rd(B,B)) = ld(mult(mult(B,A),A),mult(B,A)).  [para(10(a,1),91(a,1,2,2))].
+93 ld(mult(mult(A,B),B),mult(A,B)) = ld(B,rd(A,A)).  [copy(92),flip(a)].
+94 rd(ld(mult(A,A),A),ld(mult(A,A),A)) = ld(A,A).  [para(56(a,1),78(a,1,1))].
+95 mult(ld(mult(A,A),A),mult(ld(ld(mult(A,A),A),B),ld(A,A))) = ld(ld(A,A),mult(B,ld(A,A))).  [para(79(a,1),32(a,1,1))].
+96 mult(ld(mult(A,A),A),mult(ld(ld(mult(A,A),A),B),ld(A,A))) = mult(ld(ld(A,A),rd(B,A)),A).  [para(46(a,1),95(a,2))].
+97 ld(ld(ld(mult(A,A),A),ld(A,A)),ld(mult(A,A),A)) = mult(ld(mult(A,A),A),ld(mult(A,A),A)).  [para(79(a,1),53(a,2,1))].
+98 ld(A,ld(mult(A,A),A)) = mult(ld(mult(A,A),A),ld(mult(A,A),A)).  [para(54(a,1),97(a,1,1))].
+99 mult(ld(mult(A,A),A),ld(mult(A,A),A)) = ld(A,ld(mult(A,A),A)).  [copy(98),flip(a)].
+100 rd(ld(mult(A,A),A),A) = ld(A,rd(mult(A,ld(mult(A,A),A)),A)).  [para(79(a,1),86(a,1,1))].
+101 ld(mult(A,mult(A,A)),A) = ld(A,rd(mult(A,ld(mult(A,A),A)),A)).  [para(56(a,1),100(a,1))].
+102 ld(A,rd(mult(A,ld(mult(A,A),A)),A)) = ld(mult(A,mult(A,A)),A).  [copy(101),flip(a)].
+103 ld(rd(mult(A,A),A),mult(A,rd(A,A))) = ld(rd(A,A),rd(A,A)).  [para(41(a,1),93(a,1,1))].
+104 ld(A,mult(A,rd(A,A))) = ld(rd(A,A),rd(A,A)).  [para(10(a,1),103(a,1,1))].
+105 rd(A,A) = ld(rd(A,A),rd(A,A)).  [para(8(a,1),104(a,1))].
+106 ld(rd(A,A),rd(A,A)) = rd(A,A).  [copy(105),flip(a)].
+107 mult(rd(A,A),rd(A,A)) = rd(A,A).  [para(106(a,1),7(a,1,2))].
+108 rd(rd(A,A),rd(A,A)) = rd(A,A).  [para(106(a,1),14(a,1,2))].
+109 mult(A,rd(ld(A,A),A)) = rd(A,A).  [para(90(a,1),108(a,1))].
+110 mult(A,ld(mult(A,A),A)) = rd(A,A).  [para(56(a,1),109(a,1,2))].
+111 mult(rd(A,A),mult(rd(A,A),mult(B,rd(A,A)))) = mult(mult(rd(A,A),B),rd(A,A)).  [para(106(a,1),16(a,1,2,1))].
+112 mult(rd(A,A),mult(ld(rd(A,A),B),rd(A,A))) = ld(rd(A,A),mult(B,rd(A,A))).  [para(106(a,1),32(a,1,1))].
+113 mult(rd(A,A),mult(ld(rd(A,A),B),rd(A,A))) = mult(A,mult(ld(A,B),rd(A,A))).  [para(37(a,1),112(a,2))].
+114 mult(rd(A,A),mult(ld(ld(rd(A,A),rd(A,A)),B),rd(A,A))) = mult(mult(B,rd(A,A)),ld(rd(A,A),rd(A,A))).  [para(106(a,1),21(a,1,1))].
+115 mult(rd(A,A),mult(ld(rd(A,A),B),rd(A,A))) = mult(mult(B,rd(A,A)),ld(rd(A,A),rd(A,A))).  [para(106(a,1),114(a,1,2,1,1))].
+116 mult(A,mult(ld(A,B),rd(A,A))) = mult(mult(B,rd(A,A)),ld(rd(A,A),rd(A,A))).  [para(113(a,1),115(a,1))].
+117 mult(A,mult(ld(A,B),rd(A,A))) = mult(mult(B,rd(A,A)),rd(A,A)).  [para(106(a,1),116(a,2,2))].
+118 mult(mult(A,rd(B,B)),rd(B,B)) = mult(B,mult(ld(B,A),rd(B,B))).  [copy(117),flip(a)].
+119 ld(rd(A,A),ld(rd(A,A),B)) = mult(ld(rd(A,A),rd(B,rd(A,A))),rd(A,A)).  [para(106(a,1),76(a,1,1))].
+120 mult(ld(rd(A,A),rd(B,rd(A,A))),rd(A,A)) = ld(rd(A,A),ld(rd(A,A),B)).  [copy(119),flip(a)].
+121 ld(A,rd(rd(A,A),A)) = ld(mult(A,mult(A,A)),A).  [para(110(a,1),102(a,1,2,1))].
+122 ld(mult(A,mult(A,A)),A) = ld(A,rd(rd(A,A),A)).  [copy(121),flip(a)].
+123 mult(rd(A,A),A) = mult(A,mult(ld(A,rd(A,A)),A)).  [para(107(a,1),24(a,1,1))].
+124 A = mult(A,mult(ld(A,rd(A,A)),A)).  [para(9(a,1),123(a,1))].
+125 mult(A,mult(ld(A,rd(A,A)),A)) = A.  [copy(124),flip(a)].
+126 mult(mult(rd(A,A),rd(B,rd(A,A))),rd(A,A)) = rd(mult(rd(A,A),B),rd(A,A)).  [para(107(a,1),30(a,1,1,2,2))].
+127 mult(rd(A,A),mult(ld(rd(A,A),rd(A,A)),B)) = rd(mult(rd(A,A),B),rd(A,A)).  [para(24(a,1),126(a,1))].
+128 mult(rd(A,A),mult(rd(A,A),B)) = rd(mult(rd(A,A),B),rd(A,A)).  [para(106(a,1),127(a,1,2,1))].
+129 mult(rd(A,A),mult(rd(A,A),B)) = mult(A,rd(ld(A,B),rd(A,A))).  [para(71(a,1),128(a,2))].
+130 mult(ld(rd(A,A),rd(B,rd(A,A))),rd(A,A)) = ld(rd(A,A),mult(B,rd(A,A))).  [para(107(a,1),34(a,1,2))].
+131 ld(rd(A,A),ld(rd(A,A),B)) = ld(rd(A,A),mult(B,rd(A,A))).  [para(120(a,1),130(a,1))].
+132 ld(rd(A,A),ld(rd(A,A),B)) = mult(A,mult(ld(A,B),rd(A,A))).  [para(37(a,1),131(a,2))].
+133 rd(rd(mult(rd(A,A),B),rd(A,A)),rd(A,A)) = mult(rd(A,A),rd(B,rd(A,A))).  [para(107(a,1),44(a,2,2,2))].
+134 rd(mult(A,rd(ld(A,B),rd(A,A))),rd(A,A)) = mult(rd(A,A),rd(B,rd(A,A))).  [para(71(a,1),133(a,1,1))].
+135 rd(ld(rd(A,A),B),rd(A,A)) = ld(rd(A,A),rd(rd(B,rd(A,A)),rd(A,A))).  [para(107(a,1),88(a,1,2))].
+136 ld(rd(A,A),rd(rd(B,rd(A,A)),rd(A,A))) = rd(ld(rd(A,A),B),rd(A,A)).  [copy(135),flip(a)].
+137 mult(A,rd(ld(A,mult(B,rd(A,A))),rd(A,A))) = mult(mult(rd(A,A),B),rd(A,A)).  [para(129(a,1),111(a,1))].
+138 mult(ld(rd(A,A),rd(B,rd(A,A))),rd(A,A)) = mult(A,mult(ld(A,B),rd(A,A))).  [para(132(a,1),120(a,2))].
+139 ld(A,rd(A,A)) = ld(mult(A,A),A).  [para(110(a,1),8(a,1,2))].
+140 ld(mult(A,A),A) = ld(A,rd(A,A)).  [copy(139),flip(a)].
+141 mult(ld(A,rd(A,A)),ld(mult(A,A),A)) = ld(A,ld(mult(A,A),A)).  [para(140(a,1),99(a,1,1))].
+142 mult(ld(A,rd(A,A)),ld(A,rd(A,A))) = ld(A,ld(mult(A,A),A)).  [para(140(a,1),141(a,1,2))].
+143 rd(ld(A,rd(A,A)),A) = ld(A,ld(mult(A,A),A)).  [para(84(a,1),142(a,1))].
+144 rd(ld(A,rd(A,A)),A) = ld(A,ld(A,rd(A,A))).  [para(140(a,1),143(a,2,2))].
+145 mult(ld(A,rd(A,A)),mult(ld(ld(mult(A,A),A),B),ld(A,A))) = mult(ld(ld(A,A),rd(B,A)),A).  [para(140(a,1),96(a,1,1))].
+146 mult(ld(A,rd(A,A)),mult(ld(ld(A,rd(A,A)),B),ld(A,A))) = mult(ld(ld(A,A),rd(B,A)),A).  [para(140(a,1),145(a,1,2,1,1))].
+147 rd(ld(A,rd(A,A)),ld(mult(A,A),A)) = ld(A,A).  [para(140(a,1),94(a,1,1))].
+148 rd(ld(A,rd(A,A)),ld(A,rd(A,A))) = ld(A,A).  [para(140(a,1),147(a,1,2))].
+149 ld(A,A) = mult(ld(A,rd(A,A)),A).  [para(125(a,1),8(a,1,2))].
+150 mult(ld(A,rd(A,A)),A) = ld(A,A).  [copy(149),flip(a)].
+151 ld(mult(A,mult(ld(A,rd(A,A)),A)),mult(A,mult(ld(A,rd(A,A)),A))) = ld(mult(ld(A,rd(A,A)),A),rd(A,A)).  [para(125(a,1),93(a,1,1,1))].
+152 ld(mult(A,ld(A,A)),mult(A,mult(ld(A,rd(A,A)),A))) = ld(mult(ld(A,rd(A,A)),A),rd(A,A)).  [para(150(a,1),151(a,1,1,2))].
+153 ld(A,mult(A,mult(ld(A,rd(A,A)),A))) = ld(mult(ld(A,rd(A,A)),A),rd(A,A)).  [para(7(a,1),152(a,1,1))].
+154 ld(A,mult(A,ld(A,A))) = ld(mult(ld(A,rd(A,A)),A),rd(A,A)).  [para(150(a,1),153(a,1,2,2))].
+155 ld(A,A) = ld(mult(ld(A,rd(A,A)),A),rd(A,A)).  [para(7(a,1),154(a,1,2))].
+156 ld(A,A) = ld(ld(A,A),rd(A,A)).  [para(150(a,1),155(a,2,1))].
+157 ld(ld(A,A),rd(A,A)) = ld(A,A).  [copy(156),flip(a)].
+158 ld(ld(mult(A,mult(A,A)),A),ld(A,rd(A,A))) = A.  [para(140(a,1),54(a,1,2))].
+159 ld(ld(A,rd(rd(A,A),A)),ld(A,rd(A,A))) = A.  [para(122(a,1),158(a,1,1))].
+160 mult(ld(rd(rd(A,A),A),rd(rd(A,A),A)),A) = A.  [para(76(a,1),159(a,1))].
+161 rd(ld(A,rd(A,A)),A) = ld(mult(A,mult(A,A)),A).  [para(140(a,1),56(a,1,1))].
+162 ld(A,ld(A,rd(A,A))) = ld(mult(A,mult(A,A)),A).  [para(144(a,1),161(a,1))].
+163 ld(A,ld(A,rd(A,A))) = ld(A,rd(rd(A,A),A)).  [para(122(a,1),162(a,2))].
+164 ld(A,rd(rd(A,A),A)) = ld(A,ld(A,rd(A,A))).  [copy(163),flip(a)].
+165 ld(ld(A,A),rd(ld(A,A),A)) = ld(A,rd(A,A)).  [para(140(a,1),65(a,2))].
+166 ld(ld(A,A),ld(mult(A,A),A)) = ld(A,rd(A,A)).  [para(56(a,1),165(a,1,2))].
+167 ld(ld(A,A),ld(A,rd(A,A))) = ld(A,rd(A,A)).  [para(140(a,1),166(a,1,2))].
+168 mult(ld(A,rd(rd(A,A),A)),A) = ld(A,rd(A,A)).  [para(76(a,1),167(a,1))].
+169 mult(ld(A,ld(A,rd(A,A))),A) = ld(A,rd(A,A)).  [para(164(a,1),168(a,1,1))].
+170 mult(ld(A,A),ld(A,A)) = ld(A,mult(rd(A,A),A)).  [para(150(a,1),32(a,1,2))].
+171 mult(ld(A,A),ld(A,A)) = ld(A,A).  [para(9(a,1),170(a,2,2))].
+172 mult(ld(ld(A,A),rd(B,ld(A,rd(A,A)))),ld(A,rd(A,A))) = ld(A,ld(ld(A,rd(A,A)),B)).  [para(150(a,1),51(a,1,1,1))].
+173 ld(mult(ld(A,A),A),mult(ld(A,rd(A,A)),A)) = ld(A,rd(ld(A,rd(A,A)),ld(A,rd(A,A)))).  [para(150(a,1),93(a,1,1,1))].
+174 ld(mult(ld(A,A),A),ld(A,A)) = ld(A,rd(ld(A,rd(A,A)),ld(A,rd(A,A)))).  [para(150(a,1),173(a,1,2))].
+175 mult(ld(A,ld(A,A)),ld(A,A)) = ld(A,rd(ld(A,rd(A,A)),ld(A,rd(A,A)))).  [para(58(a,1),174(a,1))].
+176 mult(ld(A,ld(A,A)),ld(A,A)) = ld(A,ld(A,A)).  [para(148(a,1),175(a,2,2))].
+177 mult(ld(A,A),ld(A,A)) = rd(A,A).  [para(157(a,1),7(a,1,2))].
+178 ld(A,A) = rd(A,A).  [para(171(a,1),177(a,1))].
+179 rd(A,A) = ld(A,A).  [copy(178),flip(a)].
+180 rd(rd(A,A),ld(A,A)) = ld(A,A).  [para(157(a,1),14(a,1,2))].
+181 rd(ld(A,A),ld(A,A)) = ld(A,A).  [para(179(a,1),180(a,1,1))].
+182 ld(ld(A,A),ld(A,A)) = ld(A,A).  [para(179(a,1),181(a,1))].
+183 mult(ld(A,rd(A,A)),A) = ld(A,A).  [para(76(a,1),182(a,1))].
+184 mult(ld(A,ld(A,A)),A) = ld(A,A).  [para(179(a,1),183(a,1,1,2))].
+185 mult(ld(A,A),mult(ld(rd(A,A),B),ld(A,A))) = ld(ld(A,A),mult(B,ld(A,A))).  [para(157(a,1),32(a,1,1))].
+186 mult(ld(A,A),mult(ld(ld(A,A),B),ld(A,A))) = ld(ld(A,A),mult(B,ld(A,A))).  [para(179(a,1),185(a,1,2,1,1))].
+187 mult(ld(A,A),mult(ld(ld(A,A),B),ld(A,A))) = mult(ld(ld(A,A),rd(B,A)),A).  [para(46(a,1),186(a,2))].
+188 mult(ld(A,A),mult(ld(ld(ld(A,A),rd(A,A)),B),rd(A,A))) = mult(mult(B,ld(A,A)),ld(ld(A,A),rd(A,A))).  [para(157(a,1),21(a,1,1))].
+189 mult(ld(A,A),mult(ld(ld(ld(A,A),ld(A,A)),B),rd(A,A))) = mult(mult(B,ld(A,A)),ld(ld(A,A),rd(A,A))).  [para(179(a,1),188(a,1,2,1,1,2))].
+190 mult(ld(A,A),mult(ld(mult(ld(A,rd(A,A)),A),B),rd(A,A))) = mult(mult(B,ld(A,A)),ld(ld(A,A),rd(A,A))).  [para(76(a,1),189(a,1,2,1,1))].
+191 mult(ld(A,A),mult(ld(mult(ld(A,ld(A,A)),A),B),rd(A,A))) = mult(mult(B,ld(A,A)),ld(ld(A,A),rd(A,A))).  [para(179(a,1),190(a,1,2,1,1,1,2))].
+192 mult(ld(A,A),mult(ld(ld(A,A),B),rd(A,A))) = mult(mult(B,ld(A,A)),ld(ld(A,A),rd(A,A))).  [para(184(a,1),191(a,1,2,1,1))].
+193 mult(ld(A,A),mult(ld(ld(A,A),B),ld(A,A))) = mult(mult(B,ld(A,A)),ld(ld(A,A),rd(A,A))).  [para(179(a,1),192(a,1,2,2))].
+194 mult(ld(ld(A,A),rd(B,A)),A) = mult(mult(B,ld(A,A)),ld(ld(A,A),rd(A,A))).  [para(187(a,1),193(a,1))].
+195 mult(ld(ld(A,A),rd(B,A)),A) = mult(mult(B,ld(A,A)),ld(ld(A,A),ld(A,A))).  [para(179(a,1),194(a,2,2,2))].
+196 mult(ld(ld(A,A),rd(B,A)),A) = mult(mult(B,ld(A,A)),mult(ld(A,rd(A,A)),A)).  [para(76(a,1),195(a,2,2))].
+197 mult(ld(ld(A,A),rd(B,A)),A) = mult(mult(B,ld(A,A)),mult(ld(A,ld(A,A)),A)).  [para(179(a,1),196(a,2,2,1,2))].
+198 mult(ld(ld(A,A),rd(B,A)),A) = mult(mult(B,ld(A,A)),ld(A,A)).  [para(184(a,1),197(a,2,2))].
+199 ld(ld(A,A),ld(ld(A,A),B)) = mult(ld(rd(A,A),rd(B,ld(A,A))),ld(A,A)).  [para(157(a,1),76(a,1,1))].
+200 ld(ld(A,A),ld(ld(A,A),B)) = mult(ld(ld(A,A),rd(B,ld(A,A))),ld(A,A)).  [para(179(a,1),199(a,2,1,1))].
+201 mult(ld(ld(A,A),rd(B,ld(A,A))),ld(A,A)) = ld(ld(A,A),ld(ld(A,A),B)).  [copy(200),flip(a)].
+202 rd(ld(ld(A,A),B),ld(A,A)) = ld(rd(A,A),rd(mult(ld(A,A),B),ld(A,A))).  [para(157(a,1),86(a,1,1,1))].
+203 rd(ld(ld(A,A),B),ld(A,A)) = ld(ld(A,A),rd(mult(ld(A,A),B),ld(A,A))).  [para(179(a,1),202(a,2,1))].
+204 rd(ld(ld(A,A),B),ld(A,A)) = ld(ld(A,A),mult(mult(ld(A,A),rd(B,A)),A)).  [para(43(a,1),203(a,2,2))].
+205 rd(ld(ld(A,A),B),ld(A,A)) = ld(ld(A,A),mult(A,mult(ld(A,ld(A,A)),B))).  [para(24(a,1),204(a,2,2))].
+206 ld(ld(A,A),mult(A,mult(ld(A,ld(A,A)),B))) = rd(ld(ld(A,A),B),ld(A,A)).  [copy(205),flip(a)].
+207 ld(mult(mult(mult(A,ld(B,B)),ld(B,B)),ld(B,B)),mult(mult(A,ld(B,B)),mult(mult(rd(B,B),A),ld(B,B)))) = mult(A,ld(B,B)).  [para(157(a,1),27(a,1,1,2))].
+208 ld(mult(mult(mult(A,ld(B,B)),ld(B,B)),ld(B,B)),mult(mult(A,ld(B,B)),mult(mult(ld(B,B),A),ld(B,B)))) = mult(A,ld(B,B)).  [para(179(a,1),207(a,1,2,2,1,1))].
+209 mult(ld(ld(A,A),rd(B,ld(A,ld(A,A)))),ld(A,rd(A,A))) = ld(A,ld(ld(A,rd(A,A)),B)).  [para(179(a,1),172(a,1,1,2,2,2))].
+210 mult(ld(ld(A,A),rd(B,ld(A,ld(A,A)))),ld(A,ld(A,A))) = ld(A,ld(ld(A,rd(A,A)),B)).  [para(179(a,1),209(a,1,2,2))].
+211 mult(ld(ld(A,A),rd(B,ld(A,ld(A,A)))),ld(A,ld(A,A))) = ld(A,ld(ld(A,ld(A,A)),B)).  [para(179(a,1),210(a,2,2,1,2))].
+212 mult(ld(A,ld(A,ld(A,A))),A) = ld(A,rd(A,A)).  [para(179(a,1),169(a,1,1,2,2))].
+213 mult(ld(A,ld(A,ld(A,A))),A) = ld(A,ld(A,A)).  [para(179(a,1),212(a,2,2))].
+214 mult(ld(rd(ld(A,A),A),rd(rd(A,A),A)),A) = A.  [para(179(a,1),160(a,1,1,1,1))].
+215 mult(ld(ld(mult(A,A),A),rd(rd(A,A),A)),A) = A.  [para(56(a,1),214(a,1,1,1))].
+216 mult(ld(ld(A,rd(A,A)),rd(rd(A,A),A)),A) = A.  [para(140(a,1),215(a,1,1,1))].
+217 mult(ld(ld(A,ld(A,A)),rd(rd(A,A),A)),A) = A.  [para(179(a,1),216(a,1,1,1,2))].
+218 mult(ld(ld(A,ld(A,A)),rd(ld(A,A),A)),A) = A.  [para(179(a,1),217(a,1,1,2,1))].
+219 mult(ld(ld(A,ld(A,A)),ld(mult(A,A),A)),A) = A.  [para(56(a,1),218(a,1,1,2))].
+220 mult(ld(ld(A,ld(A,A)),ld(A,rd(A,A))),A) = A.  [para(140(a,1),219(a,1,1,2))].
+221 mult(ld(ld(A,ld(A,A)),ld(A,ld(A,A))),A) = A.  [para(179(a,1),220(a,1,1,2,2))].
+222 mult(mult(ld(ld(A,A),rd(ld(A,A),A)),A),A) = A.  [para(76(a,1),221(a,1,1))].
+223 mult(mult(ld(ld(A,A),ld(mult(A,A),A)),A),A) = A.  [para(56(a,1),222(a,1,1,1,2))].
+224 mult(mult(ld(ld(A,A),ld(A,rd(A,A))),A),A) = A.  [para(140(a,1),223(a,1,1,1,2))].
+225 mult(mult(ld(ld(A,A),ld(A,ld(A,A))),A),A) = A.  [para(179(a,1),224(a,1,1,1,2,2))].
+226 mult(mult(mult(ld(A,rd(ld(A,A),A)),A),A),A) = A.  [para(76(a,1),225(a,1,1,1))].
+227 mult(mult(mult(ld(A,ld(mult(A,A),A)),A),A),A) = A.  [para(56(a,1),226(a,1,1,1,1,2))].
+228 mult(mult(mult(ld(A,ld(A,rd(A,A))),A),A),A) = A.  [para(140(a,1),227(a,1,1,1,1,2))].
+229 mult(mult(mult(ld(A,ld(A,ld(A,A))),A),A),A) = A.  [para(179(a,1),228(a,1,1,1,1,2,2))].
+230 mult(mult(ld(A,ld(A,A)),A),A) = A.  [para(213(a,1),229(a,1,1,1))].
+231 mult(ld(A,A),A) = A.  [para(184(a,1),230(a,1,1))].
+232 mult(ld(A,ld(A,A)),mult(ld(ld(A,rd(A,A)),B),ld(A,A))) = mult(ld(ld(A,A),rd(B,A)),A).  [para(179(a,1),146(a,1,1,2))].
+233 mult(ld(A,ld(A,A)),mult(ld(ld(A,ld(A,A)),B),ld(A,A))) = mult(ld(ld(A,A),rd(B,A)),A).  [para(179(a,1),232(a,1,2,1,1,2))].
+234 mult(mult(B,A),ld(A,ld(A,A))) = mult(ld(ld(A,A),rd(B,A)),A).  [para(21(a,1),233(a,1))].
+235 mult(mult(B,A),ld(A,ld(A,A))) = mult(mult(B,ld(A,A)),ld(A,A)).  [para(198(a,1),234(a,2))].
+236 mult(mult(A,ld(B,B)),ld(B,B)) = mult(mult(A,B),ld(B,ld(B,B))).  [copy(235),flip(a)].
+237 mult(ld(ld(A,A),rd(B,rd(A,A))),rd(A,A)) = mult(A,mult(ld(A,B),rd(A,A))).  [para(179(a,1),138(a,1,1,1))].
+238 mult(ld(ld(A,A),rd(B,ld(A,A))),rd(A,A)) = mult(A,mult(ld(A,B),rd(A,A))).  [para(179(a,1),237(a,1,1,2,2))].
+239 mult(ld(ld(A,A),rd(B,ld(A,A))),ld(A,A)) = mult(A,mult(ld(A,B),rd(A,A))).  [para(179(a,1),238(a,1,2))].
+240 ld(ld(A,A),ld(ld(A,A),B)) = mult(A,mult(ld(A,B),rd(A,A))).  [para(201(a,1),239(a,1))].
+241 ld(ld(A,A),ld(ld(A,A),B)) = mult(A,mult(ld(A,B),ld(A,A))).  [para(179(a,1),240(a,2,2,2))].
+242 mult(A,rd(ld(A,mult(B,ld(A,A))),rd(A,A))) = mult(mult(rd(A,A),B),rd(A,A)).  [para(179(a,1),137(a,1,2,1,2,2))].
+243 mult(A,rd(ld(A,mult(B,ld(A,A))),ld(A,A))) = mult(mult(rd(A,A),B),rd(A,A)).  [para(179(a,1),242(a,1,2,2))].
+244 mult(A,rd(ld(A,mult(B,ld(A,A))),ld(A,A))) = mult(mult(ld(A,A),B),rd(A,A)).  [para(179(a,1),243(a,2,1,1))].
+245 mult(A,rd(ld(A,mult(B,ld(A,A))),ld(A,A))) = mult(mult(ld(A,A),B),ld(A,A)).  [para(179(a,1),244(a,2,2))].
+246 ld(ld(A,A),rd(rd(B,rd(A,A)),rd(A,A))) = rd(ld(rd(A,A),B),rd(A,A)).  [para(179(a,1),136(a,1,1))].
+247 ld(ld(A,A),rd(rd(B,ld(A,A)),rd(A,A))) = rd(ld(rd(A,A),B),rd(A,A)).  [para(179(a,1),246(a,1,2,1,2))].
+248 ld(ld(A,A),rd(rd(B,ld(A,A)),ld(A,A))) = rd(ld(rd(A,A),B),rd(A,A)).  [para(179(a,1),247(a,1,2,2))].
+249 ld(ld(A,A),rd(rd(B,ld(A,A)),ld(A,A))) = rd(ld(ld(A,A),B),rd(A,A)).  [para(179(a,1),248(a,2,1,1))].
+250 ld(ld(A,A),rd(rd(B,ld(A,A)),ld(A,A))) = rd(ld(ld(A,A),B),ld(A,A)).  [para(179(a,1),249(a,2,2))].
+251 rd(mult(A,rd(ld(A,B),ld(A,A))),rd(A,A)) = mult(rd(A,A),rd(B,rd(A,A))).  [para(179(a,1),134(a,1,1,2,2))].
+252 rd(mult(A,rd(ld(A,B),ld(A,A))),ld(A,A)) = mult(rd(A,A),rd(B,rd(A,A))).  [para(179(a,1),251(a,1,2))].
+253 rd(mult(A,rd(ld(A,B),ld(A,A))),ld(A,A)) = mult(ld(A,A),rd(B,rd(A,A))).  [para(179(a,1),252(a,2,1))].
+254 rd(mult(A,rd(ld(A,B),ld(A,A))),ld(A,A)) = mult(ld(A,A),rd(B,ld(A,A))).  [para(179(a,1),253(a,2,2,2))].
+255 mult(mult(A,ld(B,B)),rd(B,B)) = mult(B,mult(ld(B,A),rd(B,B))).  [para(179(a,1),118(a,1,1,2))].
+256 mult(mult(A,ld(B,B)),ld(B,B)) = mult(B,mult(ld(B,A),rd(B,B))).  [para(179(a,1),255(a,1,2))].
+257 mult(mult(A,B),ld(B,ld(B,B))) = mult(B,mult(ld(B,A),rd(B,B))).  [para(236(a,1),256(a,1))].
+258 mult(mult(A,B),ld(B,ld(B,B))) = mult(B,mult(ld(B,A),ld(B,B))).  [para(179(a,1),257(a,2,2,2))].
+259 ld(mult(mult(mult(A,B),ld(B,ld(B,B))),ld(B,B)),mult(mult(A,ld(B,B)),mult(mult(ld(B,B),A),ld(B,B)))) = mult(A,ld(B,B)).  [para(236(a,1),208(a,1,1,1))].
+260 ld(mult(mult(A,mult(ld(A,B),ld(A,A))),ld(A,A)),mult(mult(B,ld(A,A)),mult(mult(ld(A,A),B),ld(A,A)))) = mult(B,ld(A,A)).  [para(258(a,1),259(a,1,1,1))].
+261 mult(ld(ld(A,A),rd(B,A)),A) = mult(mult(B,A),ld(A,ld(A,A))).  [para(236(a,1),198(a,2))].
+262 mult(ld(ld(A,A),rd(B,A)),A) = mult(A,mult(ld(A,B),ld(A,A))).  [para(258(a,1),261(a,2))].
+263 mult(ld(ld(A,A),rd(B,ld(A,A))),ld(A,A)) = mult(A,mult(ld(A,B),ld(A,A))).  [para(241(a,1),201(a,2))].
+264 mult(mult(A,ld(B,B)),ld(B,B)) = mult(B,mult(ld(B,A),ld(B,B))).  [para(258(a,1),236(a,2))].
+265 ld(A,rd(mult(ld(A,A),B),ld(A,A))) = rd(ld(A,B),ld(A,A)).  [para(231(a,1),69(a,1,1))].
+266 ld(A,mult(mult(ld(A,A),rd(B,A)),A)) = rd(ld(A,B),ld(A,A)).  [para(43(a,1),265(a,1,2))].
+267 ld(A,mult(A,mult(ld(A,ld(A,A)),B))) = rd(ld(A,B),ld(A,A)).  [para(24(a,1),266(a,1,2))].
+268 mult(ld(A,ld(A,A)),B) = rd(ld(A,B),ld(A,A)).  [para(8(a,1),267(a,1))].
+269 rd(ld(A,B),ld(A,A)) = mult(ld(A,ld(A,A)),B).  [copy(268),flip(a)].
+270 rd(mult(A,mult(ld(A,ld(A,A)),B)),ld(A,A)) = mult(ld(A,A),rd(B,ld(A,A))).  [para(269(a,1),254(a,1,1,2))].
+271 mult(A,mult(ld(A,ld(A,A)),mult(B,ld(A,A)))) = mult(mult(ld(A,A),B),ld(A,A)).  [para(269(a,1),245(a,1,2))].
+272 rd(ld(ld(A,A),ld(ld(A,A),B)),ld(A,A)) = ld(ld(A,A),rd(B,ld(A,A))).  [para(171(a,1),77(a,2,1))].
+273 rd(mult(A,mult(ld(A,B),ld(A,A))),ld(A,A)) = ld(ld(A,A),rd(B,ld(A,A))).  [para(241(a,1),272(a,1,1))].
+274 mult(mult(ld(A,A),rd(B,ld(A,ld(A,A)))),ld(A,ld(A,A))) = rd(mult(ld(A,A),B),ld(A,A)).  [para(176(a,1),30(a,1,1,2,2))].
+275 mult(ld(A,ld(A,A)),mult(ld(ld(A,ld(A,A)),ld(A,A)),B)) = rd(mult(ld(A,A),B),ld(A,A)).  [para(24(a,1),274(a,1))].
+276 mult(ld(A,ld(A,A)),mult(mult(ld(ld(A,A),rd(A,A)),A),B)) = rd(mult(ld(A,A),B),ld(A,A)).  [para(76(a,1),275(a,1,2,1))].
+277 mult(ld(A,ld(A,A)),mult(mult(ld(ld(A,A),ld(A,A)),A),B)) = rd(mult(ld(A,A),B),ld(A,A)).  [para(179(a,1),276(a,1,2,1,1,2))].
+278 mult(ld(A,ld(A,A)),mult(mult(mult(ld(A,rd(A,A)),A),A),B)) = rd(mult(ld(A,A),B),ld(A,A)).  [para(76(a,1),277(a,1,2,1,1))].
+279 mult(ld(A,ld(A,A)),mult(mult(mult(ld(A,ld(A,A)),A),A),B)) = rd(mult(ld(A,A),B),ld(A,A)).  [para(179(a,1),278(a,1,2,1,1,1,2))].
+280 mult(ld(A,ld(A,A)),mult(mult(ld(A,A),A),B)) = rd(mult(ld(A,A),B),ld(A,A)).  [para(184(a,1),279(a,1,2,1,1))].
+281 mult(ld(A,ld(A,A)),mult(A,B)) = rd(mult(ld(A,A),B),ld(A,A)).  [para(231(a,1),280(a,1,2,1))].
+282 mult(ld(A,ld(A,A)),mult(A,B)) = mult(mult(ld(A,A),rd(B,A)),A).  [para(43(a,1),281(a,2))].
+283 mult(ld(A,ld(A,A)),mult(A,B)) = mult(A,mult(ld(A,ld(A,A)),B)).  [para(24(a,1),282(a,2))].
+284 mult(ld(ld(A,A),rd(B,ld(A,ld(A,A)))),ld(A,ld(A,A))) = ld(ld(A,A),mult(B,ld(A,A))).  [para(176(a,1),34(a,1,2))].
+285 ld(A,ld(ld(A,ld(A,A)),B)) = ld(ld(A,A),mult(B,ld(A,A))).  [para(211(a,1),284(a,1))].
+286 ld(A,ld(ld(A,ld(A,A)),B)) = mult(ld(ld(A,A),rd(B,A)),A).  [para(46(a,1),285(a,2))].
+287 ld(A,ld(ld(A,ld(A,A)),B)) = mult(A,mult(ld(A,B),ld(A,A))).  [para(262(a,1),286(a,2))].
+288 rd(ld(A,ld(ld(A,ld(A,A)),B)),ld(A,A)) = B.  [para(7(a,1),269(a,2))].
+289 rd(mult(A,mult(ld(A,B),ld(A,A))),ld(A,A)) = B.  [para(287(a,1),288(a,1,1))].
+290 ld(ld(A,A),rd(B,ld(A,A))) = B.  [para(273(a,1),289(a,1))].
+291 rd(A,ld(B,B)) = mult(ld(B,ld(B,B)),mult(B,A)).  [para(8(a,1),269(a,1,1))].
+292 rd(A,ld(B,B)) = mult(B,mult(ld(B,ld(B,B)),A)).  [para(283(a,1),291(a,2))].
+293 mult(A,mult(ld(A,ld(A,A)),B)) = rd(B,ld(A,A)).  [copy(292),flip(a)].
+294 mult(B,ld(A,A)) = mult(A,mult(ld(A,B),ld(A,A))).  [para(290(a,1),263(a,1,1))].
+295 mult(A,mult(ld(A,B),ld(A,A))) = mult(B,ld(A,A)).  [copy(294),flip(a)].
+296 rd(B,ld(A,A)) = rd(ld(ld(A,A),B),ld(A,A)).  [para(290(a,1),250(a,1))].
+297 rd(ld(ld(A,A),B),ld(A,A)) = rd(B,ld(A,A)).  [copy(296),flip(a)].
+298 rd(mult(B,ld(A,A)),ld(A,A)) = mult(mult(ld(A,A),B),ld(A,A)).  [para(293(a,1),271(a,1))].
+299 B = mult(mult(ld(A,A),B),ld(A,A)).  [para(10(a,1),298(a,1))].
+300 mult(mult(ld(A,A),B),ld(A,A)) = B.  [copy(299),flip(a)].
+301 rd(rd(A,ld(B,B)),ld(B,B)) = mult(ld(B,B),rd(A,ld(B,B))).  [para(293(a,1),270(a,1,1))].
+302 ld(ld(A,A),rd(B,ld(A,A))) = rd(ld(ld(A,A),B),ld(A,A)).  [para(293(a,1),206(a,1,2))].
+303 B = rd(ld(ld(A,A),B),ld(A,A)).  [para(290(a,1),302(a,1))].
+304 B = rd(B,ld(A,A)).  [para(297(a,1),303(a,2))].
+305 rd(A,ld(B,B)) = A.  [copy(304),flip(a)].
+306 mult(mult(A,ld(B,B)),ld(B,B)) = mult(A,ld(B,B)).  [para(295(a,1),264(a,2))].
+307 ld(mult(mult(B,ld(A,A)),ld(A,A)),mult(mult(B,ld(A,A)),mult(mult(ld(A,A),B),ld(A,A)))) = mult(B,ld(A,A)).  [para(295(a,1),260(a,1,1,1))].
+308 ld(mult(B,ld(A,A)),mult(mult(B,ld(A,A)),mult(mult(ld(A,A),B),ld(A,A)))) = mult(B,ld(A,A)).  [para(306(a,1),307(a,1,1))].
+309 ld(mult(B,ld(A,A)),mult(mult(B,ld(A,A)),B)) = mult(B,ld(A,A)).  [para(300(a,1),308(a,1,2,2))].
+310 B = mult(B,ld(A,A)).  [para(8(a,1),309(a,1))].
+311 mult(A,ld(B,B)) = A.  [copy(310),flip(a)].
+312 rd(A,ld(B,B)) = mult(ld(B,B),rd(A,ld(B,B))).  [para(305(a,1),301(a,1,1))].
+313 A = mult(ld(B,B),rd(A,ld(B,B))).  [para(305(a,1),312(a,1))].
+314 A = mult(ld(B,B),A).  [para(305(a,1),313(a,2,2))].
+315 mult(ld(A,A),B) = B.  [copy(314),flip(a)].
+316 c1 != c1 | mult(ld(c2,c2),c1) != c1.  [para(311(a,1),12(a,1))].
+317 c1 != c1 | c1 != c1.  [para(315(a,1),316(b,1))].
+318 c1 != c1.  [copy(317),xx(a)].
+319 $F.  [copy(318),xx(a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,81 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n036.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:04:23 CDT 2014
+% CPUTime    : 4.81 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 43374 was started by sandbox on n036.star.cs.uiowa.edu,
+Fri Jun  6 02:04:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_43342_n036.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 4.42 (+ 0.11) seconds.
+% Length of proof is 38.
+% Level of proof is 7.
+% Maximum clause weight is 14.000.
+% Given clauses 2196.
+
+
+1 (all A all B (aElement0(A) & aElement0(B) -> sdtasdt0(A,B) = sdtasdt0(B,A))).  [assumption].
+2 (all A (aSet0(A) -> (all B (aElementOf0(B,A) -> aElement0(B))))).  [assumption].
+3 (all A (aIdeal0(A) <-> aSet0(A) & (all B (aElementOf0(B,A) -> (all C (aElementOf0(C,A) -> aElementOf0(sdtpldt0(B,C),A))) & (all C (aElement0(C) -> aElementOf0(sdtasdt0(C,B),A))))))).  [assumption].
+4 (all A all B (aElement0(A) & aElement0(B) -> (doDivides0(A,B) <-> (exists C (aElement0(C) & sdtasdt0(A,C) = B))))).  [assumption].
+5 (all A (aElement0(A) -> (all B (aDivisorOf0(B,A) <-> aElement0(B) & doDivides0(B,A))))).  [assumption].
+6 (all A all B (aElement0(A) & aElement0(B) -> (all C (aGcdOfAnd0(C,A,B) <-> aDivisorOf0(C,A) & aDivisorOf0(C,B) & (all D (aDivisorOf0(D,A) & aDivisorOf0(D,B) -> doDivides0(D,C))))))).  [assumption].
+7 -aElement0(A) | -aElement0(B) | -aGcdOfAnd0(C,A,B) | aDivisorOf0(C,A).  [clausify(6)].
+8 aGcdOfAnd0(xc,xa,xb).  [assumption].
+9 -aElement0(A) | -aElement0(B) | sdtasdt0(B,A) = sdtasdt0(A,B).  [clausify(1)].
+10 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(2)].
+11 -aIdeal0(A) | aSet0(A).  [clausify(3)].
+12 -aIdeal0(A) | -aElementOf0(B,A) | -aElement0(C) | aElementOf0(sdtasdt0(C,B),A).  [clausify(3)].
+13 -aElement0(A) | -aElement0(B) | -doDivides0(A,B) | aElement0(f16(A,B)).  [clausify(4)].
+14 -aElement0(A) | -aElement0(B) | -doDivides0(A,B) | sdtasdt0(A,f16(A,B)) = B.  [clausify(4)].
+15 -aElement0(A) | -aDivisorOf0(B,A) | aElement0(B).  [clausify(5)].
+16 aElement0(xa).  [assumption].
+17 aElement0(xb).  [assumption].
+18 aIdeal0(xI).  [assumption].
+19 xI = sdtpldt1(slsdtgt0(xa),slsdtgt0(xb)).  [assumption].
+20 sdtpldt1(slsdtgt0(xa),slsdtgt0(xb)) = xI.  [copy(19),flip(a)].
+21 aElementOf0(xu,xI).  [assumption].
+22 doDivides0(xu,xc).  [assumption].
+23 -aElementOf0(xc,sdtpldt1(slsdtgt0(xa),slsdtgt0(xb))).  [assumption].
+24 -aElementOf0(xc,xI).  [para(20(a,1),23(a,2))].
+25 -aElement0(xa) | -aElement0(xb) | aDivisorOf0(xc,xa).  [resolve(8,a,7,c)].
+26 -aElement0(xb) | aDivisorOf0(xc,xa).  [resolve(16,a,25,a)].
+27 aDivisorOf0(xc,xa).  [resolve(17,a,26,a)].
+28 aSet0(xI).  [resolve(18,a,11,a)].
+29 -aIdeal0(xI) | -aElement0(A) | aElementOf0(sdtasdt0(A,xu),xI).  [resolve(21,a,12,b)].
+30 -aElement0(A) | aElementOf0(sdtasdt0(A,xu),xI).  [resolve(18,a,29,a)].
+31 -aSet0(xI) | aElement0(xu).  [resolve(21,a,10,b)].
+32 aElement0(xu).  [resolve(28,a,31,a)].
+33 -aElement0(xu) | -aElement0(xc) | sdtasdt0(xu,f16(xu,xc)) = xc.  [resolve(22,a,14,c)].
+34 -aElement0(xc) | sdtasdt0(xu,f16(xu,xc)) = xc.  [resolve(32,a,33,a)].
+35 -aElement0(xu) | -aElement0(xc) | aElement0(f16(xu,xc)).  [resolve(22,a,13,c)].
+36 -aElement0(xc) | aElement0(f16(xu,xc)).  [resolve(32,a,35,a)].
+37 -aElement0(xa) | aElement0(xc).  [resolve(27,a,15,b)].
+38 aElement0(xc).  [resolve(16,a,37,a)].
+39 aElement0(f16(xu,xc)).  [resolve(38,a,36,a)].
+40 sdtasdt0(xu,f16(xu,xc)) = xc.  [resolve(38,a,34,a)].
+41 -aElement0(A) | sdtasdt0(xu,A) = sdtasdt0(A,xu).  [resolve(32,a,9,b)].
+42 aElementOf0(sdtasdt0(f16(xu,xc),xu),xI).  [resolve(30,a,39,a)].
+43 sdtasdt0(xu,f16(xu,xc)) = sdtasdt0(f16(xu,xc),xu).  [resolve(41,a,39,a)].
+44 xc = sdtasdt0(f16(xu,xc),xu).  [para(40(a,1),43(a,1))].
+45 sdtasdt0(f16(xu,xc),xu) = xc.  [copy(44),flip(a)].
+46 aElementOf0(xc,xI).  [para(45(a,1),42(a,1))].
+47 $F.  [resolve(24,a,46,a)].
+
+============================== end of proof ==========================

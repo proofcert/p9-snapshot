@@ -1,0 +1,15 @@
+
+
+
+
+5 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+6 -in(A,B) | set_union2(singleton(A),B) = B.  [clausify(2)].
+7 -in(A,B) | set_union2(B,singleton(A)) = B.  [para(5(a,1),6(b,1))].
+8 singleton(A) = unordered_pair(A,A).  [clausify(3)].
+9 in(c3,c4).  [clausify(4)].
+10 set_union2(singleton(c3),c4) != c4.  [clausify(4)].
+11 set_union2(unordered_pair(c3,c3),c4) != c4.  [para(8(a,1),10(a,1,1))].
+12 set_union2(c4,unordered_pair(c3,c3)) != c4.  [para(5(a,1),11(a,1))].
+13 -in(A,B) | set_union2(B,unordered_pair(A,A)) = B.  [para(8(a,1),7(b,1,2))].
+14 set_union2(c4,unordered_pair(c3,c3)) = c4.  [resolve(13,a,9,a)].
+15 $F.  [resolve(12,a,14,a)].

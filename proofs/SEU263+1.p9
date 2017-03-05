@@ -1,0 +1,65 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n047.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:58:33 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 14906 was started by sandbox on n047.star.cs.uiowa.edu,
+Fri Jun  6 05:58:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_14874_n047.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 29.
+% Level of proof is 6.
+% Maximum clause weight is 13.000.
+% Given clauses 20.
+
+
+1 (all A all B all C (element(C,powerset(cartesian_product2(A,B))) -> relation(C))).  [assumption].
+2 (all A all B all C (relation_of2(C,A,B) <-> subset(C,cartesian_product2(A,B)))).  [assumption].
+3 (all A all B all C (relation_of2_as_subset(C,A,B) -> element(C,powerset(cartesian_product2(A,B))))).  [assumption].
+4 (all A all B all C (relation_of2_as_subset(C,A,B) <-> relation_of2(C,A,B))).  [assumption].
+5 (all A all B all C all D (subset(A,B) & subset(C,D) -> subset(cartesian_product2(A,C),cartesian_product2(B,D)))).  [assumption].
+6 (all A all B all C (relation_of2_as_subset(C,A,B) -> subset(relation_dom(C),A) & subset(relation_rng(C),B))).  [assumption].
+7 (all A all B all C (subset(A,B) & subset(B,C) -> subset(A,C))).  [assumption].
+8 (all A (relation(A) -> subset(A,cartesian_product2(relation_dom(A),relation_rng(A))))).  [assumption].
+9 -(all A all B all C all D (relation_of2_as_subset(D,C,A) -> (subset(relation_rng(D),B) -> relation_of2_as_subset(D,C,B)))).  [assumption].
+10 -element(A,powerset(cartesian_product2(B,C))) | relation(A).  [clausify(1)].
+11 -relation_of2_as_subset(A,B,C) | element(A,powerset(cartesian_product2(B,C))).  [clausify(3)].
+12 -relation_of2_as_subset(c4,c3,c2).  [clausify(9)].
+13 relation_of2_as_subset(c4,c3,c1).  [clausify(9)].
+14 relation_of2_as_subset(A,B,C) | -relation_of2(A,B,C).  [clausify(4)].
+15 -relation_of2_as_subset(A,B,C) | subset(relation_dom(A),B).  [clausify(6)].
+16 -relation_of2_as_subset(A,B,C) | relation(A).  [resolve(11,b,10,a)].
+17 relation_of2(A,B,C) | -subset(A,cartesian_product2(B,C)).  [clausify(2)].
+18 -relation_of2(c4,c3,c2).  [resolve(14,a,12,a)].
+19 -relation(A) | subset(A,cartesian_product2(relation_dom(A),relation_rng(A))).  [clausify(8)].
+20 relation(c4).  [resolve(16,a,13,a)].
+21 subset(relation_rng(c4),c2).  [clausify(9)].
+22 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(7)].
+23 -subset(A,B) | -subset(C,D) | subset(cartesian_product2(A,C),cartesian_product2(B,D)).  [clausify(5)].
+24 subset(relation_dom(c4),c3).  [resolve(15,a,13,a)].
+25 -subset(c4,cartesian_product2(c3,c2)).  [resolve(18,a,17,a)].
+26 subset(c4,cartesian_product2(relation_dom(c4),relation_rng(c4))).  [resolve(20,a,19,a)].
+27 -subset(A,B) | subset(cartesian_product2(relation_dom(c4),A),cartesian_product2(c3,B)).  [resolve(23,a,24,a)].
+28 subset(cartesian_product2(relation_dom(c4),relation_rng(c4)),cartesian_product2(c3,c2)).  [resolve(27,a,21,a)].
+29 -subset(cartesian_product2(relation_dom(c4),relation_rng(c4)),A) | subset(c4,A).  [resolve(22,a,26,a)].
+30 -subset(cartesian_product2(relation_dom(c4),relation_rng(c4)),cartesian_product2(c3,c2)).  [resolve(29,b,25,a)].
+31 $F.  [resolve(30,a,28,a)].
+
+============================== end of proof ==========================

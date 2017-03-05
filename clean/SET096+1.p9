@@ -1,0 +1,36 @@
+
+
+
+
+
+
+7 subclass(c3,singleton(c4)).  [clausify(6)].
+8 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+9 null_class = A | member(f5(A),A).  [clausify(5)].
+10 subclass(A,B) | member(f1(A,B),A).  [clausify(1)].
+11 null_class != c3.  [clausify(6)].
+12 c3 != null_class.  [copy(11),flip(a)].
+13 singleton(c4) != c3.  [clausify(6)].
+14 unordered_pair(c4,c4) != c3.  [para(8(a,1),13(a,1))].
+15 subclass(A,B) | -member(f1(A,B),B).  [clausify(1)].
+16 -subclass(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+17 A = B | -subclass(B,A) | -subclass(A,B).  [clausify(2)].
+18 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(3)].
+19 subclass(c3,unordered_pair(c4,c4)).  [para(8(a,1),7(a,2))].
+20 -member(A,unordered_pair(B,B)) | A = B.  [factor(18,b,c)].
+21 c3 = unordered_pair(c4,c4) | -subclass(unordered_pair(c4,c4),c3).  [resolve(19,a,17,c)].
+22 unordered_pair(c4,c4) = c3 | -subclass(unordered_pair(c4,c4),c3).  [copy(21),flip(a)].
+23 -subclass(unordered_pair(c4,c4),c3).  [resolve(14,a,22,a)].
+24 -member(A,c3) | member(A,unordered_pair(c4,c4)).  [resolve(19,a,16,a)].
+25 member(f1(unordered_pair(c4,c4),c3),unordered_pair(c4,c4)).  [resolve(23,a,10,a)].
+26 -member(f1(unordered_pair(c4,c4),c3),c3).  [resolve(15,a,23,a)].
+27 member(f5(c3),unordered_pair(c4,c4)) | null_class = c3.  [resolve(24,a,9,b)].
+28 member(f5(c3),unordered_pair(c4,c4)) | c3 = null_class.  [copy(27),flip(b)].
+29 member(f5(c3),unordered_pair(c4,c4)).  [resolve(12,a,28,b)].
+30 f5(c3) = c4.  [resolve(29,a,20,a)].
+31 null_class = c3 | member(c4,c3).  [para(30(a,1),9(b,1))].
+32 c3 = null_class | member(c4,c3).  [copy(31),flip(a)].
+33 member(c4,c3).  [resolve(12,a,32,a)].
+34 f1(unordered_pair(c4,c4),c3) = c4.  [resolve(25,a,20,a)].
+35 -member(c4,c3).  [para(34(a,1),26(a,1))].
+36 $F.  [resolve(33,a,35,a)].

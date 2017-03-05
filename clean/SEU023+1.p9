@@ -1,0 +1,33 @@
+
+
+
+
+5 one_to_one(c10).  [clausify(4)].
+6 -relation(A) | -function(A) | -one_to_one(A) | -relation(B) | -function(B) | function_inverse(A) != B | -in(C,relation_dom(A)) | apply(A,C) != D | apply(B,D) = C.  [clausify(3)].
+7 relation(c10).  [clausify(4)].
+8 function(c10).  [clausify(4)].
+9 in(c9,relation_dom(c10)).  [clausify(4)].
+10 apply(function_inverse(c10),apply(c10,c9)) != c9 | apply(relation_composition(c10,function_inverse(c10)),c9) != c9.  [clausify(4)].
+11 -relation(A) | -function(A) | relation(function_inverse(A)).  [clausify(1)].
+12 -relation(A) | -function(A) | function(function_inverse(A)).  [clausify(1)].
+13 -relation(A) | -function(A) | -relation(B) | -function(B) | -in(C,relation_dom(A)) | apply(relation_composition(A,B),C) = apply(B,apply(A,C)).  [clausify(2)].
+14 -relation(c10) | -function(c10) | -relation(A) | -function(A) | function_inverse(c10) != A | -in(B,relation_dom(c10)) | apply(c10,B) != C | apply(A,C) = B.  [resolve(6,c,5,a)].
+15 -function(c10) | -relation(A) | -function(A) | function_inverse(c10) != A | -in(B,relation_dom(c10)) | apply(c10,B) != C | apply(A,C) = B.  [resolve(7,a,14,a)].
+16 -relation(A) | -function(A) | function_inverse(c10) != A | -in(B,relation_dom(c10)) | apply(c10,B) != C | apply(A,C) = B.  [resolve(8,a,15,a)].
+17 -relation(c10) | relation(function_inverse(c10)).  [resolve(11,b,8,a)].
+18 relation(function_inverse(c10)).  [resolve(7,a,17,a)].
+19 -relation(c10) | function(function_inverse(c10)).  [resolve(12,b,8,a)].
+20 function(function_inverse(c10)).  [resolve(7,a,19,a)].
+21 -relation(c10) | -function(c10) | -relation(A) | -function(A) | apply(relation_composition(c10,A),c9) = apply(A,apply(c10,c9)).  [resolve(13,e,9,a)].
+22 -function(c10) | -relation(A) | -function(A) | apply(relation_composition(c10,A),c9) = apply(A,apply(c10,c9)).  [resolve(7,a,21,a)].
+23 -relation(A) | -function(A) | apply(relation_composition(c10,A),c9) = apply(A,apply(c10,c9)).  [resolve(8,a,22,a)].
+24 -relation(A) | -function(A) | function_inverse(c10) != A | apply(c10,c9) != B | apply(A,B) = c9.  [resolve(16,d,9,a)].
+25 -relation(function_inverse(c10)) | apply(relation_composition(c10,function_inverse(c10)),c9) = apply(function_inverse(c10),apply(c10,c9)).  [resolve(23,b,20,a)].
+26 apply(relation_composition(c10,function_inverse(c10)),c9) = apply(function_inverse(c10),apply(c10,c9)).  [resolve(18,a,25,a)].
+27 apply(function_inverse(c10),apply(c10,c9)) != c9 | apply(function_inverse(c10),apply(c10,c9)) != c9.  [para(26(a,1),10(b,1))].
+28 apply(function_inverse(c10),apply(c10,c9)) != c9.  [copy(27),merge(b)].
+29 -relation(function_inverse(c10)) | function_inverse(c10) != function_inverse(c10) | apply(c10,c9) != A | apply(function_inverse(c10),A) = c9.  [resolve(24,b,20,a)].
+30 -relation(function_inverse(c10)) | apply(c10,c9) != A | apply(function_inverse(c10),A) = c9.  [xx_res(29,b)].
+31 -relation(function_inverse(c10)) | apply(function_inverse(c10),apply(c10,c9)) = c9.  [xx_res(30,b)].
+32 -relation(function_inverse(c10)).  [resolve(31,b,28,a)].
+33 $F.  [resolve(18,a,32,a)].

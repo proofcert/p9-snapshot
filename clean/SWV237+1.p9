@@ -1,0 +1,19 @@
+
+
+
+4 p(a).  [assumption].
+5 p(enc(tmk,pp)).  [assumption].
+6 p(enc(tc,k)).  [assumption].
+7 enc(i(A),enc(A,B)) = B.  [clausify(1)].
+8 -p(enc(pp,a)).  [assumption].
+9 -p(A) | -p(B) | -p(C) | p(enc(tc,A)).  [clausify(3)].
+10 -p(A) | -p(B) | -p(C) | p(enc(enc(i(tmk),B),enc(i(tc),A))).  [clausify(2)].
+11 -p(A) | -p(B) | p(enc(tc,a)).  [resolve(9,a,4,a)].
+12 -p(A) | p(enc(tc,a)).  [resolve(11,a,6,a)].
+13 p(enc(tc,a)).  [resolve(12,a,6,a)].
+14 -p(A) | -p(B) | p(enc(enc(i(tmk),A),enc(i(tc),enc(tc,a)))).  [resolve(10,a,13,a)].
+15 -p(A) | p(enc(enc(i(tmk),enc(tmk,pp)),enc(i(tc),enc(tc,a)))).  [resolve(14,a,5,a)].
+16 p(enc(enc(i(tmk),enc(tmk,pp)),enc(i(tc),enc(tc,a)))).  [resolve(15,a,13,a)].
+17 p(enc(pp,enc(i(tc),enc(tc,a)))).  [para(7(a,1),16(a,1,1))].
+18 p(enc(pp,a)).  [para(7(a,1),17(a,1,2))].
+19 $F.  [resolve(18,a,8,a)].

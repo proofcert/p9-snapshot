@@ -1,0 +1,16 @@
+
+
+
+4 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+5 unordered_pair(c5,c6) = unordered_pair(c3,c4).  [clausify(3)].
+6 c5 != c3.  [clausify(3)].
+7 c6 != c3.  [clausify(3)].
+8 unordered_pair(A,B) != C | in(D,C) | D != B.  [clausify(2)].
+9 unordered_pair(A,B) != C | -in(D,C) | D = A | D = B.  [clausify(2)].
+10 -in(A,unordered_pair(c3,c4)) | A = c5 | A = c6.  [resolve(9,a,5,a)].
+11 -in(c3,unordered_pair(c3,c4)) | c3 = c6.  [resolve(10,b,6,a(flip))].
+12 -in(c3,unordered_pair(c3,c4)).  [resolve(11,b,7,a(flip))].
+13 unordered_pair(A,B) != unordered_pair(c3,c4) | c3 != B.  [resolve(8,b,12,a)].
+14 unordered_pair(A,c3) != unordered_pair(c3,c4).  [xx_res(13,b)].
+15 unordered_pair(c3,c4) != unordered_pair(A,c3).  [copy(14),flip(a)].
+16 $F.  [resolve(15,a,4,a)].

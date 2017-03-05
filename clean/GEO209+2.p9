@@ -1,0 +1,24 @@
+
+
+
+
+
+6 distinct_lines(c3,c4).  [clausify(5)].
+7 -distinct_lines(A,A).  [clausify(1)].
+8 -apart_point_and_line(c1,c3).  [clausify(5)].
+9 -apart_point_and_line(c1,c4).  [clausify(5)].
+10 -convergent_lines(c3,c2).  [clausify(5)].
+11 -convergent_lines(c4,c2).  [clausify(5)].
+12 -distinct_lines(A,B) | distinct_lines(A,C) | distinct_lines(B,C).  [clausify(2)].
+13 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(3)].
+14 -distinct_lines(A,B) | apart_point_and_line(C,A) | apart_point_and_line(C,B) | convergent_lines(A,B).  [clausify(4)].
+15 distinct_lines(c3,A) | distinct_lines(c4,A).  [resolve(12,a,6,a)].
+16 -convergent_lines(c4,A) | convergent_lines(A,c2).  [resolve(13,b,11,a)].
+17 -convergent_lines(c4,c3).  [resolve(16,b,10,a)].
+18 distinct_lines(c3,A) | distinct_lines(c4,B) | distinct_lines(A,B).  [resolve(15,b,12,a)].
+19 distinct_lines(c3,c3) | distinct_lines(c4,c3).  [factor(18,a,c)].
+20 distinct_lines(c4,c3).  [resolve(7,a,19,a)].
+21 -distinct_lines(c4,A) | apart_point_and_line(c1,A) | convergent_lines(c4,A).  [resolve(14,b,9,a)].
+22 -distinct_lines(c4,c3) | convergent_lines(c4,c3).  [resolve(21,b,8,a)].
+23 -distinct_lines(c4,c3).  [resolve(22,b,17,a)].
+24 $F.  [resolve(20,a,23,a)].

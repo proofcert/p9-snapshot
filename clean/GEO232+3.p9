@@ -1,0 +1,14 @@
+
+
+
+
+
+6 -equally_directed_lines(A,B) | -unequally_directed_lines(A,B).  [clausify(2)].
+7 equally_directed_lines(A,A).  [clausify(3)].
+8 -unequally_directed_opposite_lines(c1,c1).  [clausify(5)].
+9 unequally_directed_opposite_lines(A,B) | -unequally_directed_lines(A,reverse_line(B)).  [clausify(1)].
+10 unequally_directed_lines(A,B) | unequally_directed_lines(A,reverse_line(B)).  [clausify(4)].
+11 -unequally_directed_lines(A,A).  [resolve(6,a,7,a)].
+12 -unequally_directed_lines(c1,reverse_line(c1)).  [resolve(9,a,8,a)].
+13 unequally_directed_lines(c1,c1).  [resolve(12,a,10,b)].
+14 $F.  [resolve(11,a,13,a)].

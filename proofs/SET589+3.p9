@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n162.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 14:11:18 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 28940 was started by sandbox on n162.star.cs.uiowa.edu,
+Fri Jun  6 14:11:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_28908_n162.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 20.
+% Level of proof is 7.
+% Maximum clause weight is 12.000.
+% Given clauses 24.
+
+
+1 (all A all B all C (member(C,difference(A,B)) <-> member(C,A) & -member(C,B))).  [assumption].
+2 (all A all B (subset(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+3 -(all A all B all C all D (subset(A,B) & subset(C,D) -> subset(difference(A,D),difference(B,C)))).  [assumption].
+4 subset(c1,c2).  [clausify(3)].
+5 subset(c3,c4).  [clausify(3)].
+6 subset(A,B) | member(f1(A,B),A).  [clausify(2)].
+7 -subset(difference(c1,c4),difference(c2,c3)).  [clausify(3)].
+8 -member(A,difference(B,C)) | -member(A,C).  [clausify(1)].
+9 -member(A,difference(B,C)) | member(A,B).  [clausify(1)].
+10 subset(A,B) | -member(f1(A,B),B).  [clausify(2)].
+11 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(2)].
+12 member(A,difference(B,C)) | -member(A,B) | member(A,C).  [clausify(1)].
+13 -member(f1(difference(A,B),C),B) | subset(difference(A,B),C).  [resolve(8,a,6,b)].
+14 member(f1(difference(A,B),C),A) | subset(difference(A,B),C).  [resolve(9,a,6,b)].
+15 -member(f1(difference(c1,c4),difference(c2,c3)),difference(c2,c3)).  [resolve(10,a,7,a)].
+16 -member(f1(difference(c1,c4),difference(c2,c3)),c4).  [resolve(13,b,7,a)].
+17 -member(A,c3) | member(A,c4).  [resolve(11,a,5,a)].
+18 -member(f1(difference(c1,c4),difference(c2,c3)),c3).  [resolve(17,b,16,a)].
+19 -member(f1(difference(c1,c4),difference(c2,c3)),c2) | member(f1(difference(c1,c4),difference(c2,c3)),c3).  [resolve(12,a,15,a)].
+20 -member(f1(difference(c1,c4),difference(c2,c3)),c2).  [resolve(19,b,18,a)].
+21 -member(A,c1) | member(A,c2).  [resolve(11,a,4,a)].
+22 -member(f1(difference(c1,c4),difference(c2,c3)),c1).  [resolve(21,b,20,a)].
+23 subset(difference(c1,c4),difference(c2,c3)).  [resolve(22,a,14,a)].
+24 $F.  [resolve(7,a,23,a)].
+
+============================== end of proof ==========================

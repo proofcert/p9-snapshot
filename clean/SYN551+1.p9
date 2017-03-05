@@ -1,0 +1,874 @@
+
+2 f(g(c1)) = c1 | g(f(c2)) = c2.  [clausify(1)].
+3 f(g(A)) != A | c4 != c3 | g(f(B)) != B | c6 != c5.  [clausify(1)].
+4 f(g(c1)) = c1 | g(f(A)) != A | g(f(B)) != B | B = A.  [clausify(1)].
+5 f(g(A)) != A | f(g(B)) != B | B = A | g(f(c2)) = c2.  [clausify(1)].
+6 f(g(A)) != A | f(g(c3)) = c3 | g(f(B)) != B | c6 != c5.  [clausify(1)].
+7 f(g(A)) != A | f(g(c4)) = c4 | g(f(B)) != B | c6 != c5.  [clausify(1)].
+8 f(g(A)) != A | c4 != c3 | g(f(B)) != B | g(f(c5)) = c5.  [clausify(1)].
+9 f(g(A)) != A | c4 != c3 | g(f(B)) != B | g(f(c6)) = c6.  [clausify(1)].
+10 f(g(A)) != A | f(g(c3)) = c3 | g(f(B)) != B | g(f(c5)) = c5.  [clausify(1)].
+11 f(g(A)) != A | f(g(c3)) = c3 | g(f(B)) != B | g(f(c6)) = c6.  [clausify(1)].
+12 f(g(A)) != A | f(g(c4)) = c4 | g(f(B)) != B | g(f(c5)) = c5.  [clausify(1)].
+13 f(g(A)) != A | f(g(c4)) = c4 | g(f(B)) != B | g(f(c6)) = c6.  [clausify(1)].
+14 f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | g(f(D)) != D | D = C.  [clausify(1)].
+15 f(g(A)) != A | c4 != c3 | c6 != c5 | f(g(c1)) = c1.  [resolve(3,c,2,b)].
+16 f(g(c1)) = c1 | g(f(A)) != A | A = c2 | f(g(c1)) = c1.  [resolve(4,b,2,b)].
+17 f(g(c1)) = c1 | g(f(A)) != A | c2 = A | f(g(c1)) = c1.  [copy(16),flip(c)].
+18 f(g(c1)) = c1 | g(f(A)) != A | c2 = A.  [copy(17),merge(d)].
+19 f(g(A)) != A | f(g(c4)) = c4 | c6 != c5 | f(g(c1)) = c1.  [resolve(7,c,2,b)].
+20 f(g(A)) != A | c4 != c3 | g(f(c5)) = c5 | f(g(c1)) = c1.  [resolve(8,c,2,b)].
+21 f(g(A)) != A | c4 != c3 | g(f(c6)) = c6 | f(g(c1)) = c1.  [resolve(9,c,2,b)].
+22 f(g(A)) != A | f(g(c3)) = c3 | g(f(c5)) = c5 | f(g(c1)) = c1.  [resolve(10,c,2,b)].
+23 f(g(A)) != A | f(g(c3)) = c3 | g(f(c6)) = c6 | f(g(c1)) = c1.  [resolve(11,c,2,b)].
+24 f(g(A)) != A | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c1)) = c1.  [resolve(12,c,2,b)].
+25 f(g(A)) != A | f(g(c4)) = c4 | g(f(c6)) = c6 | f(g(c1)) = c1.  [resolve(13,c,2,b)].
+26 f(g(c1)) = c1 | f(c2) != f(c2) | c4 != c3 | c6 != c5 | f(g(c1)) = c1.  [para(2(b,1),15(a,1,1))].
+27 f(g(c1)) = c1 | c4 != c3 | c6 != c5 | f(g(c1)) = c1.  [copy(26),xx(b)].
+28 f(g(c1)) = c1 | c4 != c3 | c6 != c5.  [copy(27),merge(d)].
+29 f(g(c1)) = c1 | f(c2) != f(c2) | f(g(c4)) = c4 | c6 != c5 | f(g(c1)) = c1.  [para(2(b,1),19(a,1,1))].
+30 f(g(c1)) = c1 | f(g(c4)) = c4 | c6 != c5 | f(g(c1)) = c1.  [copy(29),xx(b)].
+31 f(g(c1)) = c1 | f(g(c4)) = c4 | c6 != c5.  [copy(30),merge(d)].
+32 f(g(c1)) = c1 | f(c2) != f(c2) | c4 != c3 | g(f(c5)) = c5 | f(g(c1)) = c1.  [para(2(b,1),20(a,1,1))].
+33 f(g(c1)) = c1 | c4 != c3 | g(f(c5)) = c5 | f(g(c1)) = c1.  [copy(32),xx(b)].
+34 f(g(c1)) = c1 | c4 != c3 | g(f(c5)) = c5.  [copy(33),merge(d)].
+35 f(g(c1)) = c1 | f(c2) != f(c2) | c4 != c3 | g(f(c6)) = c6 | f(g(c1)) = c1.  [para(2(b,1),21(a,1,1))].
+36 f(g(c1)) = c1 | c4 != c3 | g(f(c6)) = c6 | f(g(c1)) = c1.  [copy(35),xx(b)].
+37 f(g(c1)) = c1 | c4 != c3 | g(f(c6)) = c6.  [copy(36),merge(d)].
+38 f(g(c1)) = c1 | f(c2) != f(c2) | f(g(c3)) = c3 | g(f(c5)) = c5 | f(g(c1)) = c1.  [para(2(b,1),22(a,1,1))].
+39 f(g(c1)) = c1 | f(g(c3)) = c3 | g(f(c5)) = c5 | f(g(c1)) = c1.  [copy(38),xx(b)].
+40 f(g(c1)) = c1 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(39),merge(d)].
+41 f(g(c1)) = c1 | f(g(c3)) = c3 | f(g(c1)) = c1 | g(f(A)) != A | c5 = A.  [resolve(40,c,4,c)].
+42 f(g(c1)) = c1 | f(g(c3)) = c3 | g(f(A)) != A | c5 = A.  [copy(41),merge(c)].
+43 f(g(c1)) = c1 | f(c2) != f(c2) | f(g(c3)) = c3 | g(f(c6)) = c6 | f(g(c1)) = c1.  [para(2(b,1),23(a,1,1))].
+44 f(g(c1)) = c1 | f(g(c3)) = c3 | g(f(c6)) = c6 | f(g(c1)) = c1.  [copy(43),xx(b)].
+45 f(g(c1)) = c1 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(44),merge(d)].
+46 f(g(c1)) = c1 | f(c2) != f(c2) | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c1)) = c1.  [para(2(b,1),24(a,1,1))].
+47 f(g(c1)) = c1 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c1)) = c1.  [copy(46),xx(b)].
+48 f(g(c1)) = c1 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(47),merge(d)].
+49 f(g(c1)) = c1 | f(g(c4)) = c4 | f(g(c1)) = c1 | g(f(A)) != A | c5 = A.  [resolve(48,c,4,c)].
+50 f(g(c1)) = c1 | f(g(c4)) = c4 | g(f(A)) != A | c5 = A.  [copy(49),merge(c)].
+51 f(g(c1)) = c1 | f(c2) != f(c2) | f(g(c4)) = c4 | g(f(c6)) = c6 | f(g(c1)) = c1.  [para(2(b,1),25(a,1,1))].
+52 f(g(c1)) = c1 | f(g(c4)) = c4 | g(f(c6)) = c6 | f(g(c1)) = c1.  [copy(51),xx(b)].
+53 f(g(c1)) = c1 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(52),merge(d)].
+54 f(g(c1)) = c1 | f(g(c3)) = c3 | c5 = c6 | f(g(c1)) = c1 | f(g(c3)) = c3.  [resolve(42,c,45,c)].
+55 f(g(c1)) = c1 | f(g(c3)) = c3 | c6 = c5 | f(g(c1)) = c1 | f(g(c3)) = c3.  [copy(54),flip(c)].
+56 f(g(c1)) = c1 | f(g(c3)) = c3 | c6 = c5 | f(g(c3)) = c3.  [copy(55),merge(d)].
+57 f(g(c1)) = c1 | f(g(c3)) = c3 | c6 = c5.  [copy(56),merge(d)].
+58 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(c3) != g(c3) | g(f(A)) != A | A = g(c3).  [para(57(b,1),4(b,1,1))].
+59 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(c3) != g(c3) | g(f(A)) != A | g(c3) = A.  [copy(58),flip(f)].
+60 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(f(A)) != A | g(c3) = A.  [copy(59),xx(d)].
+61 f(g(c1)) = c1 | c6 = c5 | g(f(A)) != A | g(c3) = A.  [copy(60),merge(c)].
+62 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(c3) != g(c3) | c2 = g(c3).  [para(57(b,1),18(b,1,1))].
+63 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(c3) != g(c3) | g(c3) = c2.  [copy(62),flip(e)].
+64 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(c3) = c2.  [copy(63),xx(d)].
+65 f(g(c1)) = c1 | c6 = c5 | g(c3) = c2.  [copy(64),merge(c)].
+66 c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(65,a,13,a)].
+67 c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(65,a,12,a)].
+68 c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(65,a,11,a)].
+69 c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(65,a,10,a)].
+70 c6 = c5 | g(c3) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(c1) != g(c1) | g(f(C)) != C | C = g(c1).  [para(65(a,1),14(d,1,1))].
+71 c6 = c5 | g(c3) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(c1) != g(c1) | g(f(C)) != C | g(c1) = C.  [copy(70),flip(h)].
+72 c6 = c5 | g(c3) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | g(c1) = C.  [copy(71),xx(f)].
+73 f(g(c1)) = c1 | f(g(c4)) = c4 | c5 = c6 | f(g(c1)) = c1 | f(g(c4)) = c4.  [resolve(50,c,53,c)].
+74 f(g(c1)) = c1 | f(g(c4)) = c4 | c6 = c5 | f(g(c1)) = c1 | f(g(c4)) = c4.  [copy(73),flip(c)].
+75 f(g(c1)) = c1 | f(g(c4)) = c4 | c6 = c5 | f(g(c4)) = c4.  [copy(74),merge(d)].
+76 f(g(c1)) = c1 | f(g(c4)) = c4 | c6 = c5.  [copy(75),merge(d)].
+77 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(c4) != g(c4) | c2 = g(c4).  [para(76(b,1),18(b,1,1))].
+78 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(c4) != g(c4) | g(c4) = c2.  [copy(77),flip(e)].
+79 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | g(c4) = c2.  [copy(78),xx(d)].
+80 f(g(c1)) = c1 | c6 = c5 | g(c4) = c2.  [copy(79),merge(c)].
+81 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | c6 = c5 | g(c4) != g(c4) | g(c3) = g(c4).  [para(76(b,1),61(c,1,1))].
+82 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | c6 = c5 | g(c4) != g(c4) | g(c4) = g(c3).  [copy(81),flip(f)].
+83 f(g(c1)) = c1 | c6 = c5 | f(g(c1)) = c1 | c6 = c5 | g(c4) = g(c3).  [copy(82),xx(e)].
+84 f(g(c1)) = c1 | c6 = c5 | c6 = c5 | g(c4) = g(c3).  [copy(83),merge(c)].
+85 f(g(c1)) = c1 | c6 = c5 | g(c4) = g(c3).  [copy(84),merge(c)].
+86 c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(80,a,13,a)].
+87 c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(80,a,12,a)].
+88 c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(80,a,11,a)].
+89 c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(80,a,10,a)].
+90 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | g(f(C)) != C | C = B.  [resolve(85,a,14,b)].
+91 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(85,a,13,a)].
+92 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(85,a,12,a)].
+93 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(85,a,11,a)].
+94 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(85,a,10,a)].
+95 c6 = c5 | g(c3) = c2 | c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(65(a,1),66(d,1,1))].
+96 c6 = c5 | g(c3) = c2 | c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(95),xx(f)].
+97 c6 = c5 | g(c3) = c2 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(96),merge(c)].
+98 c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(97),merge(c)].
+99 c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c5)) = c5 | c6 = c5 | g(c3) = c2 | f(g(c4)) = c4.  [resolve(67,d,98,d)].
+100 c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c5)) = c5 | g(c3) = c2 | f(g(c4)) = c4.  [copy(99),merge(e)].
+101 c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c4)) = c4.  [copy(100),merge(e)].
+102 c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(101),merge(e)].
+103 c6 = c5 | g(c3) = c2 | c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(65(a,1),68(d,1,1))].
+104 c6 = c5 | g(c3) = c2 | c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(103),xx(f)].
+105 c6 = c5 | g(c3) = c2 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(104),merge(c)].
+106 c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(105),merge(c)].
+107 c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c5)) = c5 | c6 = c5 | g(c3) = c2 | f(g(c3)) = c3.  [resolve(69,d,106,d)].
+108 c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c5)) = c5 | g(c3) = c2 | f(g(c3)) = c3.  [copy(107),merge(e)].
+109 c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c5)) = c5 | f(g(c3)) = c3.  [copy(108),merge(e)].
+110 c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(109),merge(e)].
+111 c6 = c5 | g(c4) = c2 | c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(80(a,1),86(d,1,1))].
+112 c6 = c5 | g(c4) = c2 | c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(111),xx(f)].
+113 c6 = c5 | g(c4) = c2 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(112),merge(c)].
+114 c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(113),merge(c)].
+115 c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c5)) = c5 | c6 = c5 | g(c4) = c2 | f(g(c4)) = c4.  [resolve(87,d,114,d)].
+116 c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c5)) = c5 | g(c4) = c2 | f(g(c4)) = c4.  [copy(115),merge(e)].
+117 c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c4)) = c4.  [copy(116),merge(e)].
+118 c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(117),merge(e)].
+119 c6 = c5 | g(c4) = c2 | c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(80(a,1),88(d,1,1))].
+120 c6 = c5 | g(c4) = c2 | c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(119),xx(f)].
+121 c6 = c5 | g(c4) = c2 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(120),merge(c)].
+122 c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(121),merge(c)].
+123 c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c5)) = c5 | c6 = c5 | g(c4) = c2 | f(g(c3)) = c3.  [resolve(89,d,122,d)].
+124 c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c5)) = c5 | g(c4) = c2 | f(g(c3)) = c3.  [copy(123),merge(e)].
+125 c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c5)) = c5 | f(g(c3)) = c3.  [copy(124),merge(e)].
+126 c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(125),merge(e)].
+127 c6 = c5 | g(c4) = g(c3) | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(85(a,1),91(d,1,1))].
+128 c6 = c5 | g(c4) = g(c3) | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(127),xx(f)].
+129 c6 = c5 | g(c4) = g(c3) | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(128),merge(c)].
+130 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(129),merge(c)].
+131 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | c6 = C.  [resolve(130,d,14,e)].
+132 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(c5)) = c5 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4.  [resolve(92,d,130,d)].
+133 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(c5)) = c5 | g(c4) = g(c3) | f(g(c4)) = c4.  [copy(132),merge(e)].
+134 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c4)) = c4.  [copy(133),merge(e)].
+135 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(134),merge(e)].
+136 c6 = c5 | g(c4) = g(c3) | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(85(a,1),93(d,1,1))].
+137 c6 = c5 | g(c4) = g(c3) | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(136),xx(f)].
+138 c6 = c5 | g(c4) = g(c3) | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(137),merge(c)].
+139 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(138),merge(c)].
+140 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | c6 = C.  [resolve(139,d,14,e)].
+141 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(c5)) = c5 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3.  [resolve(94,d,139,d)].
+142 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(c5)) = c5 | g(c4) = g(c3) | f(g(c3)) = c3.  [copy(141),merge(e)].
+143 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(c5)) = c5 | f(g(c3)) = c3.  [copy(142),merge(e)].
+144 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(143),merge(e)].
+145 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | B = c6 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3.  [resolve(90,e,139,d)].
+146 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | c6 = B | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3.  [copy(145),flip(f)].
+147 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | c6 = B | g(c4) = g(c3) | f(g(c3)) = c3.  [copy(146),merge(g)].
+148 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | c6 = B | f(g(c3)) = c3.  [copy(147),merge(g)].
+149 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | B = c6 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4.  [resolve(90,e,130,d)].
+150 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | c6 = B | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4.  [copy(149),flip(f)].
+151 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | c6 = B | g(c4) = g(c3) | f(g(c4)) = c4.  [copy(150),merge(g)].
+152 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(B)) != B | c6 = B | f(g(c4)) = c4.  [copy(151),merge(g)].
+153 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(c5)) != c5 | f(g(c3)) = c3.  [factor(148,a,f)].
+154 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | g(f(c5)) != c5 | f(g(c4)) = c4.  [factor(152,a,f)].
+155 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3.  [resolve(153,e,144,d)].
+156 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | f(g(c3)) = c3 | g(c4) = g(c3) | f(g(c3)) = c3.  [copy(155),merge(f)].
+157 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | f(g(c3)) = c3 | f(g(c3)) = c3.  [copy(156),merge(f)].
+158 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | f(g(c3)) = c3.  [copy(157),merge(f)].
+159 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(c6) != f(c6) | c1 = f(c6) | f(g(c3)) = c3.  [para(139(d,1),158(c,1,1))].
+160 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(c6) != f(c6) | f(c6) = c1 | f(g(c3)) = c3.  [copy(159),flip(g)].
+161 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(c3)) = c3.  [copy(160),xx(f)].
+162 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(c4) = g(c3) | f(c6) = c1 | f(g(c3)) = c3.  [copy(161),merge(d)].
+163 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c6) = c1 | f(g(c3)) = c3.  [copy(162),merge(d)].
+164 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c6) = c1.  [copy(163),merge(e)].
+165 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(c5) != f(c5) | c1 = f(c5) | f(g(c3)) = c3.  [para(144(d,1),158(c,1,1))].
+166 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(c5) != f(c5) | f(c5) = c1 | f(g(c3)) = c3.  [copy(165),flip(g)].
+167 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(c3)) = c3.  [copy(166),xx(f)].
+168 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(c4) = g(c3) | f(c5) = c1 | f(g(c3)) = c3.  [copy(167),merge(d)].
+169 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c5) = c1 | f(g(c3)) = c3.  [copy(168),merge(d)].
+170 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c5) = c1.  [copy(169),merge(e)].
+171 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c3) != g(c3) | g(f(C)) != C | C = g(c3).  [para(164(c,1),14(d,1,1))].
+172 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c3) != g(c3) | g(f(C)) != C | g(c3) = C.  [copy(171),flip(i)].
+173 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | g(c3) = C.  [copy(172),xx(g)].
+174 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c3) != g(c3) | g(f(C)) != C | C = g(c3).  [para(170(c,1),14(d,1,1))].
+175 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c3) != g(c3) | g(f(C)) != C | g(c3) = C.  [copy(174),flip(i)].
+176 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | g(c3) = C.  [copy(175),xx(g)].
+177 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4.  [resolve(154,e,135,d)].
+178 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | f(g(c4)) = c4 | g(c4) = g(c3) | f(g(c4)) = c4.  [copy(177),merge(f)].
+179 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | f(g(c4)) = c4 | f(g(c4)) = c4.  [copy(178),merge(f)].
+180 c6 = c5 | g(c4) = g(c3) | f(g(A)) != A | c1 = A | f(g(c4)) = c4.  [copy(179),merge(f)].
+181 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(c6) != f(c6) | c1 = f(c6) | f(g(c4)) = c4.  [para(130(d,1),180(c,1,1))].
+182 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(c6) != f(c6) | f(c6) = c1 | f(g(c4)) = c4.  [copy(181),flip(g)].
+183 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(c4)) = c4.  [copy(182),xx(f)].
+184 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(c4) = g(c3) | f(c6) = c1 | f(g(c4)) = c4.  [copy(183),merge(d)].
+185 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c6) = c1 | f(g(c4)) = c4.  [copy(184),merge(d)].
+186 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c6) = c1.  [copy(185),merge(e)].
+187 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(c5) != f(c5) | c1 = f(c5) | f(g(c4)) = c4.  [para(135(d,1),180(c,1,1))].
+188 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(c5) != f(c5) | f(c5) = c1 | f(g(c4)) = c4.  [copy(187),flip(g)].
+189 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(c4)) = c4.  [copy(188),xx(f)].
+190 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(c4) = g(c3) | f(c5) = c1 | f(g(c4)) = c4.  [copy(189),merge(d)].
+191 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c5) = c1 | f(g(c4)) = c4.  [copy(190),merge(d)].
+192 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c5) = c1.  [copy(191),merge(e)].
+193 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(g(B)) != B | B = A | c6 = c5 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4.  [resolve(131,g,135,d)].
+194 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(g(B)) != B | B = A | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4.  [copy(193),merge(g)].
+195 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3) | f(g(c4)) = c4.  [copy(194),merge(g)].
+196 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(g(B)) != B | B = A | f(g(c4)) = c4.  [copy(195),merge(g)].
+197 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(g(B)) != B | B = A.  [copy(196),merge(g)].
+198 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(g(B)) != B | B = A | c6 = c5 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3.  [resolve(140,g,144,d)].
+199 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(g(B)) != B | B = A | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3.  [copy(198),merge(g)].
+200 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3) | f(g(c3)) = c3.  [copy(199),merge(g)].
+201 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(g(B)) != B | B = A | f(g(c3)) = c3.  [copy(200),merge(g)].
+202 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(g(B)) != B | B = A.  [copy(201),merge(g)].
+203 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c6) != f(c6) | f(g(A)) != A | A = f(c6).  [para(130(d,1),197(d,1,1))].
+204 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c6) != f(c6) | f(g(A)) != A | f(c6) = A.  [copy(203),flip(i)].
+205 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(c6) = A.  [copy(204),xx(g)].
+206 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(c6) = A.  [copy(205),merge(d)].
+207 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(c4)) = c4 | f(g(A)) != A | f(c6) = A.  [copy(206),merge(d)].
+208 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(A)) != A | f(c6) = A.  [copy(207),merge(d)].
+209 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c5) != f(c5) | f(c6) = f(c5).  [para(135(d,1),208(d,1,1))].
+210 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c6) = f(c5).  [copy(209),xx(g)].
+211 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c6) = f(c5).  [copy(210),merge(d)].
+212 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(g(c4)) = c4 | f(c6) = f(c5).  [copy(211),merge(d)].
+213 c6 = c5 | g(c4) = g(c3) | f(g(c4)) = c4 | f(c6) = f(c5).  [copy(212),merge(d)].
+214 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(f(C)) != C | C = g(c4).  [para(213(c,1),14(d,1,1))].
+215 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(f(C)) != C | g(c4) = C.  [copy(214),flip(i)].
+216 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | g(c4) = C.  [copy(215),xx(g)].
+217 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c6) != f(c6) | f(g(A)) != A | A = f(c6).  [para(139(d,1),202(d,1,1))].
+218 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c6) != f(c6) | f(g(A)) != A | f(c6) = A.  [copy(217),flip(i)].
+219 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(c6) = A.  [copy(218),xx(g)].
+220 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(c6) = A.  [copy(219),merge(d)].
+221 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(c3)) = c3 | f(g(A)) != A | f(c6) = A.  [copy(220),merge(d)].
+222 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(A)) != A | f(c6) = A.  [copy(221),merge(d)].
+223 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c5) != f(c5) | f(c6) = f(c5).  [para(144(d,1),222(d,1,1))].
+224 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c6) = f(c5).  [copy(223),xx(g)].
+225 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c6) = f(c5).  [copy(224),merge(d)].
+226 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(g(c3)) = c3 | f(c6) = f(c5).  [copy(225),merge(d)].
+227 c6 = c5 | g(c4) = g(c3) | f(g(c3)) = c3 | f(c6) = f(c5).  [copy(226),merge(d)].
+228 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(c3) = g(c4).  [para(186(c,1),173(g,1,1))].
+229 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(c4) = g(c3).  [copy(228),flip(k)].
+230 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(229),xx(j)].
+231 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(230),merge(d)].
+232 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(231),merge(d)].
+233 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(232),merge(d)].
+234 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | f(g(B)) != B | B = A.  [copy(233),merge(g)].
+235 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | A = c4 | c6 = c5 | g(c4) = g(c3) | f(c6) = c1.  [resolve(234,d,186,c)].
+236 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | c4 = A | c6 = c5 | g(c4) = g(c3) | f(c6) = c1.  [copy(235),flip(e)].
+237 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | c4 = A | g(c4) = g(c3) | f(c6) = c1.  [copy(236),merge(f)].
+238 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | c4 = A | f(c6) = c1.  [copy(237),merge(f)].
+239 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | f(g(A)) != A | c4 = A.  [copy(238),merge(f)].
+240 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | c4 = c3 | c6 = c5 | g(c4) = g(c3) | f(c6) = c1.  [resolve(239,d,164,c)].
+241 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | c4 = c3 | g(c4) = g(c3) | f(c6) = c1.  [copy(240),merge(e)].
+242 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | c4 = c3 | f(c6) = c1.  [copy(241),merge(e)].
+243 c6 = c5 | g(c4) = g(c3) | f(c6) = c1 | c4 = c3.  [copy(242),merge(e)].
+244 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c1)) = c1 | f(g(c3)) = c4 | c6 = c5.  [para(243(b,1),76(b,1,1))].
+245 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c1)) = c1 | f(g(c3)) = c4.  [copy(244),merge(f)].
+246 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c1)) = c1 | f(g(c1)) = c1 | c4 = c3 | c6 = c5.  [para(245(e,1),57(b,1))].
+247 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c1)) = c1 | c4 = c3 | c6 = c5.  [copy(246),merge(e)].
+248 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c1)) = c1 | c6 = c5.  [copy(247),merge(e)].
+249 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c1)) = c1.  [copy(248),merge(e)].
+250 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(A)) != A | c1 = A | g(f(B)) != B | g(f(C)) != C | C = B.  [resolve(249,d,14,b)].
+251 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(249,d,13,a)].
+252 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(249,d,12,a)].
+253 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(249,d,11,a)].
+254 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(249,d,10,a)].
+255 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(A)) != A | c1 = A | g(f(c2)) = c2.  [resolve(249,d,5,b)].
+256 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(A)) != A | c1 = A | g(f(c5)) != c5 | g(f(c6)) != c6.  [factor(250,a,h)].
+257 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(c3) = g(c4).  [para(192(c,1),176(g,1,1))].
+258 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(c4) = g(c3).  [copy(257),flip(k)].
+259 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(258),xx(j)].
+260 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(259),merge(d)].
+261 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(260),merge(d)].
+262 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(261),merge(d)].
+263 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | f(g(B)) != B | B = A.  [copy(262),merge(g)].
+264 c6 = c5 | f(c6) = c1 | c4 = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(249(d,1),251(e,1,1))].
+265 c6 = c5 | f(c6) = c1 | c4 = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(264),xx(h)].
+266 c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(265),merge(d)].
+267 c6 = c5 | f(c6) = c1 | c4 = c3 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(266),merge(d)].
+268 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(267),merge(d)].
+269 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) != f(c6) | c1 = f(c6) | g(f(c2)) = c2.  [para(268(e,1),255(d,1,1))].
+270 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) != f(c6) | f(c6) = c1 | g(f(c2)) = c2.  [copy(269),flip(i)].
+271 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | g(f(c2)) = c2.  [copy(270),xx(h)].
+272 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | g(f(c2)) = c2.  [copy(271),merge(e)].
+273 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c4 = c3 | f(c6) = c1 | g(f(c2)) = c2.  [copy(272),merge(e)].
+274 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | f(c6) = c1 | g(f(c2)) = c2.  [copy(273),merge(e)].
+275 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c2)) = c2.  [copy(274),merge(e)].
+276 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4.  [resolve(252,e,275,e)].
+277 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4.  [copy(276),merge(f)].
+278 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | c4 = c3 | f(g(c4)) = c4.  [copy(277),merge(f)].
+279 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c4)) = c4.  [copy(278),merge(f)].
+280 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(279),merge(f)].
+281 c6 = c5 | f(c6) = c1 | c4 = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(249(d,1),253(e,1,1))].
+282 c6 = c5 | f(c6) = c1 | c4 = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(281),xx(h)].
+283 c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(282),merge(d)].
+284 c6 = c5 | f(c6) = c1 | c4 = c3 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(283),merge(d)].
+285 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(284),merge(d)].
+286 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) != f(c6) | c1 = f(c6) | g(f(c2)) = c2.  [para(285(e,1),255(d,1,1))].
+287 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) != f(c6) | f(c6) = c1 | g(f(c2)) = c2.  [copy(286),flip(i)].
+288 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | g(f(c2)) = c2.  [copy(287),xx(h)].
+289 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | g(f(c2)) = c2.  [copy(288),merge(e)].
+290 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c4 = c3 | f(c6) = c1 | g(f(c2)) = c2.  [copy(289),merge(e)].
+291 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | f(c6) = c1 | g(f(c2)) = c2.  [copy(290),merge(e)].
+292 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c2)) = c2.  [copy(291),merge(e)].
+293 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3.  [resolve(254,e,292,e)].
+294 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3.  [copy(293),merge(f)].
+295 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5 | c4 = c3 | f(g(c3)) = c3.  [copy(294),merge(f)].
+296 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5 | f(g(c3)) = c3.  [copy(295),merge(f)].
+297 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(296),merge(f)].
+298 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | A = c4 | c6 = c5 | g(c4) = g(c3) | f(c5) = c1.  [resolve(263,d,192,c)].
+299 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | c4 = A | c6 = c5 | g(c4) = g(c3) | f(c5) = c1.  [copy(298),flip(e)].
+300 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | c4 = A | g(c4) = g(c3) | f(c5) = c1.  [copy(299),merge(f)].
+301 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | c4 = A | f(c5) = c1.  [copy(300),merge(f)].
+302 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | f(g(A)) != A | c4 = A.  [copy(301),merge(f)].
+303 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | c4 = c3 | c6 = c5 | g(c4) = g(c3) | f(c5) = c1.  [resolve(302,d,170,c)].
+304 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | c4 = c3 | g(c4) = g(c3) | f(c5) = c1.  [copy(303),merge(e)].
+305 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | c4 = c3 | f(c5) = c1.  [copy(304),merge(e)].
+306 c6 = c5 | g(c4) = g(c3) | f(c5) = c1 | c4 = c3.  [copy(305),merge(e)].
+307 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c1)) = c1 | f(g(c3)) = c4 | c6 = c5.  [para(306(b,1),76(b,1,1))].
+308 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c1)) = c1 | f(g(c3)) = c4.  [copy(307),merge(f)].
+309 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c1)) = c1 | f(g(c1)) = c1 | c4 = c3 | c6 = c5.  [para(308(e,1),57(b,1))].
+310 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c1)) = c1 | c4 = c3 | c6 = c5.  [copy(309),merge(e)].
+311 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c1)) = c1 | c6 = c5.  [copy(310),merge(e)].
+312 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c1)) = c1.  [copy(311),merge(e)].
+313 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(A)) != A | c1 = A | g(f(B)) != B | g(f(C)) != C | C = B.  [resolve(312,d,14,b)].
+314 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(312,d,13,a)].
+315 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(312,d,12,a)].
+316 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(312,d,11,a)].
+317 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(312,d,10,a)].
+318 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(A)) != A | c1 = A | g(f(c5)) != c5 | g(f(c6)) != c6.  [factor(313,a,h)].
+319 c6 = c5 | f(c5) = c1 | c4 = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(312(d,1),314(e,1,1))].
+320 c6 = c5 | f(c5) = c1 | c4 = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(319),xx(h)].
+321 c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(320),merge(d)].
+322 c6 = c5 | f(c5) = c1 | c4 = c3 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(321),merge(d)].
+323 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(322),merge(d)].
+324 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4.  [resolve(315,e,323,e)].
+325 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4.  [copy(324),merge(f)].
+326 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | c4 = c3 | f(g(c4)) = c4.  [copy(325),merge(f)].
+327 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c4)) = c4.  [copy(326),merge(f)].
+328 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(327),merge(f)].
+329 c6 = c5 | f(c5) = c1 | c4 = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(312(d,1),316(e,1,1))].
+330 c6 = c5 | f(c5) = c1 | c4 = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(329),xx(h)].
+331 c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(330),merge(d)].
+332 c6 = c5 | f(c5) = c1 | c4 = c3 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(331),merge(d)].
+333 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(332),merge(d)].
+334 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3.  [resolve(317,e,333,e)].
+335 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3.  [copy(334),merge(f)].
+336 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5 | c4 = c3 | f(g(c3)) = c3.  [copy(335),merge(f)].
+337 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5 | f(g(c3)) = c3.  [copy(336),merge(f)].
+338 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(337),merge(f)].
+339 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) != f(c6) | c1 = f(c6) | g(f(c5)) != c5 | g(f(c6)) != c6.  [para(268(e,1),256(d,1,1))].
+340 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) != f(c6) | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(339),flip(i)].
+341 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(340),xx(h)].
+342 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(341),merge(e)].
+343 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c4 = c3 | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(342),merge(e)].
+344 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(343),merge(e)].
+345 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(344),merge(e)].
+346 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) != f(c6) | c1 = f(c6) | g(f(c5)) != c5 | g(f(c6)) != c6.  [para(285(e,1),256(d,1,1))].
+347 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) != f(c6) | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(346),flip(i)].
+348 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(347),xx(h)].
+349 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(348),merge(e)].
+350 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c4 = c3 | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(349),merge(e)].
+351 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | f(c6) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(350),merge(e)].
+352 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(351),merge(e)].
+353 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4.  [resolve(345,f,268,e)].
+354 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4.  [copy(353),merge(f)].
+355 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | c4 = c3 | f(g(c4)) = c4.  [copy(354),merge(f)].
+356 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | f(g(c4)) = c4.  [copy(355),merge(f)].
+357 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5.  [copy(356),merge(f)].
+358 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4.  [resolve(357,e,280,e)].
+359 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4.  [copy(358),merge(e)].
+360 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | c4 = c3 | f(g(c4)) = c4.  [copy(359),merge(e)].
+361 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4 | f(g(c4)) = c4.  [copy(360),merge(e)].
+362 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c4)) = c4.  [copy(361),merge(e)].
+363 c6 = c5 | f(c6) = c1 | c4 = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c4.  [para(243(b,1),362(d,1,1))].
+364 c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c4.  [copy(363),merge(d)].
+365 c6 = c5 | f(c6) = c1 | c4 = c3 | c4 = c3 | f(g(c3)) = c4.  [copy(364),merge(d)].
+366 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c4.  [copy(365),merge(d)].
+367 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A | g(c3) != g(c3) | g(c4) = g(c3).  [para(227(c,1),216(g,1,1))].
+368 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(367),xx(j)].
+369 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(368),merge(d)].
+370 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(369),merge(d)].
+371 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) = g(c3).  [copy(370),merge(d)].
+372 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | f(g(B)) != B | B = A.  [copy(371),merge(g)].
+373 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3.  [resolve(352,f,285,e)].
+374 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3.  [copy(373),merge(f)].
+375 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | c4 = c3 | f(g(c3)) = c3.  [copy(374),merge(f)].
+376 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | f(g(c3)) = c3.  [copy(375),merge(f)].
+377 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5.  [copy(376),merge(f)].
+378 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3.  [resolve(377,e,297,e)].
+379 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3.  [copy(378),merge(e)].
+380 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | c4 = c3 | f(g(c3)) = c3.  [copy(379),merge(e)].
+381 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3 | f(g(c3)) = c3.  [copy(380),merge(e)].
+382 c6 = c5 | f(c6) = c1 | c4 = c3 | f(g(c3)) = c3.  [copy(381),merge(e)].
+383 c6 = c5 | f(c6) = c1 | c4 = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | c3 = c4.  [para(382(d,1),366(d,1))].
+384 c6 = c5 | f(c6) = c1 | c4 = c3 | c6 = c5 | f(c6) = c1 | c4 = c3 | c4 = c3.  [copy(383),flip(g)].
+385 c6 = c5 | f(c6) = c1 | c4 = c3 | f(c6) = c1 | c4 = c3 | c4 = c3.  [copy(384),merge(d)].
+386 c6 = c5 | f(c6) = c1 | c4 = c3 | c4 = c3 | c4 = c3.  [copy(385),merge(d)].
+387 c6 = c5 | f(c6) = c1 | c4 = c3 | c4 = c3.  [copy(386),merge(d)].
+388 c6 = c5 | f(c6) = c1 | c4 = c3.  [copy(387),merge(d)].
+389 c6 = c5 | c4 = c3 | f(g(A)) != A | f(g(c3)) = c3 | g(c1) != c6 | g(f(c5)) = c5.  [para(388(b,1),10(c,1,1))].
+390 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | A = c3 | c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5).  [resolve(372,d,227,c)].
+391 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | c3 = A | c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5).  [copy(390),flip(e)].
+392 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | c3 = A | g(c4) = g(c3) | f(c6) = f(c5).  [copy(391),merge(f)].
+393 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | c3 = A | f(c6) = f(c5).  [copy(392),merge(f)].
+394 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | f(g(A)) != A | c3 = A.  [copy(393),merge(f)].
+395 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | c3 = c4 | c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5).  [resolve(394,d,213,c)].
+396 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | c4 = c3 | c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5).  [copy(395),flip(d)].
+397 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | c4 = c3 | g(c4) = g(c3) | f(c6) = f(c5).  [copy(396),merge(e)].
+398 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | c4 = c3 | f(c6) = f(c5).  [copy(397),merge(e)].
+399 c6 = c5 | g(c4) = g(c3) | f(c6) = f(c5) | c4 = c3.  [copy(398),merge(e)].
+400 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c1)) = c1 | f(g(c3)) = c4 | c6 = c5.  [para(399(b,1),76(b,1,1))].
+401 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c1)) = c1 | f(g(c3)) = c4.  [copy(400),merge(f)].
+402 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c1)) = c1 | f(g(c1)) = c1 | c4 = c3 | c6 = c5.  [para(401(e,1),57(b,1))].
+403 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c1)) = c1 | c4 = c3 | c6 = c5.  [copy(402),merge(e)].
+404 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c1)) = c1 | c6 = c5.  [copy(403),merge(e)].
+405 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c1)) = c1.  [copy(404),merge(e)].
+406 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | c4 = c3 | f(g(c3)) = c3 | g(c1) != c6 | g(f(c5)) = c5.  [resolve(405,d,389,c)].
+407 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c4 = c3 | f(g(c3)) = c3 | g(c1) != c6 | g(f(c5)) = c5.  [copy(406),merge(d)].
+408 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(c1) != c6 | g(f(c5)) = c5.  [copy(407),merge(d)].
+409 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(405,d,13,a)].
+410 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c5)) = c5.  [resolve(405,d,12,a)].
+411 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(405,d,11,a)].
+412 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(405(d,1),409(e,1,1))].
+413 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(412),xx(h)].
+414 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(413),merge(d)].
+415 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(414),merge(d)].
+416 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(415),merge(d)].
+417 c6 = c5 | c4 = c3 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(c1) = c6.  [para(388(b,1),416(e,1,1))].
+418 c6 = c5 | c4 = c3 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(c1) = c6.  [copy(417),merge(c)].
+419 c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(g(c4)) = c4 | g(c1) = c6.  [copy(418),merge(d)].
+420 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c4 | g(c1) = c6.  [para(399(b,1),419(d,1,1))].
+421 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c4 | g(c1) = c6.  [copy(420),merge(d)].
+422 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c4 | g(c1) = c6.  [copy(421),merge(d)].
+423 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c4 | g(c1) = c6.  [copy(422),merge(d)].
+424 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4.  [resolve(410,e,416,e)].
+425 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4.  [copy(424),merge(f)].
+426 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | c4 = c3 | f(g(c4)) = c4.  [copy(425),merge(f)].
+427 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5 | f(g(c4)) = c4.  [copy(426),merge(f)].
+428 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(427),merge(f)].
+429 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(405(d,1),411(e,1,1))].
+430 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(429),xx(h)].
+431 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(430),merge(d)].
+432 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(431),merge(d)].
+433 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(432),merge(d)].
+434 c6 = c5 | c4 = c3 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(c1) = c6.  [para(388(b,1),433(e,1,1))].
+435 c6 = c5 | c4 = c3 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(c1) = c6.  [copy(434),merge(c)].
+436 c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c3 | g(c1) = c6.  [copy(435),merge(d)].
+437 c6 = c5 | c4 = c3 | f(c6) = f(c5) | g(c1) = c6 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | c3 = c4 | g(c1) = c6.  [para(436(d,1),423(d,1))].
+438 c6 = c5 | c4 = c3 | f(c6) = f(c5) | g(c1) = c6 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | c4 = c3 | g(c1) = c6.  [copy(437),flip(h)].
+439 c6 = c5 | c4 = c3 | f(c6) = f(c5) | g(c1) = c6 | f(c6) = f(c5) | c4 = c3 | c4 = c3 | g(c1) = c6.  [copy(438),merge(e)].
+440 c6 = c5 | c4 = c3 | f(c6) = f(c5) | g(c1) = c6 | c4 = c3 | c4 = c3 | g(c1) = c6.  [copy(439),merge(e)].
+441 c6 = c5 | c4 = c3 | f(c6) = f(c5) | g(c1) = c6 | c4 = c3 | g(c1) = c6.  [copy(440),merge(e)].
+442 c6 = c5 | c4 = c3 | f(c6) = f(c5) | g(c1) = c6 | g(c1) = c6.  [copy(441),merge(e)].
+443 c6 = c5 | c4 = c3 | f(c6) = f(c5) | g(c1) = c6.  [copy(442),merge(e)].
+444 c6 = c5 | c4 = c3 | f(c6) = f(c5) | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [resolve(443,d,408,e)].
+445 c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(444),merge(d)].
+446 c6 = c5 | c4 = c3 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(445),merge(d)].
+447 c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(446),merge(d)].
+448 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) != f(c5) | c1 = f(c5) | g(f(c5)) != c5 | g(f(c6)) != c6.  [para(328(e,1),318(d,1,1))].
+449 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) != f(c5) | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(448),flip(i)].
+450 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(449),xx(h)].
+451 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | f(c5) = c1 | c4 = c3 | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(450),merge(e)].
+452 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | c4 = c3 | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(451),merge(e)].
+453 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(452),merge(e)].
+454 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(453),merge(e)].
+455 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) != f(c5) | c1 = f(c5) | g(f(c5)) != c5 | g(f(c6)) != c6.  [para(338(e,1),318(d,1,1))].
+456 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) != f(c5) | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(455),flip(i)].
+457 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(456),xx(h)].
+458 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | f(c5) = c1 | c4 = c3 | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(457),merge(e)].
+459 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | c4 = c3 | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(458),merge(e)].
+460 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | f(c5) = c1 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(459),merge(e)].
+461 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | g(f(c6)) != c6.  [copy(460),merge(e)].
+462 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4.  [resolve(454,f,323,e)].
+463 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4.  [copy(462),merge(f)].
+464 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | c4 = c3 | f(g(c4)) = c4.  [copy(463),merge(f)].
+465 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5 | f(g(c4)) = c4.  [copy(464),merge(f)].
+466 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | g(f(c5)) != c5.  [copy(465),merge(f)].
+467 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4.  [resolve(466,e,328,e)].
+468 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4.  [copy(467),merge(e)].
+469 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | c4 = c3 | f(g(c4)) = c4.  [copy(468),merge(e)].
+470 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4 | f(g(c4)) = c4.  [copy(469),merge(e)].
+471 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c4)) = c4.  [copy(470),merge(e)].
+472 c6 = c5 | f(c5) = c1 | c4 = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c4.  [para(306(b,1),471(d,1,1))].
+473 c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c4.  [copy(472),merge(d)].
+474 c6 = c5 | f(c5) = c1 | c4 = c3 | c4 = c3 | f(g(c3)) = c4.  [copy(473),merge(d)].
+475 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c4.  [copy(474),merge(d)].
+476 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3.  [resolve(461,f,333,e)].
+477 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3.  [copy(476),merge(f)].
+478 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | c4 = c3 | f(g(c3)) = c3.  [copy(477),merge(f)].
+479 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5 | f(g(c3)) = c3.  [copy(478),merge(f)].
+480 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | g(f(c5)) != c5.  [copy(479),merge(f)].
+481 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3.  [resolve(480,e,338,e)].
+482 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3.  [copy(481),merge(e)].
+483 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | c4 = c3 | f(g(c3)) = c3.  [copy(482),merge(e)].
+484 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3 | f(g(c3)) = c3.  [copy(483),merge(e)].
+485 c6 = c5 | f(c5) = c1 | c4 = c3 | f(g(c3)) = c3.  [copy(484),merge(e)].
+486 c6 = c5 | f(c5) = c1 | c4 = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | c3 = c4.  [para(485(d,1),475(d,1))].
+487 c6 = c5 | f(c5) = c1 | c4 = c3 | c6 = c5 | f(c5) = c1 | c4 = c3 | c4 = c3.  [copy(486),flip(g)].
+488 c6 = c5 | f(c5) = c1 | c4 = c3 | f(c5) = c1 | c4 = c3 | c4 = c3.  [copy(487),merge(d)].
+489 c6 = c5 | f(c5) = c1 | c4 = c3 | c4 = c3 | c4 = c3.  [copy(488),merge(d)].
+490 c6 = c5 | f(c5) = c1 | c4 = c3 | c4 = c3.  [copy(489),merge(d)].
+491 c6 = c5 | f(c5) = c1 | c4 = c3.  [copy(490),merge(d)].
+492 c6 = c5 | c4 = c3 | c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(c1) = c5.  [para(491(b,1),428(e,1,1))].
+493 c6 = c5 | c4 = c3 | f(c6) = f(c5) | c4 = c3 | f(g(c4)) = c4 | g(c1) = c5.  [copy(492),merge(c)].
+494 c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(g(c4)) = c4 | g(c1) = c5.  [copy(493),merge(d)].
+495 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c3 | g(c1) = c5.  [para(491(b,1),447(e,1,1))].
+496 c6 = c5 | c4 = c3 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c3 | g(c1) = c5.  [copy(495),merge(c)].
+497 c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c3 | g(c1) = c5.  [copy(496),merge(c)].
+498 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c4 | g(c1) = c5.  [para(399(b,1),494(d,1,1))].
+499 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c4 | g(c1) = c5.  [copy(498),merge(d)].
+500 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(c6) = f(c5) | f(g(c3)) = c4 | g(c1) = c5.  [copy(499),merge(d)].
+501 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(g(c3)) = c4 | g(c1) = c5.  [copy(500),merge(d)].
+502 c6 = c5 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5 | c6 = c5 | c4 = c3 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5.  [para(501(d,1),497(d,1))].
+503 c6 = c5 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5 | c4 = c3 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5.  [copy(502),merge(e)].
+504 c6 = c5 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5.  [copy(503),merge(e)].
+505 c6 = c5 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5 | c4 = c3 | g(c1) = c5.  [copy(504),merge(e)].
+506 c6 = c5 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5 | g(c1) = c5.  [copy(505),merge(e)].
+507 c6 = c5 | f(c6) = f(c5) | c4 = c3 | g(c1) = c5.  [copy(506),merge(e)].
+508 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | c4 = c3 | f(c6) = f(c5) | c5 = c6.  [para(507(d,1),443(d,1))].
+509 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5 | c4 = c3 | f(c6) = f(c5) | c6 = c5.  [copy(508),flip(g)].
+510 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c4 = c3 | f(c6) = f(c5) | c6 = c5.  [copy(509),merge(d)].
+511 c6 = c5 | f(c6) = f(c5) | c4 = c3 | f(c6) = f(c5) | c6 = c5.  [copy(510),merge(d)].
+512 c6 = c5 | f(c6) = f(c5) | c4 = c3 | c6 = c5.  [copy(511),merge(d)].
+513 c6 = c5 | f(c6) = f(c5) | c4 = c3.  [copy(512),merge(d)].
+514 c6 = c5 | c4 = c3 | c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c5)) = c6.  [para(513(b,1),98(d,1,1))].
+515 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c4)) = c4 | g(f(c5)) = c6.  [copy(514),merge(c)].
+516 c6 = c5 | c4 = c3 | c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c5)) = c6.  [para(513(b,1),106(d,1,1))].
+517 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c3)) = c3 | g(f(c5)) = c6.  [copy(516),merge(c)].
+518 c6 = c5 | c4 = c3 | c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c5)) = c6.  [para(513(b,1),114(d,1,1))].
+519 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | g(f(c5)) = c6.  [copy(518),merge(c)].
+520 c6 = c5 | c4 = c3 | c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c5)) = c6.  [para(513(b,1),122(d,1,1))].
+521 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | g(f(c5)) = c6.  [copy(520),merge(c)].
+522 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c4)) = c4 | c6 = c5 | g(c3) = c2 | f(g(c4)) = c4 | c6 = c5.  [para(515(e,1),102(d,1))].
+523 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c4)) = c4 | g(c3) = c2 | f(g(c4)) = c4 | c6 = c5.  [copy(522),merge(e)].
+524 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c4)) = c4 | f(g(c4)) = c4 | c6 = c5.  [copy(523),merge(e)].
+525 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c4)) = c4 | c6 = c5.  [copy(524),merge(e)].
+526 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c4)) = c4.  [copy(525),merge(e)].
+527 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | g(c3) = c2 | f(g(A)) != A | c4 = A | g(f(B)) != B | g(c1) = B.  [resolve(526,d,72,d)].
+528 c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) = c2 | f(g(A)) != A | c4 = A | g(f(B)) != B | g(c1) = B.  [copy(527),merge(d)].
+529 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(A)) != A | c4 = A | g(f(B)) != B | g(c1) = B.  [copy(528),merge(d)].
+530 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c3)) != c3 | g(f(A)) != A | g(c1) = A.  [factor(529,b,e)].
+531 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c3)) = c3 | c6 = c5 | g(c3) = c2 | f(g(c3)) = c3 | c6 = c5.  [para(517(e,1),110(d,1))].
+532 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c3)) = c3 | g(c3) = c2 | f(g(c3)) = c3 | c6 = c5.  [copy(531),merge(e)].
+533 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c3)) = c3 | f(g(c3)) = c3 | c6 = c5.  [copy(532),merge(e)].
+534 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c3)) = c3 | c6 = c5.  [copy(533),merge(e)].
+535 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c3)) = c3.  [copy(534),merge(e)].
+536 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | c6 = c5 | g(c4) = c2 | f(g(c4)) = c4 | c6 = c5.  [para(519(e,1),118(d,1))].
+537 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | g(c4) = c2 | f(g(c4)) = c4 | c6 = c5.  [copy(536),merge(e)].
+538 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | f(g(c4)) = c4 | c6 = c5.  [copy(537),merge(e)].
+539 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | c6 = c5.  [copy(538),merge(e)].
+540 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c4)) = c4.  [copy(539),merge(e)].
+541 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(A)) != A | c4 = A | g(f(c2)) = c2.  [resolve(540,d,5,b)].
+542 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(f(C)) != C | C = g(c4).  [para(540(d,1),14(d,1,1))].
+543 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(f(C)) != C | g(c4) = C.  [copy(542),flip(i)].
+544 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | g(c4) = C.  [copy(543),xx(g)].
+545 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | g(f(c2)) = c2.  [factor(541,b,e)].
+546 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | g(f(A)) != A | g(c4) = A.  [factor(544,b,f)].
+547 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | g(f(c2)) != c2.  [factor(546,c,g)].
+548 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | c6 = c5 | g(c4) = c2 | f(g(c3)) = c3 | c6 = c5.  [para(521(e,1),126(d,1))].
+549 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | g(c4) = c2 | f(g(c3)) = c3 | c6 = c5.  [copy(548),merge(e)].
+550 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | f(g(c3)) = c3 | c6 = c5.  [copy(549),merge(e)].
+551 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | c6 = c5.  [copy(550),merge(e)].
+552 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) = c3.  [copy(551),merge(e)].
+553 c6 = c5 | c4 = c3 | g(c4) = c2 | g(f(c2)) = c2 | c6 = c5 | c4 = c3 | g(c4) = c2.  [resolve(545,d,552,d)].
+554 c6 = c5 | c4 = c3 | g(c4) = c2 | g(f(c2)) = c2 | c4 = c3 | g(c4) = c2.  [copy(553),merge(e)].
+555 c6 = c5 | c4 = c3 | g(c4) = c2 | g(f(c2)) = c2 | g(c4) = c2.  [copy(554),merge(e)].
+556 c6 = c5 | c4 = c3 | g(c4) = c2 | g(f(c2)) = c2.  [copy(555),merge(e)].
+557 c6 = c5 | c4 = c3 | g(c3) = c2 | g(f(A)) != A | g(c1) = A | c6 = c5 | c4 = c3 | g(c3) = c2.  [resolve(530,d,535,d)].
+558 c6 = c5 | c4 = c3 | g(c3) = c2 | g(f(A)) != A | g(c1) = A | c4 = c3 | g(c3) = c2.  [copy(557),merge(f)].
+559 c6 = c5 | c4 = c3 | g(c3) = c2 | g(f(A)) != A | g(c1) = A | g(c3) = c2.  [copy(558),merge(f)].
+560 c6 = c5 | c4 = c3 | g(c3) = c2 | g(f(A)) != A | g(c1) = A.  [copy(559),merge(f)].
+561 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | g(c4) != g(c4) | g(c1) = g(c4).  [para(526(d,1),560(d,1,1))].
+562 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | g(c4) != g(c4) | g(c4) = g(c1).  [copy(561),flip(h)].
+563 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | g(c4) = g(c1).  [copy(562),xx(g)].
+564 c6 = c5 | c4 = c3 | g(c3) = c2 | c4 = c3 | g(c3) = c2 | g(c4) = g(c1).  [copy(563),merge(d)].
+565 c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) = c2 | g(c4) = g(c1).  [copy(564),merge(d)].
+566 c6 = c5 | c4 = c3 | g(c3) = c2 | g(c4) = g(c1).  [copy(565),merge(d)].
+567 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) != g(c3) | g(c1) = g(c3).  [para(535(d,1),560(d,1,1))].
+568 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) != g(c3) | g(c3) = g(c1).  [copy(567),flip(h)].
+569 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) = g(c1).  [copy(568),xx(g)].
+570 c6 = c5 | c4 = c3 | g(c3) = c2 | c4 = c3 | g(c3) = c2 | g(c3) = g(c1).  [copy(569),merge(d)].
+571 c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) = c2 | g(c3) = g(c1).  [copy(570),merge(d)].
+572 c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) = g(c1).  [copy(571),merge(d)].
+573 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c1)) = c4.  [para(566(d,1),526(d,1,1))].
+574 c6 = c5 | c4 = c3 | g(c3) = c2 | c4 = c3 | g(c3) = c2 | f(g(c1)) = c4.  [copy(573),merge(d)].
+575 c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) = c2 | f(g(c1)) = c4.  [copy(574),merge(d)].
+576 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c1)) = c4.  [copy(575),merge(d)].
+577 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c1)) = c3.  [para(572(d,1),535(d,1,1))].
+578 c6 = c5 | c4 = c3 | g(c3) = c2 | c4 = c3 | g(c3) = c2 | f(g(c1)) = c3.  [copy(577),merge(d)].
+579 c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) = c2 | f(g(c1)) = c3.  [copy(578),merge(d)].
+580 c6 = c5 | c4 = c3 | g(c3) = c2 | f(g(c1)) = c3.  [copy(579),merge(d)].
+581 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | c3 = c4.  [para(580(d,1),576(d,1))].
+582 c6 = c5 | c4 = c3 | g(c3) = c2 | c6 = c5 | c4 = c3 | g(c3) = c2 | c4 = c3.  [copy(581),flip(g)].
+583 c6 = c5 | c4 = c3 | g(c3) = c2 | c4 = c3 | g(c3) = c2 | c4 = c3.  [copy(582),merge(d)].
+584 c6 = c5 | c4 = c3 | g(c3) = c2 | g(c3) = c2 | c4 = c3.  [copy(583),merge(d)].
+585 c6 = c5 | c4 = c3 | g(c3) = c2 | c4 = c3.  [copy(584),merge(d)].
+586 c6 = c5 | c4 = c3 | g(c3) = c2.  [copy(585),merge(d)].
+587 c6 = c5 | c4 = c3 | f(c2) != c3 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c5)) = c5.  [para(586(c,1),12(a,1,1))].
+588 c6 = c5 | c4 = c3 | f(c2) != c3 | f(g(c4)) = c4 | g(f(A)) != A | g(f(c6)) = c6.  [para(586(c,1),13(a,1,1))].
+589 c6 = c5 | c4 = c3 | f(g(c1)) = c1 | f(c2) = c3 | c6 = c5.  [para(586(c,1),57(b,1,1))].
+590 c6 = c5 | c4 = c3 | f(g(c1)) = c1 | f(c2) = c3.  [copy(589),merge(e)].
+591 c6 = c5 | c4 = c3 | f(c2) = c3 | c6 = c5 | c4 = c3 | f(g(c3)) = c3 | g(c1) != c6 | g(f(c5)) = c5.  [resolve(590,c,389,c)].
+592 c6 = c5 | c4 = c3 | f(c2) = c3 | c4 = c3 | f(g(c3)) = c3 | g(c1) != c6 | g(f(c5)) = c5.  [copy(591),merge(d)].
+593 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(c1) != c6 | g(f(c5)) = c5.  [copy(592),merge(d)].
+594 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(A)) != A | g(f(c6)) = c6.  [resolve(590,c,11,a)].
+595 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | c6 = c5 | c4 = c3 | g(c4) = c2.  [resolve(547,f,556,d)].
+596 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | c4 = c3 | g(c4) = c2.  [copy(595),merge(f)].
+597 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | g(c4) = c2.  [copy(596),merge(f)].
+598 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4.  [copy(597),merge(f)].
+599 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | c6 = c5 | c4 = c3 | g(c4) = c2.  [resolve(598,e,540,d)].
+600 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | c4 = c3 | g(c4) = c2.  [copy(599),merge(e)].
+601 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | g(c4) = c2.  [copy(600),merge(e)].
+602 c6 = c5 | c4 = c3 | g(c4) = c2 | f(g(c3)) != c3.  [copy(601),merge(e)].
+603 c6 = c5 | c4 = c3 | g(c4) = c2 | c6 = c5 | c4 = c3 | g(c4) = c2.  [resolve(602,d,552,d)].
+604 c6 = c5 | c4 = c3 | g(c4) = c2 | c4 = c3 | g(c4) = c2.  [copy(603),merge(d)].
+605 c6 = c5 | c4 = c3 | g(c4) = c2 | g(c4) = c2.  [copy(604),merge(d)].
+606 c6 = c5 | c4 = c3 | g(c4) = c2.  [copy(605),merge(d)].
+607 c6 = c5 | c4 = c3 | f(g(c1)) = c1 | f(c2) = c4 | c6 = c5.  [para(606(c,1),76(b,1,1))].
+608 c6 = c5 | c4 = c3 | f(g(c1)) = c1 | f(c2) = c4.  [copy(607),merge(e)].
+609 c6 = c5 | c4 = c3 | f(c2) = c4 | c6 = c5 | c4 = c3 | f(c2) != c3 | f(g(c4)) = c4 | g(c1) != g(c1) | g(f(c5)) = c5.  [para(608(c,1),587(e,1,1))].
+610 c6 = c5 | c4 = c3 | f(c2) = c4 | c6 = c5 | c4 = c3 | f(c2) != c3 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(609),xx(h)].
+611 c6 = c5 | c4 = c3 | f(c2) = c4 | c4 = c3 | f(c2) != c3 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(610),merge(d)].
+612 c6 = c5 | c4 = c3 | f(c2) = c4 | f(c2) != c3 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(611),merge(d)].
+613 c6 = c5 | c4 = c3 | f(c2) = c4 | c6 = c5 | c4 = c3 | f(c2) != c3 | f(g(c4)) = c4 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(608(c,1),588(e,1,1))].
+614 c6 = c5 | c4 = c3 | f(c2) = c4 | c6 = c5 | c4 = c3 | f(c2) != c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(613),xx(h)].
+615 c6 = c5 | c4 = c3 | f(c2) = c4 | c4 = c3 | f(c2) != c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(614),merge(d)].
+616 c6 = c5 | c4 = c3 | f(c2) = c4 | f(c2) != c3 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(615),merge(d)].
+617 c6 = c5 | c4 = c3 | f(c2) = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(c1) != g(c1) | g(f(c6)) = c6.  [para(590(c,1),594(e,1,1))].
+618 c6 = c5 | c4 = c3 | f(c2) = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(617),xx(h)].
+619 c6 = c5 | c4 = c3 | f(c2) = c3 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(618),merge(d)].
+620 c6 = c5 | c4 = c3 | f(c2) = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(619),merge(d)].
+621 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c6)) = c6.  [copy(620),merge(d)].
+622 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(c1) = c6.  [para(388(b,1),621(e,1,1))].
+623 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(c1) = c6.  [copy(622),merge(c)].
+624 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(c1) = c6.  [copy(623),merge(c)].
+625 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c5)) = c6.  [para(513(b,1),621(e,1,1))].
+626 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c5)) = c6.  [copy(625),merge(c)].
+627 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c5)) = c6.  [copy(626),merge(c)].
+628 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(c2) = c3 | g(c1) = c6.  [para(586(c,1),624(d,1,1))].
+629 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c3 | f(c2) = c3 | g(c1) = c6.  [copy(628),merge(c)].
+630 c6 = c5 | c4 = c3 | f(c2) = c3 | f(c2) = c3 | g(c1) = c6.  [copy(629),merge(c)].
+631 c6 = c5 | c4 = c3 | f(c2) = c3 | g(c1) = c6.  [copy(630),merge(d)].
+632 c6 = c5 | c4 = c3 | f(c2) = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [resolve(631,d,593,e)].
+633 c6 = c5 | c4 = c3 | f(c2) = c3 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(632),merge(d)].
+634 c6 = c5 | c4 = c3 | f(c2) = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(633),merge(d)].
+635 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | g(f(c5)) = c5.  [copy(634),merge(d)].
+636 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | c5 = c6.  [para(635(e,1),627(e,1))].
+637 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | c6 = c5.  [copy(636),flip(i)].
+638 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | c6 = c5.  [copy(637),merge(e)].
+639 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | f(c2) = c3 | f(g(c3)) = c3 | c6 = c5.  [copy(638),merge(e)].
+640 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | f(g(c3)) = c3 | c6 = c5.  [copy(639),merge(e)].
+641 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3 | c6 = c5.  [copy(640),merge(e)].
+642 c6 = c5 | c4 = c3 | f(c2) = c3 | f(g(c3)) = c3.  [copy(641),merge(e)].
+643 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c3 | f(c2) = c3.  [para(586(c,1),642(d,1,1))].
+644 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c3 | f(c2) = c3.  [copy(643),merge(c)].
+645 c6 = c5 | c4 = c3 | f(c2) = c3 | f(c2) = c3.  [copy(644),merge(c)].
+646 c6 = c5 | c4 = c3 | f(c2) = c3.  [copy(645),merge(d)].
+647 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(f(c6)) = c6.  [resolve(646,c,616,d)].
+648 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(647),merge(c)].
+649 c6 = c5 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(f(c6)) = c6.  [copy(648),merge(c)].
+650 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(f(c5)) = c5.  [resolve(646,c,612,d)].
+651 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(650),merge(c)].
+652 c6 = c5 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(f(c5)) = c5.  [copy(651),merge(c)].
+653 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(c1) = c6.  [para(388(b,1),649(e,1,1))].
+654 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(c1) = c6.  [copy(653),merge(c)].
+655 c6 = c5 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(c1) = c6.  [copy(654),merge(c)].
+656 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c4 | f(c2) = c4 | g(c1) = c6.  [para(606(c,1),655(d,1,1))].
+657 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c4 | f(c2) = c4 | g(c1) = c6.  [copy(656),merge(c)].
+658 c6 = c5 | c4 = c3 | f(c2) = c4 | f(c2) = c4 | g(c1) = c6.  [copy(657),merge(c)].
+659 c6 = c5 | c4 = c3 | f(c2) = c4 | g(c1) = c6.  [copy(658),merge(d)].
+660 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(c1) = c5.  [para(491(b,1),652(e,1,1))].
+661 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(c1) = c5.  [copy(660),merge(c)].
+662 c6 = c5 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(c1) = c5.  [copy(661),merge(c)].
+663 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | f(c2) = c4 | f(c2) = c4 | g(c1) = c5.  [para(606(c,1),662(d,1,1))].
+664 c6 = c5 | c4 = c3 | c4 = c3 | f(c2) = c4 | f(c2) = c4 | g(c1) = c5.  [copy(663),merge(c)].
+665 c6 = c5 | c4 = c3 | f(c2) = c4 | f(c2) = c4 | g(c1) = c5.  [copy(664),merge(c)].
+666 c6 = c5 | c4 = c3 | f(c2) = c4 | g(c1) = c5.  [copy(665),merge(d)].
+667 c6 = c5 | c4 = c3 | f(c2) = c4 | c6 = c5 | c4 = c3 | f(c2) = c4 | c5 = c6.  [para(666(d,1),659(d,1))].
+668 c6 = c5 | c4 = c3 | f(c2) = c4 | c6 = c5 | c4 = c3 | f(c2) = c4 | c6 = c5.  [copy(667),flip(g)].
+669 c6 = c5 | c4 = c3 | f(c2) = c4 | c4 = c3 | f(c2) = c4 | c6 = c5.  [copy(668),merge(d)].
+670 c6 = c5 | c4 = c3 | f(c2) = c4 | f(c2) = c4 | c6 = c5.  [copy(669),merge(d)].
+671 c6 = c5 | c4 = c3 | f(c2) = c4 | c6 = c5.  [copy(670),merge(d)].
+672 c6 = c5 | c4 = c3 | f(c2) = c4.  [copy(671),merge(d)].
+673 c6 = c5 | c4 = c3 | c6 = c5 | c4 = c3 | c4 = c3.  [para(672(c,1),646(c,1))].
+674 c6 = c5 | c4 = c3 | c4 = c3 | c4 = c3.  [copy(673),merge(c)].
+675 c6 = c5 | c4 = c3 | c4 = c3.  [copy(674),merge(c)].
+676 c6 = c5 | c4 = c3.  [copy(675),merge(c)].
+677 c4 = c3 | f(g(c1)) = c1 | f(g(c4)) = c4.  [resolve(676,a,31,c)].
+678 c4 = c3 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(c4) != g(c4) | c2 = g(c4).  [para(677(c,1),18(b,1,1))].
+679 c4 = c3 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(c4) != g(c4) | g(c4) = c2.  [copy(678),flip(e)].
+680 c4 = c3 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(c4) = c2.  [copy(679),xx(d)].
+681 c4 = c3 | f(g(c1)) = c1 | g(c4) = c2.  [copy(680),merge(c)].
+682 c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | g(f(A)) != A | c6 != c5.  [resolve(681,b,7,a)].
+683 c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | g(f(A)) != A | c6 != c5.  [resolve(681,b,6,a)].
+684 c4 = c3 | g(c4) = c2 | c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | g(c1) != g(c1) | c6 != c5.  [para(681(b,1),682(d,1,1))].
+685 c4 = c3 | g(c4) = c2 | c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | c6 != c5.  [copy(684),xx(f)].
+686 c4 = c3 | g(c4) = c2 | g(c4) = c2 | f(g(c4)) = c4 | c6 != c5.  [copy(685),merge(c)].
+687 c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | c6 != c5.  [copy(686),merge(c)].
+688 c4 = c3 | g(c4) = c2 | f(g(c4)) = c4 | c4 = c3.  [resolve(687,d,676,a)].
+689 c4 = c3 | g(c4) = c2 | f(g(c4)) = c4.  [copy(688),merge(d)].
+690 c4 = c3 | g(c4) = c2 | f(g(A)) != A | c4 = A | g(f(c2)) = c2.  [resolve(689,c,5,b)].
+691 c4 = c3 | g(c4) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(f(C)) != C | C = g(c4).  [para(689(c,1),14(d,1,1))].
+692 c4 = c3 | g(c4) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(c4) != g(c4) | g(f(C)) != C | g(c4) = C.  [copy(691),flip(h)].
+693 c4 = c3 | g(c4) = c2 | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | g(c4) = C.  [copy(692),xx(f)].
+694 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | g(f(c2)) = c2.  [factor(690,a,d)].
+695 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | g(f(A)) != A | g(c4) = A.  [factor(693,a,e)].
+696 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | g(f(c2)) != c2.  [factor(695,b,f)].
+697 c4 = c3 | g(c4) = c2 | c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | g(c1) != g(c1) | c6 != c5.  [para(681(b,1),683(d,1,1))].
+698 c4 = c3 | g(c4) = c2 | c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | c6 != c5.  [copy(697),xx(f)].
+699 c4 = c3 | g(c4) = c2 | g(c4) = c2 | f(g(c3)) = c3 | c6 != c5.  [copy(698),merge(c)].
+700 c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | c6 != c5.  [copy(699),merge(c)].
+701 c4 = c3 | g(c4) = c2 | f(g(c3)) = c3 | c4 = c3.  [resolve(700,d,676,a)].
+702 c4 = c3 | g(c4) = c2 | f(g(c3)) = c3.  [copy(701),merge(d)].
+703 c4 = c3 | g(c4) = c2 | c4 = c3 | g(c4) = c2 | g(f(c2)) = c2.  [resolve(702,c,694,c)].
+704 c4 = c3 | g(c4) = c2 | g(c4) = c2 | g(f(c2)) = c2.  [copy(703),merge(c)].
+705 c4 = c3 | g(c4) = c2 | g(f(c2)) = c2.  [copy(704),merge(c)].
+706 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | c4 = c3 | g(c4) = c2.  [resolve(696,e,705,c)].
+707 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4 | g(c4) = c2.  [copy(706),merge(e)].
+708 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | f(g(c4)) != c4.  [copy(707),merge(e)].
+709 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | c4 = c3 | g(c4) = c2.  [resolve(708,d,689,c)].
+710 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3 | g(c4) = c2.  [copy(709),merge(d)].
+711 c4 = c3 | g(c4) = c2 | f(g(c3)) != c3.  [copy(710),merge(d)].
+712 c4 = c3 | g(c4) = c2 | c4 = c3 | g(c4) = c2.  [resolve(711,c,702,c)].
+713 c4 = c3 | g(c4) = c2 | g(c4) = c2.  [copy(712),merge(c)].
+714 c4 = c3 | g(c4) = c2.  [copy(713),merge(c)].
+715 c4 = c3 | f(c2) != c4 | f(g(A)) != A | A = c4 | g(f(c2)) = c2.  [para(714(b,1),5(a,1,1))].
+716 c4 = c3 | f(c2) != c4 | f(g(A)) != A | c4 = A | g(f(c2)) = c2.  [copy(715),flip(d)].
+717 c4 = c3 | f(c2) != c4 | f(g(c3)) = c3 | g(f(A)) != A | c6 != c5.  [para(714(b,1),6(a,1,1))].
+718 c4 = c3 | f(c2) != c4 | f(g(c4)) = c4 | g(f(A)) != A | c6 != c5.  [para(714(b,1),7(a,1,1))].
+719 c4 = c3 | c4 = c3 | f(g(c1)) = c1 | f(c2) = c4.  [para(714(b,1),677(c,1,1))].
+720 c4 = c3 | f(g(c1)) = c1 | f(c2) = c4.  [copy(719),merge(b)].
+721 c4 = c3 | f(c2) != c4 | f(g(c3)) != c3 | g(f(c2)) = c2.  [factor(716,a,d)].
+722 c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(f(A)) != A | c6 != c5.  [resolve(720,b,7,a)].
+723 c4 = c3 | f(c2) = c4 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | g(c1) != g(c1) | c6 != c5.  [para(720(b,1),722(d,1,1))].
+724 c4 = c3 | f(c2) = c4 | c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | c6 != c5.  [copy(723),xx(f)].
+725 c4 = c3 | f(c2) = c4 | f(c2) = c4 | f(g(c4)) = c4 | c6 != c5.  [copy(724),merge(c)].
+726 c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | c6 != c5.  [copy(725),merge(c)].
+727 c4 = c3 | f(c2) = c4 | f(g(c4)) = c4 | c4 = c3.  [resolve(726,d,676,a)].
+728 c4 = c3 | f(c2) = c4 | f(g(c4)) = c4.  [copy(727),merge(d)].
+729 c4 = c3 | c4 = c3 | f(c2) = c4 | f(c2) = c4.  [para(714(b,1),728(c,1,1))].
+730 c4 = c3 | f(c2) = c4 | f(c2) = c4.  [copy(729),merge(b)].
+731 c4 = c3 | f(c2) = c4.  [copy(730),merge(c)].
+732 c4 = c3 | c4 = c3 | f(c2) != c4 | f(g(c3)) = c3 | g(c4) != c2 | c6 != c5.  [para(731(b,1),717(d,1,1))].
+733 c4 = c3 | f(c2) != c4 | f(g(c3)) = c3 | g(c4) != c2 | c6 != c5.  [copy(732),merge(b)].
+734 c4 = c3 | f(c2) != c4 | f(g(c3)) = c3 | c6 != c5 | c4 = c3.  [resolve(733,d,714,b)].
+735 c4 = c3 | f(c2) != c4 | f(g(c3)) = c3 | c6 != c5.  [copy(734),merge(e)].
+736 c4 = c3 | f(g(c3)) = c3 | c6 != c5 | c4 = c3.  [resolve(735,b,731,b)].
+737 c4 = c3 | f(g(c3)) = c3 | c6 != c5.  [copy(736),merge(d)].
+738 c4 = c3 | f(g(c3)) = c3 | c4 = c3.  [resolve(737,c,676,a)].
+739 c4 = c3 | f(g(c3)) = c3.  [copy(738),merge(c)].
+740 c4 = c3 | c4 = c3 | f(c2) != c4 | g(f(c2)) = c2.  [resolve(739,b,721,c)].
+741 c4 = c3 | f(c2) != c4 | g(f(c2)) = c2.  [copy(740),merge(b)].
+742 c4 = c3 | c4 = c3 | f(c2) != c4 | f(g(c4)) = c4 | g(c3) != g(c3) | c6 != c5.  [para(739(b,1),718(d,1,1))].
+743 c4 = c3 | c4 = c3 | f(c2) != c4 | f(g(c4)) = c4 | c6 != c5.  [copy(742),xx(e)].
+744 c4 = c3 | f(c2) != c4 | f(g(c4)) = c4 | c6 != c5.  [copy(743),merge(b)].
+745 c4 = c3 | g(f(c2)) = c2 | c4 = c3.  [resolve(741,b,731,b)].
+746 c4 = c3 | g(f(c2)) = c2.  [copy(745),merge(c)].
+747 c4 = c3 | f(g(A)) != A | f(g(B)) != B | B = A | g(f(C)) != C | c2 = C.  [resolve(746,b,14,e)].
+748 c4 = c3 | f(g(c3)) != c3 | f(g(c4)) != c4 | g(f(A)) != A | c2 = A.  [factor(747,a,d)].
+749 c4 = c3 | f(g(c4)) = c4 | c6 != c5 | c4 = c3.  [resolve(744,b,731,b)].
+750 c4 = c3 | f(g(c4)) = c4 | c6 != c5.  [copy(749),merge(d)].
+751 c4 = c3 | f(g(c4)) = c4 | c4 = c3.  [resolve(750,c,676,a)].
+752 c4 = c3 | f(g(c4)) = c4.  [copy(751),merge(c)].
+753 c4 = c3 | f(g(c3)) != c3 | g(f(A)) != A | c2 = A | c4 = c3.  [resolve(748,c,752,b)].
+754 c4 = c3 | f(g(c3)) != c3 | g(f(A)) != A | c2 = A.  [copy(753),merge(e)].
+755 c4 = c3 | g(f(A)) != A | c2 = A | c4 = c3.  [resolve(754,b,739,b)].
+756 c4 = c3 | g(f(A)) != A | c2 = A.  [copy(755),merge(d)].
+757 c4 = c3 | c4 = c3 | g(c3) != g(c3) | c2 = g(c3).  [para(739(b,1),756(b,1,1))].
+758 c4 = c3 | c4 = c3 | g(c3) != g(c3) | g(c3) = c2.  [copy(757),flip(d)].
+759 c4 = c3 | c4 = c3 | g(c3) = c2.  [copy(758),xx(c)].
+760 c4 = c3 | g(c3) = c2.  [copy(759),merge(b)].
+761 c4 = c3 | c4 = c3 | f(c2) = c3.  [para(760(b,1),739(b,1,1))].
+762 c4 = c3 | f(c2) = c3.  [copy(761),merge(b)].
+763 c4 = c3 | c4 = c3 | c3 = c4.  [para(762(b,1),731(b,1))].
+764 c4 = c3 | c4 = c3 | c4 = c3.  [copy(763),flip(c)].
+765 c4 = c3 | c4 = c3.  [copy(764),merge(b)].
+766 c4 = c3.  [copy(765),merge(b)].
+767 f(g(c1)) = c1 | c3 != c3 | g(f(c6)) = c6.  [para(766(a,1),37(b,1))].
+768 f(g(c1)) = c1 | g(f(c6)) = c6.  [copy(767),xx(b)].
+769 f(g(c1)) = c1 | c3 != c3 | g(f(c5)) = c5.  [para(766(a,1),34(b,1))].
+770 f(g(c1)) = c1 | g(f(c5)) = c5.  [copy(769),xx(b)].
+771 f(g(c1)) = c1 | c3 != c3 | c6 != c5.  [para(766(a,1),28(b,1))].
+772 f(g(c1)) = c1 | c6 != c5.  [copy(771),xx(b)].
+773 f(g(A)) != A | c3 != c3 | g(f(B)) != B | g(f(c6)) = c6.  [para(766(a,1),9(b,1))].
+774 f(g(A)) != A | g(f(B)) != B | g(f(c6)) = c6.  [copy(773),xx(b)].
+775 f(g(A)) != A | c3 != c3 | g(f(B)) != B | g(f(c5)) = c5.  [para(766(a,1),8(b,1))].
+776 f(g(A)) != A | g(f(B)) != B | g(f(c5)) = c5.  [copy(775),xx(b)].
+777 f(g(A)) != A | c3 != c3 | g(f(B)) != B | c6 != c5.  [para(766(a,1),3(b,1))].
+778 f(g(A)) != A | g(f(B)) != B | c6 != c5.  [copy(777),xx(b)].
+779 f(g(c1)) = c1 | f(g(c1)) = c1 | c2 = c6.  [resolve(768,b,18,b)].
+780 f(g(c1)) = c1 | f(g(c1)) = c1 | c6 = c2.  [copy(779),flip(c)].
+781 f(g(c1)) = c1 | c6 = c2.  [copy(780),merge(b)].
+782 c6 = c2 | g(f(A)) != A | c6 != c5.  [resolve(781,a,778,a)].
+783 c6 = c2 | f(g(A)) != A | c1 = A | g(f(B)) != B | g(f(C)) != C | C = B.  [resolve(781,a,14,b)].
+784 c6 = c2 | f(g(A)) != A | c1 = A | g(f(c2)) = c2.  [resolve(781,a,5,b)].
+785 c6 = c2 | f(g(A)) != A | c1 = A | g(f(c2)) != c2 | g(f(c6)) != c6.  [factor(783,a,f)].
+786 f(g(c1)) = c1 | f(g(c1)) = c1 | c2 = c5.  [resolve(770,b,18,b)].
+787 f(g(c1)) = c1 | f(g(c1)) = c1 | c5 = c2.  [copy(786),flip(c)].
+788 f(g(c1)) = c1 | c5 = c2.  [copy(787),merge(b)].
+789 c5 = c2 | f(g(A)) != A | c1 = A | g(f(B)) != B | g(f(C)) != C | C = B.  [resolve(788,a,14,b)].
+790 c6 = c2 | c6 = c2 | g(c1) != g(c1) | c6 != c5.  [para(781(a,1),782(b,1,1))].
+791 c6 = c2 | c6 = c2 | c6 != c5.  [copy(790),xx(c)].
+792 c6 = c2 | c6 != c5.  [copy(791),merge(b)].
+793 g(f(A)) != A | g(f(c6)) = c6 | c5 = c2.  [resolve(774,a,788,a)].
+794 g(f(A)) != A | g(f(c6)) = c6 | c6 = c2.  [resolve(774,a,781,a)].
+795 c5 = c2 | g(c1) != g(c1) | g(f(c6)) = c6 | c5 = c2.  [para(788(a,1),793(a,1,1))].
+796 c5 = c2 | g(f(c6)) = c6 | c5 = c2.  [copy(795),xx(b)].
+797 c5 = c2 | g(f(c6)) = c6.  [copy(796),merge(c)].
+798 c6 = c2 | g(c1) != g(c1) | g(f(c6)) = c6 | c6 = c2.  [para(781(a,1),794(a,1,1))].
+799 c6 = c2 | g(f(c6)) = c6 | c6 = c2.  [copy(798),xx(b)].
+800 c6 = c2 | g(f(c6)) = c6.  [copy(799),merge(c)].
+801 g(f(A)) != A | g(f(c5)) = c5 | c5 = c2.  [resolve(776,a,788,a)].
+802 g(f(A)) != A | g(f(c5)) = c5 | c6 = c2.  [resolve(776,a,781,a)].
+803 g(f(c5)) = c5 | c5 = c2 | c5 = c2.  [resolve(801,a,797,b)].
+804 g(f(c5)) = c5 | c5 = c2.  [copy(803),merge(c)].
+805 g(f(c5)) = c5 | c6 = c2 | c6 = c2.  [resolve(802,a,800,b)].
+806 g(f(c5)) = c5 | c6 = c2.  [copy(805),merge(c)].
+807 c6 = c2 | c6 = c2 | f(c6) != f(c6) | c1 = f(c6) | g(f(c2)) = c2.  [para(800(b,1),784(b,1,1))].
+808 c6 = c2 | c6 = c2 | f(c6) != f(c6) | f(c6) = c1 | g(f(c2)) = c2.  [copy(807),flip(d)].
+809 c6 = c2 | c6 = c2 | f(c6) = c1 | g(f(c2)) = c2.  [copy(808),xx(c)].
+810 c6 = c2 | f(c6) = c1 | g(f(c2)) = c2.  [copy(809),merge(b)].
+811 c6 = c2 | c6 = c2 | f(c5) != f(c5) | c1 = f(c5) | g(f(c2)) = c2.  [para(806(a,1),784(b,1,1))].
+812 c6 = c2 | c6 = c2 | f(c5) != f(c5) | f(c5) = c1 | g(f(c2)) = c2.  [copy(811),flip(d)].
+813 c6 = c2 | c6 = c2 | f(c5) = c1 | g(f(c2)) = c2.  [copy(812),xx(c)].
+814 c6 = c2 | f(c5) = c1 | g(f(c2)) = c2.  [copy(813),merge(b)].
+815 c6 = c2 | f(g(A)) != A | c1 = A | g(f(c2)) != c2 | c6 = c2.  [resolve(785,e,800,b)].
+816 c6 = c2 | f(g(A)) != A | c1 = A | g(f(c2)) != c2.  [copy(815),merge(e)].
+817 c6 = c2 | c6 = c2 | f(c6) != f(c6) | c1 = f(c6) | g(f(c2)) != c2.  [para(800(b,1),816(b,1,1))].
+818 c6 = c2 | c6 = c2 | f(c6) != f(c6) | f(c6) = c1 | g(f(c2)) != c2.  [copy(817),flip(d)].
+819 c6 = c2 | c6 = c2 | f(c6) = c1 | g(f(c2)) != c2.  [copy(818),xx(c)].
+820 c6 = c2 | f(c6) = c1 | g(f(c2)) != c2.  [copy(819),merge(b)].
+821 c6 = c2 | c6 = c2 | f(c5) != f(c5) | c1 = f(c5) | g(f(c2)) != c2.  [para(806(a,1),816(b,1,1))].
+822 c6 = c2 | c6 = c2 | f(c5) != f(c5) | f(c5) = c1 | g(f(c2)) != c2.  [copy(821),flip(d)].
+823 c6 = c2 | c6 = c2 | f(c5) = c1 | g(f(c2)) != c2.  [copy(822),xx(c)].
+824 c6 = c2 | f(c5) = c1 | g(f(c2)) != c2.  [copy(823),merge(b)].
+825 c6 = c2 | f(c6) = c1 | c6 = c2 | f(c6) = c1.  [resolve(820,c,810,c)].
+826 c6 = c2 | f(c6) = c1 | f(c6) = c1.  [copy(825),merge(c)].
+827 c6 = c2 | f(c6) = c1.  [copy(826),merge(c)].
+828 c6 = c2 | c6 = c2 | g(c1) = c6.  [para(827(b,1),800(b,1,1))].
+829 c6 = c2 | g(c1) = c6.  [copy(828),merge(b)].
+830 c6 = c2 | f(c5) = c1 | c6 = c2 | f(c5) = c1.  [resolve(824,c,814,c)].
+831 c6 = c2 | f(c5) = c1 | f(c5) = c1.  [copy(830),merge(c)].
+832 c6 = c2 | f(c5) = c1.  [copy(831),merge(c)].
+833 c6 = c2 | g(c1) = c5 | c6 = c2.  [para(832(b,1),806(a,1,1))].
+834 c6 = c2 | g(c1) = c5.  [copy(833),merge(c)].
+835 c6 = c2 | c6 = c2 | c5 = c6.  [para(834(b,1),829(b,1))].
+836 c6 = c2 | c6 = c2 | c6 = c5.  [copy(835),flip(c)].
+837 c6 = c2 | c6 = c5.  [copy(836),merge(b)].
+838 c6 = c2 | c6 = c2.  [resolve(837,b,792,b)].
+839 c6 = c2.  [copy(838),merge(b)].
+840 c5 = c2 | g(f(c2)) = c6.  [para(839(a,1),797(b,1,1,1))].
+841 c5 = c2 | g(f(c2)) = c2.  [para(839(a,1),840(b,2))].
+842 f(g(A)) != A | g(f(B)) != B | c2 != c5.  [para(839(a,1),778(c,1))].
+843 f(g(A)) != A | g(f(B)) != B | c5 != c2.  [copy(842),flip(c)].
+844 f(g(c1)) = c1 | c2 != c5.  [para(839(a,1),772(b,1))].
+845 f(g(c1)) = c1 | c5 != c2.  [copy(844),flip(b)].
+846 c5 = c2 | f(g(A)) != A | c1 = A | g(f(B)) != B | B = c5 | c5 = c2.  [resolve(789,d,804,a)].
+847 c5 = c2 | f(g(A)) != A | c1 = A | g(f(B)) != B | c5 = B | c5 = c2.  [copy(846),flip(e)].
+848 c5 = c2 | f(g(A)) != A | c1 = A | g(f(B)) != B | c5 = B.  [copy(847),merge(f)].
+849 c5 = c2 | f(g(A)) != A | c1 = A | g(f(c2)) != c2.  [factor(848,a,e)].
+850 c5 = c2 | f(g(A)) != A | c1 = A | c5 = c2.  [resolve(849,d,841,b)].
+851 c5 = c2 | f(g(A)) != A | c1 = A.  [copy(850),merge(d)].
+852 c5 = c2 | c5 = c2 | f(c5) != f(c5) | c1 = f(c5).  [para(804(a,1),851(b,1,1))].
+853 c5 = c2 | c5 = c2 | f(c5) != f(c5) | f(c5) = c1.  [copy(852),flip(d)].
+854 c5 = c2 | c5 = c2 | f(c5) = c1.  [copy(853),xx(c)].
+855 c5 = c2 | f(c5) = c1.  [copy(854),merge(b)].
+856 c5 = c2 | c5 = c2 | f(c2) != f(c2) | c1 = f(c2).  [para(841(b,1),851(b,1,1))].
+857 c5 = c2 | c5 = c2 | f(c2) != f(c2) | f(c2) = c1.  [copy(856),flip(d)].
+858 c5 = c2 | c5 = c2 | f(c2) = c1.  [copy(857),xx(c)].
+859 c5 = c2 | f(c2) = c1.  [copy(858),merge(b)].
+860 c5 = c2 | g(c1) = c5 | c5 = c2.  [para(855(b,1),804(a,1,1))].
+861 c5 = c2 | g(c1) = c5.  [copy(860),merge(c)].
+862 c5 = c2 | c5 = c2 | g(c1) = c2.  [para(859(b,1),841(b,1,1))].
+863 c5 = c2 | g(c1) = c2.  [copy(862),merge(b)].
+864 c5 = c2 | c5 = c2 | c2 = c5.  [para(863(b,1),861(b,1))].
+865 c5 = c2 | c5 = c2 | c5 = c2.  [copy(864),flip(c)].
+866 c5 = c2 | c5 = c2.  [copy(865),merge(b)].
+867 c5 = c2.  [copy(866),merge(b)].
+868 f(g(c1)) = c1 | c2 != c2.  [para(867(a,1),845(b,1))].
+869 f(g(c1)) = c1.  [copy(868),xx(b)].
+870 f(g(A)) != A | g(f(B)) != B | c2 != c2.  [para(867(a,1),843(c,1))].
+871 f(g(A)) != A | g(f(B)) != B.  [copy(870),xx(c)].
+872 f(g(A)) != A | g(c1) != g(c1).  [para(869(a,1),871(b,1,1))].
+873 f(g(A)) != A.  [copy(872),xx(b)].
+874 $F.  [resolve(873,a,869,a)].

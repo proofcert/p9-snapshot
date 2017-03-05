@@ -1,0 +1,81 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n151.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:04:08 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 22868 was started by sandbox on n151.star.cs.uiowa.edu,
+Thu Jun  5 14:04:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_22836_n151.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: mp6_2.
+% Length of proof is 33.
+% Level of proof is 7.
+% Maximum clause weight is 36.000.
+% Given clauses 28.
+
+
+1 (all A all B (organization(A,B) -> (exists C inertia(A,C,B)))).  [assumption].
+2 (all A all B -(greater(A,B) & greater(B,A))).  [assumption].
+3 (all A all B (organization(A,B) -> (exists C class(A,C,B)))).  [assumption].
+4 (all A all B all C all D all E (organization(A,B) & organization(A,C) & reorganization_free(A,B,C) & class(A,D,B) & class(A,E,C) -> D = E)).  [assumption].
+5 (all A all B all C all D all E all F all V6 all V7 all V8 (organization(A,V7) & organization(B,V8) & class(A,C,V7) & class(B,C,V8) & complexity(A,D,V7) & complexity(B,E,V8) & inertia(A,F,V7) & inertia(B,V6,V8) & greater(E,D) -> greater(V6,F))).  [assumption].
+6 (all A all B all C all D all E (organization(A,D) & organization(A,E) & reorganization_free(A,D,E) & inertia(A,B,D) & inertia(A,C,E) & greater(E,D) -> greater(C,B))).  [assumption].
+7 -(all A all B all C all D all E (organization(A,D) & organization(A,E) & reorganization_free(A,D,E) & complexity(A,B,D) & complexity(A,C,E) & greater(E,D) -> -greater(B,C))).  [assumption].
+8 -organization(A,B) | -organization(A,C) | -reorganization_free(A,B,C) | -class(A,D,B) | -class(A,E,C) | E = D.  [clausify(4)].
+9 reorganization_free(c1,c4,c5).  [clausify(7)].
+10 -organization(A,B) | -organization(A,C) | -reorganization_free(A,B,C) | -inertia(A,D,B) | -inertia(A,E,C) | -greater(C,B) | greater(E,D).  [clausify(6)].
+11 organization(c1,c4).  [clausify(7)].
+12 organization(c1,c5).  [clausify(7)].
+13 greater(c5,c4).  [clausify(7)].
+14 greater(c2,c3).  [clausify(7)].
+15 complexity(c1,c2,c4).  [clausify(7)].
+16 complexity(c1,c3,c5).  [clausify(7)].
+17 -greater(A,B) | -greater(B,A).  [clausify(2)].
+18 -organization(A,B) | inertia(A,f1(A,B),B).  [clausify(1)].
+19 -organization(A,B) | class(A,f2(A,B),B).  [clausify(3)].
+20 -organization(A,B) | -organization(C,D) | -class(A,E,B) | -class(C,E,D) | -complexity(A,F,B) | -complexity(C,V6,D) | -inertia(A,V7,B) | -inertia(C,V8,D) | -greater(V6,F) | greater(V8,V7).  [clausify(5)].
+21 -organization(c1,c4) | -organization(c1,c5) | -class(c1,A,c4) | -class(c1,B,c5) | B = A.  [resolve(8,c,9,a)].
+22 -organization(c1,c5) | -class(c1,A,c4) | -class(c1,B,c5) | B = A.  [resolve(11,a,21,a)].
+23 -class(c1,A,c4) | -class(c1,B,c5) | B = A.  [resolve(12,a,22,a)].
+24 -organization(c1,c4) | -organization(c1,c5) | -inertia(c1,A,c4) | -inertia(c1,B,c5) | -greater(c5,c4) | greater(B,A).  [resolve(10,c,9,a)].
+25 -organization(c1,c5) | -inertia(c1,A,c4) | -inertia(c1,B,c5) | -greater(c5,c4) | greater(B,A).  [resolve(11,a,24,a)].
+26 -inertia(c1,A,c4) | -inertia(c1,B,c5) | -greater(c5,c4) | greater(B,A).  [resolve(12,a,25,a)].
+27 -inertia(c1,A,c4) | -inertia(c1,B,c5) | greater(B,A).  [resolve(13,a,26,c)].
+28 inertia(c1,f1(c1,c5),c5).  [resolve(18,a,12,a)].
+29 inertia(c1,f1(c1,c4),c4).  [resolve(18,a,11,a)].
+30 class(c1,f2(c1,c5),c5).  [resolve(19,a,12,a)].
+31 class(c1,f2(c1,c4),c4).  [resolve(19,a,11,a)].
+32 -inertia(c1,A,c5) | greater(A,f1(c1,c4)).  [resolve(27,a,29,a)].
+33 greater(f1(c1,c5),f1(c1,c4)).  [resolve(32,a,28,a)].
+34 -class(c1,A,c5) | A = f2(c1,c4).  [resolve(23,a,31,a)].
+35 f2(c1,c5) = f2(c1,c4).  [resolve(34,a,30,a)].
+36 class(c1,f2(c1,c4),c5).  [para(35(a,1),30(a,2))].
+37 -organization(A,B) | -class(c1,C,c5) | -class(A,C,B) | -complexity(c1,D,c5) | -complexity(A,E,B) | -inertia(c1,F,c5) | -inertia(A,V6,B) | -greater(E,D) | greater(V6,F).  [resolve(20,a,12,a)].
+38 -class(c1,A,c5) | -class(c1,A,c4) | -complexity(c1,B,c5) | -complexity(c1,C,c4) | -inertia(c1,D,c5) | -inertia(c1,E,c4) | -greater(C,B) | greater(E,D).  [resolve(37,a,11,a)].
+39 -class(c1,f2(c1,c4),c4) | -complexity(c1,A,c5) | -complexity(c1,B,c4) | -inertia(c1,C,c5) | -inertia(c1,D,c4) | -greater(B,A) | greater(D,C).  [resolve(38,a,36,a)].
+40 -complexity(c1,A,c5) | -complexity(c1,B,c4) | -inertia(c1,C,c5) | -inertia(c1,D,c4) | -greater(B,A) | greater(D,C).  [resolve(39,a,31,a)].
+41 -complexity(c1,A,c4) | -inertia(c1,B,c5) | -inertia(c1,C,c4) | -greater(A,c3) | greater(C,B).  [resolve(40,a,16,a)].
+42 -inertia(c1,A,c5) | -inertia(c1,B,c4) | -greater(c2,c3) | greater(B,A).  [resolve(41,a,15,a)].
+43 -inertia(c1,A,c4) | -greater(c2,c3) | greater(A,f1(c1,c5)).  [resolve(42,a,28,a)].
+44 -greater(c2,c3) | greater(f1(c1,c4),f1(c1,c5)).  [resolve(43,a,29,a)].
+45 greater(f1(c1,c4),f1(c1,c5)).  [resolve(44,a,14,a)].
+46 -greater(f1(c1,c4),f1(c1,c5)).  [resolve(17,b,33,a)].
+47 $F.  [resolve(45,a,46,a)].
+
+============================== end of proof ==========================

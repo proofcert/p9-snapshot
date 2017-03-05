@@ -1,0 +1,15 @@
+
+
+3 singleton(A) = unordered_pair(A,A).  [clausify(1)].
+4 -member(A,universal_class) | singleton(A) != c3.  [clausify(2)].
+5 -member(A,universal_class) | unordered_pair(A,A) != c3.  [para(3(a,1),4(b,1))].
+6 member(f6(A),universal_class) | A != c3.  [clausify(2)].
+7 member(f6(A),universal_class) | c3 != A.  [copy(6),flip(b)].
+8 singleton(f6(A)) = c3 | A != c3.  [clausify(2)].
+9 unordered_pair(f6(A),f6(A)) = c3 | A != c3.  [para(3(a,1),8(a,1))].
+10 unordered_pair(f6(A),f6(A)) = c3 | c3 != A.  [copy(9),flip(b)].
+11 member(f6(c3),universal_class).  [xx_res(7,b)].
+12 unordered_pair(f6(c3),f6(c3)) = c3.  [xx_res(10,b)].
+13 unordered_pair(f6(c3),f6(c3)) != c3.  [resolve(11,a,5,a)].
+14 c3 != c3.  [para(12(a,1),13(a,1))].
+15 $F.  [copy(14),xx(a)].

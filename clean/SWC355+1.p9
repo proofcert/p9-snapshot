@@ -1,0 +1,57 @@
+
+
+
+
+
+
+
+
+9 -ssList(A) | -ssList(B) | -rearsegP(A,B) | ssList(f5(A,B)).  [clausify(1)].
+10 -ssList(A) | -ssList(B) | -rearsegP(A,B) | app(f5(A,B),B) = A.  [clausify(1)].
+11 -ssList(A) | -ssItem(B) | ssList(cons(B,A)).  [clausify(2)].
+12 ssList(nil).  [assumption].
+13 -ssList(A) | -ssList(B) | ssList(app(A,B)).  [clausify(3)].
+14 -ssList(A) | rearsegP(A,A).  [clausify(4)].
+15 -ssList(A) | segmentP(A,A).  [clausify(5)].
+16 -ssList(A) | -ssList(B) | -ssList(C) | -ssList(D) | -segmentP(A,B) | segmentP(app(app(C,A),D),B).  [clausify(6)].
+17 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) = app(A,app(B,C)).  [clausify(7)].
+18 ssList(c3).  [clausify(8)].
+19 c6 = c4.  [clausify(8)].
+20 c5 = c3.  [clausify(8)].
+21 neq(c4,nil).  [clausify(8)].
+22 ssItem(c7) | -neq(c6,nil).  [clausify(8)].
+23 ssItem(c7) | -neq(c4,nil).  [para(19(a,1),22(b,1))].
+24 ssItem(c7).  [resolve(21,a,23,b)].
+25 app(c5,cons(c7,nil)) = c6 | -neq(c6,nil).  [clausify(8)].
+26 app(c3,cons(c7,nil)) = c6 | -neq(c6,nil).  [para(20(a,1),25(a,1,1))].
+27 app(c3,cons(c7,nil)) = c4 | -neq(c6,nil).  [para(19(a,1),26(a,2))].
+28 app(c3,cons(c7,nil)) = c4 | -neq(c4,nil).  [para(19(a,1),27(b,1))].
+29 app(c3,cons(c7,nil)) = c4.  [resolve(21,a,28,b)].
+30 -segmentP(c4,c3) | -neq(c6,nil).  [clausify(8)].
+31 -segmentP(c4,c3) | -neq(c4,nil).  [para(19(a,1),30(b,1))].
+32 -segmentP(c4,c3).  [resolve(21,a,31,b)].
+33 -ssList(A) | -rearsegP(A,A) | ssList(f5(A,A)).  [factor(9,a,b)].
+34 -ssList(A) | -rearsegP(A,A) | app(f5(A,A),A) = A.  [factor(10,a,b)].
+35 -ssList(A) | ssList(app(A,A)).  [factor(13,a,b)].
+36 -ssList(A) | -ssList(B) | -ssList(C) | -segmentP(A,A) | segmentP(app(app(B,A),C),A).  [factor(16,a,b)].
+37 -ssList(A) | -ssList(B) | app(app(A,B),c3) = app(A,app(B,c3)).  [resolve(18,a,17,c)].
+38 segmentP(c3,c3).  [resolve(18,a,15,a)].
+39 rearsegP(c3,c3).  [resolve(18,a,14,a)].
+40 -ssList(A) | app(app(A,A),c3) = app(A,app(A,c3)).  [factor(37,a,b)].
+41 -ssList(A) | ssList(cons(c7,A)).  [resolve(24,a,11,b)].
+42 -ssList(c3) | -ssList(A) | -ssList(B) | segmentP(app(app(A,c3),B),c3).  [resolve(38,a,36,d)].
+43 -ssList(A) | -ssList(B) | segmentP(app(app(A,c3),B),c3).  [resolve(18,a,42,a)].
+44 -ssList(c3) | app(f5(c3,c3),c3) = c3.  [resolve(39,a,34,b)].
+45 app(f5(c3,c3),c3) = c3.  [resolve(18,a,44,a)].
+46 -ssList(c3) | ssList(f5(c3,c3)).  [resolve(39,a,33,b)].
+47 ssList(f5(c3,c3)).  [resolve(18,a,46,a)].
+48 ssList(app(f5(c3,c3),f5(c3,c3))).  [resolve(47,a,35,a)].
+49 ssList(cons(c7,nil)).  [resolve(41,a,12,a)].
+50 app(app(f5(c3,c3),f5(c3,c3)),c3) = app(f5(c3,c3),app(f5(c3,c3),c3)).  [resolve(40,a,47,a)].
+51 app(app(f5(c3,c3),f5(c3,c3)),c3) = app(f5(c3,c3),c3).  [para(45(a,1),50(a,2,2))].
+52 app(app(f5(c3,c3),f5(c3,c3)),c3) = c3.  [para(45(a,1),51(a,2))].
+53 -ssList(A) | segmentP(app(app(app(f5(c3,c3),f5(c3,c3)),c3),A),c3).  [resolve(43,a,48,a)].
+54 -ssList(A) | segmentP(app(c3,A),c3).  [para(52(a,1),53(b,1,1))].
+55 segmentP(app(c3,cons(c7,nil)),c3).  [resolve(54,a,49,a)].
+56 segmentP(c4,c3).  [para(29(a,1),55(a,1))].
+57 $F.  [resolve(32,a,56,a)].

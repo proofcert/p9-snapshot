@@ -1,0 +1,19 @@
+
+
+
+
+5 -any_agent_in_all_proposed_teams(A,B,C) | accept_leader(A,B).  [clausify(1)].
+6 -the_agent_not_in_any_proposed_teams(A,B,C) | -accept_city(A,C) | -accept_leader(A,B).  [clausify(2)].
+7 any_agent_in_all_proposed_teams(muslimcountrybhumanitarianorganization,countryacivilorganization,towna).  [assumption].
+8 -the_agent_not_in_any_proposed_teams(A,B,C) | -accept_city(A,C) | -any_agent_in_all_proposed_teams(A,B,D).  [resolve(6,c,5,b)].
+9 -accept_population(A,atheist,n75) | -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [clausify(3)].
+10 the_agent_not_in_any_proposed_teams(muslimcountrybhumanitarianorganization,countryacivilorganization,towna).  [assumption].
+11 accept_population(A,B,C).  [clausify(4)].
+12 -the_agent_not_in_any_proposed_teams(muslimcountrybhumanitarianorganization,countryacivilorganization,A) | -accept_city(muslimcountrybhumanitarianorganization,A).  [resolve(8,c,7,a)].
+13 -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(11,a,9,a)].
+14 -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(11,a,13,a)].
+15 -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(11,a,14,a)].
+16 -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(11,a,15,a)].
+17 accept_city(A,towna).  [resolve(11,a,16,a)].
+18 -accept_city(muslimcountrybhumanitarianorganization,towna).  [resolve(12,a,10,a)].
+19 $F.  [resolve(17,a,18,a)].

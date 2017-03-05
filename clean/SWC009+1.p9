@@ -1,0 +1,42 @@
+
+
+
+
+
+6 -ssList(A) | -ssList(B) | -frontsegP(A,B) | ssList(f4(A,B)).  [clausify(1)].
+7 -ssList(A) | -ssList(B) | -frontsegP(A,B) | app(B,f4(A,B)) = A.  [clausify(1)].
+8 ssList(nil).  [assumption].
+9 -ssList(A) | frontsegP(A,A).  [clausify(2)].
+10 -ssList(A) | -ssList(B) | -ssList(C) | -frontsegP(A,B) | frontsegP(app(A,C),B).  [clausify(3)].
+11 -ssList(A) | app(A,nil) = A.  [clausify(4)].
+12 ssList(c3).  [clausify(5)].
+13 ssList(c4).  [clausify(5)].
+14 c6 = c4.  [clausify(5)].
+15 c5 = c3.  [clausify(5)].
+16 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) != c4 | app(A,C) != c3.  [clausify(5)].
+17 ssList(c7).  [clausify(5)].
+18 app(c5,c7) = c6.  [clausify(5)].
+19 app(c3,c7) = c6.  [para(15(a,1),18(a,1,1))].
+20 app(c3,c7) = c4.  [para(14(a,1),19(a,2))].
+21 -ssList(A) | -ssList(B) | -frontsegP(A,A) | frontsegP(app(A,B),A).  [factor(10,a,b)].
+22 app(c3,nil) = c3.  [resolve(12,a,11,a)].
+23 frontsegP(c3,c3).  [resolve(12,a,9,a)].
+24 app(c4,nil) = c4.  [resolve(13,a,11,a)].
+25 -ssList(A) | -ssList(B) | app(app(c3,A),B) != c4 | app(c3,B) != c3.  [resolve(16,a,12,a)].
+26 -ssList(c3) | -ssList(A) | frontsegP(app(c3,A),c3).  [resolve(23,a,21,c)].
+27 -ssList(A) | frontsegP(app(c3,A),c3).  [resolve(12,a,26,a)].
+28 -ssList(A) | app(app(c3,A),nil) != c4 | app(c3,nil) != c3.  [resolve(25,b,8,a)].
+29 -ssList(A) | app(app(c3,A),nil) != c4 | c3 != c3.  [para(22(a,1),28(c,1))].
+30 -ssList(A) | app(app(c3,A),nil) != c4.  [copy(29),xx(c)].
+31 frontsegP(app(c3,c7),c3).  [resolve(27,a,17,a)].
+32 frontsegP(c4,c3).  [para(20(a,1),31(a,1))].
+33 -ssList(c4) | -ssList(c3) | app(c3,f4(c4,c3)) = c4.  [resolve(32,a,7,c)].
+34 -ssList(c3) | app(c3,f4(c4,c3)) = c4.  [resolve(13,a,33,a)].
+35 app(c3,f4(c4,c3)) = c4.  [resolve(12,a,34,a)].
+36 -ssList(c4) | -ssList(c3) | ssList(f4(c4,c3)).  [resolve(32,a,6,c)].
+37 -ssList(c3) | ssList(f4(c4,c3)).  [resolve(13,a,36,a)].
+38 ssList(f4(c4,c3)).  [resolve(12,a,37,a)].
+39 app(app(c3,f4(c4,c3)),nil) != c4.  [resolve(30,a,38,a)].
+40 app(c4,nil) != c4.  [para(35(a,1),39(a,1,1))].
+41 c4 != c4.  [para(24(a,1),40(a,1))].
+42 $F.  [copy(41),xx(a)].

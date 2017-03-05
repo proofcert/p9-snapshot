@@ -1,0 +1,59 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+16 -relation(A) | relation_dom(A) = B | in(f20(A,B),B) | in(ordered_pair(f20(A,B),f21(A,B)),A).  [clausify(2)].
+17 cast_to_subset(A) = A.  [clausify(3)].
+18 -element(A,powerset(B)) | subset_complement(B,A) = set_difference(B,A).  [clausify(4)].
+19 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(5)].
+20 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(15(a,1),19(a,2))].
+21 -relation(A) | -relation(B) | relation_inverse(A) = B | in(ordered_pair(f29(A,B),f30(A,B)),B) | in(ordered_pair(f30(A,B),f29(A,B)),A).  [clausify(6)].
+22 -relation(A) | -relation(B) | relation_inverse(A) = B | in(unordered_pair(singleton(f29(A,B)),unordered_pair(f29(A,B),f30(A,B))),B) | in(ordered_pair(f30(A,B),f29(A,B)),A).  [para(20(a,1),21(d,1))].
+23 -relation(A) | -relation(B) | relation_inverse(A) = B | in(unordered_pair(singleton(f29(A,B)),unordered_pair(f29(A,B),f30(A,B))),B) | in(unordered_pair(singleton(f30(A,B)),unordered_pair(f30(A,B),f29(A,B))),A).  [para(20(a,1),22(e,1))].
+24 -relation(A) | -relation(B) | relation_inverse(A) = B | in(unordered_pair(singleton(f29(A,B)),unordered_pair(f29(A,B),f30(A,B))),B) | in(unordered_pair(singleton(f30(A,B)),unordered_pair(f29(A,B),f30(A,B))),A).  [para(15(a,1),23(e,1,2))].
+25 element(cast_to_subset(A),powerset(A)).  [clausify(7)].
+26 element(A,powerset(A)).  [para(17(a,1),25(a,1))].
+27 relation(empty_set).  [assumption].
+28 set_intersection2(A,empty_set) = empty_set.  [clausify(8)].
+29 -relation(A) | relation_rng(relation_inverse(A)) = relation_dom(A).  [clausify(9)].
+30 set_difference(A,empty_set) = A.  [clausify(10)].
+31 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(11)].
+32 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(31),flip(a)].
+33 -element(A,powerset(B)) | -in(C,subset_complement(B,A)) | -in(C,A).  [clausify(12)].
+34 singleton(A) = unordered_pair(A,A).  [clausify(13)].
+35 relation_dom(empty_set) != empty_set | relation_rng(empty_set) != empty_set.  [clausify(14)].
+36 -relation(A) | relation_dom(A) = B | in(f20(A,B),B) | in(unordered_pair(singleton(f20(A,B)),unordered_pair(f20(A,B),f21(A,B))),A).  [para(20(a,1),16(d,1))].
+37 -relation(A) | relation_dom(A) = B | in(f20(A,B),B) | in(unordered_pair(unordered_pair(f20(A,B),f20(A,B)),unordered_pair(f20(A,B),f21(A,B))),A).  [para(34(a,1),36(d,1,1))].
+38 -relation(A) | relation_inverse(A) = A | in(unordered_pair(singleton(f29(A,A)),unordered_pair(f29(A,A),f30(A,A))),A) | in(unordered_pair(singleton(f30(A,A)),unordered_pair(f29(A,A),f30(A,A))),A).  [factor(24,a,b)].
+39 -relation(A) | relation_inverse(A) = A | in(unordered_pair(unordered_pair(f29(A,A),f29(A,A)),unordered_pair(f29(A,A),f30(A,A))),A) | in(unordered_pair(singleton(f30(A,A)),unordered_pair(f29(A,A),f30(A,A))),A).  [para(34(a,1),38(c,1,1))].
+40 -relation(A) | relation_inverse(A) = A | in(unordered_pair(unordered_pair(f29(A,A),f29(A,A)),unordered_pair(f29(A,A),f30(A,A))),A) | in(unordered_pair(unordered_pair(f30(A,A),f30(A,A)),unordered_pair(f29(A,A),f30(A,A))),A).  [para(34(a,1),39(d,1,1))].
+41 -relation(A) | relation_inverse(A) = A | in(unordered_pair(unordered_pair(f29(A,A),f29(A,A)),unordered_pair(f29(A,A),f30(A,A))),A) | in(unordered_pair(unordered_pair(f29(A,A),f30(A,A)),unordered_pair(f30(A,A),f30(A,A))),A).  [para(15(a,1),40(d,1))].
+42 set_difference(A,set_difference(A,empty_set)) = empty_set.  [para(32(a,1),28(a,1))].
+43 set_difference(A,A) = empty_set.  [para(30(a,1),42(a,1,2))].
+44 subset_complement(A,A) = set_difference(A,A).  [resolve(26,a,18,a)].
+45 subset_complement(A,A) = empty_set.  [para(43(a,1),44(a,2))].
+46 relation_rng(relation_inverse(empty_set)) = relation_dom(empty_set).  [resolve(29,a,27,a)].
+47 -in(A,subset_complement(B,B)) | -in(A,B).  [resolve(33,a,26,a)].
+48 -in(A,empty_set) | -in(A,B).  [para(45(a,1),47(a,2))].
+49 -in(A,empty_set).  [factor(48,a,b)].
+50 relation_dom(empty_set) = A | in(f20(empty_set,A),A) | in(unordered_pair(unordered_pair(f20(empty_set,A),f20(empty_set,A)),unordered_pair(f20(empty_set,A),f21(empty_set,A))),empty_set).  [resolve(37,a,27,a)].
+51 relation_dom(empty_set) = A | in(f20(empty_set,A),A).  [resolve(49,a,50,c)].
+52 relation_inverse(empty_set) = empty_set | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(empty_set,empty_set))),empty_set).  [resolve(41,a,27,a)].
+53 relation_inverse(empty_set) = empty_set | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(empty_set,empty_set))),empty_set).  [resolve(49,a,52,b)].
+54 relation_inverse(empty_set) = empty_set.  [resolve(49,a,53,b)].
+55 relation_rng(empty_set) = relation_dom(empty_set).  [para(54(a,1),46(a,1,1))].
+56 relation_dom(empty_set) != empty_set | relation_dom(empty_set) != empty_set.  [para(55(a,1),35(b,1))].
+57 relation_dom(empty_set) != empty_set.  [copy(56),merge(b)].
+58 relation_dom(empty_set) = empty_set.  [resolve(51,b,49,a)].
+59 $F.  [resolve(57,a,58,a)].

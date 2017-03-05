@@ -1,0 +1,28 @@
+
+
+
+4 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(1)].
+5 ssList(nil).  [assumption].
+6 -ssList(A) | frontsegP(A,A).  [clausify(2)].
+7 ssList(c3).  [clausify(3)].
+8 c6 = c4.  [clausify(3)].
+9 c5 = c3.  [clausify(3)].
+10 c6 = c5.  [clausify(3)].
+11 c4 = c5.  [para(8(a,1),10(a,1))].
+12 c4 = c3.  [para(9(a,1),11(a,2))].
+13 -ssList(A) | -neq(A,nil) | -frontsegP(c4,A) | -frontsegP(c3,A).  [clausify(3)].
+14 -ssList(A) | -neq(A,nil) | -frontsegP(c3,A) | -frontsegP(c3,A).  [para(12(a,1),13(c,1))].
+15 -ssList(A) | -neq(A,nil) | -frontsegP(c3,A).  [copy(14),merge(d)].
+16 nil != c4 | nil != c3.  [clausify(3)].
+17 nil != c3 | nil != c3.  [para(12(a,1),16(a,2))].
+18 c3 != nil | nil != c3.  [copy(17),flip(a)].
+19 c3 != nil | c3 != nil.  [copy(18),flip(b)].
+20 c3 != nil.  [copy(19),merge(b)].
+21 -ssList(A) | neq(A,nil) | nil = A.  [resolve(5,a,4,b)].
+22 frontsegP(c3,c3).  [resolve(7,a,6,a)].
+23 neq(c3,nil) | nil = c3.  [resolve(21,a,7,a)].
+24 neq(c3,nil) | c3 = nil.  [copy(23),flip(b)].
+25 neq(c3,nil).  [resolve(20,a,24,b)].
+26 -ssList(c3) | -frontsegP(c3,c3).  [resolve(25,a,15,b)].
+27 -frontsegP(c3,c3).  [resolve(7,a,26,a)].
+28 $F.  [resolve(22,a,27,a)].

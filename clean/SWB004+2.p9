@@ -1,0 +1,75 @@
+
+
+
+
+
+
+
+
+
+
+11 icext(uri_owl_Thing,A) | -ir(A).  [clausify(7)].
+12 ir(A).  [clausify(1)].
+13 -icext(uri_rdfs_Datatype,A) | idc(A).  [clausify(6)].
+14 -idc(A) | ic(A).  [clausify(3)].
+15 ic(uri_owl_Class).  [assumption].
+16 ic(uri_rdfs_Class).  [assumption].
+17 ic(uri_rdfs_Datatype).  [assumption].
+18 ic(uri_owl_Thing).  [assumption].
+19 -iext(uri_rdf_type,uri_owl_Class,uri_owl_Thing) | -iext(uri_rdf_type,uri_owl_Class,uri_owl_Class) | -iext(uri_rdfs_subClassOf,uri_owl_Class,uri_owl_Thing) | -iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | -iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,uri_owl_Class).  [clausify(10)].
+20 -icext(uri_owl_Class,A) | ic(A).  [clausify(4)].
+21 icext(uri_owl_Class,A) | -ic(A).  [clausify(4)].
+22 -icext(uri_rdfs_Class,A) | ic(A).  [clausify(5)].
+23 icext(uri_rdfs_Class,A) | -ic(A).  [clausify(5)].
+24 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(2)].
+25 iext(uri_rdfs_subClassOf,A,B) | -ic(A) | -ic(B) | icext(A,f1(A,B)).  [clausify(8)].
+26 iext(uri_rdfs_subClassOf,A,B) | -ic(A) | -ic(B) | -icext(B,f1(A,B)).  [clausify(8)].
+27 iext(uri_owl_equivalentClass,A,B) | -ic(A) | -ic(B) | icext(A,f2(A,B)) | icext(B,f2(A,B)).  [clausify(9)].
+28 iext(uri_owl_equivalentClass,A,B) | -ic(A) | -ic(B) | -icext(A,f2(A,B)) | -icext(B,f2(A,B)).  [clausify(9)].
+29 icext(uri_owl_Thing,A).  [resolve(11,b,12,a)].
+30 -icext(uri_rdfs_Datatype,A) | ic(A).  [resolve(13,b,14,a)].
+31 icext(uri_owl_Class,uri_owl_Class).  [resolve(21,b,15,a)].
+32 iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,A) | -ic(A) | icext(uri_rdfs_Datatype,f1(uri_rdfs_Datatype,A)).  [resolve(25,b,17,a)].
+33 iext(uri_owl_equivalentClass,uri_owl_Class,A) | -ic(A) | icext(uri_owl_Class,f2(uri_owl_Class,A)) | icext(A,f2(uri_owl_Class,A)).  [resolve(27,b,15,a)].
+34 iext(uri_rdfs_subClassOf,A,uri_owl_Thing) | -ic(A) | -ic(uri_owl_Thing).  [resolve(29,a,26,d)].
+35 iext(uri_rdfs_subClassOf,A,uri_owl_Thing) | -ic(A).  [resolve(18,a,34,c)].
+36 iext(uri_rdf_type,A,uri_owl_Thing).  [resolve(29,a,24,b)].
+37 -iext(uri_rdf_type,uri_owl_Class,uri_owl_Class) | -iext(uri_rdfs_subClassOf,uri_owl_Class,uri_owl_Thing) | -iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | -iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,uri_owl_Class).  [resolve(36,a,19,a)].
+38 iext(uri_rdf_type,uri_owl_Class,uri_owl_Class).  [resolve(31,a,24,b)].
+39 -iext(uri_rdfs_subClassOf,uri_owl_Class,uri_owl_Thing) | -iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | -iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,uri_owl_Class).  [resolve(38,a,37,a)].
+40 iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,uri_owl_Class) | icext(uri_rdfs_Datatype,f1(uri_rdfs_Datatype,uri_owl_Class)).  [resolve(32,b,15,a)].
+41 iext(uri_rdfs_subClassOf,uri_owl_Class,uri_owl_Thing).  [resolve(35,b,15,a)].
+42 -iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | -iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,uri_owl_Class).  [resolve(41,a,39,a)].
+43 icext(uri_rdfs_Datatype,f1(uri_rdfs_Datatype,uri_owl_Class)) | -iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class).  [resolve(40,a,42,b)].
+44 iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)) | icext(uri_rdfs_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(33,b,16,a)].
+45 icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)) | icext(uri_rdfs_Class,f2(uri_owl_Class,uri_rdfs_Class)) | icext(uri_rdfs_Datatype,f1(uri_rdfs_Datatype,uri_owl_Class)).  [resolve(44,a,43,b)].
+46 icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)) | icext(uri_rdfs_Class,f2(uri_owl_Class,uri_rdfs_Class)) | ic(f1(uri_rdfs_Datatype,uri_owl_Class)).  [resolve(45,c,30,a)].
+47 icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)) | ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | ic(f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(46,b,22,a)].
+48 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | ic(f2(uri_owl_Class,uri_rdfs_Class)) | ic(f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(47,a,20,a)].
+49 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | ic(f2(uri_owl_Class,uri_rdfs_Class)).  [copy(48),merge(c)].
+50 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | icext(uri_rdfs_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(49,b,23,b)].
+51 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(49,b,21,b)].
+52 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | -ic(uri_owl_Class) | -ic(uri_rdfs_Class) | -icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(50,b,28,e)].
+53 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | -ic(uri_rdfs_Class) | -icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(15,a,52,c)].
+54 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | -icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(16,a,53,c)].
+55 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | ic(f1(uri_rdfs_Datatype,uri_owl_Class)).  [resolve(54,c,51,b)].
+56 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class).  [copy(55),merge(c)].
+57 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | icext(uri_rdfs_Datatype,f1(uri_rdfs_Datatype,uri_owl_Class)).  [resolve(56,b,43,b)].
+58 ic(f1(uri_rdfs_Datatype,uri_owl_Class)) | ic(f1(uri_rdfs_Datatype,uri_owl_Class)).  [resolve(57,b,30,a)].
+59 ic(f1(uri_rdfs_Datatype,uri_owl_Class)).  [copy(58),merge(b)].
+60 icext(uri_owl_Class,f1(uri_rdfs_Datatype,uri_owl_Class)).  [resolve(59,a,21,b)].
+61 iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,uri_owl_Class) | -ic(uri_rdfs_Datatype) | -ic(uri_owl_Class).  [resolve(60,a,26,d)].
+62 iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,uri_owl_Class) | -ic(uri_owl_Class).  [resolve(17,a,61,b)].
+63 iext(uri_rdfs_subClassOf,uri_rdfs_Datatype,uri_owl_Class).  [resolve(15,a,62,b)].
+64 -iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class).  [resolve(63,a,42,b)].
+65 icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)) | icext(uri_rdfs_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(64,a,44,a)].
+66 icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)) | ic(f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(65,b,22,a)].
+67 ic(f2(uri_owl_Class,uri_rdfs_Class)) | ic(f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(66,a,20,a)].
+68 ic(f2(uri_owl_Class,uri_rdfs_Class)).  [copy(67),merge(b)].
+69 icext(uri_rdfs_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(68,a,23,b)].
+70 icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(68,a,21,b)].
+71 iext(uri_owl_equivalentClass,uri_owl_Class,uri_rdfs_Class) | -ic(uri_owl_Class) | -ic(uri_rdfs_Class) | -icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(69,a,28,e)].
+72 -ic(uri_owl_Class) | -ic(uri_rdfs_Class) | -icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(64,a,71,a)].
+73 -ic(uri_rdfs_Class) | -icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(15,a,72,a)].
+74 -icext(uri_owl_Class,f2(uri_owl_Class,uri_rdfs_Class)).  [resolve(16,a,73,a)].
+75 $F.  [resolve(70,a,74,a)].

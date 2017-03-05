@@ -1,0 +1,51 @@
+
+
+3 set_equal(c1,c2) | set_equal(c2,c1).  [clausify(2)].
+4 set_equal(A,B) | element(f1(A,B),A) | element(f1(A,B),B).  [clausify(1)].
+5 -set_equal(c1,c2) | -set_equal(c2,c1).  [clausify(2)].
+6 -set_equal(A,B) | -element(C,A) | element(C,B).  [clausify(1)].
+7 -set_equal(A,B) | element(C,A) | -element(C,B).  [clausify(1)].
+8 set_equal(A,B) | -element(f1(A,B),A) | -element(f1(A,B),B).  [clausify(1)].
+9 -set_equal(c1,c2) | element(f1(c2,c1),c2) | element(f1(c2,c1),c1).  [resolve(5,b,4,a)].
+10 -element(A,B) | element(A,C) | element(f1(B,C),B) | element(f1(B,C),C).  [resolve(6,a,4,a)].
+11 -element(A,c2) | element(A,c1) | set_equal(c1,c2).  [resolve(6,a,3,b)].
+12 element(A,B) | -element(A,C) | element(f1(B,C),B) | element(f1(B,C),C).  [resolve(7,a,4,a)].
+13 element(A,c2) | -element(A,c1) | set_equal(c1,c2).  [resolve(7,a,3,b)].
+14 element(f1(c2,c1),c2) | element(f1(c2,c1),c1) | element(f1(c1,c2),c1) | element(f1(c1,c2),c2).  [resolve(9,a,4,a)].
+15 element(f1(c2,c1),c1) | element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | element(f1(c2,c1),A) | element(f1(A,c2),A) | element(f1(A,c2),c2).  [resolve(14,a,12,b)].
+16 element(f1(c2,c1),c1) | element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | element(f1(c1,c2),c1) | element(f1(c1,c2),c2).  [factor(15,a,d)].
+17 element(f1(c2,c1),c1) | element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | element(f1(c1,c2),c2).  [copy(16),merge(d)].
+18 element(f1(c2,c1),c1) | element(f1(c1,c2),c1) | element(f1(c1,c2),c2).  [copy(17),merge(d)].
+19 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | element(f1(c2,c1),A) | element(f1(c1,A),c1) | element(f1(c1,A),A).  [resolve(18,a,10,a)].
+20 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | set_equal(c2,c1) | -element(f1(c2,c1),c2).  [resolve(18,a,8,c)].
+21 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | element(f1(c2,c1),c2) | element(f1(c1,c2),c2).  [factor(19,a,d)].
+22 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | element(f1(c2,c1),c2).  [copy(21),merge(d)].
+23 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | set_equal(c2,c1) | element(f1(c1,c2),c1) | element(f1(c1,c2),c2).  [resolve(20,d,22,c)].
+24 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | set_equal(c2,c1) | element(f1(c1,c2),c2).  [copy(23),merge(d)].
+25 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | set_equal(c2,c1).  [copy(24),merge(d)].
+26 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | -set_equal(c1,c2).  [resolve(25,c,5,b)].
+27 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | element(f1(c1,c2),c1) | element(f1(c1,c2),c2).  [resolve(26,c,4,a)].
+28 element(f1(c1,c2),c1) | element(f1(c1,c2),c2) | element(f1(c1,c2),c2).  [copy(27),merge(c)].
+29 element(f1(c1,c2),c1) | element(f1(c1,c2),c2).  [copy(28),merge(c)].
+30 element(f1(c1,c2),c1) | element(f1(c1,c2),c1) | set_equal(c1,c2).  [resolve(29,b,11,a)].
+31 element(f1(c1,c2),c1) | set_equal(c1,c2).  [copy(30),merge(b)].
+32 element(f1(c1,c2),c1) | element(A,c1) | -element(A,c2).  [resolve(31,b,7,a)].
+33 element(f1(c1,c2),c1) | -element(f1(c1,c2),c2).  [factor(32,a,b)].
+34 element(f1(c1,c2),c1) | element(f1(c1,c2),c1).  [resolve(33,b,29,b)].
+35 element(f1(c1,c2),c1).  [copy(34),merge(b)].
+36 element(f1(c1,c2),c2) | set_equal(c1,c2).  [resolve(35,a,13,b)].
+37 set_equal(c1,c2) | -element(f1(c1,c2),c2).  [resolve(35,a,8,b)].
+38 element(f1(c1,c2),c2) | -element(A,c1) | element(A,c2).  [resolve(36,b,6,a)].
+39 element(f1(c1,c2),c2) | -element(f1(c1,c2),c1).  [factor(38,a,c)].
+40 element(f1(c1,c2),c2).  [resolve(35,a,39,b)].
+41 set_equal(c1,c2).  [resolve(40,a,37,b)].
+42 element(f1(c2,c1),c2) | element(f1(c2,c1),c1).  [resolve(41,a,9,a)].
+43 -set_equal(c2,c1).  [resolve(41,a,5,a)].
+44 element(A,c1) | -element(A,c2).  [resolve(41,a,7,a)].
+45 -element(A,c1) | element(A,c2).  [resolve(41,a,6,a)].
+46 element(f1(c2,c1),c1) | element(f1(c2,c1),c1).  [resolve(42,a,44,b)].
+47 element(f1(c2,c1),c1).  [copy(46),merge(b)].
+48 element(f1(c2,c1),c2).  [resolve(47,a,45,a)].
+49 set_equal(c2,c1) | -element(f1(c2,c1),c2).  [resolve(47,a,8,c)].
+50 -element(f1(c2,c1),c2).  [resolve(43,a,49,a)].
+51 $F.  [resolve(48,a,50,a)].

@@ -1,0 +1,83 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n167.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:08:28 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 62960 was started by sandbox on n167.star.cs.uiowa.edu,
+Thu Jun  5 15:08:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_62928_n167.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 34.
+% Level of proof is 6.
+% Maximum clause weight is 15.000.
+% Given clauses 64.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C addition(C,addition(B,A)) = addition(addition(C,B),A)).  [assumption].
+3 (all A addition(A,A) = A).  [assumption].
+4 (all A all B all C multiplication(A,multiplication(B,C)) = multiplication(multiplication(A,B),C)).  [assumption].
+5 (all A multiplication(one,A) = A).  [assumption].
+6 (all A all B all C multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C))).  [assumption].
+7 (all A all B (leq(A,B) <-> addition(A,B) = B)).  [assumption].
+8 (all A (test(A) <-> (exists B complement(B,A)))).  [assumption].
+9 (all A all B (complement(B,A) <-> multiplication(A,B) = zero & multiplication(B,A) = zero & addition(A,B) = one)).  [assumption].
+10 -(all A all B all C (test(B) & test(C) -> (multiplication(B,A) = multiplication(multiplication(B,A),C) -> leq(multiplication(B,A),multiplication(A,C))))).  [assumption].
+11 -test(A) | complement(f1(A),A).  [clausify(8)].
+12 -complement(A,B) | addition(B,A) = one.  [clausify(9)].
+13 test(c2).  [clausify(10)].
+14 addition(A,A) = A.  [clausify(3)].
+15 multiplication(one,A) = A.  [clausify(5)].
+16 addition(A,B) = addition(B,A).  [clausify(1)].
+17 multiplication(multiplication(c2,c1),c3) = multiplication(c2,c1).  [clausify(10)].
+18 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+19 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(16(a,1),18(a,1))].
+20 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(19),flip(a)].
+21 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(4)].
+22 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(6)].
+23 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(22),flip(a)].
+24 -leq(multiplication(c2,c1),multiplication(c1,c3)).  [clausify(10)].
+25 leq(A,B) | addition(A,B) != B.  [clausify(7)].
+26 addition(A,f1(A)) = one | -test(A).  [resolve(12,a,11,b)].
+27 multiplication(c2,multiplication(c1,c3)) = multiplication(c2,c1).  [para(21(a,1),17(a,1))].
+28 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(20(a,1),14(a,1))].
+29 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(16(a,1),28(a,1,2,1))].
+30 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(16(a,1),29(a,1,2))].
+31 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(20(a,2),30(a,1,2))].
+32 addition(A,addition(A,B)) = addition(B,A).  [para(14(a,1),31(a,1,2,2))].
+33 addition(A,addition(A,B)) = addition(A,B).  [para(16(a,1),32(a,2))].
+34 addition(A,multiplication(B,A)) = multiplication(addition(one,B),A).  [para(15(a,1),23(a,1,1))].
+35 addition(A,multiplication(B,A)) = multiplication(addition(B,one),A).  [para(16(a,1),34(a,2,1))].
+36 multiplication(addition(A,one),B) = addition(B,multiplication(A,B)).  [copy(35),flip(a)].
+37 addition(multiplication(c2,c1),multiplication(c1,c3)) != multiplication(c1,c3).  [resolve(25,a,24,a)].
+38 addition(multiplication(c1,c3),multiplication(c2,c1)) != multiplication(c1,c3).  [para(16(a,1),37(a,1))].
+39 addition(c2,f1(c2)) = one.  [resolve(26,b,13,a)].
+40 multiplication(addition(c2,one),multiplication(c1,c3)) = addition(multiplication(c1,c3),multiplication(c2,c1)).  [para(27(a,1),36(a,2,2))].
+41 multiplication(addition(one,c2),multiplication(c1,c3)) = addition(multiplication(c1,c3),multiplication(c2,c1)).  [para(16(a,1),40(a,1,1))].
+42 addition(multiplication(c1,c3),multiplication(c2,c1)) = multiplication(addition(one,c2),multiplication(c1,c3)).  [copy(41),flip(a)].
+43 multiplication(addition(one,c2),multiplication(c1,c3)) != multiplication(c1,c3).  [para(42(a,1),38(a,1))].
+44 addition(c2,one) = addition(c2,f1(c2)).  [para(39(a,1),33(a,1,2))].
+45 addition(one,c2) = addition(c2,f1(c2)).  [para(16(a,1),44(a,1))].
+46 addition(one,c2) = one.  [para(39(a,1),45(a,2))].
+47 multiplication(one,multiplication(c1,c3)) != multiplication(c1,c3).  [para(46(a,1),43(a,1,1))].
+48 multiplication(c1,c3) != multiplication(c1,c3).  [para(15(a,1),47(a,1))].
+49 $F.  [copy(48),xx(a)].
+
+============================== end of proof ==========================

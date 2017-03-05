@@ -1,0 +1,166 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n090.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:27:33 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 29802 was started by sandbox on n090.star.cs.uiowa.edu,
+Thu Jun  5 18:27:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_29770_n090.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 122.
+% Level of proof is 26.
+% Maximum clause weight is 14.000.
+% Given clauses 38.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A (cA(A) <-> (exists B (rq(A,B) & cowlThing(B))))).  [assumption].
+4 (all A (cAorB(A) <-> (exists B (rs(A,B) & cowlThing(B))))).  [assumption].
+5 (all A (cB(A) <-> (exists B (rr(A,B) & cowlThing(B))))).  [assumption].
+6 (all A (cNothing(A) -> (exists B rp(A,B)))).  [assumption].
+7 (all A (cNothing(A) -> -(exists B rp(A,B)))).  [assumption].
+8 (all A (cnotA(A) <-> (all B (rq(A,B) -> cNothing(B))))).  [assumption].
+9 (all A (cnotAorB(A) <-> (all B (rs(A,B) -> cNothing(B))))).  [assumption].
+10 (all A (cnotAorB(A) <-> cnotB(A) & cnotA(A))).  [assumption].
+11 (all A (cnotB(A) <-> (all B (rr(A,B) -> cNothing(B))))).  [assumption].
+12 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & (all A (cAorB(A) <-> cB(A) | cA(A)))).  [assumption].
+13 cA(A) | -rq(A,B) | -cowlThing(B).  [clausify(3)].
+14 cowlThing(A).  [clausify(1)].
+15 cAorB(A) | -rs(A,B) | -cowlThing(B).  [clausify(4)].
+16 cB(A) | -rr(A,B) | -cowlThing(B).  [clausify(5)].
+17 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cAorB(c3) | -cB(c3).  [clausify(12)].
+18 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cAorB(c3) | -cA(c3).  [clausify(12)].
+19 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cAorB(c3) | -cB(c3).  [clausify(12)].
+20 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cAorB(c3) | -cA(c3).  [clausify(12)].
+21 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cAorB(c3) | cB(c3) | cA(c3).  [clausify(12)].
+22 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cAorB(c3) | cB(c3) | cA(c3).  [clausify(12)].
+23 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+24 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+25 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cAorB(c3) | -cB(c3).  [resolve(17,a,14,a)].
+26 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cAorB(c3) | -cA(c3).  [resolve(18,a,14,a)].
+27 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cAorB(c3) | -cB(c3).  [resolve(19,a,14,a)].
+28 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cAorB(c3) | -cA(c3).  [resolve(20,a,14,a)].
+29 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cAorB(c3) | cB(c3) | cA(c3).  [resolve(21,a,14,a)].
+30 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cAorB(c3) | cB(c3) | cA(c3).  [resolve(22,a,14,a)].
+31 cnotAorB(A) | -cnotB(A) | -cnotA(A).  [clausify(10)].
+32 cnotA(A) | rq(A,f5(A)).  [clausify(8)].
+33 -cnotAorB(A) | cnotA(A).  [clausify(10)].
+34 -cnotA(A) | -rq(A,B) | cNothing(B).  [clausify(8)].
+35 -cnotAorB(A) | cnotB(A).  [clausify(10)].
+36 cnotAorB(A) | rs(A,f6(A)).  [clausify(9)].
+37 -cnotAorB(A) | -rs(A,B) | cNothing(B).  [clausify(9)].
+38 cnotAorB(A) | -cnotB(A) | rq(A,f5(A)).  [resolve(31,c,32,a)].
+39 -rq(A,B) | cNothing(B) | -cnotAorB(A).  [resolve(34,a,33,b)].
+40 -cnotB(A) | -rr(A,B) | cNothing(B).  [clausify(11)].
+41 cnotB(A) | rr(A,f7(A)).  [clausify(11)].
+42 cnotB(A) | rs(A,f6(A)).  [resolve(35,a,36,a)].
+43 -cnotB(A) | rq(A,f5(A)) | -rs(A,B) | cNothing(B).  [resolve(38,a,37,a)].
+44 cowlNothing(c1) | -xsd_integer(c2) | -cAorB(c3) | -cB(c3) | -xsd_integer(c2).  [resolve(25,b,23,a)].
+45 -cowlNothing(A).  [clausify(1)].
+46 cowlNothing(c1) | -xsd_integer(c2) | -cAorB(c3) | -cA(c3) | -xsd_integer(c2).  [resolve(26,b,23,a)].
+47 cowlNothing(c1) | xsd_integer(c2) | -cAorB(c3) | -cB(c3) | xsd_integer(c2).  [resolve(27,b,24,a)].
+48 cowlNothing(c1) | xsd_integer(c2) | -cAorB(c3) | -cA(c3) | xsd_integer(c2).  [resolve(28,b,24,a)].
+49 cowlNothing(c1) | -xsd_integer(c2) | cAorB(c3) | cB(c3) | cA(c3) | -xsd_integer(c2).  [resolve(29,b,23,a)].
+50 cowlNothing(c1) | xsd_integer(c2) | cAorB(c3) | cB(c3) | cA(c3) | xsd_integer(c2).  [resolve(30,b,24,a)].
+51 -cNothing(A) | rp(A,f4(A)).  [clausify(6)].
+52 -cNothing(A) | -rp(A,B).  [clausify(7)].
+53 cA(A) | -rq(A,B).  [resolve(13,c,14,a)].
+54 -cA(A) | rq(A,f1(A)).  [clausify(3)].
+55 -xsd_integer(c2) | -cAorB(c3) | -cA(c3) | -xsd_integer(c2).  [resolve(46,a,45,a)].
+56 xsd_integer(c2) | -cAorB(c3) | -cA(c3) | xsd_integer(c2).  [resolve(48,a,45,a)].
+57 -xsd_integer(c2) | cAorB(c3) | cB(c3) | cA(c3) | -xsd_integer(c2).  [resolve(49,a,45,a)].
+58 xsd_integer(c2) | cAorB(c3) | cB(c3) | cA(c3) | xsd_integer(c2).  [resolve(50,a,45,a)].
+59 cAorB(A) | -rs(A,B).  [resolve(15,c,14,a)].
+60 -cAorB(A) | rs(A,f2(A)).  [clausify(4)].
+61 -xsd_integer(c2) | -cAorB(c3) | -cB(c3) | -xsd_integer(c2).  [resolve(44,a,45,a)].
+62 xsd_integer(c2) | -cAorB(c3) | -cB(c3) | xsd_integer(c2).  [resolve(47,a,45,a)].
+63 -xsd_integer(c2) | -cAorB(c3) | -xsd_integer(c2) | -rq(c3,A).  [resolve(55,c,53,a)].
+64 xsd_integer(c2) | -cAorB(c3) | xsd_integer(c2) | -rq(c3,A).  [resolve(56,c,53,a)].
+65 -xsd_integer(c2) | cAorB(c3) | cB(c3) | -xsd_integer(c2) | rq(c3,f1(c3)).  [resolve(57,d,54,a)].
+66 xsd_integer(c2) | cAorB(c3) | cB(c3) | xsd_integer(c2) | rq(c3,f1(c3)).  [resolve(58,d,54,a)].
+67 cB(A) | -rr(A,B).  [resolve(16,c,14,a)].
+68 -cB(A) | rr(A,f3(A)).  [clausify(5)].
+69 -xsd_integer(c2) | -cB(c3) | -xsd_integer(c2) | -rs(c3,A).  [resolve(61,b,59,a)].
+70 xsd_integer(c2) | -cB(c3) | xsd_integer(c2) | -rs(c3,A).  [resolve(62,b,59,a)].
+71 -xsd_integer(c2) | cB(c3) | -xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)).  [resolve(65,b,60,a)].
+72 xsd_integer(c2) | cB(c3) | xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)).  [resolve(66,b,60,a)].
+73 -rq(A,B) | cNothing(B) | rq(A,f5(A)).  [resolve(34,a,32,a)].
+74 -rs(A,B) | cNothing(B) | rs(A,f6(A)).  [resolve(37,a,36,a)].
+75 -rq(A,B) | cNothing(B) | rs(A,f6(A)).  [resolve(39,c,36,a)].
+76 rs(A,f6(A)) | -rr(A,B) | cNothing(B).  [resolve(42,a,40,a)].
+77 rq(A,f5(A)) | -rs(A,B) | cNothing(B) | rr(A,f7(A)).  [resolve(43,a,41,a)].
+78 -cNothing(A) | -cNothing(A).  [resolve(51,b,52,b)].
+79 -cNothing(A).  [copy(78),merge(b)].
+80 -rq(A,B) | rq(A,f1(A)).  [resolve(53,a,54,a)].
+81 -rs(A,B) | rs(A,f2(A)).  [resolve(59,a,60,a)].
+82 -xsd_integer(c2) | -xsd_integer(c2) | -rq(c3,A) | -rs(c3,B).  [resolve(63,b,59,a)].
+83 -xsd_integer(c2) | -rq(c3,A) | -rs(c3,B).  [copy(82),merge(b)].
+84 xsd_integer(c2) | xsd_integer(c2) | -rq(c3,A) | -rs(c3,B).  [resolve(64,b,59,a)].
+85 xsd_integer(c2) | -rq(c3,A) | -rs(c3,B).  [copy(84),merge(b)].
+86 -xsd_integer(c2) | -xsd_integer(c2) | -rs(c3,A) | -rr(c3,B).  [resolve(69,b,67,a)].
+87 -xsd_integer(c2) | -rs(c3,A) | -rr(c3,B).  [copy(86),merge(b)].
+88 xsd_integer(c2) | xsd_integer(c2) | -rs(c3,A) | -rr(c3,B).  [resolve(70,b,67,a)].
+89 xsd_integer(c2) | -rs(c3,A) | -rr(c3,B).  [copy(88),merge(b)].
+90 -xsd_integer(c2) | -xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)) | rr(c3,f3(c3)).  [resolve(71,b,68,a)].
+91 -xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)) | rr(c3,f3(c3)).  [copy(90),merge(b)].
+92 xsd_integer(c2) | xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)) | rr(c3,f3(c3)).  [resolve(72,b,68,a)].
+93 xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)) | rr(c3,f3(c3)).  [copy(92),merge(b)].
+94 rq(A,f5(A)) | -rs(A,B) | rr(A,f7(A)).  [resolve(79,a,77,c)].
+95 rs(A,f6(A)) | -rr(A,B).  [resolve(79,a,76,c)].
+96 -rq(A,B) | rs(A,f6(A)).  [resolve(79,a,75,b)].
+97 -rs(A,B) | rs(A,f6(A)).  [resolve(79,a,74,b)].
+98 -rq(A,B) | rq(A,f5(A)).  [resolve(79,a,73,b)].
+99 rs(c3,f6(c3)) | xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)).  [resolve(95,b,93,d)].
+100 xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)) | rs(c3,f2(c3)).  [resolve(99,a,81,a)].
+101 xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f2(c3)).  [copy(100),merge(d)].
+102 xsd_integer(c2) | rq(c3,f1(c3)) | rs(c3,f6(c3)).  [resolve(101,c,97,a)].
+103 xsd_integer(c2) | rq(c3,f1(c3)) | rq(c3,f5(c3)) | rr(c3,f7(c3)).  [resolve(101,c,94,b)].
+104 xsd_integer(c2) | rq(c3,f1(c3)) | rq(c3,f5(c3)) | xsd_integer(c2) | -rs(c3,A).  [resolve(103,d,89,c)].
+105 xsd_integer(c2) | rq(c3,f1(c3)) | rq(c3,f5(c3)) | -rs(c3,A).  [copy(104),merge(d)].
+106 xsd_integer(c2) | rq(c3,f1(c3)) | rq(c3,f5(c3)) | xsd_integer(c2) | rq(c3,f1(c3)).  [resolve(105,d,102,c)].
+107 xsd_integer(c2) | rq(c3,f1(c3)) | rq(c3,f5(c3)) | rq(c3,f1(c3)).  [copy(106),merge(d)].
+108 xsd_integer(c2) | rq(c3,f1(c3)) | rq(c3,f5(c3)).  [copy(107),merge(d)].
+109 xsd_integer(c2) | rq(c3,f1(c3)) | rq(c3,f1(c3)).  [resolve(108,c,80,a)].
+110 xsd_integer(c2) | rq(c3,f1(c3)).  [copy(109),merge(c)].
+111 xsd_integer(c2) | rq(c3,f5(c3)).  [resolve(110,b,98,a)].
+112 xsd_integer(c2) | rs(c3,f6(c3)).  [resolve(110,b,96,a)].
+113 xsd_integer(c2) | xsd_integer(c2) | -rq(c3,A).  [resolve(112,b,85,c)].
+114 xsd_integer(c2) | -rq(c3,A).  [copy(113),merge(b)].
+115 xsd_integer(c2) | xsd_integer(c2).  [resolve(114,b,111,b)].
+116 xsd_integer(c2).  [copy(115),merge(b)].
+117 rq(c3,f1(c3)) | rs(c3,f2(c3)) | rr(c3,f3(c3)).  [resolve(116,a,91,a)].
+118 -rs(c3,A) | -rr(c3,B).  [resolve(116,a,87,a)].
+119 -rq(c3,A) | -rs(c3,B).  [resolve(116,a,83,a)].
+120 rq(c3,f1(c3)) | rs(c3,f2(c3)) | rs(c3,f6(c3)).  [resolve(117,c,95,b)].
+121 rq(c3,f1(c3)) | rs(c3,f2(c3)) | rs(c3,f2(c3)).  [resolve(120,c,81,a)].
+122 rq(c3,f1(c3)) | rs(c3,f2(c3)).  [copy(121),merge(c)].
+123 rq(c3,f1(c3)) | rs(c3,f6(c3)).  [resolve(122,b,97,a)].
+124 rq(c3,f1(c3)) | rq(c3,f5(c3)) | rr(c3,f7(c3)).  [resolve(122,b,94,b)].
+125 rq(c3,f1(c3)) | rq(c3,f5(c3)) | -rs(c3,A).  [resolve(124,c,118,b)].
+126 rq(c3,f1(c3)) | rq(c3,f5(c3)) | rq(c3,f1(c3)).  [resolve(125,c,123,b)].
+127 rq(c3,f1(c3)) | rq(c3,f5(c3)).  [copy(126),merge(c)].
+128 rq(c3,f1(c3)) | rq(c3,f1(c3)).  [resolve(127,b,80,a)].
+129 rq(c3,f1(c3)).  [copy(128),merge(b)].
+130 rs(c3,f6(c3)).  [resolve(129,a,96,a)].
+131 -rs(c3,A).  [resolve(119,a,129,a)].
+132 $F.  [resolve(131,a,130,a)].
+
+============================== end of proof ==========================

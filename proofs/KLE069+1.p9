@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n147.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:34:53 CDT 2014
+% CPUTime    : 0.30 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 63292 was started by sandbox on n147.star.cs.uiowa.edu,
+Thu Jun  5 17:34:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_63260_n147.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.18 (+ 0.00) seconds: goals.
+% Length of proof is 30.
+% Level of proof is 8.
+% Maximum clause weight is 15.000.
+% Given clauses 93.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A multiplication(A,one) = A).  [assumption].
+3 (all A multiplication(one,A) = A).  [assumption].
+4 (all A all B all C multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C))).  [assumption].
+5 (all A all B all C multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C))).  [assumption].
+6 (all A addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A)).  [assumption].
+7 (all A all B domain(multiplication(A,B)) = domain(multiplication(A,domain(B)))).  [assumption].
+8 (all A addition(domain(A),one) = one).  [assumption].
+9 -(all A all B multiplication(domain(A),addition(domain(A),domain(B))) = domain(A)).  [assumption].
+10 multiplication(A,one) = A.  [clausify(2)].
+11 multiplication(one,A) = A.  [clausify(3)].
+12 addition(domain(A),one) = one.  [clausify(8)].
+13 addition(A,B) = addition(B,A).  [clausify(1)].
+14 domain(multiplication(A,domain(B))) = domain(multiplication(A,B)).  [clausify(7)].
+15 multiplication(domain(A),A) = addition(A,multiplication(domain(A),A)).  [clausify(6)].
+16 addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A).  [copy(15),flip(a)].
+17 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(4)].
+18 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(17),flip(a)].
+19 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(5)].
+20 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(19),flip(a)].
+21 domain(c1) != multiplication(domain(c1),addition(domain(c1),domain(c2))).  [clausify(9)].
+22 multiplication(domain(c1),addition(domain(c1),domain(c2))) != domain(c1).  [copy(21),flip(a)].
+23 domain(domain(A)) = domain(multiplication(one,A)).  [para(11(a,1),14(a,1,1))].
+24 domain(domain(A)) = domain(A).  [para(11(a,1),23(a,2,1))].
+25 addition(multiplication(A,domain(B)),multiplication(A,one)) = multiplication(A,one).  [para(12(a,1),18(a,2,2))].
+26 addition(multiplication(A,domain(B)),A) = multiplication(A,one).  [para(10(a,1),25(a,1,2))].
+27 addition(A,multiplication(A,domain(B))) = multiplication(A,one).  [para(13(a,1),26(a,1))].
+28 addition(A,multiplication(A,domain(B))) = A.  [para(10(a,1),27(a,2))].
+29 addition(multiplication(domain(A),B),multiplication(one,B)) = multiplication(one,B).  [para(12(a,1),20(a,2,1))].
+30 addition(multiplication(domain(A),B),B) = multiplication(one,B).  [para(11(a,1),29(a,1,2))].
+31 addition(B,multiplication(domain(A),B)) = multiplication(one,B).  [para(13(a,1),30(a,1))].
+32 addition(A,multiplication(domain(B),A)) = A.  [para(11(a,1),31(a,2))].
+33 A = multiplication(domain(A),A).  [para(32(a,1),16(a,1))].
+34 multiplication(domain(A),A) = A.  [copy(33),flip(a)].
+35 multiplication(domain(A),domain(A)) = domain(A).  [para(24(a,1),34(a,1,1))].
+36 addition(domain(A),multiplication(domain(A),B)) = multiplication(domain(A),addition(domain(A),B)).  [para(35(a,1),18(a,1,1))].
+37 addition(domain(A),multiplication(domain(A),B)) = multiplication(domain(A),addition(B,domain(A))).  [para(13(a,1),36(a,2,2))].
+38 multiplication(domain(A),addition(domain(B),domain(A))) = domain(A).  [para(37(a,1),28(a,1))].
+39 multiplication(domain(A),addition(domain(A),domain(B))) = domain(A).  [para(13(a,1),38(a,1,2))].
+40 $F.  [resolve(39,a,22,a)].
+
+============================== end of proof ==========================

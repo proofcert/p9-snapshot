@@ -1,0 +1,16 @@
+
+
+
+4 -relation(A) | relation_rng(A) = relation_image(A,relation_dom(A)).  [clausify(2)].
+5 relation(c2).  [clausify(3)].
+6 -relation(A) | -function(A) | -finite(B) | finite(relation_image(A,B)).  [clausify(1)].
+7 function(c2).  [clausify(3)].
+8 finite(relation_dom(c2)).  [clausify(3)].
+9 -finite(relation_rng(c2)).  [clausify(3)].
+10 relation_rng(c2) = relation_image(c2,relation_dom(c2)).  [resolve(4,a,5,a)].
+11 relation_image(c2,relation_dom(c2)) = relation_rng(c2).  [copy(10),flip(a)].
+12 -function(c2) | -finite(A) | finite(relation_image(c2,A)).  [resolve(6,a,5,a)].
+13 -finite(A) | finite(relation_image(c2,A)).  [resolve(12,a,7,a)].
+14 finite(relation_image(c2,relation_dom(c2))).  [resolve(13,a,8,a)].
+15 finite(relation_rng(c2)).  [para(11(a,1),14(a,1))].
+16 $F.  [resolve(15,a,9,a)].

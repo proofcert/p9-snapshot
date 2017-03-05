@@ -1,0 +1,52 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n057.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:21:18 CDT 2014
+% CPUTime    : 0.22 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 21656 was started by sandbox on n057.star.cs.uiowa.edu,
+Fri Jun  6 08:21:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_21624_n057.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 11.
+% Level of proof is 3.
+% Maximum clause weight is 11.000.
+% Given clauses 22.
+
+
+1 (all A all B (aNaturalNumber0(A) & aNaturalNumber0(B) -> sdtlseqdt0(A,B) | B != A & sdtlseqdt0(B,A))).  [assumption].
+2 (all A (aNaturalNumber0(A) -> A = sz00 | A = sz10 | sz10 != A & sdtlseqdt0(sz10,A))).  [assumption].
+3 -(xm != sz00 -> sdtlseqdt0(sz10,xm)).  [assumption].
+4 aNaturalNumber0(sz10).  [assumption].
+5 aNaturalNumber0(xm).  [assumption].
+6 xm != sz00.  [clausify(3)].
+7 -sdtlseqdt0(sz10,xm).  [clausify(3)].
+8 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtlseqdt0(A,B) | B != A.  [clausify(1)].
+9 -aNaturalNumber0(A) | sz00 = A | sz10 = A | sdtlseqdt0(sz10,A).  [clausify(2)].
+10 -aNaturalNumber0(A) | sdtlseqdt0(sz10,A) | A != sz10.  [resolve(8,a,4,a)].
+11 sdtlseqdt0(sz10,xm) | xm != sz10.  [resolve(10,a,5,a)].
+12 xm != sz10.  [resolve(11,a,7,a)].
+13 sz00 = xm | sz10 = xm | sdtlseqdt0(sz10,xm).  [resolve(9,a,5,a)].
+14 xm = sz00 | sz10 = xm | sdtlseqdt0(sz10,xm).  [copy(13),flip(a)].
+15 xm = sz00 | xm = sz10 | sdtlseqdt0(sz10,xm).  [copy(14),flip(b)].
+16 xm = sz10 | sdtlseqdt0(sz10,xm).  [resolve(6,a,15,a)].
+17 sdtlseqdt0(sz10,xm).  [resolve(12,a,16,a)].
+18 $F.  [resolve(7,a,17,a)].
+
+============================== end of proof ==========================

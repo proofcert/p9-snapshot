@@ -1,0 +1,21 @@
+
+
+3 student(michael).  [assumption].
+4 -student(A) | -course(B) | -enrolled(A,B) | -professor(C) | -teaches(C,B) | taughtby(A,C).  [clausify(2)].
+5 professor(victor).  [assumption].
+6 -course(A) | -enrolled(michael,A) | -professor(B) | -teaches(B,A) | taughtby(michael,B).  [resolve(4,a,3,a)].
+7 course(csc410).  [assumption].
+8 enrolled(michael,csc410).  [assumption].
+9 coordinatorof(csc410) = victor.  [assumption].
+10 victor = coordinatorof(csc410).  [copy(9),flip(a)].
+11 -taughtby(michael,victor).  [assumption].
+12 -taughtby(michael,coordinatorof(csc410)).  [para(10(a,1),11(a,2))].
+13 -course(A) | teaches(coordinatorof(A),A).  [clausify(1)].
+14 -course(A) | -enrolled(michael,A) | -teaches(victor,A) | taughtby(michael,victor).  [resolve(6,c,5,a)].
+15 -course(A) | -enrolled(michael,A) | -teaches(coordinatorof(csc410),A) | taughtby(michael,victor).  [para(10(a,1),14(c,1))].
+16 -course(A) | -enrolled(michael,A) | -teaches(coordinatorof(csc410),A) | taughtby(michael,coordinatorof(csc410)).  [para(10(a,1),15(d,2))].
+17 teaches(coordinatorof(csc410),csc410).  [resolve(13,a,7,a)].
+18 -enrolled(michael,csc410) | -teaches(coordinatorof(csc410),csc410) | taughtby(michael,coordinatorof(csc410)).  [resolve(16,a,7,a)].
+19 -teaches(coordinatorof(csc410),csc410) | taughtby(michael,coordinatorof(csc410)).  [resolve(18,a,8,a)].
+20 -teaches(coordinatorof(csc410),csc410).  [resolve(19,b,12,a)].
+21 $F.  [resolve(20,a,17,a)].

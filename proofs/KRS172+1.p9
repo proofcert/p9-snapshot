@@ -1,0 +1,110 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n071.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:08:13 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 58352 was started by sandbox on n071.star.cs.uiowa.edu,
+Thu Jun  5 22:08:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_58320_n071.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 52.
+% Level of proof is 22.
+% Maximum clause weight is 11.000.
+% Given clauses 53.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A (cd(A) <-> rq(A,iv))).  [assumption].
+4 (all A (cd(A) <-> rp(A,iv))).  [assumption].
+5 (all A all B all C (rp(A,B) & rp(A,C) -> B = C)).  [assumption].
+6 (all A all B (rp(A,B) -> cd(A))).  [assumption].
+7 (all A all B all C (rq(A,B) & rq(A,C) -> B = C)).  [assumption].
+8 (all A all B (rq(A,B) -> cd(A))).  [assumption].
+9 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & (all A all B (rq(A,B) <-> rp(A,B)))).  [assumption].
+10 cowlThing(A).  [clausify(1)].
+11 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+12 -cowlNothing(A).  [clausify(1)].
+13 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+14 -cd(A) | rq(A,iv).  [clausify(3)].
+15 -cd(A) | rp(A,iv).  [clausify(4)].
+16 -rp(A,B) | cd(A).  [clausify(6)].
+17 -rq(A,B) | cd(A).  [clausify(8)].
+18 -rp(A,B) | -rp(A,C) | C = B.  [clausify(5)].
+19 -rq(A,B) | -rq(A,C) | C = B.  [clausify(7)].
+20 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rq(c3,c4) | rp(c3,c4).  [clausify(9)].
+21 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rq(c3,c4) | rp(c3,c4).  [resolve(10,a,20,a)].
+22 xsd_string(c2) | -xsd_integer(c2) | rq(c3,c4) | rp(c3,c4).  [resolve(12,a,21,a)].
+23 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rq(c3,c4) | -rp(c3,c4).  [clausify(9)].
+24 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rq(c3,c4) | -rp(c3,c4).  [resolve(10,a,23,a)].
+25 xsd_string(c2) | -xsd_integer(c2) | -rq(c3,c4) | -rp(c3,c4).  [resolve(12,a,24,a)].
+26 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rq(c3,c4) | rp(c3,c4).  [clausify(9)].
+27 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rq(c3,c4) | rp(c3,c4).  [resolve(10,a,26,a)].
+28 -xsd_string(c2) | xsd_integer(c2) | rq(c3,c4) | rp(c3,c4).  [resolve(12,a,27,a)].
+29 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rq(c3,c4) | -rp(c3,c4).  [clausify(9)].
+30 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rq(c3,c4) | -rp(c3,c4).  [resolve(10,a,29,a)].
+31 -xsd_string(c2) | xsd_integer(c2) | -rq(c3,c4) | -rp(c3,c4).  [resolve(12,a,30,a)].
+32 xsd_integer(c2) | rq(c3,c4) | rp(c3,c4) | xsd_integer(c2).  [resolve(28,a,11,a)].
+33 xsd_integer(c2) | rq(c3,c4) | rp(c3,c4).  [copy(32),merge(d)].
+34 xsd_integer(c2) | rp(c3,c4) | -rq(c3,A) | c4 = A.  [resolve(33,b,19,b)].
+35 xsd_integer(c2) | rp(c3,c4) | cd(c3).  [resolve(33,b,17,a)].
+36 xsd_integer(c2) | cd(c3) | cd(c3).  [resolve(35,b,16,a)].
+37 xsd_integer(c2) | cd(c3).  [copy(36),merge(c)].
+38 cd(c3) | xsd_string(c2) | rq(c3,c4) | rp(c3,c4).  [resolve(37,a,22,b)].
+39 cd(c3) | xsd_string(c2) | rp(c3,c4) | cd(c3).  [resolve(38,c,17,a)].
+40 cd(c3) | xsd_string(c2) | rp(c3,c4).  [copy(39),merge(d)].
+41 cd(c3) | xsd_string(c2) | cd(c3).  [resolve(40,c,16,a)].
+42 cd(c3) | xsd_string(c2).  [copy(41),merge(c)].
+43 cd(c3) | -xsd_integer(c2).  [resolve(42,b,13,a)].
+44 cd(c3) | cd(c3).  [resolve(43,b,37,a)].
+45 cd(c3).  [copy(44),merge(b)].
+46 rp(c3,iv).  [resolve(45,a,15,a)].
+47 rq(c3,iv).  [resolve(45,a,14,a)].
+48 -rp(c3,A) | iv = A.  [resolve(46,a,18,b)].
+49 xsd_integer(c2) | rp(c3,c4) | c4 = iv.  [resolve(47,a,34,c)].
+50 -rq(c3,A) | iv = A.  [resolve(47,a,19,b)].
+51 xsd_integer(c2) | c4 = iv | iv = c4.  [resolve(49,b,48,a)].
+52 xsd_integer(c2) | c4 = iv | c4 = iv.  [copy(51),flip(c)].
+53 xsd_integer(c2) | c4 = iv.  [copy(52),merge(c)].
+54 c4 = iv | xsd_string(c2) | rq(c3,c4) | rp(c3,c4).  [resolve(53,a,22,b)].
+55 c4 = iv | xsd_string(c2) | rp(c3,c4) | iv = c4.  [resolve(54,c,50,a)].
+56 c4 = iv | xsd_string(c2) | rp(c3,c4) | c4 = iv.  [copy(55),flip(d)].
+57 c4 = iv | xsd_string(c2) | rp(c3,c4).  [copy(56),merge(d)].
+58 c4 = iv | xsd_string(c2) | iv = c4.  [resolve(57,c,48,a)].
+59 c4 = iv | xsd_string(c2) | c4 = iv.  [copy(58),flip(c)].
+60 c4 = iv | xsd_string(c2).  [copy(59),merge(c)].
+61 c4 = iv | -xsd_integer(c2).  [resolve(60,b,13,a)].
+62 c4 = iv | c4 = iv.  [resolve(61,b,53,a)].
+63 c4 = iv.  [copy(62),merge(b)].
+64 -xsd_string(c2) | xsd_integer(c2) | -rq(c3,iv) | -rp(c3,c4).  [para(63(a,1),31(c,2))].
+65 -xsd_string(c2) | xsd_integer(c2) | -rq(c3,iv) | -rp(c3,iv).  [para(63(a,1),64(d,2))].
+66 -xsd_string(c2) | xsd_integer(c2) | -rp(c3,iv).  [resolve(47,a,65,c)].
+67 -xsd_string(c2) | xsd_integer(c2).  [resolve(46,a,66,c)].
+68 xsd_string(c2) | -xsd_integer(c2) | -rq(c3,iv) | -rp(c3,c4).  [para(63(a,1),25(c,2))].
+69 xsd_string(c2) | -xsd_integer(c2) | -rq(c3,iv) | -rp(c3,iv).  [para(63(a,1),68(d,2))].
+70 xsd_string(c2) | -xsd_integer(c2) | -rp(c3,iv).  [resolve(47,a,69,c)].
+71 xsd_string(c2) | -xsd_integer(c2).  [resolve(46,a,70,c)].
+72 xsd_integer(c2) | xsd_integer(c2).  [resolve(67,a,11,a)].
+73 xsd_integer(c2).  [copy(72),merge(b)].
+74 xsd_string(c2).  [resolve(73,a,71,b)].
+75 -xsd_string(c2).  [resolve(13,b,73,a)].
+76 $F.  [resolve(74,a,75,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,118 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n048.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:28:03 CDT 2014
+% CPUTime    : 2.32 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 17294 was started by sandbox on n048.star.cs.uiowa.edu,
+Thu Jun  5 22:28:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_17262_n048.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 2.18 (+ 0.02) seconds.
+% Length of proof is 58.
+% Level of proof is 15.
+% Maximum clause weight is 28.000.
+% Given clauses 891.
+
+
+1 (all A all B (in(A,B) -> -in(B,A))).  [assumption].
+2 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+3 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+4 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+5 (all A all B all C (C = set_intersection2(A,B) <-> (all D (in(D,C) <-> in(D,A) & in(D,B))))).  [assumption].
+6 (all A all B (disjoint(A,B) <-> set_intersection2(A,B) = empty_set)).  [assumption].
+7 (all A all B set_intersection2(A,A) = A).  [assumption].
+8 (all A subset(empty_set,A)).  [assumption].
+9 -(all A all B (-in(A,B) -> disjoint(singleton(A),B))).  [assumption].
+10 subset(empty_set,A).  [clausify(8)].
+11 set_intersection2(A,A) = A.  [clausify(7)].
+12 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(2)].
+13 subset(A,B) | in(f2(A,B),A).  [clausify(4)].
+14 singleton(A) = B | in(f1(A,B),B) | f1(A,B) = A.  [clausify(3)].
+15 set_intersection2(A,B) = C | in(f3(A,B,C),C) | in(f3(A,B,C),A).  [clausify(5)].
+16 set_intersection2(A,B) = C | in(f3(A,B,C),C) | in(f3(A,B,C),B).  [clausify(5)].
+17 -in(c3,c4).  [clausify(9)].
+18 -disjoint(singleton(c3),c4).  [clausify(9)].
+19 -in(A,B) | -in(B,A).  [clausify(1)].
+20 disjoint(A,B) | set_intersection2(A,B) != empty_set.  [clausify(6)].
+21 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(4)].
+22 singleton(A) != B | -in(C,B) | C = A.  [clausify(3)].
+23 singleton(A) != B | in(C,B) | C != A.  [clausify(3)].
+24 set_intersection2(A,B) != C | -in(D,C) | in(D,B).  [clausify(5)].
+25 set_intersection2(A,B) != C | in(D,C) | -in(D,A) | -in(D,B).  [clausify(5)].
+26 -in(A,A).  [factor(19,a,b)].
+27 set_intersection2(A,A) != B | in(C,B) | -in(C,A).  [factor(25,c,d)].
+28 A != B | in(C,B) | -in(C,A).  [para(11(a,1),27(a,1))].
+29 set_intersection2(singleton(c3),c4) != empty_set.  [resolve(20,a,18,a)].
+30 set_intersection2(c4,singleton(c3)) != empty_set.  [para(12(a,1),29(a,1))].
+31 -in(A,B) | in(A,C) | in(f2(B,C),B).  [resolve(21,a,13,a)].
+32 in(A,set_intersection2(singleton(B),singleton(B))) | A != B.  [resolve(23,a,11,a(flip))].
+33 in(A,singleton(B)) | A != B.  [para(11(a,1),32(a,2))].
+34 set_intersection2(A,B) != C | in(f3(B,D,E),C) | -in(f3(B,D,E),A) | set_intersection2(B,D) = E | in(f3(B,D,E),E).  [resolve(25,d,15,c)].
+35 -in(A,set_intersection2(B,C)) | in(A,B).  [resolve(24,a,12,a)].
+36 -in(A,set_intersection2(A,B)).  [resolve(35,b,26,a)].
+37 -in(A,empty_set) | in(A,B).  [resolve(21,a,10,a)].
+38 -in(A,empty_set).  [resolve(37,b,26,a)].
+39 A != B | in(f3(A,C,D),B) | set_intersection2(A,C) = D | in(f3(A,C,D),D).  [resolve(28,c,15,c)].
+40 singleton(A) = empty_set | f1(A,empty_set) = A.  [resolve(38,a,14,b)].
+41 singleton(A) != empty_set | B != A.  [resolve(23,b,38,a)].
+42 singleton(A) != empty_set.  [resolve(41,b,11,a)].
+43 f1(A,empty_set) = A.  [resolve(42,a,40,a)].
+44 in(f1(A,empty_set),singleton(A)).  [resolve(33,b,43,a)].
+45 in(A,singleton(A)).  [para(43(a,1),44(a,1))].
+46 -subset(singleton(A),B) | in(A,B).  [resolve(21,b,45,a)].
+47 -subset(singleton(A),set_intersection2(A,B)).  [resolve(46,b,36,a)].
+48 -subset(singleton(A),B) | in(A,B).  [resolve(21,b,45,a)].
+49 -subset(singleton(A),A).  [resolve(48,b,26,a)].
+50 in(f2(singleton(A),A),singleton(A)).  [resolve(49,a,13,a)].
+51 singleton(A) != singleton(B) | f2(singleton(B),B) = A.  [resolve(50,a,22,b)].
+52 in(f3(A,B,C),D) | in(f2(C,D),C) | set_intersection2(A,B) = C | in(f3(A,B,C),B).  [resolve(31,a,16,b)].
+53 in(f3(A,B,C),D) | in(f2(C,D),C) | set_intersection2(A,B) = C | in(f3(A,B,C),A).  [resolve(31,a,15,b)].
+54 in(f2(singleton(A),set_intersection2(A,B)),singleton(A)).  [resolve(47,a,13,a)].
+55 singleton(A) != singleton(B) | f2(singleton(B),set_intersection2(B,C)) = A.  [resolve(54,a,22,b)].
+56 f2(singleton(A),A) = A.  [xx_res(51,a)].
+57 A != f3(A,B,C) | set_intersection2(A,B) = C | in(f3(A,B,C),C).  [resolve(39,b,26,a)].
+58 c4 != f3(c4,singleton(c3),empty_set) | in(f3(c4,singleton(c3),empty_set),empty_set).  [resolve(57,b,30,a)].
+59 c4 != f3(c4,singleton(c3),empty_set).  [resolve(58,b,38,a)].
+60 f3(c4,singleton(c3),empty_set) != c4.  [copy(59),flip(a)].
+61 -in(A,f2(singleton(singleton(B)),singleton(B))) | A = B.  [resolve(22,a,56,a(flip))].
+62 -in(f3(c4,singleton(c3),empty_set),f2(singleton(singleton(c4)),singleton(c4))).  [resolve(61,b,60,a)].
+63 -in(f3(c4,singleton(c3),empty_set),singleton(c4)).  [para(56(a,1),62(a,2))].
+64 f2(singleton(A),set_intersection2(A,B)) = A.  [xx_res(55,a)].
+65 in(A,B) | -in(A,f2(singleton(B),set_intersection2(B,C))).  [resolve(28,a,64,a)].
+66 -in(c3,f2(singleton(c4),set_intersection2(c4,A))).  [resolve(65,a,17,a)].
+67 -in(c3,f2(singleton(c4),set_intersection2(A,c4))).  [para(12(a,1),66(a,2,2))].
+68 in(f2(empty_set,singleton(c4)),empty_set) | set_intersection2(c4,singleton(c3)) = empty_set | in(f3(c4,singleton(c3),empty_set),singleton(c3)).  [resolve(52,a,63,a)].
+69 set_intersection2(c4,singleton(c3)) = empty_set | in(f3(c4,singleton(c3),empty_set),singleton(c3)).  [resolve(38,a,68,a)].
+70 in(f3(c4,singleton(c3),empty_set),singleton(c3)).  [resolve(30,a,69,a)].
+71 singleton(A) != singleton(c3) | f3(c4,singleton(c3),empty_set) = A.  [resolve(70,a,22,b)].
+72 singleton(c3) != singleton(A) | f3(c4,singleton(c3),empty_set) = A.  [copy(71),flip(a)].
+73 in(f2(empty_set,singleton(c4)),empty_set) | set_intersection2(c4,singleton(c3)) = empty_set | in(f3(c4,singleton(c3),empty_set),c4).  [resolve(53,a,63,a)].
+74 set_intersection2(c4,singleton(c3)) = empty_set | in(f3(c4,singleton(c3),empty_set),c4).  [resolve(38,a,73,a)].
+75 in(f3(c4,singleton(c3),empty_set),c4).  [resolve(30,a,74,a)].
+76 set_intersection2(c4,c4) != A | in(f3(c4,singleton(c3),empty_set),A) | set_intersection2(c4,singleton(c3)) = empty_set | in(f3(c4,singleton(c3),empty_set),empty_set).  [resolve(75,a,34,c)].
+77 c4 != A | in(f3(c4,singleton(c3),empty_set),A) | set_intersection2(c4,singleton(c3)) = empty_set | in(f3(c4,singleton(c3),empty_set),empty_set).  [para(11(a,1),76(a,1))].
+78 c4 != A | in(f3(c4,singleton(c3),empty_set),A) | in(f3(c4,singleton(c3),empty_set),empty_set).  [resolve(30,a,77,c)].
+79 c4 != A | in(f3(c4,singleton(c3),empty_set),A).  [resolve(38,a,78,c)].
+80 in(f3(c4,singleton(c3),empty_set),f2(singleton(c4),set_intersection2(c4,A))).  [resolve(79,a,64,a(flip))].
+81 in(f3(c4,singleton(c3),empty_set),f2(singleton(c4),set_intersection2(A,c4))).  [para(12(a,1),80(a,2,2))].
+82 f3(c4,singleton(c3),empty_set) = c3.  [xx_res(72,a)].
+83 in(c3,f2(singleton(c4),set_intersection2(A,c4))).  [para(82(a,1),81(a,1))].
+84 $F.  [resolve(67,a,83,a)].
+
+============================== end of proof ==========================

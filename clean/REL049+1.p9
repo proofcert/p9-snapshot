@@ -1,0 +1,17 @@
+
+
+
+4 join(c1,c2) = c2.  [clausify(3)].
+5 join(c3,c2) = c2.  [clausify(3)].
+6 join(A,B) = join(B,A).  [clausify(1)].
+7 join(join(A,B),C) = join(A,join(B,C)).  [clausify(2)].
+8 join(C,join(A,B)) = join(A,join(B,C)).  [para(6(a,1),7(a,1))].
+9 join(A,join(B,C)) = join(C,join(A,B)).  [copy(8),flip(a)].
+10 join(join(c1,c3),c2) != c2.  [clausify(3)].
+11 join(c2,join(c1,c3)) != c2.  [para(6(a,1),10(a,1))].
+12 join(c1,join(c3,c2)) != c2.  [para(9(a,2),11(a,1))].
+13 join(c1,join(c2,c3)) != c2.  [para(6(a,1),12(a,1,2))].
+14 join(c2,c3) = c2.  [para(6(a,1),5(a,1))].
+15 join(c1,c2) != c2.  [para(14(a,1),13(a,1,2))].
+16 c2 != c2.  [para(4(a,1),15(a,1))].
+17 $F.  [copy(16),xx(a)].

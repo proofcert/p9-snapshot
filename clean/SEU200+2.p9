@@ -1,0 +1,15 @@
+
+
+
+
+5 -relation(A) | relation(relation_rng_restriction(B,A)).  [clausify(1)].
+6 -relation(A) | subset(relation_rng_restriction(B,A),A).  [clausify(2)].
+7 -relation(A) | -relation(B) | -subset(A,B) | subset(relation_rng(A),relation_rng(B)).  [clausify(3)].
+8 relation(c6).  [clausify(4)].
+9 -subset(relation_rng(relation_rng_restriction(c5,c6)),relation_rng(c6)).  [clausify(4)].
+10 subset(relation_rng_restriction(A,c6),c6).  [resolve(8,a,6,a)].
+11 relation(relation_rng_restriction(A,c6)).  [resolve(8,a,5,a)].
+12 -relation(relation_rng_restriction(A,c6)) | -relation(c6) | subset(relation_rng(relation_rng_restriction(A,c6)),relation_rng(c6)).  [resolve(10,a,7,c)].
+13 -relation(c6) | subset(relation_rng(relation_rng_restriction(A,c6)),relation_rng(c6)).  [resolve(11,a,12,a)].
+14 subset(relation_rng(relation_rng_restriction(A,c6)),relation_rng(c6)).  [resolve(8,a,13,a)].
+15 $F.  [resolve(14,a,9,a)].

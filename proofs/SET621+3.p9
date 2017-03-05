@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n086.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 15:55:28 CDT 2014
+% CPUTime    : 2.60 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 50021 was started by sandbox on n086.star.cs.uiowa.edu,
+Fri Jun  6 15:55:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_49989_n086.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 2.45 (+ 0.02) seconds.
+% Length of proof is 16.
+% Level of proof is 5.
+% Maximum clause weight is 21.000.
+% Given clauses 438.
+
+
+1 (all A all B symmetric_difference(A,B) = union(difference(A,B),difference(B,A))).  [assumption].
+2 (all A all B all C difference(difference(A,B),C) = difference(A,union(B,C))).  [assumption].
+3 (all A all B all C difference(union(A,B),C) = union(difference(A,C),difference(B,C))).  [assumption].
+4 (all A all B union(A,B) = union(B,A)).  [assumption].
+5 -(all A all B all C difference(symmetric_difference(A,B),C) = union(difference(A,union(B,C)),difference(B,union(A,C)))).  [assumption].
+6 union(A,B) = union(B,A).  [clausify(4)].
+7 union(difference(A,B),difference(B,A)) = symmetric_difference(A,B).  [clausify(1)].
+8 symmetric_difference(A,B) = union(difference(A,B),difference(B,A)).  [copy(7),flip(a)].
+9 difference(difference(A,B),C) = difference(A,union(B,C)).  [clausify(2)].
+10 union(difference(A,B),difference(C,B)) = difference(union(A,C),B).  [clausify(3)].
+11 union(difference(c1,union(c2,c3)),difference(c2,union(c1,c3))) != difference(symmetric_difference(c1,c2),c3).  [clausify(5)].
+12 union(difference(c1,union(c2,c3)),difference(c2,union(c1,c3))) != difference(union(difference(c1,c2),difference(c2,c1)),c3).  [para(8(a,1),11(a,2,1))].
+13 union(difference(A,union(B,C)),difference(D,C)) = difference(union(difference(A,B),D),C).  [para(9(a,1),10(a,1,1))].
+14 union(difference(A,union(B,C)),difference(D,C)) = difference(union(D,difference(A,B)),C).  [para(6(a,1),13(a,2,1))].
+15 union(difference(A,union(B,C)),difference(D,union(E,C))) = difference(union(difference(D,E),difference(A,B)),C).  [para(9(a,1),14(a,1,2))].
+16 union(difference(A,union(B,C)),difference(D,union(C,E))) = difference(union(difference(D,E),difference(A,B)),C).  [para(6(a,1),15(a,1,2,2))].
+17 difference(union(difference(A,B),difference(C,D)),E) = union(difference(A,union(E,B)),difference(C,union(D,E))).  [para(16(a,1),6(a,1))].
+18 difference(union(difference(A,B),difference(C,D)),E) = union(difference(A,union(B,E)),difference(C,union(D,E))).  [para(6(a,1),17(a,2,1,2))].
+19 union(difference(A,union(B,C)),difference(D,union(E,C))) = difference(union(difference(A,B),difference(D,E)),C).  [copy(18),flip(a)].
+20 $F.  [resolve(19,a,12,a)].
+
+============================== end of proof ==========================

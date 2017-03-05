@@ -1,0 +1,16 @@
+
+
+3 singleton(A) = B | empty_set = B | in(f1(B,A),B).  [clausify(1)].
+4 empty_set != c3.  [clausify(2)].
+5 c3 != empty_set.  [copy(4),flip(a)].
+6 singleton(c4) != c3.  [clausify(2)].
+7 -in(A,c3) | A = c4.  [clausify(2)].
+8 -in(A,c3) | c4 = A.  [copy(7),flip(b)].
+9 singleton(A) = B | empty_set = B | f1(B,A) != A.  [clausify(1)].
+10 empty_set = c3 | f1(c3,c4) != c4.  [resolve(9,a,6,a)].
+11 f1(c3,c4) != c4.  [resolve(10,a,5,a(flip))].
+12 -in(f1(c3,c4),c3).  [resolve(8,b,11,a(flip))].
+13 singleton(c4) = c3 | empty_set = c3.  [resolve(12,a,3,c)].
+14 singleton(c4) = c3 | c3 = empty_set.  [copy(13),flip(b)].
+15 c3 = empty_set.  [resolve(6,a,14,a)].
+16 $F.  [resolve(5,a,15,a)].

@@ -1,0 +1,52 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n086.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 04:36:53 CDT 2014
+% CPUTime    : 7.23 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 15750 was started by sandbox on n086.star.cs.uiowa.edu,
+Fri Jun  6 04:36:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_15718_n086.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 6.96 (+ 0.04) seconds.
+% Length of proof is 17.
+% Level of proof is 6.
+% Maximum clause weight is 27.000.
+% Given clauses 12185.
+
+
+1 (all A all B all C all D all E all F (rdn_translate(A,rdn_pos(D)) & rdn_translate(B,rdn_pos(E)) & rdn_add_with_carry(rdnn(n0),D,E,F) & rdn_translate(C,rdn_pos(F)) -> sum(A,B,C))).  [assumption].
+2 (all A all B all C (sum(B,C,A) <-> difference(A,B,C))).  [assumption].
+3 (all A all B all C all D all E (rdn_digit_add(rdnn(B),rdnn(C),rdnn(E),rdnn(n0)) & rdn_digit_add(rdnn(E),rdnn(A),rdnn(D),rdnn(n0)) -> rdn_add_with_carry(rdnn(A),rdnn(B),rdnn(C),rdnn(D)))).  [assumption].
+4 -(exists A difference(A,n0,A)).  [assumption].
+5 rdn_translate(n0,rdn_pos(rdnn(n0))).  [assumption].
+6 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_add_with_carry(rdnn(n0),B,D,E) | -rdn_translate(F,rdn_pos(E)) | sum(A,C,F).  [clausify(1)].
+7 -sum(A,B,C) | difference(C,A,B).  [clausify(2)].
+8 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(C),rdnn(n0)) | -rdn_digit_add(rdnn(C),rdnn(D),rdnn(E),rdnn(n0)) | rdn_add_with_carry(rdnn(D),rdnn(A),rdnn(B),rdnn(E)).  [clausify(3)].
+9 rdn_digit_add(rdnn(n0),rdnn(n0),rdnn(n0),rdnn(n0)).  [assumption].
+10 -difference(A,n0,A).  [clausify(4)].
+11 -rdn_translate(A,rdn_pos(B)) | -rdn_add_with_carry(rdnn(n0),B,B,C) | -rdn_translate(D,rdn_pos(C)) | sum(A,A,D).  [factor(6,a,b)].
+12 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(A),rdnn(n0)) | rdn_add_with_carry(rdnn(B),rdnn(A),rdnn(B),rdnn(A)).  [factor(8,a,b)].
+13 -rdn_translate(A,rdn_pos(B)) | -rdn_add_with_carry(rdnn(n0),B,B,B) | sum(A,A,A).  [factor(11,a,c)].
+14 rdn_add_with_carry(rdnn(n0),rdnn(n0),rdnn(n0),rdnn(n0)).  [resolve(12,a,9,a)].
+15 -rdn_translate(A,rdn_pos(rdnn(n0))) | sum(A,A,A).  [resolve(14,a,13,b)].
+16 sum(n0,n0,n0).  [resolve(15,a,5,a)].
+17 difference(n0,n0,n0).  [resolve(16,a,7,a)].
+18 $F.  [resolve(10,a,17,a)].
+
+============================== end of proof ==========================

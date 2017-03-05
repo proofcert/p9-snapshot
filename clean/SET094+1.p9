@@ -1,0 +1,13 @@
+
+
+
+4 member(c4,c3).  [clausify(3)].
+5 singleton(member_of(c3)) = c3.  [clausify(3)].
+6 singleton(A) = unordered_pair(A,A).  [clausify(2)].
+7 member_of(c3) != c4.  [clausify(3)].
+8 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(1)].
+9 unordered_pair(member_of(c3),member_of(c3)) = c3.  [para(6(a,1),5(a,1))].
+10 -member(c4,unordered_pair(member_of(c3),A)) | c4 = A.  [resolve(8,b,7,a(flip))].
+11 -member(c4,unordered_pair(member_of(c3),member_of(c3))).  [resolve(10,b,7,a(flip))].
+12 -member(c4,c3).  [para(9(a,1),11(a,2))].
+13 $F.  [resolve(4,a,12,a)].

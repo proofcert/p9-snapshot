@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n057.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:21:13 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 37779 was started by sandbox on n057.star.cs.uiowa.edu,
+Fri Jun  6 06:21:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_37747_n057.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 7.
+% Maximum clause weight is 26.000.
+% Given clauses 60.
+
+
+1 (all A all B all C (member(C,union(A,B)) <-> member(C,A) | member(C,B))).  [assumption].
+2 (all A all B (subset(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+3 (all A all B union(A,B) = union(B,A)).  [assumption].
+4 (all A all B (A = B <-> (all C (member(C,A) <-> member(C,B))))).  [assumption].
+5 -(all A all B (subset(A,B) -> union(A,B) = B)).  [assumption].
+6 subset(c1,c2).  [clausify(5)].
+7 union(A,B) = union(B,A).  [clausify(3)].
+8 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(4)].
+9 union(c1,c2) != c2.  [clausify(5)].
+10 member(A,union(B,C)) | -member(A,C).  [clausify(1)].
+11 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(2)].
+12 -member(A,union(B,C)) | member(A,B) | member(A,C).  [clausify(1)].
+13 A = B | -member(f2(B,A),B) | -member(f2(B,A),A).  [clausify(4)].
+14 -member(A,c1) | member(A,c2).  [resolve(11,a,6,a)].
+15 member(f2(A,union(B,C)),B) | member(f2(A,union(B,C)),C) | union(B,C) = A | member(f2(A,union(B,C)),A).  [resolve(12,a,8,c)].
+16 member(f2(A,union(c1,B)),B) | union(c1,B) = A | member(f2(A,union(c1,B)),A) | member(f2(A,union(c1,B)),c2).  [resolve(15,a,14,a)].
+17 member(f2(A,union(B,c1)),B) | union(c1,B) = A | member(f2(A,union(c1,B)),A) | member(f2(A,union(c1,B)),c2).  [para(7(a,1),16(a,1,2))].
+18 member(f2(A,union(B,c1)),B) | union(B,c1) = A | member(f2(A,union(c1,B)),A) | member(f2(A,union(c1,B)),c2).  [para(7(a,1),17(b,1))].
+19 member(f2(A,union(B,c1)),B) | union(B,c1) = A | member(f2(A,union(B,c1)),A) | member(f2(A,union(c1,B)),c2).  [para(7(a,1),18(c,1,2))].
+20 member(f2(A,union(B,c1)),B) | union(B,c1) = A | member(f2(A,union(B,c1)),A) | member(f2(A,union(B,c1)),c2).  [para(7(a,1),19(d,1,2))].
+21 member(f2(A,union(A,c1)),A) | union(A,c1) = A | member(f2(A,union(A,c1)),c2).  [factor(20,a,c)].
+22 member(f2(c2,union(c2,c1)),c2) | union(c2,c1) = c2.  [factor(21,a,c)].
+23 member(f2(c2,union(c1,c2)),c2) | union(c2,c1) = c2.  [para(7(a,1),22(a,1,2))].
+24 member(f2(c2,union(c1,c2)),c2) | union(c1,c2) = c2.  [para(7(a,1),23(b,1))].
+25 member(f2(c2,union(c1,c2)),c2).  [resolve(9,a,24,b)].
+26 union(c1,c2) = c2 | -member(f2(c2,union(c1,c2)),union(c1,c2)).  [resolve(25,a,13,b)].
+27 -member(f2(c2,union(c1,c2)),union(c1,c2)).  [resolve(9,a,26,a)].
+28 member(f2(c2,union(c1,c2)),union(A,c2)).  [resolve(25,a,10,b)].
+29 $F.  [resolve(28,a,27,a)].
+
+============================== end of proof ==========================

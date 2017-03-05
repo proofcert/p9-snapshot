@@ -1,0 +1,65 @@
+
+
+
+
+5 difference(c2,c1) = difference(c1,c2).  [clausify(4)].
+6 member(f1(A,B),A) | member(f1(A,B),B) | B = A.  [clausify(1)].
+7 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(3)].
+8 c2 != c1.  [clausify(4)].
+9 -member(A,difference(B,C)) | -member(A,C).  [clausify(2)].
+10 -member(A,difference(B,C)) | member(A,B).  [clausify(2)].
+11 member(A,difference(B,C)) | -member(A,B) | member(A,C).  [clausify(2)].
+12 A = B | -member(f2(B,A),B) | -member(f2(B,A),A).  [clausify(3)].
+13 -member(f2(difference(A,B),C),B) | C = difference(A,B) | member(f2(difference(A,B),C),C).  [resolve(9,a,7,b)].
+14 -member(f2(difference(A,B),C),B) | difference(A,B) = C | member(f2(difference(A,B),C),C).  [copy(13),flip(b)].
+15 -member(f1(difference(A,B),C),B) | member(f1(difference(A,B),C),C) | C = difference(A,B).  [resolve(9,a,6,a)].
+16 -member(f1(difference(A,B),C),B) | member(f1(difference(A,B),C),C) | difference(A,B) = C.  [copy(15),flip(c)].
+17 -member(A,difference(c1,c2)) | -member(A,c1).  [para(5(a,1),9(a,2))].
+18 member(f2(A,difference(B,C)),B) | difference(B,C) = A | member(f2(A,difference(B,C)),A).  [resolve(10,a,7,c)].
+19 member(f2(difference(A,B),C),A) | C = difference(A,B) | member(f2(difference(A,B),C),C).  [resolve(10,a,7,b)].
+20 member(f2(difference(A,B),C),A) | difference(A,B) = C | member(f2(difference(A,B),C),C).  [copy(19),flip(b)].
+21 member(f1(difference(A,B),C),A) | member(f1(difference(A,B),C),C) | C = difference(A,B).  [resolve(10,a,6,a)].
+22 member(f1(difference(A,B),C),A) | member(f1(difference(A,B),C),C) | difference(A,B) = C.  [copy(21),flip(c)].
+23 member(f2(A,difference(A,B)),A) | difference(A,B) = A.  [factor(18,a,c)].
+24 member(f2(A,B),difference(B,C)) | member(f2(A,B),C) | B = A | member(f2(A,B),A).  [resolve(11,b,7,c)].
+25 member(f2(A,B),difference(A,C)) | member(f2(A,B),C) | B = A | member(f2(A,B),B).  [resolve(11,b,7,b)].
+26 difference(A,B) = A | difference(A,B) = A | -member(f2(A,difference(A,B)),difference(A,B)).  [resolve(23,a,12,b)].
+27 difference(A,B) = A | -member(f2(A,difference(A,B)),difference(A,B)).  [copy(26),merge(b)].
+28 difference(A,A) = B | member(f2(difference(A,A),B),B) | difference(A,A) = B | member(f2(difference(A,A),B),B).  [resolve(20,a,14,a)].
+29 difference(A,A) = B | member(f2(difference(A,A),B),B) | member(f2(difference(A,A),B),B).  [copy(28),merge(c)].
+30 difference(A,A) = B | member(f2(difference(A,A),B),B).  [copy(29),merge(c)].
+31 member(f1(difference(A,A),B),B) | difference(A,A) = B | member(f1(difference(A,A),B),B) | difference(A,A) = B.  [resolve(22,a,16,a)].
+32 member(f1(difference(A,A),B),B) | difference(A,A) = B | difference(A,A) = B.  [copy(31),merge(c)].
+33 member(f1(difference(A,A),B),B) | difference(A,A) = B.  [copy(32),merge(c)].
+34 difference(A,A) = difference(c1,c2) | -member(f1(difference(A,A),difference(c1,c2)),c1).  [resolve(33,a,17,a)].
+35 difference(c1,c2) = difference(A,A) | -member(f1(difference(A,A),difference(c1,c2)),c1).  [copy(34),flip(a)].
+36 difference(A,A) = difference(B,C) | member(f1(difference(A,A),difference(B,C)),B).  [resolve(33,a,10,a)].
+37 difference(A,B) = difference(C,C) | member(f1(difference(C,C),difference(A,B)),A).  [copy(36),flip(a)].
+38 difference(difference(A,A),B) = difference(A,A) | difference(A,A) = difference(difference(A,A),B).  [resolve(27,b,30,b)].
+39 difference(difference(A,A),B) = difference(A,A) | difference(difference(A,A),B) = difference(A,A).  [copy(38),flip(b)].
+40 difference(difference(A,A),B) = difference(A,A).  [copy(39),merge(b)].
+41 -member(A,difference(B,B)) | -member(A,C).  [para(40(a,1),9(a,2))].
+42 -member(A,difference(B,B)).  [factor(41,a,b)].
+43 difference(A,A) = difference(B,B).  [resolve(42,a,33,a)].
+44 difference(A,A) = c_0.  [new_symbol(43)].
+45 -member(A,c_0).  [para(44(a,1),42(a,2))].
+46 difference(A,B) = c_0 | member(f1(difference(C,C),difference(A,B)),A).  [para(44(a,1),37(a,2))].
+47 difference(A,B) = c_0 | member(f1(c_0,difference(A,B)),A).  [para(44(a,1),46(b,1,1))].
+48 difference(c1,c2) = c_0 | -member(f1(difference(A,A),difference(c1,c2)),c1).  [para(44(a,1),35(a,2))].
+49 difference(c1,c2) = c_0 | -member(f1(c_0,difference(c1,c2)),c1).  [para(44(a,1),48(b,1,1))].
+50 difference(c1,c2) = c_0 | difference(c1,c2) = c_0.  [resolve(49,b,47,b)].
+51 difference(c1,c2) = c_0.  [copy(50),merge(b)].
+52 difference(c2,c1) = c_0.  [para(51(a,1),5(a,2))].
+53 member(f2(A,c2),c_0) | member(f2(A,c2),c1) | c2 = A | member(f2(A,c2),A).  [para(52(a,1),24(a,2))].
+54 member(f2(A,c2),c1) | c2 = A | member(f2(A,c2),A).  [resolve(45,a,53,a)].
+55 member(f2(c1,c2),c1) | c2 = c1.  [factor(54,a,c)].
+56 member(f2(c1,c2),c1).  [resolve(8,a,55,b)].
+57 c2 = c1 | -member(f2(c1,c2),c2).  [resolve(56,a,12,b)].
+58 -member(f2(c1,c2),c2).  [resolve(8,a,57,a)].
+59 member(f2(c1,A),c_0) | member(f2(c1,A),c2) | A = c1 | member(f2(c1,A),A).  [para(51(a,1),25(a,2))].
+60 member(f2(c1,A),c_0) | member(f2(c1,A),c2) | c1 = A | member(f2(c1,A),A).  [copy(59),flip(c)].
+61 member(f2(c1,A),c2) | c1 = A | member(f2(c1,A),A).  [resolve(45,a,60,a)].
+62 member(f2(c1,c2),c2) | c1 = c2.  [factor(61,a,c)].
+63 member(f2(c1,c2),c2) | c2 = c1.  [copy(62),flip(b)].
+64 c2 = c1.  [resolve(58,a,63,a)].
+65 $F.  [resolve(8,a,64,a)].

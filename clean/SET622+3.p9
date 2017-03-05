@@ -1,0 +1,24 @@
+
+
+
+
+
+
+7 union(A,B) = union(B,A).  [clausify(4)].
+8 intersection(A,B) = intersection(B,A).  [clausify(5)].
+9 intersection(intersection(A,B),C) = intersection(A,intersection(B,C)).  [clausify(1)].
+10 intersection(C,intersection(A,B)) = intersection(A,intersection(B,C)).  [para(8(a,1),9(a,1))].
+11 intersection(A,intersection(B,C)) = intersection(C,intersection(A,B)).  [copy(10),flip(a)].
+12 symmetric_difference(A,B) = difference(union(A,B),intersection(A,B)).  [clausify(3)].
+13 union(difference(A,B),intersection(A,C)) = difference(A,difference(B,C)).  [clausify(2)].
+14 union(difference(c1,union(c2,c3)),intersection(intersection(c1,c2),c3)) != difference(c1,symmetric_difference(c2,c3)).  [clausify(6)].
+15 union(difference(c1,union(c2,c3)),intersection(c3,intersection(c1,c2))) != difference(c1,symmetric_difference(c2,c3)).  [para(8(a,1),14(a,1,2))].
+16 union(difference(c1,union(c2,c3)),intersection(c2,intersection(c3,c1))) != difference(c1,symmetric_difference(c2,c3)).  [para(11(a,1),15(a,1,2))].
+17 union(difference(c1,union(c2,c3)),intersection(c2,intersection(c1,c3))) != difference(c1,symmetric_difference(c2,c3)).  [para(8(a,1),16(a,1,2,2))].
+18 union(difference(c1,union(c2,c3)),intersection(c1,intersection(c3,c2))) != difference(c1,symmetric_difference(c2,c3)).  [para(11(a,2),17(a,1,2))].
+19 union(difference(c1,union(c2,c3)),intersection(c1,intersection(c2,c3))) != difference(c1,symmetric_difference(c2,c3)).  [para(8(a,1),18(a,1,2,2))].
+20 union(intersection(c1,intersection(c2,c3)),difference(c1,union(c2,c3))) != difference(c1,symmetric_difference(c2,c3)).  [para(7(a,1),19(a,1))].
+21 union(intersection(c1,intersection(c2,c3)),difference(c1,union(c2,c3))) != difference(c1,difference(union(c2,c3),intersection(c2,c3))).  [para(12(a,1),20(a,2,2))].
+22 difference(A,difference(B,C)) = union(intersection(A,C),difference(A,B)).  [para(13(a,1),7(a,1))].
+23 union(intersection(A,B),difference(A,C)) = difference(A,difference(C,B)).  [copy(22),flip(a)].
+24 $F.  [resolve(23,a,21,a)].

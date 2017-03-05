@@ -1,0 +1,85 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n044.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:09:23 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 20065 was started by sandbox on n044.star.cs.uiowa.edu,
+Thu Jun  5 14:09:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_20033_n044.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 32.
+% Level of proof is 4.
+% Maximum clause weight is 24.000.
+% Given clauses 33.
+
+
+1 (all A all B -(greater(A,B) & A = B)).  [assumption].
+2 (all A all B (organization(A,B) -> time(B))).  [assumption].
+3 (all A all B (time(A) & time(B) -> greater(A,B) | A = B | greater(B,A))).  [assumption].
+4 (all A all B all C (reorganization_free(A,B,C) -> reorganization_free(A,C,B))).  [assumption].
+5 (all A all B all C all D all E (organization(A,D) & organization(A,E) & complexity(A,B,D) & complexity(A,C,E) & D = E -> B = C)).  [assumption].
+6 (all A all B all C all D all E (organization(A,D) & organization(A,E) & reorganization_free(A,D,E) & size(A,B,D) & size(A,C,E) & greater(E,D) -> -greater(B,C))).  [assumption].
+7 (all A all B all C all D all E (organization(A,D) & organization(A,E) & reorganization_free(A,D,E) & complexity(A,B,D) & complexity(A,C,E) & greater(E,D) -> -greater(B,C))).  [assumption].
+8 -(all A all B all C all D all E all F all V6 (organization(A,F) & organization(A,V6) & reorganization_free(A,F,V6) & complexity(A,B,F) & complexity(A,C,V6) & size(A,D,F) & size(A,E,V6) & greater(C,B) -> -greater(D,E))).  [assumption].
+9 organization(c1,c6).  [clausify(8)].
+10 organization(c1,c7).  [clausify(8)].
+11 greater(c3,c2).  [clausify(8)].
+12 greater(c4,c5).  [clausify(8)].
+13 reorganization_free(c1,c6,c7).  [clausify(8)].
+14 complexity(c1,c2,c6).  [clausify(8)].
+15 complexity(c1,c3,c7).  [clausify(8)].
+16 size(c1,c4,c6).  [clausify(8)].
+17 size(c1,c5,c7).  [clausify(8)].
+18 -greater(A,B) | B != A.  [clausify(1)].
+19 -organization(A,B) | -organization(A,C) | -reorganization_free(A,B,C) | -size(A,D,B) | -size(A,E,C) | -greater(C,B) | -greater(D,E).  [clausify(6)].
+20 -organization(A,B) | -organization(A,C) | -reorganization_free(A,B,C) | -complexity(A,D,B) | -complexity(A,E,C) | -greater(C,B) | -greater(D,E).  [clausify(7)].
+21 -organization(A,B) | time(B).  [clausify(2)].
+22 -reorganization_free(A,B,C) | reorganization_free(A,C,B).  [clausify(4)].
+23 -time(A) | -time(B) | greater(A,B) | B = A | greater(B,A).  [clausify(3)].
+24 -organization(A,B) | -organization(A,C) | -complexity(A,D,B) | -complexity(A,E,C) | C != B | E = D.  [clausify(5)].
+25 c2 != c3.  [resolve(18,a,11,a)].
+26 c3 != c2.  [copy(25),flip(a)].
+27 -organization(c1,A) | -reorganization_free(c1,c6,A) | -size(c1,B,c6) | -size(c1,C,A) | -greater(A,c6) | -greater(B,C).  [resolve(19,a,9,a)].
+28 -reorganization_free(c1,c6,c7) | -size(c1,A,c6) | -size(c1,B,c7) | -greater(c7,c6) | -greater(A,B).  [resolve(27,a,10,a)].
+29 -size(c1,A,c6) | -size(c1,B,c7) | -greater(c7,c6) | -greater(A,B).  [resolve(28,a,13,a)].
+30 -size(c1,A,c7) | -greater(c7,c6) | -greater(c4,A).  [resolve(29,a,16,a)].
+31 -greater(c7,c6) | -greater(c4,c5).  [resolve(30,a,17,a)].
+32 -greater(c7,c6).  [resolve(31,b,12,a)].
+33 time(c7).  [resolve(21,a,10,a)].
+34 time(c6).  [resolve(21,a,9,a)].
+35 reorganization_free(c1,c7,c6).  [resolve(22,a,13,a)].
+36 -organization(c1,A) | -complexity(c1,B,c6) | -complexity(c1,C,A) | A != c6 | C = B.  [resolve(24,a,9,a)].
+37 -complexity(c1,A,c6) | -complexity(c1,B,c7) | c7 != c6 | B = A.  [resolve(36,a,10,a)].
+38 -complexity(c1,A,c7) | c7 != c6 | A = c2.  [resolve(37,a,14,a)].
+39 c7 != c6 | c3 = c2.  [resolve(38,a,15,a)].
+40 c7 != c6.  [resolve(39,b,26,a)].
+41 -organization(c1,A) | -reorganization_free(c1,c7,A) | -complexity(c1,B,c7) | -complexity(c1,C,A) | -greater(A,c7) | -greater(B,C).  [resolve(20,a,10,a)].
+42 -reorganization_free(c1,c7,c6) | -complexity(c1,A,c7) | -complexity(c1,B,c6) | -greater(c6,c7) | -greater(A,B).  [resolve(41,a,9,a)].
+43 -complexity(c1,A,c7) | -complexity(c1,B,c6) | -greater(c6,c7) | -greater(A,B).  [resolve(42,a,35,a)].
+44 -complexity(c1,A,c6) | -greater(c6,c7) | -greater(c3,A).  [resolve(43,a,15,a)].
+45 -greater(c6,c7) | -greater(c3,c2).  [resolve(44,a,14,a)].
+46 -greater(c6,c7).  [resolve(45,b,11,a)].
+47 -time(A) | greater(A,c6) | c6 = A | greater(c6,A).  [resolve(23,b,34,a)].
+48 -time(c7) | c6 = c7 | greater(c6,c7).  [resolve(47,b,32,a)].
+49 -time(c7) | greater(c6,c7).  [resolve(48,b,40,a(flip))].
+50 -time(c7).  [resolve(49,b,46,a)].
+51 $F.  [resolve(33,a,50,a)].
+
+============================== end of proof ==========================

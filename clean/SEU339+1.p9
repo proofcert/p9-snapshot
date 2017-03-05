@@ -1,0 +1,68 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+14 rel_str(c5).  [clausify(13)].
+15 -rel_str(A) | -antisymmetric_relstr(A) | is_antisymmetric_in(the_InternalRel(A),the_carrier(A)).  [clausify(5)].
+16 -rel_str(A) | relation_of2_as_subset(the_InternalRel(A),the_carrier(A),the_carrier(A)).  [clausify(8)].
+17 -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | -related(A,B,C) | in(ordered_pair(B,C),the_InternalRel(A)).  [clausify(6)].
+18 -relation_of2_as_subset(A,B,C) | element(A,powerset(cartesian_product2(B,C))).  [clausify(7)].
+19 relation_of2_as_subset(the_InternalRel(c5),the_carrier(c5),the_carrier(c5)).  [resolve(16,a,14,a)].
+20 -element(A,powerset(cartesian_product2(B,C))) | relation(A).  [clausify(1)].
+21 -relation(A) | -is_antisymmetric_in(A,B) | -in(C,B) | -in(D,B) | -in(ordered_pair(C,D),A) | -in(ordered_pair(D,C),A) | D = C.  [clausify(3)].
+22 antisymmetric_relstr(c5).  [clausify(13)].
+23 element(c6,the_carrier(c5)).  [clausify(13)].
+24 element(c7,the_carrier(c5)).  [clausify(13)].
+25 related(c5,c6,c7).  [clausify(13)].
+26 related(c5,c7,c6).  [clausify(13)].
+27 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(2)].
+28 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(4)].
+29 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(27(a,1),28(a,2))].
+30 c7 != c6.  [clausify(13)].
+31 -in(A,B) | -element(B,powerset(C)) | -empty(C).  [clausify(12)].
+32 -element(A,B) | empty(B) | in(A,B).  [clausify(10)].
+33 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(A,C).  [clausify(9)].
+34 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(A,C).  [para(29(a,1),33(a,1))].
+35 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(B,D).  [clausify(9)].
+36 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(B,D).  [para(29(a,1),35(a,1))].
+37 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(11)].
+38 -antisymmetric_relstr(c5) | is_antisymmetric_in(the_InternalRel(c5),the_carrier(c5)).  [resolve(15,a,14,a)].
+39 is_antisymmetric_in(the_InternalRel(c5),the_carrier(c5)).  [resolve(22,a,38,a)].
+40 -element(A,the_carrier(c5)) | -element(B,the_carrier(c5)) | -related(c5,A,B) | in(ordered_pair(A,B),the_InternalRel(c5)).  [resolve(17,a,14,a)].
+41 -element(A,the_carrier(c5)) | -element(B,the_carrier(c5)) | -related(c5,A,B) | in(unordered_pair(singleton(A),unordered_pair(A,B)),the_InternalRel(c5)).  [para(29(a,1),40(d,1))].
+42 element(the_InternalRel(c5),powerset(cartesian_product2(the_carrier(c5),the_carrier(c5)))).  [resolve(19,a,18,a)].
+43 -is_antisymmetric_in(A,B) | -in(C,B) | -in(D,B) | -in(ordered_pair(C,D),A) | -in(ordered_pair(D,C),A) | D = C | -element(A,powerset(cartesian_product2(E,F))).  [resolve(21,a,20,b)].
+44 -is_antisymmetric_in(A,B) | -in(C,B) | -in(D,B) | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A) | -in(ordered_pair(D,C),A) | D = C | -element(A,powerset(cartesian_product2(E,F))).  [para(29(a,1),43(d,1))].
+45 -is_antisymmetric_in(A,B) | -in(C,B) | -in(D,B) | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A) | -in(unordered_pair(singleton(D),unordered_pair(D,C)),A) | D = C | -element(A,powerset(cartesian_product2(E,F))).  [para(29(a,1),44(e,1))].
+46 -is_antisymmetric_in(A,B) | -in(C,B) | -in(D,B) | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A) | -in(unordered_pair(singleton(D),unordered_pair(C,D)),A) | D = C | -element(A,powerset(cartesian_product2(E,F))).  [para(27(a,1),45(e,1,2))].
+47 -element(c7,the_carrier(c5)) | -element(c6,the_carrier(c5)) | in(unordered_pair(singleton(c7),unordered_pair(c7,c6)),the_InternalRel(c5)).  [resolve(41,c,26,a)].
+48 -element(c7,the_carrier(c5)) | -element(c6,the_carrier(c5)) | in(unordered_pair(singleton(c7),unordered_pair(c6,c7)),the_InternalRel(c5)).  [para(27(a,1),47(c,1,2))].
+49 -element(c6,the_carrier(c5)) | in(unordered_pair(singleton(c7),unordered_pair(c6,c7)),the_InternalRel(c5)).  [resolve(24,a,48,a)].
+50 in(unordered_pair(singleton(c7),unordered_pair(c6,c7)),the_InternalRel(c5)).  [resolve(23,a,49,a)].
+51 -element(c6,the_carrier(c5)) | -element(c7,the_carrier(c5)) | in(unordered_pair(singleton(c6),unordered_pair(c6,c7)),the_InternalRel(c5)).  [resolve(41,c,25,a)].
+52 -element(c7,the_carrier(c5)) | in(unordered_pair(singleton(c6),unordered_pair(c6,c7)),the_InternalRel(c5)).  [resolve(23,a,51,a)].
+53 in(unordered_pair(singleton(c6),unordered_pair(c6,c7)),the_InternalRel(c5)).  [resolve(24,a,52,a)].
+54 -element(the_InternalRel(c5),powerset(A)) | -empty(A).  [resolve(31,a,50,a)].
+55 -empty(cartesian_product2(the_carrier(c5),the_carrier(c5))).  [resolve(54,a,42,a)].
+56 -element(the_InternalRel(c5),powerset(A)) | element(unordered_pair(singleton(c6),unordered_pair(c6,c7)),A).  [resolve(53,a,37,a)].
+57 element(unordered_pair(singleton(c6),unordered_pair(c6,c7)),cartesian_product2(the_carrier(c5),the_carrier(c5))).  [resolve(56,a,42,a)].
+58 empty(cartesian_product2(the_carrier(c5),the_carrier(c5))) | in(unordered_pair(singleton(c6),unordered_pair(c6,c7)),cartesian_product2(the_carrier(c5),the_carrier(c5))).  [resolve(57,a,32,a)].
+59 in(unordered_pair(singleton(c6),unordered_pair(c6,c7)),cartesian_product2(the_carrier(c5),the_carrier(c5))).  [resolve(55,a,58,a)].
+60 in(c7,the_carrier(c5)).  [resolve(59,a,36,a)].
+61 in(c6,the_carrier(c5)).  [resolve(59,a,34,a)].
+62 -in(A,the_carrier(c5)) | -in(B,the_carrier(c5)) | -in(unordered_pair(singleton(A),unordered_pair(A,B)),the_InternalRel(c5)) | -in(unordered_pair(singleton(B),unordered_pair(A,B)),the_InternalRel(c5)) | B = A | -element(the_InternalRel(c5),powerset(cartesian_product2(C,D))).  [resolve(46,a,39,a)].
+63 -in(A,the_carrier(c5)) | -in(unordered_pair(singleton(A),unordered_pair(A,c7)),the_InternalRel(c5)) | -in(unordered_pair(singleton(c7),unordered_pair(A,c7)),the_InternalRel(c5)) | c7 = A | -element(the_InternalRel(c5),powerset(cartesian_product2(B,C))).  [resolve(62,b,60,a)].
+64 -in(c6,the_carrier(c5)) | -in(unordered_pair(singleton(c7),unordered_pair(c6,c7)),the_InternalRel(c5)) | c7 = c6 | -element(the_InternalRel(c5),powerset(cartesian_product2(A,B))).  [resolve(63,b,53,a)].
+65 -in(c6,the_carrier(c5)) | c7 = c6 | -element(the_InternalRel(c5),powerset(cartesian_product2(A,B))).  [resolve(64,b,50,a)].
+66 -in(c6,the_carrier(c5)) | -element(the_InternalRel(c5),powerset(cartesian_product2(A,B))).  [resolve(65,b,30,a)].
+67 -in(c6,the_carrier(c5)).  [resolve(66,b,42,a)].
+68 $F.  [resolve(61,a,67,a)].

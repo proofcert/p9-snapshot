@@ -1,0 +1,15 @@
+
+
+3 iext(uri_owl_sameAs,uri_ex_c1,uri_ex_c2).  [assumption].
+4 iext(uri_rdf_type,uri_ex_w,uri_ex_c1).  [assumption].
+5 iext(uri_rdfs_subClassOf,uri_ex_c,uri_ex_c1).  [assumption].
+6 iext(uri_rdfs_range,uri_ex_p,uri_ex_c1).  [assumption].
+7 -iext(uri_rdf_type,uri_ex_w,uri_ex_c2) | -iext(uri_rdfs_subClassOf,uri_ex_c,uri_ex_c2) | -iext(uri_rdfs_range,uri_ex_p,uri_ex_c2).  [clausify(2)].
+8 -iext(uri_owl_sameAs,A,B) | B = A.  [clausify(1)].
+9 uri_ex_c2 = uri_ex_c1.  [resolve(8,a,3,a)].
+10 -iext(uri_rdf_type,uri_ex_w,uri_ex_c1) | -iext(uri_rdfs_subClassOf,uri_ex_c,uri_ex_c2) | -iext(uri_rdfs_range,uri_ex_p,uri_ex_c2).  [para(9(a,1),7(a,3))].
+11 -iext(uri_rdf_type,uri_ex_w,uri_ex_c1) | -iext(uri_rdfs_subClassOf,uri_ex_c,uri_ex_c1) | -iext(uri_rdfs_range,uri_ex_p,uri_ex_c2).  [para(9(a,1),10(b,3))].
+12 -iext(uri_rdf_type,uri_ex_w,uri_ex_c1) | -iext(uri_rdfs_subClassOf,uri_ex_c,uri_ex_c1) | -iext(uri_rdfs_range,uri_ex_p,uri_ex_c1).  [para(9(a,1),11(c,3))].
+13 -iext(uri_rdfs_subClassOf,uri_ex_c,uri_ex_c1) | -iext(uri_rdfs_range,uri_ex_p,uri_ex_c1).  [resolve(4,a,12,a)].
+14 -iext(uri_rdfs_range,uri_ex_p,uri_ex_c1).  [resolve(5,a,13,a)].
+15 $F.  [resolve(6,a,14,a)].

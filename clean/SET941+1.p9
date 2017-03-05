@@ -1,0 +1,21 @@
+
+
+
+4 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+5 -subset(union(c3),c4).  [clausify(3)].
+6 -in(A,c3) | subset(A,c4).  [clausify(3)].
+7 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+8 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(1)].
+9 union(A) != B | -in(C,B) | in(C,f2(A,B,C)).  [clausify(2)].
+10 union(A) != B | -in(C,B) | in(f2(A,B,C),A).  [clausify(2)].
+11 in(f1(union(c3),c4),union(c3)).  [resolve(5,a,4,a)].
+12 -in(f1(union(c3),c4),c4).  [resolve(7,a,5,a)].
+13 union(A) != union(c3) | in(f2(A,union(c3),f1(union(c3),c4)),A).  [resolve(11,a,10,b)].
+14 union(c3) != union(A) | in(f2(A,union(c3),f1(union(c3),c4)),A).  [copy(13),flip(a)].
+15 in(f2(c3,union(c3),f1(union(c3),c4)),c3).  [xx_res(14,a)].
+16 subset(f2(c3,union(c3),f1(union(c3),c4)),c4).  [resolve(15,a,6,a)].
+17 -in(A,f2(c3,union(c3),f1(union(c3),c4))) | in(A,c4).  [resolve(8,a,16,a)].
+18 -in(f1(union(c3),c4),f2(c3,union(c3),f1(union(c3),c4))).  [resolve(17,b,12,a)].
+19 union(A) != union(c3) | in(f1(union(c3),c4),f2(A,union(c3),f1(union(c3),c4))).  [resolve(9,b,11,a)].
+20 union(c3) != union(c3).  [resolve(19,b,18,a)].
+21 $F.  [copy(20),xx(a)].

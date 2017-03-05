@@ -1,0 +1,52 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n095.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:10:18 CDT 2014
+% CPUTime    : 0.24 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 18726 was started by sandbox on n095.star.cs.uiowa.edu,
+Thu Jun  5 22:10:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_18694_n095.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.08 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 8.000.
+% Given clauses 135.
+
+
+1 (all A all B set_union2(A,B) = set_union2(B,A)).  [assumption].
+2 (all A all B (subset(singleton(A),B) <-> in(A,B))).  [assumption].
+3 (all A all B (subset(A,B) -> set_union2(A,B) = B)).  [assumption].
+4 (all A unordered_pair(A,A) = singleton(A)).  [assumption].
+5 -(all A all B (in(A,B) -> set_union2(singleton(A),B) = B)).  [assumption].
+6 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+7 subset(singleton(A),B) | -in(A,B).  [clausify(2)].
+8 -subset(A,B) | set_union2(A,B) = B.  [clausify(3)].
+9 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+10 in(c3,c4).  [clausify(5)].
+11 set_union2(singleton(c3),c4) != c4.  [clausify(5)].
+12 set_union2(unordered_pair(c3,c3),c4) != c4.  [para(9(a,1),11(a,1,1))].
+13 set_union2(c4,unordered_pair(c3,c3)) != c4.  [para(6(a,1),12(a,1))].
+14 subset(unordered_pair(A,A),B) | -in(A,B).  [para(9(a,1),7(a,1))].
+15 subset(unordered_pair(c3,c3),c4).  [resolve(14,b,10,a)].
+16 set_union2(unordered_pair(c3,c3),c4) = c4.  [resolve(15,a,8,a)].
+17 set_union2(c4,unordered_pair(c3,c3)) = c4.  [para(6(a,1),16(a,1))].
+18 $F.  [resolve(13,a,17,a)].
+
+============================== end of proof ==========================

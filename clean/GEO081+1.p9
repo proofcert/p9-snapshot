@@ -1,0 +1,15 @@
+
+
+3 part_of(c10,c11).  [clausify(2)].
+4 part_of(c11,c12).  [clausify(2)].
+5 part_of(A,B) | incident_c(f1(B,A),A).  [clausify(1)].
+6 -part_of(c10,c12).  [clausify(2)].
+7 part_of(A,B) | -incident_c(f1(B,A),B).  [clausify(1)].
+8 -part_of(A,B) | -incident_c(C,A) | incident_c(C,B).  [clausify(1)].
+9 incident_c(f1(c12,c10),c10).  [resolve(6,a,5,a)].
+10 -incident_c(f1(c12,c10),c12).  [resolve(7,a,6,a)].
+11 -incident_c(A,c10) | incident_c(A,c11).  [resolve(8,a,3,a)].
+12 -incident_c(A,c11) | incident_c(A,c12).  [resolve(8,a,4,a)].
+13 -incident_c(f1(c12,c10),c11).  [resolve(12,b,10,a)].
+14 incident_c(f1(c12,c10),c11).  [resolve(11,a,9,a)].
+15 $F.  [resolve(13,a,14,a)].

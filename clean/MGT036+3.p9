@@ -1,0 +1,20 @@
+
+
+
+
+5 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -outcompetes(first_movers,efficient_producers,B).  [clausify(4)].
+6 environment(c1).  [clausify(3)].
+7 -environment(A) | -subpopulations(B,C,A,D) | subpopulations(C,B,A,D).  [clausify(1)].
+8 -environment(A) | -subpopulations(B,C,A,D) | -greater_or_equal(growth_rate(C,D),zero) | -greater(zero,growth_rate(B,D)) | outcompetes(C,B,D).  [clausify(2)].
+9 -subpopulations(A,B,c1,C) | -greater_or_equal(growth_rate(B,C),zero) | -greater(zero,growth_rate(A,C)) | outcompetes(B,A,C).  [resolve(8,a,6,a)].
+10 greater_or_equal(growth_rate(first_movers,c2),zero).  [clausify(3)].
+11 -subpopulations(A,first_movers,c1,c2) | -greater(zero,growth_rate(A,c2)) | outcompetes(first_movers,A,c2).  [resolve(9,b,10,a)].
+12 greater(zero,growth_rate(efficient_producers,c2)).  [clausify(3)].
+13 subpopulations(first_movers,efficient_producers,c1,c2).  [clausify(3)].
+14 -subpopulations(first_movers,efficient_producers,c1,A) | -outcompetes(first_movers,efficient_producers,A).  [resolve(5,a,6,a)].
+15 -subpopulations(A,B,c1,C) | subpopulations(B,A,c1,C).  [resolve(7,a,6,a)].
+16 -subpopulations(efficient_producers,first_movers,c1,c2) | outcompetes(first_movers,efficient_producers,c2).  [resolve(11,b,12,a)].
+17 -outcompetes(first_movers,efficient_producers,c2).  [resolve(14,a,13,a)].
+18 -subpopulations(efficient_producers,first_movers,c1,c2).  [resolve(17,a,16,b)].
+19 subpopulations(efficient_producers,first_movers,c1,c2).  [resolve(15,a,13,a)].
+20 $F.  [resolve(18,a,19,a)].

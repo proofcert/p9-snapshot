@@ -1,0 +1,31 @@
+
+
+
+
+
+
+7 multiplication(one,A) = A.  [clausify(2)].
+8 addition(domain(A),one) = one.  [clausify(5)].
+9 addition(A,B) = addition(B,A).  [clausify(1)].
+10 domain(c2) = addition(domain(c1),domain(c2)).  [clausify(6)].
+11 addition(domain(c1),domain(c2)) = domain(c2).  [copy(10),flip(a)].
+12 multiplication(domain(A),A) = addition(A,multiplication(domain(A),A)).  [clausify(4)].
+13 addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A).  [copy(12),flip(a)].
+14 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(3)].
+15 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(14),flip(a)].
+16 multiplication(domain(c2),c1) != addition(c1,multiplication(domain(c2),c1)).  [clausify(6)].
+17 addition(c1,multiplication(domain(c2),c1)) != multiplication(domain(c2),c1).  [copy(16),flip(a)].
+18 addition(multiplication(domain(A),B),multiplication(one,B)) = multiplication(one,B).  [para(8(a,1),15(a,2,1))].
+19 addition(multiplication(domain(A),B),B) = multiplication(one,B).  [para(7(a,1),18(a,1,2))].
+20 addition(B,multiplication(domain(A),B)) = multiplication(one,B).  [para(9(a,1),19(a,1))].
+21 addition(A,multiplication(domain(B),A)) = A.  [para(7(a,1),20(a,2))].
+22 c1 != multiplication(domain(c2),c1).  [para(21(a,1),17(a,1))].
+23 multiplication(domain(c2),c1) != c1.  [copy(22),flip(a)].
+24 A = multiplication(domain(A),A).  [para(21(a,1),13(a,1))].
+25 multiplication(domain(A),A) = A.  [copy(24),flip(a)].
+26 addition(A,multiplication(B,A)) = multiplication(addition(domain(A),B),A).  [para(25(a,1),15(a,1,1))].
+27 addition(A,multiplication(B,A)) = multiplication(addition(B,domain(A)),A).  [para(9(a,1),26(a,2,1))].
+28 multiplication(addition(domain(B),domain(A)),A) = A.  [para(27(a,1),21(a,1))].
+29 multiplication(addition(domain(A),domain(B)),A) = A.  [para(9(a,1),28(a,1,1))].
+30 multiplication(domain(c2),c1) = c1.  [para(11(a,1),29(a,1,1))].
+31 $F.  [resolve(30,a,23,a)].

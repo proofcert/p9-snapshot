@@ -1,0 +1,45 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n069.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:54:33 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 63979 was started by sandbox on n069.star.cs.uiowa.edu,
+Thu Jun  5 22:54:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_63947_n069.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 10.
+% Level of proof is 3.
+% Maximum clause weight is 8.000.
+% Given clauses 103.
+
+
+1 (all A all B all C (member(C,intersection(A,B)) <-> member(C,A) & member(C,B))).  [assumption].
+2 (all A all B (member(B,complement(A)) <-> member(B,universal_class) & -member(B,A))).  [assumption].
+3 -(all A all B -member(B,intersection(complement(A),A))).  [assumption].
+4 member(c4,intersection(complement(c3),c3)).  [clausify(3)].
+5 -member(A,complement(B)) | -member(A,B).  [clausify(2)].
+6 -member(A,intersection(B,C)) | member(A,B).  [clausify(1)].
+7 -member(A,intersection(B,C)) | member(A,C).  [clausify(1)].
+8 member(c4,complement(c3)).  [resolve(6,a,4,a)].
+9 member(c4,c3).  [resolve(7,a,4,a)].
+10 -member(c4,complement(c3)).  [resolve(5,b,9,a)].
+11 $F.  [resolve(8,a,10,a)].
+
+============================== end of proof ==========================

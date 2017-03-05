@@ -1,0 +1,15 @@
+
+2 patricide(oedipus).  [assumption].
+3 parent_of(iokaste,oedipus).  [assumption].
+4 parent_of(iokaste,polyneikes).  [assumption].
+5 parent_of(oedipus,polyneikes).  [assumption].
+6 parent_of(polyneikes,thersandros).  [assumption].
+7 -patricide(thersandros).  [assumption].
+8 -parent_of(iokaste,A) | -patricide(A) | -parent_of(A,B) | patricide(B).  [clausify(1)].
+9 -patricide(oedipus) | -parent_of(oedipus,A) | patricide(A).  [resolve(8,a,3,a)].
+10 -parent_of(oedipus,A) | patricide(A).  [resolve(9,a,2,a)].
+11 patricide(polyneikes).  [resolve(10,a,5,a)].
+12 -patricide(polyneikes) | -parent_of(polyneikes,A) | patricide(A).  [resolve(8,a,4,a)].
+13 -patricide(polyneikes) | patricide(thersandros).  [resolve(12,b,6,a)].
+14 -patricide(polyneikes).  [resolve(13,b,7,a)].
+15 $F.  [resolve(14,a,11,a)].

@@ -1,0 +1,62 @@
+
+
+
+
+
+6 -ssList(A) | -duplicatefreeP(A) | -ssItem(B) | -ssItem(C) | -ssList(D) | -ssList(E) | -ssList(F) | app(app(D,cons(B,E)),cons(C,F)) != A | C != B.  [clausify(1)].
+7 -ssItem(A) | duplicatefreeP(cons(A,nil)).  [clausify(4)].
+8 ssList(nil).  [assumption].
+9 -ssList(A) | app(nil,A) = A.  [clausify(2)].
+10 -ssItem(A) | -memberP(nil,A).  [clausify(3)].
+11 c6 = c4.  [clausify(5)].
+12 c5 = c3.  [clausify(5)].
+13 ssItem(c7) | nil = c6.  [clausify(5)].
+14 ssItem(c7) | nil = c4.  [para(11(a,1),13(b,2))].
+15 ssItem(c7) | c4 = nil.  [copy(14),flip(b)].
+16 ssItem(c7) | nil = c5.  [clausify(5)].
+17 ssItem(c7) | nil = c3.  [para(12(a,1),16(b,2))].
+18 ssItem(c7) | c3 = nil.  [copy(17),flip(b)].
+19 cons(c7,nil) = c5 | nil = c6.  [clausify(5)].
+20 cons(c7,nil) = c3 | nil = c6.  [para(12(a,1),19(a,2))].
+21 cons(c7,nil) = c3 | nil = c4.  [para(11(a,1),20(b,2))].
+22 cons(c7,nil) = c3 | c4 = nil.  [copy(21),flip(b)].
+23 memberP(c6,c7) | nil = c5.  [clausify(5)].
+24 memberP(c4,c7) | nil = c5.  [para(11(a,1),23(a,1))].
+25 memberP(c4,c7) | nil = c3.  [para(12(a,1),24(b,2))].
+26 memberP(c4,c7) | c3 = nil.  [copy(25),flip(b)].
+27 nil = c4 | nil = c3.  [clausify(5)].
+28 c4 = nil | nil = c3.  [copy(27),flip(a)].
+29 c4 = nil | c3 = nil.  [copy(28),flip(b)].
+30 nil != c3 | nil != c4.  [clausify(5)].
+31 c3 != nil | nil != c4.  [copy(30),flip(a)].
+32 c3 != nil | c4 != nil.  [copy(31),flip(b)].
+33 -ssItem(A) | -ssList(cons(A,nil)) | -ssItem(B) | -ssItem(C) | -ssList(D) | -ssList(E) | -ssList(F) | app(app(D,cons(B,E)),cons(C,F)) != cons(A,nil) | C != B.  [resolve(7,b,6,b)].
+34 -ssItem(A) | -ssList(cons(A,nil)) | -ssItem(B) | -ssList(C) | -ssList(D) | -ssList(E) | app(app(C,cons(A,D)),cons(B,E)) != cons(A,nil) | B != A.  [factor(33,a,c)].
+35 -ssItem(A) | -ssList(cons(A,nil)) | -ssList(B) | -ssList(C) | -ssList(D) | app(app(B,cons(A,C)),cons(A,D)) != cons(A,nil) | A != A.  [factor(34,a,c)].
+36 -ssItem(A) | -ssList(cons(A,nil)) | -ssList(B) | -ssList(C) | -ssList(D) | app(app(B,cons(A,C)),cons(A,D)) != cons(A,nil).  [copy(35),xx(g)].
+37 app(nil,nil) = nil.  [resolve(9,a,8,a)].
+38 c3 = nil | memberP(nil,c7) | c3 = nil.  [para(29(a,1),26(a,1))].
+39 c3 = nil | memberP(nil,c7).  [copy(38),merge(c)].
+40 -ssList(cons(c7,nil)) | -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,cons(c7,B)),cons(c7,C)) != cons(c7,nil) | c4 = nil.  [resolve(36,a,15,a)].
+41 -ssList(cons(c7,nil)) | -ssList(A) | -ssList(B) | app(app(cons(c7,nil),cons(c7,A)),cons(c7,B)) != cons(c7,nil) | c4 = nil.  [factor(40,a,b)].
+42 -ssList(cons(c7,nil)) | -ssList(A) | app(app(cons(c7,nil),cons(c7,cons(c7,nil))),cons(c7,A)) != cons(c7,nil) | c4 = nil.  [factor(41,a,b)].
+43 -ssList(cons(c7,nil)) | app(app(cons(c7,nil),cons(c7,cons(c7,nil))),cons(c7,cons(c7,nil))) != cons(c7,nil) | c4 = nil.  [factor(42,a,b)].
+44 c3 = nil | -ssItem(c7).  [resolve(39,b,10,b)].
+45 c3 = nil | c3 = nil.  [resolve(44,b,18,a)].
+46 c3 = nil.  [copy(45),merge(b)].
+47 nil != nil | c4 != nil.  [para(46(a,1),32(a,1))].
+48 c4 != nil.  [copy(47),xx(a)].
+49 cons(c7,nil) = nil | c4 = nil.  [para(46(a,1),22(a,2))].
+50 cons(c7,nil) = nil.  [resolve(48,a,49,b)].
+51 -ssList(nil) | app(app(cons(c7,nil),cons(c7,cons(c7,nil))),cons(c7,cons(c7,nil))) != cons(c7,nil) | c4 = nil.  [para(50(a,1),43(a,1))].
+52 -ssList(nil) | app(app(nil,cons(c7,cons(c7,nil))),cons(c7,cons(c7,nil))) != cons(c7,nil) | c4 = nil.  [para(50(a,1),51(b,1,1,1))].
+53 -ssList(nil) | app(app(nil,cons(c7,nil)),cons(c7,cons(c7,nil))) != cons(c7,nil) | c4 = nil.  [para(50(a,1),52(b,1,1,2,2))].
+54 -ssList(nil) | app(app(nil,nil),cons(c7,cons(c7,nil))) != cons(c7,nil) | c4 = nil.  [para(50(a,1),53(b,1,1,2))].
+55 -ssList(nil) | app(nil,cons(c7,cons(c7,nil))) != cons(c7,nil) | c4 = nil.  [para(37(a,1),54(b,1,1))].
+56 -ssList(nil) | app(nil,cons(c7,nil)) != cons(c7,nil) | c4 = nil.  [para(50(a,1),55(b,1,2,2))].
+57 -ssList(nil) | app(nil,nil) != cons(c7,nil) | c4 = nil.  [para(50(a,1),56(b,1,2))].
+58 -ssList(nil) | nil != cons(c7,nil) | c4 = nil.  [para(37(a,1),57(b,1))].
+59 -ssList(nil) | nil != nil | c4 = nil.  [para(50(a,1),58(b,2))].
+60 -ssList(nil) | c4 = nil.  [copy(59),xx(b)].
+61 c4 = nil.  [resolve(8,a,60,a)].
+62 $F.  [resolve(48,a,61,a)].

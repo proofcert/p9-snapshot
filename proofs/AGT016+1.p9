@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n081.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:16:28 CDT 2014
+% CPUTime    : 0.51 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 52502 was started by sandbox on n081.star.cs.uiowa.edu,
+Thu Jun  5 14:16:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_52470_n081.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.24 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 4.
+% Maximum clause weight is 23.000.
+% Given clauses 643.
+
+
+1 (all A all B all C (any_agent_in_all_proposed_teams(A,B,C) -> accept_leader(A,B))).  [assumption].
+2 (all A all B all C (the_agent_not_in_any_proposed_teams(A,B,C) -> -(accept_city(A,C) & accept_leader(A,B)))).  [assumption].
+3 (all A (accept_population(A,atheist,n75) & accept_population(A,christian,n24) & accept_population(A,muslim,n1) & accept_population(A,native,n0) & accept_population(A,other,n0) <-> accept_city(A,towna))).  [assumption].
+4 -(exists A exists B -accept_population(muslimcountrybhumanitarianorganization,A,B)).  [assumption].
+5 -any_agent_in_all_proposed_teams(A,B,C) | accept_leader(A,B).  [clausify(1)].
+6 -the_agent_not_in_any_proposed_teams(A,B,C) | -accept_city(A,C) | -accept_leader(A,B).  [clausify(2)].
+7 any_agent_in_all_proposed_teams(muslimcountrybhumanitarianorganization,countryacivilorganization,towna).  [assumption].
+8 -the_agent_not_in_any_proposed_teams(A,B,C) | -accept_city(A,C) | -any_agent_in_all_proposed_teams(A,B,D).  [resolve(6,c,5,b)].
+9 -accept_population(A,atheist,n75) | -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [clausify(3)].
+10 the_agent_not_in_any_proposed_teams(muslimcountrybhumanitarianorganization,countryacivilorganization,towna).  [assumption].
+11 accept_population(muslimcountrybhumanitarianorganization,A,B).  [clausify(4)].
+12 -the_agent_not_in_any_proposed_teams(muslimcountrybhumanitarianorganization,countryacivilorganization,A) | -accept_city(muslimcountrybhumanitarianorganization,A).  [resolve(8,c,7,a)].
+13 -accept_population(muslimcountrybhumanitarianorganization,atheist,n75) | -accept_population(muslimcountrybhumanitarianorganization,christian,n24) | -accept_population(muslimcountrybhumanitarianorganization,muslim,n1) | -accept_population(muslimcountrybhumanitarianorganization,native,n0) | accept_city(muslimcountrybhumanitarianorganization,towna).  [resolve(11,a,9,e)].
+14 -accept_population(muslimcountrybhumanitarianorganization,christian,n24) | -accept_population(muslimcountrybhumanitarianorganization,muslim,n1) | -accept_population(muslimcountrybhumanitarianorganization,native,n0) | accept_city(muslimcountrybhumanitarianorganization,towna).  [resolve(11,a,13,a)].
+15 -accept_population(muslimcountrybhumanitarianorganization,muslim,n1) | -accept_population(muslimcountrybhumanitarianorganization,native,n0) | accept_city(muslimcountrybhumanitarianorganization,towna).  [resolve(11,a,14,a)].
+16 -accept_population(muslimcountrybhumanitarianorganization,native,n0) | accept_city(muslimcountrybhumanitarianorganization,towna).  [resolve(11,a,15,a)].
+17 accept_city(muslimcountrybhumanitarianorganization,towna).  [resolve(11,a,16,a)].
+18 -accept_city(muslimcountrybhumanitarianorganization,towna).  [resolve(12,a,10,a)].
+19 $F.  [resolve(17,a,18,a)].
+
+============================== end of proof ==========================

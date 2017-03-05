@@ -1,0 +1,15 @@
+
+
+
+
+5 addition(A,zero) = A.  [clausify(2)].
+6 multiplication(zero,A) = zero.  [clausify(3)].
+7 addition(A,B) = addition(B,A).  [clausify(1)].
+8 strong_iteration(A) = addition(multiplication(A,strong_iteration(A)),one).  [clausify(4)].
+9 strong_iteration(A) = addition(one,multiplication(A,strong_iteration(A))).  [para(7(a,1),8(a,2))].
+10 addition(one,multiplication(A,strong_iteration(A))) = strong_iteration(A).  [copy(9),flip(a)].
+11 strong_iteration(zero) != one.  [assumption].
+12 addition(one,zero) = strong_iteration(zero).  [para(6(a,1),10(a,1,2))].
+13 one = strong_iteration(zero).  [para(5(a,1),12(a,1))].
+14 strong_iteration(zero) = one.  [copy(13),flip(a)].
+15 $F.  [resolve(14,a,11,a)].

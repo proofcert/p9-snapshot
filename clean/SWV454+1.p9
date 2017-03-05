@@ -1,0 +1,27 @@
+
+
+3 elem(A,cons(B,C)) | -elem(A,C).  [clausify(1)].
+4 host(A) = host(B) | -setIn(B,alive) | -setIn(A,alive) | host(C) != host(B) | host(A) != host(D) | -elem(m_Down(D),queue(host(B))) | -elem(m_Down(C),queue(host(A))).  [clausify(2)].
+5 cons(m_Down(c4),c1) = queue(host(c3)).  [clausify(2)].
+6 setIn(c3,alive).  [clausify(2)].
+7 host(c5) = host(c3).  [clausify(2)].
+8 host(c7) != host(c3).  [clausify(2)].
+9 setIn(c7,alive).  [clausify(2)].
+10 host(c6) = host(c5).  [clausify(2)].
+11 host(c6) = host(c3).  [para(7(a,1),10(a,2))].
+12 host(c8) = host(c7).  [clausify(2)].
+13 elem(m_Down(c8),c1).  [clausify(2)].
+14 elem(m_Down(c6),queue(host(c7))).  [clausify(2)].
+15 host(c3) = host(A) | -setIn(A,alive) | host(B) != host(A) | host(c3) != host(C) | -elem(m_Down(C),queue(host(A))) | -elem(m_Down(B),queue(host(c3))).  [resolve(6,a,4,c)].
+16 elem(m_Down(c8),cons(A,c1)).  [resolve(13,a,3,b)].
+17 elem(m_Down(c8),queue(host(c3))).  [para(5(a,1),16(a,2))].
+18 host(c3) = host(c7) | host(A) != host(c7) | host(c3) != host(B) | -elem(m_Down(B),queue(host(c7))) | -elem(m_Down(A),queue(host(c3))).  [resolve(15,b,9,a)].
+19 host(c7) = host(c3) | host(A) != host(c7) | host(c3) != host(B) | -elem(m_Down(B),queue(host(c7))) | -elem(m_Down(A),queue(host(c3))).  [copy(18),flip(a)].
+20 host(c7) = host(c3) | host(c7) != host(A) | host(c3) != host(B) | -elem(m_Down(B),queue(host(c7))) | -elem(m_Down(A),queue(host(c3))).  [copy(19),flip(b)].
+21 host(c7) != host(A) | host(c3) != host(B) | -elem(m_Down(B),queue(host(c7))) | -elem(m_Down(A),queue(host(c3))).  [resolve(8,a,20,a)].
+22 host(c7) != host(A) | host(c3) != host(c6) | -elem(m_Down(A),queue(host(c3))).  [resolve(21,c,14,a)].
+23 host(c7) != host(A) | host(c3) != host(c3) | -elem(m_Down(A),queue(host(c3))).  [para(11(a,1),22(b,2))].
+24 host(c7) != host(A) | -elem(m_Down(A),queue(host(c3))).  [copy(23),xx(b)].
+25 host(c7) != host(c8).  [resolve(24,b,17,a)].
+26 host(c7) != host(c7).  [para(12(a,1),25(a,2))].
+27 $F.  [copy(26),xx(a)].

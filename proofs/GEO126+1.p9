@@ -1,0 +1,99 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n120.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:08:43 CDT 2014
+% CPUTime    : 1.02 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 50925 was started by sandbox on n120.star.cs.uiowa.edu,
+Fri Jun  6 02:08:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_50892_n120.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.87 (+ 0.01) seconds.
+% Length of proof is 53.
+% Level of proof is 9.
+% Maximum clause weight is 15.000.
+% Given clauses 807.
+
+
+1 (all A all B (end_point(A,B) <-> incident_c(A,B) & (all C all D (part_of(C,B) & part_of(D,B) & incident_c(A,C) & incident_c(A,D) -> part_of(C,D) | part_of(D,C))))).  [assumption].
+2 (all A all B (inner_point(A,B) <-> incident_c(A,B) & -end_point(A,B))).  [assumption].
+3 (all A (closed(A) <-> -(exists B end_point(B,A)))).  [assumption].
+4 (all A (open(A) <-> (exists B end_point(B,A)))).  [assumption].
+5 (all A exists B inner_point(B,A)).  [assumption].
+6 (all A all B (inner_point(B,A) -> (exists C exists D (meet(B,C,D) & A = sum(C,D))))).  [assumption].
+7 (all A all B (start_point(A,B) <-> incident_o(A,B) & (all C (A != C & incident_o(C,B) -> ordered_by(B,A,C))))).  [assumption].
+8 (all A exists B (open(B) & (all C (incident_o(C,A) <-> incident_c(C,B))))).  [assumption].
+9 (all A exists B start_point(B,A)).  [assumption].
+10 (all A all B (A = underlying_curve(B) <-> (all C (incident_o(C,B) <-> incident_c(C,A))))).  [assumption].
+11 -(all A exists B exists C (ordered_by(A,B,C) & B != C)).  [assumption].
+12 -open(A) | end_point(f7(A),A).  [clausify(4)].
+13 open(f17(A)).  [clausify(8)].
+14 -inner_point(A,B) | -end_point(A,B).  [clausify(2)].
+15 inner_point(f8(A),A).  [clausify(5)].
+16 -inner_point(A,B) | incident_c(A,B).  [clausify(2)].
+17 -inner_point(A,B) | sum(f9(B,A),f10(B,A)) = B.  [clausify(6)].
+18 start_point(f20(A),A).  [clausify(9)].
+19 -start_point(A,B) | C = A | -incident_o(C,B) | ordered_by(B,A,C).  [clausify(7)].
+20 -closed(A) | -end_point(B,A).  [clausify(3)].
+21 closed(A) | end_point(f6(A),A).  [clausify(3)].
+22 underlying_curve(A) = B | incident_o(f24(B,A),A) | incident_c(f24(B,A),B).  [clausify(10)].
+23 -end_point(A,B) | incident_c(A,B).  [clausify(1)].
+24 -incident_o(A,B) | incident_c(A,f17(B)).  [clausify(8)].
+25 incident_o(A,B) | -incident_c(A,f17(B)).  [clausify(8)].
+26 -ordered_by(c10,A,B) | B = A.  [clausify(11)].
+27 underlying_curve(A) != B | incident_o(C,A) | -incident_c(C,B).  [clausify(10)].
+28 underlying_curve(A) = B | -incident_o(f24(B,A),A) | -incident_c(f24(B,A),B).  [clausify(10)].
+29 end_point(f7(f17(A)),f17(A)).  [resolve(12,a,13,a)].
+30 -end_point(f8(A),A).  [resolve(14,a,15,a)].
+31 incident_c(f8(A),A).  [resolve(16,a,15,a)].
+32 sum(f9(A,f8(A)),f10(A,f8(A))) = A.  [resolve(17,a,15,a)].
+33 A = f20(B) | -incident_o(A,B) | ordered_by(B,f20(B),A).  [resolve(19,a,18,a)].
+34 f20(A) = B | -incident_o(B,A) | ordered_by(A,f20(A),B).  [copy(33),flip(a)].
+35 -end_point(A,B) | end_point(f6(B),B).  [resolve(20,a,21,a)].
+36 incident_c(f24(A,B),f17(B)) | underlying_curve(B) = A | incident_c(f24(A,B),A).  [resolve(24,a,22,b)].
+37 incident_c(f24(f17(A),A),f17(A)) | underlying_curve(A) = f17(A).  [factor(36,a,c)].
+38 incident_c(f24(f17(A),A),f17(A)) | f17(A) = underlying_curve(A).  [copy(37),flip(b)].
+39 underlying_curve(A) != B | incident_o(f8(B),A).  [resolve(31,a,27,c)].
+40 end_point(f6(f17(A)),f17(A)).  [resolve(35,a,29,a)].
+41 incident_c(f6(f17(A)),f17(A)).  [resolve(40,a,23,a)].
+42 incident_o(f6(f17(A)),A).  [resolve(41,a,25,b)].
+43 f20(A) = f6(f17(A)) | ordered_by(A,f20(A),f6(f17(A))).  [resolve(42,a,34,b)].
+44 f6(f17(A)) = f20(A) | ordered_by(A,f20(A),f6(f17(A))).  [copy(43),flip(a)].
+45 incident_o(f8(sum(f9(underlying_curve(A),f8(underlying_curve(A))),f10(underlying_curve(A),f8(underlying_curve(A))))),A).  [resolve(39,a,32,a(flip))].
+46 incident_o(f8(underlying_curve(A)),A).  [para(32(a,1),45(a,1,1))].
+47 f20(A) = f8(underlying_curve(A)) | ordered_by(A,f20(A),f8(underlying_curve(A))).  [resolve(46,a,34,b)].
+48 f8(underlying_curve(A)) = f20(A) | ordered_by(A,f20(A),f8(underlying_curve(A))).  [copy(47),flip(a)].
+49 f17(A) = underlying_curve(A) | incident_o(f24(f17(A),A),A).  [resolve(38,a,25,b)].
+50 f17(A) = underlying_curve(A) | underlying_curve(A) = f17(A) | -incident_c(f24(f17(A),A),f17(A)).  [resolve(49,b,28,b)].
+51 f17(A) = underlying_curve(A) | f17(A) = underlying_curve(A) | -incident_c(f24(f17(A),A),f17(A)).  [copy(50),flip(b)].
+52 f17(A) = underlying_curve(A) | -incident_c(f24(f17(A),A),f17(A)).  [copy(51),merge(b)].
+53 f17(A) = underlying_curve(A) | f17(A) = underlying_curve(A).  [resolve(52,b,38,a)].
+54 f17(A) = underlying_curve(A).  [copy(53),merge(b)].
+55 f6(underlying_curve(A)) = f20(A) | ordered_by(A,f20(A),f6(f17(A))).  [para(54(a,1),44(a,1,1))].
+56 f6(underlying_curve(A)) = f20(A) | ordered_by(A,f20(A),f6(underlying_curve(A))).  [para(54(a,1),55(b,3,1))].
+57 end_point(f6(underlying_curve(A)),f17(A)).  [para(54(a,1),40(a,1,1))].
+58 end_point(f6(underlying_curve(A)),underlying_curve(A)).  [para(54(a,1),57(a,2))].
+59 f8(underlying_curve(c10)) = f20(c10) | f8(underlying_curve(c10)) = f20(c10).  [resolve(48,b,26,a)].
+60 f8(underlying_curve(c10)) = f20(c10).  [copy(59),merge(b)].
+61 -end_point(f20(c10),underlying_curve(c10)).  [para(60(a,1),30(a,1))].
+62 f6(underlying_curve(c10)) = f20(c10) | f6(underlying_curve(c10)) = f20(c10).  [resolve(56,b,26,a)].
+63 f6(underlying_curve(c10)) = f20(c10).  [copy(62),merge(b)].
+64 end_point(f20(c10),underlying_curve(c10)).  [para(63(a,1),58(a,1))].
+65 $F.  [resolve(61,a,64,a)].
+
+============================== end of proof ==========================

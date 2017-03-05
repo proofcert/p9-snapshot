@@ -1,0 +1,19 @@
+
+
+
+
+
+
+7 intersection(A,B) = intersection(B,A).  [clausify(4)].
+8 subset(A,B) | member(f1(A,B),A).  [clausify(5)].
+9 -member(A,empty_set).  [clausify(2)].
+10 intersection(c1,empty_set) != empty_set.  [clausify(6)].
+11 intersection(empty_set,c1) != empty_set.  [para(7(a,1),10(a,1))].
+12 -member(A,intersection(B,C)) | member(A,B).  [clausify(1)].
+13 A = B | -subset(B,A) | -subset(A,B).  [clausify(3)].
+14 A = B | -subset(A,B) | member(f1(B,A),B).  [resolve(13,b,8,a)].
+15 -subset(intersection(empty_set,c1),empty_set) | member(f1(empty_set,intersection(empty_set,c1)),empty_set).  [resolve(14,a,11,a)].
+16 -subset(intersection(empty_set,c1),empty_set).  [resolve(15,b,9,a)].
+17 member(f1(intersection(empty_set,c1),empty_set),intersection(empty_set,c1)).  [resolve(16,a,8,a)].
+18 member(f1(intersection(empty_set,c1),empty_set),empty_set).  [resolve(17,a,12,a)].
+19 $F.  [resolve(9,a,18,a)].

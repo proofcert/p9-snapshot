@@ -1,0 +1,35 @@
+
+
+
+
+
+
+
+
+9 -ilf_type(A,set_type) | ilf_type(A,binary_relation_type) | -relation_like(A).  [clausify(5)].
+10 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | relation_like(C).  [clausify(6)].
+11 ilf_type(A,set_type).  [clausify(7)].
+12 ilf_type(c4,relation_type(c2,c3)).  [clausify(8)].
+13 ilf_type(c4,relation_type(empty_set,c3)).  [clausify(8)].
+14 c4 != empty_set.  [clausify(8)].
+15 -ilf_type(A,set_type) | -subset(A,empty_set) | empty_set = A.  [clausify(1)].
+16 -subset(A,empty_set) | empty_set = A.  [resolve(11,a,15,a)].
+17 -ilf_type(A,binary_relation_type) | domain_of(A) != empty_set | empty_set = A.  [clausify(2)].
+18 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | subset(domain_of(C),A).  [clausify(3)].
+19 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | subset(domain_of(B),C).  [resolve(11,a,18,a)].
+20 -ilf_type(A,relation_type(B,C)) | subset(domain_of(A),B).  [resolve(11,a,19,a)].
+21 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | ilf_type(C,subset_type(cross_product(A,B))).  [clausify(4)].
+22 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | ilf_type(B,subset_type(cross_product(C,A))).  [resolve(11,a,21,a)].
+23 -ilf_type(A,relation_type(B,C)) | ilf_type(A,subset_type(cross_product(B,C))).  [resolve(11,a,22,a)].
+24 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | -ilf_type(C,set_type) | ilf_type(C,binary_relation_type).  [resolve(10,d,9,c)].
+25 -ilf_type(A,set_type) | -ilf_type(B,subset_type(cross_product(C,A))) | -ilf_type(B,set_type) | ilf_type(B,binary_relation_type).  [resolve(11,a,24,a)].
+26 -ilf_type(A,subset_type(cross_product(B,C))) | -ilf_type(A,set_type) | ilf_type(A,binary_relation_type).  [resolve(11,a,25,a)].
+27 -ilf_type(A,subset_type(cross_product(B,C))) | ilf_type(A,binary_relation_type).  [resolve(11,a,26,b)].
+28 subset(domain_of(c4),empty_set).  [resolve(20,a,13,a)].
+29 ilf_type(c4,subset_type(cross_product(c2,c3))).  [resolve(23,a,12,a)].
+30 empty_set = domain_of(c4).  [resolve(28,a,16,a)].
+31 domain_of(c4) = empty_set.  [copy(30),flip(a)].
+32 -ilf_type(c4,binary_relation_type) | empty_set = c4.  [resolve(17,b,31,a)].
+33 -ilf_type(c4,binary_relation_type).  [resolve(32,b,14,a(flip))].
+34 -ilf_type(c4,subset_type(cross_product(A,B))).  [resolve(27,b,33,a)].
+35 $F.  [resolve(34,a,29,a)].

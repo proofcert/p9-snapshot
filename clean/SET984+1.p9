@@ -1,0 +1,40 @@
+
+
+
+
+
+
+
+8 subset(set_intersection2(A,B),A).  [clausify(5)].
+9 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+10 subset(cartesian_product2(c3,c4),cartesian_product2(c5,c6)).  [clausify(7)].
+11 cartesian_product2(set_intersection2(A,B),set_intersection2(C,D)) = set_intersection2(cartesian_product2(A,C),cartesian_product2(B,D)).  [clausify(3)].
+12 set_intersection2(cartesian_product2(A,B),cartesian_product2(C,D)) = cartesian_product2(set_intersection2(A,C),set_intersection2(B,D)).  [copy(11),flip(a)].
+13 cartesian_product2(c3,c4) != empty_set.  [clausify(7)].
+14 -subset(c3,c5) | -subset(c4,c6).  [clausify(7)].
+15 cartesian_product2(A,B) = empty_set | empty_set != A.  [clausify(2)].
+16 cartesian_product2(A,B) = empty_set | empty_set != B.  [clausify(2)].
+17 -subset(A,B) | set_intersection2(A,B) = A.  [clausify(6)].
+18 cartesian_product2(A,B) != cartesian_product2(C,D) | empty_set = C | empty_set = D | A = C.  [clausify(4)].
+19 cartesian_product2(A,B) != cartesian_product2(C,D) | empty_set = C | empty_set = D | B = D.  [clausify(4)].
+20 subset(set_intersection2(A,B),B).  [para(9(a,1),8(a,1))].
+21 empty_set != c3.  [resolve(15,a,13,a)].
+22 c3 != empty_set.  [copy(21),flip(a)].
+23 empty_set != c4.  [resolve(16,a,13,a)].
+24 c4 != empty_set.  [copy(23),flip(a)].
+25 set_intersection2(cartesian_product2(c3,c4),cartesian_product2(c5,c6)) = cartesian_product2(c3,c4).  [resolve(17,a,10,a)].
+26 cartesian_product2(set_intersection2(c3,c5),set_intersection2(c4,c6)) = cartesian_product2(c3,c4).  [para(12(a,1),25(a,1))].
+27 empty_set = c3 | empty_set = c4 | set_intersection2(c4,c6) = c4.  [resolve(26,a,19,a)].
+28 c3 = empty_set | empty_set = c4 | set_intersection2(c4,c6) = c4.  [copy(27),flip(a)].
+29 c3 = empty_set | c4 = empty_set | set_intersection2(c4,c6) = c4.  [copy(28),flip(b)].
+30 c4 = empty_set | set_intersection2(c4,c6) = c4.  [resolve(22,a,29,a)].
+31 set_intersection2(c4,c6) = c4.  [resolve(24,a,30,a)].
+32 empty_set = c3 | empty_set = c4 | set_intersection2(c3,c5) = c3.  [resolve(26,a,18,a)].
+33 c3 = empty_set | empty_set = c4 | set_intersection2(c3,c5) = c3.  [copy(32),flip(a)].
+34 c3 = empty_set | c4 = empty_set | set_intersection2(c3,c5) = c3.  [copy(33),flip(b)].
+35 c4 = empty_set | set_intersection2(c3,c5) = c3.  [resolve(22,a,34,a)].
+36 set_intersection2(c3,c5) = c3.  [resolve(24,a,35,a)].
+37 subset(c4,c6).  [para(31(a,1),20(a,1))].
+38 -subset(c3,c5).  [resolve(37,a,14,b)].
+39 subset(c3,c5).  [para(36(a,1),20(a,1))].
+40 $F.  [resolve(38,a,39,a)].

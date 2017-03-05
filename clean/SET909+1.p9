@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+8 set_union2(A,A) = A.  [clausify(6)].
+9 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+10 set_union2(A,B) = set_union2(B,A).  [clausify(2)].
+11 set_union2(unordered_pair(c3,c4),c5) = empty_set.  [clausify(7)].
+12 set_union2(c5,unordered_pair(c3,c4)) = empty_set.  [para(10(a,1),11(a,1))].
+13 empty_set = set_union2(c5,unordered_pair(c3,c4)).  [copy(12),flip(a)].
+14 empty_set != A | -in(B,A).  [clausify(3)].
+15 set_union2(c5,unordered_pair(c3,c4)) != A | -in(B,A).  [para(13(a,1),14(a,1))].
+16 unordered_pair(A,B) != C | in(D,C) | D != A.  [clausify(4)].
+17 set_union2(A,B) != C | in(D,C) | -in(D,B).  [clausify(5)].
+18 -in(A,set_union2(unordered_pair(c3,c4),c5)).  [resolve(15,a,10,a)].
+19 -in(A,set_union2(c5,unordered_pair(c3,c4))).  [para(10(a,1),18(a,2))].
+20 in(A,unordered_pair(B,C)) | A != C.  [resolve(16,a,9,a)].
+21 in(set_union2(A,A),unordered_pair(B,A)).  [resolve(20,b,8,a)].
+22 in(A,unordered_pair(B,A)).  [para(8(a,1),21(a,1))].
+23 in(A,unordered_pair(A,B)).  [para(9(a,1),22(a,2))].
+24 set_union2(A,B) != set_union2(c5,unordered_pair(c3,c4)) | -in(C,B).  [resolve(17,b,19,a)].
+25 set_union2(A,unordered_pair(B,C)) != set_union2(c5,unordered_pair(c3,c4)).  [resolve(24,b,23,a)].
+26 set_union2(c5,unordered_pair(c3,c4)) != set_union2(A,unordered_pair(B,C)).  [copy(25),flip(a)].
+27 $F.  [copy(26),xx(a)].

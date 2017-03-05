@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n140.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:37:18 CDT 2014
+% CPUTime    : 3.90 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 31986 was started by sandbox on n140.star.cs.uiowa.edu,
+Fri Jun  6 11:37:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_31954_n140.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 3.71 (+ 0.06) seconds.
+% Length of proof is 33.
+% Level of proof is 16.
+% Maximum clause weight is 15.000.
+% Given clauses 790.
+
+
+1 (all A all B k2_xboole_0(A,B) = k2_xboole_0(B,A)).  [assumption].
+2 (all A all B all C (C = k2_xboole_0(A,B) <-> (all D (r2_hidden(D,C) <-> r2_hidden(D,A) | r2_hidden(D,B))))).  [assumption].
+3 (all A all B k2_xboole_0(A,k4_xboole_0(B,A)) = k2_xboole_0(A,B)).  [assumption].
+4 -(all A all B all C all D -(r2_hidden(A,k2_xboole_0(C,D)) & r2_hidden(B,k2_xboole_0(C,D)) & -(r2_hidden(A,k4_xboole_0(C,D)) & r2_hidden(B,k4_xboole_0(C,D))) & -(r2_hidden(A,D) & r2_hidden(B,D)) & -(r2_hidden(A,k4_xboole_0(C,D)) & r2_hidden(B,D)) & -(r2_hidden(A,D) & r2_hidden(B,k4_xboole_0(C,D))))).  [assumption].
+5 r2_hidden(c3,k2_xboole_0(c5,c6)).  [clausify(4)].
+6 r2_hidden(c4,k2_xboole_0(c5,c6)).  [clausify(4)].
+7 k2_xboole_0(A,B) = k2_xboole_0(B,A).  [clausify(1)].
+8 k2_xboole_0(A,k4_xboole_0(B,A)) = k2_xboole_0(A,B).  [clausify(3)].
+9 -r2_hidden(c3,c6) | -r2_hidden(c4,c6).  [clausify(4)].
+10 -r2_hidden(c3,k4_xboole_0(c5,c6)) | -r2_hidden(c4,c6).  [clausify(4)].
+11 -r2_hidden(c3,c6) | -r2_hidden(c4,k4_xboole_0(c5,c6)).  [clausify(4)].
+12 -r2_hidden(c3,k4_xboole_0(c5,c6)) | -r2_hidden(c4,k4_xboole_0(c5,c6)).  [clausify(4)].
+13 k2_xboole_0(A,B) != C | r2_hidden(D,C) | -r2_hidden(D,B).  [clausify(2)].
+14 k2_xboole_0(A,B) != C | -r2_hidden(D,C) | r2_hidden(D,A) | r2_hidden(D,B).  [clausify(2)].
+15 k2_xboole_0(A,B) != k2_xboole_0(c5,c6) | r2_hidden(c4,A) | r2_hidden(c4,B).  [resolve(14,b,6,a)].
+16 k2_xboole_0(c5,c6) != k2_xboole_0(A,B) | r2_hidden(c4,A) | r2_hidden(c4,B).  [copy(15),flip(a)].
+17 k2_xboole_0(A,B) != k2_xboole_0(c5,c6) | r2_hidden(c3,A) | r2_hidden(c3,B).  [resolve(14,b,5,a)].
+18 k2_xboole_0(c5,c6) != k2_xboole_0(A,B) | r2_hidden(c3,A) | r2_hidden(c3,B).  [copy(17),flip(a)].
+19 k2_xboole_0(c5,c6) != k2_xboole_0(A,B) | r2_hidden(c4,A) | r2_hidden(c4,k4_xboole_0(B,A)).  [para(8(a,1),16(a,2))].
+20 r2_hidden(c3,c6) | r2_hidden(c3,c5).  [resolve(18,a,7,a)].
+21 r2_hidden(c4,c6) | r2_hidden(c4,k4_xboole_0(c5,c6)).  [resolve(19,a,7,a)].
+22 r2_hidden(c4,c6) | -r2_hidden(c3,k4_xboole_0(c5,c6)).  [resolve(21,b,12,b)].
+23 r2_hidden(c4,c6) | -r2_hidden(c3,c6).  [resolve(21,b,11,b)].
+24 r2_hidden(c4,c6) | r2_hidden(c3,c5).  [resolve(23,b,20,a)].
+25 r2_hidden(c3,c5) | -r2_hidden(c3,c6).  [resolve(24,a,9,b)].
+26 r2_hidden(c3,c5) | r2_hidden(c3,c5).  [resolve(25,b,20,a)].
+27 r2_hidden(c3,c5).  [copy(26),merge(b)].
+28 k2_xboole_0(A,c5) != B | r2_hidden(c3,B).  [resolve(27,a,13,c)].
+29 r2_hidden(c3,k2_xboole_0(c5,A)).  [resolve(28,a,7,a)].
+30 r2_hidden(c3,k2_xboole_0(A,c5)).  [para(7(a,1),29(a,2))].
+31 k2_xboole_0(A,B) != k2_xboole_0(C,c5) | r2_hidden(c3,A) | r2_hidden(c3,B).  [resolve(30,a,14,b)].
+32 k2_xboole_0(A,c5) != k2_xboole_0(B,C) | r2_hidden(c3,B) | r2_hidden(c3,C).  [copy(31),flip(a)].
+33 r2_hidden(c3,A) | r2_hidden(c3,k4_xboole_0(c5,A)).  [resolve(32,a,8,a(flip))].
+34 r2_hidden(c3,c6) | r2_hidden(c4,c6).  [resolve(33,b,22,b)].
+35 r2_hidden(c3,c6) | -r2_hidden(c4,c6).  [resolve(33,b,10,a)].
+36 r2_hidden(c3,c6) | r2_hidden(c3,c6).  [resolve(35,b,34,b)].
+37 r2_hidden(c3,c6).  [copy(36),merge(b)].
+38 r2_hidden(c4,c6).  [resolve(37,a,23,b)].
+39 -r2_hidden(c4,c6).  [resolve(37,a,9,a)].
+40 $F.  [resolve(38,a,39,a)].
+
+============================== end of proof ==========================

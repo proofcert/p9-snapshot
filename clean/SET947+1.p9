@@ -1,0 +1,15 @@
+
+
+
+
+5 subset(A,B) | in(f2(A,B),A).  [clausify(2)].
+6 -subset(c3,powerset(union(c3))).  [clausify(4)].
+7 -in(A,B) | subset(A,union(B)).  [clausify(3)].
+8 subset(A,B) | -in(f2(A,B),B).  [clausify(2)].
+9 powerset(A) != B | in(C,B) | -subset(C,A).  [clausify(1)].
+10 in(f2(c3,powerset(union(c3))),c3).  [resolve(6,a,5,a)].
+11 -in(f2(c3,powerset(union(c3))),powerset(union(c3))).  [resolve(8,a,6,a)].
+12 subset(f2(c3,powerset(union(c3))),union(c3)).  [resolve(10,a,7,a)].
+13 in(A,powerset(B)) | -subset(A,B).  [xx_res(9,a)].
+14 -subset(f2(c3,powerset(union(c3))),union(c3)).  [resolve(13,a,11,a)].
+15 $F.  [resolve(12,a,14,a)].

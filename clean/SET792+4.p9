@@ -1,0 +1,30 @@
+
+
+
+
+5 -order(A,B) | -member(C,B) | -member(D,B) | -apply(A,C,D) | -apply(A,D,C) | D = C.  [clausify(1)].
+6 order(c1,c2).  [clausify(4)].
+7 -least(A,B,C) | member(A,C).  [clausify(2)].
+8 -least(A,B,C) | -member(D,C) | apply(B,A,D).  [clausify(2)].
+9 least(c3,c1,c2).  [clausify(4)].
+10 min(A,B,C) | -member(A,C) | member(f14(B,C,A),C).  [clausify(3)].
+11 min(A,B,C) | -member(A,C) | apply(B,f14(B,C,A),A).  [clausify(3)].
+12 min(A,B,C) | -member(A,C) | A != f14(B,C,A).  [clausify(3)].
+13 min(A,B,C) | -member(A,C) | f14(B,C,A) != A.  [copy(12),flip(c)].
+14 -min(c3,c1,c2).  [clausify(4)].
+15 -member(A,c2) | -member(B,c2) | -apply(c1,A,B) | -apply(c1,B,A) | B = A.  [resolve(6,a,5,a)].
+16 member(c3,c2).  [resolve(9,a,7,a)].
+17 -member(A,c2) | apply(c1,c3,A).  [resolve(9,a,8,a)].
+18 min(c3,A,c2) | f14(A,c2,c3) != c3.  [resolve(16,a,13,b)].
+19 min(c3,A,c2) | apply(A,f14(A,c2,c3),c3).  [resolve(16,a,11,b)].
+20 min(c3,A,c2) | member(f14(A,c2,c3),c2).  [resolve(16,a,10,b)].
+21 member(f14(c1,c2,c3),c2).  [resolve(20,a,14,a)].
+22 apply(c1,c3,f14(c1,c2,c3)).  [resolve(21,a,17,a)].
+23 -member(f14(c1,c2,c3),c2) | -member(c3,c2) | -apply(c1,f14(c1,c2,c3),c3) | c3 = f14(c1,c2,c3).  [resolve(22,a,15,d)].
+24 -member(f14(c1,c2,c3),c2) | -member(c3,c2) | -apply(c1,f14(c1,c2,c3),c3) | f14(c1,c2,c3) = c3.  [copy(23),flip(d)].
+25 -member(c3,c2) | -apply(c1,f14(c1,c2,c3),c3) | f14(c1,c2,c3) = c3.  [resolve(21,a,24,a)].
+26 -apply(c1,f14(c1,c2,c3),c3) | f14(c1,c2,c3) = c3.  [resolve(16,a,25,a)].
+27 apply(c1,f14(c1,c2,c3),c3).  [resolve(19,a,14,a)].
+28 f14(c1,c2,c3) = c3.  [resolve(27,a,26,a)].
+29 min(c3,c1,c2).  [resolve(28,a,18,b)].
+30 $F.  [resolve(14,a,29,a)].

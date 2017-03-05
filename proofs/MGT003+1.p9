@@ -1,0 +1,71 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n076.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:13:03 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 42992 was started by sandbox on n076.star.cs.uiowa.edu,
+Thu Jun  5 13:13:04 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_42960_n076.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: t3_FOL.
+% Length of proof is 24.
+% Level of proof is 4.
+% Maximum clause weight is 36.000.
+% Given clauses 20.
+
+
+1 (all A all B all C (reorganization_free(A,B,C) -> reorganization_free(A,B,B) & reorganization_free(A,C,C))).  [assumption].
+2 (all A all B (organization(A,B) -> (exists C inertia(A,C,B)))).  [assumption].
+3 (all A all B all C all D all E all F all V6 all V7 (organization(A,C) & organization(B,D) & reorganization_free(A,C,C) & reorganization_free(B,D,D) & inertia(A,E,C) & inertia(B,F,D) & survival_chance(A,V6,C) & survival_chance(B,V7,D) & greater(F,E) -> greater(V7,V6))).  [assumption].
+4 (all A all B all C all D all E (organization(A,D) & organization(A,E) & reorganization_free(A,D,E) & inertia(A,B,D) & inertia(A,C,E) & greater(E,D) -> greater(C,B))).  [assumption].
+5 -(all A all B all C all D all E (organization(A,D) & organization(A,E) & reorganization_free(A,D,E) & survival_chance(A,B,D) & survival_chance(A,C,E) & greater(E,D) -> greater(C,B))).  [assumption].
+6 organization(c1,c4).  [clausify(5)].
+7 organization(c1,c5).  [clausify(5)].
+8 greater(c5,c4).  [clausify(5)].
+9 reorganization_free(c1,c4,c5).  [clausify(5)].
+10 survival_chance(c1,c2,c4).  [clausify(5)].
+11 survival_chance(c1,c3,c5).  [clausify(5)].
+12 -greater(c3,c2).  [clausify(5)].
+13 -reorganization_free(A,B,C) | reorganization_free(A,B,B).  [clausify(1)].
+14 -reorganization_free(A,B,C) | reorganization_free(A,C,C).  [clausify(1)].
+15 -organization(A,B) | inertia(A,f1(A,B),B).  [clausify(2)].
+16 -organization(A,B) | -organization(A,C) | -reorganization_free(A,B,C) | -inertia(A,D,B) | -inertia(A,E,C) | -greater(C,B) | greater(E,D).  [clausify(4)].
+17 -organization(A,B) | -organization(C,D) | -reorganization_free(A,B,B) | -reorganization_free(C,D,D) | -inertia(A,E,B) | -inertia(C,F,D) | -survival_chance(A,V6,B) | -survival_chance(C,V7,D) | -greater(F,E) | greater(V7,V6).  [clausify(3)].
+18 reorganization_free(c1,c4,c4).  [resolve(13,a,9,a)].
+19 reorganization_free(c1,c5,c5).  [resolve(14,a,9,a)].
+20 inertia(c1,f1(c1,c5),c5).  [resolve(15,a,7,a)].
+21 inertia(c1,f1(c1,c4),c4).  [resolve(15,a,6,a)].
+22 -organization(c1,A) | -reorganization_free(c1,c4,A) | -inertia(c1,B,c4) | -inertia(c1,C,A) | -greater(A,c4) | greater(C,B).  [resolve(16,a,6,a)].
+23 -reorganization_free(c1,c4,c5) | -inertia(c1,A,c4) | -inertia(c1,B,c5) | -greater(c5,c4) | greater(B,A).  [resolve(22,a,7,a)].
+24 -inertia(c1,A,c4) | -inertia(c1,B,c5) | -greater(c5,c4) | greater(B,A).  [resolve(23,a,9,a)].
+25 -inertia(c1,A,c5) | -greater(c5,c4) | greater(A,f1(c1,c4)).  [resolve(24,a,21,a)].
+26 -greater(c5,c4) | greater(f1(c1,c5),f1(c1,c4)).  [resolve(25,a,20,a)].
+27 greater(f1(c1,c5),f1(c1,c4)).  [resolve(26,a,8,a)].
+28 -organization(A,B) | -reorganization_free(c1,c4,c4) | -reorganization_free(A,B,B) | -inertia(c1,C,c4) | -inertia(A,D,B) | -survival_chance(c1,E,c4) | -survival_chance(A,F,B) | -greater(D,C) | greater(F,E).  [resolve(17,a,6,a)].
+29 -reorganization_free(c1,c4,c4) | -reorganization_free(c1,c5,c5) | -inertia(c1,A,c4) | -inertia(c1,B,c5) | -survival_chance(c1,C,c4) | -survival_chance(c1,D,c5) | -greater(B,A) | greater(D,C).  [resolve(28,a,7,a)].
+30 -reorganization_free(c1,c5,c5) | -inertia(c1,A,c4) | -inertia(c1,B,c5) | -survival_chance(c1,C,c4) | -survival_chance(c1,D,c5) | -greater(B,A) | greater(D,C).  [resolve(29,a,18,a)].
+31 -inertia(c1,A,c4) | -inertia(c1,B,c5) | -survival_chance(c1,C,c4) | -survival_chance(c1,D,c5) | -greater(B,A) | greater(D,C).  [resolve(30,a,19,a)].
+32 -inertia(c1,A,c5) | -survival_chance(c1,B,c4) | -survival_chance(c1,C,c5) | -greater(A,f1(c1,c4)) | greater(C,B).  [resolve(31,a,21,a)].
+33 -survival_chance(c1,A,c4) | -survival_chance(c1,B,c5) | -greater(f1(c1,c5),f1(c1,c4)) | greater(B,A).  [resolve(32,a,20,a)].
+34 -survival_chance(c1,A,c5) | -greater(f1(c1,c5),f1(c1,c4)) | greater(A,c2).  [resolve(33,a,10,a)].
+35 -greater(f1(c1,c5),f1(c1,c4)) | greater(c3,c2).  [resolve(34,a,11,a)].
+36 -greater(f1(c1,c5),f1(c1,c4)).  [resolve(35,b,12,a)].
+37 $F.  [resolve(36,a,27,a)].
+
+============================== end of proof ==========================

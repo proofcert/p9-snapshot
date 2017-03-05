@@ -1,0 +1,39 @@
+
+
+
+
+
+6 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+7 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(3)].
+8 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(6(a,1),7(a,2))].
+9 in(ordered_pair(c3,c4),cartesian_product2(c5,singleton(c6))) | in(c3,c5).  [clausify(5)].
+10 in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,singleton(c6))) | in(c3,c5).  [para(8(a,1),9(a,1))].
+11 in(ordered_pair(c3,c4),cartesian_product2(c5,singleton(c6))) | c6 = c4.  [clausify(5)].
+12 in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,singleton(c6))) | c6 = c4.  [para(8(a,1),11(a,1))].
+13 -in(ordered_pair(c3,c4),cartesian_product2(c5,singleton(c6))) | -in(c3,c5) | c6 != c4.  [clausify(5)].
+14 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,singleton(c6))) | -in(c3,c5) | c6 != c4.  [para(8(a,1),13(a,1))].
+15 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+16 singleton(A) != B | in(C,B) | C != A.  [clausify(2)].
+17 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(A,C).  [clausify(4)].
+18 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(A,C).  [para(8(a,1),17(a,1))].
+19 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(B,D).  [clausify(4)].
+20 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(B,D).  [para(8(a,1),19(a,1))].
+21 in(ordered_pair(A,B),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [clausify(4)].
+22 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [para(8(a,1),21(a,1))].
+23 in(A,singleton(B)) | A != B.  [xx_res(16,a)].
+24 in(c3,c5) | in(c3,c5).  [resolve(18,a,10,a)].
+25 in(c3,c5).  [copy(24),merge(b)].
+26 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,singleton(c6))) | c6 != c4.  [resolve(25,a,14,b)].
+27 in(c4,singleton(c6)) | c6 = c4.  [resolve(20,a,12,a)].
+28 in(A,singleton(A)).  [xx_res(23,b)].
+29 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,singleton(B))) | -in(A,C).  [resolve(28,a,22,c)].
+30 c6 = c4 | singleton(A) != singleton(c6) | c4 = A.  [resolve(27,a,15,b)].
+31 c6 = c4 | singleton(c6) != singleton(A) | c4 = A.  [copy(30),flip(b)].
+32 c6 = c4 | c4 = c6.  [xx_res(31,b)].
+33 c6 = c4 | c6 = c4.  [copy(32),flip(b)].
+34 c6 = c4.  [copy(33),merge(b)].
+35 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,singleton(c4))) | c6 != c4.  [para(34(a,1),26(a,2,2,1))].
+36 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,singleton(c4))) | c4 != c4.  [para(34(a,1),35(b,1))].
+37 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,singleton(c4))).  [copy(36),xx(b)].
+38 -in(c3,c5).  [resolve(29,a,37,a)].
+39 $F.  [resolve(25,a,38,a)].

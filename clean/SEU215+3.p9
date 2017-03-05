@@ -1,0 +1,44 @@
+
+
+
+
+
+
+7 relation(c8).  [clausify(6)].
+8 function(c8).  [clausify(6)].
+9 relation(c9).  [clausify(6)].
+10 function(c9).  [clausify(6)].
+11 in(c7,relation_dom(c8)).  [clausify(6)].
+12 apply(relation_composition(c8,c9),c7) != apply(c9,apply(c8,c7)).  [clausify(6)].
+13 -relation(A) | -relation(B) | relation(relation_composition(A,B)).  [clausify(2)].
+14 -relation(A) | -function(A) | -relation(B) | -function(B) | function(relation_composition(A,B)).  [clausify(3)].
+15 -relation(A) | -function(A) | in(B,relation_dom(A)) | apply(A,B) = C | empty_set != C.  [clausify(1)].
+16 -relation(A) | -function(A) | -relation(B) | -function(B) | in(C,relation_dom(relation_composition(B,A))) | -in(C,relation_dom(B)) | -in(apply(B,C),relation_dom(A)).  [clausify(4)].
+17 -relation(A) | -function(A) | -relation(B) | -function(B) | -in(C,relation_dom(relation_composition(B,A))) | apply(relation_composition(B,A),C) = apply(A,apply(B,C)).  [clausify(5)].
+18 -relation(A) | relation(relation_composition(c8,A)).  [resolve(13,a,7,a)].
+19 -relation(c8) | -relation(A) | -function(A) | function(relation_composition(c8,A)).  [resolve(14,b,8,a)].
+20 -relation(A) | -function(A) | function(relation_composition(c8,A)).  [resolve(7,a,19,a)].
+21 -function(c9) | -relation(A) | -function(A) | -in(B,relation_dom(relation_composition(A,c9))) | apply(relation_composition(A,c9),B) = apply(c9,apply(A,B)).  [resolve(17,a,9,a)].
+22 -relation(A) | -function(A) | -in(B,relation_dom(relation_composition(A,c9))) | apply(relation_composition(A,c9),B) = apply(c9,apply(A,B)).  [resolve(21,a,10,a)].
+23 -function(c8) | -in(A,relation_dom(relation_composition(c8,c9))) | apply(relation_composition(c8,c9),A) = apply(c9,apply(c8,A)).  [resolve(22,a,7,a)].
+24 -in(A,relation_dom(relation_composition(c8,c9))) | apply(relation_composition(c8,c9),A) = apply(c9,apply(c8,A)).  [resolve(23,a,8,a)].
+25 -in(c7,relation_dom(relation_composition(c8,c9))).  [resolve(24,b,12,a)].
+26 relation(relation_composition(c8,c9)).  [resolve(18,a,9,a)].
+27 -function(c9) | -relation(A) | -function(A) | in(B,relation_dom(relation_composition(A,c9))) | -in(B,relation_dom(A)) | -in(apply(A,B),relation_dom(c9)).  [resolve(16,a,9,a)].
+28 -relation(A) | -function(A) | in(B,relation_dom(relation_composition(A,c9))) | -in(B,relation_dom(A)) | -in(apply(A,B),relation_dom(c9)).  [resolve(27,a,10,a)].
+29 -function(c8) | in(A,relation_dom(relation_composition(c8,c9))) | -in(A,relation_dom(c8)) | -in(apply(c8,A),relation_dom(c9)).  [resolve(28,a,7,a)].
+30 in(A,relation_dom(relation_composition(c8,c9))) | -in(A,relation_dom(c8)) | -in(apply(c8,A),relation_dom(c9)).  [resolve(29,a,8,a)].
+31 -in(c7,relation_dom(c8)) | -in(apply(c8,c7),relation_dom(c9)).  [resolve(30,a,25,a)].
+32 -in(apply(c8,c7),relation_dom(c9)).  [resolve(31,a,11,a)].
+33 -function(c9) | in(A,relation_dom(c9)) | apply(c9,A) = B | empty_set != B.  [resolve(15,a,9,a)].
+34 in(A,relation_dom(c9)) | apply(c9,A) = B | empty_set != B.  [resolve(33,a,10,a)].
+35 apply(c9,apply(c8,c7)) = A | empty_set != A.  [resolve(34,a,32,a)].
+36 empty_set != apply(relation_composition(c8,c9),c7).  [resolve(35,a,12,a(flip))].
+37 apply(relation_composition(c8,c9),c7) != empty_set.  [copy(36),flip(a)].
+38 -relation(c9) | function(relation_composition(c8,c9)).  [resolve(20,b,10,a)].
+39 function(relation_composition(c8,c9)).  [resolve(9,a,38,a)].
+40 -relation(relation_composition(c8,c9)) | in(A,relation_dom(relation_composition(c8,c9))) | apply(relation_composition(c8,c9),A) = B | empty_set != B.  [resolve(15,b,39,a)].
+41 -relation(relation_composition(c8,c9)) | apply(relation_composition(c8,c9),c7) = A | empty_set != A.  [resolve(40,b,25,a)].
+42 -relation(relation_composition(c8,c9)) | empty_set != empty_set.  [resolve(41,b,37,a)].
+43 -relation(relation_composition(c8,c9)).  [xx_res(42,b)].
+44 $F.  [resolve(26,a,43,a)].

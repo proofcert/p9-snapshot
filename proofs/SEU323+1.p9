@@ -1,0 +1,64 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n164.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:34:08 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 54706 was started by sandbox on n164.star.cs.uiowa.edu,
+Fri Jun  6 08:34:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_54674_n164.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: t51_tops_1.
+% Length of proof is 26.
+% Level of proof is 6.
+% Maximum clause weight is 18.000.
+% Given clauses 91.
+
+
+1 (all A all B (topological_space(A) & top_str(A) & closed_subset(B,A) & element(B,powerset(the_carrier(A))) -> open_subset(subset_complement(the_carrier(A),B),A))).  [assumption].
+2 (all A all B (element(B,powerset(A)) -> element(subset_complement(A,B),powerset(A)))).  [assumption].
+3 (all A all B (top_str(A) & element(B,powerset(the_carrier(A))) -> element(topstr_closure(A,B),powerset(the_carrier(A))))).  [assumption].
+4 (all A all B (topological_space(A) & top_str(A) & element(B,powerset(the_carrier(A))) -> closed_subset(topstr_closure(A,B),A))).  [assumption].
+5 (all A (top_str(A) -> (all B (element(B,powerset(the_carrier(A))) -> interior(A,B) = subset_complement(the_carrier(A),topstr_closure(A,subset_complement(the_carrier(A),B))))))).  [assumption].
+6 -(all A (topological_space(A) & top_str(A) -> (all B (element(B,powerset(the_carrier(A))) -> open_subset(interior(A,B),A))))).  [assumption].
+7 top_str(c3).  [clausify(6)].
+8 -top_str(A) | -element(B,powerset(the_carrier(A))) | element(topstr_closure(A,B),powerset(the_carrier(A))).  [clausify(3)].
+9 -topological_space(A) | -top_str(A) | -element(B,powerset(the_carrier(A))) | closed_subset(topstr_closure(A,B),A).  [clausify(4)].
+10 -topological_space(A) | -top_str(A) | -closed_subset(B,A) | -element(B,powerset(the_carrier(A))) | open_subset(subset_complement(the_carrier(A),B),A).  [clausify(1)].
+11 -top_str(A) | -element(B,powerset(the_carrier(A))) | interior(A,B) = subset_complement(the_carrier(A),topstr_closure(A,subset_complement(the_carrier(A),B))).  [clausify(5)].
+12 topological_space(c3).  [clausify(6)].
+13 element(c4,powerset(the_carrier(c3))).  [clausify(6)].
+14 -open_subset(interior(c3,c4),c3).  [clausify(6)].
+15 -element(A,powerset(B)) | element(subset_complement(B,A),powerset(B)).  [clausify(2)].
+16 -element(A,powerset(the_carrier(c3))) | element(topstr_closure(c3,A),powerset(the_carrier(c3))).  [resolve(8,a,7,a)].
+17 -topological_space(c3) | -element(A,powerset(the_carrier(c3))) | closed_subset(topstr_closure(c3,A),c3).  [resolve(9,b,7,a)].
+18 -topological_space(c3) | -closed_subset(A,c3) | -element(A,powerset(the_carrier(c3))) | open_subset(subset_complement(the_carrier(c3),A),c3).  [resolve(10,b,7,a)].
+19 -element(A,powerset(the_carrier(c3))) | interior(c3,A) = subset_complement(the_carrier(c3),topstr_closure(c3,subset_complement(the_carrier(c3),A))).  [resolve(11,a,7,a)].
+20 -element(A,powerset(the_carrier(c3))) | subset_complement(the_carrier(c3),topstr_closure(c3,subset_complement(the_carrier(c3),A))) = interior(c3,A).  [copy(19),flip(b)].
+21 element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))).  [resolve(15,a,13,a)].
+22 subset_complement(the_carrier(c3),topstr_closure(c3,subset_complement(the_carrier(c3),c4))) = interior(c3,c4).  [resolve(20,a,13,a)].
+23 -element(A,powerset(the_carrier(c3))) | closed_subset(topstr_closure(c3,A),c3).  [resolve(17,a,12,a)].
+24 closed_subset(topstr_closure(c3,subset_complement(the_carrier(c3),c4)),c3).  [resolve(23,a,21,a)].
+25 element(topstr_closure(c3,subset_complement(the_carrier(c3),c4)),powerset(the_carrier(c3))).  [resolve(16,a,21,a)].
+26 -closed_subset(A,c3) | -element(A,powerset(the_carrier(c3))) | open_subset(subset_complement(the_carrier(c3),A),c3).  [resolve(18,a,12,a)].
+27 -element(topstr_closure(c3,subset_complement(the_carrier(c3),c4)),powerset(the_carrier(c3))) | open_subset(subset_complement(the_carrier(c3),topstr_closure(c3,subset_complement(the_carrier(c3),c4))),c3).  [resolve(26,a,24,a)].
+28 open_subset(subset_complement(the_carrier(c3),topstr_closure(c3,subset_complement(the_carrier(c3),c4))),c3).  [resolve(27,a,25,a)].
+29 open_subset(interior(c3,c4),c3).  [para(22(a,1),28(a,1))].
+30 $F.  [resolve(29,a,14,a)].
+
+============================== end of proof ==========================

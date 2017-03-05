@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n132.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:15:48 CDT 2014
+% CPUTime    : 0.22 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 9026 was started by sandbox on n132.star.cs.uiowa.edu,
+Fri Jun  6 03:15:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_8994_n132.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.07 (+ 0.00) seconds.
+% Length of proof is 17.
+% Level of proof is 4.
+% Maximum clause weight is 26.000.
+% Given clauses 158.
+
+
+1 (all A all B all C (connect(A,B,C) <-> once(at_the_same_time(at(A,C),at(B,C))))).  [assumption].
+2 (all A exists B trajectory_of(A) = B).  [assumption].
+3 (all A all B all C all D all E all F (once(at_the_same_time(at(E,A),at(F,B))) & once(at_the_same_time(at(E,C),at(F,D))) -> -(ordered_by(trajectory_of(E),A,C) & ordered_by(trajectory_of(F),D,B)))).  [assumption].
+4 -(all A all B all C (connect(B,C,A) -> (all D all E (ordered_by(trajectory_of(C),E,A) & ordered_by(trajectory_of(B),A,D) -> -once(at_the_same_time(at(B,D),at(C,E))))))).  [assumption].
+5 -connect(A,B,C) | once(at_the_same_time(at(A,C),at(B,C))).  [clausify(1)].
+6 connect(c11,c12,c10).  [clausify(4)].
+7 trajectory_of(A) = f25(A).  [clausify(2)].
+8 -once(at_the_same_time(at(A,B),at(C,D))) | -once(at_the_same_time(at(A,E),at(C,F))) | -ordered_by(trajectory_of(A),B,E) | -ordered_by(trajectory_of(C),F,D).  [clausify(3)].
+9 -once(at_the_same_time(at(A,B),at(C,D))) | -once(at_the_same_time(at(A,E),at(C,F))) | -ordered_by(f25(A),B,E) | -ordered_by(trajectory_of(C),F,D).  [para(7(a,1),8(c,1))].
+10 -once(at_the_same_time(at(A,B),at(C,D))) | -once(at_the_same_time(at(A,E),at(C,F))) | -ordered_by(f25(A),B,E) | -ordered_by(f25(C),F,D).  [para(7(a,1),9(d,1))].
+11 ordered_by(trajectory_of(c12),c14,c10).  [clausify(4)].
+12 ordered_by(f25(c12),c14,c10).  [para(7(a,1),11(a,1))].
+13 ordered_by(trajectory_of(c11),c10,c13).  [clausify(4)].
+14 ordered_by(f25(c11),c10,c13).  [para(7(a,1),13(a,1))].
+15 once(at_the_same_time(at(c11,c13),at(c12,c14))).  [clausify(4)].
+16 once(at_the_same_time(at(c11,c10),at(c12,c10))).  [resolve(6,a,5,a)].
+17 -once(at_the_same_time(at(A,B),at(c12,c10))) | -once(at_the_same_time(at(A,C),at(c12,c14))) | -ordered_by(f25(A),B,C).  [resolve(12,a,10,d)].
+18 -once(at_the_same_time(at(c11,c10),at(c12,c10))) | -once(at_the_same_time(at(c11,c13),at(c12,c14))).  [resolve(17,c,14,a)].
+19 -once(at_the_same_time(at(c11,c13),at(c12,c14))).  [resolve(16,a,18,a)].
+20 $F.  [resolve(15,a,19,a)].
+
+============================== end of proof ==========================

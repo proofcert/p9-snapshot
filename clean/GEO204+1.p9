@@ -1,0 +1,33 @@
+
+
+
+
+
+
+
+8 distinct_points(c1,c2).  [clausify(7)].
+9 -distinct_points(A,A).  [clausify(1)].
+10 -distinct_points(c2,c3).  [clausify(7)].
+11 -distinct_points(A,B) | -apart_point_and_line(A,line_connecting(A,B)).  [clausify(3)].
+12 -distinct_points(A,B) | -apart_point_and_line(B,line_connecting(A,B)).  [clausify(4)].
+13 -distinct_points(A,B) | distinct_points(A,C) | distinct_points(B,C).  [clausify(2)].
+14 -apart_point_and_line(A,B) | distinct_points(A,C) | apart_point_and_line(C,B).  [clausify(6)].
+15 -distinct_points(c1,c3) | distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)).  [clausify(7)].
+16 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(5)].
+17 -apart_point_and_line(c1,line_connecting(c1,c2)).  [resolve(11,a,8,a)].
+18 -apart_point_and_line(c2,line_connecting(c1,c2)).  [resolve(12,a,8,a)].
+19 distinct_points(c1,A) | distinct_points(c2,A).  [resolve(13,a,8,a)].
+20 -distinct_points(A,B) | distinct_points(B,A).  [resolve(13,b,9,a)].
+21 -distinct_points(c3,c2).  [resolve(20,b,10,a)].
+22 -apart_point_and_line(c3,A) | apart_point_and_line(c2,A).  [resolve(14,b,21,a)].
+23 -apart_point_and_line(c3,line_connecting(c1,c2)).  [resolve(22,b,18,a)].
+24 distinct_points(c1,c3).  [resolve(19,b,10,a)].
+25 distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)).  [resolve(24,a,15,a)].
+26 -apart_point_and_line(c3,line_connecting(c1,c3)).  [resolve(24,a,12,a)].
+27 -apart_point_and_line(c1,line_connecting(c1,c3)).  [resolve(24,a,11,a)].
+28 -distinct_lines(A,B) | apart_point_and_line(c1,A) | apart_point_and_line(c1,B) | apart_point_and_line(c3,A) | apart_point_and_line(c3,B).  [resolve(16,a,24,a)].
+29 -distinct_lines(line_connecting(c1,c2),A) | apart_point_and_line(c1,A) | apart_point_and_line(c3,line_connecting(c1,c2)) | apart_point_and_line(c3,A).  [resolve(28,b,17,a)].
+30 -distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)) | apart_point_and_line(c3,line_connecting(c1,c2)) | apart_point_and_line(c3,line_connecting(c1,c3)).  [resolve(29,b,27,a)].
+31 -distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)) | apart_point_and_line(c3,line_connecting(c1,c3)).  [resolve(30,b,23,a)].
+32 -distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)).  [resolve(31,b,26,a)].
+33 $F.  [resolve(25,a,32,a)].

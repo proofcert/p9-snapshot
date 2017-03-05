@@ -1,0 +1,55 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n127.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:31:28 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 51967 was started by sandbox on n127.star.cs.uiowa.edu,
+Thu Jun  5 18:31:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_51935_n127.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 5.
+% Maximum clause weight is 6.000.
+% Given clauses 5.
+
+
+1 -(a = d | b = c).  [assumption].
+2 a = b | c = d.  [assumption].
+3 b = a | c = d.  [copy(2),flip(a)].
+4 b = a | d = c.  [copy(3),flip(b)].
+5 a = c | b = d.  [assumption].
+6 c = a | b = d.  [copy(5),flip(a)].
+7 c = a | d = b.  [copy(6),flip(b)].
+8 d != a.  [clausify(1)].
+9 c != b.  [clausify(1)].
+10 c = a | b = a | b = c.  [para(7(b,1),4(b,1))].
+11 c = a | b = a | c = b.  [copy(10),flip(c)].
+12 c = a | b = a.  [resolve(9,a,11,c)].
+13 c = a | b != a.  [para(7(b,1),8(a,1))].
+14 b = a | b = a | d = a.  [para(12(a,1),4(b,2))].
+15 b = a | d = a.  [copy(14),merge(b)].
+16 b = a.  [resolve(8,a,15,b)].
+17 c = a | a != a.  [para(16(a,1),13(b,1))].
+18 c = a.  [copy(17),xx(b)].
+19 a != b.  [para(18(a,1),9(a,1))].
+20 a != a.  [para(16(a,1),19(a,2))].
+21 $F.  [copy(20),xx(a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,33 @@
+
+
+
+
+
+
+
+
+
+10 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+11 set_difference(A,B) != C | -in(D,C) | -in(D,B).  [clausify(2)].
+12 in(A,B) | disjoint(singleton(A),B).  [clausify(3)].
+13 subset(A,A).  [clausify(4)].
+14 -disjoint(A,B) | disjoint(B,A).  [clausify(5)].
+15 -subset(unordered_pair(A,B),C) | in(A,C).  [clausify(6)].
+16 singleton(A) = unordered_pair(A,A).  [clausify(7)].
+17 -disjoint(A,B) | set_difference(A,B) = A.  [clausify(8)].
+18 set_difference(c3,singleton(c4)) = c3 | -in(c4,c3).  [clausify(9)].
+19 set_difference(c3,unordered_pair(c4,c4)) = c3 | -in(c4,c3).  [para(16(a,1),18(a,1,2))].
+20 set_difference(c3,singleton(c4)) != c3 | in(c4,c3).  [clausify(9)].
+21 set_difference(c3,unordered_pair(c4,c4)) != c3 | in(c4,c3).  [para(16(a,1),20(a,1,2))].
+22 in(A,B) | disjoint(unordered_pair(A,A),B).  [para(16(a,1),12(b,1))].
+23 in(A,unordered_pair(A,B)).  [resolve(15,a,13,a)].
+24 in(A,B) | disjoint(B,unordered_pair(A,A)).  [resolve(22,b,14,a)].
+25 set_difference(A,unordered_pair(B,C)) != D | -in(B,D).  [resolve(23,a,11,c)].
+26 in(A,B) | set_difference(B,unordered_pair(A,A)) = B.  [resolve(24,b,17,a)].
+27 set_difference(c3,unordered_pair(c4,c4)) = c3 | set_difference(c3,unordered_pair(c4,c4)) = c3.  [resolve(26,a,19,b)].
+28 set_difference(c3,unordered_pair(c4,c4)) = c3.  [copy(27),merge(b)].
+29 c3 != c3 | in(c4,c3).  [para(28(a,1),21(a,1))].
+30 in(c4,c3).  [copy(29),xx(a)].
+31 set_difference(A,unordered_pair(c4,B)) != c3.  [resolve(30,a,25,b)].
+32 set_difference(A,unordered_pair(B,c4)) != c3.  [para(10(a,1),31(a,1,2))].
+33 $F.  [resolve(32,a,28,a)].

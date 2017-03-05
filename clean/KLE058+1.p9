@@ -1,0 +1,16 @@
+
+
+
+
+5 multiplication(A,one) = A.  [clausify(2)].
+6 addition(domain(A),one) = one.  [clausify(4)].
+7 addition(A,B) = addition(B,A).  [clausify(1)].
+8 multiplication(domain(A),A) = addition(A,multiplication(domain(A),A)).  [clausify(3)].
+9 addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A).  [copy(8),flip(a)].
+10 domain(one) != one.  [assumption].
+11 addition(one,domain(A)) = one.  [para(7(a,1),6(a,1))].
+12 addition(one,domain(one)) = multiplication(domain(one),one).  [para(5(a,1),9(a,1,2))].
+13 one = multiplication(domain(one),one).  [para(11(a,1),12(a,1))].
+14 one = domain(one).  [para(5(a,1),13(a,2))].
+15 domain(one) = one.  [copy(14),flip(a)].
+16 $F.  [resolve(15,a,10,a)].

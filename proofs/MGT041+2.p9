@@ -1,0 +1,57 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n111.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:22:53 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 12655 was started by sandbox on n111.star.cs.uiowa.edu,
+Thu Jun  5 17:22:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_12623_n111.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds: mp_not_high_and_low.
+% Length of proof is 22.
+% Level of proof is 6.
+% Maximum clause weight is 8.000.
+% Given clauses 2.
+
+
+1 (all A all B -(number_of_routines(A,B,low) & number_of_routines(A,B,high))).  [assumption].
+2 (all A all B (organisation_at_time(A,B) & efficient_producer(A) & founding_time(A,B) -> has_elaborated_routines(A,B))).  [assumption].
+3 (all A all B (organisation_at_time(A,B) & first_mover(A) & founding_time(A,B) -> number_of_routines(A,B,low))).  [assumption].
+4 (exists A exists B (organisation_at_time(A,B) & founding_time(A,B) & number_of_routines(A,B,high) & -has_elaborated_routines(A,B))).  [assumption].
+5 -(exists A exists B (organisation_at_time(A,B) & -first_mover(A) & -efficient_producer(A))).  [assumption].
+6 -organisation_at_time(A,B) | first_mover(A) | efficient_producer(A).  [clausify(5)].
+7 organisation_at_time(c1,c2).  [clausify(4)].
+8 -organisation_at_time(A,B) | -efficient_producer(A) | -founding_time(A,B) | has_elaborated_routines(A,B).  [clausify(2)].
+9 -organisation_at_time(A,B) | -first_mover(A) | -founding_time(A,B) | number_of_routines(A,B,low).  [clausify(3)].
+10 -efficient_producer(c1) | -founding_time(c1,c2) | has_elaborated_routines(c1,c2).  [resolve(8,a,7,a)].
+11 founding_time(c1,c2).  [clausify(4)].
+12 -first_mover(c1) | -founding_time(c1,c2) | number_of_routines(c1,c2,low).  [resolve(9,a,7,a)].
+13 -efficient_producer(c1) | has_elaborated_routines(c1,c2).  [resolve(10,b,11,a)].
+14 -has_elaborated_routines(c1,c2).  [clausify(4)].
+15 -first_mover(c1) | number_of_routines(c1,c2,low).  [resolve(12,b,11,a)].
+16 first_mover(c1) | efficient_producer(c1).  [resolve(6,a,7,a)].
+17 number_of_routines(c1,c2,low) | efficient_producer(c1).  [resolve(15,a,16,a)].
+18 -efficient_producer(c1).  [resolve(13,b,14,a)].
+19 number_of_routines(c1,c2,high).  [clausify(4)].
+20 -number_of_routines(A,B,low) | -number_of_routines(A,B,high).  [clausify(1)].
+21 number_of_routines(c1,c2,low).  [resolve(17,b,18,a)].
+22 -number_of_routines(c1,c2,low).  [resolve(20,b,19,a)].
+23 $F.  [resolve(21,a,22,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,515 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n116.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:16:13 CDT 2014
+% CPUTime    : 155.63 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 2665 was started by sandbox on n116.star.cs.uiowa.edu,
+Fri Jun  6 09:16:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_2633_n116.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 150.94 (+ 4.55) seconds.
+% Length of proof is 366.
+% Level of proof is 102.
+% Maximum clause weight is 21.000.
+% Given clauses 8697.
+
+
+1 modus_ponens <-> (all A all B (is_a_theorem(A) & is_a_theorem(implies(A,B)) -> is_a_theorem(B))).  [assumption].
+2 substitution_of_equivalents <-> (all A all B (is_a_theorem(equiv(A,B)) -> A = B)).  [assumption].
+3 implies_2 <-> (all A all B is_a_theorem(implies(implies(A,implies(A,B)),implies(A,B)))).  [assumption].
+4 cn1 <-> (all A all B all C is_a_theorem(implies(implies(A,B),implies(implies(B,C),implies(A,C))))).  [assumption].
+5 cn2 <-> (all A all B is_a_theorem(implies(A,implies(not(A),B)))).  [assumption].
+6 cn3 <-> (all A is_a_theorem(implies(implies(not(A),A),A))).  [assumption].
+7 op_implies_and -> (all A all B implies(A,B) = not(and(A,not(B)))).  [assumption].
+8 op_equiv -> (all A all B equiv(A,B) = and(implies(A,B),implies(B,A))).  [assumption].
+9 op_equiv.  [assumption].
+10 modus_ponens.  [assumption].
+11 cn1.  [assumption].
+12 cn2.  [assumption].
+13 cn3.  [assumption].
+14 substitution_of_equivalents.  [assumption].
+15 op_implies_and.  [assumption].
+16 -implies_2.  [assumption].
+17 -substitution_of_equivalents | -is_a_theorem(equiv(A,B)) | B = A.  [clausify(2)].
+18 -is_a_theorem(equiv(A,B)) | B = A.  [resolve(14,a,17,a)].
+19 -cn2 | is_a_theorem(implies(A,implies(not(A),B))).  [clausify(5)].
+20 is_a_theorem(implies(A,implies(not(A),B))).  [resolve(12,a,19,a)].
+21 -cn3 | is_a_theorem(implies(implies(not(A),A),A)).  [clausify(6)].
+22 is_a_theorem(implies(implies(not(A),A),A)).  [resolve(13,a,21,a)].
+23 -modus_ponens | -is_a_theorem(A) | -is_a_theorem(implies(A,B)) | is_a_theorem(B).  [clausify(1)].
+24 -is_a_theorem(A) | -is_a_theorem(implies(A,B)) | is_a_theorem(B).  [resolve(10,a,23,a)].
+25 -op_implies_and | not(and(A,not(B))) = implies(A,B).  [clausify(7)].
+26 not(and(A,not(B))) = implies(A,B).  [resolve(15,a,25,a)].
+27 implies_2 | -is_a_theorem(implies(implies(c9,implies(c9,c10)),implies(c9,c10))).  [clausify(3)].
+28 -is_a_theorem(implies(implies(c9,implies(c9,c10)),implies(c9,c10))).  [resolve(16,a,27,a)].
+29 -op_equiv | and(implies(A,B),implies(B,A)) = equiv(A,B).  [clausify(8)].
+30 and(implies(A,B),implies(B,A)) = equiv(A,B).  [resolve(9,a,29,a)].
+31 -cn1 | is_a_theorem(implies(implies(A,B),implies(implies(B,C),implies(A,C)))).  [clausify(4)].
+32 is_a_theorem(implies(implies(A,B),implies(implies(B,C),implies(A,C)))).  [resolve(11,a,31,a)].
+33 -is_a_theorem(implies(not(A),A)) | is_a_theorem(A).  [resolve(24,b,22,a)].
+34 -is_a_theorem(A) | is_a_theorem(implies(not(A),B)).  [resolve(24,b,20,a)].
+35 is_a_theorem(implies(and(A,not(B)),implies(implies(A,B),C))).  [para(26(a,1),20(a,1,2,1))].
+36 is_a_theorem(implies(implies(implies(A,B),and(A,not(B))),and(A,not(B)))).  [para(26(a,1),22(a,1,1,1))].
+37 not(and(A,implies(B,C))) = implies(A,and(B,not(C))).  [para(26(a,1),26(a,1,1,2))].
+38 -is_a_theorem(implies(implies(implies(not(A),A),A),B)) | is_a_theorem(B).  [resolve(24,a,22,a)].
+39 -is_a_theorem(implies(implies(implies(not(A),A),A),implies(implies(c9,implies(c9,c10)),implies(c9,c10)))).  [resolve(38,b,28,a)].
+40 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(B,C),implies(A,C))).  [resolve(32,a,24,b)].
+41 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(B,C),implies(A,C))).  [resolve(24,b,32,a)].
+42 -is_a_theorem(implies(implies(c9,implies(c9,c10)),implies(not(implies(c9,c10)),implies(c9,c10)))).  [resolve(41,b,39,a)].
+43 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(B,C),implies(A,C))).  [resolve(24,b,32,a)].
+44 -is_a_theorem(implies(not(implies(c9,c10)),c9)).  [resolve(43,b,42,a)].
+45 -is_a_theorem(implies(implies(implies(implies(A,B),and(A,not(B))),and(A,not(B))),C)) | is_a_theorem(C).  [resolve(24,a,36,a)].
+46 -is_a_theorem(implies(implies(implies(implies(A,B),and(A,not(B))),and(A,not(B))),implies(not(implies(c9,c10)),c9))).  [resolve(45,b,44,a)].
+47 is_a_theorem(implies(implies(implies(implies(A,B),C),D),implies(and(A,not(B)),D))).  [resolve(40,a,35,a)].
+48 is_a_theorem(implies(implies(implies(implies(A,B),implies(C,B)),D),implies(implies(C,A),D))).  [resolve(40,a,32,a)].
+49 is_a_theorem(implies(implies(A,B),implies(implies(not(A),A),B))).  [resolve(40,a,22,a)].
+50 is_a_theorem(implies(implies(implies(not(A),B),C),implies(A,C))).  [resolve(40,a,20,a)].
+51 is_a_theorem(implies(implies(implies(implies(not(A),A),B),C),implies(implies(A,B),C))).  [resolve(49,a,40,a)].
+52 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(not(A),A),B)).  [resolve(49,a,24,b)].
+53 is_a_theorem(implies(implies(implies(A,B),C),implies(implies(implies(not(A),D),B),C))).  [resolve(50,a,40,a)].
+54 -is_a_theorem(implies(implies(not(A),B),C)) | is_a_theorem(implies(A,C)).  [resolve(50,a,24,b)].
+55 not(equiv(A,B)) = implies(implies(A,B),and(B,not(A))).  [para(30(a,1),37(a,1,1))].
+56 implies(implies(A,B),and(B,not(A))) = not(equiv(A,B)).  [copy(55),flip(a)].
+57 -is_a_theorem(implies(implies(A,and(B,not(C))),and(A,implies(B,C)))) | is_a_theorem(and(A,implies(B,C))).  [para(37(a,1),33(a,1,1))].
+58 is_a_theorem(implies(A,implies(implies(B,C),implies(not(A),C)))).  [resolve(54,a,32,a)].
+59 is_a_theorem(implies(A,A)).  [resolve(54,a,22,a)].
+60 -is_a_theorem(implies(implies(implies(A,B),C),D)) | is_a_theorem(implies(and(A,not(B)),D)).  [para(26(a,1),54(a,1,1,1))].
+61 is_a_theorem(implies(not(implies(A,A)),B)).  [resolve(59,a,34,a)].
+62 is_a_theorem(implies(implies(A,B),implies(not(implies(C,C)),B))).  [resolve(61,a,40,a)].
+63 is_a_theorem(implies(implies(not(A),A),implies(implies(B,C),implies(not(A),C)))).  [resolve(58,a,52,a)].
+64 is_a_theorem(implies(implies(implies(implies(A,B),implies(not(C),B)),D),implies(C,D))).  [resolve(58,a,40,a)].
+65 is_a_theorem(implies(A,implies(not(implies(B,B)),C))).  [resolve(62,a,54,a)].
+66 is_a_theorem(implies(implies(implies(not(implies(A,A)),B),C),implies(D,C))).  [resolve(65,a,40,a)].
+67 is_a_theorem(implies(not(equiv(A,A)),and(A,not(A)))).  [para(56(a,1),36(a,1,1))].
+68 is_a_theorem(implies(implies(and(A,not(A)),B),implies(not(equiv(A,A)),B))).  [resolve(67,a,40,a)].
+69 -is_a_theorem(implies(implies(not(implies(A,A)),B),C)) | is_a_theorem(implies(D,C)).  [resolve(66,a,24,b)].
+70 is_a_theorem(implies(A,implies(B,B))).  [resolve(69,a,22,a)].
+71 is_a_theorem(implies(implies(implies(A,A),B),implies(C,B))).  [resolve(70,a,40,a)].
+72 is_a_theorem(implies(implies(implies(A,B),C),implies(implies(implies(D,D),B),C))).  [resolve(71,a,40,a)].
+73 -is_a_theorem(implies(implies(A,A),B)) | is_a_theorem(implies(C,B)).  [resolve(71,a,24,b)].
+74 is_a_theorem(implies(A,implies(B,implies(not(B),C)))).  [resolve(73,a,50,a)].
+75 is_a_theorem(implies(A,implies(implies(not(B),B),B))).  [resolve(73,a,49,a)].
+76 is_a_theorem(implies(implies(implies(A,implies(not(A),B)),C),implies(D,C))).  [resolve(74,a,40,a)].
+77 is_a_theorem(implies(implies(implies(implies(not(A),A),A),B),implies(C,B))).  [resolve(75,a,40,a)].
+78 -is_a_theorem(implies(implies(implies(not(A),A),A),B)) | is_a_theorem(implies(C,B)).  [resolve(77,a,24,b)].
+79 -is_a_theorem(implies(not(A),A)) | is_a_theorem(implies(implies(B,C),implies(not(A),C))).  [resolve(63,a,24,b)].
+80 -is_a_theorem(implies(and(A,not(A)),B)) | is_a_theorem(implies(not(equiv(A,A)),B)).  [resolve(68,a,24,b)].
+81 is_a_theorem(implies(A,implies(implies(implies(B,B),C),C))).  [resolve(72,a,78,a)].
+82 -is_a_theorem(implies(implies(A,B),C)) | is_a_theorem(implies(implies(implies(D,D),B),C)).  [resolve(72,a,24,b)].
+83 is_a_theorem(implies(implies(implies(implies(implies(A,A),B),B),C),implies(D,C))).  [resolve(81,a,40,a)].
+84 is_a_theorem(implies(implies(implies(A,A),B),B)).  [resolve(81,a,33,a)].
+85 is_a_theorem(implies(implies(A,B),implies(implies(implies(C,C),A),B))).  [resolve(84,a,40,a)].
+86 -is_a_theorem(implies(implies(A,A),B)) | is_a_theorem(B).  [resolve(84,a,24,b)].
+87 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(implies(C,C),A),B)).  [resolve(85,a,24,b)].
+88 is_a_theorem(implies(implies(implies(A,A),implies(implies(B,B),C)),implies(D,C))).  [resolve(87,a,71,a)].
+89 is_a_theorem(implies(implies(implies(A,A),B),implies(implies(B,C),implies(D,C)))).  [resolve(82,a,32,a)].
+90 -is_a_theorem(implies(implies(implies(implies(A,A),B),B),C)) | is_a_theorem(implies(D,C)).  [resolve(83,a,24,b)].
+91 -is_a_theorem(implies(implies(A,A),implies(implies(B,B),C))) | is_a_theorem(implies(D,C)).  [resolve(88,a,24,b)].
+92 -is_a_theorem(implies(implies(A,A),B)) | is_a_theorem(implies(implies(B,C),implies(D,C))).  [resolve(89,a,24,b)].
+93 is_a_theorem(implies(A,implies(and(B,not(B)),C))).  [resolve(47,a,90,a)].
+94 is_a_theorem(implies(and(A,not(A)),B)).  [resolve(93,a,86,a)].
+95 is_a_theorem(implies(not(equiv(A,A)),B)).  [resolve(94,a,80,a)].
+96 is_a_theorem(implies(implies(A,B),implies(not(equiv(C,C)),B))).  [resolve(95,a,79,a)].
+97 is_a_theorem(implies(implies(implies(not(equiv(A,A)),B),C),implies(D,C))).  [resolve(96,a,92,a)].
+98 is_a_theorem(implies(A,implies(B,equiv(C,C)))).  [resolve(97,a,78,a)].
+99 is_a_theorem(implies(implies(implies(A,equiv(B,B)),C),implies(D,C))).  [resolve(98,a,92,a)].
+100 is_a_theorem(implies(A,equiv(B,B))).  [resolve(98,a,91,a)].
+101 is_a_theorem(implies(implies(equiv(A,A),B),implies(C,B))).  [resolve(100,a,92,a)].
+102 is_a_theorem(implies(implies(implies(A,B),C),implies(implies(equiv(D,D),B),C))).  [resolve(101,a,40,a)].
+103 -is_a_theorem(implies(implies(implies(not(A),A),B),C)) | is_a_theorem(implies(implies(A,B),C)).  [resolve(51,a,24,b)].
+104 is_a_theorem(implies(A,implies(implies(equiv(B,B),C),C))).  [resolve(102,a,90,a)].
+105 -is_a_theorem(implies(implies(A,B),C)) | is_a_theorem(implies(implies(equiv(D,D),B),C)).  [resolve(102,a,24,b)].
+106 is_a_theorem(implies(implies(implies(implies(equiv(A,A),B),B),C),implies(D,C))).  [resolve(104,a,92,a)].
+107 is_a_theorem(implies(implies(equiv(A,A),B),B)).  [resolve(104,a,86,a)].
+108 is_a_theorem(implies(A,implies(implies(implies(not(implies(B,B)),C),D),D))).  [resolve(53,a,90,a)].
+109 is_a_theorem(implies(A,implies(implies(implies(not(not(B)),C),B),B))).  [resolve(53,a,78,a)].
+110 -is_a_theorem(implies(implies(A,B),C)) | is_a_theorem(implies(implies(implies(not(A),D),B),C)).  [resolve(53,a,24,b)].
+111 is_a_theorem(implies(implies(A,B),implies(implies(equiv(C,C),A),B))).  [resolve(107,a,40,a)].
+112 -is_a_theorem(implies(equiv(A,A),B)) | is_a_theorem(B).  [resolve(107,a,24,b)].
+113 is_a_theorem(implies(implies(implies(not(not(A)),B),A),A)).  [resolve(109,a,112,a)].
+114 is_a_theorem(implies(implies(A,B),implies(implies(implies(not(not(A)),C),A),B))).  [resolve(113,a,40,a)].
+115 -is_a_theorem(implies(implies(not(not(A)),B),A)) | is_a_theorem(A).  [resolve(113,a,24,b)].
+116 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(equiv(C,C),A),B)).  [resolve(111,a,24,b)].
+117 is_a_theorem(implies(implies(implies(not(implies(A,A)),B),C),C)).  [resolve(108,a,115,a)].
+118 -is_a_theorem(implies(implies(not(implies(A,A)),B),C)) | is_a_theorem(C).  [resolve(117,a,24,b)].
+119 is_a_theorem(implies(implies(equiv(A,A),B),implies(implies(B,C),implies(D,C)))).  [resolve(105,a,89,a)].
+120 -is_a_theorem(implies(implies(implies(equiv(A,A),B),B),C)) | is_a_theorem(implies(D,C)).  [resolve(106,a,24,b)].
+121 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(implies(not(not(A)),C),A),B)).  [resolve(114,a,24,b)].
+122 -is_a_theorem(implies(equiv(A,A),B)) | is_a_theorem(implies(implies(B,C),implies(D,C))).  [resolve(119,a,24,b)].
+123 is_a_theorem(implies(A,implies(implies(implies(not(equiv(B,B)),C),D),D))).  [resolve(120,a,53,a)].
+124 is_a_theorem(implies(implies(implies(not(equiv(A,A)),B),C),C)).  [resolve(123,a,118,a)].
+125 is_a_theorem(implies(implies(A,B),implies(implies(implies(not(equiv(C,C)),D),A),B))).  [resolve(124,a,40,a)].
+126 -is_a_theorem(implies(implies(not(equiv(A,A)),B),C)) | is_a_theorem(C).  [resolve(124,a,24,b)].
+127 -is_a_theorem(not(equiv(not(equiv(A,A)),B))) | is_a_theorem(and(B,not(not(equiv(A,A))))).  [para(56(a,1),126(a,1))].
+128 is_a_theorem(implies(implies(implies(not(not(and(A,not(A)))),B),and(A,not(A))),C)).  [resolve(121,a,94,a)].
+129 is_a_theorem(implies(implies(implies(not(implies(A,A)),B),and(A,not(A))),C)).  [para(26(a,1),128(a,1,1,1,1,1))].
+130 is_a_theorem(implies(and(not(implies(A,A)),not(B)),C)).  [resolve(60,a,129,a)].
+131 is_a_theorem(implies(and(not(equiv(A,A)),not(B)),C)).  [resolve(60,a,124,a)].
+132 is_a_theorem(implies(and(not(not(A)),not(B)),A)).  [resolve(60,a,113,a)].
+133 is_a_theorem(implies(and(A,not(equiv(B,B))),implies(C,D))).  [resolve(60,a,99,a)].
+134 is_a_theorem(implies(and(implies(implies(A,A),B),not(B)),implies(C,D))).  [resolve(60,a,83,a)].
+135 is_a_theorem(implies(and(implies(not(A),A),not(A)),implies(B,C))).  [resolve(60,a,77,a)].
+136 is_a_theorem(implies(and(A,not(implies(not(A),B))),implies(C,D))).  [resolve(60,a,76,a)].
+137 is_a_theorem(implies(and(A,not(B)),implies(implies(implies(not(A),C),B),D))).  [resolve(60,a,53,a)].
+138 is_a_theorem(implies(and(implies(A,B),not(implies(C,B))),implies(implies(C,A),D))).  [resolve(60,a,48,a)].
+139 is_a_theorem(implies(implies(equiv(A,A),and(not(not(B)),not(C))),B)).  [resolve(132,a,116,a)].
+140 is_a_theorem(implies(implies(not(and(not(not(A)),not(B))),and(not(not(A)),not(B))),A)).  [resolve(132,a,52,a)].
+141 is_a_theorem(implies(implies(implies(not(not(A)),B),and(not(not(A)),not(B))),A)).  [para(26(a,1),140(a,1,1,1))].
+142 is_a_theorem(implies(implies(A,B),implies(and(not(not(A)),not(C)),B))).  [resolve(132,a,40,a)].
+143 is_a_theorem(implies(implies(equiv(A,A),and(not(implies(B,B)),not(C))),D)).  [resolve(130,a,116,a)].
+144 is_a_theorem(implies(implies(implies(A,A),and(not(equiv(B,B)),not(C))),D)).  [resolve(131,a,87,a)].
+145 is_a_theorem(implies(implies(implies(A,B),C),implies(and(D,not(equiv(E,E))),C))).  [resolve(133,a,40,a)].
+146 is_a_theorem(implies(and(implies(not(A),A),not(A)),not(equiv(B,C)))).  [para(56(a,1),135(a,1,2))].
+147 is_a_theorem(implies(and(A,not(implies(not(A),B))),not(equiv(C,D)))).  [para(56(a,1),136(a,1,2))].
+148 is_a_theorem(implies(and(implies(implies(A,A),B),not(B)),not(equiv(C,D)))).  [para(56(a,1),134(a,1,2))].
+149 is_a_theorem(implies(and(not(not(not(equiv(A,A)))),not(B)),C)).  [resolve(142,a,126,a)].
+150 is_a_theorem(implies(implies(implies(and(not(not(A)),not(B)),A),C),implies(D,C))).  [resolve(142,a,92,a)].
+151 is_a_theorem(implies(implies(implies(A,A),and(not(not(not(equiv(B,B)))),not(C))),D)).  [resolve(149,a,87,a)].
+152 is_a_theorem(implies(and(A,not(and(B,not(not(A))))),implies(not(equiv(not(A),B)),C))).  [para(56(a,1),137(a,1,2,1))].
+153 is_a_theorem(implies(and(A,implies(B,not(A))),implies(not(equiv(not(A),B)),C))).  [para(26(a,1),152(a,1,1,2))].
+154 is_a_theorem(and(equiv(A,A),implies(not(implies(B,B)),C))).  [resolve(143,a,57,a)].
+155 is_a_theorem(and(implies(A,A),implies(not(equiv(B,B)),C))).  [resolve(144,a,57,a)].
+156 -is_a_theorem(implies(implies(implies(A,B),implies(not(C),B)),D)) | is_a_theorem(implies(C,D)).  [resolve(64,a,24,b)].
+157 is_a_theorem(implies(implies(implies(not(equiv(A,A)),B),and(not(not(C)),not(D))),C)).  [resolve(110,a,139,a)].
+158 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(implies(not(equiv(C,C)),D),A),B)).  [resolve(125,a,24,b)].
+159 is_a_theorem(implies(and(implies(A,B),not(implies(C,B))),not(equiv(C,A)))).  [para(56(a,1),138(a,1,2))].
+160 is_a_theorem(implies(implies(not(A),and(not(not(A)),not(not(A)))),A)).  [resolve(141,a,103,a)].
+161 -is_a_theorem(implies(not(A),and(not(not(A)),not(not(A))))) | is_a_theorem(A).  [resolve(160,a,24,b)].
+162 is_a_theorem(implies(A,implies(and(B,not(equiv(C,C))),D))).  [resolve(145,a,120,a)].
+163 is_a_theorem(implies(implies(implies(and(A,not(equiv(B,B))),C),D),implies(E,D))).  [resolve(162,a,122,a)].
+164 -is_a_theorem(and(A,implies(B,not(A)))) | is_a_theorem(implies(not(equiv(not(A),B)),C)).  [resolve(153,a,24,b)].
+165 is_a_theorem(implies(A,implies(B,implies(not(A),C)))).  [resolve(156,a,150,a)].
+166 is_a_theorem(implies(A,implies(implies(implies(not(A),B),C),implies(D,C)))).  [resolve(156,a,89,a)].
+167 is_a_theorem(implies(implies(implies(A,implies(not(B),C)),D),implies(B,D))).  [resolve(165,a,40,a)].
+168 is_a_theorem(implies(A,implies(B,implies(C,implies(not(B),D))))).  [resolve(167,a,73,a)].
+169 -is_a_theorem(implies(implies(A,implies(not(B),C)),D)) | is_a_theorem(implies(B,D)).  [resolve(167,a,24,b)].
+170 is_a_theorem(implies(implies(implies(not(equiv(A,A)),B),and(not(implies(C,C)),not(D))),E)).  [resolve(158,a,130,a)].
+171 is_a_theorem(implies(and(and(A,not(equiv(B,B))),not(C)),implies(D,E))).  [resolve(163,a,60,a)].
+172 is_a_theorem(implies(and(and(A,not(equiv(B,B))),not(C)),not(equiv(D,E)))).  [para(56(a,1),171(a,1,2))].
+173 is_a_theorem(implies(not(equiv(not(implies(A,A)),not(equiv(B,B)))),C)).  [resolve(164,a,155,a)].
+174 is_a_theorem(implies(not(equiv(not(equiv(A,A)),not(implies(B,B)))),C)).  [resolve(164,a,154,a)].
+175 is_a_theorem(equiv(not(implies(A,A)),not(equiv(B,B)))).  [resolve(173,a,161,a)].
+176 not(equiv(A,A)) = not(implies(B,B)).  [resolve(175,a,18,a)].
+177 not(equiv(A,A)) = c_0.  [new_symbol(176)].
+178 c_0 = not(implies(B,B)).  [para(177(a,1),176(a,1))].
+179 not(implies(A,A)) = c_0.  [copy(178),flip(a)].
+180 is_a_theorem(implies(not(equiv(c_0,not(implies(B,B)))),C)).  [para(177(a,1),174(a,1,1,1,1))].
+181 is_a_theorem(implies(not(equiv(c_0,c_0)),C)).  [para(179(a,1),180(a,1,1,1,2))].
+182 is_a_theorem(implies(c_0,A)).  [para(177(a,1),181(a,1,1))].
+183 is_a_theorem(implies(and(and(A,c_0),not(B)),not(equiv(C,D)))).  [para(177(a,1),172(a,1,1,1,2))].
+184 is_a_theorem(implies(implies(implies(c_0,B),and(not(implies(C,C)),not(D))),E)).  [para(177(a,1),170(a,1,1,1,1))].
+185 is_a_theorem(implies(implies(implies(c_0,A),and(c_0,not(B))),C)).  [para(179(a,1),184(a,1,1,2,1))].
+186 is_a_theorem(implies(implies(implies(c_0,A),and(not(not(B)),not(C))),B)).  [para(177(a,1),157(a,1,1,1,1))].
+187 is_a_theorem(implies(implies(implies(A,A),and(not(not(c_0)),not(B))),C)).  [para(177(a,1),151(a,1,1,2,1,1,1))].
+188 -is_a_theorem(not(equiv(c_0,B))) | is_a_theorem(and(B,not(not(equiv(A,A))))).  [para(177(a,1),127(a,1,1,1))].
+189 -is_a_theorem(not(equiv(c_0,A))) | is_a_theorem(and(A,not(c_0))).  [para(177(a,1),188(b,1,2,1))].
+190 -is_a_theorem(implies(implies(c_0,A),B)) | is_a_theorem(B).  [para(177(a,1),126(a,1,1,1))].
+191 not(and(A,c_0)) = implies(A,equiv(B,B)).  [para(177(a,1),26(a,1,1,2))].
+192 implies(A,equiv(B,B)) = not(and(A,c_0)).  [copy(191),flip(a)].
+193 is_a_theorem(implies(and(implies(not(A),A),not(A)),c_0)).  [para(177(a,1),146(a,1,2))].
+194 is_a_theorem(implies(and(A,not(implies(not(A),B))),c_0)).  [para(177(a,1),147(a,1,2))].
+195 is_a_theorem(implies(and(implies(implies(A,A),B),not(B)),c_0)).  [para(177(a,1),148(a,1,2))].
+196 not(and(A,c_0)) = implies(A,implies(B,B)).  [para(179(a,1),26(a,1,1,2))].
+197 implies(A,implies(B,B)) = not(and(A,c_0)).  [copy(196),flip(a)].
+198 -is_a_theorem(implies(not(and(equiv(A,A),c_0)),B)) | is_a_theorem(B).  [para(192(a,1),86(a,1,1))].
+199 is_a_theorem(implies(implies(c_0,A),implies(and(implies(not(B),B),not(B)),A))).  [resolve(193,a,40,a)].
+200 is_a_theorem(implies(implies(c_0,A),implies(and(B,not(implies(not(B),C))),A))).  [resolve(194,a,40,a)].
+201 is_a_theorem(and(implies(c_0,A),implies(c_0,B))).  [resolve(185,a,57,a)].
+202 is_a_theorem(implies(not(equiv(not(implies(c_0,A)),c_0)),B)).  [resolve(201,a,164,a)].
+203 is_a_theorem(equiv(not(implies(c_0,A)),c_0)).  [resolve(202,a,161,a)].
+204 c_0 = not(implies(c_0,A)).  [resolve(203,a,18,a)].
+205 not(implies(c_0,A)) = c_0.  [copy(204),flip(a)].
+206 not(and(A,c_0)) = implies(A,implies(c_0,B)).  [para(205(a,1),26(a,1,1,2))].
+207 implies(A,implies(c_0,B)) = not(and(A,c_0)).  [copy(206),flip(a)].
+208 is_a_theorem(implies(and(implies(not(and(equiv(A,A),c_0)),B),not(B)),c_0)).  [para(192(a,1),195(a,1,1,1,1))].
+209 is_a_theorem(implies(and(and(A,c_0),not(B)),c_0)).  [para(177(a,1),183(a,1,2))].
+210 is_a_theorem(implies(implies(c_0,A),implies(and(and(B,c_0),not(C)),A))).  [resolve(209,a,40,a)].
+211 is_a_theorem(implies(not(equiv(c_0,not(not(A)))),A)).  [para(56(a,1),186(a,1,1))].
+212 is_a_theorem(implies(implies(A,B),implies(not(equiv(c_0,not(not(A)))),B))).  [resolve(211,a,40,a)].
+213 is_a_theorem(and(implies(A,A),implies(not(not(c_0)),B))).  [resolve(187,a,57,a)].
+214 is_a_theorem(implies(not(equiv(not(implies(A,A)),not(not(c_0)))),B)).  [resolve(213,a,164,a)].
+215 is_a_theorem(implies(not(equiv(c_0,not(not(c_0)))),A)).  [para(179(a,1),214(a,1,1,1,1))].
+216 is_a_theorem(equiv(c_0,not(not(c_0)))).  [resolve(215,a,161,a)].
+217 not(not(c_0)) = c_0.  [resolve(216,a,18,a)].
+218 not(and(A,c_0)) = implies(A,not(c_0)).  [para(217(a,1),26(a,1,1,2))].
+219 -is_a_theorem(implies(c_0,not(c_0))) | is_a_theorem(not(c_0)).  [para(217(a,1),33(a,1,1))].
+220 is_a_theorem(not(c_0)).  [resolve(182,a,219,a)].
+221 implies(implies(not(c_0),A),and(A,c_0)) = not(equiv(not(c_0),A)).  [para(217(a,1),56(a,1,2,2))].
+222 is_a_theorem(implies(A,implies(not(c_0),implies(c_0,B)))).  [para(217(a,1),74(a,1,2,2,1))].
+223 is_a_theorem(implies(A,not(and(not(c_0),c_0)))).  [para(207(a,1),222(a,1,2))].
+224 is_a_theorem(implies(A,implies(not(c_0),not(c_0)))).  [para(218(a,1),223(a,1,2))].
+225 is_a_theorem(not(and(A,c_0))).  [para(197(a,1),224(a,1))].
+226 is_a_theorem(implies(A,not(c_0))).  [para(218(a,1),225(a,1))].
+227 is_a_theorem(implies(and(implies(implies(equiv(A,A),not(c_0)),B),not(B)),c_0)).  [para(218(a,1),208(a,1,1,1,1))].
+228 implies(A,implies(c_0,B)) = implies(A,not(c_0)).  [para(218(a,1),207(a,2))].
+229 -is_a_theorem(implies(implies(equiv(A,A),not(c_0)),B)) | is_a_theorem(B).  [para(218(a,1),198(a,1,1))].
+230 implies(A,implies(B,B)) = implies(A,not(c_0)).  [para(218(a,1),197(a,2))].
+231 implies(A,equiv(B,B)) = implies(A,not(c_0)).  [para(218(a,1),192(a,2))].
+232 is_a_theorem(implies(implies(not(c_0),A),implies(B,A))).  [resolve(226,a,122,a)].
+233 is_a_theorem(implies(implies(implies(A,B),C),implies(implies(not(c_0),B),C))).  [resolve(232,a,40,a)].
+234 is_a_theorem(implies(and(and(A,c_0),not(B)),C)).  [resolve(210,a,190,a)].
+235 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(not(equiv(c_0,not(not(A)))),B)).  [resolve(212,a,24,b)].
+236 is_a_theorem(implies(A,implies(implies(not(c_0),B),B))).  [resolve(233,a,120,a)].
+237 is_a_theorem(implies(implies(A,B),implies(implies(not(c_0),A),B))).  [resolve(233,a,103,a)].
+238 is_a_theorem(implies(implies(not(c_0),A),A)).  [resolve(236,a,229,a)].
+239 -is_a_theorem(implies(not(c_0),A)) | is_a_theorem(A).  [resolve(238,a,24,b)].
+240 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(implies(not(c_0),A),B)).  [resolve(237,a,24,b)].
+241 is_a_theorem(implies(implies(not(c_0),and(and(A,c_0),not(B))),C)).  [resolve(240,a,234,a)].
+242 is_a_theorem(and(not(c_0),implies(and(A,c_0),B))).  [resolve(241,a,57,a)].
+243 is_a_theorem(implies(not(equiv(not(not(c_0)),and(A,c_0))),B)).  [resolve(242,a,164,a)].
+244 is_a_theorem(implies(not(equiv(c_0,and(A,c_0))),B)).  [para(217(a,1),243(a,1,1,1,1))].
+245 is_a_theorem(equiv(c_0,and(A,c_0))).  [resolve(244,a,161,a)].
+246 and(A,c_0) = c_0.  [resolve(245,a,18,a)].
+247 implies(implies(not(c_0),A),c_0) = not(equiv(not(c_0),A)).  [para(246(a,1),221(a,1,2))].
+248 not(c_0) = implies(A,not(c_0)).  [para(246(a,1),218(a,1,1))].
+249 implies(A,not(c_0)) = not(c_0).  [copy(248),flip(a)].
+250 implies(A,equiv(B,B)) = not(c_0).  [para(249(a,1),231(a,2))].
+251 implies(A,implies(B,B)) = not(c_0).  [para(249(a,1),230(a,2))].
+252 implies(A,implies(c_0,B)) = not(c_0).  [para(249(a,1),228(a,2))].
+253 is_a_theorem(implies(and(implies(not(c_0),A),not(A)),c_0)).  [para(249(a,1),227(a,1,1,1,1))].
+254 and(not(c_0),implies(not(c_0),A)) = equiv(A,not(c_0)).  [para(249(a,1),30(a,1,1))].
+255 and(implies(not(c_0),A),not(c_0)) = equiv(not(c_0),A).  [para(249(a,1),30(a,1,2))].
+256 is_a_theorem(implies(implies(c_0,A),implies(and(implies(not(c_0),B),not(B)),A))).  [resolve(253,a,40,a)].
+257 implies(implies(not(c_0),not(c_0)),c_0) = c_0.  [para(177(a,1),247(a,2))].
+258 implies(not(c_0),c_0) = c_0.  [para(249(a,1),257(a,1,1))].
+259 implies(not(c_0),c_0) = not(equiv(not(c_0),equiv(A,A))).  [para(250(a,1),247(a,1,1))].
+260 c_0 = not(equiv(not(c_0),equiv(A,A))).  [para(258(a,1),259(a,1))].
+261 not(equiv(not(c_0),equiv(A,A))) = c_0.  [copy(260),flip(a)].
+262 implies(not(c_0),c_0) = not(equiv(not(c_0),implies(A,A))).  [para(251(a,1),247(a,1,1))].
+263 c_0 = not(equiv(not(c_0),implies(A,A))).  [para(258(a,1),262(a,1))].
+264 not(equiv(not(c_0),implies(A,A))) = c_0.  [copy(263),flip(a)].
+265 implies(not(c_0),c_0) = not(equiv(not(c_0),implies(c_0,A))).  [para(252(a,1),247(a,1,1))].
+266 c_0 = not(equiv(not(c_0),implies(c_0,A))).  [para(258(a,1),265(a,1))].
+267 not(equiv(not(c_0),implies(c_0,A))) = c_0.  [copy(266),flip(a)].
+268 is_a_theorem(implies(implies(not(c_0),A),implies(implies(A,c_0),c_0))).  [para(258(a,1),32(a,1,2,2))].
+269 is_a_theorem(implies(and(implies(A,c_0),not(c_0)),implies(implies(not(c_0),A),B))).  [para(258(a,1),138(a,1,1,2,1))].
+270 is_a_theorem(implies(A,implies(implies(implies(not(A),B),c_0),c_0))).  [para(258(a,1),166(a,1,2,2))].
+271 not(and(A,c_0)) = implies(A,equiv(not(c_0),equiv(B,B))).  [para(261(a,1),26(a,1,1,2))].
+272 not(c_0) = implies(A,equiv(not(c_0),equiv(B,B))).  [para(246(a,1),271(a,1,1))].
+273 implies(A,equiv(not(c_0),equiv(B,B))) = not(c_0).  [copy(272),flip(a)].
+274 -is_a_theorem(implies(c_0,equiv(not(c_0),equiv(A,A)))) | is_a_theorem(equiv(not(c_0),equiv(A,A))).  [para(261(a,1),33(a,1,1))].
+275 -is_a_theorem(not(c_0)) | is_a_theorem(equiv(not(c_0),equiv(A,A))).  [para(273(a,1),274(a,1))].
+276 is_a_theorem(equiv(not(c_0),equiv(A,A))).  [resolve(220,a,275,a)].
+277 equiv(A,A) = not(c_0).  [resolve(276,a,18,a)].
+278 not(and(A,c_0)) = implies(A,equiv(not(c_0),implies(B,B))).  [para(264(a,1),26(a,1,1,2))].
+279 not(c_0) = implies(A,equiv(not(c_0),implies(B,B))).  [para(246(a,1),278(a,1,1))].
+280 implies(A,equiv(not(c_0),implies(B,B))) = not(c_0).  [copy(279),flip(a)].
+281 -is_a_theorem(implies(c_0,equiv(not(c_0),implies(A,A)))) | is_a_theorem(equiv(not(c_0),implies(A,A))).  [para(264(a,1),33(a,1,1))].
+282 -is_a_theorem(not(c_0)) | is_a_theorem(equiv(not(c_0),implies(A,A))).  [para(280(a,1),281(a,1))].
+283 is_a_theorem(equiv(not(c_0),implies(A,A))).  [resolve(220,a,282,a)].
+284 implies(A,A) = not(c_0).  [resolve(283,a,18,a)].
+285 and(not(c_0),implies(A,A)) = equiv(A,A).  [para(284(a,1),30(a,1,1))].
+286 and(not(c_0),not(c_0)) = equiv(A,A).  [para(284(a,1),285(a,1,2))].
+287 and(not(c_0),not(c_0)) = not(c_0).  [para(277(a,1),286(a,2))].
+288 is_a_theorem(implies(implies(A,B),implies(not(c_0),implies(A,B)))).  [para(284(a,1),32(a,1,2,1))].
+289 not(and(A,not(c_0))) = implies(A,and(B,not(B))).  [para(284(a,1),37(a,1,1,2))].
+290 implies(A,c_0) = implies(A,and(B,not(B))).  [para(26(a,1),289(a,1))].
+291 implies(A,and(B,not(B))) = implies(A,c_0).  [copy(290),flip(a)].
+292 not(and(A,c_0)) = implies(A,equiv(not(c_0),implies(c_0,B))).  [para(267(a,1),26(a,1,1,2))].
+293 not(c_0) = implies(A,equiv(not(c_0),implies(c_0,B))).  [para(246(a,1),292(a,1,1))].
+294 implies(A,equiv(not(c_0),implies(c_0,B))) = not(c_0).  [copy(293),flip(a)].
+295 -is_a_theorem(implies(c_0,equiv(not(c_0),implies(c_0,A)))) | is_a_theorem(equiv(not(c_0),implies(c_0,A))).  [para(267(a,1),33(a,1,1))].
+296 -is_a_theorem(not(c_0)) | is_a_theorem(equiv(not(c_0),implies(c_0,A))).  [para(294(a,1),295(a,1))].
+297 is_a_theorem(equiv(not(c_0),implies(c_0,A))).  [resolve(220,a,296,a)].
+298 implies(c_0,A) = not(c_0).  [resolve(297,a,18,a)].
+299 is_a_theorem(implies(not(c_0),implies(and(implies(not(c_0),A),not(A)),B))).  [para(298(a,1),256(a,1,1))].
+300 is_a_theorem(implies(not(c_0),implies(and(A,not(implies(not(A),B))),C))).  [para(298(a,1),200(a,1,1))].
+301 is_a_theorem(implies(not(c_0),implies(and(implies(not(A),A),not(A)),B))).  [para(298(a,1),199(a,1,1))].
+302 and(implies(A,c_0),not(c_0)) = equiv(A,c_0).  [para(298(a,1),30(a,1,2))].
+303 is_a_theorem(implies(implies(A,c_0),implies(not(c_0),implies(A,B)))).  [para(298(a,1),32(a,1,2,1))].
+304 not(and(A,not(c_0))) = implies(A,and(c_0,not(B))).  [para(298(a,1),37(a,1,1,2))].
+305 implies(A,c_0) = implies(A,and(c_0,not(B))).  [para(26(a,1),304(a,1))].
+306 implies(A,and(c_0,not(B))) = implies(A,c_0).  [copy(305),flip(a)].
+307 implies(not(c_0),and(A,not(c_0))) = not(equiv(c_0,A)).  [para(298(a,1),56(a,1,1))].
+308 is_a_theorem(implies(and(not(c_0),not(implies(A,B))),not(equiv(A,c_0)))).  [para(298(a,1),159(a,1,1,1))].
+309 is_a_theorem(implies(and(A,not(c_0)),implies(not(equiv(not(A),c_0)),B))).  [para(298(a,1),153(a,1,1,2))].
+310 is_a_theorem(implies(equiv(A,c_0),implies(implies(not(c_0),A),B))).  [para(302(a,1),269(a,1,1))].
+311 implies(implies(A,c_0),and(and(B,not(B)),not(A))) = not(equiv(A,and(B,not(B)))).  [para(291(a,1),56(a,1,1))].
+312 implies(and(A,not(A)),c_0) = not(c_0).  [para(291(a,1),284(a,1))].
+313 and(not(c_0),implies(c_0,and(A,not(A)))) = equiv(and(A,not(A)),c_0).  [para(312(a,1),30(a,1,1))].
+314 and(not(c_0),implies(c_0,c_0)) = equiv(and(A,not(A)),c_0).  [para(291(a,1),313(a,1,2))].
+315 and(not(c_0),not(c_0)) = equiv(and(A,not(A)),c_0).  [para(284(a,1),314(a,1,2))].
+316 not(c_0) = equiv(and(A,not(A)),c_0).  [para(287(a,1),315(a,1))].
+317 equiv(and(A,not(A)),c_0) = not(c_0).  [copy(316),flip(a)].
+318 -is_a_theorem(not(c_0)) | c_0 = and(A,not(A)).  [para(317(a,1),18(a,1))].
+319 -is_a_theorem(not(c_0)) | and(A,not(A)) = c_0.  [copy(318),flip(b)].
+320 and(A,not(A)) = c_0.  [resolve(220,a,319,a)].
+321 implies(implies(A,c_0),and(c_0,not(A))) = not(equiv(A,and(B,not(B)))).  [para(320(a,1),311(a,1,2,1))].
+322 implies(implies(A,c_0),c_0) = not(equiv(A,and(B,not(B)))).  [para(306(a,1),321(a,1))].
+323 implies(implies(A,c_0),c_0) = not(equiv(A,c_0)).  [para(320(a,1),322(a,2,1,2))].
+324 is_a_theorem(implies(A,not(equiv(implies(not(A),B),c_0)))).  [para(323(a,1),270(a,1,2))].
+325 is_a_theorem(implies(implies(not(c_0),A),not(equiv(A,c_0)))).  [para(323(a,1),268(a,1,2))].
+326 and(implies(c_0,implies(A,c_0)),not(equiv(A,c_0))) = equiv(c_0,implies(A,c_0)).  [para(323(a,1),30(a,1,2))].
+327 and(not(c_0),not(equiv(A,c_0))) = equiv(c_0,implies(A,c_0)).  [para(298(a,1),326(a,1,1))].
+328 equiv(c_0,implies(A,c_0)) = and(not(c_0),not(equiv(A,c_0))).  [copy(327),flip(a)].
+329 is_a_theorem(implies(A,implies(not(equiv(not(A),c_0)),implies(B,c_0)))).  [para(323(a,1),166(a,1,2,1))].
+330 -is_a_theorem(implies(not(c_0),A)) | is_a_theorem(not(equiv(A,c_0))).  [resolve(325,a,24,b)].
+331 is_a_theorem(not(equiv(implies(A,implies(B,implies(not(A),C))),c_0))).  [resolve(330,a,168,a)].
+332 is_a_theorem(not(equiv(implies(implies(implies(not(not(A)),B),A),A),c_0))).  [resolve(330,a,109,a)].
+333 -is_a_theorem(implies(A,B)) | is_a_theorem(implies(not(c_0),implies(A,B))).  [resolve(288,a,24,b)].
+334 is_a_theorem(implies(not(c_0),implies(equiv(A,c_0),implies(implies(not(c_0),A),B)))).  [resolve(333,a,310,a)].
+335 is_a_theorem(implies(A,implies(not(equiv(not(A),c_0)),c_0))).  [para(258(a,1),329(a,1,2,2))].
+336 -is_a_theorem(A) | is_a_theorem(implies(not(equiv(not(A),c_0)),c_0)).  [resolve(335,a,24,b)].
+337 is_a_theorem(implies(and(implies(not(c_0),A),not(A)),B)).  [resolve(299,a,239,a)].
+338 is_a_theorem(implies(not(equiv(c_0,not(not(and(implies(not(c_0),A),not(A)))))),B)).  [resolve(337,a,235,a)].
+339 is_a_theorem(implies(not(equiv(c_0,not(implies(implies(not(c_0),A),A)))),B)).  [para(26(a,1),338(a,1,1,1,2,1))].
+340 is_a_theorem(implies(and(A,not(implies(not(A),B))),C)).  [resolve(300,a,239,a)].
+341 is_a_theorem(implies(not(equiv(c_0,not(not(and(A,not(implies(not(A),B))))))),C)).  [resolve(340,a,235,a)].
+342 is_a_theorem(implies(not(equiv(c_0,not(implies(A,implies(not(A),B))))),C)).  [para(26(a,1),341(a,1,1,1,2,1))].
+343 is_a_theorem(implies(and(implies(not(A),A),not(A)),B)).  [resolve(301,a,239,a)].
+344 is_a_theorem(implies(implies(not(c_0),and(implies(not(A),A),not(A))),B)).  [resolve(343,a,240,a)].
+345 is_a_theorem(equiv(c_0,not(implies(implies(not(c_0),A),A)))).  [resolve(339,a,161,a)].
+346 not(implies(implies(not(c_0),A),A)) = c_0.  [resolve(345,a,18,a)].
+347 not(and(A,c_0)) = implies(A,implies(implies(not(c_0),B),B)).  [para(346(a,1),26(a,1,1,2))].
+348 not(c_0) = implies(A,implies(implies(not(c_0),B),B)).  [para(246(a,1),347(a,1,1))].
+349 implies(A,implies(implies(not(c_0),B),B)) = not(c_0).  [copy(348),flip(a)].
+350 and(not(c_0),not(c_0)) = equiv(implies(implies(not(c_0),A),A),not(c_0)).  [para(349(a,1),254(a,1,2))].
+351 not(c_0) = equiv(implies(implies(not(c_0),A),A),not(c_0)).  [para(287(a,1),350(a,1))].
+352 equiv(implies(implies(not(c_0),A),A),not(c_0)) = not(c_0).  [copy(351),flip(a)].
+353 -is_a_theorem(not(c_0)) | not(c_0) = implies(implies(not(c_0),A),A).  [para(352(a,1),18(a,1))].
+354 -is_a_theorem(not(c_0)) | implies(implies(not(c_0),A),A) = not(c_0).  [copy(353),flip(b)].
+355 implies(implies(not(c_0),A),A) = not(c_0).  [resolve(220,a,354,a)].
+356 and(implies(A,implies(not(c_0),A)),not(c_0)) = equiv(A,implies(not(c_0),A)).  [para(355(a,1),30(a,1,2))].
+357 is_a_theorem(equiv(c_0,not(implies(A,implies(not(A),B))))).  [resolve(342,a,161,a)].
+358 not(implies(A,implies(not(A),B))) = c_0.  [resolve(357,a,18,a)].
+359 not(and(A,c_0)) = implies(A,implies(B,implies(not(B),C))).  [para(358(a,1),26(a,1,1,2))].
+360 not(c_0) = implies(A,implies(B,implies(not(B),C))).  [para(246(a,1),359(a,1,1))].
+361 implies(A,implies(B,implies(not(B),C))) = not(c_0).  [copy(360),flip(a)].
+362 and(not(c_0),not(c_0)) = equiv(implies(A,implies(not(A),B)),not(c_0)).  [para(361(a,1),254(a,1,2))].
+363 not(c_0) = equiv(implies(A,implies(not(A),B)),not(c_0)).  [para(287(a,1),362(a,1))].
+364 equiv(implies(A,implies(not(A),B)),not(c_0)) = not(c_0).  [copy(363),flip(a)].
+365 -is_a_theorem(not(c_0)) | not(c_0) = implies(A,implies(not(A),B)).  [para(364(a,1),18(a,1))].
+366 -is_a_theorem(not(c_0)) | implies(A,implies(not(A),B)) = not(c_0).  [copy(365),flip(b)].
+367 implies(A,implies(not(A),B)) = not(c_0).  [resolve(220,a,366,a)].
+368 and(not(c_0),implies(implies(not(A),B),A)) = equiv(A,implies(not(A),B)).  [para(367(a,1),30(a,1,1))].
+369 and(implies(implies(not(A),B),A),not(c_0)) = equiv(implies(not(A),B),A).  [para(367(a,1),30(a,1,2))].
+370 is_a_theorem(and(not(c_0),implies(implies(not(A),A),A))).  [resolve(344,a,57,a)].
+371 is_a_theorem(equiv(A,implies(not(A),A))).  [para(368(a,1),370(a,1))].
+372 implies(not(A),A) = A.  [resolve(371,a,18,a)].
+373 and(implies(A,not(A)),A) = equiv(A,not(A)).  [para(372(a,1),30(a,1,2))].
+374 not(and(A,B)) = implies(A,and(not(B),not(B))).  [para(372(a,1),37(a,1,1,2))].
+375 implies(A,and(not(B),not(B))) = not(and(A,B)).  [copy(374),flip(a)].
+376 -is_a_theorem(implies(implies(implies(A,and(not(A),not(A))),and(not(A),not(A))),implies(not(implies(c9,c10)),c9))).  [para(372(a,1),46(a,1,1,1,1))].
+377 -is_a_theorem(implies(implies(not(and(A,A)),and(not(A),not(A))),implies(not(implies(c9,c10)),c9))).  [para(375(a,1),376(a,1,1,1))].
+378 -is_a_theorem(implies(not(and(not(and(A,A)),A)),implies(not(implies(c9,c10)),c9))).  [para(375(a,1),377(a,1,1))].
+379 is_a_theorem(implies(A,implies(implies(A,B),implies(C,B)))).  [para(372(a,1),166(a,1,2,1,1))].
+380 -is_a_theorem(implies(implies(A,B),C)) | is_a_theorem(implies(B,C)).  [para(372(a,1),169(a,1,1,2))].
+381 is_a_theorem(implies(A,not(equiv(A,c_0)))).  [para(372(a,1),324(a,1,2,1,1))].
+382 is_a_theorem(implies(implies(not(A),c_0),implies(not(c_0),A))).  [para(372(a,1),303(a,1,2,2))].
+383 is_a_theorem(not(equiv(implies(A,implies(B,A)),c_0))).  [para(372(a,1),331(a,1,1,1,2,2))].
+384 is_a_theorem(implies(and(A,not(c_0)),equiv(not(A),c_0))).  [para(372(a,1),309(a,1,2))].
+385 -is_a_theorem(A) | is_a_theorem(not(equiv(A,c_0))).  [resolve(381,a,24,b)].
+386 is_a_theorem(not(equiv(implies(A,not(equiv(A,c_0))),c_0))).  [resolve(385,a,381,a)].
+387 is_a_theorem(implies(A,implies(implies(A,B),B))).  [para(372(a,1),379(a,1,2,2))].
+388 is_a_theorem(not(equiv(implies(implies(not(A),c_0),implies(not(c_0),A)),c_0))).  [resolve(382,a,385,a)].
+389 is_a_theorem(implies(implies(not(and(A,not(c_0))),c_0),not(equiv(c_0,A)))).  [para(307(a,1),382(a,1,2))].
+390 is_a_theorem(implies(implies(implies(A,c_0),c_0),not(equiv(c_0,A)))).  [para(26(a,1),389(a,1,1,1))].
+391 is_a_theorem(implies(not(equiv(A,c_0)),not(equiv(c_0,A)))).  [para(323(a,1),390(a,1,1))].
+392 -is_a_theorem(and(A,not(c_0))) | is_a_theorem(equiv(not(A),c_0)).  [resolve(384,a,24,b)].
+393 -is_a_theorem(not(equiv(A,c_0))) | is_a_theorem(not(equiv(c_0,A))).  [resolve(391,a,24,b)].
+394 is_a_theorem(not(equiv(c_0,implies(A,not(equiv(A,c_0)))))).  [resolve(393,a,386,a)].
+395 is_a_theorem(not(equiv(c_0,implies(A,implies(B,A))))).  [resolve(393,a,383,a)].
+396 is_a_theorem(not(equiv(c_0,implies(implies(implies(not(not(A)),B),A),A)))).  [resolve(393,a,332,a)].
+397 is_a_theorem(and(implies(A,implies(B,A)),not(c_0))).  [resolve(395,a,189,a)].
+398 is_a_theorem(equiv(not(implies(A,implies(B,A))),c_0)).  [resolve(397,a,392,a)].
+399 c_0 = not(implies(A,implies(B,A))).  [resolve(398,a,18,a)].
+400 not(implies(A,implies(B,A))) = c_0.  [copy(399),flip(a)].
+401 not(and(A,c_0)) = implies(A,implies(B,implies(C,B))).  [para(400(a,1),26(a,1,1,2))].
+402 not(c_0) = implies(A,implies(B,implies(C,B))).  [para(246(a,1),401(a,1,1))].
+403 implies(A,implies(B,implies(C,B))) = not(c_0).  [copy(402),flip(a)].
+404 implies(c_0,implies(A,implies(B,A))) = implies(A,implies(B,A)).  [para(400(a,1),372(a,1,1))].
+405 not(c_0) = implies(A,implies(B,A)).  [para(403(a,1),404(a,1))].
+406 implies(A,implies(B,A)) = not(c_0).  [copy(405),flip(a)].
+407 and(not(c_0),not(c_0)) = equiv(A,implies(not(c_0),A)).  [para(406(a,1),356(a,1,1))].
+408 not(c_0) = equiv(A,implies(not(c_0),A)).  [para(287(a,1),407(a,1))].
+409 equiv(A,implies(not(c_0),A)) = not(c_0).  [copy(408),flip(a)].
+410 and(implies(implies(A,B),B),not(c_0)) = equiv(implies(A,B),B).  [para(406(a,1),30(a,1,2))].
+411 -is_a_theorem(not(c_0)) | implies(not(c_0),A) = A.  [para(409(a,1),18(a,1))].
+412 implies(not(c_0),A) = A.  [resolve(220,a,411,a)].
+413 is_a_theorem(not(equiv(implies(implies(not(A),c_0),A),c_0))).  [para(412(a,1),388(a,1,1,1,2))].
+414 is_a_theorem(implies(not(c_0),implies(equiv(A,c_0),implies(A,B)))).  [para(412(a,1),334(a,1,2,2,1))].
+415 is_a_theorem(implies(equiv(A,c_0),implies(A,B))).  [para(412(a,1),414(a,1))].
+416 and(A,not(c_0)) = not(equiv(c_0,A)).  [para(412(a,1),307(a,1))].
+417 not(equiv(c_0,A)) = and(A,not(c_0)).  [copy(416),flip(a)].
+418 and(A,not(c_0)) = equiv(not(c_0),A).  [para(412(a,1),255(a,1,1))].
+419 equiv(not(c_0),A) = and(A,not(c_0)).  [copy(418),flip(a)].
+420 is_a_theorem(and(implies(implies(implies(not(not(A)),B),A),A),not(c_0))).  [para(417(a,1),396(a,1))].
+421 is_a_theorem(equiv(implies(implies(not(not(A)),B),A),A)).  [para(410(a,1),420(a,1))].
+422 is_a_theorem(and(implies(A,not(equiv(A,c_0))),not(c_0))).  [para(417(a,1),394(a,1))].
+423 -is_a_theorem(not(equiv(A,c_0))) | is_a_theorem(and(A,not(c_0))).  [para(417(a,1),393(b,1))].
+424 is_a_theorem(implies(equiv(not(A),c_0),A)).  [para(372(a,1),415(a,1,2))].
+425 is_a_theorem(implies(not(equiv(not(implies(equiv(not(A),c_0),A)),c_0)),c_0)).  [resolve(424,a,336,a)].
+426 -is_a_theorem(and(A,not(c_0))) | A = not(c_0).  [para(419(a,1),18(a,1))].
+427 -is_a_theorem(and(A,not(c_0))) | not(c_0) = A.  [copy(426),flip(b)].
+428 A = implies(implies(not(not(A)),B),A).  [resolve(421,a,18,a)].
+429 implies(implies(not(not(A)),B),A) = A.  [copy(428),flip(a)].
+430 is_a_theorem(implies(not(not(A)),A)).  [para(429(a,1),387(a,1,2))].
+431 is_a_theorem(implies(not(and(A,not(c_0))),equiv(c_0,A))).  [para(417(a,1),430(a,1,1,1))].
+432 is_a_theorem(implies(implies(A,c_0),equiv(c_0,A))).  [para(26(a,1),431(a,1,1))].
+433 is_a_theorem(implies(A,equiv(c_0,not(A)))).  [resolve(432,a,54,a)].
+434 is_a_theorem(implies(A,equiv(c_0,not(implies(B,A))))).  [resolve(433,a,380,a)].
+435 -is_a_theorem(A) | is_a_theorem(equiv(c_0,not(implies(B,A)))).  [resolve(434,a,24,b)].
+436 is_a_theorem(equiv(c_0,not(implies(A,implies(and(not(c_0),not(implies(B,C))),not(equiv(B,c_0))))))).  [resolve(435,a,308,a)].
+437 not(c_0) = implies(A,not(equiv(A,c_0))).  [resolve(422,a,427,a)].
+438 implies(A,not(equiv(A,c_0))) = not(c_0).  [copy(437),flip(a)].
+439 and(implies(not(equiv(A,c_0)),A),not(c_0)) = equiv(not(equiv(A,c_0)),A).  [para(438(a,1),30(a,1,2))].
+440 is_a_theorem(and(implies(implies(not(A),c_0),A),not(c_0))).  [resolve(423,a,413,a)].
+441 is_a_theorem(equiv(implies(not(A),c_0),A)).  [para(369(a,1),440(a,1))].
+442 A = implies(not(A),c_0).  [resolve(441,a,18,a)].
+443 implies(not(A),c_0) = A.  [copy(442),flip(a)].
+444 is_a_theorem(equiv(not(implies(equiv(not(A),c_0),A)),c_0)).  [para(443(a,1),425(a,1))].
+445 implies(implies(A,B),c_0) = and(A,not(B)).  [para(26(a,1),443(a,1,1))].
+446 and(A,implies(c_0,not(A))) = equiv(not(A),c_0).  [para(443(a,1),30(a,1,1))].
+447 and(A,not(c_0)) = equiv(not(A),c_0).  [para(298(a,1),446(a,1,2))].
+448 equiv(not(A),c_0) = and(A,not(c_0)).  [copy(447),flip(a)].
+449 and(implies(c_0,not(A)),A) = equiv(c_0,not(A)).  [para(443(a,1),30(a,1,2))].
+450 and(not(c_0),A) = equiv(c_0,not(A)).  [para(298(a,1),449(a,1,1))].
+451 equiv(c_0,not(A)) = and(not(c_0),A).  [copy(450),flip(a)].
+452 not(and(A,B)) = implies(A,and(not(B),not(c_0))).  [para(443(a,1),37(a,1,1,2))].
+453 implies(A,and(not(B),not(c_0))) = not(and(A,B)).  [copy(452),flip(a)].
+454 implies(and(A,not(c_0)),c_0) = equiv(c_0,A).  [para(417(a,1),443(a,1,1))].
+455 and(A,not(c_0)) = not(equiv(A,c_0)).  [para(445(a,1),323(a,1))].
+456 not(equiv(A,c_0)) = and(A,not(c_0)).  [copy(455),flip(a)].
+457 is_a_theorem(equiv(not(implies(and(A,not(c_0)),A)),c_0)).  [para(448(a,1),444(a,1,1,1,1))].
+458 is_a_theorem(and(implies(and(A,not(c_0)),A),not(c_0))).  [para(448(a,1),457(a,1))].
+459 is_a_theorem(equiv(c_0,not(implies(A,implies(and(not(c_0),not(implies(B,C))),and(B,not(c_0))))))).  [para(456(a,1),436(a,1,2,1,2,2))].
+460 is_a_theorem(and(not(c_0),implies(A,implies(and(not(c_0),not(implies(B,C))),and(B,not(c_0)))))).  [para(451(a,1),459(a,1))].
+461 and(implies(and(A,not(c_0)),A),not(c_0)) = equiv(not(equiv(A,c_0)),A).  [para(456(a,1),439(a,1,1,1))].
+462 and(implies(and(A,not(c_0)),A),not(c_0)) = equiv(and(A,not(c_0)),A).  [para(456(a,1),461(a,2,1))].
+463 equiv(c_0,implies(A,c_0)) = and(not(c_0),and(A,not(c_0))).  [para(456(a,1),328(a,2,2))].
+464 is_a_theorem(equiv(and(A,not(c_0)),A)).  [para(462(a,1),458(a,1))].
+465 A = and(A,not(c_0)).  [resolve(464,a,18,a)].
+466 and(A,not(c_0)) = A.  [copy(465),flip(a)].
+467 equiv(c_0,implies(A,c_0)) = and(not(c_0),A).  [para(466(a,1),463(a,2,2))].
+468 is_a_theorem(and(not(c_0),implies(A,implies(and(not(c_0),not(implies(B,C))),B)))).  [para(466(a,1),460(a,1,2,2,2))].
+469 implies(A,c_0) = equiv(c_0,A).  [para(466(a,1),454(a,1,1))].
+470 equiv(c_0,A) = implies(A,c_0).  [copy(469),flip(a)].
+471 implies(A,not(B)) = not(and(A,B)).  [para(466(a,1),453(a,1,2))].
+472 not(and(A,B)) = implies(A,not(B)).  [copy(471),flip(a)].
+473 implies(implies(A,c_0),c_0) = and(not(c_0),A).  [para(470(a,1),467(a,1))].
+474 and(A,not(c_0)) = and(not(c_0),A).  [para(445(a,1),473(a,1))].
+475 A = and(not(c_0),A).  [para(466(a,1),474(a,1))].
+476 and(not(c_0),A) = A.  [copy(475),flip(a)].
+477 -is_a_theorem(implies(not(and(implies(A,not(A)),A)),implies(not(implies(c9,c10)),c9))).  [para(472(a,1),378(a,1,1,1,1))].
+478 -is_a_theorem(implies(not(equiv(A,not(A))),implies(not(implies(c9,c10)),c9))).  [para(373(a,1),477(a,1,1,1))].
+479 is_a_theorem(and(not(c_0),implies(A,implies(not(implies(B,C)),B)))).  [para(476(a,1),468(a,1,2,2,1))].
+480 is_a_theorem(implies(A,implies(not(implies(B,C)),B))).  [para(476(a,1),479(a,1))].
+481 $F.  [resolve(480,a,478,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,178 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n152.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 14:19:43 CDT 2014
+% CPUTime    : 0.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 11444 was started by sandbox on n152.star.cs.uiowa.edu,
+Fri Jun  6 14:19:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_11412_n152.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.24 (+ 0.00) seconds.
+% Length of proof is 97.
+% Level of proof is 20.
+% Maximum clause weight is 22.000.
+% Given clauses 368.
+
+
+1 (all A all B subset(A,union(A,B))).  [assumption].
+2 (all A all B all C (subset(A,B) & subset(C,B) -> subset(union(A,C),B))).  [assumption].
+3 (all A all B all C (member(C,union(A,B)) <-> member(C,A) | member(C,B))).  [assumption].
+4 (all A all B (subset(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+5 (all A all B (A = B <-> subset(A,B) & subset(B,A))).  [assumption].
+6 (all A all B union(A,B) = union(B,A)).  [assumption].
+7 (all A subset(A,A)).  [assumption].
+8 -(all A all B all C (A = union(B,C) <-> subset(B,A) & subset(C,A) & (all D (subset(B,D) & subset(C,D) -> subset(A,D))))).  [assumption].
+9 subset(A,A).  [clausify(7)].
+10 subset(A,union(A,B)).  [clausify(1)].
+11 union(A,B) = union(B,A).  [clausify(6)].
+12 subset(A,B) | member(f1(A,B),A).  [clausify(4)].
+13 union(c2,c3) = c1 | subset(c2,c1).  [clausify(8)].
+14 union(c2,c3) = c1 | subset(c3,c1).  [clausify(8)].
+15 union(c2,c3) != c1 | -subset(c2,c1) | -subset(c3,c1) | -subset(c1,c4).  [clausify(8)].
+16 member(A,union(B,C)) | -member(A,B).  [clausify(3)].
+17 member(A,union(B,C)) | -member(A,C).  [clausify(3)].
+18 subset(A,B) | -member(f1(A,B),B).  [clausify(4)].
+19 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(4)].
+20 A = B | -subset(B,A) | -subset(A,B).  [clausify(5)].
+21 -subset(A,B) | -subset(C,B) | subset(union(A,C),B).  [clausify(2)].
+22 -member(A,union(B,C)) | member(A,B) | member(A,C).  [clausify(3)].
+23 union(c2,c3) = c1 | -subset(c2,A) | -subset(c3,A) | subset(c1,A).  [clausify(8)].
+24 union(c2,c3) != c1 | -subset(c2,c1) | -subset(c3,c1) | subset(c2,c4).  [clausify(8)].
+25 union(c2,c3) != c1 | -subset(c2,c1) | -subset(c3,c1) | subset(c3,c4).  [clausify(8)].
+26 -subset(A,B) | subset(union(A,A),B).  [factor(21,a,b)].
+27 member(f1(A,B),union(A,C)) | subset(A,B).  [resolve(16,b,12,b)].
+28 union(A,B) = A | -subset(union(A,B),A).  [resolve(20,b,10,a)].
+29 -subset(A,c1) | subset(union(c3,A),c1) | union(c2,c3) = c1.  [resolve(21,a,14,b)].
+30 -subset(A,c1) | subset(union(A,c3),c1) | union(c2,c3) = c1.  [para(11(a,1),29(b,1))].
+31 -subset(A,union(B,C)) | subset(union(B,A),union(B,C)).  [resolve(21,a,10,a)].
+32 -subset(A,union(B,C)) | subset(union(A,B),union(B,C)).  [para(11(a,1),31(b,1))].
+33 -subset(A,B) | subset(union(B,A),B).  [resolve(21,a,9,a)].
+34 -subset(A,B) | subset(union(A,B),B).  [para(11(a,1),33(b,1))].
+35 member(f1(union(A,B),C),A) | member(f1(union(A,B),C),B) | subset(union(A,B),C).  [resolve(22,a,12,b)].
+36 union(c2,c3) = c1 | -subset(c2,union(c3,A)) | subset(c1,union(c3,A)).  [resolve(23,c,10,a)].
+37 union(c2,c3) = c1 | -subset(c2,union(A,c3)) | subset(c1,union(c3,A)).  [para(11(a,1),36(b,2))].
+38 union(c2,c3) = c1 | -subset(c2,union(A,c3)) | subset(c1,union(A,c3)).  [para(11(a,1),37(c,2))].
+39 subset(union(A,A),A).  [resolve(26,a,9,a)].
+40 union(A,A) = A | -subset(A,union(A,A)).  [resolve(39,a,20,c)].
+41 union(A,A) = A.  [resolve(10,a,40,b)].
+42 subset(union(c3,c1),c1) | union(c2,c3) = c1.  [resolve(34,a,14,b)].
+43 subset(union(c1,c3),c1) | union(c2,c3) = c1.  [para(11(a,1),42(a,1))].
+44 subset(union(c2,c1),c1) | union(c2,c3) = c1.  [resolve(34,a,13,b)].
+45 subset(union(c1,c2),c1) | union(c2,c3) = c1.  [para(11(a,1),44(a,1))].
+46 subset(A,B) | member(f1(A,B),union(C,union(A,D))).  [resolve(27,a,17,b)].
+47 union(c2,c3) = c1 | union(c1,c3) = c1.  [resolve(43,a,28,b)].
+48 union(c2,c3) = c1 | union(c1,c2) = c1.  [resolve(45,a,28,b)].
+49 union(c1,c2) = c1 | subset(c2,c1).  [para(48(a,1),10(a,2))].
+50 union(c1,c2) = c1 | subset(union(c2,c1),c1).  [resolve(49,b,34,a)].
+51 union(c1,c2) = c1 | subset(union(c1,c2),c1).  [para(11(a,1),50(b,1))].
+52 union(c1,c2) = c1 | union(c1,c2) = c1.  [resolve(51,b,28,b)].
+53 union(c1,c2) = c1.  [copy(52),merge(b)].
+54 -subset(A,union(B,C)) | subset(union(A,C),union(C,B)).  [para(11(a,1),32(a,2))].
+55 -subset(A,union(B,C)) | subset(union(A,C),union(B,C)).  [para(11(a,1),54(b,2))].
+56 subset(A,union(B,union(A,C))) | subset(A,union(B,union(A,C))).  [resolve(46,b,18,b)].
+57 subset(A,union(B,union(A,C))).  [copy(56),merge(b)].
+58 subset(union(A,B),union(B,union(A,C))).  [resolve(57,a,32,a)].
+59 -subset(A,union(B,union(C,D))) | subset(union(A,C),union(B,union(C,D))).  [resolve(57,a,21,b)].
+60 subset(c1,union(A,c1)).  [para(53(a,1),57(a,2,2))].
+61 subset(union(c1,union(A,c1)),union(A,c1)).  [resolve(60,a,34,a)].
+62 union(c1,union(A,c1)) = union(A,c1) | -subset(union(A,c1),union(c1,union(A,c1))).  [resolve(61,a,20,c)].
+63 union(c1,union(A,c1)) = union(A,c1).  [resolve(58,a,62,b)].
+64 subset(union(c1,A),union(A,union(B,c1))).  [para(63(a,1),58(a,2,2))].
+65 subset(union(A,c1),union(A,union(B,c1))).  [para(11(a,1),64(a,1))].
+66 subset(union(c2,c3),c1) | union(c2,c3) = c1 | union(c2,c3) = c1.  [resolve(30,a,13,b)].
+67 subset(union(c2,c3),c1) | union(c2,c3) = c1.  [copy(66),merge(c)].
+68 union(c2,c3) = c1 | union(c2,c3) = c1 | -subset(c1,union(c2,c3)).  [resolve(67,a,20,c)].
+69 union(c2,c3) = c1 | -subset(c1,union(c2,c3)).  [copy(68),merge(b)].
+70 subset(union(A,union(A,B)),union(C,union(A,B))).  [resolve(55,a,57,a)].
+71 subset(union(union(A,B),B),union(A,B)).  [resolve(55,a,9,a)].
+72 subset(union(A,union(B,A)),union(B,A)).  [para(11(a,1),71(a,1))].
+73 union(A,B) = union(B,union(A,B)) | -subset(union(A,B),union(B,union(A,B))).  [resolve(72,a,20,b)].
+74 union(B,union(A,B)) = union(A,B) | -subset(union(A,B),union(B,union(A,B))).  [copy(73),flip(a)].
+75 union(A,union(B,A)) = union(B,A).  [resolve(58,a,74,b)].
+76 union(A,union(A,B)) = union(B,A).  [para(11(a,1),75(a,1,2))].
+77 union(A,union(A,B)) = union(A,B).  [para(11(a,1),76(a,2))].
+78 union(c1,c3) = c1 | union(c3,c1) = union(c2,c3).  [para(47(a,1),75(a,1,2))].
+79 union(c1,c3) = c1 | union(c1,c3) = union(c2,c3).  [para(11(a,1),78(b,1))].
+80 union(c1,c3) = c1 | union(c2,c3) = union(c1,c3).  [copy(79),flip(b)].
+81 subset(union(A,B),union(C,union(A,B))).  [para(77(a,1),70(a,1))].
+82 union(c2,c3) = c1 | subset(c1,union(c2,c3)).  [resolve(38,b,10,a)].
+83 union(c2,c3) = c1 | union(c2,c3) = c1.  [resolve(82,b,69,b)].
+84 union(c2,c3) = c1.  [copy(83),merge(b)].
+85 union(c1,c3) = c1 | c1 = union(c1,c3).  [para(84(a,1),80(b,1))].
+86 union(c1,c3) = c1 | union(c1,c3) = c1.  [copy(85),flip(b)].
+87 union(c1,c3) = c1.  [copy(86),merge(b)].
+88 c1 != c1 | -subset(c2,c1) | -subset(c3,c1) | subset(c3,c4).  [para(84(a,1),25(a,1))].
+89 -subset(c2,c1) | -subset(c3,c1) | subset(c3,c4).  [copy(88),xx(a)].
+90 c1 != c1 | -subset(c2,c1) | -subset(c3,c1) | subset(c2,c4).  [para(84(a,1),24(a,1))].
+91 -subset(c2,c1) | -subset(c3,c1) | subset(c2,c4).  [copy(90),xx(a)].
+92 c1 != c1 | -subset(c2,c1) | -subset(c3,c1) | -subset(c1,c4).  [para(84(a,1),15(a,1))].
+93 -subset(c2,c1) | -subset(c3,c1) | -subset(c1,c4).  [copy(92),xx(a)].
+94 subset(c2,c1).  [para(84(a,1),10(a,2))].
+95 subset(c2,union(A,c1)).  [para(84(a,1),57(a,2,2))].
+96 subset(c1,union(c3,union(c2,A))).  [para(84(a,1),58(a,1))].
+97 subset(c1,union(c3,union(A,c2))).  [para(11(a,1),96(a,2,2))].
+98 subset(union(c2,A),union(A,c1)).  [para(84(a,1),58(a,2,2))].
+99 subset(union(A,c2),union(A,c1)).  [para(11(a,1),98(a,1))].
+100 member(f1(c1,A),c2) | member(f1(union(c2,c3),A),c3) | subset(union(c2,c3),A).  [para(84(a,1),35(a,1,1))].
+101 member(f1(c1,A),c2) | member(f1(c1,A),c3) | subset(union(c2,c3),A).  [para(84(a,1),100(b,1,1))].
+102 member(f1(c1,A),c2) | member(f1(c1,A),c3) | subset(c1,A).  [para(84(a,1),101(c,1))].
+103 -subset(c3,c1) | -subset(c1,c4).  [resolve(94,a,93,a)].
+104 -subset(c3,c1) | subset(c2,c4).  [resolve(94,a,91,a)].
+105 -subset(c3,c1) | subset(c3,c4).  [resolve(94,a,89,a)].
+106 subset(union(c2,union(A,c1)),union(A,c1)).  [resolve(95,a,34,a)].
+107 subset(union(c1,union(A,c2)),union(c3,union(A,c2))).  [resolve(97,a,55,a)].
+108 subset(union(union(A,c2),c1),union(A,c1)).  [resolve(99,a,55,a)].
+109 subset(union(c1,union(A,c2)),union(A,c1)).  [para(11(a,1),108(a,1))].
+110 union(c2,union(A,c1)) = union(A,c1) | -subset(union(A,c1),union(c2,union(A,c1))).  [resolve(106,a,20,c)].
+111 union(c2,union(A,c1)) = union(A,c1).  [resolve(81,a,110,b)].
+112 union(c1,union(A,c2)) = union(A,c1) | -subset(union(A,c1),union(c1,union(A,c2))).  [resolve(109,a,20,c)].
+113 union(c1,union(A,c2)) = union(A,c1).  [resolve(58,a,112,b)].
+114 subset(union(A,c1),union(c3,union(A,c2))).  [para(113(a,1),107(a,1))].
+115 subset(c2,union(A,union(B,c1))).  [para(111(a,1),57(a,2,2))].
+116 subset(union(union(A,c1),c3),union(c3,union(A,c2))).  [resolve(114,a,32,a)].
+117 subset(union(c3,union(A,c1)),union(c3,union(A,c2))).  [para(11(a,1),116(a,1))].
+118 union(c3,union(A,c1)) = union(c3,union(A,c2)) | -subset(union(c3,union(A,c2)),union(c3,union(A,c1))).  [resolve(117,a,20,c)].
+119 union(c3,union(A,c2)) = union(c3,union(A,c1)) | -subset(union(c3,union(A,c2)),union(c3,union(A,c1))).  [copy(118),flip(a)].
+120 subset(union(c2,A),union(B,union(A,c1))).  [resolve(59,a,115,a)].
+121 subset(union(A,c2),union(B,union(A,c1))).  [para(11(a,1),120(a,1))].
+122 subset(union(union(A,c1),B),union(A,union(B,c1))).  [resolve(59,a,65,a)].
+123 subset(union(A,union(B,c1)),union(B,union(A,c1))).  [para(11(a,1),122(a,1))].
+124 subset(union(union(A,c2),B),union(B,union(A,c1))).  [resolve(121,a,32,a)].
+125 subset(union(A,union(B,c2)),union(A,union(B,c1))).  [para(11(a,1),124(a,1))].
+126 union(c3,union(A,c2)) = union(c3,union(A,c1)).  [resolve(125,a,119,b)].
+127 union(A,union(B,c1)) = union(B,union(A,c1)) | -subset(union(B,union(A,c1)),union(A,union(B,c1))).  [resolve(123,a,20,c)].
+128 union(A,union(B,c1)) = union(B,union(A,c1)).  [resolve(123,a,127,b)].
+129 union(c3,union(A,c2)) = union(A,union(c3,c1)).  [para(128(a,1),126(a,2))].
+130 union(c3,union(A,c2)) = union(A,union(c1,c3)).  [para(11(a,1),129(a,2,2))].
+131 union(c3,union(A,c2)) = union(A,c1).  [para(87(a,1),130(a,2,2))].
+132 subset(c3,union(A,c1)).  [para(131(a,1),10(a,2))].
+133 subset(c3,c1).  [para(41(a,1),132(a,2))].
+134 subset(c3,c4).  [resolve(133,a,105,a)].
+135 subset(c2,c4).  [resolve(133,a,104,a)].
+136 -subset(c1,c4).  [resolve(133,a,103,a)].
+137 -member(f1(c1,c4),c4).  [resolve(18,a,136,a)].
+138 -member(A,c2) | member(A,c4).  [resolve(19,a,135,a)].
+139 -member(f1(c1,c4),c2).  [resolve(138,b,137,a)].
+140 -member(A,c3) | member(A,c4).  [resolve(19,a,134,a)].
+141 -member(f1(c1,c4),c3).  [resolve(140,b,137,a)].
+142 member(f1(c1,c4),c2) | subset(c1,c4).  [resolve(141,a,102,b)].
+143 subset(c1,c4).  [resolve(139,a,142,a)].
+144 $F.  [resolve(136,a,143,a)].
+
+============================== end of proof ==========================

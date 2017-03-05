@@ -1,0 +1,109 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n089.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:20:23 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 10441 was started by sandbox on n089.star.cs.uiowa.edu,
+Fri Jun  6 05:20:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_10409_n089.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 52.
+% Level of proof is 12.
+% Maximum clause weight is 18.000.
+% Given clauses 74.
+
+
+1 (all A -convergent_lines(A,A)).  [assumption].
+2 (all A all B all C (distinct_points(A,B) -> distinct_points(A,C) | distinct_points(B,C))).  [assumption].
+3 (all A all B all C (convergent_lines(A,B) -> convergent_lines(A,C) | convergent_lines(B,C))).  [assumption].
+4 (all A all B (convergent_lines(A,B) -> -apart_point_and_line(intersection_point(A,B),A))).  [assumption].
+5 (all A all B (convergent_lines(A,B) -> -apart_point_and_line(intersection_point(A,B),B))).  [assumption].
+6 (all A all B all C all D (distinct_points(A,B) & distinct_lines(C,D) -> apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D))).  [assumption].
+7 (all A all B all C (apart_point_and_line(A,B) -> distinct_points(A,C) | apart_point_and_line(C,B))).  [assumption].
+8 (all A all B all C (convergent_lines(A,B) -> distinct_lines(B,C) | convergent_lines(A,C))).  [assumption].
+9 -(all A all B all C all D (convergent_lines(A,B) & convergent_lines(C,D) & (apart_point_and_line(intersection_point(A,B),C) | apart_point_and_line(intersection_point(A,B),D)) -> apart_point_and_line(intersection_point(C,D),A) | apart_point_and_line(intersection_point(C,D),B))).  [assumption].
+10 convergent_lines(c1,c2).  [clausify(9)].
+11 convergent_lines(c3,c4).  [clausify(9)].
+12 apart_point_and_line(intersection_point(c1,c2),c3) | apart_point_and_line(intersection_point(c1,c2),c4).  [clausify(9)].
+13 -convergent_lines(A,A).  [clausify(1)].
+14 -apart_point_and_line(intersection_point(c3,c4),c1).  [clausify(9)].
+15 -apart_point_and_line(intersection_point(c3,c4),c2).  [clausify(9)].
+16 -convergent_lines(A,B) | -apart_point_and_line(intersection_point(A,B),A).  [clausify(4)].
+17 -convergent_lines(A,B) | -apart_point_and_line(intersection_point(A,B),B).  [clausify(5)].
+18 -distinct_points(A,B) | distinct_points(A,C) | distinct_points(B,C).  [clausify(2)].
+19 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(3)].
+20 -apart_point_and_line(A,B) | distinct_points(A,C) | apart_point_and_line(C,B).  [clausify(7)].
+21 -convergent_lines(A,B) | distinct_lines(B,C) | convergent_lines(A,C).  [clausify(8)].
+22 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(6)].
+23 -apart_point_and_line(intersection_point(c3,c4),c3).  [resolve(16,a,11,a)].
+24 -apart_point_and_line(intersection_point(c1,c2),c1).  [resolve(16,a,10,a)].
+25 -apart_point_and_line(intersection_point(c3,c4),c4).  [resolve(17,a,11,a)].
+26 -apart_point_and_line(intersection_point(c1,c2),c2).  [resolve(17,a,10,a)].
+27 convergent_lines(c3,A) | convergent_lines(c4,A).  [resolve(19,a,11,a)].
+28 convergent_lines(c1,A) | convergent_lines(c2,A).  [resolve(19,a,10,a)].
+29 distinct_points(intersection_point(c1,c2),A) | apart_point_and_line(A,c4) | apart_point_and_line(intersection_point(c1,c2),c3).  [resolve(20,a,12,b)].
+30 convergent_lines(c3,A) | convergent_lines(c4,B) | convergent_lines(A,B).  [resolve(27,b,19,a)].
+31 convergent_lines(c3,c3) | convergent_lines(c4,c3).  [factor(30,a,c)].
+32 convergent_lines(c4,c3).  [resolve(13,a,31,a)].
+33 -apart_point_and_line(intersection_point(c4,c3),c3).  [resolve(32,a,17,a)].
+34 -apart_point_and_line(intersection_point(c4,c3),c4).  [resolve(32,a,16,a)].
+35 convergent_lines(c1,A) | convergent_lines(c2,B) | convergent_lines(A,B).  [resolve(28,b,19,a)].
+36 convergent_lines(c1,c1) | convergent_lines(c2,c1).  [factor(35,a,c)].
+37 convergent_lines(c2,c1).  [resolve(13,a,36,a)].
+38 -apart_point_and_line(intersection_point(c2,c1),c1).  [resolve(37,a,17,a)].
+39 -apart_point_and_line(intersection_point(c2,c1),c2).  [resolve(37,a,16,a)].
+40 apart_point_and_line(A,c4) | apart_point_and_line(intersection_point(c1,c2),c3) | distinct_points(intersection_point(c1,c2),B) | distinct_points(A,B).  [resolve(29,a,18,a)].
+41 convergent_lines(c3,A) | convergent_lines(A,c4).  [resolve(30,b,13,a)].
+42 convergent_lines(c3,A) | distinct_lines(c4,B) | convergent_lines(A,B).  [resolve(41,b,21,a)].
+43 convergent_lines(c3,c3) | distinct_lines(c4,c3).  [factor(42,a,c)].
+44 distinct_lines(c4,c3).  [resolve(13,a,43,a)].
+45 -distinct_points(A,B) | apart_point_and_line(A,c4) | apart_point_and_line(A,c3) | apart_point_and_line(B,c4) | apart_point_and_line(B,c3).  [resolve(22,b,44,a)].
+46 -distinct_points(intersection_point(c4,c3),A) | apart_point_and_line(intersection_point(c4,c3),c3) | apart_point_and_line(A,c4) | apart_point_and_line(A,c3).  [resolve(45,b,34,a)].
+47 -distinct_points(intersection_point(c4,c3),A) | apart_point_and_line(A,c4) | apart_point_and_line(A,c3).  [resolve(46,b,33,a)].
+48 -distinct_points(intersection_point(c4,c3),intersection_point(c3,c4)) | apart_point_and_line(intersection_point(c3,c4),c3).  [resolve(47,b,25,a)].
+49 -distinct_points(intersection_point(c4,c3),intersection_point(c3,c4)).  [resolve(48,b,23,a)].
+50 -apart_point_and_line(intersection_point(c4,c3),A) | apart_point_and_line(intersection_point(c3,c4),A).  [resolve(20,b,49,a)].
+51 -apart_point_and_line(intersection_point(c4,c3),c2).  [resolve(50,b,15,a)].
+52 -apart_point_and_line(intersection_point(c4,c3),A) | apart_point_and_line(intersection_point(c3,c4),A).  [resolve(20,b,49,a)].
+53 -apart_point_and_line(intersection_point(c4,c3),c1).  [resolve(52,b,14,a)].
+54 convergent_lines(c1,A) | convergent_lines(A,c2).  [resolve(35,b,13,a)].
+55 convergent_lines(c1,A) | distinct_lines(c2,B) | convergent_lines(A,B).  [resolve(54,b,21,a)].
+56 convergent_lines(c1,c1) | distinct_lines(c2,c1).  [factor(55,a,c)].
+57 distinct_lines(c2,c1).  [resolve(13,a,56,a)].
+58 -distinct_points(A,B) | apart_point_and_line(A,c2) | apart_point_and_line(A,c1) | apart_point_and_line(B,c2) | apart_point_and_line(B,c1).  [resolve(22,b,57,a)].
+59 -distinct_points(intersection_point(c2,c1),A) | apart_point_and_line(intersection_point(c2,c1),c1) | apart_point_and_line(A,c2) | apart_point_and_line(A,c1).  [resolve(58,b,39,a)].
+60 -distinct_points(intersection_point(c2,c1),A) | apart_point_and_line(A,c2) | apart_point_and_line(A,c1).  [resolve(59,b,38,a)].
+61 -distinct_points(intersection_point(c2,c1),intersection_point(c4,c3)) | apart_point_and_line(intersection_point(c4,c3),c1).  [resolve(60,b,51,a)].
+62 -distinct_points(intersection_point(c2,c1),intersection_point(c4,c3)).  [resolve(61,b,53,a)].
+63 -distinct_points(A,B) | apart_point_and_line(A,c2) | apart_point_and_line(A,c1) | apart_point_and_line(B,c2) | apart_point_and_line(B,c1).  [resolve(22,b,57,a)].
+64 -distinct_points(intersection_point(c1,c2),A) | apart_point_and_line(intersection_point(c1,c2),c1) | apart_point_and_line(A,c2) | apart_point_and_line(A,c1).  [resolve(63,b,26,a)].
+65 -distinct_points(intersection_point(c1,c2),A) | apart_point_and_line(A,c2) | apart_point_and_line(A,c1).  [resolve(64,b,24,a)].
+66 -distinct_points(intersection_point(c1,c2),intersection_point(c4,c3)) | apart_point_and_line(intersection_point(c4,c3),c1).  [resolve(65,b,51,a)].
+67 -distinct_points(intersection_point(c1,c2),intersection_point(c4,c3)).  [resolve(66,b,53,a)].
+68 -apart_point_and_line(intersection_point(c2,c1),A) | apart_point_and_line(intersection_point(c4,c3),A).  [resolve(20,b,62,a)].
+69 -apart_point_and_line(intersection_point(c2,c1),c4).  [resolve(68,b,34,a)].
+70 apart_point_and_line(intersection_point(c2,c1),c4) | apart_point_and_line(intersection_point(c1,c2),c3) | distinct_points(intersection_point(c1,c2),intersection_point(c4,c3)).  [resolve(40,d,62,a)].
+71 apart_point_and_line(intersection_point(c1,c2),c3) | distinct_points(intersection_point(c1,c2),intersection_point(c4,c3)).  [resolve(69,a,70,a)].
+72 apart_point_and_line(intersection_point(c1,c2),c3).  [resolve(67,a,71,b)].
+73 -apart_point_and_line(intersection_point(c1,c2),A) | apart_point_and_line(intersection_point(c4,c3),A).  [resolve(20,b,67,a)].
+74 -apart_point_and_line(intersection_point(c1,c2),c3).  [resolve(73,b,33,a)].
+75 $F.  [resolve(72,a,74,a)].
+
+============================== end of proof ==========================

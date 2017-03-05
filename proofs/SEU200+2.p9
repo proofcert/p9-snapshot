@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n123.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:39:53 CDT 2014
+% CPUTime    : 1.94 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 969 was started by sandbox on n123.star.cs.uiowa.edu,
+Fri Jun  6 02:39:54 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_937_n123.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.21 (+ 0.01) seconds.
+% Length of proof is 13.
+% Level of proof is 4.
+% Maximum clause weight is 12.000.
+% Given clauses 504.
+
+
+1 (all A all B (relation(B) -> relation(relation_rng_restriction(A,B)))).  [assumption].
+2 (all A all B (relation(B) -> subset(relation_rng_restriction(A,B),B))).  [assumption].
+3 (all A (relation(A) -> (all B (relation(B) -> (subset(A,B) -> subset(relation_dom(A),relation_dom(B)) & subset(relation_rng(A),relation_rng(B))))))).  [assumption].
+4 -(all A all B (relation(B) -> subset(relation_rng(relation_rng_restriction(A,B)),relation_rng(B)))).  [assumption].
+5 -relation(A) | relation(relation_rng_restriction(B,A)).  [clausify(1)].
+6 -relation(A) | subset(relation_rng_restriction(B,A),A).  [clausify(2)].
+7 -relation(A) | -relation(B) | -subset(A,B) | subset(relation_rng(A),relation_rng(B)).  [clausify(3)].
+8 relation(c6).  [clausify(4)].
+9 -subset(relation_rng(relation_rng_restriction(c5,c6)),relation_rng(c6)).  [clausify(4)].
+10 subset(relation_rng_restriction(A,c6),c6).  [resolve(8,a,6,a)].
+11 relation(relation_rng_restriction(A,c6)).  [resolve(8,a,5,a)].
+12 -relation(relation_rng_restriction(A,c6)) | -relation(c6) | subset(relation_rng(relation_rng_restriction(A,c6)),relation_rng(c6)).  [resolve(10,a,7,c)].
+13 -relation(c6) | subset(relation_rng(relation_rng_restriction(A,c6)),relation_rng(c6)).  [resolve(11,a,12,a)].
+14 subset(relation_rng(relation_rng_restriction(A,c6)),relation_rng(c6)).  [resolve(8,a,13,a)].
+15 $F.  [resolve(14,a,9,a)].
+
+============================== end of proof ==========================

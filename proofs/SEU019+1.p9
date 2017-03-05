@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n156.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:38:48 CDT 2014
+% CPUTime    : 0.40 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 31376 was started by sandbox on n156.star.cs.uiowa.edu,
+Thu Jun  5 13:38:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_31344_n156.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.22 (+ 0.00) seconds.
+% Length of proof is 37.
+% Level of proof is 10.
+% Maximum clause weight is 18.000.
+% Given clauses 403.
+
+
+1 (all A (relation(A) & function(A) -> (one_to_one(A) <-> (all B all C (in(B,relation_dom(A)) & in(C,relation_dom(A)) & apply(A,B) = apply(A,C) -> B = C))))).  [assumption].
+2 (all A relation(identity_relation(A))).  [assumption].
+3 (all A (relation(identity_relation(A)) & function(identity_relation(A)))).  [assumption].
+4 (all A all B (relation(B) & function(B) -> (B = identity_relation(A) <-> relation_dom(B) = A & (all C (in(C,A) -> apply(B,C) = C))))).  [assumption].
+5 -(all A one_to_one(identity_relation(A))).  [assumption].
+6 relation(identity_relation(A)).  [clausify(2)].
+7 -relation(A) | -function(A) | one_to_one(A) | in(f1(A),relation_dom(A)).  [clausify(1)].
+8 -relation(A) | -function(A) | one_to_one(A) | in(f2(A),relation_dom(A)).  [clausify(1)].
+9 -relation(A) | -function(A) | one_to_one(A) | f2(A) != f1(A).  [clausify(1)].
+10 -relation(A) | -function(A) | identity_relation(B) != A | relation_dom(A) = B.  [clausify(4)].
+11 -relation(A) | -function(A) | one_to_one(A) | apply(A,f2(A)) = apply(A,f1(A)).  [clausify(1)].
+12 -relation(A) | -function(A) | identity_relation(B) != A | -in(C,B) | apply(A,C) = C.  [clausify(4)].
+13 function(identity_relation(A)).  [clausify(3)].
+14 -one_to_one(identity_relation(c7)).  [clausify(5)].
+15 -function(identity_relation(A)) | one_to_one(identity_relation(A)) | in(f1(identity_relation(A)),relation_dom(identity_relation(A))).  [resolve(7,a,6,a)].
+16 one_to_one(identity_relation(A)) | in(f1(identity_relation(A)),relation_dom(identity_relation(A))).  [resolve(13,a,15,a)].
+17 -function(identity_relation(A)) | one_to_one(identity_relation(A)) | in(f2(identity_relation(A)),relation_dom(identity_relation(A))).  [resolve(8,a,6,a)].
+18 one_to_one(identity_relation(A)) | in(f2(identity_relation(A)),relation_dom(identity_relation(A))).  [resolve(13,a,17,a)].
+19 -function(identity_relation(A)) | one_to_one(identity_relation(A)) | f2(identity_relation(A)) != f1(identity_relation(A)).  [resolve(9,a,6,a)].
+20 one_to_one(identity_relation(A)) | f2(identity_relation(A)) != f1(identity_relation(A)).  [resolve(13,a,19,a)].
+21 -function(identity_relation(A)) | identity_relation(B) != identity_relation(A) | relation_dom(identity_relation(A)) = B.  [resolve(10,a,6,a)].
+22 identity_relation(A) != identity_relation(B) | relation_dom(identity_relation(B)) = A.  [resolve(13,a,21,a)].
+23 -function(identity_relation(A)) | one_to_one(identity_relation(A)) | apply(identity_relation(A),f2(identity_relation(A))) = apply(identity_relation(A),f1(identity_relation(A))).  [resolve(11,a,6,a)].
+24 one_to_one(identity_relation(A)) | apply(identity_relation(A),f2(identity_relation(A))) = apply(identity_relation(A),f1(identity_relation(A))).  [resolve(13,a,23,a)].
+25 -function(identity_relation(A)) | identity_relation(B) != identity_relation(A) | -in(C,B) | apply(identity_relation(A),C) = C.  [resolve(12,a,6,a)].
+26 identity_relation(A) != identity_relation(B) | -in(C,A) | apply(identity_relation(B),C) = C.  [resolve(13,a,25,a)].
+27 relation_dom(identity_relation(A)) = A.  [xx_res(22,a)].
+28 one_to_one(identity_relation(A)) | in(f2(identity_relation(A)),A).  [para(27(a,1),18(b,2))].
+29 one_to_one(identity_relation(A)) | in(f1(identity_relation(A)),A).  [para(27(a,1),16(b,2))].
+30 apply(identity_relation(c7),f2(identity_relation(c7))) = apply(identity_relation(c7),f1(identity_relation(c7))).  [resolve(24,a,14,a)].
+31 one_to_one(identity_relation(A)) | identity_relation(A) != identity_relation(B) | apply(identity_relation(B),f2(identity_relation(A))) = f2(identity_relation(A)).  [resolve(28,b,26,b)].
+32 one_to_one(identity_relation(A)) | identity_relation(A) != identity_relation(B) | apply(identity_relation(B),f1(identity_relation(A))) = f1(identity_relation(A)).  [resolve(29,b,26,b)].
+33 one_to_one(identity_relation(A)) | apply(identity_relation(A),f2(identity_relation(A))) = f2(identity_relation(A)).  [xx_res(31,b)].
+34 apply(identity_relation(c7),f2(identity_relation(c7))) = f2(identity_relation(c7)).  [resolve(33,a,14,a)].
+35 apply(identity_relation(c7),f1(identity_relation(c7))) = f2(identity_relation(c7)).  [para(30(a,1),34(a,1))].
+36 one_to_one(identity_relation(A)) | apply(identity_relation(A),f1(identity_relation(A))) = f1(identity_relation(A)).  [xx_res(32,b)].
+37 apply(identity_relation(c7),f1(identity_relation(c7))) = f1(identity_relation(c7)).  [resolve(36,a,14,a)].
+38 f2(identity_relation(c7)) = f1(identity_relation(c7)).  [para(35(a,1),37(a,1))].
+39 one_to_one(identity_relation(c7)).  [resolve(38,a,20,b)].
+40 $F.  [resolve(14,a,39,a)].
+
+============================== end of proof ==========================

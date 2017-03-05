@@ -1,0 +1,136 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n161.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 19:31:43 CDT 2014
+% CPUTime    : 0.20 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 35354 was started by sandbox on n161.star.cs.uiowa.edu,
+Fri Jun  6 19:31:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_35322_n161.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.08 (+ 0.00) seconds.
+% Length of proof is 47.
+% Level of proof is 22.
+% Maximum clause weight is 22.000.
+% Given clauses 50.
+
+
+1 (all A mult(A,unit) = A).  [assumption].
+2 (all A mult(unit,A) = A).  [assumption].
+3 (all A all B all C mult(C,mult(B,mult(B,A))) = mult(mult(mult(C,B),B),A)).  [assumption].
+4 (all A mult(A,i(A)) = unit).  [assumption].
+5 (all A mult(i(A),A) = unit).  [assumption].
+6 -(all A all B all C ((mult(A,B) = mult(A,C) -> B = C) & (mult(B,A) = mult(C,A) -> B = C))).  [assumption].
+7 mult(A,unit) = A.  [clausify(1)].
+8 mult(unit,A) = A.  [clausify(2)].
+9 mult(A,i(A)) = unit.  [clausify(4)].
+10 mult(i(A),A) = unit.  [clausify(5)].
+11 mult(c1,c3) = mult(c1,c2) | mult(c3,c1) = mult(c2,c1).  [clausify(6)].
+12 mult(mult(mult(A,B),B),C) = mult(A,mult(B,mult(B,C))).  [clausify(3)].
+13 c3 != c2.  [clausify(6)].
+14 mult(A,mult(B,mult(B,unit))) = mult(mult(A,B),B).  [para(12(a,1),7(a,1))].
+15 mult(A,mult(B,B)) = mult(mult(A,B),B).  [para(7(a,1),14(a,1,2,2))].
+16 mult(mult(A,B),B) = mult(A,mult(B,B)).  [copy(15),flip(a)].
+17 mult(mult(A,A),B) = mult(unit,mult(A,mult(A,B))).  [para(8(a,1),12(a,1,1,1))].
+18 mult(mult(A,A),B) = mult(A,mult(A,B)).  [para(8(a,1),17(a,2))].
+19 mult(A,mult(B,mult(B,i(mult(mult(A,B),B))))) = unit.  [para(12(a,1),9(a,1))].
+20 mult(A,mult(B,mult(B,i(mult(A,mult(B,B)))))) = unit.  [para(16(a,1),19(a,1,2,2,2,1))].
+21 mult(mult(unit,A),B) = mult(i(A),mult(A,mult(A,B))).  [para(10(a,1),12(a,1,1,1))].
+22 mult(A,B) = mult(i(A),mult(A,mult(A,B))).  [para(8(a,1),21(a,1,1))].
+23 mult(i(A),mult(A,mult(A,B))) = mult(A,B).  [copy(22),flip(a)].
+24 mult(mult(A,mult(B,B)),C) = mult(A,mult(B,mult(B,C))).  [para(16(a,1),12(a,1,1))].
+25 mult(unit,i(A)) = mult(A,mult(i(A),i(A))).  [para(9(a,1),16(a,1,1))].
+26 i(A) = mult(A,mult(i(A),i(A))).  [para(8(a,1),25(a,1))].
+27 mult(A,mult(i(A),i(A))) = i(A).  [copy(26),flip(a)].
+28 mult(unit,A) = mult(i(A),mult(A,A)).  [para(10(a,1),16(a,1,1))].
+29 A = mult(i(A),mult(A,A)).  [para(8(a,1),28(a,1))].
+30 mult(i(A),mult(A,A)) = A.  [copy(29),flip(a)].
+31 mult(A,mult(A,i(mult(A,A)))) = unit.  [para(18(a,1),9(a,1))].
+32 mult(A,mult(A,mult(i(mult(A,A)),i(mult(A,A))))) = i(mult(A,A)).  [para(18(a,1),27(a,1))].
+33 mult(i(i(A)),mult(i(A),A)) = mult(i(A),mult(A,A)).  [para(30(a,1),23(a,1,2,2))].
+34 mult(i(i(A)),unit) = mult(i(A),mult(A,A)).  [para(10(a,1),33(a,1,2))].
+35 i(i(A)) = mult(i(A),mult(A,A)).  [para(7(a,1),34(a,1))].
+36 i(i(A)) = A.  [para(30(a,1),35(a,2))].
+37 mult(i(A),unit) = mult(A,i(mult(A,A))).  [para(31(a,1),23(a,1,2))].
+38 i(A) = mult(A,i(mult(A,A))).  [para(7(a,1),37(a,1))].
+39 mult(A,i(mult(A,A))) = i(A).  [copy(38),flip(a)].
+40 mult(i(A),i(mult(A,A))) = mult(A,mult(i(mult(A,A)),i(mult(A,A)))).  [para(39(a,1),16(a,1,1))].
+41 mult(A,mult(i(mult(A,A)),i(mult(A,A)))) = mult(i(A),i(mult(A,A))).  [copy(40),flip(a)].
+42 mult(A,mult(i(A),i(mult(A,A)))) = i(mult(A,A)).  [para(41(a,1),32(a,1,2))].
+43 mult(i(A),mult(A,i(mult(A,A)))) = mult(A,mult(i(A),i(mult(A,A)))).  [para(42(a,1),23(a,1,2,2))].
+44 mult(i(A),i(A)) = mult(A,mult(i(A),i(mult(A,A)))).  [para(39(a,1),43(a,1,2))].
+45 mult(i(A),i(A)) = i(mult(A,A)).  [para(42(a,1),44(a,2))].
+46 i(mult(A,A)) = mult(i(A),i(A)).  [copy(45),flip(a)].
+47 mult(unit,A) = mult(i(mult(B,B)),mult(B,mult(B,A))).  [para(10(a,1),24(a,1,1))].
+48 A = mult(i(mult(B,B)),mult(B,mult(B,A))).  [para(8(a,1),47(a,1))].
+49 A = mult(mult(i(B),i(B)),mult(B,mult(B,A))).  [para(46(a,1),48(a,2,1))].
+50 A = mult(i(B),mult(i(B),mult(B,mult(B,A)))).  [para(18(a,1),49(a,2))].
+51 A = mult(i(B),mult(B,A)).  [para(23(a,1),50(a,2,2))].
+52 mult(i(A),mult(A,B)) = B.  [copy(51),flip(a)].
+53 mult(c1,c3) = mult(c1,c2) | mult(i(c3),mult(c2,c1)) = c1.  [para(11(b,1),52(a,1,2))].
+54 mult(i(mult(A,B)),mult(A,mult(B,B))) = B.  [para(16(a,1),52(a,1,2))].
+55 mult(i(A),unit) = mult(B,mult(B,i(mult(A,mult(B,B))))).  [para(20(a,1),52(a,1,2))].
+56 i(A) = mult(B,mult(B,i(mult(A,mult(B,B))))).  [para(7(a,1),55(a,1))].
+57 mult(A,mult(A,i(mult(B,mult(A,A))))) = i(B).  [copy(56),flip(a)].
+58 mult(A,mult(i(A),B)) = B.  [para(36(a,1),52(a,1,1))].
+59 mult(i(A),i(B)) = mult(A,i(mult(B,mult(A,A)))).  [para(57(a,1),52(a,1,2))].
+60 mult(A,i(mult(B,mult(A,A)))) = mult(i(A),i(B)).  [copy(59),flip(a)].
+61 mult(A,i(mult(B,mult(mult(A,A),mult(A,A))))) = mult(i(A),i(mult(B,mult(A,A)))).  [para(16(a,1),60(a,1,2,1))].
+62 mult(A,i(mult(B,mult(A,mult(A,mult(A,A)))))) = mult(i(A),i(mult(B,mult(A,A)))).  [para(18(a,1),61(a,1,2,1,2))].
+63 mult(i(mult(A,A)),i(B)) = mult(A,mult(A,i(mult(B,mult(mult(A,A),mult(A,A)))))).  [para(60(a,1),18(a,1))].
+64 mult(mult(i(A),i(A)),i(B)) = mult(A,mult(A,i(mult(B,mult(mult(A,A),mult(A,A)))))).  [para(46(a,1),63(a,1,1))].
+65 mult(i(A),mult(i(A),i(B))) = mult(A,mult(A,i(mult(B,mult(mult(A,A),mult(A,A)))))).  [para(18(a,1),64(a,1))].
+66 mult(i(A),mult(i(A),i(B))) = mult(A,mult(A,i(mult(B,mult(A,mult(A,mult(A,A))))))).  [para(18(a,1),65(a,2,2,2,1,2))].
+67 mult(i(A),mult(i(A),i(B))) = mult(A,mult(i(A),i(mult(B,mult(A,A))))).  [para(62(a,1),66(a,2,2))].
+68 mult(i(A),mult(i(A),i(B))) = i(mult(B,mult(A,A))).  [para(58(a,1),67(a,2))].
+69 i(mult(A,mult(B,B))) = mult(i(B),mult(i(B),i(A))).  [copy(68),flip(a)].
+70 i(mult(i(A),mult(i(A),i(B)))) = mult(B,mult(A,A)).  [para(69(a,1),36(a,1,1))].
+71 i(mult(A,mult(i(i(A)),i(B)))) = mult(B,mult(i(A),i(A))).  [para(36(a,1),70(a,1,1,1))].
+72 i(mult(A,mult(A,i(B)))) = mult(B,mult(i(A),i(A))).  [para(36(a,1),71(a,1,1,2,1))].
+73 i(mult(A,mult(A,B))) = mult(i(B),mult(i(A),i(A))).  [para(36(a,1),72(a,1,1,2,2))].
+74 i(mult(i(A),B)) = mult(i(mult(A,B)),mult(i(i(A)),i(i(A)))).  [para(52(a,1),73(a,1,1,2))].
+75 i(mult(i(A),B)) = mult(i(mult(A,B)),mult(A,i(i(A)))).  [para(36(a,1),74(a,2,2,1))].
+76 i(mult(i(A),B)) = mult(i(mult(A,B)),mult(A,A)).  [para(36(a,1),75(a,2,2,2))].
+77 mult(i(mult(A,B)),mult(A,A)) = i(mult(i(A),B)).  [copy(76),flip(a)].
+78 mult(i(mult(i(mult(A,B)),A)),i(mult(i(A),B))) = A.  [para(77(a,1),54(a,1,2))].
+79 mult(i(mult(i(mult(A,mult(A,B))),A)),i(B)) = A.  [para(52(a,1),78(a,1,2,1))].
+80 mult(i(mult(mult(i(B),mult(i(A),i(A))),A)),i(B)) = A.  [para(73(a,1),79(a,1,1,1,1))].
+81 mult(i(mult(i(B),mult(i(A),mult(i(A),A)))),i(B)) = A.  [para(24(a,1),80(a,1,1,1))].
+82 mult(i(mult(i(B),mult(i(A),unit))),i(B)) = A.  [para(10(a,1),81(a,1,1,1,2,2))].
+83 mult(i(mult(i(A),i(B))),i(A)) = B.  [para(7(a,1),82(a,1,1,1,2))].
+84 mult(c1,c3) = mult(c1,c2) | mult(i(mult(i(mult(c3,mult(c2,c1))),c3)),i(c1)) = c3.  [para(53(b,1),78(a,1,2,1))].
+85 mult(A,i(B)) = mult(i(mult(i(B),i(A))),mult(i(B),i(B))).  [para(83(a,1),16(a,1,1))].
+86 mult(A,i(B)) = i(mult(i(i(B)),i(A))).  [para(77(a,1),85(a,2))].
+87 mult(A,i(B)) = i(mult(B,i(A))).  [para(36(a,1),86(a,2,1,1))].
+88 i(mult(A,i(B))) = mult(B,i(A)).  [copy(87),flip(a)].
+89 mult(i(i(mult(i(A),i(B)))),B) = i(A).  [para(83(a,1),52(a,1,2))].
+90 mult(i(mult(B,i(i(A)))),B) = i(A).  [para(88(a,1),89(a,1,1,1))].
+91 mult(i(mult(A,B)),A) = i(B).  [para(36(a,1),90(a,1,1,1,2))].
+92 mult(mult(B,i(i(A))),i(A)) = B.  [para(88(a,1),83(a,1,1))].
+93 mult(mult(A,B),i(B)) = A.  [para(36(a,1),92(a,1,1,2))].
+94 mult(c1,c3) = mult(c1,c2) | mult(i(i(mult(c2,c1))),i(c1)) = c3.  [para(91(a,1),84(b,1,1,1))].
+95 mult(c1,c3) = mult(c1,c2) | mult(mult(c2,c1),i(c1)) = c3.  [para(36(a,1),94(b,1,1))].
+96 mult(c1,c3) = mult(c1,c2) | c2 = c3.  [para(93(a,1),95(b,1))].
+97 mult(c1,c3) = mult(c1,c2) | c3 = c2.  [copy(96),flip(b)].
+98 mult(c1,c3) = mult(c1,c2).  [resolve(13,a,97,b)].
+99 mult(i(c1),mult(c1,c2)) = c3.  [para(98(a,1),52(a,1,2))].
+100 c2 = c3.  [para(52(a,1),99(a,1))].
+101 c3 = c2.  [copy(100),flip(a)].
+102 $F.  [resolve(13,a,101,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,23 @@
+
+
+
+
+
+
+7 -status(A,B,C) | status(A,B,D) | nota(C,D).  [clausify(3)].
+8 -nota(csa,thm).  [assumption].
+9 -model(A,B) | model(A,C) | -status(B,C,thm).  [clausify(1)].
+10 -model(A,B) | -model(A,not(C)) | status(B,C,csa).  [clausify(2)].
+11 model(A,B) | model(A,not(B)).  [clausify(4)].
+12 -model(A,c5).  [clausify(5)].
+13 model(c12,c10).  [clausify(6)].
+14 -model(A,c10) | model(A,c11).  [clausify(6)].
+15 -status(A,B,csa) | status(A,B,thm).  [resolve(8,a,7,c)].
+16 model(A,B) | -model(A,C) | status(C,B,csa).  [resolve(11,b,10,b)].
+17 model(c12,c11).  [resolve(14,a,13,a)].
+18 model(c12,A) | status(c11,A,csa).  [resolve(16,b,17,a)].
+19 model(c12,A) | status(c11,A,thm).  [resolve(18,b,15,a)].
+20 model(c12,A) | -model(B,c11) | model(B,A).  [resolve(19,b,9,c)].
+21 model(c12,A) | -model(c12,c11).  [factor(20,a,c)].
+22 model(c12,A).  [resolve(17,a,21,b)].
+23 $F.  [resolve(22,a,12,a)].

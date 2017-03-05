@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n106.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:01:08 CDT 2014
+% CPUTime    : 0.31 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 13544 was started by sandbox on n106.star.cs.uiowa.edu,
+Fri Jun  6 02:01:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_13512_n106.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.07 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 121.
+
+
+1 (all A all B (((exists C model(C,A)) <-> (exists D model(D,B))) <-> status(A,B,esa))).  [assumption].
+2 (all A all B ((all C (model(C,A) -> model(C,B))) <-> status(A,B,thm))).  [assumption].
+3 (all A all B ((exists C exists D (status(C,D,A) & status(C,D,B))) <-> mighta(A,B))).  [assumption].
+4 (exists A all B model(B,A)).  [assumption].
+5 -status(A,B,C) | -status(A,B,D) | mighta(C,D).  [clausify(3)].
+6 -mighta(esa,thm).  [assumption].
+7 -model(A,B) | -model(C,D) | status(B,D,esa).  [clausify(1)].
+8 -model(f10(A,B),B) | status(A,B,thm).  [clausify(2)].
+9 model(A,c1).  [clausify(4)].
+10 -status(A,B,esa) | -status(A,B,thm).  [resolve(6,a,5,c)].
+11 -model(A,B) | status(B,B,esa).  [factor(7,a,b)].
+12 status(A,c1,thm).  [resolve(9,a,8,a)].
+13 status(c1,c1,esa).  [resolve(11,a,9,a)].
+14 -status(A,c1,esa).  [resolve(12,a,10,b)].
+15 $F.  [resolve(14,a,13,a)].
+
+============================== end of proof ==========================

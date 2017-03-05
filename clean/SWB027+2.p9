@@ -1,0 +1,40 @@
+
+
+
+
+
+
+7 iext(uri_owl_propertyChainAxiom,uri_owl_sameAs,c1).  [clausify(6)].
+8 iext(uri_rdf_first,c1,uri_ex_p).  [clausify(6)].
+9 iext(uri_rdf_rest,c1,c2).  [clausify(6)].
+10 iext(uri_rdf_first,c2,c3).  [clausify(6)].
+11 iext(uri_rdf_rest,c2,uri_rdf_nil).  [clausify(6)].
+12 iext(uri_owl_inverseOf,c3,uri_ex_p).  [clausify(6)].
+13 -iext(uri_rdf_type,uri_ex_p,uri_owl_InverseFunctionalProperty).  [assumption].
+14 -iext(uri_owl_inverseOf,A,B) | ip(B).  [clausify(5)].
+15 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(1)].
+16 -iext(uri_owl_sameAs,A,B) | B = A.  [clausify(2)].
+17 icext(uri_owl_InverseFunctionalProperty,A) | -ip(A) | f5(A) != f4(A).  [clausify(4)].
+18 icext(uri_owl_InverseFunctionalProperty,A) | -ip(A) | iext(A,f4(A),f6(A)).  [clausify(4)].
+19 icext(uri_owl_InverseFunctionalProperty,A) | -ip(A) | iext(A,f5(A),f6(A)).  [clausify(4)].
+20 -iext(uri_owl_inverseOf,A,B) | iext(A,C,D) | -iext(B,D,C).  [clausify(5)].
+21 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,E,A) | -iext(B,F,V6) | -iext(D,V6,V7) | iext(E,F,V7).  [clausify(3)].
+22 ip(uri_ex_p).  [resolve(14,a,12,a)].
+23 -icext(uri_owl_InverseFunctionalProperty,uri_ex_p).  [resolve(15,a,13,a)].
+24 icext(uri_owl_InverseFunctionalProperty,uri_ex_p) | iext(uri_ex_p,f5(uri_ex_p),f6(uri_ex_p)).  [resolve(22,a,19,b)].
+25 iext(uri_ex_p,f5(uri_ex_p),f6(uri_ex_p)).  [resolve(23,a,24,a)].
+26 icext(uri_owl_InverseFunctionalProperty,uri_ex_p) | iext(uri_ex_p,f4(uri_ex_p),f6(uri_ex_p)).  [resolve(22,a,18,b)].
+27 iext(uri_ex_p,f4(uri_ex_p),f6(uri_ex_p)).  [resolve(23,a,26,a)].
+28 icext(uri_owl_InverseFunctionalProperty,uri_ex_p) | f5(uri_ex_p) != f4(uri_ex_p).  [resolve(22,a,17,b)].
+29 f5(uri_ex_p) != f4(uri_ex_p).  [resolve(23,a,28,a)].
+30 -iext(uri_owl_sameAs,f4(uri_ex_p),f5(uri_ex_p)).  [resolve(16,b,29,a)].
+31 -iext(uri_rdf_rest,c1,A) | -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,C,c1) | -iext(uri_ex_p,D,E) | -iext(B,E,F) | iext(C,D,F).  [resolve(21,a,8,a)].
+32 -iext(uri_rdf_first,c2,A) | -iext(uri_rdf_rest,c2,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,B,c1) | -iext(uri_ex_p,C,D) | -iext(A,D,E) | iext(B,C,E).  [resolve(31,a,9,a)].
+33 -iext(uri_rdf_rest,c2,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,A,c1) | -iext(uri_ex_p,B,C) | -iext(c3,C,D) | iext(A,B,D).  [resolve(32,a,10,a)].
+34 -iext(uri_owl_propertyChainAxiom,A,c1) | -iext(uri_ex_p,B,C) | -iext(c3,C,D) | iext(A,B,D).  [resolve(33,a,11,a)].
+35 -iext(uri_ex_p,A,B) | -iext(c3,B,C) | iext(uri_owl_sameAs,A,C).  [resolve(34,a,7,a)].
+36 -iext(c3,f6(uri_ex_p),A) | iext(uri_owl_sameAs,f4(uri_ex_p),A).  [resolve(35,a,27,a)].
+37 -iext(c3,f6(uri_ex_p),f5(uri_ex_p)).  [resolve(36,b,30,a)].
+38 -iext(uri_owl_inverseOf,c3,A) | -iext(A,f5(uri_ex_p),f6(uri_ex_p)).  [resolve(20,b,37,a)].
+39 -iext(uri_owl_inverseOf,c3,uri_ex_p).  [resolve(38,b,25,a)].
+40 $F.  [resolve(12,a,39,a)].

@@ -1,0 +1,47 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n060.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 18:14:18 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 19955 was started by sandbox on n060.star.cs.uiowa.edu,
+Fri Jun  6 18:14:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_19923_n060.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 11.
+% Level of proof is 4.
+% Maximum clause weight is 8.000.
+% Given clauses 10.
+
+
+1 (all A all B (subset(A,B) -> intersection(A,B) = A)).  [assumption].
+2 (all A all B intersection(A,B) = intersection(B,A)).  [assumption].
+3 -(all A all B (subset(A,B) & intersection(B,A) = empty_set -> A = empty_set)).  [assumption].
+4 subset(c1,c2).  [clausify(3)].
+5 intersection(c2,c1) = empty_set.  [clausify(3)].
+6 empty_set = intersection(c2,c1).  [copy(5),flip(a)].
+7 intersection(A,B) = intersection(B,A).  [clausify(2)].
+8 empty_set != c1.  [clausify(3)].
+9 intersection(c2,c1) != c1.  [para(6(a,1),8(a,1))].
+10 intersection(c1,c2) != c1.  [para(7(a,1),9(a,1))].
+11 -subset(A,B) | intersection(A,B) = A.  [clausify(1)].
+12 intersection(c1,c2) = c1.  [resolve(11,a,4,a)].
+13 $F.  [resolve(10,a,12,a)].
+
+============================== end of proof ==========================

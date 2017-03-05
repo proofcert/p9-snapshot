@@ -1,0 +1,35 @@
+
+
+
+
+5 aNaturalNumber0(xm).  [assumption].
+6 aNaturalNumber0(xn).  [assumption].
+7 doDivides0(xm,xn).  [assumption].
+8 xn != sz00.  [assumption].
+9 -sdtlseqdt0(xm,xn).  [assumption].
+10 -aNaturalNumber0(A) | sdtasdt0(sz00,A) = sz00.  [clausify(2)].
+11 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtasdt0(B,A) = sdtasdt0(A,B).  [clausify(1)].
+12 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -doDivides0(A,B) | aNaturalNumber0(f2(A,B)).  [clausify(4)].
+13 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sz00 = A | sdtlseqdt0(B,sdtasdt0(B,A)).  [clausify(3)].
+14 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -doDivides0(A,B) | sdtasdt0(A,f2(A,B)) = B.  [clausify(4)].
+15 sdtasdt0(sz00,xm) = sz00.  [resolve(10,a,5,a)].
+16 -aNaturalNumber0(A) | sdtasdt0(A,xm) = sdtasdt0(xm,A).  [resolve(11,a,5,a)].
+17 -aNaturalNumber0(A) | sdtasdt0(xm,A) = sdtasdt0(A,xm).  [copy(16),flip(b)].
+18 -aNaturalNumber0(xm) | -aNaturalNumber0(xn) | aNaturalNumber0(f2(xm,xn)).  [resolve(12,c,7,a)].
+19 -aNaturalNumber0(xn) | aNaturalNumber0(f2(xm,xn)).  [resolve(5,a,18,a)].
+20 aNaturalNumber0(f2(xm,xn)).  [resolve(6,a,19,a)].
+21 -aNaturalNumber0(A) | sz00 = A | sdtlseqdt0(xm,sdtasdt0(xm,A)).  [resolve(13,b,5,a)].
+22 -aNaturalNumber0(xm) | -aNaturalNumber0(xn) | sdtasdt0(xm,f2(xm,xn)) = xn.  [resolve(14,c,7,a)].
+23 -aNaturalNumber0(xn) | sdtasdt0(xm,f2(xm,xn)) = xn.  [resolve(5,a,22,a)].
+24 sdtasdt0(xm,f2(xm,xn)) = xn.  [resolve(6,a,23,a)].
+25 sdtasdt0(xm,f2(xm,xn)) = sdtasdt0(f2(xm,xn),xm).  [resolve(17,a,20,a)].
+26 xn = sdtasdt0(f2(xm,xn),xm).  [para(24(a,1),25(a,1))].
+27 sdtasdt0(f2(xm,xn),xm) = xn.  [copy(26),flip(a)].
+28 sz00 = f2(xm,xn) | sdtlseqdt0(xm,sdtasdt0(xm,f2(xm,xn))).  [resolve(21,a,20,a)].
+29 sz00 = f2(xm,xn) | sdtlseqdt0(xm,xn).  [para(24(a,1),28(b,2))].
+30 f2(xm,xn) = sz00 | sdtlseqdt0(xm,xn).  [copy(29),flip(a)].
+31 f2(xm,xn) = sz00.  [resolve(9,a,30,b)].
+32 sdtasdt0(sz00,xm) = xn.  [para(31(a,1),27(a,1,1))].
+33 sz00 = xn.  [para(15(a,1),32(a,1))].
+34 xn = sz00.  [copy(33),flip(a)].
+35 $F.  [resolve(8,a,34,a)].

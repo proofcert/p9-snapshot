@@ -1,0 +1,70 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n045.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:20:18 CDT 2014
+% CPUTime    : 7.10 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 11886 was started by sandbox on n045.star.cs.uiowa.edu,
+Fri Jun  6 01:20:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_11854_n045.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 6.81 (+ 0.07) seconds.
+% Length of proof is 24.
+% Level of proof is 8.
+% Maximum clause weight is 10.000.
+% Given clauses 2516.
+
+
+1 (all A (ssList(A) -> (all B (ssList(B) -> (neq(A,B) <-> A != B))))).  [assumption].
+2 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | nil != C & nil = D | nil = B & nil = A | neq(A,nil) & segmentP(B,A) | neq(D,nil) & (-neq(C,nil) | -segmentP(D,C)))))))))).  [assumption].
+3 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(1)].
+4 ssList(nil).  [assumption].
+5 ssList(c4).  [clausify(2)].
+6 c6 = c4.  [clausify(2)].
+7 c5 = c3.  [clausify(2)].
+8 nil = c5 | nil != c6.  [clausify(2)].
+9 nil = c3 | nil != c6.  [para(7(a,1),8(a,2))].
+10 nil = c3 | nil != c4.  [para(6(a,1),9(b,2))].
+11 c3 = nil | nil != c4.  [copy(10),flip(a)].
+12 c3 = nil | c4 != nil.  [copy(11),flip(b)].
+13 nil != c4 | nil != c3.  [clausify(2)].
+14 c4 != nil | nil != c3.  [copy(13),flip(a)].
+15 c4 != nil | c3 != nil.  [copy(14),flip(b)].
+16 -neq(c3,nil) | -segmentP(c4,c3).  [clausify(2)].
+17 -neq(c6,nil) | neq(c5,nil).  [clausify(2)].
+18 -neq(c4,nil) | neq(c5,nil).  [para(6(a,1),17(a,1))].
+19 -neq(c4,nil) | neq(c3,nil).  [para(7(a,1),18(b,1))].
+20 -neq(c6,nil) | segmentP(c6,c5).  [clausify(2)].
+21 -neq(c4,nil) | segmentP(c6,c5).  [para(6(a,1),20(a,1))].
+22 -neq(c4,nil) | segmentP(c4,c5).  [para(6(a,1),21(b,1))].
+23 -neq(c4,nil) | segmentP(c4,c3).  [para(7(a,1),22(b,2))].
+24 -ssList(A) | neq(A,nil) | nil = A.  [resolve(4,a,3,b)].
+25 neq(c4,nil) | nil = c4.  [resolve(24,a,5,a)].
+26 neq(c4,nil) | c4 = nil.  [copy(25),flip(b)].
+27 c4 = nil | segmentP(c4,c3).  [resolve(26,a,23,a)].
+28 c4 = nil | neq(c3,nil).  [resolve(26,a,19,a)].
+29 c4 = nil | -segmentP(c4,c3).  [resolve(28,b,16,a)].
+30 c4 = nil | c4 = nil.  [resolve(29,b,27,b)].
+31 c4 = nil.  [copy(30),merge(b)].
+32 nil != nil | c3 != nil.  [para(31(a,1),15(a,1))].
+33 c3 != nil.  [copy(32),xx(a)].
+34 c3 = nil | nil != nil.  [para(31(a,1),12(b,1))].
+35 c3 = nil.  [copy(34),xx(b)].
+36 $F.  [resolve(33,a,35,a)].
+
+============================== end of proof ==========================

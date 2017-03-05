@@ -1,0 +1,154 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n113.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:19:53 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 64623 was started by sandbox on n113.star.cs.uiowa.edu,
+Thu Jun  5 15:19:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_64591_n113.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 99.
+% Level of proof is 22.
+% Maximum clause weight is 21.000.
+% Given clauses 88.
+
+
+1 (all A all B all C (environment(A) & subpopulation(B,A,C) & (greater(cardinality_at_time(B,C),zero) -> B = efficient_producers | B = first_movers) -> number_of_organizations(A,C) = sum(cardinality_at_time(first_movers,C),cardinality_at_time(efficient_producers,C)))).  [assumption].
+2 (all A all B (environment(A) & in_environment(A,B) -> subpopulation(first_movers,A,B) & subpopulation(efficient_producers,A,B))).  [assumption].
+3 (all A all B all C (A = sum(B,C) & constant(A) -> constant(B) & constant(C) | increases(B) & decreases(C) | decreases(B) & increases(C))).  [assumption].
+4 (all A all B all C (environment(B) & in_environment(B,C) & subpopulation(A,B,C) & greater(cardinality_at_time(A,C),zero) -> (constant(cardinality_at_time(A,C)) -> growth_rate(A,C) = zero) & (increases(cardinality_at_time(A,C)) -> greater(growth_rate(A,C),zero)) & (decreases(cardinality_at_time(A,C)) -> greater(zero,growth_rate(A,C))))).  [assumption].
+5 (all A all B (environment(A) & subpopulations(first_movers,efficient_producers,A,B) -> greater(cardinality_at_time(first_movers,B),zero) & greater(cardinality_at_time(efficient_producers,B),zero))).  [assumption].
+6 (all A all B (environment(A) & subpopulations(first_movers,efficient_producers,A,B) -> in_environment(A,B))).  [assumption].
+7 -(all A all B (environment(A) & subpopulations(first_movers,efficient_producers,A,B) & constant(number_of_organizations(A,B)) -> growth_rate(first_movers,B) = zero & growth_rate(efficient_producers,B) = zero | greater(growth_rate(first_movers,B),zero) & greater(zero,growth_rate(efficient_producers,B)) | greater(growth_rate(efficient_producers,B),zero) & greater(zero,growth_rate(first_movers,B)))).  [assumption].
+8 -environment(A) | -in_environment(A,B) | subpopulation(first_movers,A,B).  [clausify(2)].
+9 environment(c1).  [clausify(7)].
+10 -environment(A) | -in_environment(A,B) | subpopulation(efficient_producers,A,B).  [clausify(2)].
+11 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | in_environment(A,B).  [clausify(6)].
+12 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | greater(cardinality_at_time(first_movers,B),zero).  [clausify(5)].
+13 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | greater(cardinality_at_time(efficient_producers,B),zero).  [clausify(5)].
+14 -environment(A) | -subpopulation(B,A,C) | efficient_producers != B | sum(cardinality_at_time(first_movers,C),cardinality_at_time(efficient_producers,C)) = number_of_organizations(A,C).  [clausify(1)].
+15 -environment(A) | -in_environment(A,B) | -subpopulation(C,A,B) | -greater(cardinality_at_time(C,B),zero) | -constant(cardinality_at_time(C,B)) | growth_rate(C,B) = zero.  [clausify(4)].
+16 -environment(A) | -in_environment(A,B) | -subpopulation(C,A,B) | -greater(cardinality_at_time(C,B),zero) | -increases(cardinality_at_time(C,B)) | greater(growth_rate(C,B),zero).  [clausify(4)].
+17 -environment(A) | -in_environment(A,B) | -subpopulation(C,A,B) | -greater(cardinality_at_time(C,B),zero) | -decreases(cardinality_at_time(C,B)) | greater(zero,growth_rate(C,B)).  [clausify(4)].
+18 constant(number_of_organizations(c1,c2)).  [clausify(7)].
+19 subpopulations(first_movers,efficient_producers,c1,c2).  [clausify(7)].
+20 growth_rate(first_movers,c2) != zero | growth_rate(efficient_producers,c2) != zero.  [clausify(7)].
+21 -greater(growth_rate(first_movers,c2),zero) | -greater(zero,growth_rate(efficient_producers,c2)).  [clausify(7)].
+22 -greater(growth_rate(efficient_producers,c2),zero) | -greater(zero,growth_rate(first_movers,c2)).  [clausify(7)].
+23 sum(A,B) != C | -constant(C) | constant(A) | increases(A) | decreases(A).  [clausify(3)].
+24 sum(A,B) != C | -constant(C) | constant(A) | increases(A) | increases(B).  [clausify(3)].
+25 sum(A,B) != C | -constant(C) | constant(A) | decreases(B) | decreases(A).  [clausify(3)].
+26 sum(A,B) != C | -constant(C) | constant(A) | decreases(B) | increases(B).  [clausify(3)].
+27 sum(A,B) != C | -constant(C) | constant(B) | increases(A) | decreases(A).  [clausify(3)].
+28 sum(A,B) != C | -constant(C) | constant(B) | decreases(B) | decreases(A).  [clausify(3)].
+29 sum(A,B) != C | -constant(C) | constant(B) | decreases(B) | increases(B).  [clausify(3)].
+30 -in_environment(c1,A) | subpopulation(first_movers,c1,A).  [resolve(8,a,9,a)].
+31 -in_environment(c1,A) | subpopulation(efficient_producers,c1,A).  [resolve(10,a,9,a)].
+32 -subpopulations(first_movers,efficient_producers,c1,A) | in_environment(c1,A).  [resolve(11,a,9,a)].
+33 -subpopulations(first_movers,efficient_producers,c1,A) | greater(cardinality_at_time(first_movers,A),zero).  [resolve(12,a,9,a)].
+34 -subpopulations(first_movers,efficient_producers,c1,A) | greater(cardinality_at_time(efficient_producers,A),zero).  [resolve(13,a,9,a)].
+35 -subpopulation(A,c1,B) | efficient_producers != A | sum(cardinality_at_time(first_movers,B),cardinality_at_time(efficient_producers,B)) = number_of_organizations(c1,B).  [resolve(14,a,9,a)].
+36 -in_environment(c1,A) | -subpopulation(B,c1,A) | -greater(cardinality_at_time(B,A),zero) | -constant(cardinality_at_time(B,A)) | growth_rate(B,A) = zero.  [resolve(15,a,9,a)].
+37 -in_environment(c1,A) | -subpopulation(B,c1,A) | -greater(cardinality_at_time(B,A),zero) | -increases(cardinality_at_time(B,A)) | greater(growth_rate(B,A),zero).  [resolve(16,a,9,a)].
+38 -in_environment(c1,A) | -subpopulation(B,c1,A) | -greater(cardinality_at_time(B,A),zero) | -decreases(cardinality_at_time(B,A)) | greater(zero,growth_rate(B,A)).  [resolve(17,a,9,a)].
+39 sum(A,B) != number_of_organizations(c1,c2) | constant(A) | increases(A) | decreases(A).  [resolve(23,b,18,a)].
+40 sum(A,B) != number_of_organizations(c1,c2) | constant(A) | increases(A) | increases(B).  [resolve(24,b,18,a)].
+41 sum(A,B) != number_of_organizations(c1,c2) | constant(A) | decreases(B) | decreases(A).  [resolve(25,b,18,a)].
+42 sum(A,B) != number_of_organizations(c1,c2) | constant(A) | decreases(B) | increases(B).  [resolve(26,b,18,a)].
+43 sum(A,B) != number_of_organizations(c1,c2) | constant(B) | increases(A) | decreases(A).  [resolve(27,b,18,a)].
+44 sum(A,B) != number_of_organizations(c1,c2) | constant(B) | decreases(B) | decreases(A).  [resolve(28,b,18,a)].
+45 sum(A,B) != number_of_organizations(c1,c2) | constant(B) | decreases(B) | increases(B).  [resolve(29,b,18,a)].
+46 in_environment(c1,c2).  [resolve(32,a,19,a)].
+47 greater(cardinality_at_time(first_movers,c2),zero).  [resolve(33,a,19,a)].
+48 greater(cardinality_at_time(efficient_producers,c2),zero).  [resolve(34,a,19,a)].
+49 subpopulation(efficient_producers,c1,c2).  [resolve(46,a,31,a)].
+50 subpopulation(first_movers,c1,c2).  [resolve(46,a,30,a)].
+51 -in_environment(c1,c2) | -greater(cardinality_at_time(efficient_producers,c2),zero) | -decreases(cardinality_at_time(efficient_producers,c2)) | greater(zero,growth_rate(efficient_producers,c2)).  [resolve(49,a,38,b)].
+52 -greater(cardinality_at_time(efficient_producers,c2),zero) | -decreases(cardinality_at_time(efficient_producers,c2)) | greater(zero,growth_rate(efficient_producers,c2)).  [resolve(46,a,51,a)].
+53 -decreases(cardinality_at_time(efficient_producers,c2)) | greater(zero,growth_rate(efficient_producers,c2)).  [resolve(48,a,52,a)].
+54 -in_environment(c1,c2) | -greater(cardinality_at_time(efficient_producers,c2),zero) | -increases(cardinality_at_time(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(49,a,37,b)].
+55 -greater(cardinality_at_time(efficient_producers,c2),zero) | -increases(cardinality_at_time(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(46,a,54,a)].
+56 -increases(cardinality_at_time(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(48,a,55,a)].
+57 -in_environment(c1,c2) | -greater(cardinality_at_time(efficient_producers,c2),zero) | -constant(cardinality_at_time(efficient_producers,c2)) | growth_rate(efficient_producers,c2) = zero.  [resolve(49,a,36,b)].
+58 -greater(cardinality_at_time(efficient_producers,c2),zero) | -constant(cardinality_at_time(efficient_producers,c2)) | growth_rate(efficient_producers,c2) = zero.  [resolve(46,a,57,a)].
+59 -constant(cardinality_at_time(efficient_producers,c2)) | growth_rate(efficient_producers,c2) = zero.  [resolve(48,a,58,a)].
+60 efficient_producers != efficient_producers | sum(cardinality_at_time(first_movers,c2),cardinality_at_time(efficient_producers,c2)) = number_of_organizations(c1,c2).  [resolve(49,a,35,a)].
+61 sum(cardinality_at_time(first_movers,c2),cardinality_at_time(efficient_producers,c2)) = number_of_organizations(c1,c2).  [copy(60),xx(a)].
+62 -in_environment(c1,c2) | -greater(cardinality_at_time(first_movers,c2),zero) | -decreases(cardinality_at_time(first_movers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(50,a,38,b)].
+63 -greater(cardinality_at_time(first_movers,c2),zero) | -decreases(cardinality_at_time(first_movers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(46,a,62,a)].
+64 -decreases(cardinality_at_time(first_movers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(47,a,63,a)].
+65 -in_environment(c1,c2) | -greater(cardinality_at_time(first_movers,c2),zero) | -increases(cardinality_at_time(first_movers,c2)) | greater(growth_rate(first_movers,c2),zero).  [resolve(50,a,37,b)].
+66 -greater(cardinality_at_time(first_movers,c2),zero) | -increases(cardinality_at_time(first_movers,c2)) | greater(growth_rate(first_movers,c2),zero).  [resolve(46,a,65,a)].
+67 -increases(cardinality_at_time(first_movers,c2)) | greater(growth_rate(first_movers,c2),zero).  [resolve(47,a,66,a)].
+68 -in_environment(c1,c2) | -greater(cardinality_at_time(first_movers,c2),zero) | -constant(cardinality_at_time(first_movers,c2)) | growth_rate(first_movers,c2) = zero.  [resolve(50,a,36,b)].
+69 -greater(cardinality_at_time(first_movers,c2),zero) | -constant(cardinality_at_time(first_movers,c2)) | growth_rate(first_movers,c2) = zero.  [resolve(46,a,68,a)].
+70 -constant(cardinality_at_time(first_movers,c2)) | growth_rate(first_movers,c2) = zero.  [resolve(47,a,69,a)].
+71 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(first_movers,c2)).  [resolve(61,a,41,a)].
+72 constant(cardinality_at_time(first_movers,c2)) | increases(cardinality_at_time(first_movers,c2)) | increases(cardinality_at_time(efficient_producers,c2)).  [resolve(61,a,40,a)].
+73 constant(cardinality_at_time(first_movers,c2)) | increases(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(first_movers,c2)).  [resolve(61,a,39,a)].
+74 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(71,c,64,a)].
+75 constant(cardinality_at_time(first_movers,c2)) | increases(cardinality_at_time(efficient_producers,c2)) | greater(growth_rate(first_movers,c2),zero).  [resolve(72,b,67,a)].
+76 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(first_movers,c2)) | greater(growth_rate(first_movers,c2),zero).  [resolve(73,b,67,a)].
+77 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | increases(cardinality_at_time(efficient_producers,c2)).  [resolve(42,a,61,a)].
+78 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(77,c,56,a)].
+79 constant(cardinality_at_time(efficient_producers,c2)) | increases(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(first_movers,c2)).  [resolve(43,a,61,a)].
+80 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(first_movers,c2)) | greater(growth_rate(first_movers,c2),zero).  [resolve(79,b,67,a)].
+81 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(first_movers,c2)).  [resolve(44,a,61,a)].
+82 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(81,c,64,a)].
+83 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | increases(cardinality_at_time(efficient_producers,c2)).  [resolve(45,a,61,a)].
+84 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(83,c,56,a)].
+85 constant(cardinality_at_time(first_movers,c2)) | increases(cardinality_at_time(efficient_producers,c2)) | -greater(zero,growth_rate(efficient_producers,c2)).  [resolve(75,c,21,a)].
+86 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(first_movers,c2)) | -greater(zero,growth_rate(efficient_producers,c2)).  [resolve(76,c,21,a)].
+87 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | -greater(zero,growth_rate(first_movers,c2)).  [resolve(78,c,22,a)].
+88 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(first_movers,c2)) | -greater(zero,growth_rate(efficient_producers,c2)).  [resolve(80,c,21,a)].
+89 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | -greater(zero,growth_rate(first_movers,c2)).  [resolve(84,c,22,a)].
+90 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)).  [resolve(87,c,74,c)].
+91 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)).  [copy(90),merge(c)].
+92 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)).  [copy(91),merge(c)].
+93 constant(cardinality_at_time(first_movers,c2)) | greater(zero,growth_rate(efficient_producers,c2)).  [resolve(92,b,53,a)].
+94 constant(cardinality_at_time(first_movers,c2)) | constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(first_movers,c2)).  [resolve(93,b,86,c)].
+95 constant(cardinality_at_time(first_movers,c2)) | decreases(cardinality_at_time(first_movers,c2)).  [copy(94),merge(b)].
+96 constant(cardinality_at_time(first_movers,c2)) | constant(cardinality_at_time(first_movers,c2)) | increases(cardinality_at_time(efficient_producers,c2)).  [resolve(93,b,85,c)].
+97 constant(cardinality_at_time(first_movers,c2)) | increases(cardinality_at_time(efficient_producers,c2)).  [copy(96),merge(b)].
+98 constant(cardinality_at_time(first_movers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(95,b,64,a)].
+99 constant(cardinality_at_time(first_movers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(97,b,56,a)].
+100 constant(cardinality_at_time(first_movers,c2)) | -greater(zero,growth_rate(first_movers,c2)).  [resolve(99,b,22,a)].
+101 constant(cardinality_at_time(first_movers,c2)) | constant(cardinality_at_time(first_movers,c2)).  [resolve(100,b,98,b)].
+102 constant(cardinality_at_time(first_movers,c2)).  [copy(101),merge(b)].
+103 growth_rate(first_movers,c2) = zero.  [resolve(102,a,70,a)].
+104 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | -greater(zero,zero).  [para(103(a,1),89(c,2))].
+105 constant(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)) | greater(zero,zero).  [para(103(a,1),82(c,2))].
+106 -decreases(cardinality_at_time(first_movers,c2)) | greater(zero,zero).  [para(103(a,1),64(b,2))].
+107 -greater(zero,zero) | -greater(zero,growth_rate(efficient_producers,c2)).  [para(103(a,1),21(a,1))].
+108 zero != zero | growth_rate(efficient_producers,c2) != zero.  [para(103(a,1),20(a,1))].
+109 growth_rate(efficient_producers,c2) != zero.  [copy(108),xx(a)].
+110 -constant(cardinality_at_time(efficient_producers,c2)).  [resolve(109,a,59,b)].
+111 decreases(cardinality_at_time(efficient_producers,c2)) | greater(zero,zero).  [resolve(110,a,105,a)].
+112 decreases(cardinality_at_time(efficient_producers,c2)) | -greater(zero,zero).  [resolve(110,a,104,a)].
+113 decreases(cardinality_at_time(first_movers,c2)) | -greater(zero,growth_rate(efficient_producers,c2)).  [resolve(110,a,88,a)].
+114 decreases(cardinality_at_time(efficient_producers,c2)) | decreases(cardinality_at_time(efficient_producers,c2)).  [resolve(112,b,111,b)].
+115 decreases(cardinality_at_time(efficient_producers,c2)).  [copy(114),merge(b)].
+116 greater(zero,growth_rate(efficient_producers,c2)).  [resolve(115,a,53,a)].
+117 decreases(cardinality_at_time(first_movers,c2)).  [resolve(116,a,113,b)].
+118 -greater(zero,zero).  [resolve(116,a,107,b)].
+119 greater(zero,zero).  [resolve(117,a,106,a)].
+120 $F.  [resolve(118,a,119,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,65 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n160.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:43:13 CDT 2014
+% CPUTime    : 0.72 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 44993 was started by sandbox on n160.star.cs.uiowa.edu,
+Fri Jun  6 11:43:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_44961_n160.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.39 (+ 0.01) seconds.
+% Length of proof is 25.
+% Level of proof is 6.
+% Maximum clause weight is 17.000.
+% Given clauses 1030.
+
+
+1 (all A (aSet0(A) -> (all B (aElementOf0(B,A) -> aElement0(B))))).  [assumption].
+2 (all A all B (aSet0(A) & aElement0(B) -> (all C (C = sdtpldt0(A,B) <-> aSet0(C) & (all D (aElementOf0(D,C) <-> aElement0(D) & (aElementOf0(D,A) | D = B))))))).  [assumption].
+3 (all A all B (aSet0(A) & aElement0(B) -> (all C (C = sdtmndt0(A,B) <-> aSet0(C) & (all D (aElementOf0(D,C) <-> aElement0(D) & aElementOf0(D,A) & D != B)))))).  [assumption].
+4 (all A (aSet0(A) -> (all B (aElementOf0(B,A) -> sdtpldt0(sdtmndt0(A,B),B) = A)))).  [assumption].
+5 --aElementOf0(xx,sdtmndt0(xQ,xy)).  [assumption].
+6 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(1)].
+7 -aSet0(A) | -aElement0(B) | sdtpldt0(A,B) != C | aElementOf0(D,C) | -aElement0(D) | -aElementOf0(D,A).  [clausify(2)].
+8 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) != C | aSet0(C).  [clausify(3)].
+9 -aSet0(A) | -aElementOf0(B,A) | sdtpldt0(sdtmndt0(A,B),B) = A.  [clausify(4)].
+10 aSet0(xS).  [assumption].
+11 aElementOf0(xx,xS).  [assumption].
+12 aSet0(xQ).  [assumption].
+13 aElement0(xy).  [assumption].
+14 aElementOf0(xy,xQ).  [assumption].
+15 -aElementOf0(xx,xQ).  [assumption].
+16 aElementOf0(xx,sdtmndt0(xQ,xy)).  [clausify(5)].
+17 -aSet0(xS) | aElement0(xx).  [resolve(11,a,6,b)].
+18 aElement0(xx).  [resolve(10,a,17,a)].
+19 -aSet0(A) | sdtmndt0(A,xy) != B | aSet0(B).  [resolve(13,a,8,b)].
+20 -aSet0(xQ) | sdtpldt0(sdtmndt0(xQ,xy),xy) = xQ.  [resolve(14,a,9,b)].
+21 sdtpldt0(sdtmndt0(xQ,xy),xy) = xQ.  [resolve(12,a,20,a)].
+22 -aSet0(sdtmndt0(xQ,xy)) | -aElement0(A) | sdtpldt0(sdtmndt0(xQ,xy),A) != B | aElementOf0(xx,B) | -aElement0(xx).  [resolve(16,a,7,f)].
+23 -aSet0(sdtmndt0(xQ,xy)) | -aElement0(A) | sdtpldt0(sdtmndt0(xQ,xy),A) != B | aElementOf0(xx,B).  [resolve(18,a,22,e)].
+24 sdtmndt0(xQ,xy) != A | aSet0(A).  [resolve(19,a,12,a)].
+25 -aSet0(sdtmndt0(xQ,xy)) | sdtpldt0(sdtmndt0(xQ,xy),xy) != A | aElementOf0(xx,A).  [resolve(23,b,13,a)].
+26 -aSet0(sdtmndt0(xQ,xy)) | xQ != A | aElementOf0(xx,A).  [para(21(a,1),25(b,1))].
+27 aSet0(sdtmndt0(xQ,xy)).  [xx_res(24,a)].
+28 xQ != A | aElementOf0(xx,A).  [resolve(27,a,26,a)].
+29 aElementOf0(xx,sdtpldt0(sdtmndt0(xQ,xy),xy)).  [resolve(28,a,21,a(flip))].
+30 aElementOf0(xx,xQ).  [para(21(a,1),29(a,2))].
+31 $F.  [resolve(15,a,30,a)].
+
+============================== end of proof ==========================

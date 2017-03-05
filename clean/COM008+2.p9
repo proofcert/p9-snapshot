@@ -1,0 +1,60 @@
+
+
+
+
+
+
+7 transitive_reflexive_rewrite(a,b).  [assumption].
+8 transitive_reflexive_rewrite(a,c).  [assumption].
+9 -goal.  [assumption].
+10 A != B | transitive_reflexive_rewrite(B,A).  [clausify(2)].
+11 -transitive_reflexive_rewrite(b,A) | -transitive_reflexive_rewrite(c,A) | goal.  [clausify(1)].
+12 -transitive_reflexive_rewrite(b,A) | -transitive_reflexive_rewrite(c,A).  [resolve(9,a,11,c)].
+13 -transitive_reflexive_rewrite(A,B) | -transitive_reflexive_rewrite(B,C) | transitive_reflexive_rewrite(A,C).  [clausify(3)].
+14 -transitive_reflexive_rewrite(A,B) | B = A | rewrite(A,f3(A,B)).  [clausify(6)].
+15 -transitive_reflexive_rewrite(A,B) | B = A | transitive_reflexive_rewrite(f3(A,B),B).  [clausify(6)].
+16 -rewrite(A,B) | -rewrite(A,C) | transitive_reflexive_rewrite(B,f1(A,B,C)).  [clausify(4)].
+17 -rewrite(A,B) | -rewrite(A,C) | transitive_reflexive_rewrite(C,f1(A,B,C)).  [clausify(4)].
+18 -rewrite(a,A) | -transitive_reflexive_rewrite(A,B) | -transitive_reflexive_rewrite(A,C) | transitive_reflexive_rewrite(B,f2(A,B,C)).  [clausify(5)].
+19 -rewrite(a,A) | -transitive_reflexive_rewrite(A,B) | -transitive_reflexive_rewrite(A,C) | transitive_reflexive_rewrite(C,f2(A,B,C)).  [clausify(5)].
+20 transitive_reflexive_rewrite(A,A).  [xx_res(10,a)].
+21 c = a | rewrite(a,f3(a,c)).  [resolve(14,a,8,a)].
+22 b = a | rewrite(a,f3(a,b)).  [resolve(14,a,7,a)].
+23 c = a | transitive_reflexive_rewrite(f3(a,c),c).  [resolve(15,a,8,a)].
+24 b = a | transitive_reflexive_rewrite(f3(a,b),b).  [resolve(15,a,7,a)].
+25 -transitive_reflexive_rewrite(b,c).  [resolve(20,a,12,b)].
+26 -transitive_reflexive_rewrite(c,b).  [resolve(12,a,20,a)].
+27 -transitive_reflexive_rewrite(A,a) | transitive_reflexive_rewrite(A,c).  [resolve(13,b,8,a)].
+28 -transitive_reflexive_rewrite(b,a).  [resolve(27,b,25,a)].
+29 -transitive_reflexive_rewrite(A,a) | transitive_reflexive_rewrite(A,b).  [resolve(13,b,7,a)].
+30 -transitive_reflexive_rewrite(c,a).  [resolve(29,b,26,a)].
+31 a != b.  [resolve(10,b,28,a)].
+32 b != a.  [copy(31),flip(a)].
+33 transitive_reflexive_rewrite(f3(a,b),b).  [resolve(32,a,24,a)].
+34 rewrite(a,f3(a,b)).  [resolve(32,a,22,a)].
+35 -transitive_reflexive_rewrite(f3(a,b),A) | -transitive_reflexive_rewrite(f3(a,b),B) | transitive_reflexive_rewrite(B,f2(f3(a,b),A,B)).  [resolve(34,a,19,a)].
+36 -transitive_reflexive_rewrite(f3(a,b),A) | -transitive_reflexive_rewrite(f3(a,b),B) | transitive_reflexive_rewrite(A,f2(f3(a,b),A,B)).  [resolve(34,a,18,a)].
+37 -rewrite(a,A) | transitive_reflexive_rewrite(A,f1(a,f3(a,b),A)).  [resolve(34,a,17,a)].
+38 a != c.  [resolve(10,b,30,a)].
+39 c != a.  [copy(38),flip(a)].
+40 transitive_reflexive_rewrite(f3(a,c),c).  [resolve(39,a,23,a)].
+41 rewrite(a,f3(a,c)).  [resolve(39,a,21,a)].
+42 -transitive_reflexive_rewrite(f3(a,c),A) | -transitive_reflexive_rewrite(f3(a,c),B) | transitive_reflexive_rewrite(B,f2(f3(a,c),A,B)).  [resolve(41,a,19,a)].
+43 -transitive_reflexive_rewrite(f3(a,c),A) | -transitive_reflexive_rewrite(f3(a,c),B) | transitive_reflexive_rewrite(A,f2(f3(a,c),A,B)).  [resolve(41,a,18,a)].
+44 -rewrite(a,A) | transitive_reflexive_rewrite(A,f1(a,A,f3(a,c))).  [resolve(41,a,16,b)].
+45 transitive_reflexive_rewrite(f3(a,c),f1(a,f3(a,b),f3(a,c))).  [resolve(37,a,41,a)].
+46 transitive_reflexive_rewrite(f3(a,b),f1(a,f3(a,b),f3(a,c))).  [resolve(44,a,34,a)].
+47 -transitive_reflexive_rewrite(f3(a,b),A) | transitive_reflexive_rewrite(A,f2(f3(a,b),b,A)).  [resolve(35,a,33,a)].
+48 -transitive_reflexive_rewrite(f3(a,b),A) | transitive_reflexive_rewrite(b,f2(f3(a,b),b,A)).  [resolve(36,a,33,a)].
+49 -transitive_reflexive_rewrite(f1(a,f3(a,b),f3(a,c)),A) | transitive_reflexive_rewrite(f3(a,c),A).  [resolve(45,a,13,a)].
+50 -transitive_reflexive_rewrite(f3(a,c),A) | transitive_reflexive_rewrite(A,f2(f3(a,c),c,A)).  [resolve(42,a,40,a)].
+51 -transitive_reflexive_rewrite(f3(a,c),A) | transitive_reflexive_rewrite(c,f2(f3(a,c),c,A)).  [resolve(43,a,40,a)].
+52 transitive_reflexive_rewrite(f1(a,f3(a,b),f3(a,c)),f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c)))).  [resolve(47,a,46,a)].
+53 transitive_reflexive_rewrite(b,f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c)))).  [resolve(48,a,46,a)].
+54 -transitive_reflexive_rewrite(f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c))),A) | transitive_reflexive_rewrite(b,A).  [resolve(53,a,13,a)].
+55 transitive_reflexive_rewrite(f3(a,c),f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c)))).  [resolve(52,a,49,a)].
+56 transitive_reflexive_rewrite(c,f2(f3(a,c),c,f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c))))).  [resolve(55,a,51,a)].
+57 transitive_reflexive_rewrite(f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c))),f2(f3(a,c),c,f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c))))).  [resolve(55,a,50,a)].
+58 -transitive_reflexive_rewrite(b,f2(f3(a,c),c,f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c))))).  [resolve(56,a,12,b)].
+59 -transitive_reflexive_rewrite(f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c))),f2(f3(a,c),c,f2(f3(a,b),b,f1(a,f3(a,b),f3(a,c))))).  [resolve(54,b,58,a)].
+60 $F.  [resolve(57,a,59,a)].

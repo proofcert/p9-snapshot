@@ -1,0 +1,113 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n157.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:22:13 CDT 2014
+% CPUTime    : 72.79 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 62816 was started by sandbox on n157.star.cs.uiowa.edu,
+Fri Jun  6 11:22:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_62784_n157.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 71.76 (+ 0.85) seconds.
+% Length of proof is 38.
+% Level of proof is 8.
+% Maximum clause weight is 44.000.
+% Given clauses 12429.
+
+
+1 (all A all B all C (elem(A,cons(B,C)) <-> A = B | elem(A,C))).  [assumption].
+2 -(all A all B all C all D ((all E all F (elem(m_Ldr(F),queue(host(E))) -> -leq(host(E),host(F)))) & (all E all F (elem(m_Down(F),queue(host(E))) -> host(F) != host(E))) & (all E all F (host(F) = nbr_proc -> -elem(m_NotNorm(E),queue(host(F))))) & (all E all F (F != E & host(F) = host(E) -> -setIn(E,alive) | -setIn(F,alive))) & (all E ((index(status,host(E)) = elec_1 | index(status,host(E)) = elec_2) & setIn(E,alive) -> index(elid,host(E)) = E)) & (all E all V6 all F (host(F) != host(V6) & setIn(F,alive) & host(F) = host(E) & index(status,host(F)) = norm & index(ldr,host(F)) = host(V6) -> -elem(m_Down(E),queue(host(V6))))) & (all E all V6 all F (host(F) != host(V6) & setIn(F,alive) & host(F) = host(E) & index(status,host(F)) = wait & host(index(elid,host(F))) = host(V6) -> -elem(m_Down(E),queue(host(V6))))) & (all E all V7 all V6 all F (host(V6) != host(E) & setIn(E,alive) & setIn(V6,alive) & host(V7) = host(E) & host(F) = host(V6) -> -(elem(m_Down(F),queue(host(E))) & elem(m_Down(V7),queue(host(V6)))))) & (all E all V7 all V6 all F (host(V6) != host(E) & setIn(E,alive) & setIn(V6,alive) & host(V7) = host(E) & host(F) = host(V6) -> -(elem(m_Down(F),queue(host(E))) & setIn(host(V7),index(down,host(V6)))))) & (all E all V7 all V6 all F ((all V8 (-leq(host(F),V8) & leq(s(zero),V8) -> setIn(V8,index(down,host(F))) | V8 = host(V6))) & elem(m_Down(V6),queue(host(F))) & host(F) = nbr_proc & host(F) = host(V7) & index(status,host(F)) = elec_1 -> -(setIn(E,alive) & elem(m_Down(V7),queue(host(E)))))) & queue(host(C)) = cons(m_Ack(B,D),A) -> (setIn(C,alive) -> (-(index(elid,host(C)) = B & index(status,host(C)) = elec_2 & host(D) = index(pendack,host(C))) -> (all E (host(C) != host(E) -> (all V9 all V10 all V11 (host(C) = host(V11) -> ((all V8 (-leq(host(V11),V8) & leq(s(zero),V8) -> setIn(V8,index(down,host(V11))) | V8 = host(V10))) & elem(m_Down(V10),A) & host(V11) = host(V9) & host(V11) = nbr_proc & index(status,host(V11)) = elec_1 -> -(setIn(E,alive) & elem(m_Down(V9),queue(host(E))))))))))))).  [assumption].
+3 elem(A,cons(B,C)) | -elem(A,C).  [clausify(1)].
+4 -leq(host(A),f4(B,C,D,A)) | -elem(m_Down(D),queue(host(A))) | host(A) != nbr_proc | host(C) != host(A) | index(status,host(A)) != elec_1 | -setIn(B,alive) | -elem(m_Down(C),queue(host(B))).  [clausify(2)].
+5 leq(s(zero),f4(A,B,C,D)) | -elem(m_Down(C),queue(host(D))) | host(D) != nbr_proc | host(B) != host(D) | index(status,host(D)) != elec_1 | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [clausify(2)].
+6 -setIn(f4(A,B,C,D),index(down,host(D))) | -elem(m_Down(C),queue(host(D))) | host(D) != nbr_proc | host(B) != host(D) | index(status,host(D)) != elec_1 | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [clausify(2)].
+7 host(A) != f4(B,C,A,D) | -elem(m_Down(A),queue(host(D))) | host(D) != nbr_proc | host(C) != host(D) | index(status,host(D)) != elec_1 | -setIn(B,alive) | -elem(m_Down(C),queue(host(B))).  [clausify(2)].
+8 f4(A,B,C,D) != host(C) | -elem(m_Down(C),queue(host(D))) | host(D) != nbr_proc | host(B) != host(D) | index(status,host(D)) != elec_1 | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [copy(7),flip(a)].
+9 cons(m_Ack(c2,c4),c1) = queue(host(c3)).  [clausify(2)].
+10 host(c8) = host(c3).  [clausify(2)].
+11 leq(host(c8),A) | -leq(s(zero),A) | setIn(A,index(down,host(c8))) | host(c7) = A.  [clausify(2)].
+12 leq(host(c3),A) | -leq(s(zero),A) | setIn(A,index(down,host(c8))) | host(c7) = A.  [para(10(a,1),11(a,1))].
+13 leq(host(c3),A) | -leq(s(zero),A) | setIn(A,index(down,host(c3))) | host(c7) = A.  [para(10(a,1),12(c,2,2))].
+14 elem(m_Down(c7),c1).  [clausify(2)].
+15 host(c8) = host(c6).  [clausify(2)].
+16 host(c3) = host(c6).  [para(10(a,1),15(a,1))].
+17 host(c6) = host(c3).  [copy(16),flip(a)].
+18 host(c8) = nbr_proc.  [clausify(2)].
+19 host(c3) = nbr_proc.  [para(10(a,1),18(a,1))].
+20 nbr_proc = host(c3).  [copy(19),flip(a)].
+21 index(status,host(c8)) = elec_1.  [clausify(2)].
+22 index(status,host(c3)) = elec_1.  [para(10(a,1),21(a,1,2))].
+23 elec_1 = index(status,host(c3)).  [copy(22),flip(a)].
+24 setIn(c5,alive).  [clausify(2)].
+25 elem(m_Down(c6),queue(host(c5))).  [clausify(2)].
+26 f4(A,B,C,D) != host(C) | -elem(m_Down(C),queue(host(D))) | host(D) != host(c3) | host(B) != host(D) | index(status,host(D)) != elec_1 | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [para(20(a,1),8(c,2))].
+27 f4(A,B,C,D) != host(C) | -elem(m_Down(C),queue(host(D))) | host(D) != host(c3) | host(B) != host(D) | index(status,host(D)) != index(status,host(c3)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [para(23(a,1),26(e,2))].
+28 f4(A,B,C,D) != host(C) | -elem(m_Down(C),queue(host(D))) | host(c3) != host(D) | host(B) != host(D) | index(status,host(D)) != index(status,host(c3)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [copy(27),flip(c)].
+29 f4(A,B,C,D) != host(C) | -elem(m_Down(C),queue(host(D))) | host(c3) != host(D) | host(B) != host(D) | index(status,host(c3)) != index(status,host(D)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [copy(28),flip(e)].
+30 -setIn(f4(A,B,C,D),index(down,host(D))) | -elem(m_Down(C),queue(host(D))) | host(D) != host(c3) | host(B) != host(D) | index(status,host(D)) != elec_1 | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [para(20(a,1),6(c,2))].
+31 -setIn(f4(A,B,C,D),index(down,host(D))) | -elem(m_Down(C),queue(host(D))) | host(D) != host(c3) | host(B) != host(D) | index(status,host(D)) != index(status,host(c3)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [para(23(a,1),30(e,2))].
+32 -setIn(f4(A,B,C,D),index(down,host(D))) | -elem(m_Down(C),queue(host(D))) | host(c3) != host(D) | host(B) != host(D) | index(status,host(D)) != index(status,host(c3)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [copy(31),flip(c)].
+33 -setIn(f4(A,B,C,D),index(down,host(D))) | -elem(m_Down(C),queue(host(D))) | host(c3) != host(D) | host(B) != host(D) | index(status,host(c3)) != index(status,host(D)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [copy(32),flip(e)].
+34 leq(s(zero),f4(A,B,C,D)) | -elem(m_Down(C),queue(host(D))) | host(D) != host(c3) | host(B) != host(D) | index(status,host(D)) != elec_1 | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [para(20(a,1),5(c,2))].
+35 leq(s(zero),f4(A,B,C,D)) | -elem(m_Down(C),queue(host(D))) | host(D) != host(c3) | host(B) != host(D) | index(status,host(D)) != index(status,host(c3)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [para(23(a,1),34(e,2))].
+36 leq(s(zero),f4(A,B,C,D)) | -elem(m_Down(C),queue(host(D))) | host(c3) != host(D) | host(B) != host(D) | index(status,host(D)) != index(status,host(c3)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [copy(35),flip(c)].
+37 leq(s(zero),f4(A,B,C,D)) | -elem(m_Down(C),queue(host(D))) | host(c3) != host(D) | host(B) != host(D) | index(status,host(c3)) != index(status,host(D)) | -setIn(A,alive) | -elem(m_Down(B),queue(host(A))).  [copy(36),flip(e)].
+38 -leq(host(A),f4(B,C,D,A)) | -elem(m_Down(D),queue(host(A))) | host(A) != host(c3) | host(C) != host(A) | index(status,host(A)) != elec_1 | -setIn(B,alive) | -elem(m_Down(C),queue(host(B))).  [para(20(a,1),4(c,2))].
+39 -leq(host(A),f4(B,C,D,A)) | -elem(m_Down(D),queue(host(A))) | host(A) != host(c3) | host(C) != host(A) | index(status,host(A)) != index(status,host(c3)) | -setIn(B,alive) | -elem(m_Down(C),queue(host(B))).  [para(23(a,1),38(e,2))].
+40 -leq(host(A),f4(B,C,D,A)) | -elem(m_Down(D),queue(host(A))) | host(c3) != host(A) | host(C) != host(A) | index(status,host(A)) != index(status,host(c3)) | -setIn(B,alive) | -elem(m_Down(C),queue(host(B))).  [copy(39),flip(c)].
+41 -leq(host(A),f4(B,C,D,A)) | -elem(m_Down(D),queue(host(A))) | host(c3) != host(A) | host(C) != host(A) | index(status,host(c3)) != index(status,host(A)) | -setIn(B,alive) | -elem(m_Down(C),queue(host(B))).  [copy(40),flip(e)].
+42 elem(m_Down(c7),cons(A,c1)).  [resolve(14,a,3,b)].
+43 f4(c5,A,B,C) != host(B) | -elem(m_Down(B),queue(host(C))) | host(c3) != host(C) | host(A) != host(C) | index(status,host(c3)) != index(status,host(C)) | -elem(m_Down(A),queue(host(c5))).  [resolve(29,f,24,a)].
+44 leq(s(zero),f4(c5,A,B,C)) | -elem(m_Down(B),queue(host(C))) | host(c3) != host(C) | host(A) != host(C) | index(status,host(c3)) != index(status,host(C)) | -elem(m_Down(A),queue(host(c5))).  [resolve(37,f,24,a)].
+45 -leq(host(A),f4(c5,B,C,A)) | -elem(m_Down(C),queue(host(A))) | host(c3) != host(A) | host(B) != host(A) | index(status,host(c3)) != index(status,host(A)) | -elem(m_Down(B),queue(host(c5))).  [resolve(41,f,24,a)].
+46 elem(m_Down(c7),queue(host(c3))).  [para(9(a,1),42(a,2))].
+47 f4(c5,A,c7,c3) != host(c7) | host(c3) != host(c3) | host(A) != host(c3) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [resolve(43,b,46,a)].
+48 f4(c5,A,c7,c3) != host(c7) | host(c3) != host(c3) | host(c3) != host(A) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [copy(47),flip(c)].
+49 f4(c5,A,c7,c3) != host(c7) | host(c3) != host(A) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [copy(48),xx(b)].
+50 f4(c5,A,c7,c3) != host(c7) | host(c3) != host(A) | -elem(m_Down(A),queue(host(c5))).  [copy(49),xx(c)].
+51 f4(c5,c6,c7,c3) != host(c7) | host(c3) != host(c6).  [resolve(50,c,25,a)].
+52 f4(c5,c6,c7,c3) != host(c7) | host(c3) != host(c3).  [para(17(a,1),51(b,2))].
+53 f4(c5,c6,c7,c3) != host(c7).  [copy(52),xx(b)].
+54 -leq(host(c3),f4(c5,A,c7,c3)) | host(c3) != host(c3) | host(A) != host(c3) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [resolve(45,b,46,a)].
+55 -leq(host(c3),f4(c5,A,c7,c3)) | host(c3) != host(c3) | host(c3) != host(A) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [copy(54),flip(c)].
+56 -leq(host(c3),f4(c5,A,c7,c3)) | host(c3) != host(A) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [copy(55),xx(b)].
+57 -leq(host(c3),f4(c5,A,c7,c3)) | host(c3) != host(A) | -elem(m_Down(A),queue(host(c5))).  [copy(56),xx(c)].
+58 -leq(host(c3),f4(c5,c6,c7,c3)) | host(c3) != host(c6).  [resolve(57,c,25,a)].
+59 -leq(host(c3),f4(c5,c6,c7,c3)) | host(c3) != host(c3).  [para(17(a,1),58(b,2))].
+60 -leq(host(c3),f4(c5,c6,c7,c3)).  [copy(59),xx(b)].
+61 leq(s(zero),f4(c5,A,c7,c3)) | host(c3) != host(c3) | host(A) != host(c3) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [resolve(44,b,46,a)].
+62 leq(s(zero),f4(c5,A,c7,c3)) | host(c3) != host(c3) | host(c3) != host(A) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [copy(61),flip(c)].
+63 leq(s(zero),f4(c5,A,c7,c3)) | host(c3) != host(A) | index(status,host(c3)) != index(status,host(c3)) | -elem(m_Down(A),queue(host(c5))).  [copy(62),xx(b)].
+64 leq(s(zero),f4(c5,A,c7,c3)) | host(c3) != host(A) | -elem(m_Down(A),queue(host(c5))).  [copy(63),xx(c)].
+65 leq(s(zero),f4(c5,c6,c7,c3)) | host(c3) != host(c6).  [resolve(64,c,25,a)].
+66 leq(s(zero),f4(c5,c6,c7,c3)) | host(c3) != host(c3).  [para(17(a,1),65(b,2))].
+67 leq(s(zero),f4(c5,c6,c7,c3)).  [copy(66),xx(b)].
+68 leq(host(c3),f4(c5,c6,c7,c3)) | setIn(f4(c5,c6,c7,c3),index(down,host(c3))) | host(c7) = f4(c5,c6,c7,c3).  [resolve(67,a,13,b)].
+69 leq(host(c3),f4(c5,c6,c7,c3)) | setIn(f4(c5,c6,c7,c3),index(down,host(c3))) | f4(c5,c6,c7,c3) = host(c7).  [copy(68),flip(c)].
+70 setIn(f4(c5,c6,c7,c3),index(down,host(c3))) | f4(c5,c6,c7,c3) = host(c7).  [resolve(60,a,69,a)].
+71 setIn(f4(c5,c6,c7,c3),index(down,host(c3))).  [resolve(53,a,70,b)].
+72 -elem(m_Down(c7),queue(host(c3))) | host(c3) != host(c3) | host(c6) != host(c3) | index(status,host(c3)) != index(status,host(c3)) | -setIn(c5,alive) | -elem(m_Down(c6),queue(host(c5))).  [resolve(71,a,33,a)].
+73 -elem(m_Down(c7),queue(host(c3))) | host(c3) != host(c3) | host(c3) != host(c3) | index(status,host(c3)) != index(status,host(c3)) | -setIn(c5,alive) | -elem(m_Down(c6),queue(host(c5))).  [para(17(a,1),72(c,1))].
+74 -elem(m_Down(c7),queue(host(c3))) | host(c3) != host(c3) | index(status,host(c3)) != index(status,host(c3)) | -setIn(c5,alive) | -elem(m_Down(c6),queue(host(c5))).  [copy(73),xx(b)].
+75 -elem(m_Down(c7),queue(host(c3))) | index(status,host(c3)) != index(status,host(c3)) | -setIn(c5,alive) | -elem(m_Down(c6),queue(host(c5))).  [copy(74),xx(b)].
+76 -elem(m_Down(c7),queue(host(c3))) | -setIn(c5,alive) | -elem(m_Down(c6),queue(host(c5))).  [copy(75),xx(b)].
+77 -setIn(c5,alive) | -elem(m_Down(c6),queue(host(c5))).  [resolve(46,a,76,a)].
+78 -elem(m_Down(c6),queue(host(c5))).  [resolve(24,a,77,a)].
+79 $F.  [resolve(25,a,78,a)].
+
+============================== end of proof ==========================

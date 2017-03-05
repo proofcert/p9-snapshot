@@ -1,0 +1,100 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18 -environment(A) | critical_point(A) != B | -greater(growth_rate(efficient_producers,B),growth_rate(first_movers,B)).  [clausify(14)].
+19 environment(c1).  [clausify(17)].
+20 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -decreases(difference(disbanding_rate(first_movers,B),disbanding_rate(efficient_producers,B))).  [clausify(2)].
+21 -environment(A) | -in_environment(A,critical_point(A)) | subpopulations(first_movers,efficient_producers,A,critical_point(A)).  [clausify(3)].
+22 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | subpopulations(efficient_producers,first_movers,A,B).  [clausify(10)].
+23 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | greater_or_equal(B,appear(efficient_producers,A)).  [clausify(11)].
+24 -environment(A) | -in_environment(A,appear(efficient_producers,A)) | subpopulations(first_movers,efficient_producers,A,appear(efficient_producers,A)).  [clausify(4)].
+25 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | decreases(difference(founding_rate(first_movers,B),founding_rate(efficient_producers,B))).  [clausify(16)].
+26 -environment(A) | -subpopulations(B,C,A,D) | -greater(growth_rate(C,D),growth_rate(B,D)) | selection_favors(C,B,D).  [clausify(1)].
+27 -environment(A) | -in_environment(A,critical_point(A)) | -greater_or_equal(B,appear(efficient_producers,A)) | -greater(critical_point(A),B) | in_environment(A,B).  [clausify(9)].
+28 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -subpopulations(first_movers,efficient_producers,A,C) | -greater_or_equal(D,B) | -greater_or_equal(C,D) | subpopulations(first_movers,efficient_producers,A,D).  [clausify(15)].
+29 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | greater(zero,difference(growth_rate(first_movers,B),growth_rate(efficient_producers,B))) | greater_or_equal(difference(growth_rate(first_movers,B),growth_rate(efficient_producers,B)),zero).  [clausify(13)].
+30 -environment(A) | -in_environment(A,B) | -greater_or_equal(difference(growth_rate(first_movers,B),growth_rate(efficient_producers,B)),zero) | -greater_or_equal(C,appear(efficient_producers,A)) | -greater(B,C) | -decreases(difference(growth_rate(first_movers,C),growth_rate(efficient_producers,C))) | greater(difference(growth_rate(first_movers,C),growth_rate(efficient_producers,C)),zero).  [clausify(6)].
+31 in_environment(c1,critical_point(c1)).  [clausify(17)].
+32 greater(critical_point(c1),c2).  [clausify(17)].
+33 greater_or_equal(c2,appear(efficient_producers,c1)).  [clausify(17)].
+34 -selection_favors(first_movers,efficient_producers,c2).  [clausify(17)].
+35 greater_or_equal(A,B) | -greater(A,B).  [clausify(12)].
+36 greater_or_equal(A,B) | B != A.  [clausify(12)].
+37 -greater_or_equal(A,B) | greater(A,B) | B = A.  [clausify(12)].
+38 -greater(zero,difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A))) | greater(growth_rate(efficient_producers,A),growth_rate(first_movers,A)).  [clausify(7)].
+39 -greater(difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A)),zero) | greater(growth_rate(first_movers,A),growth_rate(efficient_producers,A)).  [clausify(8)].
+40 -decreases(difference(founding_rate(first_movers,A),founding_rate(efficient_producers,A))) | decreases(difference(disbanding_rate(first_movers,A),disbanding_rate(efficient_producers,A))) | decreases(difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A))).  [clausify(5)].
+41 critical_point(c1) != A | -greater(growth_rate(efficient_producers,A),growth_rate(first_movers,A)).  [resolve(18,a,19,a)].
+42 -subpopulations(first_movers,efficient_producers,c1,A) | -decreases(difference(disbanding_rate(first_movers,A),disbanding_rate(efficient_producers,A))).  [resolve(20,a,19,a)].
+43 -in_environment(c1,critical_point(c1)) | subpopulations(first_movers,efficient_producers,c1,critical_point(c1)).  [resolve(21,a,19,a)].
+44 subpopulations(first_movers,efficient_producers,c1,critical_point(c1)).  [resolve(31,a,43,a)].
+45 -subpopulations(first_movers,efficient_producers,c1,A) | subpopulations(efficient_producers,first_movers,c1,A).  [resolve(22,a,19,a)].
+46 -subpopulations(first_movers,efficient_producers,c1,A) | greater_or_equal(A,appear(efficient_producers,c1)).  [resolve(23,a,19,a)].
+47 -in_environment(c1,appear(efficient_producers,c1)) | subpopulations(first_movers,efficient_producers,c1,appear(efficient_producers,c1)).  [resolve(24,a,19,a)].
+48 -subpopulations(first_movers,efficient_producers,c1,A) | decreases(difference(founding_rate(first_movers,A),founding_rate(efficient_producers,A))).  [resolve(25,a,19,a)].
+49 -subpopulations(A,B,c1,C) | -greater(growth_rate(B,C),growth_rate(A,C)) | selection_favors(B,A,C).  [resolve(26,a,19,a)].
+50 -in_environment(c1,critical_point(c1)) | -greater_or_equal(A,appear(efficient_producers,c1)) | -greater(critical_point(c1),A) | in_environment(c1,A).  [resolve(27,a,19,a)].
+51 -greater_or_equal(A,appear(efficient_producers,c1)) | -greater(critical_point(c1),A) | in_environment(c1,A).  [resolve(31,a,50,a)].
+52 -subpopulations(first_movers,efficient_producers,c1,A) | -subpopulations(first_movers,efficient_producers,c1,B) | -greater_or_equal(C,A) | -greater_or_equal(B,C) | subpopulations(first_movers,efficient_producers,c1,C).  [resolve(28,a,19,a)].
+53 -subpopulations(first_movers,efficient_producers,c1,A) | greater(zero,difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A))) | greater_or_equal(difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A)),zero).  [resolve(29,a,19,a)].
+54 -in_environment(c1,A) | -greater_or_equal(difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A)),zero) | -greater_or_equal(B,appear(efficient_producers,c1)) | -greater(A,B) | -decreases(difference(growth_rate(first_movers,B),growth_rate(efficient_producers,B))) | greater(difference(growth_rate(first_movers,B),growth_rate(efficient_producers,B)),zero).  [resolve(30,a,19,a)].
+55 -subpopulations(first_movers,efficient_producers,c1,A) | -greater_or_equal(B,A) | -greater_or_equal(A,B) | subpopulations(first_movers,efficient_producers,c1,B).  [factor(52,a,b)].
+56 greater_or_equal(critical_point(c1),c2).  [resolve(35,b,32,a)].
+57 greater_or_equal(A,A).  [xx_res(36,b)].
+58 -greater(growth_rate(efficient_producers,critical_point(c1)),growth_rate(first_movers,critical_point(c1))).  [xx_res(41,a)].
+59 greater_or_equal(critical_point(c1),appear(efficient_producers,c1)).  [resolve(46,a,44,a)].
+60 -subpopulations(first_movers,efficient_producers,c1,A) | -greater_or_equal(B,A) | -greater_or_equal(critical_point(c1),B) | subpopulations(first_movers,efficient_producers,c1,B).  [resolve(52,b,44,a)].
+61 greater(zero,difference(growth_rate(first_movers,critical_point(c1)),growth_rate(efficient_producers,critical_point(c1)))) | greater_or_equal(difference(growth_rate(first_movers,critical_point(c1)),growth_rate(efficient_producers,critical_point(c1))),zero).  [resolve(53,a,44,a)].
+62 -greater_or_equal(difference(growth_rate(first_movers,critical_point(c1)),growth_rate(efficient_producers,critical_point(c1))),zero) | -greater_or_equal(A,appear(efficient_producers,c1)) | -greater(critical_point(c1),A) | -decreases(difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A))) | greater(difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A)),zero).  [resolve(54,a,31,a)].
+63 -greater_or_equal(A,critical_point(c1)) | -greater_or_equal(critical_point(c1),A) | subpopulations(first_movers,efficient_producers,c1,A).  [resolve(55,a,44,a)].
+64 -greater(zero,difference(growth_rate(first_movers,critical_point(c1)),growth_rate(efficient_producers,critical_point(c1)))).  [resolve(38,b,58,a)].
+65 greater_or_equal(difference(growth_rate(first_movers,critical_point(c1)),growth_rate(efficient_producers,critical_point(c1))),zero).  [resolve(64,a,61,a)].
+66 -greater_or_equal(A,appear(efficient_producers,c1)) | -greater(critical_point(c1),A) | -decreases(difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A))) | greater(difference(growth_rate(first_movers,A),growth_rate(efficient_producers,A)),zero).  [resolve(65,a,62,a)].
+67 -greater(critical_point(c1),appear(efficient_producers,c1)) | in_environment(c1,appear(efficient_producers,c1)).  [resolve(57,a,51,a)].
+68 greater(critical_point(c1),appear(efficient_producers,c1)) | appear(efficient_producers,c1) = critical_point(c1).  [resolve(59,a,37,a)].
+69 appear(efficient_producers,c1) = critical_point(c1) | in_environment(c1,appear(efficient_producers,c1)).  [resolve(68,a,67,a)].
+70 appear(efficient_producers,c1) = critical_point(c1) | subpopulations(first_movers,efficient_producers,c1,appear(efficient_producers,c1)).  [resolve(69,b,47,a)].
+71 -greater_or_equal(c2,critical_point(c1)) | subpopulations(first_movers,efficient_producers,c1,c2).  [resolve(63,b,56,a)].
+72 -greater_or_equal(A,appear(efficient_producers,c1)) | -greater_or_equal(critical_point(c1),A) | subpopulations(first_movers,efficient_producers,c1,A) | appear(efficient_producers,c1) = critical_point(c1).  [resolve(60,a,70,b)].
+73 -greater(critical_point(c1),c2) | -decreases(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2))) | greater(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)),zero).  [resolve(66,a,33,a)].
+74 -decreases(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2))) | greater(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)),zero).  [resolve(32,a,73,a)].
+75 -greater_or_equal(critical_point(c1),c2) | subpopulations(first_movers,efficient_producers,c1,c2) | appear(efficient_producers,c1) = critical_point(c1).  [resolve(72,a,33,a)].
+76 subpopulations(first_movers,efficient_producers,c1,c2) | appear(efficient_producers,c1) = critical_point(c1).  [resolve(56,a,75,a)].
+77 appear(efficient_producers,c1) = critical_point(c1) | decreases(difference(founding_rate(first_movers,c2),founding_rate(efficient_producers,c2))).  [resolve(76,a,48,a)].
+78 appear(efficient_producers,c1) = critical_point(c1) | subpopulations(efficient_producers,first_movers,c1,c2).  [resolve(76,a,45,a)].
+79 appear(efficient_producers,c1) = critical_point(c1) | -decreases(difference(disbanding_rate(first_movers,c2),disbanding_rate(efficient_producers,c2))).  [resolve(76,a,42,a)].
+80 appear(efficient_producers,c1) = critical_point(c1) | -greater(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)) | selection_favors(first_movers,efficient_producers,c2).  [resolve(78,b,49,a)].
+81 appear(efficient_producers,c1) = critical_point(c1) | -greater(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)).  [resolve(34,a,80,c)].
+82 appear(efficient_producers,c1) = critical_point(c1) | decreases(difference(disbanding_rate(first_movers,c2),disbanding_rate(efficient_producers,c2))) | decreases(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2))).  [resolve(77,b,40,a)].
+83 appear(efficient_producers,c1) = critical_point(c1) | decreases(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2))) | appear(efficient_producers,c1) = critical_point(c1).  [resolve(82,b,79,b)].
+84 appear(efficient_producers,c1) = critical_point(c1) | decreases(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2))).  [copy(83),merge(c)].
+85 appear(efficient_producers,c1) = critical_point(c1) | greater(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)),zero).  [resolve(84,b,74,a)].
+86 appear(efficient_producers,c1) = critical_point(c1) | greater(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)).  [resolve(85,b,39,a)].
+87 appear(efficient_producers,c1) = critical_point(c1) | appear(efficient_producers,c1) = critical_point(c1).  [resolve(86,b,81,b)].
+88 appear(efficient_producers,c1) = critical_point(c1).  [copy(87),merge(b)].
+89 greater_or_equal(c2,critical_point(c1)).  [para(88(a,1),33(a,2))].
+90 subpopulations(first_movers,efficient_producers,c1,c2).  [resolve(89,a,71,a)].
+91 decreases(difference(founding_rate(first_movers,c2),founding_rate(efficient_producers,c2))).  [resolve(90,a,48,a)].
+92 subpopulations(efficient_producers,first_movers,c1,c2).  [resolve(90,a,45,a)].
+93 -decreases(difference(disbanding_rate(first_movers,c2),disbanding_rate(efficient_producers,c2))).  [resolve(90,a,42,a)].
+94 -greater(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)) | selection_favors(first_movers,efficient_producers,c2).  [resolve(92,a,49,a)].
+95 -greater(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)).  [resolve(34,a,94,b)].
+96 decreases(difference(disbanding_rate(first_movers,c2),disbanding_rate(efficient_producers,c2))) | decreases(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2))).  [resolve(91,a,40,a)].
+97 decreases(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2))).  [resolve(93,a,96,a)].
+98 greater(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)),zero).  [resolve(97,a,74,a)].
+99 -greater(difference(growth_rate(first_movers,c2),growth_rate(efficient_producers,c2)),zero).  [resolve(39,b,95,a)].
+100 $F.  [resolve(98,a,99,a)].

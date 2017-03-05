@@ -1,0 +1,64 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n041.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 15:33:03 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 58018 was started by sandbox on n041.star.cs.uiowa.edu,
+Fri Jun  6 15:33:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_57986_n041.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds: goals.
+% Length of proof is 21.
+% Level of proof is 7.
+% Maximum clause weight is 15.000.
+% Given clauses 23.
+
+
+1 (all A all B mult(B,ld(B,A)) = A).  [assumption].
+2 (all A all B ld(B,mult(B,A)) = A).  [assumption].
+3 (all A all B mult(rd(B,A),A) = B).  [assumption].
+4 (all A all B rd(mult(B,A),A) = B).  [assumption].
+5 (all A all B all C mult(mult(C,B),mult(A,C)) = mult(mult(C,mult(B,A)),C)).  [assumption].
+6 -(exists A all B (mult(B,A) = B & mult(A,B) = B)).  [assumption].
+7 mult(A,ld(A,B)) = B.  [clausify(1)].
+8 ld(A,mult(A,B)) = B.  [clausify(2)].
+9 mult(rd(A,B),B) = A.  [clausify(3)].
+10 rd(mult(A,B),B) = A.  [clausify(4)].
+11 mult(mult(A,mult(B,C)),A) = mult(mult(A,B),mult(C,A)).  [clausify(5)].
+12 mult(f1(A),A) != f1(A) | mult(A,f1(A)) != f1(A).  [clausify(6)].
+13 ld(rd(A,B),A) = B.  [para(9(a,1),8(a,1,2))].
+14 mult(mult(A,B),A) = mult(mult(A,C),mult(ld(C,B),A)).  [para(7(a,1),11(a,1,1,2))].
+15 mult(mult(A,B),mult(ld(B,C),A)) = mult(mult(A,C),A).  [copy(14),flip(a)].
+16 rd(mult(mult(A,B),mult(C,A)),A) = mult(A,mult(B,C)).  [para(11(a,1),10(a,1,1))].
+17 mult(A,mult(ld(ld(B,A),C),B)) = mult(mult(B,C),B).  [para(7(a,1),15(a,1,1))].
+18 rd(mult(mult(A,B),C),A) = mult(A,mult(B,rd(C,A))).  [para(9(a,1),16(a,1,1,2))].
+19 mult(A,mult(B,rd(A,A))) = mult(A,B).  [para(18(a,1),10(a,1))].
+20 ld(A,mult(A,B)) = mult(B,rd(A,A)).  [para(19(a,1),8(a,1,2))].
+21 B = mult(B,rd(A,A)).  [para(8(a,1),20(a,1))].
+22 mult(A,rd(B,B)) = A.  [copy(21),flip(a)].
+23 mult(A,ld(ld(rd(A,A),A),B)) = mult(mult(rd(A,A),B),rd(A,A)).  [para(19(a,1),17(a,1))].
+24 mult(A,ld(A,B)) = mult(mult(rd(A,A),B),rd(A,A)).  [para(13(a,1),23(a,1,2,1))].
+25 B = mult(mult(rd(A,A),B),rd(A,A)).  [para(7(a,1),24(a,1))].
+26 B = mult(rd(A,A),B).  [para(22(a,1),25(a,2))].
+27 mult(rd(A,A),B) = B.  [copy(26),flip(a)].
+28 mult(rd(A,A),f1(rd(A,A))) != f1(rd(A,A)).  [resolve(12,a,22,a)].
+29 f1(rd(A,A)) != f1(rd(A,A)).  [para(27(a,1),28(a,1))].
+30 $F.  [copy(29),xx(a)].
+
+============================== end of proof ==========================

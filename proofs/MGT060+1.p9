@@ -1,0 +1,101 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n043.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 19:22:43 CDT 2014
+% CPUTime    : 217.52 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 39977 was started by sandbox on n043.star.cs.uiowa.edu,
+Thu Jun  5 19:22:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_39945_n043.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 213.81 (+ 3.59) seconds.
+% Length of proof is 51.
+% Level of proof is 12.
+% Maximum clause weight is 26.000.
+% Given clauses 3779.
+
+
+1 (all A all B (smaller(A,B) <-> greater(B,A))).  [assumption].
+2 (all A all B -(greater(A,B) & greater(B,A))).  [assumption].
+3 (all A all B all C (greater(A,B) & greater(B,C) -> greater(A,C))).  [assumption].
+4 (all A all B (smaller(A,B) | A = B | greater(A,B))).  [assumption].
+5 (all A all B (organization(A) -> (has_immunity(A,B) -> hazard_of_mortality(A,B) = very_low) & (-has_immunity(A,B) -> (is_aligned(A,B) & positional_advantage(A,B) -> hazard_of_mortality(A,B) = low) & (-is_aligned(A,B) & positional_advantage(A,B) -> hazard_of_mortality(A,B) = mod1) & (is_aligned(A,B) & -positional_advantage(A,B) -> hazard_of_mortality(A,B) = mod2) & (-is_aligned(A,B) & -positional_advantage(A,B) -> hazard_of_mortality(A,B) = high)))).  [assumption].
+6 -(all A all B all C (organization(A) & has_immunity(A,B) & -has_immunity(A,C) -> greater(hazard_of_mortality(A,C),hazard_of_mortality(A,B)))).  [assumption].
+7 -organization(A) | -has_immunity(A,B) | hazard_of_mortality(A,B) = very_low.  [clausify(5)].
+8 organization(c1).  [clausify(6)].
+9 -organization(A) | has_immunity(A,B) | -is_aligned(A,B) | -positional_advantage(A,B) | hazard_of_mortality(A,B) = low.  [clausify(5)].
+10 -organization(A) | has_immunity(A,B) | is_aligned(A,B) | -positional_advantage(A,B) | hazard_of_mortality(A,B) = mod1.  [clausify(5)].
+11 -organization(A) | has_immunity(A,B) | -is_aligned(A,B) | positional_advantage(A,B) | hazard_of_mortality(A,B) = mod2.  [clausify(5)].
+12 -organization(A) | has_immunity(A,B) | is_aligned(A,B) | positional_advantage(A,B) | hazard_of_mortality(A,B) = high.  [clausify(5)].
+13 smaller(A,B) | B = A | greater(A,B).  [clausify(4)].
+14 -smaller(A,B) | greater(B,A).  [clausify(1)].
+15 greater(mod1,low).  [assumption].
+16 greater(low,very_low).  [assumption].
+17 greater(high,mod2).  [assumption].
+18 greater(mod2,low).  [assumption].
+19 has_immunity(c1,c2).  [clausify(6)].
+20 -has_immunity(c1,c3).  [clausify(6)].
+21 -greater(A,B) | -greater(B,A).  [clausify(2)].
+22 -greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c2)).  [clausify(6)].
+23 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(3)].
+24 -has_immunity(c1,A) | hazard_of_mortality(c1,A) = very_low.  [resolve(7,a,8,a)].
+25 has_immunity(c1,A) | -is_aligned(c1,A) | -positional_advantage(c1,A) | hazard_of_mortality(c1,A) = low.  [resolve(9,a,8,a)].
+26 has_immunity(c1,A) | is_aligned(c1,A) | -positional_advantage(c1,A) | hazard_of_mortality(c1,A) = mod1.  [resolve(10,a,8,a)].
+27 has_immunity(c1,A) | -is_aligned(c1,A) | positional_advantage(c1,A) | hazard_of_mortality(c1,A) = mod2.  [resolve(11,a,8,a)].
+28 has_immunity(c1,A) | is_aligned(c1,A) | positional_advantage(c1,A) | hazard_of_mortality(c1,A) = high.  [resolve(12,a,8,a)].
+29 greater(A,B) | A = B | greater(B,A).  [resolve(14,a,13,a)].
+30 -greater(A,A).  [factor(21,a,b)].
+31 -greater(low,A) | greater(mod2,A).  [resolve(23,a,18,a)].
+32 -greater(mod2,A) | greater(high,A).  [resolve(23,a,17,a)].
+33 -greater(very_low,A) | greater(low,A).  [resolve(23,a,16,a)].
+34 -greater(low,A) | greater(mod1,A).  [resolve(23,a,15,a)].
+35 hazard_of_mortality(c1,c2) = very_low.  [resolve(24,a,19,a)].
+36 -greater(hazard_of_mortality(c1,c3),very_low).  [para(35(a,1),22(a,2))].
+37 has_immunity(c1,A) | is_aligned(c1,A) | hazard_of_mortality(c1,A) = high | has_immunity(c1,A) | is_aligned(c1,A) | hazard_of_mortality(c1,A) = mod1.  [resolve(28,c,26,c)].
+38 has_immunity(c1,A) | is_aligned(c1,A) | hazard_of_mortality(c1,A) = high | is_aligned(c1,A) | hazard_of_mortality(c1,A) = mod1.  [copy(37),merge(d)].
+39 has_immunity(c1,A) | is_aligned(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1.  [copy(38),merge(d)].
+40 greater(mod2,very_low).  [resolve(31,a,16,a)].
+41 greater(high,very_low).  [resolve(32,a,40,a)].
+42 greater(low,A) | greater(A,very_low) | A = very_low.  [resolve(33,a,29,c)].
+43 greater(low,A) | greater(A,very_low) | very_low = A.  [copy(42),flip(c)].
+44 greater(mod1,very_low).  [resolve(34,a,16,a)].
+45 has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1 | has_immunity(c1,A) | positional_advantage(c1,A) | hazard_of_mortality(c1,A) = mod2.  [resolve(39,b,27,b)].
+46 has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1 | positional_advantage(c1,A) | hazard_of_mortality(c1,A) = mod2.  [copy(45),merge(d)].
+47 greater(low,hazard_of_mortality(c1,c3)) | very_low = hazard_of_mortality(c1,c3).  [resolve(43,b,36,a)].
+48 greater(low,hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) = very_low.  [copy(47),flip(b)].
+49 has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1 | hazard_of_mortality(c1,A) = mod2 | has_immunity(c1,A) | -is_aligned(c1,A) | hazard_of_mortality(c1,A) = low.  [resolve(46,d,25,c)].
+50 has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1 | hazard_of_mortality(c1,A) = mod2 | -is_aligned(c1,A) | hazard_of_mortality(c1,A) = low.  [copy(49),merge(e)].
+51 has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1 | hazard_of_mortality(c1,A) = mod2 | hazard_of_mortality(c1,A) = low | has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1.  [resolve(50,e,39,b)].
+52 has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1 | hazard_of_mortality(c1,A) = mod2 | hazard_of_mortality(c1,A) = low | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1.  [copy(51),merge(f)].
+53 has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1 | hazard_of_mortality(c1,A) = mod2 | hazard_of_mortality(c1,A) = low | hazard_of_mortality(c1,A) = mod1.  [copy(52),merge(f)].
+54 has_immunity(c1,A) | hazard_of_mortality(c1,A) = high | hazard_of_mortality(c1,A) = mod1 | hazard_of_mortality(c1,A) = mod2 | hazard_of_mortality(c1,A) = low.  [copy(53),merge(f)].
+55 hazard_of_mortality(c1,c3) = high | hazard_of_mortality(c1,c3) = mod1 | hazard_of_mortality(c1,c3) = mod2 | hazard_of_mortality(c1,c3) = low.  [resolve(54,a,20,a)].
+56 hazard_of_mortality(c1,c3) = high | hazard_of_mortality(c1,c3) = mod1 | hazard_of_mortality(c1,c3) = low | -greater(mod2,very_low).  [para(55(c,1),36(a,1))].
+57 hazard_of_mortality(c1,c3) = high | hazard_of_mortality(c1,c3) = mod1 | hazard_of_mortality(c1,c3) = low.  [resolve(40,a,56,d)].
+58 hazard_of_mortality(c1,c3) = high | hazard_of_mortality(c1,c3) = low | -greater(mod1,very_low).  [para(57(b,1),36(a,1))].
+59 hazard_of_mortality(c1,c3) = high | hazard_of_mortality(c1,c3) = low.  [resolve(44,a,58,c)].
+60 hazard_of_mortality(c1,c3) = low | -greater(high,very_low).  [para(59(a,1),36(a,1))].
+61 hazard_of_mortality(c1,c3) = low.  [resolve(41,a,60,b)].
+62 greater(low,low) | hazard_of_mortality(c1,c3) = very_low.  [para(61(a,1),48(a,2))].
+63 greater(low,low) | low = very_low.  [para(61(a,1),62(b,1))].
+64 greater(low,low) | very_low = low.  [copy(63),flip(b)].
+65 very_low = low.  [resolve(30,a,64,a)].
+66 greater(low,low).  [para(65(a,1),16(a,2))].
+67 $F.  [resolve(30,a,66,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,69 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n126.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:31:48 CDT 2014
+% CPUTime    : 0.18 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5117 was started by sandbox on n126.star.cs.uiowa.edu,
+Thu Jun  5 16:31:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5085_n126.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.05 (+ 0.00) seconds.
+% Length of proof is 30.
+% Level of proof is 8.
+% Maximum clause weight is 14.000.
+% Given clauses 250.
+
+
+1 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+2 (all A all B all C (-empty(A) & preboolean(A) & element(B,A) & element(C,A) -> element(prebool_difference(A,B,C),A))).  [assumption].
+3 (all A all B all C (-empty(A) & preboolean(A) & element(B,A) & element(C,A) -> prebool_difference(A,B,C) = set_difference(B,C))).  [assumption].
+4 (all A all B set_difference(A,set_difference(A,B)) = set_intersection2(A,B)).  [assumption].
+5 -(all A all B all C (-empty(C) & preboolean(C) -> (element(A,C) & element(B,C) -> element(set_intersection2(A,B),C)))).  [assumption].
+6 preboolean(c7).  [clausify(5)].
+7 empty(A) | -preboolean(A) | -element(B,A) | -element(C,A) | element(prebool_difference(A,B,C),A).  [clausify(2)].
+8 empty(A) | -preboolean(A) | -element(B,A) | -element(C,A) | set_difference(B,C) = prebool_difference(A,B,C).  [clausify(3)].
+9 element(c5,c7).  [clausify(5)].
+10 element(c6,c7).  [clausify(5)].
+11 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+12 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(4)].
+13 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(12),flip(a)].
+14 -empty(c7).  [clausify(5)].
+15 -element(set_intersection2(c5,c6),c7).  [clausify(5)].
+16 -element(set_difference(c5,set_difference(c5,c6)),c7).  [para(13(a,1),15(a,1))].
+17 empty(c7) | -element(A,c7) | -element(B,c7) | element(prebool_difference(c7,A,B),c7).  [resolve(7,b,6,a)].
+18 -element(A,c7) | -element(B,c7) | element(prebool_difference(c7,A,B),c7).  [resolve(14,a,17,a)].
+19 empty(c7) | -element(A,c7) | -element(B,c7) | set_difference(A,B) = prebool_difference(c7,A,B).  [resolve(8,b,6,a)].
+20 empty(c7) | -element(A,c7) | -element(B,c7) | prebool_difference(c7,A,B) = set_difference(A,B).  [copy(19),flip(d)].
+21 -element(A,c7) | -element(B,c7) | prebool_difference(c7,A,B) = set_difference(A,B).  [resolve(14,a,20,a)].
+22 set_difference(A,set_difference(A,B)) = set_intersection2(B,A).  [para(13(a,1),11(a,1))].
+23 set_difference(A,set_difference(A,B)) = set_difference(B,set_difference(B,A)).  [para(13(a,1),22(a,2))].
+24 -element(A,c7) | element(prebool_difference(c7,c6,A),c7).  [resolve(18,a,10,a)].
+25 -element(A,c7) | prebool_difference(c7,c6,A) = set_difference(c6,A).  [resolve(21,a,10,a)].
+26 element(prebool_difference(c7,c6,c5),c7).  [resolve(24,a,9,a)].
+27 element(prebool_difference(c7,c6,prebool_difference(c7,c6,c5)),c7).  [resolve(26,a,24,a)].
+28 prebool_difference(c7,c6,prebool_difference(c7,c6,c5)) = set_difference(c6,prebool_difference(c7,c6,c5)).  [resolve(25,a,26,a)].
+29 prebool_difference(c7,c6,c5) = set_difference(c6,c5).  [resolve(25,a,9,a)].
+30 element(prebool_difference(c7,c6,set_difference(c6,c5)),c7).  [para(29(a,1),27(a,1,3))].
+31 prebool_difference(c7,c6,set_difference(c6,c5)) = set_difference(c6,prebool_difference(c7,c6,c5)).  [para(29(a,1),28(a,1,3))].
+32 prebool_difference(c7,c6,set_difference(c6,c5)) = set_difference(c6,set_difference(c6,c5)).  [para(29(a,1),31(a,2,2))].
+33 prebool_difference(c7,c6,set_difference(c6,c5)) = set_difference(c5,set_difference(c5,c6)).  [para(23(a,1),32(a,2))].
+34 element(set_difference(c5,set_difference(c5,c6)),c7).  [para(33(a,1),30(a,1))].
+35 $F.  [resolve(16,a,34,a)].
+
+============================== end of proof ==========================

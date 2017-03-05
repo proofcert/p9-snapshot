@@ -1,0 +1,60 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n040.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:07:33 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 49382 was started by sandbox on n040.star.cs.uiowa.edu,
+Fri Jun  6 06:07:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_49350_n040.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 3.
+% Maximum clause weight is 18.000.
+% Given clauses 55.
+
+
+1 (all A all B (distinct_points(A,B) -> -apart_point_and_line(A,line_connecting(A,B)))).  [assumption].
+2 (all A all B (distinct_points(A,B) -> -apart_point_and_line(B,line_connecting(A,B)))).  [assumption].
+3 (all A all B (convergent_lines(A,B) -> -apart_point_and_line(intersection_point(A,B),A))).  [assumption].
+4 (all A all B all C all D (distinct_points(A,B) & distinct_lines(C,D) -> apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D))).  [assumption].
+5 (all A all B (equal_lines(A,B) <-> -distinct_lines(A,B))).  [assumption].
+6 -(all A all B all C (convergent_lines(A,B) & convergent_lines(A,C) & distinct_points(intersection_point(A,B),intersection_point(A,C)) -> equal_lines(line_connecting(intersection_point(A,B),intersection_point(A,C)),A))).  [assumption].
+7 equal_lines(A,B) | distinct_lines(A,B).  [clausify(5)].
+8 -equal_lines(line_connecting(intersection_point(c1,c2),intersection_point(c1,c3)),c1).  [clausify(6)].
+9 convergent_lines(c1,c2).  [clausify(6)].
+10 convergent_lines(c1,c3).  [clausify(6)].
+11 distinct_points(intersection_point(c1,c2),intersection_point(c1,c3)).  [clausify(6)].
+12 -distinct_points(A,B) | -apart_point_and_line(A,line_connecting(A,B)).  [clausify(1)].
+13 -distinct_points(A,B) | -apart_point_and_line(B,line_connecting(A,B)).  [clausify(2)].
+14 -convergent_lines(A,B) | -apart_point_and_line(intersection_point(A,B),A).  [clausify(3)].
+15 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(4)].
+16 distinct_lines(line_connecting(intersection_point(c1,c2),intersection_point(c1,c3)),c1).  [resolve(8,a,7,a)].
+17 -apart_point_and_line(intersection_point(c1,c2),line_connecting(intersection_point(c1,c2),intersection_point(c1,c3))).  [resolve(12,a,11,a)].
+18 -apart_point_and_line(intersection_point(c1,c3),line_connecting(intersection_point(c1,c2),intersection_point(c1,c3))).  [resolve(13,a,11,a)].
+19 -apart_point_and_line(intersection_point(c1,c3),c1).  [resolve(14,a,10,a)].
+20 -apart_point_and_line(intersection_point(c1,c2),c1).  [resolve(14,a,9,a)].
+21 -distinct_points(A,B) | apart_point_and_line(A,line_connecting(intersection_point(c1,c2),intersection_point(c1,c3))) | apart_point_and_line(A,c1) | apart_point_and_line(B,line_connecting(intersection_point(c1,c2),intersection_point(c1,c3))) | apart_point_and_line(B,c1).  [resolve(15,b,16,a)].
+22 -distinct_points(intersection_point(c1,c2),A) | apart_point_and_line(intersection_point(c1,c2),c1) | apart_point_and_line(A,line_connecting(intersection_point(c1,c2),intersection_point(c1,c3))) | apart_point_and_line(A,c1).  [resolve(21,b,17,a)].
+23 -distinct_points(intersection_point(c1,c2),A) | apart_point_and_line(A,line_connecting(intersection_point(c1,c2),intersection_point(c1,c3))) | apart_point_and_line(A,c1).  [resolve(22,b,20,a)].
+24 -distinct_points(intersection_point(c1,c2),intersection_point(c1,c3)) | apart_point_and_line(intersection_point(c1,c3),c1).  [resolve(23,b,18,a)].
+25 -distinct_points(intersection_point(c1,c2),intersection_point(c1,c3)).  [resolve(24,b,19,a)].
+26 $F.  [resolve(11,a,25,a)].
+
+============================== end of proof ==========================

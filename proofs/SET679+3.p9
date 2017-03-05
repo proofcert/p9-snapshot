@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n166.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 20:53:48 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 23486 was started by sandbox on n166.star.cs.uiowa.edu,
+Fri Jun  6 20:53:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_23454_n166.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 20.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 48.
+
+
+1 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (member(B,A) <-> member(ordered_pair(B,B),identity_relation_of(A))))))).  [assumption].
+2 (all A (ilf_type(A,set_type) -> -member(A,empty_set))).  [assumption].
+3 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (not_equal(A,B) <-> A != B))))).  [assumption].
+4 (all A (ilf_type(A,set_type) -> (empty(A) <-> (all B (ilf_type(B,set_type) -> -member(B,A)))))).  [assumption].
+5 (all A ilf_type(A,set_type)).  [assumption].
+6 -(all A (-empty(A) & ilf_type(A,set_type) -> not_equal(identity_relation_of(A),empty_set))).  [assumption].
+7 ilf_type(A,set_type).  [clausify(5)].
+8 -empty(c2).  [clausify(6)].
+9 -not_equal(identity_relation_of(c2),empty_set).  [clausify(6)].
+10 -ilf_type(A,set_type) | -member(A,empty_set).  [clausify(2)].
+11 -member(A,empty_set).  [resolve(7,a,10,a)].
+12 -ilf_type(A,set_type) | empty(A) | member(f2(A),A).  [clausify(4)].
+13 empty(A) | member(f2(A),A).  [resolve(7,a,12,a)].
+14 -ilf_type(A,set_type) | -ilf_type(B,set_type) | not_equal(A,B) | B = A.  [clausify(3)].
+15 -ilf_type(A,set_type) | not_equal(B,A) | A = B.  [resolve(7,a,14,a)].
+16 not_equal(A,B) | B = A.  [resolve(7,a,15,a)].
+17 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -member(B,A) | member(ordered_pair(B,B),identity_relation_of(A)).  [clausify(1)].
+18 -ilf_type(A,set_type) | -member(A,B) | member(ordered_pair(A,A),identity_relation_of(B)).  [resolve(7,a,17,a)].
+19 -member(A,B) | member(ordered_pair(A,A),identity_relation_of(B)).  [resolve(7,a,18,a)].
+20 empty_set = identity_relation_of(c2).  [resolve(16,a,9,a)].
+21 identity_relation_of(c2) = empty_set.  [copy(20),flip(a)].
+22 member(ordered_pair(f2(A),f2(A)),identity_relation_of(A)) | empty(A).  [resolve(19,a,13,b)].
+23 member(ordered_pair(f2(c2),f2(c2)),empty_set) | empty(c2).  [para(21(a,1),22(a,2))].
+24 empty(c2).  [resolve(11,a,23,a)].
+25 $F.  [resolve(8,a,24,a)].
+
+============================== end of proof ==========================

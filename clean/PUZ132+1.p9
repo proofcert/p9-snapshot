@@ -1,0 +1,20 @@
+
+
+
+
+5 -capital(A) | city(A).  [clausify(1)].
+6 capital(washington).  [assumption].
+7 -city(A) | has_crime(A).  [clausify(2)].
+8 city(washington).  [resolve(5,a,6,a)].
+9 -country(A) | beautiful(capital_city(A)).  [clausify(3)].
+10 country(usa).  [assumption].
+11 capital_city(usa) = washington.  [assumption].
+12 washington = capital_city(usa).  [copy(11),flip(a)].
+13 -beautiful(washington) | -has_crime(washington).  [clausify(4)].
+14 -beautiful(capital_city(usa)) | -has_crime(washington).  [para(12(a,1),13(a,1))].
+15 -beautiful(capital_city(usa)) | -has_crime(capital_city(usa)).  [para(12(a,1),14(b,1))].
+16 has_crime(washington).  [resolve(8,a,7,a)].
+17 has_crime(capital_city(usa)).  [para(12(a,1),16(a,1))].
+18 beautiful(capital_city(usa)).  [resolve(9,a,10,a)].
+19 -has_crime(capital_city(usa)).  [resolve(18,a,15,a)].
+20 $F.  [resolve(17,a,19,a)].

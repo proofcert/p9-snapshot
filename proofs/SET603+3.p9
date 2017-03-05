@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n112.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 14:25:43 CDT 2014
+% CPUTime    : 0.48 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 43049 was started by sandbox on n112.star.cs.uiowa.edu,
+Fri Jun  6 14:25:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_43017_n112.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.36 (+ 0.00) seconds.
+% Length of proof is 16.
+% Level of proof is 6.
+% Maximum clause weight is 20.000.
+% Given clauses 593.
+
+
+1 (all A all B all C (member(C,difference(A,B)) <-> member(C,A) & -member(C,B))).  [assumption].
+2 (all A -member(A,empty_set)).  [assumption].
+3 (all A all B (A = B <-> (all C (member(C,A) <-> member(C,B))))).  [assumption].
+4 -(all A difference(A,empty_set) = A).  [assumption].
+5 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(3)].
+6 -member(A,empty_set).  [clausify(2)].
+7 difference(c1,empty_set) != c1.  [clausify(4)].
+8 -member(A,difference(B,C)) | member(A,B).  [clausify(1)].
+9 member(A,difference(B,C)) | -member(A,B) | member(A,C).  [clausify(1)].
+10 A = B | -member(f2(B,A),B) | -member(f2(B,A),A).  [clausify(3)].
+11 member(f2(A,difference(B,C)),B) | difference(B,C) = A | member(f2(A,difference(B,C)),A).  [resolve(8,a,5,c)].
+12 member(f2(A,difference(A,B)),A) | difference(A,B) = A.  [factor(11,a,c)].
+13 member(f2(A,B),difference(A,C)) | member(f2(A,B),C) | B = A | member(f2(A,B),B).  [resolve(9,b,5,b)].
+14 difference(A,B) = A | difference(A,B) = A | -member(f2(A,difference(A,B)),difference(A,B)).  [resolve(12,a,10,b)].
+15 difference(A,B) = A | -member(f2(A,difference(A,B)),difference(A,B)).  [copy(14),merge(b)].
+16 -member(f2(c1,difference(c1,empty_set)),difference(c1,empty_set)).  [resolve(15,a,7,a)].
+17 member(f2(c1,difference(c1,empty_set)),empty_set) | difference(c1,empty_set) = c1 | member(f2(c1,difference(c1,empty_set)),difference(c1,empty_set)).  [resolve(16,a,13,a)].
+18 difference(c1,empty_set) = c1 | member(f2(c1,difference(c1,empty_set)),difference(c1,empty_set)).  [resolve(6,a,17,a)].
+19 member(f2(c1,difference(c1,empty_set)),difference(c1,empty_set)).  [resolve(7,a,18,a)].
+20 $F.  [resolve(16,a,19,a)].
+
+============================== end of proof ==========================

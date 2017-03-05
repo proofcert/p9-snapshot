@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n056.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:02:28 CDT 2014
+% CPUTime    : 0.91 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 25208 was started by sandbox on n056.star.cs.uiowa.edu,
+Fri Jun  6 02:02:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_25176_n056.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.75 (+ 0.01) seconds.
+% Length of proof is 25.
+% Level of proof is 7.
+% Maximum clause weight is 17.000.
+% Given clauses 767.
+
+
+1 (all A all B all C all D (between_c(A,B,C,D) <-> B != D & (exists E (part_of(E,A) & end_point(B,E) & end_point(D,E) & inner_point(C,E))))).  [assumption].
+2 (all A all B all C all D (between_o(A,B,C,D) <-> ordered_by(A,B,C) & ordered_by(A,C,D) | ordered_by(A,D,C) & ordered_by(A,C,B))).  [assumption].
+3 (all A all B (start_point(A,B) <-> incident_o(A,B) & (all C (A != C & incident_o(C,B) -> ordered_by(B,A,C))))).  [assumption].
+4 (all A all B all C all D (between_o(D,A,B,C) <-> (exists E ((all A (incident_o(A,D) <-> incident_c(A,E))) & between_c(E,A,B,C))))).  [assumption].
+5 -(all A all B all C (start_point(B,A) & start_point(C,A) -> B = C)).  [assumption].
+6 -start_point(A,B) | incident_o(A,B).  [clausify(3)].
+7 start_point(c11,c10).  [clausify(5)].
+8 start_point(c12,c10).  [clausify(5)].
+9 -start_point(A,B) | C = A | -incident_o(C,B) | ordered_by(B,A,C).  [clausify(3)].
+10 between_o(A,B,C,D) | -ordered_by(A,D,C) | -ordered_by(A,C,B).  [clausify(2)].
+11 -between_o(A,B,C,D) | between_c(f18(B,C,D,A),B,C,D).  [clausify(4)].
+12 c12 != c11.  [clausify(5)].
+13 -between_c(A,B,C,D) | D != B.  [clausify(1)].
+14 incident_o(c11,c10).  [resolve(6,a,7,a)].
+15 incident_o(c12,c10).  [resolve(6,a,8,a)].
+16 A = c11 | -incident_o(A,c10) | ordered_by(c10,c11,A).  [resolve(9,a,7,a)].
+17 c11 = A | -incident_o(A,c10) | ordered_by(c10,c11,A).  [copy(16),flip(a)].
+18 A = c12 | -incident_o(A,c10) | ordered_by(c10,c12,A).  [resolve(9,a,8,a)].
+19 c12 = A | -incident_o(A,c10) | ordered_by(c10,c12,A).  [copy(18),flip(a)].
+20 between_c(f18(A,B,C,D),A,B,C) | -ordered_by(D,C,B) | -ordered_by(D,B,A).  [resolve(11,a,10,a)].
+21 c11 = c12 | ordered_by(c10,c11,c12).  [resolve(17,b,15,a)].
+22 c12 = c11 | ordered_by(c10,c11,c12).  [copy(21),flip(a)].
+23 ordered_by(c10,c11,c12).  [resolve(12,a,22,a)].
+24 c12 = c11 | ordered_by(c10,c12,c11).  [resolve(19,b,14,a)].
+25 ordered_by(c10,c12,c11).  [resolve(12,a,24,a)].
+26 between_c(f18(c12,c11,A,c10),c12,c11,A) | -ordered_by(c10,A,c11).  [resolve(23,a,20,c)].
+27 between_c(f18(c12,c11,c12,c10),c12,c11,c12).  [resolve(26,b,25,a)].
+28 c12 != c12.  [resolve(27,a,13,a)].
+29 $F.  [copy(28),xx(a)].
+
+============================== end of proof ==========================

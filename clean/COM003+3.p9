@@ -1,0 +1,694 @@
+
+
+
+
+5 -algorithm(A) | program(f1(A)) | program(c1).  [clausify(1)].
+6 algorithm(c2).  [clausify(4)].
+7 -algorithm(A) | -decides(A,f1(A),f2(A)) | program(c1).  [clausify(1)].
+8 -algorithm(A) | program(f1(A)) | -program(B) | decides(c1,B,C).  [clausify(1)].
+9 -algorithm(A) | -decides(A,f1(A),f2(A)) | -program(B) | decides(c1,B,C).  [clausify(1)].
+10 -program(A) | -halts3(A,f5(A),f6(A)) | -outputs(A,good) | -outputs(A,bad) | -program(B) | -halts3(A,B,B) | -halts2(f7(A),B).  [clausify(3)].
+11 -program(A) | -halts3(A,f5(A),f6(A)) | -outputs(A,good) | -halts2(f5(A),f6(A)) | -program(B) | -halts3(A,B,B) | -halts2(f7(A),B).  [clausify(3)].
+12 -program(A) | decides(c2,A,B).  [clausify(4)].
+13 -program(A) | program(f5(A)) | program(f7(A)).  [clausify(3)].
+14 -program(A) | program(f3(A)) | -program(B) | -halts2(B,C) | outputs(A,good).  [clausify(2)].
+15 -program(A) | program(f3(A)) | -program(B) | halts2(B,C) | outputs(A,bad).  [clausify(2)].
+16 -program(A) | program(f3(A)) | -program(B) | -halts2(B,C) | halts3(A,B,C).  [clausify(2)].
+17 -program(A) | program(f3(A)) | -program(B) | halts2(B,C) | halts3(A,B,C).  [clausify(2)].
+18 -program(A) | -decides(A,f3(A),f4(A)) | -program(B) | -halts2(B,C) | outputs(A,good).  [clausify(2)].
+19 -program(A) | -decides(A,f3(A),f4(A)) | -program(B) | halts2(B,C) | outputs(A,bad).  [clausify(2)].
+20 -program(A) | -decides(A,f3(A),f4(A)) | -program(B) | -halts2(B,C) | halts3(A,B,C).  [clausify(2)].
+21 -program(A) | -decides(A,f3(A),f4(A)) | -program(B) | halts2(B,C) | halts3(A,B,C).  [clausify(2)].
+22 -program(A) | -halts3(A,f5(A),f6(A)) | -outputs(A,good) | -outputs(A,bad) | program(f7(A)).  [clausify(3)].
+23 -program(A) | program(f5(A)) | -program(B) | -halts3(A,B,B) | -outputs(A,good) | -halts2(f7(A),B).  [clausify(3)].
+24 -program(A) | program(f5(A)) | -program(B) | -halts3(A,B,B) | -outputs(A,bad) | halts2(f7(A),B).  [clausify(3)].
+25 -program(A) | halts2(f5(A),f6(A)) | -halts3(A,f5(A),f6(A)) | -outputs(A,bad) | program(f7(A)).  [clausify(3)].
+26 -program(A) | -halts3(A,f5(A),f6(A)) | -outputs(A,good) | -halts2(f5(A),f6(A)) | program(f7(A)).  [clausify(3)].
+27 -program(A) | -halts3(A,f5(A),f6(A)) | -outputs(A,good) | -outputs(A,bad) | -program(B) | -halts3(A,B,B) | halts2(f7(A),B).  [clausify(3)].
+28 -program(A) | halts2(f5(A),f6(A)) | -halts3(A,f5(A),f6(A)) | -outputs(A,bad) | -program(B) | -halts3(A,B,B) | halts2(f7(A),B).  [clausify(3)].
+29 program(f1(c2)) | program(c1).  [resolve(5,a,6,a)].
+30 -decides(c2,f1(c2),f2(c2)) | program(c1).  [resolve(7,a,6,a)].
+31 program(f1(c2)) | -program(A) | decides(c1,A,B).  [resolve(8,a,6,a)].
+32 -decides(c2,f1(c2),f2(c2)) | -program(A) | decides(c1,A,B).  [resolve(9,a,6,a)].
+33 -program(A) | -halts3(A,f5(A),f6(A)) | -outputs(A,good) | -outputs(A,bad) | -halts3(A,A,A) | -halts2(f7(A),A).  [factor(10,a,e)].
+34 -program(A) | -halts3(A,f5(A),f6(A)) | -outputs(A,good) | -halts2(f5(A),f6(A)) | -halts3(A,A,A) | -halts2(f7(A),A).  [factor(11,a,e)].
+35 -program(A) | program(f3(A)) | -halts2(A,B) | outputs(A,good).  [factor(14,a,c)].
+36 -program(A) | program(f3(A)) | halts2(A,B) | outputs(A,bad).  [factor(15,a,c)].
+37 -program(A) | program(f3(A)) | -halts2(A,B) | halts3(A,A,B).  [factor(16,a,c)].
+38 -program(A) | program(f3(A)) | halts2(A,B) | halts3(A,A,B).  [factor(17,a,c)].
+39 -program(A) | -decides(A,f3(A),f4(A)) | -halts2(A,B) | outputs(A,good).  [factor(18,a,c)].
+40 -program(A) | -decides(A,f3(A),f4(A)) | halts2(A,B) | outputs(A,bad).  [factor(19,a,c)].
+41 -program(A) | -decides(A,f3(A),f4(A)) | -halts2(A,B) | halts3(A,A,B).  [factor(20,a,c)].
+42 -program(A) | -decides(A,f3(A),f4(A)) | halts2(A,B) | halts3(A,A,B).  [factor(21,a,c)].
+43 -program(A) | program(f5(A)) | -halts3(A,A,A) | -outputs(A,good) | -halts2(f7(A),A).  [factor(23,a,c)].
+44 -program(A) | program(f5(A)) | -halts3(A,A,A) | -outputs(A,bad) | halts2(f7(A),A).  [factor(24,a,c)].
+45 -program(A) | -halts3(A,f5(A),f6(A)) | -outputs(A,good) | -outputs(A,bad) | -halts3(A,A,A) | halts2(f7(A),A).  [factor(27,a,e)].
+46 -program(A) | halts2(f5(A),f6(A)) | -halts3(A,f5(A),f6(A)) | -outputs(A,bad) | -halts3(A,A,A) | halts2(f7(A),A).  [factor(28,a,e)].
+47 program(c1) | decides(c2,f1(c2),A).  [resolve(29,a,12,a)].
+48 program(c1) | program(c1).  [resolve(47,b,30,a)].
+49 program(c1).  [copy(48),merge(b)].
+50 program(f3(c1)) | halts2(c1,A) | halts3(c1,c1,A).  [resolve(49,a,38,a)].
+51 program(f3(c1)) | halts2(c1,A) | outputs(c1,bad).  [resolve(49,a,36,a)].
+52 program(f3(c1)) | -program(A) | halts2(A,B) | halts3(c1,A,B).  [resolve(49,a,17,a)].
+53 program(f3(c1)) | -program(A) | halts2(A,B) | outputs(c1,bad).  [resolve(49,a,15,a)].
+54 program(f5(c1)) | program(f7(c1)).  [resolve(49,a,13,a)].
+55 program(f3(c1)) | halts2(c1,c1) | -program(c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(50,c,44,c)].
+56 program(f3(c1)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,55,c)].
+57 program(f3(c1)) | halts2(c1,c1) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(50,c,43,c)].
+58 program(f3(c1)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,57,c)].
+59 program(f3(c1)) | halts2(c1,c1) | -program(c1) | halts2(f5(c1),f6(c1)) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,bad) | -program(c1) | halts2(f7(c1),c1).  [resolve(50,c,28,f)].
+60 program(f3(c1)) | halts2(c1,c1) | -program(c1) | halts2(f5(c1),f6(c1)) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(59),merge(g)].
+61 program(f3(c1)) | halts2(c1,c1) | halts2(f5(c1),f6(c1)) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,60,c)].
+62 program(f3(c1)) | halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | halts2(f7(c1),c1).  [resolve(50,c,27,f)].
+63 program(f3(c1)) | halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(62),merge(g)].
+64 program(f3(c1)) | halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,63,c)].
+65 program(f3(c1)) | halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | -halts2(f7(c1),c1).  [resolve(50,c,10,f)].
+66 program(f3(c1)) | halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(65),merge(g)].
+67 program(f3(c1)) | halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(49,a,66,c)].
+68 program(f3(c1)) | outputs(c1,bad) | -program(c1) | program(f3(c1)) | halts3(c1,c1,A).  [resolve(51,b,37,c)].
+69 program(f3(c1)) | outputs(c1,bad) | -program(c1) | halts3(c1,c1,A).  [copy(68),merge(d)].
+70 program(f3(c1)) | outputs(c1,bad) | halts3(c1,c1,A).  [resolve(49,a,69,c)].
+71 program(f3(c1)) | outputs(c1,bad) | -program(c1) | program(f3(c1)) | outputs(c1,good).  [resolve(51,b,35,c)].
+72 program(f3(c1)) | outputs(c1,bad) | -program(c1) | outputs(c1,good).  [copy(71),merge(d)].
+73 program(f3(c1)) | outputs(c1,bad) | outputs(c1,good).  [resolve(49,a,72,c)].
+74 program(f3(c1)) | outputs(c1,bad) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(70,c,43,c)].
+75 program(f3(c1)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,74,c)].
+76 program(f3(c1)) | outputs(c1,bad) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -program(c1) | -halts2(f7(c1),c1).  [resolve(70,c,11,f)].
+77 program(f3(c1)) | outputs(c1,bad) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [copy(76),merge(g)].
+78 program(f3(c1)) | outputs(c1,bad) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [resolve(49,a,77,c)].
+79 program(f3(c1)) | halts2(f7(c1),A) | outputs(c1,bad) | program(f5(c1)).  [resolve(53,b,54,b)].
+80 program(f3(c1)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | program(f3(c1)) | outputs(c1,bad) | program(f5(c1)).  [resolve(75,e,79,b)].
+81 program(f3(c1)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | outputs(c1,bad) | program(f5(c1)).  [copy(80),merge(e)].
+82 program(f3(c1)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | program(f5(c1)).  [copy(81),merge(e)].
+83 program(f3(c1)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good).  [copy(82),merge(e)].
+84 program(f3(c1)) | outputs(c1,bad) | program(f5(c1)) | program(f3(c1)) | outputs(c1,bad).  [resolve(83,d,73,c)].
+85 program(f3(c1)) | outputs(c1,bad) | program(f5(c1)) | outputs(c1,bad).  [copy(84),merge(d)].
+86 program(f3(c1)) | outputs(c1,bad) | program(f5(c1)).  [copy(85),merge(d)].
+87 program(f3(c1)) | program(f5(c1)) | program(f3(c1)) | halts2(c1,c1) | program(f5(c1)) | halts2(f7(c1),c1).  [resolve(86,b,56,d)].
+88 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | program(f5(c1)) | halts2(f7(c1),c1).  [copy(87),merge(c)].
+89 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | halts2(f7(c1),c1).  [copy(88),merge(d)].
+90 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | program(f3(c1)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good).  [resolve(89,d,58,e)].
+91 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good).  [copy(90),merge(d)].
+92 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good).  [copy(91),merge(d)].
+93 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | -outputs(c1,good).  [copy(92),merge(d)].
+94 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | -program(A) | program(f3(A)) | -program(f7(c1)) | outputs(A,good).  [resolve(89,d,14,d)].
+95 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | -program(c1) | -program(f7(c1)) | outputs(c1,good).  [factor(94,a,e)].
+96 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | -program(f7(c1)) | outputs(c1,good).  [resolve(49,a,95,d)].
+97 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | outputs(c1,good) | program(f5(c1)).  [resolve(96,d,54,b)].
+98 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1) | outputs(c1,good).  [copy(97),merge(e)].
+99 program(f3(c1)) | program(f5(c1)) | outputs(c1,good) | -program(c1) | program(f3(c1)) | outputs(c1,good).  [resolve(98,c,35,c)].
+100 program(f3(c1)) | program(f5(c1)) | outputs(c1,good) | -program(c1) | outputs(c1,good).  [copy(99),merge(e)].
+101 program(f3(c1)) | program(f5(c1)) | outputs(c1,good) | -program(c1).  [copy(100),merge(e)].
+102 program(f3(c1)) | program(f5(c1)) | outputs(c1,good).  [resolve(49,a,101,d)].
+103 program(f3(c1)) | program(f5(c1)) | program(f3(c1)) | program(f5(c1)) | halts2(c1,c1).  [resolve(102,c,93,d)].
+104 program(f3(c1)) | program(f5(c1)) | program(f5(c1)) | halts2(c1,c1).  [copy(103),merge(c)].
+105 program(f3(c1)) | program(f5(c1)) | halts2(c1,c1).  [copy(104),merge(c)].
+106 program(f3(c1)) | program(f5(c1)) | -program(c1) | program(f3(c1)) | halts3(c1,c1,c1).  [resolve(105,c,37,c)].
+107 program(f3(c1)) | program(f5(c1)) | -program(c1) | halts3(c1,c1,c1).  [copy(106),merge(d)].
+108 program(f3(c1)) | program(f5(c1)) | halts3(c1,c1,c1).  [resolve(49,a,107,c)].
+109 program(f3(c1)) | program(f5(c1)) | -program(c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(108,c,44,c)].
+110 program(f3(c1)) | program(f5(c1)) | -program(c1) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(109),merge(d)].
+111 program(f3(c1)) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,110,c)].
+112 program(f3(c1)) | program(f5(c1)) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(108,c,43,c)].
+113 program(f3(c1)) | program(f5(c1)) | -program(c1) | -outputs(c1,good) | -halts2(f7(c1),c1).  [copy(112),merge(d)].
+114 program(f3(c1)) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,113,c)].
+115 program(f3(c1)) | program(f5(c1)) | halts2(f7(c1),c1) | program(f3(c1)) | program(f5(c1)).  [resolve(111,c,86,b)].
+116 program(f3(c1)) | program(f5(c1)) | halts2(f7(c1),c1) | program(f5(c1)).  [copy(115),merge(d)].
+117 program(f3(c1)) | program(f5(c1)) | halts2(f7(c1),c1).  [copy(116),merge(d)].
+118 program(f3(c1)) | program(f5(c1)) | -outputs(c1,good) | program(f3(c1)) | program(f5(c1)).  [resolve(114,d,117,c)].
+119 program(f3(c1)) | program(f5(c1)) | -outputs(c1,good) | program(f5(c1)).  [copy(118),merge(d)].
+120 program(f3(c1)) | program(f5(c1)) | -outputs(c1,good).  [copy(119),merge(d)].
+121 program(f3(c1)) | program(f5(c1)) | program(f3(c1)) | program(f5(c1)).  [resolve(120,c,102,c)].
+122 program(f3(c1)) | program(f5(c1)) | program(f5(c1)).  [copy(121),merge(c)].
+123 program(f3(c1)) | program(f5(c1)).  [copy(122),merge(c)].
+124 program(f3(c1)) | program(f3(c1)) | halts2(f5(c1),A) | outputs(c1,bad).  [resolve(123,b,53,b)].
+125 program(f3(c1)) | halts2(f5(c1),A) | outputs(c1,bad).  [copy(124),merge(b)].
+126 program(f3(c1)) | program(f3(c1)) | halts2(f5(c1),A) | halts3(c1,f5(c1),A).  [resolve(123,b,52,b)].
+127 program(f3(c1)) | halts2(f5(c1),A) | halts3(c1,f5(c1),A).  [copy(126),merge(b)].
+128 program(f3(c1)) | outputs(c1,bad) | -program(A) | program(f3(A)) | -program(f5(c1)) | halts3(A,f5(c1),B).  [resolve(125,b,16,d)].
+129 program(f3(c1)) | outputs(c1,bad) | -program(c1) | -program(f5(c1)) | halts3(c1,f5(c1),A).  [factor(128,a,d)].
+130 program(f3(c1)) | outputs(c1,bad) | -program(f5(c1)) | halts3(c1,f5(c1),A).  [resolve(49,a,129,c)].
+131 program(f3(c1)) | halts2(f5(c1),f6(c1)) | program(f3(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(127,c,67,c)].
+132 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(131),merge(c)].
+133 program(f3(c1)) | halts2(f5(c1),f6(c1)) | program(f3(c1)) | halts2(c1,c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(127,c,61,d)].
+134 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(133),merge(c)].
+135 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(134),merge(d)].
+136 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -program(c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(127,c,46,c)].
+137 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [copy(136),merge(d)].
+138 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(49,a,137,c)].
+139 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(127,c,33,b)].
+140 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(49,a,139,c)].
+141 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -program(c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | program(f7(c1)).  [resolve(127,c,25,c)].
+142 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,bad) | program(f7(c1)).  [copy(141),merge(d)].
+143 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | program(f7(c1)).  [resolve(49,a,142,c)].
+144 program(f3(c1)) | outputs(c1,bad) | halts3(c1,f5(c1),A) | program(f3(c1)).  [resolve(130,c,123,b)].
+145 program(f3(c1)) | outputs(c1,bad) | halts3(c1,f5(c1),A).  [copy(144),merge(d)].
+146 program(f3(c1)) | outputs(c1,bad) | program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [resolve(145,c,78,c)].
+147 program(f3(c1)) | outputs(c1,bad) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [copy(146),merge(c)].
+148 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [copy(147),merge(c)].
+149 program(f3(c1)) | outputs(c1,bad) | -program(c1) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(145,c,26,b)].
+150 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(49,a,149,c)].
+151 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | program(f7(c1)) | program(f3(c1)) | outputs(c1,bad).  [resolve(150,d,125,b)].
+152 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | program(f7(c1)) | outputs(c1,bad).  [copy(151),merge(e)].
+153 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | program(f7(c1)).  [copy(152),merge(e)].
+154 program(f3(c1)) | outputs(c1,bad) | program(f7(c1)) | program(f3(c1)) | outputs(c1,bad).  [resolve(153,c,73,c)].
+155 program(f3(c1)) | outputs(c1,bad) | program(f7(c1)) | outputs(c1,bad).  [copy(154),merge(d)].
+156 program(f3(c1)) | outputs(c1,bad) | program(f7(c1)).  [copy(155),merge(d)].
+157 program(f3(c1)) | program(f7(c1)) | program(f3(c1)) | halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(156,b,143,c)].
+158 program(f3(c1)) | program(f7(c1)) | halts2(f5(c1),f6(c1)) | program(f7(c1)).  [copy(157),merge(c)].
+159 program(f3(c1)) | program(f7(c1)) | halts2(f5(c1),f6(c1)).  [copy(158),merge(d)].
+160 program(f3(c1)) | program(f7(c1)) | -program(A) | program(f3(A)) | -program(f5(c1)) | halts3(A,f5(c1),f6(c1)).  [resolve(159,c,16,d)].
+161 program(f3(c1)) | program(f7(c1)) | -program(A) | program(f3(A)) | -program(f5(c1)) | outputs(A,good).  [resolve(159,c,14,d)].
+162 program(f3(c1)) | program(f7(c1)) | -program(c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [factor(160,a,d)].
+163 program(f3(c1)) | program(f7(c1)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(49,a,162,c)].
+164 program(f3(c1)) | program(f7(c1)) | -program(c1) | -program(f5(c1)) | outputs(c1,good).  [factor(161,a,d)].
+165 program(f3(c1)) | program(f7(c1)) | -program(f5(c1)) | outputs(c1,good).  [resolve(49,a,164,c)].
+166 program(f3(c1)) | program(f7(c1)) | outputs(c1,good) | program(f3(c1)).  [resolve(165,c,123,b)].
+167 program(f3(c1)) | program(f7(c1)) | outputs(c1,good).  [copy(166),merge(d)].
+168 program(f3(c1)) | program(f7(c1)) | halts3(c1,f5(c1),f6(c1)) | program(f3(c1)).  [resolve(163,c,123,b)].
+169 program(f3(c1)) | program(f7(c1)) | halts3(c1,f5(c1),f6(c1)).  [copy(168),merge(d)].
+170 program(f3(c1)) | program(f7(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | program(f7(c1)).  [resolve(169,c,22,b)].
+171 program(f3(c1)) | program(f7(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(170),merge(f)].
+172 program(f3(c1)) | program(f7(c1)) | -outputs(c1,good) | -outputs(c1,bad).  [resolve(49,a,171,c)].
+173 program(f3(c1)) | program(f7(c1)) | -outputs(c1,bad) | program(f3(c1)) | program(f7(c1)).  [resolve(172,c,167,c)].
+174 program(f3(c1)) | program(f7(c1)) | -outputs(c1,bad) | program(f7(c1)).  [copy(173),merge(d)].
+175 program(f3(c1)) | program(f7(c1)) | -outputs(c1,bad).  [copy(174),merge(d)].
+176 program(f3(c1)) | program(f7(c1)) | program(f3(c1)) | program(f7(c1)).  [resolve(175,c,156,b)].
+177 program(f3(c1)) | program(f7(c1)) | program(f7(c1)).  [copy(176),merge(c)].
+178 program(f3(c1)) | program(f7(c1)).  [copy(177),merge(c)].
+179 program(f3(c1)) | program(f3(c1)) | halts2(f7(c1),A) | outputs(c1,bad).  [resolve(178,b,53,b)].
+180 program(f3(c1)) | halts2(f7(c1),A) | outputs(c1,bad).  [copy(179),merge(b)].
+181 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f7(c1),c1) | program(f3(c1)) | outputs(c1,bad).  [resolve(148,d,125,b)].
+182 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f7(c1),c1) | outputs(c1,bad).  [copy(181),merge(e)].
+183 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f7(c1),c1).  [copy(182),merge(e)].
+184 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | program(f3(c1)) | outputs(c1,bad).  [resolve(183,d,180,b)].
+185 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good) | outputs(c1,bad).  [copy(184),merge(d)].
+186 program(f3(c1)) | outputs(c1,bad) | -outputs(c1,good).  [copy(185),merge(d)].
+187 program(f3(c1)) | outputs(c1,bad) | program(f3(c1)) | outputs(c1,bad).  [resolve(186,c,73,c)].
+188 program(f3(c1)) | outputs(c1,bad) | outputs(c1,bad).  [copy(187),merge(c)].
+189 program(f3(c1)) | outputs(c1,bad).  [copy(188),merge(c)].
+190 program(f3(c1)) | program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | halts2(f7(c1),c1).  [resolve(189,b,135,d)].
+191 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | halts2(f7(c1),c1).  [copy(190),merge(b)].
+192 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -program(A) | program(f3(A)) | -program(f5(c1)) | halts3(A,f5(c1),f6(c1)).  [resolve(191,b,16,d)].
+193 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -program(A) | program(f3(A)) | -program(f5(c1)) | outputs(A,good).  [resolve(191,b,14,d)].
+194 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -program(c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [factor(192,a,e)].
+195 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(49,a,194,d)].
+196 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -program(c1) | -program(f5(c1)) | outputs(c1,good).  [factor(193,a,e)].
+197 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -program(f5(c1)) | outputs(c1,good).  [resolve(49,a,196,d)].
+198 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | outputs(c1,good) | program(f3(c1)).  [resolve(197,d,123,b)].
+199 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | outputs(c1,good).  [copy(198),merge(e)].
+200 program(f3(c1)) | halts2(c1,c1) | outputs(c1,good) | -program(A) | program(f3(A)) | -program(f7(c1)) | outputs(A,good).  [resolve(199,c,14,d)].
+201 program(f3(c1)) | halts2(c1,c1) | outputs(c1,good) | -program(c1) | -program(f7(c1)) | outputs(c1,good).  [factor(200,a,e)].
+202 program(f3(c1)) | halts2(c1,c1) | outputs(c1,good) | -program(c1) | -program(f7(c1)).  [copy(201),merge(f)].
+203 program(f3(c1)) | halts2(c1,c1) | outputs(c1,good) | -program(f7(c1)).  [resolve(49,a,202,d)].
+204 program(f3(c1)) | halts2(c1,c1) | outputs(c1,good) | program(f3(c1)).  [resolve(203,d,178,b)].
+205 program(f3(c1)) | halts2(c1,c1) | outputs(c1,good).  [copy(204),merge(d)].
+206 program(f3(c1)) | outputs(c1,good) | -program(c1) | program(f3(c1)) | outputs(c1,good).  [resolve(205,b,35,c)].
+207 program(f3(c1)) | outputs(c1,good) | -program(c1) | outputs(c1,good).  [copy(206),merge(d)].
+208 program(f3(c1)) | outputs(c1,good) | -program(c1).  [copy(207),merge(d)].
+209 program(f3(c1)) | outputs(c1,good).  [resolve(49,a,208,c)].
+210 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | halts3(c1,f5(c1),f6(c1)) | program(f3(c1)).  [resolve(195,d,123,b)].
+211 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | halts3(c1,f5(c1),f6(c1)).  [copy(210),merge(e)].
+212 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | program(f3(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(211,d,64,c)].
+213 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(212),merge(d)].
+214 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(213),merge(d)].
+215 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(214),merge(f)].
+216 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -outputs(c1,bad) | program(f3(c1)).  [resolve(215,d,209,b)].
+217 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | -outputs(c1,bad).  [copy(216),merge(e)].
+218 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1) | program(f3(c1)).  [resolve(217,d,189,b)].
+219 program(f3(c1)) | halts2(c1,c1) | halts2(f7(c1),c1).  [copy(218),merge(d)].
+220 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | program(f3(c1)) | halts2(c1,c1).  [resolve(132,f,219,c)].
+221 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(c1,c1).  [copy(220),merge(f)].
+222 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(221),merge(f)].
+223 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | -outputs(c1,bad) | program(f3(c1)).  [resolve(222,d,209,b)].
+224 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | -outputs(c1,bad).  [copy(223),merge(e)].
+225 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1) | program(f3(c1)).  [resolve(224,d,189,b)].
+226 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(c1,c1).  [copy(225),merge(d)].
+227 program(f3(c1)) | halts2(c1,c1) | -program(A) | program(f3(A)) | -program(f5(c1)) | halts3(A,f5(c1),f6(c1)).  [resolve(226,b,16,d)].
+228 program(f3(c1)) | halts2(c1,c1) | -program(c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [factor(227,a,d)].
+229 program(f3(c1)) | halts2(c1,c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(49,a,228,c)].
+230 program(f3(c1)) | halts2(c1,c1) | halts3(c1,f5(c1),f6(c1)) | program(f3(c1)).  [resolve(229,c,123,b)].
+231 program(f3(c1)) | halts2(c1,c1) | halts3(c1,f5(c1),f6(c1)).  [copy(230),merge(d)].
+232 program(f3(c1)) | halts2(c1,c1) | program(f3(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(231,c,67,c)].
+233 program(f3(c1)) | halts2(c1,c1) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(232),merge(c)].
+234 program(f3(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(233),merge(c)].
+235 program(f3(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | program(f3(c1)) | halts2(c1,c1).  [resolve(234,e,219,c)].
+236 program(f3(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(c1,c1).  [copy(235),merge(e)].
+237 program(f3(c1)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(236),merge(e)].
+238 program(f3(c1)) | halts2(c1,c1) | -outputs(c1,bad) | program(f3(c1)).  [resolve(237,c,209,b)].
+239 program(f3(c1)) | halts2(c1,c1) | -outputs(c1,bad).  [copy(238),merge(d)].
+240 program(f3(c1)) | halts2(c1,c1) | program(f3(c1)).  [resolve(239,c,189,b)].
+241 program(f3(c1)) | halts2(c1,c1).  [copy(240),merge(c)].
+242 program(f3(c1)) | -program(c1) | program(f3(c1)) | halts3(c1,c1,c1).  [resolve(241,b,37,c)].
+243 program(f3(c1)) | -program(c1) | halts3(c1,c1,c1).  [copy(242),merge(c)].
+244 program(f3(c1)) | halts3(c1,c1,c1).  [resolve(49,a,243,b)].
+245 program(f3(c1)) | program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(244,b,138,d)].
+246 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(245),merge(b)].
+247 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1) | program(f3(c1)).  [resolve(140,e,244,b)].
+248 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(247),merge(f)].
+249 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(f7(c1),c1) | program(f3(c1)).  [resolve(246,c,189,b)].
+250 program(f3(c1)) | halts2(f5(c1),f6(c1)) | halts2(f7(c1),c1).  [copy(249),merge(d)].
+251 program(f3(c1)) | halts2(f7(c1),c1) | -program(A) | program(f3(A)) | -program(f5(c1)) | halts3(A,f5(c1),f6(c1)).  [resolve(250,b,16,d)].
+252 program(f3(c1)) | halts2(f7(c1),c1) | -program(c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [factor(251,a,d)].
+253 program(f3(c1)) | halts2(f7(c1),c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(49,a,252,c)].
+254 program(f3(c1)) | halts2(f7(c1),c1) | halts3(c1,f5(c1),f6(c1)) | program(f3(c1)).  [resolve(253,c,123,b)].
+255 program(f3(c1)) | halts2(f7(c1),c1) | halts3(c1,f5(c1),f6(c1)).  [copy(254),merge(d)].
+256 program(f3(c1)) | halts2(f7(c1),c1) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(255,c,45,b)].
+257 program(f3(c1)) | halts2(f7(c1),c1) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1).  [copy(256),merge(g)].
+258 program(f3(c1)) | halts2(f7(c1),c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1).  [resolve(49,a,257,c)].
+259 program(f3(c1)) | halts2(f7(c1),c1) | -outputs(c1,good) | -outputs(c1,bad) | program(f3(c1)).  [resolve(258,e,244,b)].
+260 program(f3(c1)) | halts2(f7(c1),c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(259),merge(e)].
+261 program(f3(c1)) | halts2(f7(c1),c1) | -outputs(c1,bad) | program(f3(c1)).  [resolve(260,c,209,b)].
+262 program(f3(c1)) | halts2(f7(c1),c1) | -outputs(c1,bad).  [copy(261),merge(d)].
+263 program(f3(c1)) | halts2(f7(c1),c1) | program(f3(c1)).  [resolve(262,c,189,b)].
+264 program(f3(c1)) | halts2(f7(c1),c1).  [copy(263),merge(c)].
+265 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | program(f3(c1)).  [resolve(248,e,264,b)].
+266 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad).  [copy(265),merge(e)].
+267 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | program(f3(c1)).  [resolve(266,c,209,b)].
+268 program(f3(c1)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad).  [copy(267),merge(d)].
+269 program(f3(c1)) | halts2(f5(c1),f6(c1)) | program(f3(c1)).  [resolve(268,c,189,b)].
+270 program(f3(c1)) | halts2(f5(c1),f6(c1)).  [copy(269),merge(c)].
+271 program(f3(c1)) | -program(A) | program(f3(A)) | -program(f5(c1)) | halts3(A,f5(c1),f6(c1)).  [resolve(270,b,16,d)].
+272 program(f3(c1)) | -program(c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [factor(271,a,c)].
+273 program(f3(c1)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(49,a,272,b)].
+274 program(f3(c1)) | halts3(c1,f5(c1),f6(c1)) | program(f3(c1)).  [resolve(273,b,123,b)].
+275 program(f3(c1)) | halts3(c1,f5(c1),f6(c1)).  [copy(274),merge(c)].
+276 program(f3(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(275,b,33,b)].
+277 program(f3(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(49,a,276,b)].
+278 program(f3(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1) | program(f3(c1)).  [resolve(277,d,244,b)].
+279 program(f3(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(278),merge(e)].
+280 program(f3(c1)) | -outputs(c1,good) | -outputs(c1,bad) | program(f3(c1)).  [resolve(279,d,264,b)].
+281 program(f3(c1)) | -outputs(c1,good) | -outputs(c1,bad).  [copy(280),merge(d)].
+282 program(f3(c1)) | -outputs(c1,bad) | program(f3(c1)).  [resolve(281,b,209,b)].
+283 program(f3(c1)) | -outputs(c1,bad).  [copy(282),merge(c)].
+284 program(f3(c1)) | program(f3(c1)).  [resolve(283,b,189,b)].
+285 program(f3(c1)).  [copy(284),merge(b)].
+286 program(f1(c2)) | decides(c1,f3(c1),A).  [resolve(285,a,31,b)].
+287 program(f1(c2)) | -program(c1) | halts2(c1,A) | halts3(c1,c1,A).  [resolve(286,b,42,b)].
+288 program(f1(c2)) | halts2(c1,A) | halts3(c1,c1,A).  [resolve(49,a,287,b)].
+289 program(f1(c2)) | -program(c1) | -halts2(c1,A) | halts3(c1,c1,A).  [resolve(286,b,41,b)].
+290 program(f1(c2)) | -halts2(c1,A) | halts3(c1,c1,A).  [resolve(49,a,289,b)].
+291 program(f1(c2)) | -program(c1) | halts2(c1,A) | outputs(c1,bad).  [resolve(286,b,40,b)].
+292 program(f1(c2)) | halts2(c1,A) | outputs(c1,bad).  [resolve(49,a,291,b)].
+293 program(f1(c2)) | -program(c1) | -halts2(c1,A) | outputs(c1,good).  [resolve(286,b,39,b)].
+294 program(f1(c2)) | -halts2(c1,A) | outputs(c1,good).  [resolve(49,a,293,b)].
+295 program(f1(c2)) | -program(c1) | -program(A) | halts2(A,B) | halts3(c1,A,B).  [resolve(286,b,21,b)].
+296 program(f1(c2)) | -program(A) | halts2(A,B) | halts3(c1,A,B).  [resolve(49,a,295,b)].
+297 program(f1(c2)) | -program(c1) | -program(A) | -halts2(A,B) | halts3(c1,A,B).  [resolve(286,b,20,b)].
+298 program(f1(c2)) | -program(A) | -halts2(A,B) | halts3(c1,A,B).  [resolve(49,a,297,b)].
+299 program(f1(c2)) | -program(c1) | -program(A) | halts2(A,B) | outputs(c1,bad).  [resolve(286,b,19,b)].
+300 program(f1(c2)) | -program(A) | halts2(A,B) | outputs(c1,bad).  [resolve(49,a,299,b)].
+301 program(f1(c2)) | -program(c1) | -program(A) | -halts2(A,B) | outputs(c1,good).  [resolve(286,b,18,b)].
+302 program(f1(c2)) | -program(A) | -halts2(A,B) | outputs(c1,good).  [resolve(49,a,301,b)].
+303 program(f1(c2)) | outputs(c1,good) | program(f1(c2)) | outputs(c1,bad).  [resolve(294,b,292,b)].
+304 program(f1(c2)) | outputs(c1,good) | outputs(c1,bad).  [copy(303),merge(c)].
+305 program(f1(c2)) | halts2(c1,c1) | -program(c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(288,c,44,c)].
+306 program(f1(c2)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,305,c)].
+307 program(f1(c2)) | halts2(c1,c1) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(288,c,43,c)].
+308 program(f1(c2)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,307,c)].
+309 program(f1(c2)) | halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | halts2(f7(c1),c1).  [resolve(288,c,27,f)].
+310 program(f1(c2)) | halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(309),merge(g)].
+311 program(f1(c2)) | halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,310,c)].
+312 program(f1(c2)) | halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | -halts2(f7(c1),c1).  [resolve(288,c,10,f)].
+313 program(f1(c2)) | halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(312),merge(g)].
+314 program(f1(c2)) | halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(49,a,313,c)].
+315 program(f1(c2)) | halts3(c1,c1,A) | program(f1(c2)) | outputs(c1,bad).  [resolve(290,b,292,b)].
+316 program(f1(c2)) | halts3(c1,c1,A) | outputs(c1,bad).  [copy(315),merge(c)].
+317 program(f1(c2)) | outputs(c1,bad) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(316,b,43,c)].
+318 program(f1(c2)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,317,c)].
+319 program(f1(c2)) | outputs(c1,bad) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -program(c1) | -halts2(f7(c1),c1).  [resolve(316,b,11,f)].
+320 program(f1(c2)) | outputs(c1,bad) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [copy(319),merge(g)].
+321 program(f1(c2)) | outputs(c1,bad) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [resolve(49,a,320,c)].
+322 program(f1(c2)) | halts2(f7(c1),A) | outputs(c1,bad) | program(f5(c1)).  [resolve(300,b,54,b)].
+323 program(f1(c2)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | program(f1(c2)) | outputs(c1,bad) | program(f5(c1)).  [resolve(318,e,322,b)].
+324 program(f1(c2)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | outputs(c1,bad) | program(f5(c1)).  [copy(323),merge(e)].
+325 program(f1(c2)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | program(f5(c1)).  [copy(324),merge(e)].
+326 program(f1(c2)) | outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good).  [copy(325),merge(e)].
+327 program(f1(c2)) | outputs(c1,bad) | program(f5(c1)) | program(f1(c2)) | outputs(c1,bad).  [resolve(326,d,304,b)].
+328 program(f1(c2)) | outputs(c1,bad) | program(f5(c1)) | outputs(c1,bad).  [copy(327),merge(d)].
+329 program(f1(c2)) | outputs(c1,bad) | program(f5(c1)).  [copy(328),merge(d)].
+330 program(f1(c2)) | program(f5(c1)) | program(f1(c2)) | halts2(c1,c1) | program(f5(c1)) | halts2(f7(c1),c1).  [resolve(329,b,306,d)].
+331 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | program(f5(c1)) | halts2(f7(c1),c1).  [copy(330),merge(c)].
+332 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | halts2(f7(c1),c1).  [copy(331),merge(d)].
+333 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | program(f1(c2)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good).  [resolve(332,d,308,e)].
+334 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good).  [copy(333),merge(d)].
+335 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good).  [copy(334),merge(d)].
+336 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | -outputs(c1,good).  [copy(335),merge(d)].
+337 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | program(f1(c2)) | -program(f7(c1)) | outputs(c1,good).  [resolve(332,d,302,c)].
+338 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | -program(f7(c1)) | outputs(c1,good).  [copy(337),merge(d)].
+339 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | outputs(c1,good) | program(f5(c1)).  [resolve(338,d,54,b)].
+340 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1) | outputs(c1,good).  [copy(339),merge(e)].
+341 program(f1(c2)) | program(f5(c1)) | outputs(c1,good) | program(f1(c2)) | -program(c1) | outputs(c1,good).  [resolve(340,c,302,c)].
+342 program(f1(c2)) | program(f5(c1)) | outputs(c1,good) | -program(c1) | outputs(c1,good).  [copy(341),merge(d)].
+343 program(f1(c2)) | program(f5(c1)) | outputs(c1,good) | -program(c1).  [copy(342),merge(e)].
+344 program(f1(c2)) | program(f5(c1)) | outputs(c1,good).  [resolve(49,a,343,d)].
+345 program(f1(c2)) | program(f5(c1)) | program(f1(c2)) | program(f5(c1)) | halts2(c1,c1).  [resolve(344,c,336,d)].
+346 program(f1(c2)) | program(f5(c1)) | program(f5(c1)) | halts2(c1,c1).  [copy(345),merge(c)].
+347 program(f1(c2)) | program(f5(c1)) | halts2(c1,c1).  [copy(346),merge(c)].
+348 program(f1(c2)) | program(f5(c1)) | program(f1(c2)) | -program(c1) | halts3(c1,c1,c1).  [resolve(347,c,298,c)].
+349 program(f1(c2)) | program(f5(c1)) | -program(c1) | halts3(c1,c1,c1).  [copy(348),merge(c)].
+350 program(f1(c2)) | program(f5(c1)) | halts3(c1,c1,c1).  [resolve(49,a,349,c)].
+351 program(f1(c2)) | program(f5(c1)) | -program(c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(350,c,44,c)].
+352 program(f1(c2)) | program(f5(c1)) | -program(c1) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(351),merge(d)].
+353 program(f1(c2)) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,352,c)].
+354 program(f1(c2)) | program(f5(c1)) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(350,c,43,c)].
+355 program(f1(c2)) | program(f5(c1)) | -program(c1) | -outputs(c1,good) | -halts2(f7(c1),c1).  [copy(354),merge(d)].
+356 program(f1(c2)) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,355,c)].
+357 program(f1(c2)) | program(f5(c1)) | halts2(f7(c1),c1) | program(f1(c2)) | program(f5(c1)).  [resolve(353,c,329,b)].
+358 program(f1(c2)) | program(f5(c1)) | halts2(f7(c1),c1) | program(f5(c1)).  [copy(357),merge(d)].
+359 program(f1(c2)) | program(f5(c1)) | halts2(f7(c1),c1).  [copy(358),merge(d)].
+360 program(f1(c2)) | program(f5(c1)) | -outputs(c1,good) | program(f1(c2)) | program(f5(c1)).  [resolve(356,d,359,c)].
+361 program(f1(c2)) | program(f5(c1)) | -outputs(c1,good) | program(f5(c1)).  [copy(360),merge(d)].
+362 program(f1(c2)) | program(f5(c1)) | -outputs(c1,good).  [copy(361),merge(d)].
+363 program(f1(c2)) | program(f5(c1)) | program(f1(c2)) | program(f5(c1)).  [resolve(362,c,344,c)].
+364 program(f1(c2)) | program(f5(c1)) | program(f5(c1)).  [copy(363),merge(c)].
+365 program(f1(c2)) | program(f5(c1)).  [copy(364),merge(c)].
+366 program(f1(c2)) | program(f1(c2)) | halts2(f5(c1),A) | outputs(c1,bad).  [resolve(365,b,300,b)].
+367 program(f1(c2)) | halts2(f5(c1),A) | outputs(c1,bad).  [copy(366),merge(b)].
+368 program(f1(c2)) | program(f1(c2)) | halts2(f5(c1),A) | halts3(c1,f5(c1),A).  [resolve(365,b,296,b)].
+369 program(f1(c2)) | halts2(f5(c1),A) | halts3(c1,f5(c1),A).  [copy(368),merge(b)].
+370 program(f1(c2)) | outputs(c1,bad) | program(f1(c2)) | -program(f5(c1)) | halts3(c1,f5(c1),A).  [resolve(367,b,298,c)].
+371 program(f1(c2)) | outputs(c1,bad) | -program(f5(c1)) | halts3(c1,f5(c1),A).  [copy(370),merge(c)].
+372 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(369,c,46,c)].
+373 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [copy(372),merge(d)].
+374 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(49,a,373,c)].
+375 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(A) | -halts3(c1,A,A) | halts2(f7(c1),A).  [resolve(369,c,28,c)].
+376 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,bad) | -program(A) | -halts3(c1,A,A) | halts2(f7(c1),A).  [copy(375),merge(d)].
+377 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(A) | -halts3(c1,A,A) | halts2(f7(c1),A).  [resolve(49,a,376,c)].
+378 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | program(f7(c1)).  [resolve(369,c,25,c)].
+379 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,bad) | program(f7(c1)).  [copy(378),merge(d)].
+380 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | program(f7(c1)).  [resolve(49,a,379,c)].
+381 program(f1(c2)) | outputs(c1,bad) | halts3(c1,f5(c1),A) | program(f1(c2)).  [resolve(371,c,365,b)].
+382 program(f1(c2)) | outputs(c1,bad) | halts3(c1,f5(c1),A).  [copy(381),merge(d)].
+383 program(f1(c2)) | outputs(c1,bad) | -program(c1) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(382,c,26,b)].
+384 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(49,a,383,c)].
+385 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | program(f7(c1)) | program(f1(c2)) | outputs(c1,bad).  [resolve(384,d,367,b)].
+386 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | program(f7(c1)) | outputs(c1,bad).  [copy(385),merge(e)].
+387 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | program(f7(c1)).  [copy(386),merge(e)].
+388 program(f1(c2)) | outputs(c1,bad) | program(f7(c1)) | program(f1(c2)) | outputs(c1,bad).  [resolve(387,c,304,b)].
+389 program(f1(c2)) | outputs(c1,bad) | program(f7(c1)) | outputs(c1,bad).  [copy(388),merge(d)].
+390 program(f1(c2)) | outputs(c1,bad) | program(f7(c1)).  [copy(389),merge(d)].
+391 program(f1(c2)) | program(f7(c1)) | program(f1(c2)) | halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(390,b,380,c)].
+392 program(f1(c2)) | program(f7(c1)) | halts2(f5(c1),f6(c1)) | program(f7(c1)).  [copy(391),merge(c)].
+393 program(f1(c2)) | program(f7(c1)) | halts2(f5(c1),f6(c1)).  [copy(392),merge(d)].
+394 program(f1(c2)) | program(f7(c1)) | program(f1(c2)) | -program(f5(c1)) | outputs(c1,good).  [resolve(393,c,302,c)].
+395 program(f1(c2)) | program(f7(c1)) | -program(f5(c1)) | outputs(c1,good).  [copy(394),merge(c)].
+396 program(f1(c2)) | program(f7(c1)) | program(f1(c2)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(393,c,298,c)].
+397 program(f1(c2)) | program(f7(c1)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [copy(396),merge(c)].
+398 program(f1(c2)) | program(f7(c1)) | outputs(c1,good) | program(f1(c2)).  [resolve(395,c,365,b)].
+399 program(f1(c2)) | program(f7(c1)) | outputs(c1,good).  [copy(398),merge(d)].
+400 program(f1(c2)) | program(f7(c1)) | halts3(c1,f5(c1),f6(c1)) | program(f1(c2)).  [resolve(397,c,365,b)].
+401 program(f1(c2)) | program(f7(c1)) | halts3(c1,f5(c1),f6(c1)).  [copy(400),merge(d)].
+402 program(f1(c2)) | program(f7(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | program(f7(c1)).  [resolve(401,c,22,b)].
+403 program(f1(c2)) | program(f7(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(402),merge(f)].
+404 program(f1(c2)) | program(f7(c1)) | -outputs(c1,good) | -outputs(c1,bad).  [resolve(49,a,403,c)].
+405 program(f1(c2)) | program(f7(c1)) | -outputs(c1,bad) | program(f1(c2)) | program(f7(c1)).  [resolve(404,c,399,c)].
+406 program(f1(c2)) | program(f7(c1)) | -outputs(c1,bad) | program(f7(c1)).  [copy(405),merge(d)].
+407 program(f1(c2)) | program(f7(c1)) | -outputs(c1,bad).  [copy(406),merge(d)].
+408 program(f1(c2)) | program(f7(c1)) | program(f1(c2)) | program(f7(c1)).  [resolve(407,c,390,b)].
+409 program(f1(c2)) | program(f7(c1)) | program(f7(c1)).  [copy(408),merge(c)].
+410 program(f1(c2)) | program(f7(c1)).  [copy(409),merge(c)].
+411 program(f1(c2)) | program(f1(c2)) | halts2(f7(c1),A) | outputs(c1,bad).  [resolve(410,b,300,b)].
+412 program(f1(c2)) | halts2(f7(c1),A) | outputs(c1,bad).  [copy(411),merge(b)].
+413 program(f1(c2)) | program(f1(c2)) | halts2(f7(c1),A) | halts3(c1,f7(c1),A).  [resolve(410,b,296,b)].
+414 program(f1(c2)) | halts2(f7(c1),A) | halts3(c1,f7(c1),A).  [copy(413),merge(b)].
+415 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1) | program(f1(c2)) | halts2(c1,c1).  [resolve(374,d,288,c)].
+416 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1) | halts2(c1,c1).  [copy(415),merge(e)].
+417 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1) | program(f1(c2)) | halts2(f5(c1),f6(c1)).  [resolve(314,c,369,c)].
+418 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1) | halts2(f5(c1),f6(c1)).  [copy(417),merge(f)].
+419 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(f7(c1)) | halts2(f7(c1),f7(c1)) | program(f1(c2)) | halts2(f7(c1),f7(c1)).  [resolve(377,e,414,c)].
+420 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(f7(c1)) | halts2(f7(c1),f7(c1)) | halts2(f7(c1),f7(c1)).  [copy(419),merge(f)].
+421 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(f7(c1)) | halts2(f7(c1),f7(c1)).  [copy(420),merge(f)].
+422 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1) | program(f1(c2)) | outputs(c1,bad).  [resolve(321,c,382,c)].
+423 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1) | outputs(c1,bad).  [copy(422),merge(f)].
+424 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [copy(423),merge(f)].
+425 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f7(c1),c1) | program(f1(c2)) | outputs(c1,bad).  [resolve(424,d,367,b)].
+426 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f7(c1),c1) | outputs(c1,bad).  [copy(425),merge(e)].
+427 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | -halts2(f7(c1),c1).  [copy(426),merge(e)].
+428 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | program(f1(c2)) | outputs(c1,bad).  [resolve(427,d,412,b)].
+429 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good) | outputs(c1,bad).  [copy(428),merge(d)].
+430 program(f1(c2)) | outputs(c1,bad) | -outputs(c1,good).  [copy(429),merge(d)].
+431 program(f1(c2)) | outputs(c1,bad) | program(f1(c2)) | outputs(c1,bad).  [resolve(430,c,304,b)].
+432 program(f1(c2)) | outputs(c1,bad) | outputs(c1,bad).  [copy(431),merge(c)].
+433 program(f1(c2)) | outputs(c1,bad).  [copy(432),merge(c)].
+434 program(f1(c2)) | program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(f7(c1)) | halts2(f7(c1),f7(c1)).  [resolve(433,b,421,c)].
+435 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(f7(c1)) | halts2(f7(c1),f7(c1)).  [copy(434),merge(b)].
+436 program(f1(c2)) | program(f1(c2)) | halts2(f5(c1),f6(c1)) | halts2(f7(c1),c1) | halts2(c1,c1).  [resolve(433,b,416,c)].
+437 program(f1(c2)) | halts2(f5(c1),f6(c1)) | halts2(f7(c1),c1) | halts2(c1,c1).  [copy(436),merge(b)].
+438 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | program(f1(c2)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(437,b,298,c)].
+439 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [copy(438),merge(d)].
+440 program(f1(c2)) | halts2(f5(c1),f6(c1)) | halts2(f7(c1),f7(c1)) | program(f1(c2)).  [resolve(435,c,410,b)].
+441 program(f1(c2)) | halts2(f5(c1),f6(c1)) | halts2(f7(c1),f7(c1)).  [copy(440),merge(d)].
+442 program(f1(c2)) | halts2(f5(c1),f6(c1)) | program(f1(c2)) | -program(f7(c1)) | outputs(c1,good).  [resolve(441,c,302,c)].
+443 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -program(f7(c1)) | outputs(c1,good).  [copy(442),merge(c)].
+444 program(f1(c2)) | halts2(f5(c1),f6(c1)) | outputs(c1,good) | program(f1(c2)).  [resolve(443,c,410,b)].
+445 program(f1(c2)) | halts2(f5(c1),f6(c1)) | outputs(c1,good).  [copy(444),merge(d)].
+446 program(f1(c2)) | outputs(c1,good) | program(f1(c2)) | -program(f5(c1)) | outputs(c1,good).  [resolve(445,b,302,c)].
+447 program(f1(c2)) | outputs(c1,good) | -program(f5(c1)) | outputs(c1,good).  [copy(446),merge(c)].
+448 program(f1(c2)) | outputs(c1,good) | -program(f5(c1)).  [copy(447),merge(d)].
+449 program(f1(c2)) | outputs(c1,good) | program(f1(c2)).  [resolve(448,c,365,b)].
+450 program(f1(c2)) | outputs(c1,good).  [copy(449),merge(c)].
+451 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | halts3(c1,f5(c1),f6(c1)) | program(f1(c2)).  [resolve(439,d,365,b)].
+452 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | halts3(c1,f5(c1),f6(c1)).  [copy(451),merge(e)].
+453 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(452,d,311,c)].
+454 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(453),merge(d)].
+455 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(454),merge(d)].
+456 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(455),merge(f)].
+457 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | -outputs(c1,bad) | program(f1(c2)).  [resolve(456,d,450,b)].
+458 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | -outputs(c1,bad).  [copy(457),merge(e)].
+459 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1) | program(f1(c2)).  [resolve(458,d,433,b)].
+460 program(f1(c2)) | halts2(f7(c1),c1) | halts2(c1,c1).  [copy(459),merge(d)].
+461 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)) | program(f1(c2)) | halts2(c1,c1).  [resolve(418,e,460,b)].
+462 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)) | halts2(c1,c1).  [copy(461),merge(f)].
+463 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)).  [copy(462),merge(f)].
+464 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)) | program(f1(c2)).  [resolve(463,c,450,b)].
+465 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)).  [copy(464),merge(e)].
+466 program(f1(c2)) | halts2(c1,c1) | halts2(f5(c1),f6(c1)) | program(f1(c2)).  [resolve(465,c,433,b)].
+467 program(f1(c2)) | halts2(c1,c1) | halts2(f5(c1),f6(c1)).  [copy(466),merge(d)].
+468 program(f1(c2)) | halts2(c1,c1) | program(f1(c2)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(467,c,298,c)].
+469 program(f1(c2)) | halts2(c1,c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [copy(468),merge(c)].
+470 program(f1(c2)) | halts2(c1,c1) | halts3(c1,f5(c1),f6(c1)) | program(f1(c2)).  [resolve(469,c,365,b)].
+471 program(f1(c2)) | halts2(c1,c1) | halts3(c1,f5(c1),f6(c1)).  [copy(470),merge(d)].
+472 program(f1(c2)) | halts2(c1,c1) | program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(471,c,314,c)].
+473 program(f1(c2)) | halts2(c1,c1) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(472),merge(c)].
+474 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(473),merge(c)].
+475 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | program(f1(c2)) | halts2(c1,c1).  [resolve(474,e,460,b)].
+476 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | halts2(c1,c1).  [copy(475),merge(e)].
+477 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(476),merge(e)].
+478 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,bad) | program(f1(c2)).  [resolve(477,c,450,b)].
+479 program(f1(c2)) | halts2(c1,c1) | -outputs(c1,bad).  [copy(478),merge(d)].
+480 program(f1(c2)) | halts2(c1,c1) | program(f1(c2)).  [resolve(479,c,433,b)].
+481 program(f1(c2)) | halts2(c1,c1).  [copy(480),merge(c)].
+482 program(f1(c2)) | program(f1(c2)) | -program(c1) | halts3(c1,c1,c1).  [resolve(481,b,298,c)].
+483 program(f1(c2)) | -program(c1) | halts3(c1,c1,c1).  [copy(482),merge(b)].
+484 program(f1(c2)) | halts3(c1,c1,c1).  [resolve(49,a,483,b)].
+485 program(f1(c2)) | program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(c1) | halts2(f7(c1),c1).  [resolve(484,b,377,e)].
+486 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(c1) | halts2(f7(c1),c1).  [copy(485),merge(b)].
+487 program(f1(c2)) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,486,d)].
+488 program(f1(c2)) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | -halts2(f7(c1),c1).  [resolve(484,b,10,f)].
+489 program(f1(c2)) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(488),merge(f)].
+490 program(f1(c2)) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(49,a,489,b)].
+491 program(f1(c2)) | halts2(f5(c1),f6(c1)) | halts2(f7(c1),c1) | program(f1(c2)).  [resolve(487,c,433,b)].
+492 program(f1(c2)) | halts2(f5(c1),f6(c1)) | halts2(f7(c1),c1).  [copy(491),merge(d)].
+493 program(f1(c2)) | halts2(f7(c1),c1) | program(f1(c2)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(492,b,298,c)].
+494 program(f1(c2)) | halts2(f7(c1),c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [copy(493),merge(c)].
+495 program(f1(c2)) | halts2(f7(c1),c1) | halts3(c1,f5(c1),f6(c1)) | program(f1(c2)).  [resolve(494,c,365,b)].
+496 program(f1(c2)) | halts2(f7(c1),c1) | halts3(c1,f5(c1),f6(c1)).  [copy(495),merge(d)].
+497 program(f1(c2)) | halts2(f7(c1),c1) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(496,c,45,b)].
+498 program(f1(c2)) | halts2(f7(c1),c1) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1).  [copy(497),merge(g)].
+499 program(f1(c2)) | halts2(f7(c1),c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1).  [resolve(49,a,498,c)].
+500 program(f1(c2)) | halts2(f7(c1),c1) | -outputs(c1,good) | -outputs(c1,bad) | program(f1(c2)).  [resolve(499,e,484,b)].
+501 program(f1(c2)) | halts2(f7(c1),c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(500),merge(e)].
+502 program(f1(c2)) | halts2(f7(c1),c1) | -outputs(c1,bad) | program(f1(c2)).  [resolve(501,c,450,b)].
+503 program(f1(c2)) | halts2(f7(c1),c1) | -outputs(c1,bad).  [copy(502),merge(d)].
+504 program(f1(c2)) | halts2(f7(c1),c1) | program(f1(c2)).  [resolve(503,c,433,b)].
+505 program(f1(c2)) | halts2(f7(c1),c1).  [copy(504),merge(c)].
+506 program(f1(c2)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1) | program(f1(c2)) | halts2(f5(c1),f6(c1)).  [resolve(490,b,369,c)].
+507 program(f1(c2)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1) | halts2(f5(c1),f6(c1)).  [copy(506),merge(e)].
+508 program(f1(c2)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)) | program(f1(c2)).  [resolve(507,d,505,b)].
+509 program(f1(c2)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)).  [copy(508),merge(e)].
+510 program(f1(c2)) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)) | program(f1(c2)).  [resolve(509,b,450,b)].
+511 program(f1(c2)) | -outputs(c1,bad) | halts2(f5(c1),f6(c1)).  [copy(510),merge(d)].
+512 program(f1(c2)) | halts2(f5(c1),f6(c1)) | program(f1(c2)).  [resolve(511,b,433,b)].
+513 program(f1(c2)) | halts2(f5(c1),f6(c1)).  [copy(512),merge(c)].
+514 program(f1(c2)) | program(f1(c2)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(513,b,298,c)].
+515 program(f1(c2)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [copy(514),merge(b)].
+516 program(f1(c2)) | halts3(c1,f5(c1),f6(c1)) | program(f1(c2)).  [resolve(515,b,365,b)].
+517 program(f1(c2)) | halts3(c1,f5(c1),f6(c1)).  [copy(516),merge(c)].
+518 program(f1(c2)) | program(f1(c2)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(517,b,490,b)].
+519 program(f1(c2)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(518),merge(b)].
+520 program(f1(c2)) | -outputs(c1,good) | -outputs(c1,bad) | program(f1(c2)).  [resolve(519,d,505,b)].
+521 program(f1(c2)) | -outputs(c1,good) | -outputs(c1,bad).  [copy(520),merge(d)].
+522 program(f1(c2)) | -outputs(c1,bad) | program(f1(c2)).  [resolve(521,b,450,b)].
+523 program(f1(c2)) | -outputs(c1,bad).  [copy(522),merge(c)].
+524 program(f1(c2)) | program(f1(c2)).  [resolve(523,b,433,b)].
+525 program(f1(c2)).  [copy(524),merge(b)].
+526 decides(c2,f1(c2),A).  [resolve(525,a,12,a)].
+527 -program(A) | decides(c1,A,B).  [resolve(526,a,32,a)].
+528 decides(c1,f3(c1),A).  [resolve(527,a,285,a)].
+529 -program(c1) | halts2(c1,A) | halts3(c1,c1,A).  [resolve(528,a,42,b)].
+530 halts2(c1,A) | halts3(c1,c1,A).  [resolve(49,a,529,a)].
+531 -program(c1) | -halts2(c1,A) | halts3(c1,c1,A).  [resolve(528,a,41,b)].
+532 -halts2(c1,A) | halts3(c1,c1,A).  [resolve(49,a,531,a)].
+533 -program(c1) | halts2(c1,A) | outputs(c1,bad).  [resolve(528,a,40,b)].
+534 halts2(c1,A) | outputs(c1,bad).  [resolve(49,a,533,a)].
+535 -program(c1) | -halts2(c1,A) | outputs(c1,good).  [resolve(528,a,39,b)].
+536 -halts2(c1,A) | outputs(c1,good).  [resolve(49,a,535,a)].
+537 -program(c1) | -program(A) | halts2(A,B) | halts3(c1,A,B).  [resolve(528,a,21,b)].
+538 -program(A) | halts2(A,B) | halts3(c1,A,B).  [resolve(49,a,537,a)].
+539 -program(c1) | -program(A) | -halts2(A,B) | halts3(c1,A,B).  [resolve(528,a,20,b)].
+540 -program(A) | -halts2(A,B) | halts3(c1,A,B).  [resolve(49,a,539,a)].
+541 -program(c1) | -program(A) | halts2(A,B) | outputs(c1,bad).  [resolve(528,a,19,b)].
+542 -program(A) | halts2(A,B) | outputs(c1,bad).  [resolve(49,a,541,a)].
+543 -program(c1) | -program(A) | -halts2(A,B) | outputs(c1,good).  [resolve(528,a,18,b)].
+544 -program(A) | -halts2(A,B) | outputs(c1,good).  [resolve(49,a,543,a)].
+545 outputs(c1,good) | outputs(c1,bad).  [resolve(536,a,534,a)].
+546 halts2(c1,c1) | -program(c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(530,b,44,c)].
+547 halts2(c1,c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,546,b)].
+548 halts2(c1,c1) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(530,b,43,c)].
+549 halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,548,b)].
+550 halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | halts2(f7(c1),c1).  [resolve(530,b,27,f)].
+551 halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(550),merge(f)].
+552 halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,551,b)].
+553 halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | -halts2(f7(c1),c1).  [resolve(530,b,10,f)].
+554 halts2(c1,c1) | -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(553),merge(f)].
+555 halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(49,a,554,b)].
+556 halts3(c1,c1,A) | outputs(c1,bad).  [resolve(532,a,534,a)].
+557 outputs(c1,bad) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(556,a,43,c)].
+558 outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,557,b)].
+559 halts2(f7(c1),A) | outputs(c1,bad) | program(f5(c1)).  [resolve(542,a,54,b)].
+560 outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | outputs(c1,bad) | program(f5(c1)).  [resolve(558,d,559,a)].
+561 outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good) | program(f5(c1)).  [copy(560),merge(d)].
+562 outputs(c1,bad) | program(f5(c1)) | -outputs(c1,good).  [copy(561),merge(d)].
+563 outputs(c1,bad) | program(f5(c1)) | outputs(c1,bad).  [resolve(562,c,545,a)].
+564 outputs(c1,bad) | program(f5(c1)).  [copy(563),merge(c)].
+565 program(f5(c1)) | halts2(c1,c1) | program(f5(c1)) | halts2(f7(c1),c1).  [resolve(564,a,547,c)].
+566 program(f5(c1)) | halts2(c1,c1) | halts2(f7(c1),c1).  [copy(565),merge(c)].
+567 program(f5(c1)) | halts2(c1,c1) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good).  [resolve(566,c,549,d)].
+568 program(f5(c1)) | halts2(c1,c1) | program(f5(c1)) | -outputs(c1,good).  [copy(567),merge(c)].
+569 program(f5(c1)) | halts2(c1,c1) | -outputs(c1,good).  [copy(568),merge(c)].
+570 program(f5(c1)) | halts2(c1,c1) | -program(f7(c1)) | outputs(c1,good).  [resolve(566,c,544,b)].
+571 program(f5(c1)) | halts2(c1,c1) | outputs(c1,good) | program(f5(c1)).  [resolve(570,c,54,b)].
+572 program(f5(c1)) | halts2(c1,c1) | outputs(c1,good).  [copy(571),merge(d)].
+573 program(f5(c1)) | outputs(c1,good) | -program(c1) | outputs(c1,good).  [resolve(572,b,544,b)].
+574 program(f5(c1)) | outputs(c1,good) | -program(c1).  [copy(573),merge(d)].
+575 program(f5(c1)) | outputs(c1,good).  [resolve(49,a,574,c)].
+576 program(f5(c1)) | program(f5(c1)) | halts2(c1,c1).  [resolve(575,b,569,c)].
+577 program(f5(c1)) | halts2(c1,c1).  [copy(576),merge(b)].
+578 program(f5(c1)) | -program(c1) | halts3(c1,c1,c1).  [resolve(577,b,540,b)].
+579 program(f5(c1)) | halts3(c1,c1,c1).  [resolve(49,a,578,b)].
+580 program(f5(c1)) | -program(c1) | program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(579,b,44,c)].
+581 program(f5(c1)) | -program(c1) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(580),merge(c)].
+582 program(f5(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,581,b)].
+583 program(f5(c1)) | -program(c1) | program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(579,b,43,c)].
+584 program(f5(c1)) | -program(c1) | -outputs(c1,good) | -halts2(f7(c1),c1).  [copy(583),merge(c)].
+585 program(f5(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(49,a,584,b)].
+586 program(f5(c1)) | halts2(f7(c1),c1) | program(f5(c1)).  [resolve(582,b,564,a)].
+587 program(f5(c1)) | halts2(f7(c1),c1).  [copy(586),merge(c)].
+588 program(f5(c1)) | -outputs(c1,good) | program(f5(c1)).  [resolve(585,c,587,b)].
+589 program(f5(c1)) | -outputs(c1,good).  [copy(588),merge(c)].
+590 program(f5(c1)) | program(f5(c1)).  [resolve(589,b,575,b)].
+591 program(f5(c1)).  [copy(590),merge(b)].
+592 halts2(f5(c1),A) | outputs(c1,bad).  [resolve(591,a,542,a)].
+593 halts2(f5(c1),A) | halts3(c1,f5(c1),A).  [resolve(591,a,538,a)].
+594 outputs(c1,bad) | -program(f5(c1)) | halts3(c1,f5(c1),A).  [resolve(592,a,540,b)].
+595 outputs(c1,bad) | halts3(c1,f5(c1),A).  [resolve(591,a,594,b)].
+596 outputs(c1,bad) | -program(c1) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(595,b,34,b)].
+597 outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(49,a,596,b)].
+598 outputs(c1,bad) | -program(c1) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(595,b,26,b)].
+599 outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(49,a,598,b)].
+600 halts2(f5(c1),f6(c1)) | -program(c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(593,b,46,c)].
+601 halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [copy(600),merge(c)].
+602 halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(49,a,601,b)].
+603 halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(593,b,33,b)].
+604 halts2(f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(49,a,603,b)].
+605 halts2(f5(c1),f6(c1)) | -program(c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(A) | -halts3(c1,A,A) | halts2(f7(c1),A).  [resolve(593,b,28,c)].
+606 halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,bad) | -program(A) | -halts3(c1,A,A) | halts2(f7(c1),A).  [copy(605),merge(c)].
+607 halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(A) | -halts3(c1,A,A) | halts2(f7(c1),A).  [resolve(49,a,606,b)].
+608 halts2(f5(c1),f6(c1)) | -program(c1) | halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | program(f7(c1)).  [resolve(593,b,25,c)].
+609 halts2(f5(c1),f6(c1)) | -program(c1) | -outputs(c1,bad) | program(f7(c1)).  [copy(608),merge(c)].
+610 halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | program(f7(c1)).  [resolve(49,a,609,b)].
+611 outputs(c1,bad) | -outputs(c1,good) | program(f7(c1)) | outputs(c1,bad).  [resolve(599,c,592,a)].
+612 outputs(c1,bad) | -outputs(c1,good) | program(f7(c1)).  [copy(611),merge(d)].
+613 outputs(c1,bad) | program(f7(c1)) | outputs(c1,bad).  [resolve(612,b,545,a)].
+614 outputs(c1,bad) | program(f7(c1)).  [copy(613),merge(c)].
+615 program(f7(c1)) | halts2(f5(c1),f6(c1)) | program(f7(c1)).  [resolve(614,a,610,b)].
+616 program(f7(c1)) | halts2(f5(c1),f6(c1)).  [copy(615),merge(c)].
+617 program(f7(c1)) | -program(f5(c1)) | outputs(c1,good).  [resolve(616,b,544,b)].
+618 program(f7(c1)) | outputs(c1,good).  [resolve(591,a,617,b)].
+619 program(f7(c1)) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(616,b,540,b)].
+620 program(f7(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(591,a,619,b)].
+621 program(f7(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad) | program(f7(c1)).  [resolve(620,b,22,b)].
+622 program(f7(c1)) | -program(c1) | -outputs(c1,good) | -outputs(c1,bad).  [copy(621),merge(e)].
+623 program(f7(c1)) | -outputs(c1,good) | -outputs(c1,bad).  [resolve(49,a,622,b)].
+624 program(f7(c1)) | -outputs(c1,bad) | program(f7(c1)).  [resolve(623,b,618,b)].
+625 program(f7(c1)) | -outputs(c1,bad).  [copy(624),merge(c)].
+626 program(f7(c1)) | program(f7(c1)).  [resolve(625,b,614,a)].
+627 program(f7(c1)).  [copy(626),merge(b)].
+628 halts2(f7(c1),A) | outputs(c1,bad).  [resolve(627,a,542,a)].
+629 halts2(f7(c1),A) | halts3(c1,f7(c1),A).  [resolve(627,a,538,a)].
+630 halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1) | halts2(c1,c1).  [resolve(602,c,530,b)].
+631 halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(f7(c1)) | halts2(f7(c1),f7(c1)) | halts2(f7(c1),f7(c1)).  [resolve(607,d,629,b)].
+632 halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | -program(f7(c1)) | halts2(f7(c1),f7(c1)).  [copy(631),merge(e)].
+633 halts2(f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),f7(c1)).  [resolve(627,a,632,c)].
+634 halts2(c1,c1) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1) | halts2(f5(c1),f6(c1)).  [resolve(555,b,593,b)].
+635 outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1) | outputs(c1,bad).  [resolve(597,d,556,a)].
+636 outputs(c1,bad) | -outputs(c1,good) | -halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [copy(635),merge(e)].
+637 outputs(c1,bad) | -outputs(c1,good) | -halts2(f7(c1),c1) | outputs(c1,bad).  [resolve(636,c,592,a)].
+638 outputs(c1,bad) | -outputs(c1,good) | -halts2(f7(c1),c1).  [copy(637),merge(d)].
+639 outputs(c1,bad) | -outputs(c1,good) | outputs(c1,bad).  [resolve(638,c,628,a)].
+640 outputs(c1,bad) | -outputs(c1,good).  [copy(639),merge(c)].
+641 outputs(c1,bad) | outputs(c1,bad).  [resolve(640,b,545,a)].
+642 outputs(c1,bad).  [copy(641),merge(b)].
+643 halts2(c1,c1) | -outputs(c1,good) | -halts2(f7(c1),c1) | halts2(f5(c1),f6(c1)).  [resolve(642,a,634,c)].
+644 halts2(f5(c1),f6(c1)) | halts2(f7(c1),f7(c1)).  [resolve(642,a,633,b)].
+645 halts2(f5(c1),f6(c1)) | halts2(f7(c1),c1) | halts2(c1,c1).  [resolve(642,a,630,b)].
+646 halts2(f5(c1),f6(c1)) | -outputs(c1,good) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(642,a,604,c)].
+647 halts2(f5(c1),f6(c1)) | -halts3(c1,c1,c1) | halts2(f7(c1),c1).  [resolve(642,a,602,b)].
+648 halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -halts2(f7(c1),c1).  [resolve(642,a,555,d)].
+649 halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | halts2(f7(c1),c1).  [resolve(642,a,552,d)].
+650 halts2(f5(c1),f6(c1)) | -program(f7(c1)) | outputs(c1,good).  [resolve(644,b,544,b)].
+651 halts2(f5(c1),f6(c1)) | outputs(c1,good).  [resolve(627,a,650,b)].
+652 outputs(c1,good) | -program(f5(c1)) | outputs(c1,good).  [resolve(651,a,544,b)].
+653 outputs(c1,good) | -program(f5(c1)).  [copy(652),merge(c)].
+654 outputs(c1,good).  [resolve(591,a,653,b)].
+655 halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | halts2(f7(c1),c1).  [resolve(654,a,649,c)].
+656 halts2(c1,c1) | -halts3(c1,f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [resolve(654,a,648,c)].
+657 halts2(f5(c1),f6(c1)) | -halts3(c1,c1,c1) | -halts2(f7(c1),c1).  [resolve(654,a,646,b)].
+658 halts2(c1,c1) | -halts2(f7(c1),c1) | halts2(f5(c1),f6(c1)).  [resolve(654,a,643,b)].
+659 halts2(f7(c1),c1) | halts2(c1,c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(645,a,540,b)].
+660 halts2(f7(c1),c1) | halts2(c1,c1) | halts3(c1,f5(c1),f6(c1)).  [resolve(591,a,659,c)].
+661 halts2(f7(c1),c1) | halts2(c1,c1) | halts2(c1,c1) | halts2(f7(c1),c1).  [resolve(660,c,655,b)].
+662 halts2(f7(c1),c1) | halts2(c1,c1) | halts2(f7(c1),c1).  [copy(661),merge(c)].
+663 halts2(f7(c1),c1) | halts2(c1,c1).  [copy(662),merge(c)].
+664 halts2(c1,c1) | halts2(c1,c1) | halts2(f5(c1),f6(c1)).  [resolve(663,a,658,b)].
+665 halts2(c1,c1) | halts2(f5(c1),f6(c1)).  [copy(664),merge(b)].
+666 halts2(c1,c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(665,b,540,b)].
+667 halts2(c1,c1) | halts3(c1,f5(c1),f6(c1)).  [resolve(591,a,666,b)].
+668 halts2(c1,c1) | halts2(c1,c1) | -halts2(f7(c1),c1).  [resolve(667,b,656,b)].
+669 halts2(c1,c1) | -halts2(f7(c1),c1).  [copy(668),merge(b)].
+670 halts2(c1,c1) | halts2(c1,c1).  [resolve(669,b,663,a)].
+671 halts2(c1,c1).  [copy(670),merge(b)].
+672 -program(c1) | halts3(c1,c1,c1).  [resolve(671,a,540,b)].
+673 halts3(c1,c1,c1).  [resolve(49,a,672,a)].
+674 halts2(f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [resolve(673,a,657,b)].
+675 halts2(f5(c1),f6(c1)) | halts2(f7(c1),c1).  [resolve(673,a,647,b)].
+676 -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | halts2(f7(c1),c1).  [resolve(673,a,27,f)].
+677 -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [copy(676),merge(e)].
+678 -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(49,a,677,a)].
+679 -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,bad) | halts2(f7(c1),c1).  [resolve(654,a,678,b)].
+680 -halts3(c1,f5(c1),f6(c1)) | halts2(f7(c1),c1).  [resolve(642,a,679,b)].
+681 -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -program(c1) | -halts2(f7(c1),c1).  [resolve(673,a,10,f)].
+682 -program(c1) | -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [copy(681),merge(e)].
+683 -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,good) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(49,a,682,a)].
+684 -halts3(c1,f5(c1),f6(c1)) | -outputs(c1,bad) | -halts2(f7(c1),c1).  [resolve(654,a,683,b)].
+685 -halts3(c1,f5(c1),f6(c1)) | -halts2(f7(c1),c1).  [resolve(642,a,684,b)].
+686 halts2(f7(c1),c1) | -program(f5(c1)) | halts3(c1,f5(c1),f6(c1)).  [resolve(675,a,540,b)].
+687 halts2(f7(c1),c1) | halts3(c1,f5(c1),f6(c1)).  [resolve(591,a,686,b)].
+688 halts2(f7(c1),c1) | halts2(f7(c1),c1).  [resolve(687,b,680,a)].
+689 halts2(f7(c1),c1).  [copy(688),merge(b)].
+690 -halts3(c1,f5(c1),f6(c1)).  [resolve(689,a,685,b)].
+691 halts2(f5(c1),f6(c1)).  [resolve(689,a,674,b)].
+692 -halts2(f5(c1),A) | halts3(c1,f5(c1),A).  [resolve(540,a,591,a)].
+693 -halts2(f5(c1),f6(c1)).  [resolve(692,b,690,a)].
+694 $F.  [resolve(691,a,693,a)].

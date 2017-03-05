@@ -1,0 +1,89 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n132.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:19:23 CDT 2014
+% CPUTime    : 8.68 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 16333 was started by sandbox on n132.star.cs.uiowa.edu,
+Fri Jun  6 00:19:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_16301_n132.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 8.37 (+ 0.10) seconds.
+% Length of proof is 40.
+% Level of proof is 8.
+% Maximum clause weight is 14.000.
+% Given clauses 3279.
+
+
+1 (all A (ssList(A) -> (all B (ssList(B) -> (neq(A,B) <-> A != B))))).  [assumption].
+2 (all A (ssList(A) -> frontsegP(A,A))).  [assumption].
+3 (all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (frontsegP(A,B) -> frontsegP(app(A,C),B)))))))).  [assumption].
+4 (all A (ssList(A) -> (all B (ssList(B) -> (nil = app(A,B) <-> nil = B & nil = A))))).  [assumption].
+5 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | (all E (ssList(E) -> app(C,E) != D | -strictorderedP(C) | (exists F (ssItem(F) & (exists V6 (ssList(V6) & app(cons(F,nil),V6) = E & (exists V7 (ssItem(V7) & (exists V8 (ssList(V8) & app(V8,cons(V7,nil)) = C & lt(V7,F))))))))))) | nil != D & nil = C | (nil != B | nil = A) & (-neq(B,nil) | neq(A,nil) & frontsegP(B,A)))))))))).  [assumption].
+6 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(1)].
+7 ssList(nil).  [assumption].
+8 -ssList(A) | frontsegP(A,A).  [clausify(2)].
+9 -ssList(A) | -ssList(B) | -ssList(C) | -frontsegP(A,B) | frontsegP(app(A,C),B).  [clausify(3)].
+10 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = A.  [clausify(4)].
+11 ssList(c3).  [clausify(5)].
+12 c6 = c4.  [clausify(5)].
+13 c5 = c3.  [clausify(5)].
+14 ssList(c7).  [clausify(5)].
+15 app(c5,c7) = c6.  [clausify(5)].
+16 app(c3,c7) = c6.  [para(13(a,1),15(a,1,1))].
+17 app(c3,c7) = c4.  [para(12(a,1),16(a,2))].
+18 nil = c6 | nil != c5.  [clausify(5)].
+19 nil = c4 | nil != c5.  [para(12(a,1),18(a,2))].
+20 nil = c4 | nil != c3.  [para(13(a,1),19(b,2))].
+21 c4 = nil | nil != c3.  [copy(20),flip(a)].
+22 c4 = nil | c3 != nil.  [copy(21),flip(b)].
+23 nil = c4 | -neq(c3,nil) | -frontsegP(c4,c3).  [clausify(5)].
+24 c4 = nil | -neq(c3,nil) | -frontsegP(c4,c3).  [copy(23),flip(a)].
+25 nil != c3 | neq(c4,nil).  [clausify(5)].
+26 c3 != nil | neq(c4,nil).  [copy(25),flip(a)].
+27 nil != c3 | -neq(c3,nil) | -frontsegP(c4,c3).  [clausify(5)].
+28 c3 != nil | -neq(c3,nil) | -frontsegP(c4,c3).  [copy(27),flip(a)].
+29 -ssList(A) | -ssList(B) | -frontsegP(A,A) | frontsegP(app(A,B),A).  [factor(9,a,b)].
+30 -ssList(A) | neq(A,nil) | nil = A.  [resolve(7,a,6,b)].
+31 -ssList(A) | app(c3,A) != nil | nil = c3.  [resolve(11,a,10,a)].
+32 -ssList(A) | app(c3,A) != nil | c3 = nil.  [copy(31),flip(c)].
+33 frontsegP(c3,c3).  [resolve(11,a,8,a)].
+34 -ssList(c3) | -ssList(A) | frontsegP(app(c3,A),c3).  [resolve(33,a,29,c)].
+35 -ssList(A) | frontsegP(app(c3,A),c3).  [resolve(11,a,34,a)].
+36 neq(c3,nil) | nil = c3.  [resolve(30,a,11,a)].
+37 neq(c3,nil) | c3 = nil.  [copy(36),flip(b)].
+38 c3 = nil | c4 = nil | -frontsegP(c4,c3).  [resolve(37,a,24,b)].
+39 app(c3,c7) != nil | c3 = nil.  [resolve(32,a,14,a)].
+40 c4 != nil | c3 = nil.  [para(17(a,1),39(a,1))].
+41 frontsegP(app(c3,c7),c3).  [resolve(35,a,14,a)].
+42 frontsegP(c4,c3).  [para(17(a,1),41(a,1))].
+43 c3 = nil | c4 = nil.  [resolve(42,a,38,c)].
+44 c3 != nil | -neq(c3,nil).  [resolve(42,a,28,c)].
+45 c3 = nil | c3 = nil.  [resolve(43,b,40,a)].
+46 c3 = nil.  [copy(45),merge(b)].
+47 nil != nil | -neq(c3,nil).  [para(46(a,1),44(a,1))].
+48 nil != nil | -neq(nil,nil).  [para(46(a,1),47(b,1))].
+49 -neq(nil,nil).  [copy(48),xx(a)].
+50 nil != nil | neq(c4,nil).  [para(46(a,1),26(a,1))].
+51 neq(c4,nil).  [copy(50),xx(a)].
+52 c4 = nil | nil != nil.  [para(46(a,1),22(b,1))].
+53 c4 = nil.  [copy(52),xx(b)].
+54 neq(nil,nil).  [para(53(a,1),51(a,1))].
+55 $F.  [resolve(49,a,54,a)].
+
+============================== end of proof ==========================

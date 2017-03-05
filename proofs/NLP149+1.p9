@@ -1,0 +1,80 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n076.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:15:58 CDT 2014
+% CPUTime    : 0.20 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 14799 was started by sandbox on n076.star.cs.uiowa.edu,
+Fri Jun  6 03:15:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_14767_n076.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 44.
+% Level of proof is 6.
+% Maximum clause weight is 8.000.
+% Given clauses 54.
+
+
+1 (all A all B (furniture(A,B) -> instrumentality(A,B))).  [assumption].
+2 (all A all B (seat(A,B) -> furniture(A,B))).  [assumption].
+3 (all A all B (frontseat(A,B) -> seat(A,B))).  [assumption].
+4 (all A all B (object(A,B) -> nonliving(A,B))).  [assumption].
+5 (all A all B (artifact(A,B) -> object(A,B))).  [assumption].
+6 (all A all B (instrumentality(A,B) -> artifact(A,B))).  [assumption].
+7 (all A all B (human_person(A,B) -> animate(A,B))).  [assumption].
+8 (all A all B (man(A,B) -> human_person(A,B))).  [assumption].
+9 (all A all B (fellow(A,B) -> man(A,B))).  [assumption].
+10 (all A all B (animate(A,B) -> -nonliving(A,B))).  [assumption].
+11 (all A all B all C all D (be(A,B,C,D) -> C = D)).  [assumption].
+12 (all A all B (two(A,B) <-> (exists C (member(A,C,B) & (exists D (member(A,D,B) & D != C & (all E (member(A,E,B) -> E = D | E = C)))))))).  [assumption].
+13 --(exists A (actual_world(A) & (exists B exists C exists D exists E exists F (of(A,B,C) & city(A,C) & hollywood_placename(A,B) & placename(A,B) & street(A,C) & lonely(A,C) & chevy(A,D) & white(A,D) & dirty(A,D) & old(A,D) & event(A,E) & agent(A,E,D) & present(A,E) & barrel(A,E) & down(A,E,C) & in(A,E,C) & (all V6 (member(A,V6,F) -> (exists V7 exists V8 (frontseat(A,V8) & state(A,V7) & be(A,V7,V6,V8) & in(A,V8,V8))))) & two(A,F) & group(A,F) & (all V9 (member(A,V9,F) -> fellow(A,V9) & young(A,V9))))))).  [assumption].
+14 two(c1,c6).  [clausify(13)].
+15 -two(A,B) | member(A,f2(A,B),B).  [clausify(12)].
+16 -human_person(A,B) | animate(A,B).  [clausify(7)].
+17 -animate(A,B) | -nonliving(A,B).  [clausify(10)].
+18 -object(A,B) | nonliving(A,B).  [clausify(4)].
+19 -human_person(A,B) | -nonliving(A,B).  [resolve(16,b,17,a)].
+20 -seat(A,B) | furniture(A,B).  [clausify(2)].
+21 -furniture(A,B) | instrumentality(A,B).  [clausify(1)].
+22 -member(c1,A,c6) | frontseat(c1,f5(A)).  [clausify(13)].
+23 -frontseat(A,B) | seat(A,B).  [clausify(3)].
+24 -artifact(A,B) | object(A,B).  [clausify(5)].
+25 -human_person(A,B) | -object(A,B).  [resolve(19,b,18,b)].
+26 -instrumentality(A,B) | artifact(A,B).  [clausify(6)].
+27 -seat(A,B) | instrumentality(A,B).  [resolve(20,b,21,a)].
+28 -fellow(A,B) | man(A,B).  [clausify(9)].
+29 -man(A,B) | human_person(A,B).  [clausify(8)].
+30 -member(c1,A,c6) | fellow(c1,A).  [clausify(13)].
+31 -fellow(A,B) | human_person(A,B).  [resolve(28,b,29,a)].
+32 -member(c1,A,c6) | be(c1,f4(A),A,f5(A)).  [clausify(13)].
+33 -be(A,B,C,D) | D = C.  [clausify(11)].
+34 -seat(A,B) | artifact(A,B).  [resolve(27,b,26,a)].
+35 -member(c1,A,c6) | seat(c1,f5(A)).  [resolve(22,b,23,a)].
+36 -human_person(A,B) | -artifact(A,B).  [resolve(25,b,24,b)].
+37 artifact(c1,f5(A)) | -member(c1,A,c6).  [resolve(34,a,35,b)].
+38 member(c1,f2(c1,c6),c6).  [resolve(15,a,14,a)].
+39 human_person(c1,A) | -member(c1,A,c6).  [resolve(31,a,30,b)].
+40 -member(c1,A,c6) | f5(A) = A.  [resolve(32,b,33,a)].
+41 -member(c1,A,c6) | -human_person(c1,f5(A)).  [resolve(37,a,36,b)].
+42 human_person(c1,f2(c1,c6)).  [resolve(39,b,38,a)].
+43 f5(f2(c1,c6)) = f2(c1,c6).  [resolve(40,a,38,a)].
+44 -human_person(c1,f5(f2(c1,c6))).  [resolve(41,a,38,a)].
+45 -human_person(c1,f2(c1,c6)).  [para(43(a,1),44(a,2))].
+46 $F.  [resolve(42,a,45,a)].
+
+============================== end of proof ==========================

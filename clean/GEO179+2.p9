@@ -1,0 +1,24 @@
+
+
+
+
+5 distinct_points(c1,c2).  [clausify(4)].
+6 apart_point_and_line(c3,line_connecting(c1,c2)).  [clausify(4)].
+7 -distinct_points(A,A).  [clausify(1)].
+8 -distinct_lines(line_connecting(c1,c2),line_connecting(c3,c1)) | -distinct_lines(line_connecting(c1,c2),line_connecting(c3,c2)).  [clausify(4)].
+9 -apart_point_and_line(A,B) | distinct_lines(B,C) | apart_point_and_line(A,C).  [clausify(3)].
+10 -distinct_points(A,B) | -apart_point_and_line(C,line_connecting(A,B)) | distinct_points(C,A).  [clausify(2)].
+11 -distinct_points(A,B) | -apart_point_and_line(C,line_connecting(A,B)) | distinct_points(C,B).  [clausify(2)].
+12 distinct_lines(line_connecting(c1,c2),A) | apart_point_and_line(c3,A).  [resolve(9,a,6,a)].
+13 -apart_point_and_line(A,line_connecting(c1,c2)) | distinct_points(A,c1).  [resolve(10,a,5,a)].
+14 -apart_point_and_line(A,line_connecting(c1,c2)) | distinct_points(A,c2).  [resolve(11,a,5,a)].
+15 apart_point_and_line(c3,line_connecting(c3,c2)) | -distinct_lines(line_connecting(c1,c2),line_connecting(c3,c1)).  [resolve(12,a,8,b)].
+16 distinct_points(c3,c1).  [resolve(13,a,6,a)].
+17 distinct_points(c3,c2).  [resolve(14,a,6,a)].
+18 -apart_point_and_line(A,line_connecting(c3,c1)) | distinct_points(A,c3).  [resolve(10,a,16,a)].
+19 -apart_point_and_line(c3,line_connecting(c3,c1)).  [resolve(18,b,7,a)].
+20 -apart_point_and_line(A,line_connecting(c3,c2)) | distinct_points(A,c3).  [resolve(10,a,17,a)].
+21 -apart_point_and_line(c3,line_connecting(c3,c2)).  [resolve(20,b,7,a)].
+22 -distinct_lines(line_connecting(c1,c2),line_connecting(c3,c1)).  [resolve(21,a,15,a)].
+23 apart_point_and_line(c3,line_connecting(c3,c1)).  [resolve(22,a,12,a)].
+24 $F.  [resolve(19,a,23,a)].

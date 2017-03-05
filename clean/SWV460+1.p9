@@ -1,0 +1,87 @@
+
+
+
+
+
+
+
+
+
+
+
+12 s(host(A)) != host(B) | host(B) != host(A).  [clausify(1)].
+13 leq(s(zero),host(A)).  [clausify(2)].
+14 host(A) = host(B) | A != B.  [clausify(3)].
+15 init(snoc(A,B)) = A.  [clausify(4)].
+16 q_nil = A | cons(head(A),tail(A)) = A.  [clausify(5)].
+17 elem(A,cons(B,C)) | B != A.  [clausify(6)].
+18 -leq(s(A),A).  [clausify(7)].
+19 leq(A,B) | leq(B,A).  [clausify(8)].
+20 -leq(A,B) | -leq(B,A) | B = A.  [clausify(9)].
+21 leq(A,B) | A != B.  [clausify(9)].
+22 -leq(A,B) | -leq(B,C) | leq(A,C).  [clausify(10)].
+23 -setIn(A,alive) | -setIn(B,alive) | -setIn(host(B),index(down,host(A))) | index(status,host(B)) != elec_2 | leq(index(pendack,host(B)),host(A)).  [clausify(11)].
+24 -setIn(A,alive) | -setIn(B,alive) | -elem(m_Down(C),queue(host(A))) | host(C) != host(B) | index(status,host(B)) != elec_2 | leq(index(pendack,host(B)),host(A)).  [clausify(11)].
+25 cons(m_Down(c4),c1) = queue(host(c3)).  [clausify(11)].
+26 setIn(c3,alive).  [clausify(11)].
+27 leq(host(c3),A) | -leq(s(zero),A) | setIn(A,index(down,host(c3))) | host(c4) = A.  [clausify(11)].
+28 host(c5) = host(c3).  [clausify(11)].
+29 -leq(host(c5),host(c6)).  [clausify(11)].
+30 -leq(host(c3),host(c6)).  [para(28(a,1),29(a,1))].
+31 setIn(c6,alive).  [clausify(11)].
+32 index(status,host(c6)) = elec_2.  [clausify(11)].
+33 elec_2 = index(status,host(c6)).  [copy(32),flip(a)].
+34 leq(s(host(c3)),index(pendack,host(c6))).  [clausify(11)].
+35 -setIn(A,alive) | -setIn(B,alive) | -elem(m_Down(C),queue(host(A))) | host(C) != host(B) | index(status,host(B)) != index(status,host(c6)) | leq(index(pendack,host(B)),host(A)).  [para(33(a,1),24(e,2))].
+36 -setIn(A,alive) | -setIn(B,alive) | -elem(m_Down(C),queue(host(A))) | host(C) != host(B) | index(status,host(c6)) != index(status,host(B)) | leq(index(pendack,host(B)),host(A)).  [copy(35),flip(e)].
+37 -setIn(A,alive) | -setIn(B,alive) | -setIn(host(B),index(down,host(A))) | index(status,host(B)) != index(status,host(c6)) | leq(index(pendack,host(B)),host(A)).  [para(33(a,1),23(d,2))].
+38 -setIn(A,alive) | -setIn(B,alive) | -setIn(host(B),index(down,host(A))) | index(status,host(c6)) != index(status,host(B)) | leq(index(pendack,host(B)),host(A)).  [copy(37),flip(d)].
+39 q_nil = A | host(cons(head(A),tail(A))) = host(A).  [resolve(16,b,14,b)].
+40 elem(A,cons(init(snoc(A,B)),C)).  [resolve(17,b,15,a)].
+41 elem(A,cons(A,B)).  [para(15(a,1),40(a,2,1))].
+42 leq(A,s(A)).  [resolve(19,a,18,a)].
+43 leq(host(c3),host(A)) | setIn(host(A),index(down,host(c3))) | host(c4) = host(A).  [resolve(27,b,13,a)].
+44 -leq(index(pendack,host(c6)),A) | leq(s(host(c3)),A).  [resolve(34,a,22,a)].
+45 -leq(index(pendack,host(c6)),s(host(c3))) | s(host(c3)) = index(pendack,host(c6)).  [resolve(34,a,20,b)].
+46 -leq(index(pendack,host(c6)),s(host(c3))) | index(pendack,host(c6)) = s(host(c3)).  [copy(45),flip(b)].
+47 q_nil = A | s(host(A)) != host(B) | host(B) != host(cons(head(A),tail(A))).  [para(39(b,1),12(a,1,1))].
+48 q_nil = A | s(host(A)) != host(B) | host(cons(head(A),tail(A))) != host(B).  [copy(47),flip(c)].
+49 -leq(s(A),B) | leq(A,B).  [resolve(42,a,22,a)].
+50 elem(m_Down(c4),queue(host(c3))).  [para(25(a,1),41(a,2))].
+51 -setIn(c3,alive) | -setIn(A,alive) | host(c4) != host(A) | index(status,host(c6)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c3)).  [resolve(50,a,36,c)].
+52 -setIn(A,alive) | host(c4) != host(A) | index(status,host(c6)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c3)).  [resolve(26,a,51,a)].
+53 leq(host(c3),index(pendack,host(c6))).  [resolve(49,a,34,a)].
+54 -leq(index(pendack,host(c6)),host(c3)) | host(c3) = index(pendack,host(c6)).  [resolve(53,a,20,b)].
+55 -leq(index(pendack,host(c6)),host(c3)) | index(pendack,host(c6)) = host(c3).  [copy(54),flip(b)].
+56 leq(host(c3),host(A)) | host(c4) = host(A) | -setIn(c3,alive) | -setIn(A,alive) | index(status,host(c6)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c3)).  [resolve(43,b,38,c)].
+57 leq(host(c3),host(A)) | host(c4) = host(A) | -setIn(A,alive) | index(status,host(c6)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c3)).  [resolve(26,a,56,c)].
+58 q_nil = A | q_nil = A | s(host(A)) != host(B) | host(A) != host(B).  [para(16(b,1),48(c,1,1))].
+59 q_nil = A | s(host(A)) != host(B) | host(A) != host(B).  [copy(58),merge(b)].
+60 host(c4) != host(c6) | index(status,host(c6)) != index(status,host(c6)) | leq(index(pendack,host(c6)),host(c3)).  [resolve(52,a,31,a)].
+61 host(c6) != host(c4) | index(status,host(c6)) != index(status,host(c6)) | leq(index(pendack,host(c6)),host(c3)).  [copy(60),flip(a)].
+62 host(c6) != host(c4) | leq(index(pendack,host(c6)),host(c3)).  [copy(61),xx(b)].
+63 leq(host(c3),host(c6)) | host(c4) = host(c6) | index(status,host(c6)) != index(status,host(c6)) | leq(index(pendack,host(c6)),host(c3)).  [resolve(57,c,31,a)].
+64 leq(host(c3),host(c6)) | host(c6) = host(c4) | index(status,host(c6)) != index(status,host(c6)) | leq(index(pendack,host(c6)),host(c3)).  [copy(63),flip(b)].
+65 leq(host(c3),host(c6)) | host(c6) = host(c4) | leq(index(pendack,host(c6)),host(c3)).  [copy(64),xx(c)].
+66 host(c6) = host(c4) | leq(index(pendack,host(c6)),host(c3)).  [resolve(30,a,65,a)].
+67 host(c6) = host(c4) | leq(s(host(c3)),host(c3)).  [resolve(66,b,44,a)].
+68 host(c6) = host(c4).  [resolve(18,a,67,b)].
+69 host(c4) != host(c4) | leq(index(pendack,host(c6)),host(c3)).  [para(68(a,1),62(a,1))].
+70 host(c4) != host(c4) | leq(index(pendack,host(c4)),host(c3)).  [para(68(a,1),69(b,1,2))].
+71 leq(index(pendack,host(c4)),host(c3)).  [copy(70),xx(a)].
+72 -leq(index(pendack,host(c4)),host(c3)) | index(pendack,host(c6)) = host(c3).  [para(68(a,1),55(a,1,2))].
+73 -leq(index(pendack,host(c4)),host(c3)) | index(pendack,host(c4)) = host(c3).  [para(68(a,1),72(b,1,2))].
+74 index(pendack,host(c4)) = host(c3).  [resolve(71,a,73,a)].
+75 -leq(index(pendack,host(c4)),s(host(c3))) | index(pendack,host(c6)) = s(host(c3)).  [para(68(a,1),46(a,1,2))].
+76 -leq(host(c3),s(host(c3))) | index(pendack,host(c6)) = s(host(c3)).  [para(74(a,1),75(a,1))].
+77 -leq(host(c3),s(host(c3))) | index(pendack,host(c4)) = s(host(c3)).  [para(68(a,1),76(b,1,2))].
+78 -leq(host(c3),s(host(c3))) | host(c3) = s(host(c3)).  [para(74(a,1),77(b,1))].
+79 -leq(host(c3),s(host(c3))) | s(host(c3)) = host(c3).  [copy(78),flip(b)].
+80 s(host(c3)) = host(c3).  [resolve(42,a,79,a)].
+81 q_nil = c3 | host(c3) != host(c3).  [resolve(80,a,59,b)].
+82 c3 = q_nil | host(c3) != host(c3).  [copy(81),flip(a)].
+83 c3 = q_nil.  [copy(82),xx(b)].
+84 leq(s(host(c3)),host(c3)).  [resolve(80,a,21,b)].
+85 leq(s(host(q_nil)),host(c3)).  [para(83(a,1),84(a,1,1,1))].
+86 leq(s(host(q_nil)),host(q_nil)).  [para(83(a,1),85(a,2,1))].
+87 $F.  [resolve(18,a,86,a)].

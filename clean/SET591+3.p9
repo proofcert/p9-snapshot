@@ -1,0 +1,21 @@
+
+
+
+
+
+6 subset(c1,difference(c2,c1)).  [clausify(5)].
+7 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+8 -member(A,empty_set).  [clausify(3)].
+9 empty_set != c1.  [clausify(5)].
+10 c1 != empty_set.  [copy(9),flip(a)].
+11 -member(A,difference(B,C)) | -member(A,C).  [clausify(2)].
+12 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+13 A = B | -subset(B,A) | -subset(A,B).  [clausify(4)].
+14 -member(A,c1) | member(A,difference(c2,c1)).  [resolve(12,a,6,a)].
+15 A = B | -subset(A,B) | member(f1(B,A),B).  [resolve(13,b,7,a)].
+16 -subset(c1,empty_set) | member(f1(empty_set,c1),empty_set).  [resolve(15,a,10,a)].
+17 -subset(c1,empty_set).  [resolve(16,b,8,a)].
+18 member(f1(c1,empty_set),c1).  [resolve(17,a,7,a)].
+19 member(f1(c1,empty_set),difference(c2,c1)).  [resolve(18,a,14,a)].
+20 -member(f1(c1,empty_set),difference(A,c1)).  [resolve(11,b,18,a)].
+21 $F.  [resolve(20,a,19,a)].

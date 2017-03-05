@@ -1,0 +1,34 @@
+
+
+
+
+5 accept_team(A,B,C,D) | -accept_city(A,C) | -accept_leader(A,B) | -accept_number(A,D).  [clausify(1)].
+6 -accept_team(A,B,C,D) | accept_leader(A,B).  [clausify(1)].
+7 -accept_team(A,B,C,D) | accept_city(A,C).  [clausify(1)].
+8 -accept_number(A,B) | -less(C,B) | accept_number(A,C).  [clausify(2)].
+9 accept_team(christiansufferterrahumanitarianorganization,countryacivilorganization,towna,n6).  [assumption].
+10 accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,coastvillage,n6).  [assumption].
+11 accept_number(christiansufferterrahumanitarianorganization,n6).  [assumption].
+12 rdn_translate(n3,rdn_pos(rdnn(n3))).  [assumption].
+13 rdn_translate(n6,rdn_pos(rdnn(n6))).  [assumption].
+14 rdn_positive_less(rdnn(n3),rdnn(n4)).  [assumption].
+15 rdn_positive_less(rdnn(n4),rdnn(n5)).  [assumption].
+16 rdn_positive_less(rdnn(n5),rdnn(n6)).  [assumption].
+17 -rdn_positive_less(rdnn(A),rdnn(B)) | -rdn_positive_less(rdnn(B),rdnn(C)) | rdn_positive_less(rdnn(A),rdnn(C)).  [clausify(3)].
+18 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_positive_less(B,D) | less(A,C).  [clausify(4)].
+19 -accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,towna,n3).  [assumption].
+20 accept_team(A,B,C,D) | -accept_city(A,C) | -accept_number(A,D) | -accept_team(A,B,E,F).  [resolve(5,c,6,b)].
+21 accept_city(christiansufferterrahumanitarianorganization,towna).  [resolve(9,a,7,a)].
+22 -rdn_positive_less(rdnn(n5),rdnn(A)) | rdn_positive_less(rdnn(n4),rdnn(A)).  [resolve(17,a,15,a)].
+23 -rdn_positive_less(rdnn(n4),rdnn(A)) | rdn_positive_less(rdnn(n3),rdnn(A)).  [resolve(17,a,14,a)].
+24 accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,A,B) | -accept_city(christiansufferterrahumanitarianorganization,A) | -accept_number(christiansufferterrahumanitarianorganization,B).  [resolve(20,d,10,a)].
+25 rdn_positive_less(rdnn(n4),rdnn(n6)).  [resolve(22,a,16,a)].
+26 rdn_positive_less(rdnn(n3),rdnn(n6)).  [resolve(25,a,23,a)].
+27 -rdn_translate(A,rdn_pos(rdnn(n3))) | -rdn_translate(B,rdn_pos(rdnn(n6))) | less(A,B).  [resolve(26,a,18,c)].
+28 -rdn_translate(A,rdn_pos(rdnn(n6))) | less(n3,A).  [resolve(27,a,12,a)].
+29 less(n3,n6).  [resolve(28,a,13,a)].
+30 -accept_number(A,n6) | accept_number(A,n3).  [resolve(29,a,8,b)].
+31 accept_number(christiansufferterrahumanitarianorganization,n3).  [resolve(30,a,11,a)].
+32 accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,A,n3) | -accept_city(christiansufferterrahumanitarianorganization,A).  [resolve(31,a,24,c)].
+33 accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,towna,n3).  [resolve(32,b,21,a)].
+34 $F.  [resolve(19,a,33,a)].

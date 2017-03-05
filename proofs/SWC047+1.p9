@@ -1,0 +1,75 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n088.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:56:53 CDT 2014
+% CPUTime    : 1.81 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 41057 was started by sandbox on n088.star.cs.uiowa.edu,
+Thu Jun  5 16:56:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_41025_n088.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.59 (+ 0.01) seconds.
+% Length of proof is 23.
+% Level of proof is 6.
+% Maximum clause weight is 11.000.
+% Given clauses 1369.
+
+
+1 (all A (ssList(A) -> rearsegP(A,A))).  [assumption].
+2 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | D != C | (nil != B | nil = A) & (-neq(B,nil) | (exists E (ssList(E) & neq(E,nil) & rearsegP(B,E) & rearsegP(A,E)))))))))))).  [assumption].
+3 ssList(nil).  [assumption].
+4 -ssList(A) | rearsegP(A,A).  [clausify(1)].
+5 ssList(c3).  [clausify(2)].
+6 c6 = c4.  [clausify(2)].
+7 c5 = c3.  [clausify(2)].
+8 c6 = c5.  [clausify(2)].
+9 c4 = c5.  [para(6(a,1),8(a,1))].
+10 c4 = c3.  [para(7(a,1),9(a,2))].
+11 nil = c4 | neq(c4,nil).  [clausify(2)].
+12 nil = c3 | neq(c4,nil).  [para(10(a,1),11(a,2))].
+13 nil = c3 | neq(c3,nil).  [para(10(a,1),12(b,1))].
+14 c3 = nil | neq(c3,nil).  [copy(13),flip(a)].
+15 nil = c4 | -ssList(A) | -neq(A,nil) | -rearsegP(c4,A) | -rearsegP(c3,A).  [clausify(2)].
+16 nil = c3 | -ssList(A) | -neq(A,nil) | -rearsegP(c4,A) | -rearsegP(c3,A).  [para(10(a,1),15(a,2))].
+17 nil = c3 | -ssList(A) | -neq(A,nil) | -rearsegP(c3,A) | -rearsegP(c3,A).  [para(10(a,1),16(d,1))].
+18 c3 = nil | -ssList(A) | -neq(A,nil) | -rearsegP(c3,A) | -rearsegP(c3,A).  [copy(17),flip(a)].
+19 c3 = nil | -ssList(A) | -neq(A,nil) | -rearsegP(c3,A).  [copy(18),merge(e)].
+20 nil != c3 | neq(c4,nil).  [clausify(2)].
+21 nil != c3 | neq(c3,nil).  [para(10(a,1),20(b,1))].
+22 c3 != nil | neq(c3,nil).  [copy(21),flip(a)].
+23 nil != c3 | -ssList(A) | -neq(A,nil) | -rearsegP(c4,A) | -rearsegP(c3,A).  [clausify(2)].
+24 nil != c3 | -ssList(A) | -neq(A,nil) | -rearsegP(c3,A) | -rearsegP(c3,A).  [para(10(a,1),23(d,1))].
+25 c3 != nil | -ssList(A) | -neq(A,nil) | -rearsegP(c3,A) | -rearsegP(c3,A).  [copy(24),flip(a)].
+26 c3 != nil | -ssList(A) | -neq(A,nil) | -rearsegP(c3,A).  [copy(25),merge(e)].
+27 rearsegP(nil,nil).  [resolve(4,a,3,a)].
+28 rearsegP(c3,c3).  [resolve(5,a,4,a)].
+29 c3 = nil | -ssList(c3) | -rearsegP(c3,c3) | c3 = nil.  [resolve(19,c,14,b)].
+30 c3 = nil | -ssList(c3) | -rearsegP(c3,c3).  [copy(29),merge(d)].
+31 c3 = nil | -rearsegP(c3,c3).  [resolve(5,a,30,b)].
+32 c3 = nil.  [resolve(28,a,31,b)].
+33 nil != nil | -ssList(A) | -neq(A,nil) | -rearsegP(c3,A).  [para(32(a,1),26(a,1))].
+34 nil != nil | -ssList(A) | -neq(A,nil) | -rearsegP(nil,A).  [para(32(a,1),33(d,1))].
+35 -ssList(A) | -neq(A,nil) | -rearsegP(nil,A).  [copy(34),xx(a)].
+36 nil != nil | neq(c3,nil).  [para(32(a,1),22(a,1))].
+37 nil != nil | neq(nil,nil).  [para(32(a,1),36(b,1))].
+38 neq(nil,nil).  [copy(37),xx(a)].
+39 -ssList(nil) | -rearsegP(nil,nil).  [resolve(38,a,35,b)].
+40 -rearsegP(nil,nil).  [resolve(3,a,39,a)].
+41 $F.  [resolve(27,a,40,a)].
+
+============================== end of proof ==========================

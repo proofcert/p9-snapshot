@@ -1,0 +1,25 @@
+
+
+
+
+
+
+
+8 preboolean(finite_subsets(A)).  [clausify(3)].
+9 -preboolean(A) | finite_subsets(B) != A | -in(C,A) | subset(C,B).  [clausify(2)].
+10 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+11 -empty(powerset(A)).  [clausify(4)].
+12 -subset(finite_subsets(c5),powerset(c5)).  [clausify(7)].
+13 element(A,powerset(B)) | -subset(A,B).  [clausify(6)].
+14 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+15 -element(A,B) | empty(B) | in(A,B).  [clausify(5)].
+16 finite_subsets(A) != finite_subsets(B) | -in(C,finite_subsets(B)) | subset(C,A).  [resolve(9,a,8,a)].
+17 in(f1(finite_subsets(c5),powerset(c5)),finite_subsets(c5)).  [resolve(12,a,10,a)].
+18 -in(f1(finite_subsets(c5),powerset(c5)),powerset(c5)).  [resolve(14,a,12,a)].
+19 finite_subsets(A) != finite_subsets(c5) | subset(f1(finite_subsets(c5),powerset(c5)),A).  [resolve(17,a,16,b)].
+20 finite_subsets(c5) != finite_subsets(A) | subset(f1(finite_subsets(c5),powerset(c5)),A).  [copy(19),flip(a)].
+21 -element(A,powerset(B)) | in(A,powerset(B)).  [resolve(15,b,11,a)].
+22 -element(f1(finite_subsets(c5),powerset(c5)),powerset(c5)).  [resolve(21,b,18,a)].
+23 subset(f1(finite_subsets(c5),powerset(c5)),c5).  [xx_res(20,a)].
+24 element(f1(finite_subsets(c5),powerset(c5)),powerset(c5)).  [resolve(23,a,13,b)].
+25 $F.  [resolve(22,a,24,a)].

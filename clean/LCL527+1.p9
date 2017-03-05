@@ -1,0 +1,21 @@
+
+
+
+4 -modus_ponens | -is_a_theorem(A) | -is_a_theorem(implies(A,B)) | is_a_theorem(B).  [clausify(1)].
+5 -and_3 | is_a_theorem(implies(A,implies(B,and(A,B)))).  [clausify(2)].
+6 modus_ponens.  [assumption].
+7 and_3.  [assumption].
+8 adjunction | is_a_theorem(c59).  [clausify(3)].
+9 adjunction | is_a_theorem(c60).  [clausify(3)].
+10 adjunction | -is_a_theorem(and(c59,c60)).  [clausify(3)].
+11 -adjunction.  [assumption].
+12 -is_a_theorem(A) | -is_a_theorem(implies(A,B)) | is_a_theorem(B).  [resolve(6,a,4,a)].
+13 is_a_theorem(implies(A,implies(B,and(A,B)))).  [resolve(7,a,5,a)].
+14 -is_a_theorem(and(c59,c60)).  [resolve(11,a,10,a)].
+15 is_a_theorem(c60).  [resolve(11,a,9,a)].
+16 is_a_theorem(c59).  [resolve(11,a,8,a)].
+17 -is_a_theorem(A) | is_a_theorem(implies(B,and(A,B))).  [resolve(13,a,12,b)].
+18 is_a_theorem(implies(A,and(c59,A))).  [resolve(17,a,16,a)].
+19 -is_a_theorem(A) | is_a_theorem(and(c59,A)).  [resolve(18,a,12,b)].
+20 is_a_theorem(and(c59,c60)).  [resolve(19,a,15,a)].
+21 $F.  [resolve(14,a,20,a)].

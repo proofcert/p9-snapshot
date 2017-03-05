@@ -1,0 +1,16 @@
+
+
+3 minus(A,n1) = pred(A).  [clausify(1)].
+4 leq(n0,pv10).  [clausify(2)].
+5 leq(n0,pv53).  [clausify(2)].
+6 leq(pv10,minus(n135300,n1)).  [clausify(2)].
+7 leq(pv10,pred(n135300)).  [para(3(a,1),6(a,2))].
+8 leq(pv53,minus(n5,n1)).  [clausify(2)].
+9 leq(pv53,pred(n5)).  [para(3(a,1),8(a,2))].
+10 -leq(n0,pv10) | -leq(n0,pv53) | -leq(pv10,minus(n135300,n1)) | -leq(pv53,minus(n5,n1)).  [clausify(2)].
+11 -leq(n0,pv10) | -leq(n0,pv53) | -leq(pv10,pred(n135300)) | -leq(pv53,minus(n5,n1)).  [para(3(a,1),10(c,2))].
+12 -leq(n0,pv10) | -leq(n0,pv53) | -leq(pv10,pred(n135300)) | -leq(pv53,pred(n5)).  [para(3(a,1),11(d,2))].
+13 -leq(n0,pv53) | -leq(pv10,pred(n135300)) | -leq(pv53,pred(n5)).  [resolve(4,a,12,a)].
+14 -leq(pv10,pred(n135300)) | -leq(pv53,pred(n5)).  [resolve(5,a,13,a)].
+15 -leq(pv53,pred(n5)).  [resolve(7,a,14,a)].
+16 $F.  [resolve(9,a,15,a)].

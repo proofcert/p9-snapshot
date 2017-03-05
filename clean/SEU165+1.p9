@@ -1,0 +1,28 @@
+
+
+
+
+5 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+6 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(2)].
+7 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(5(a,1),6(a,2))].
+8 in(ordered_pair(c3,c4),cartesian_product2(c5,c6)) | in(c3,c5).  [clausify(4)].
+9 in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | in(c3,c5).  [para(7(a,1),8(a,1))].
+10 in(ordered_pair(c3,c4),cartesian_product2(c5,c6)) | in(c4,c6).  [clausify(4)].
+11 in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | in(c4,c6).  [para(7(a,1),10(a,1))].
+12 -in(ordered_pair(c3,c4),cartesian_product2(c5,c6)) | -in(c3,c5) | -in(c4,c6).  [clausify(4)].
+13 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | -in(c3,c5) | -in(c4,c6).  [para(7(a,1),12(a,1))].
+14 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(A,C).  [clausify(3)].
+15 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(A,C).  [para(7(a,1),14(a,1))].
+16 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(B,D).  [clausify(3)].
+17 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(B,D).  [para(7(a,1),16(a,1))].
+18 in(ordered_pair(A,B),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [clausify(3)].
+19 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [para(7(a,1),18(a,1))].
+20 in(c3,c5) | in(c3,c5).  [resolve(15,a,9,a)].
+21 in(c3,c5).  [copy(20),merge(b)].
+22 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | -in(c4,c6).  [resolve(21,a,13,b)].
+23 in(c4,c6) | in(c4,c6).  [resolve(17,a,11,a)].
+24 in(c4,c6).  [copy(23),merge(b)].
+25 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)).  [resolve(24,a,22,b)].
+26 -in(c3,c5) | -in(c4,c6).  [resolve(19,a,25,a)].
+27 -in(c4,c6).  [resolve(26,a,21,a)].
+28 $F.  [resolve(24,a,27,a)].

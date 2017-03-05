@@ -1,0 +1,21 @@
+
+
+
+
+5 set_intersection2(A,A) = A.  [clausify(3)].
+6 empty_set = A | in(f1(A),A).  [clausify(1)].
+7 empty_set != A | -in(B,A).  [clausify(1)].
+8 -disjoint(A,B) | set_intersection2(A,B) = empty_set.  [clausify(2)].
+9 disjoint(A,B) | set_intersection2(A,B) != empty_set.  [clausify(2)].
+10 -disjoint(c3,c4) | in(c5,set_intersection2(c3,c4)).  [clausify(4)].
+11 -in(A,set_intersection2(c3,c4)) | disjoint(c3,c4).  [clausify(4)].
+12 -in(A,set_intersection2(empty_set,empty_set)).  [resolve(7,a,5,a(flip))].
+13 -in(A,empty_set).  [para(5(a,1),12(a,2))].
+14 disjoint(c3,c4) | empty_set = set_intersection2(c3,c4).  [resolve(11,a,6,b)].
+15 disjoint(c3,c4) | set_intersection2(c3,c4) = empty_set.  [copy(14),flip(b)].
+16 set_intersection2(c3,c4) = empty_set | set_intersection2(c3,c4) = empty_set.  [resolve(15,a,8,a)].
+17 set_intersection2(c3,c4) = empty_set.  [copy(16),merge(b)].
+18 -disjoint(c3,c4) | in(c5,empty_set).  [para(17(a,1),10(b,2))].
+19 -disjoint(c3,c4).  [resolve(13,a,18,b)].
+20 disjoint(c3,c4).  [resolve(17,a,9,b)].
+21 $F.  [resolve(19,a,20,a)].

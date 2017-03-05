@@ -1,0 +1,15 @@
+
+
+
+4 rdn_translate(n0,rdn_pos(rdnn(n0))).  [assumption].
+5 rdn_translate(nn128,rdn_neg(rdn(rdnn(n8),rdn(rdnn(n2),rdnn(n1))))).  [assumption].
+6 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_pos(D)) | less(A,C).  [clausify(1)].
+7 -less(A,B) | B != A.  [clausify(2)].
+8 A = n12.  [clausify(3)].
+9 n12 = A.  [copy(8),flip(a)].
+10 -rdn_translate(A,rdn_neg(B)) | less(A,n0).  [resolve(6,b,4,a)].
+11 rdn_translate(nn128,rdn_neg(n12)).  [para(9(a,2),5(a,2,1))].
+12 A = B.  [para(9(a,1),9(a,1))].
+13 -less(A,B).  [resolve(12,a,7,b)].
+14 -rdn_translate(A,rdn_neg(B)).  [resolve(13,a,10,b)].
+15 $F.  [resolve(14,a,11,a)].

@@ -1,0 +1,91 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15 g(eh).  [assumption].
+16 h(eg).  [assumption].
+17 f(product(A,B)) = sum(f(A),f(B)).  [clausify(13)].
+18 sum(f(A),f(B)) = f(product(A,B)).  [copy(17),flip(a)].
+19 f(eh) != eg | f(inv(c1)) != opp(f(c1)).  [clausify(14)].
+20 f(eh) != eg | opp(f(c1)) != f(inv(c1)).  [copy(19),flip(b)].
+21 -g(A) | g(inv(A)).  [clausify(1)].
+22 -h(A) | h(opp(B)).  [clausify(7)].
+23 -g(A) | h(f(A)).  [clausify(12)].
+24 f(eh) != eg | g(c1).  [clausify(14)].
+25 -g(A) | product(eh,A) = A.  [clausify(3)].
+26 -g(A) | product(A,eh) = A.  [clausify(4)].
+27 -h(A) | sum(eg,A) = A.  [clausify(9)].
+28 -h(A) | sum(A,eg) = A.  [clausify(10)].
+29 -g(A) | product(A,inv(A)) = eh.  [clausify(5)].
+30 -g(A) | product(inv(A),A) = eh.  [clausify(6)].
+31 -h(A) | sum(opp(A),A) = eg.  [clausify(11)].
+32 -g(A) | -g(B) | -g(C) | product(product(A,B),C) = product(A,product(B,C)).  [clausify(2)].
+33 -h(A) | -h(B) | -h(C) | sum(sum(A,B),C) = sum(A,sum(B,C)).  [clausify(8)].
+34 h(opp(A)).  [resolve(22,a,16,a)].
+35 h(f(eh)).  [resolve(23,a,15,a)].
+36 product(eh,eh) = eh.  [resolve(25,a,15,a)].
+37 sum(opp(A),eg) = opp(A).  [resolve(28,a,34,a)].
+38 -h(A) | -h(B) | sum(sum(opp(C),A),B) = sum(opp(C),sum(A,B)).  [resolve(33,a,34,a)].
+39 -h(A) | sum(sum(opp(B),f(eh)),A) = sum(opp(B),sum(f(eh),A)).  [resolve(38,a,35,a)].
+40 sum(sum(opp(A),f(eh)),f(eh)) = sum(opp(A),sum(f(eh),f(eh))).  [resolve(39,a,35,a)].
+41 sum(sum(opp(A),f(eh)),f(eh)) = sum(opp(A),f(product(eh,eh))).  [para(18(a,1),40(a,2,2))].
+42 sum(sum(opp(A),f(eh)),f(eh)) = sum(opp(A),f(eh)).  [para(36(a,1),41(a,2,2,1))].
+43 sum(opp(f(eh)),f(eh)) = eg.  [resolve(31,a,35,a)].
+44 sum(eg,f(eh)) = f(eh).  [resolve(27,a,35,a)].
+45 sum(eg,f(eh)) = sum(opp(f(eh)),f(eh)).  [para(43(a,1),42(a,1,1))].
+46 f(eh) = sum(opp(f(eh)),f(eh)).  [para(44(a,1),45(a,1))].
+47 f(eh) = eg.  [para(43(a,1),46(a,2))].
+48 eg != eg | g(c1).  [para(47(a,1),24(a,1))].
+49 g(c1).  [copy(48),xx(a)].
+50 eg != eg | opp(f(c1)) != f(inv(c1)).  [para(47(a,1),20(a,1))].
+51 opp(f(c1)) != f(inv(c1)).  [copy(50),xx(a)].
+52 product(inv(c1),c1) = eh.  [resolve(30,a,49,a)].
+53 product(c1,inv(c1)) = eh.  [resolve(29,a,49,a)].
+54 h(f(c1)).  [resolve(23,a,49,a)].
+55 g(inv(c1)).  [resolve(21,a,49,a)].
+56 sum(opp(f(c1)),f(c1)) = eg.  [resolve(31,a,54,a)].
+57 -g(A) | -g(B) | product(product(inv(c1),A),B) = product(inv(c1),product(A,B)).  [resolve(32,a,55,a)].
+58 -g(A) | product(product(inv(c1),c1),A) = product(inv(c1),product(c1,A)).  [resolve(57,a,49,a)].
+59 product(product(inv(c1),c1),inv(c1)) = product(inv(c1),product(c1,inv(c1))).  [resolve(58,a,55,a)].
+60 product(eh,inv(c1)) = product(inv(c1),product(c1,inv(c1))).  [para(52(a,1),59(a,1,1))].
+61 product(eh,inv(c1)) = product(inv(c1),eh).  [para(53(a,1),60(a,2,2))].
+62 product(inv(c1),eh) = product(eh,inv(c1)).  [copy(61),flip(a)].
+63 -g(A) | -g(B) | product(product(c1,A),B) = product(c1,product(A,B)).  [resolve(32,a,49,a)].
+64 -g(A) | product(product(c1,inv(c1)),A) = product(c1,product(inv(c1),A)).  [resolve(63,a,55,a)].
+65 product(product(c1,inv(c1)),inv(c1)) = product(c1,product(inv(c1),inv(c1))).  [resolve(64,a,55,a)].
+66 product(eh,inv(c1)) = product(c1,product(inv(c1),inv(c1))).  [para(53(a,1),65(a,1,1))].
+67 product(c1,product(inv(c1),inv(c1))) = product(eh,inv(c1)).  [copy(66),flip(a)].
+68 product(inv(c1),eh) = inv(c1).  [resolve(26,a,55,a)].
+69 product(eh,inv(c1)) = inv(c1).  [para(62(a,1),68(a,1))].
+70 h(f(inv(c1))).  [resolve(23,a,55,a)].
+71 product(c1,product(inv(c1),inv(c1))) = inv(c1).  [para(69(a,1),67(a,2))].
+72 -h(A) | -h(B) | sum(sum(f(c1),A),B) = sum(f(c1),sum(A,B)).  [resolve(33,a,54,a)].
+73 -h(A) | sum(sum(f(c1),f(inv(c1))),A) = sum(f(c1),sum(f(inv(c1)),A)).  [resolve(72,a,70,a)].
+74 sum(sum(f(c1),f(inv(c1))),f(inv(c1))) = sum(f(c1),sum(f(inv(c1)),f(inv(c1)))).  [resolve(73,a,70,a)].
+75 sum(f(product(c1,inv(c1))),f(inv(c1))) = sum(f(c1),sum(f(inv(c1)),f(inv(c1)))).  [para(18(a,1),74(a,1,1))].
+76 sum(f(eh),f(inv(c1))) = sum(f(c1),sum(f(inv(c1)),f(inv(c1)))).  [para(53(a,1),75(a,1,1,1))].
+77 sum(eg,f(inv(c1))) = sum(f(c1),sum(f(inv(c1)),f(inv(c1)))).  [para(47(a,1),76(a,1,1))].
+78 sum(eg,f(inv(c1))) = sum(f(c1),f(product(inv(c1),inv(c1)))).  [para(18(a,1),77(a,2,2))].
+79 sum(eg,f(inv(c1))) = f(product(c1,product(inv(c1),inv(c1)))).  [para(18(a,1),78(a,2))].
+80 sum(eg,f(inv(c1))) = f(inv(c1)).  [para(71(a,1),79(a,2,1))].
+81 -h(A) | -h(B) | sum(sum(opp(C),A),B) = sum(opp(C),sum(A,B)).  [resolve(33,a,34,a)].
+82 -h(A) | sum(sum(opp(B),f(c1)),A) = sum(opp(B),sum(f(c1),A)).  [resolve(81,a,54,a)].
+83 sum(sum(opp(A),f(c1)),f(inv(c1))) = sum(opp(A),sum(f(c1),f(inv(c1)))).  [resolve(82,a,70,a)].
+84 sum(sum(opp(A),f(c1)),f(inv(c1))) = sum(opp(A),f(product(c1,inv(c1)))).  [para(18(a,1),83(a,2,2))].
+85 sum(sum(opp(A),f(c1)),f(inv(c1))) = sum(opp(A),f(eh)).  [para(53(a,1),84(a,2,2,1))].
+86 sum(sum(opp(A),f(c1)),f(inv(c1))) = sum(opp(A),eg).  [para(47(a,1),85(a,2,2))].
+87 sum(sum(opp(A),f(c1)),f(inv(c1))) = opp(A).  [para(37(a,1),86(a,2))].
+88 sum(eg,f(inv(c1))) = opp(f(c1)).  [para(56(a,1),87(a,1,1))].
+89 f(inv(c1)) = opp(f(c1)).  [para(80(a,1),88(a,1))].
+90 opp(f(c1)) = f(inv(c1)).  [copy(89),flip(a)].
+91 $F.  [resolve(51,a,90,a)].

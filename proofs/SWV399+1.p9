@@ -1,0 +1,66 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n062.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:18:28 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 36036 was started by sandbox on n062.star.cs.uiowa.edu,
+Fri Jun  6 08:18:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_36004_n062.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 26.
+% Level of proof is 7.
+% Maximum clause weight is 16.000.
+% Given clauses 64.
+
+
+1 (all A all B all C (less_than(A,B) & less_than(B,C) -> less_than(A,C))).  [assumption].
+2 (all A all B (less_than(A,B) | less_than(B,A))).  [assumption].
+3 (all A all B (strictly_less_than(A,B) <-> less_than(A,B) & -less_than(B,A))).  [assumption].
+4 (all A all B all C all D (pair_in_list(A,B,C) & less_than(D,C) -> pair_in_list(update_slb(A,D),B,C))).  [assumption].
+5 (all A all B all C all D (pair_in_list(A,B,C) & strictly_less_than(C,D) -> pair_in_list(update_slb(A,D),B,D))).  [assumption].
+6 -(all A ((exists B exists C (pair_in_list(A,B,C) & strictly_less_than(B,C))) -> (all D exists E exists F (pair_in_list(update_slb(A,D),E,F) & strictly_less_than(E,F))))).  [assumption].
+7 -strictly_less_than(A,B) | -less_than(B,A).  [clausify(3)].
+8 strictly_less_than(c2,c3).  [clausify(6)].
+9 -pair_in_list(update_slb(c1,c4),A,B) | -strictly_less_than(A,B).  [clausify(6)].
+10 strictly_less_than(A,B) | -less_than(A,B) | less_than(B,A).  [clausify(3)].
+11 -pair_in_list(A,B,C) | -strictly_less_than(C,D) | pair_in_list(update_slb(A,D),B,D).  [clausify(5)].
+12 pair_in_list(c1,c2,c3).  [clausify(6)].
+13 less_than(A,B) | less_than(B,A).  [clausify(2)].
+14 -less_than(A,B) | -less_than(B,C) | less_than(A,C).  [clausify(1)].
+15 -pair_in_list(A,B,C) | -less_than(D,C) | pair_in_list(update_slb(A,D),B,C).  [clausify(4)].
+16 -less_than(c3,c2).  [resolve(7,a,8,a)].
+17 -pair_in_list(update_slb(c1,c4),c2,c3).  [resolve(9,b,8,a)].
+18 -less_than(A,B) | less_than(B,A) | -pair_in_list(update_slb(c1,c4),A,B).  [resolve(10,a,9,b)].
+19 -pair_in_list(A,B,C) | pair_in_list(update_slb(A,D),B,D) | -less_than(C,D) | less_than(D,C).  [resolve(11,b,10,a)].
+20 -less_than(A,B) | less_than(C,B) | less_than(A,C).  [resolve(14,a,13,b)].
+21 -less_than(A,c3) | pair_in_list(update_slb(c1,A),c2,c3).  [resolve(15,a,12,a)].
+22 -less_than(c4,c3).  [resolve(21,b,17,a)].
+23 less_than(c3,c4).  [resolve(22,a,13,b)].
+24 -less_than(A,c2) | less_than(A,c3).  [resolve(20,b,16,a)].
+25 -less_than(c4,c2).  [resolve(24,b,22,a)].
+26 less_than(c2,c4).  [resolve(25,a,13,b)].
+27 less_than(c4,c2) | -pair_in_list(update_slb(c1,c4),c2,c4).  [resolve(18,a,26,a)].
+28 -pair_in_list(update_slb(c1,c4),c2,c4).  [resolve(27,a,25,a)].
+29 -pair_in_list(c1,c2,A) | -less_than(A,c4) | less_than(c4,A).  [resolve(19,b,28,a)].
+30 -pair_in_list(c1,c2,c3) | less_than(c4,c3).  [resolve(29,b,23,a)].
+31 -pair_in_list(c1,c2,c3).  [resolve(30,b,22,a)].
+32 $F.  [resolve(12,a,31,a)].
+
+============================== end of proof ==========================

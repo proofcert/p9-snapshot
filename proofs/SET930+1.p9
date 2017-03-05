@@ -1,0 +1,104 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n038.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:53:03 CDT 2014
+% CPUTime    : 1.22 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 20384 was started by sandbox on n038.star.cs.uiowa.edu,
+Sat Jun  7 00:53:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_20352_n038.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.09 (+ 0.01) seconds.
+% Length of proof is 51.
+% Level of proof is 12.
+% Maximum clause weight is 21.000.
+% Given clauses 458.
+
+
+1 (all A all B (in(A,B) -> -in(B,A))).  [assumption].
+2 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+3 (all A all B all C (set_difference(unordered_pair(A,B),C) = singleton(A) <-> -in(A,C) & (in(B,C) | A = B))).  [assumption].
+4 (all A all B all C (set_difference(unordered_pair(A,B),C) = unordered_pair(A,B) <-> -in(A,C) & -in(B,C))).  [assumption].
+5 (all A all B all C (set_difference(unordered_pair(A,B),C) = empty_set <-> in(A,C) & in(B,C))).  [assumption].
+6 -(all A all B all C -(set_difference(unordered_pair(A,B),C) != empty_set & set_difference(unordered_pair(A,B),C) != singleton(A) & set_difference(unordered_pair(A,B),C) != singleton(B) & set_difference(unordered_pair(A,B),C) != unordered_pair(A,B))).  [assumption].
+7 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(2)].
+8 set_difference(unordered_pair(A,B),C) = unordered_pair(A,B) | in(A,C) | in(B,C).  [clausify(4)].
+9 -in(A,B) | -in(B,A).  [clausify(1)].
+10 set_difference(unordered_pair(c3,c4),c5) != empty_set.  [clausify(6)].
+11 singleton(c3) != set_difference(unordered_pair(c3,c4),c5).  [clausify(6)].
+12 set_difference(unordered_pair(c3,c4),c5) != singleton(c3).  [copy(11),flip(a)].
+13 singleton(c4) != set_difference(unordered_pair(c3,c4),c5).  [clausify(6)].
+14 set_difference(unordered_pair(c3,c4),c5) != singleton(c4).  [copy(13),flip(a)].
+15 set_difference(unordered_pair(c3,c4),c5) != unordered_pair(c3,c4).  [clausify(6)].
+16 singleton(A) != set_difference(unordered_pair(A,B),C) | -in(A,C).  [clausify(3)].
+17 set_difference(unordered_pair(A,B),C) != singleton(A) | -in(A,C).  [copy(16),flip(a)].
+18 set_difference(unordered_pair(A,B),C) != unordered_pair(A,B) | -in(A,C).  [clausify(4)].
+19 set_difference(unordered_pair(A,B),C) != empty_set | in(A,C).  [clausify(5)].
+20 set_difference(unordered_pair(A,B),C) = empty_set | -in(A,C) | -in(B,C).  [clausify(5)].
+21 singleton(A) = set_difference(unordered_pair(A,B),C) | in(A,C) | -in(B,C).  [clausify(3)].
+22 set_difference(unordered_pair(A,B),C) = singleton(A) | in(A,C) | -in(B,C).  [copy(21),flip(a)].
+23 singleton(A) = set_difference(unordered_pair(A,B),C) | in(A,C) | B != A.  [clausify(3)].
+24 set_difference(unordered_pair(A,B),C) = singleton(A) | in(A,C) | B != A.  [copy(23),flip(a)].
+25 set_difference(unordered_pair(A,A),B) = unordered_pair(A,A) | in(A,B).  [factor(8,b,c)].
+26 -in(A,A).  [factor(9,a,b)].
+27 set_difference(unordered_pair(A,A),B) = empty_set | -in(A,B).  [factor(20,b,c)].
+28 set_difference(unordered_pair(A,B),C) != singleton(A) | set_difference(unordered_pair(D,A),C) = unordered_pair(D,A) | in(D,C).  [resolve(17,b,8,c)].
+29 set_difference(unordered_pair(A,B),C) != singleton(A) | set_difference(unordered_pair(A,D),C) = unordered_pair(D,A) | in(D,C).  [para(7(a,1),28(b,1,1))].
+30 set_difference(unordered_pair(A,B),C) != singleton(A) | set_difference(unordered_pair(A,D),C) = unordered_pair(A,D) | in(D,C).  [para(7(a,1),29(b,2))].
+31 set_difference(unordered_pair(A,A),B) = singleton(A) | in(A,B).  [xx_res(24,c)].
+32 set_difference(unordered_pair(A,A),A) = unordered_pair(A,A).  [resolve(26,a,25,b)].
+33 set_difference(unordered_pair(A,B),A) = unordered_pair(A,B) | in(B,A).  [resolve(26,a,8,b)].
+34 unordered_pair(A,A) != empty_set | in(A,A).  [para(32(a,1),19(a,1))].
+35 unordered_pair(A,A) != empty_set.  [resolve(26,a,34,b)].
+36 set_difference(unordered_pair(A,A),A) = singleton(A).  [resolve(31,b,26,a)].
+37 unordered_pair(A,A) = singleton(A).  [para(32(a,1),36(a,1))].
+38 set_difference(unordered_pair(A,A),B) = singleton(A) | set_difference(unordered_pair(C,A),B) = singleton(C) | in(C,B).  [resolve(31,b,22,c)].
+39 set_difference(singleton(A),B) = singleton(A) | set_difference(unordered_pair(C,A),B) = singleton(C) | in(C,B).  [para(37(a,1),38(a,1,1))].
+40 set_difference(singleton(A),B) = singleton(A) | set_difference(unordered_pair(A,C),B) = singleton(C) | in(C,B).  [para(7(a,1),39(b,1,1))].
+41 set_difference(unordered_pair(A,A),B) = singleton(A) | set_difference(unordered_pair(C,A),B) = empty_set | -in(C,B).  [resolve(31,b,20,c)].
+42 set_difference(singleton(A),B) = singleton(A) | set_difference(unordered_pair(C,A),B) = empty_set | -in(C,B).  [para(37(a,1),41(a,1,1))].
+43 set_difference(singleton(A),B) = singleton(A) | set_difference(unordered_pair(A,C),B) = empty_set | -in(C,B).  [para(7(a,1),42(b,1,1))].
+44 singleton(A) != empty_set.  [para(37(a,1),35(a,1))].
+45 set_difference(singleton(A),B) = singleton(A) | in(A,B).  [para(37(a,1),31(a,1,1))].
+46 set_difference(singleton(A),B) = empty_set | -in(A,B).  [para(37(a,1),27(a,1,1))].
+47 set_difference(singleton(A),B) != singleton(A) | set_difference(unordered_pair(A,C),B) = unordered_pair(A,C) | in(C,B).  [para(37(a,1),30(a,1,1))].
+48 set_difference(unordered_pair(A,B),A) = unordered_pair(A,B) | set_difference(unordered_pair(B,C),A) != singleton(B).  [resolve(33,b,17,b)].
+49 set_difference(singleton(A),B) = singleton(A) | set_difference(unordered_pair(A,C),B) = empty_set | set_difference(singleton(C),B) = singleton(C).  [resolve(43,c,45,b)].
+50 set_difference(unordered_pair(A,B),A) = unordered_pair(A,B) | set_difference(singleton(B),A) != singleton(B).  [para(37(a,1),48(b,1,1))].
+51 set_difference(singleton(A),B) = singleton(A) | set_difference(unordered_pair(A,C),B) = singleton(C) | set_difference(singleton(C),B) = empty_set.  [resolve(40,c,46,b)].
+52 set_difference(singleton(c3),c5) = singleton(c3) | set_difference(singleton(c4),c5) = singleton(c4).  [resolve(49,b,10,a)].
+53 set_difference(singleton(c3),c5) = singleton(c3) | set_difference(singleton(c4),c5) = empty_set.  [resolve(51,b,14,a)].
+54 set_difference(singleton(c3),c5) = singleton(c3) | set_difference(singleton(c3),c5) = singleton(c3) | empty_set = singleton(c4).  [para(53(b,1),52(b,1))].
+55 set_difference(singleton(c3),c5) = singleton(c3) | set_difference(singleton(c3),c5) = singleton(c3) | singleton(c4) = empty_set.  [copy(54),flip(c)].
+56 set_difference(singleton(c3),c5) = singleton(c3) | singleton(c4) = empty_set.  [copy(55),merge(b)].
+57 set_difference(singleton(c3),c5) = singleton(c3).  [resolve(44,a,56,b)].
+58 set_difference(unordered_pair(c5,c3),c5) = unordered_pair(c5,c3).  [resolve(57,a,50,b)].
+59 set_difference(unordered_pair(c3,c5),c5) = unordered_pair(c5,c3).  [para(7(a,1),58(a,1,1))].
+60 set_difference(unordered_pair(c3,c5),c5) = unordered_pair(c3,c5).  [para(7(a,1),59(a,2))].
+61 set_difference(unordered_pair(c3,A),c5) = unordered_pair(c3,A) | in(A,c5).  [resolve(57,a,47,a)].
+62 set_difference(unordered_pair(A,c3),c5) = unordered_pair(c3,A) | in(A,c5).  [para(7(a,1),61(a,1,1))].
+63 set_difference(unordered_pair(A,c3),c5) = unordered_pair(A,c3) | in(A,c5).  [para(7(a,1),62(a,2))].
+64 -in(c3,c5).  [resolve(18,a,60,a)].
+65 in(c3,c5) | -in(c4,c5).  [resolve(22,a,12,a)].
+66 -in(c4,c5).  [resolve(65,a,64,a)].
+67 set_difference(unordered_pair(c4,c3),c5) = unordered_pair(c4,c3).  [resolve(66,a,63,b)].
+68 set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c4,c3).  [para(7(a,1),67(a,1,1))].
+69 set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4).  [para(7(a,1),68(a,2))].
+70 $F.  [resolve(15,a,69,a)].
+
+============================== end of proof ==========================

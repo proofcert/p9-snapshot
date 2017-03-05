@@ -1,0 +1,16 @@
+
+
+
+
+5 relation(c7).  [clausify(4)].
+6 subset(A,A).  [clausify(1)].
+7 relation_composition(identity_relation(relation_dom(c7)),c7) != c7 | relation_composition(c7,identity_relation(relation_rng(c7))) != c7.  [clausify(4)].
+8 -relation(A) | -subset(relation_dom(A),B) | relation_composition(identity_relation(B),A) = A.  [clausify(2)].
+9 -relation(A) | -subset(relation_rng(A),B) | relation_composition(A,identity_relation(B)) = A.  [clausify(3)].
+10 -relation(A) | relation_composition(identity_relation(relation_dom(A)),A) = A.  [resolve(8,b,6,a)].
+11 relation_composition(identity_relation(relation_dom(c7)),c7) = c7.  [resolve(10,a,5,a)].
+12 c7 != c7 | relation_composition(c7,identity_relation(relation_rng(c7))) != c7.  [para(11(a,1),7(a,1))].
+13 relation_composition(c7,identity_relation(relation_rng(c7))) != c7.  [copy(12),xx(a)].
+14 -relation(A) | relation_composition(A,identity_relation(relation_rng(A))) = A.  [resolve(9,b,6,a)].
+15 -relation(c7).  [resolve(14,b,13,a)].
+16 $F.  [resolve(5,a,15,a)].

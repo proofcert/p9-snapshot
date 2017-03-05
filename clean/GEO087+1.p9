@@ -1,0 +1,20 @@
+
+
+
+
+
+6 -inner_point(A,B) | -end_point(A,B).  [clausify(2)].
+7 inner_point(f8(A),A).  [clausify(4)].
+8 -inner_point(A,B) | incident_c(A,B).  [clausify(2)].
+9 part_of(c10,c11).  [clausify(5)].
+10 meet(c12,c10,c11).  [clausify(5)].
+11 -part_of(A,B) | -incident_c(C,A) | incident_c(C,B).  [clausify(1)].
+12 -meet(A,B,C) | -incident_c(D,B) | -incident_c(D,C) | end_point(D,B).  [clausify(3)].
+13 -end_point(f8(A),A).  [resolve(6,a,7,a)].
+14 incident_c(f8(A),A).  [resolve(8,a,7,a)].
+15 -incident_c(A,c10) | -incident_c(A,c11) | end_point(A,c10).  [resolve(12,a,10,a)].
+16 -incident_c(f8(c10),c11) | end_point(f8(c10),c10).  [resolve(15,a,14,a)].
+17 -incident_c(f8(c10),c11).  [resolve(16,b,13,a)].
+18 -part_of(A,B) | incident_c(f8(A),B).  [resolve(11,b,14,a)].
+19 -part_of(c10,c11).  [resolve(18,b,17,a)].
+20 $F.  [resolve(9,a,19,a)].

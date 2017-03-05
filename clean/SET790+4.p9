@@ -1,0 +1,24 @@
+
+
+
+4 -order(A,B) | -member(C,B) | -member(D,B) | -apply(A,C,D) | -apply(A,D,C) | D = C.  [clausify(1)].
+5 order(c1,c2).  [clausify(3)].
+6 -least(A,B,C) | member(A,C).  [clausify(2)].
+7 -least(A,B,C) | -member(D,C) | apply(B,A,D).  [clausify(2)].
+8 least(c3,c1,c2).  [clausify(3)].
+9 least(c4,c1,c2).  [clausify(3)].
+10 c3 != c4.  [clausify(3)].
+11 c4 != c3.  [copy(10),flip(a)].
+12 -member(A,c2) | -member(B,c2) | -apply(c1,A,B) | -apply(c1,B,A) | B = A.  [resolve(5,a,4,a)].
+13 member(c3,c2).  [resolve(8,a,6,a)].
+14 -member(A,c2) | apply(c1,c3,A).  [resolve(8,a,7,a)].
+15 member(c4,c2).  [resolve(9,a,6,a)].
+16 -member(A,c2) | apply(c1,c4,A).  [resolve(9,a,7,a)].
+17 apply(c1,c3,c4).  [resolve(15,a,14,a)].
+18 apply(c1,c4,c3).  [resolve(16,a,13,a)].
+19 -member(c4,c2) | -member(c3,c2) | -apply(c1,c4,c3) | c3 = c4.  [resolve(17,a,12,d)].
+20 -member(c4,c2) | -member(c3,c2) | -apply(c1,c4,c3) | c4 = c3.  [copy(19),flip(d)].
+21 -member(c3,c2) | -apply(c1,c4,c3) | c4 = c3.  [resolve(15,a,20,a)].
+22 -apply(c1,c4,c3) | c4 = c3.  [resolve(13,a,21,a)].
+23 c4 = c3.  [resolve(18,a,22,a)].
+24 $F.  [resolve(11,a,23,a)].

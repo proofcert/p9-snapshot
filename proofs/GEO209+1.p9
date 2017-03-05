@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n134.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:28:18 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 34181 was started by sandbox on n134.star.cs.uiowa.edu,
+Fri Jun  6 06:28:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_34149_n134.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 19.
+% Level of proof is 5.
+% Maximum clause weight is 12.000.
+% Given clauses 25.
+
+
+1 (all A -distinct_lines(A,A)).  [assumption].
+2 (all A all B all C (distinct_lines(A,B) -> distinct_lines(A,C) | distinct_lines(B,C))).  [assumption].
+3 (all A all B all C (convergent_lines(A,B) -> convergent_lines(A,C) | convergent_lines(B,C))).  [assumption].
+4 (all A all B all C (distinct_lines(B,C) -> apart_point_and_line(A,B) | apart_point_and_line(A,C) | convergent_lines(B,C))).  [assumption].
+5 -(all A all B all C all D (apart_point_and_line(A,B) & -apart_point_and_line(A,C) & -apart_point_and_line(A,D) & -convergent_lines(C,B) & -convergent_lines(D,B) -> -distinct_lines(C,D))).  [assumption].
+6 distinct_lines(c3,c4).  [clausify(5)].
+7 -distinct_lines(A,A).  [clausify(1)].
+8 -apart_point_and_line(c1,c3).  [clausify(5)].
+9 -apart_point_and_line(c1,c4).  [clausify(5)].
+10 -convergent_lines(c3,c2).  [clausify(5)].
+11 -convergent_lines(c4,c2).  [clausify(5)].
+12 -distinct_lines(A,B) | distinct_lines(A,C) | distinct_lines(B,C).  [clausify(2)].
+13 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(3)].
+14 -distinct_lines(A,B) | apart_point_and_line(C,A) | apart_point_and_line(C,B) | convergent_lines(A,B).  [clausify(4)].
+15 distinct_lines(c3,A) | distinct_lines(c4,A).  [resolve(12,a,6,a)].
+16 -convergent_lines(c4,A) | convergent_lines(A,c2).  [resolve(13,b,11,a)].
+17 -convergent_lines(c4,c3).  [resolve(16,b,10,a)].
+18 distinct_lines(c3,A) | distinct_lines(c4,B) | distinct_lines(A,B).  [resolve(15,b,12,a)].
+19 distinct_lines(c3,c3) | distinct_lines(c4,c3).  [factor(18,a,c)].
+20 distinct_lines(c4,c3).  [resolve(7,a,19,a)].
+21 -distinct_lines(c4,A) | apart_point_and_line(c1,A) | convergent_lines(c4,A).  [resolve(14,b,9,a)].
+22 -distinct_lines(c4,c3) | convergent_lines(c4,c3).  [resolve(21,b,8,a)].
+23 -distinct_lines(c4,c3).  [resolve(22,b,17,a)].
+24 $F.  [resolve(20,a,23,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,27 @@
+
+
+
+
+5 aSet0(xT).  [assumption].
+6 aElementOf0(xu,xT).  [assumption].
+7 aElementOf0(xv,xT).  [assumption].
+8 aUpperBoundOfIn0(xu,xS,xT).  [assumption].
+9 aUpperBoundOfIn0(xv,xS,xT).  [assumption].
+10 xu != xv.  [assumption].
+11 xv != xu.  [copy(10),flip(a)].
+12 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(1)].
+13 -aUpperBoundOfIn0(A,xS,xT) | sdtlseqdt0(xu,A).  [clausify(3)].
+14 -aUpperBoundOfIn0(A,xS,xT) | sdtlseqdt0(xv,A).  [clausify(4)].
+15 -aElement0(A) | -aElement0(B) | -sdtlseqdt0(A,B) | -sdtlseqdt0(B,A) | B = A.  [clausify(2)].
+16 -aSet0(xT) | aElement0(xv).  [resolve(12,b,7,a)].
+17 aElement0(xv).  [resolve(5,a,16,a)].
+18 -aSet0(xT) | aElement0(xu).  [resolve(12,b,6,a)].
+19 aElement0(xu).  [resolve(5,a,18,a)].
+20 sdtlseqdt0(xu,xv).  [resolve(13,a,9,a)].
+21 sdtlseqdt0(xv,xu).  [resolve(14,a,8,a)].
+22 -aElement0(xv) | -aElement0(xu) | -sdtlseqdt0(xv,xu) | xu = xv.  [resolve(20,a,15,d)].
+23 -aElement0(xv) | -aElement0(xu) | -sdtlseqdt0(xv,xu) | xv = xu.  [copy(22),flip(d)].
+24 -aElement0(xu) | -sdtlseqdt0(xv,xu) | xv = xu.  [resolve(17,a,23,a)].
+25 -sdtlseqdt0(xv,xu) | xv = xu.  [resolve(19,a,24,a)].
+26 xv = xu.  [resolve(21,a,25,a)].
+27 $F.  [resolve(11,a,26,a)].

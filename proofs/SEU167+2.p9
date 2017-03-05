@@ -1,0 +1,48 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n072.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:44:58 CDT 2014
+% CPUTime    : 42.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 13193 was started by sandbox on n072.star.cs.uiowa.edu,
+Fri Jun  6 00:44:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_13161_n072.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 41.60 (+ 0.60) seconds.
+% Length of proof is 13.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 15573.
+
+
+1 (all A all B all C (subset(A,B) -> subset(cartesian_product2(A,C),cartesian_product2(B,C)) & subset(cartesian_product2(C,A),cartesian_product2(C,B)))).  [assumption].
+2 (all A all B all C (subset(A,B) & subset(B,C) -> subset(A,C))).  [assumption].
+3 -(all A all B all C all D (subset(A,B) & subset(C,D) -> subset(cartesian_product2(A,C),cartesian_product2(B,D)))).  [assumption].
+4 -subset(A,B) | subset(cartesian_product2(A,C),cartesian_product2(B,C)).  [clausify(1)].
+5 -subset(A,B) | subset(cartesian_product2(C,A),cartesian_product2(C,B)).  [clausify(1)].
+6 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(2)].
+7 subset(c3,c4).  [clausify(3)].
+8 subset(c5,c6).  [clausify(3)].
+9 -subset(cartesian_product2(c3,c5),cartesian_product2(c4,c6)).  [clausify(3)].
+10 subset(cartesian_product2(c3,A),cartesian_product2(c4,A)).  [resolve(7,a,4,a)].
+11 subset(cartesian_product2(A,c5),cartesian_product2(A,c6)).  [resolve(8,a,5,a)].
+12 -subset(A,cartesian_product2(c3,B)) | subset(A,cartesian_product2(c4,B)).  [resolve(10,a,6,b)].
+13 subset(cartesian_product2(c3,c5),cartesian_product2(c4,c6)).  [resolve(12,a,11,a)].
+14 $F.  [resolve(9,a,13,a)].
+
+============================== end of proof ==========================

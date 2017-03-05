@@ -1,0 +1,22 @@
+
+
+
+
+
+6 -connect(A,B,C) | once(at_the_same_time(at(A,C),at(B,C))).  [clausify(1)].
+7 connect(c11,c12,c10).  [clausify(5)].
+8 -once(at_the_same_time(A,B)) | once(A).  [clausify(2)].
+9 -once(at_the_same_time(A,B)) | once(B).  [clausify(2)].
+10 -once(at(A,B)) | incident_o(B,trajectory_of(A)).  [clausify(3)].
+11 trajectory_of(A) = f25(A).  [clausify(4)].
+12 -incident_o(c10,trajectory_of(c11)) | -incident_o(c10,trajectory_of(c12)).  [clausify(5)].
+13 -incident_o(c10,f25(c11)) | -incident_o(c10,trajectory_of(c12)).  [para(11(a,1),12(a,2))].
+14 -incident_o(c10,f25(c11)) | -incident_o(c10,f25(c12)).  [para(11(a,1),13(b,2))].
+15 once(at_the_same_time(at(c11,c10),at(c12,c10))).  [resolve(7,a,6,a)].
+16 -once(at(A,B)) | incident_o(B,f25(A)).  [para(11(a,1),10(b,2))].
+17 once(at(c12,c10)).  [resolve(15,a,9,a)].
+18 once(at(c11,c10)).  [resolve(15,a,8,a)].
+19 incident_o(c10,f25(c12)).  [resolve(17,a,16,a)].
+20 -incident_o(c10,f25(c11)).  [resolve(19,a,14,b)].
+21 incident_o(c10,f25(c11)).  [resolve(18,a,16,a)].
+22 $F.  [resolve(20,a,21,a)].

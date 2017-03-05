@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n042.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:11:23 CDT 2014
+% CPUTime    : 0.55 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 16112 was started by sandbox on n042.star.cs.uiowa.edu,
+Fri Jun  6 07:11:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_16080_n042.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.31 (+ 0.00) seconds.
+% Length of proof is 30.
+% Level of proof is 5.
+% Maximum clause weight is 23.000.
+% Given clauses 332.
+
+
+1 (all A all B all C (element(C,powerset(cartesian_product2(A,B))) -> relation(C))).  [assumption].
+2 (all A all B all C (relation_of2_as_subset(C,A,B) -> ((B = empty_set -> A = empty_set) -> (quasi_total(C,A,B) <-> A = relation_dom_as_subset(A,B,C))) & (B = empty_set -> A = empty_set | (quasi_total(C,A,B) <-> C = empty_set)))).  [assumption].
+3 (all A all B all C (relation_of2_as_subset(C,A,B) -> element(C,powerset(cartesian_product2(A,B))))).  [assumption].
+4 (all A all B all C (relation_of2(C,A,B) -> relation_dom_as_subset(A,B,C) = relation_dom(C))).  [assumption].
+5 (all A all B all C (relation_of2_as_subset(C,A,B) <-> relation_of2(C,A,B))).  [assumption].
+6 (all A all B (relation(B) & function(B) -> (all C (relation(C) & function(C) -> (in(A,relation_dom(B)) -> apply(relation_composition(B,C),A) = apply(C,apply(B,A))))))).  [assumption].
+7 -(all A all B all C all D (function(D) & quasi_total(D,A,B) & relation_of2_as_subset(D,A,B) -> (all E (relation(E) & function(E) -> (in(C,A) -> B = empty_set | apply(relation_composition(D,E),C) = apply(E,apply(D,C))))))).  [assumption].
+8 -relation_of2_as_subset(A,B,C) | empty_set = C | -quasi_total(A,B,C) | relation_dom_as_subset(B,C,A) = B.  [clausify(2)].
+9 quasi_total(c14,c11,c12).  [clausify(7)].
+10 -relation_of2_as_subset(A,B,C) | relation_of2(A,B,C).  [clausify(5)].
+11 -relation_of2(A,B,C) | relation_dom(A) = relation_dom_as_subset(B,C,A).  [clausify(4)].
+12 function(c14).  [clausify(7)].
+13 relation(c15).  [clausify(7)].
+14 function(c15).  [clausify(7)].
+15 in(c13,c11).  [clausify(7)].
+16 relation_of2_as_subset(c14,c11,c12).  [clausify(7)].
+17 empty_set != c12.  [clausify(7)].
+18 c12 != empty_set.  [copy(17),flip(a)].
+19 apply(relation_composition(c14,c15),c13) != apply(c15,apply(c14,c13)).  [clausify(7)].
+20 -element(A,powerset(cartesian_product2(B,C))) | relation(A).  [clausify(1)].
+21 -relation_of2_as_subset(A,B,C) | element(A,powerset(cartesian_product2(B,C))).  [clausify(3)].
+22 -relation(A) | -function(A) | -relation(B) | -function(B) | -in(C,relation_dom(A)) | apply(relation_composition(A,B),C) = apply(B,apply(A,C)).  [clausify(6)].
+23 -relation_of2_as_subset(c14,c11,c12) | empty_set = c12 | relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(8,c,9,a)].
+24 -relation_of2_as_subset(c14,c11,c12) | c12 = empty_set | relation_dom_as_subset(c11,c12,c14) = c11.  [copy(23),flip(b)].
+25 c12 = empty_set | relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(16,a,24,a)].
+26 relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(18,a,25,a)].
+27 relation_dom(A) = relation_dom_as_subset(B,C,A) | -relation_of2_as_subset(A,B,C).  [resolve(11,a,10,b)].
+28 relation_dom_as_subset(A,B,C) = relation_dom(C) | -relation_of2_as_subset(C,A,B).  [copy(27),flip(a)].
+29 element(c14,powerset(cartesian_product2(c11,c12))).  [resolve(21,a,16,a)].
+30 relation_dom_as_subset(c11,c12,c14) = relation_dom(c14).  [resolve(28,b,16,a)].
+31 c11 = relation_dom(c14).  [para(26(a,1),30(a,1))].
+32 relation_dom(c14) = c11.  [copy(31),flip(a)].
+33 relation(c14).  [resolve(29,a,20,a)].
+34 -function(c14) | -relation(A) | -function(A) | -in(B,relation_dom(c14)) | apply(relation_composition(c14,A),B) = apply(A,apply(c14,B)).  [resolve(22,a,33,a)].
+35 -relation(A) | -function(A) | -in(B,relation_dom(c14)) | apply(relation_composition(c14,A),B) = apply(A,apply(c14,B)).  [resolve(34,a,12,a)].
+36 -function(c15) | -in(A,relation_dom(c14)) | apply(relation_composition(c14,c15),A) = apply(c15,apply(c14,A)).  [resolve(35,a,13,a)].
+37 -in(A,relation_dom(c14)) | apply(relation_composition(c14,c15),A) = apply(c15,apply(c14,A)).  [resolve(36,a,14,a)].
+38 -in(c13,relation_dom(c14)).  [resolve(37,b,19,a)].
+39 -in(c13,c11).  [para(32(a,1),38(a,2))].
+40 $F.  [resolve(15,a,39,a)].
+
+============================== end of proof ==========================

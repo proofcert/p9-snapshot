@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n069.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:53:08 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 62549 was started by sandbox on n069.star.cs.uiowa.edu,
+Thu Jun  5 22:53:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_62517_n069.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 5.
+% Maximum clause weight is 4.000.
+% Given clauses 0.
+
+
+1 (all A all B ((all C all D (status(C,D,A) -> status(C,D,B))) <-> isa(A,B))).  [assumption].
+2 (all A all B ((exists C exists D (status(C,D,A) & -status(C,D,B))) <-> nota(A,B))).  [assumption].
+3 (all A all B ((all C all D (status(C,D,A) -> -status(C,D,B))) <-> nevera(A,B))).  [assumption].
+4 (all A all B ((all C all D -(status(C,D,A) <-> status(C,D,B))) <-> xora(A,B))).  [assumption].
+5 -(all A all B exists C exists D (status(C,D,A) -> -(isa(A,B) & (nota(A,B) | nevera(A,B) | xora(A,B))))).  [assumption].
+6 -status(A,B,C) | status(A,B,D) | -isa(C,D).  [clausify(1)].
+7 isa(c19,c20).  [clausify(5)].
+8 -status(f5(A,B),f6(A,B),B) | -nota(A,B).  [clausify(2)].
+9 nota(c19,c20) | nevera(c19,c20) | xora(c19,c20).  [clausify(5)].
+10 -status(A,B,C) | -status(A,B,D) | -nevera(C,D).  [clausify(3)].
+11 -status(f5(c19,c20),f6(c19,c20),c20) | nevera(c19,c20) | xora(c19,c20).  [resolve(8,b,9,a)].
+12 -status(A,B,C) | -status(A,B,D) | -xora(C,D).  [clausify(4)].
+13 -status(f5(c19,c20),f6(c19,c20),c20) | xora(c19,c20) | -status(A,B,c19) | -status(A,B,c20).  [resolve(11,b,10,c)].
+14 status(A,B,c19).  [clausify(5)].
+15 -status(A,B,c19) | status(A,B,c20).  [resolve(6,c,7,a)].
+16 status(A,B,c20).  [resolve(14,a,15,a)].
+17 -status(f5(c19,c20),f6(c19,c20),c20) | -status(A,B,c19) | -status(A,B,c20) | -status(C,D,c19) | -status(C,D,c20).  [resolve(13,b,12,c)].
+18 -status(A,B,c19) | -status(A,B,c20) | -status(C,D,c19) | -status(C,D,c20).  [resolve(16,a,17,a)].
+19 -status(A,B,c20) | -status(C,D,c19) | -status(C,D,c20).  [resolve(14,a,18,a)].
+20 -status(A,B,c19) | -status(A,B,c20).  [resolve(16,a,19,a)].
+21 -status(A,B,c20).  [resolve(14,a,20,a)].
+22 $F.  [resolve(16,a,21,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,43 @@
+
+
+
+
+
+
+
+
+
+
+11 test(c2).  [clausify(10)].
+12 -test(A) | c(A) != B | complement(A,B).  [clausify(9)].
+13 addition(A,zero) = A.  [clausify(2)].
+14 multiplication(one,A) = A.  [clausify(4)].
+15 multiplication(A,zero) = zero.  [clausify(6)].
+16 multiplication(zero,A) = zero.  [clausify(7)].
+17 addition(A,B) = addition(B,A).  [clausify(1)].
+18 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(3)].
+19 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(5)].
+20 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(19),flip(a)].
+21 multiplication(c(c2),c1) = addition(multiplication(c1,c(c3)),multiplication(c(c2),c1)).  [clausify(10)].
+22 addition(multiplication(c1,c(c3)),multiplication(c(c2),c1)) = multiplication(c(c2),c1).  [copy(21),flip(a)].
+23 multiplication(multiplication(c2,c1),c(c3)) != zero.  [clausify(10)].
+24 multiplication(c2,multiplication(c1,c(c3))) != zero.  [para(18(a,1),23(a,1))].
+25 -complement(A,B) | multiplication(A,B) = zero.  [clausify(8)].
+26 c(c2) != A | complement(c2,A).  [resolve(12,a,11,a)].
+27 addition(multiplication(A,B),multiplication(A,zero)) = multiplication(A,B).  [para(13(a,1),20(a,2,2))].
+28 addition(multiplication(A,B),zero) = multiplication(A,B).  [para(15(a,1),27(a,1,2))].
+29 addition(zero,multiplication(A,B)) = multiplication(A,B).  [para(17(a,1),28(a,1))].
+30 complement(c2,multiplication(one,c(c2))).  [resolve(26,a,14,a(flip))].
+31 complement(c2,c(c2)).  [para(14(a,1),30(a,2))].
+32 multiplication(c2,c(c2)) = zero.  [resolve(31,a,25,a)].
+33 multiplication(zero,A) = multiplication(c2,multiplication(c(c2),A)).  [para(32(a,1),18(a,1,1))].
+34 zero = multiplication(c2,multiplication(c(c2),A)).  [para(16(a,1),33(a,1))].
+35 multiplication(c2,multiplication(c(c2),A)) = zero.  [copy(34),flip(a)].
+36 addition(zero,multiplication(c2,A)) = multiplication(c2,addition(multiplication(c(c2),B),A)).  [para(35(a,1),20(a,1,1))].
+37 multiplication(c2,A) = multiplication(c2,addition(multiplication(c(c2),B),A)).  [para(29(a,1),36(a,1))].
+38 multiplication(c2,A) = multiplication(c2,addition(A,multiplication(c(c2),B))).  [para(17(a,1),37(a,2,2))].
+39 multiplication(c2,addition(A,multiplication(c(c2),B))) = multiplication(c2,A).  [copy(38),flip(a)].
+40 multiplication(c2,multiplication(c(c2),c1)) = multiplication(c2,multiplication(c1,c(c3))).  [para(22(a,1),39(a,1,2))].
+41 zero = multiplication(c2,multiplication(c1,c(c3))).  [para(35(a,1),40(a,1))].
+42 multiplication(c2,multiplication(c1,c(c3))) = zero.  [copy(41),flip(a)].
+43 $F.  [resolve(24,a,42,a)].

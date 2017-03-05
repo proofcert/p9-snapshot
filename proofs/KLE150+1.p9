@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n094.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:20:43 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 14893 was started by sandbox on n094.star.cs.uiowa.edu,
+Fri Jun  6 00:20:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_14861_n094.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: goals.
+% Length of proof is 21.
+% Level of proof is 6.
+% Maximum clause weight is 15.000.
+% Given clauses 37.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C multiplication(A,multiplication(B,C)) = multiplication(multiplication(A,B),C)).  [assumption].
+3 (all A multiplication(zero,A) = zero).  [assumption].
+4 (all A addition(one,multiplication(A,star(A))) = star(A)).  [assumption].
+5 (all A strong_iteration(A) = addition(multiplication(A,strong_iteration(A)),one)).  [assumption].
+6 -(all A strong_iteration(multiplication(A,zero)) = addition(one,multiplication(A,zero))).  [assumption].
+7 multiplication(zero,A) = zero.  [clausify(3)].
+8 addition(A,B) = addition(B,A).  [clausify(1)].
+9 star(A) = addition(one,multiplication(A,star(A))).  [clausify(4)].
+10 addition(one,multiplication(A,star(A))) = star(A).  [copy(9),flip(a)].
+11 strong_iteration(A) = addition(multiplication(A,strong_iteration(A)),one).  [clausify(5)].
+12 strong_iteration(A) = addition(one,multiplication(A,strong_iteration(A))).  [para(8(a,1),11(a,2))].
+13 addition(one,multiplication(A,strong_iteration(A))) = strong_iteration(A).  [copy(12),flip(a)].
+14 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(2)].
+15 strong_iteration(multiplication(c1,zero)) != addition(one,multiplication(c1,zero)).  [clausify(6)].
+16 addition(one,multiplication(c1,zero)) != strong_iteration(multiplication(c1,zero)).  [copy(15),flip(a)].
+17 addition(one,multiplication(A,multiplication(B,star(multiplication(A,B))))) = star(multiplication(A,B)).  [para(14(a,1),10(a,1,2))].
+18 addition(one,multiplication(A,multiplication(B,strong_iteration(multiplication(A,B))))) = strong_iteration(multiplication(A,B)).  [para(14(a,1),13(a,1,2))].
+19 addition(one,multiplication(A,zero)) = star(multiplication(A,zero)).  [para(7(a,1),17(a,1,2,2))].
+20 star(multiplication(c1,zero)) != strong_iteration(multiplication(c1,zero)).  [para(19(a,1),16(a,1))].
+21 strong_iteration(multiplication(c1,zero)) != star(multiplication(c1,zero)).  [copy(20),flip(a)].
+22 addition(one,multiplication(A,zero)) = strong_iteration(multiplication(A,zero)).  [para(7(a,1),18(a,1,2,2))].
+23 star(multiplication(A,zero)) = strong_iteration(multiplication(A,zero)).  [para(19(a,1),22(a,1))].
+24 strong_iteration(multiplication(A,zero)) = star(multiplication(A,zero)).  [copy(23),flip(a)].
+25 $F.  [resolve(24,a,21,a)].
+
+============================== end of proof ==========================

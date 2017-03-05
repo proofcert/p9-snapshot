@@ -1,0 +1,17 @@
+
+
+
+
+
+6 -status(A,B,C) | status(A,B,D) | nota(C,D).  [clausify(3)].
+7 -nota(unp,thm).  [assumption].
+8 -model(A,B) | status(B,C,unp).  [clausify(1)].
+9 -model(A,B) | model(A,C) | -status(B,C,thm).  [clausify(2)].
+10 model(A,c1).  [clausify(4)].
+11 -model(c15,c17).  [clausify(5)].
+12 -status(A,B,unp) | status(A,B,thm).  [resolve(7,a,6,c)].
+13 status(c1,A,unp).  [resolve(10,a,8,a)].
+14 status(c1,A,thm).  [resolve(13,a,12,a)].
+15 -model(A,c1) | model(A,B).  [resolve(14,a,9,c)].
+16 model(A,B).  [resolve(10,a,15,a)].
+17 $F.  [resolve(16,a,11,a)].

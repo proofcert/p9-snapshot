@@ -1,0 +1,44 @@
+
+
+
+
+
+
+
+
+9 addition(A,zero) = A.  [clausify(2)].
+10 multiplication(A,zero) = zero.  [clausify(6)].
+11 addition(A,B) = addition(B,A).  [clausify(1)].
+12 leq(multiplication(multiplication(c3,c1),c(c4)),zero).  [clausify(8)].
+13 leq(multiplication(multiplication(c3,c2),c(c4)),zero).  [clausify(8)].
+14 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(3)].
+15 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(4)].
+16 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(15),flip(a)].
+17 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(5)].
+18 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(17),flip(a)].
+19 -leq(multiplication(multiplication(c3,addition(c1,c2)),c(c4)),zero).  [clausify(8)].
+20 -leq(multiplication(c3,multiplication(addition(c1,c2),c(c4))),zero).  [para(14(a,1),19(a,1))].
+21 -leq(A,B) | addition(A,B) = B.  [clausify(7)].
+22 leq(A,B) | addition(A,B) != B.  [clausify(7)].
+23 leq(multiplication(c3,multiplication(c2,c(c4))),zero).  [para(14(a,1),13(a,1))].
+24 leq(multiplication(c3,multiplication(c1,c(c4))),zero).  [para(14(a,1),12(a,1))].
+25 addition(multiplication(A,B),multiplication(A,zero)) = multiplication(A,B).  [para(9(a,1),16(a,2,2))].
+26 addition(multiplication(A,B),zero) = multiplication(A,B).  [para(10(a,1),25(a,1,2))].
+27 addition(zero,multiplication(A,B)) = multiplication(A,B).  [para(11(a,1),26(a,1))].
+28 addition(multiplication(c3,multiplication(addition(c1,c2),c(c4))),zero) != zero.  [resolve(22,a,20,a)].
+29 addition(zero,multiplication(c3,multiplication(addition(c1,c2),c(c4)))) != zero.  [para(11(a,1),28(a,1))].
+30 multiplication(c3,multiplication(addition(c1,c2),c(c4))) != zero.  [para(27(a,1),29(a,1))].
+31 addition(multiplication(c3,multiplication(c2,c(c4))),zero) = zero.  [resolve(23,a,21,a)].
+32 addition(zero,multiplication(c3,multiplication(c2,c(c4)))) = zero.  [para(11(a,1),31(a,1))].
+33 multiplication(c3,multiplication(c2,c(c4))) = zero.  [para(27(a,1),32(a,1))].
+34 addition(multiplication(c3,multiplication(c1,c(c4))),zero) = zero.  [resolve(24,a,21,a)].
+35 addition(zero,multiplication(c3,multiplication(c1,c(c4)))) = zero.  [para(11(a,1),34(a,1))].
+36 multiplication(c3,multiplication(c1,c(c4))) = zero.  [para(27(a,1),35(a,1))].
+37 addition(zero,multiplication(c3,A)) = multiplication(c3,addition(multiplication(c2,c(c4)),A)).  [para(33(a,1),16(a,1,1))].
+38 multiplication(c3,A) = multiplication(c3,addition(multiplication(c2,c(c4)),A)).  [para(27(a,1),37(a,1))].
+39 multiplication(c3,A) = multiplication(c3,addition(A,multiplication(c2,c(c4)))).  [para(11(a,1),38(a,2,2))].
+40 multiplication(c3,addition(A,multiplication(c2,c(c4)))) = multiplication(c3,A).  [copy(39),flip(a)].
+41 multiplication(c3,multiplication(addition(A,c2),c(c4))) = multiplication(c3,multiplication(A,c(c4))).  [para(18(a,1),40(a,1,2))].
+42 multiplication(c3,multiplication(c1,c(c4))) != zero.  [para(41(a,1),30(a,1))].
+43 zero != zero.  [para(36(a,1),42(a,1))].
+44 $F.  [copy(43),xx(a)].

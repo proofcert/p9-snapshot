@@ -1,0 +1,68 @@
+
+
+
+
+
+
+
+
+
+
+
+12 element(A,powerset(B)) | -subset(A,B).  [clausify(7)].
+13 subset(A,A).  [clausify(3)].
+14 empty(empty_set).  [assumption].
+15 empty(n0).  [assumption].
+16 relation(f4(A)).  [clausify(4)].
+17 function(f4(A)).  [clausify(4)].
+18 relation(f5(A)).  [clausify(5)].
+19 function(f5(A)).  [clausify(5)].
+20 element(f1(A),A).  [clausify(1)].
+21 relation_dom(f4(A)) = A.  [clausify(4)].
+22 relation_dom(f5(A)) = A.  [clausify(5)].
+23 -empty(n1).  [assumption].
+24 -empty(powerset(A)).  [clausify(2)].
+25 empty_set != c7.  [clausify(11)].
+26 c7 != empty_set.  [copy(25),flip(a)].
+27 -in(A,B) | -element(B,powerset(C)) | -empty(C).  [clausify(9)].
+28 -empty(A) | empty_set = A.  [clausify(10)].
+29 -element(A,B) | empty(B) | in(A,B).  [clausify(6)].
+30 -in(A,B) | apply(f4(B),A) = n0.  [clausify(4)].
+31 -in(A,B) | apply(f5(B),A) = n1.  [clausify(5)].
+32 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(8)].
+33 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom(A) != c7 | relation_dom(B) != c7 | B = A.  [clausify(11)].
+34 element(A,powerset(A)).  [resolve(12,b,13,a)].
+35 empty_set = n0.  [resolve(28,a,15,a)].
+36 n0 = empty_set.  [copy(35),flip(a)].
+37 -empty(c7).  [resolve(28,b,26,a(flip))].
+38 -in(A,B) | apply(f4(B),A) = empty_set.  [para(36(a,1),30(b,2))].
+39 empty(A) | in(f1(A),A).  [resolve(29,a,20,a)].
+40 -relation(f5(A)) | -relation(B) | -function(B) | relation_dom(f5(A)) != c7 | relation_dom(B) != c7 | B = f5(A).  [resolve(33,b,19,a)].
+41 -relation(f5(A)) | -relation(B) | -function(B) | A != c7 | relation_dom(B) != c7 | B = f5(A).  [para(22(a,1),40(d,1))].
+42 -relation(f5(A)) | -relation(B) | -function(B) | c7 != A | relation_dom(B) != c7 | B = f5(A).  [copy(41),flip(d)].
+43 -relation(f5(A)) | -relation(B) | -function(B) | c7 != A | relation_dom(B) != c7 | f5(A) = B.  [copy(42),flip(f)].
+44 -relation(A) | -function(A) | c7 != B | relation_dom(A) != c7 | f5(B) = A.  [resolve(18,a,43,a)].
+45 empty(powerset(A)) | in(A,powerset(A)).  [resolve(34,a,29,a)].
+46 in(A,powerset(A)).  [resolve(24,a,45,a)].
+47 empty(A) | apply(f4(A),f1(A)) = empty_set.  [resolve(39,b,38,a)].
+48 empty(A) | apply(f5(A),f1(A)) = n1.  [resolve(39,b,31,a)].
+49 empty(A) | -element(A,powerset(B)) | -empty(B).  [resolve(39,b,27,a)].
+50 -relation(f4(A)) | c7 != B | relation_dom(f4(A)) != c7 | f5(B) = f4(A).  [resolve(44,b,17,a)].
+51 -relation(f4(A)) | c7 != B | A != c7 | f5(B) = f4(A).  [para(21(a,1),50(c,1))].
+52 -relation(f4(A)) | c7 != B | c7 != A | f5(B) = f4(A).  [copy(51),flip(c)].
+53 c7 != A | c7 != B | f5(A) = f4(B).  [resolve(16,a,52,a)].
+54 c7 != A | f5(A) = f4(A).  [factor(53,a,b)].
+55 -element(n1,powerset(A)) | -empty(A).  [resolve(49,a,23,a)].
+56 -element(n1,powerset(empty_set)).  [resolve(55,b,14,a)].
+57 f5(relation_dom(f5(c7))) = f4(relation_dom(f5(c7))).  [resolve(54,a,22,a(flip))].
+58 f5(c7) = f4(relation_dom(f5(c7))).  [para(22(a,1),57(a,1,1))].
+59 f5(c7) = f4(c7).  [para(22(a,1),58(a,2,1))].
+60 -in(A,B) | element(A,B).  [resolve(32,b,34,a)].
+61 -in(n1,powerset(empty_set)).  [resolve(60,b,56,a)].
+62 apply(f4(c7),f1(c7)) = empty_set.  [resolve(47,a,37,a)].
+63 apply(f5(c7),f1(c7)) = n1.  [resolve(48,a,37,a)].
+64 apply(f4(c7),f1(c7)) = n1.  [para(59(a,1),63(a,1,1))].
+65 empty_set = n1.  [para(62(a,1),64(a,1))].
+66 n1 = empty_set.  [copy(65),flip(a)].
+67 -in(empty_set,powerset(empty_set)).  [para(66(a,1),61(a,1))].
+68 $F.  [resolve(46,a,67,a)].

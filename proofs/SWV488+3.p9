@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n052.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:43:33 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 52454 was started by sandbox on n052.star.cs.uiowa.edu,
+Fri Jun  6 11:43:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_52422_n052.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 19.
+% Level of proof is 4.
+% Maximum clause weight is 23.000.
+% Given clauses 23.
+
+
+1 (all A all B (int_leq(A,B) <-> int_less(A,B) | A = B)).  [assumption].
+2 (all A all B (int_less(A,B) | int_leq(B,A))).  [assumption].
+3 (all A all B (int_leq(int_one,A) & int_leq(A,n) & int_leq(int_one,B) & int_leq(B,n) -> (all C (int_less(int_zero,C) & A = plus(B,C) -> (all D (int_leq(int_one,D) & int_leq(D,B) -> a(plus(D,C),D) = real_zero)))) & (all D (int_leq(int_one,D) & int_leq(D,B) -> a(D,D) = real_one)) & (all C (int_less(int_zero,C) & B = plus(A,C) -> (all D (int_leq(int_one,D) & int_leq(D,A) -> a(D,plus(D,C)) = real_zero)))))).  [assumption].
+4 -(all A all B (int_leq(int_one,B) & int_leq(B,A) & int_leq(A,n) -> (A = B -> a(A,B) != real_zero))).  [assumption].
+5 int_leq(int_one,c2).  [clausify(4)].
+6 int_leq(c1,n).  [clausify(4)].
+7 c2 = c1.  [clausify(4)].
+8 a(c1,c2) = real_zero.  [clausify(4)].
+9 a(c1,c1) = real_zero.  [para(7(a,1),8(a,1,2))].
+10 real_zero = a(c1,c1).  [copy(9),flip(a)].
+11 int_less(A,B) | int_leq(B,A).  [clausify(2)].
+12 real_zero != real_one.  [assumption].
+13 a(c1,c1) != real_one.  [para(10(a,1),12(a,1))].
+14 int_leq(A,B) | -int_less(A,B).  [clausify(1)].
+15 -int_leq(int_one,A) | -int_leq(A,n) | -int_leq(int_one,B) | -int_leq(B,n) | -int_leq(int_one,C) | -int_leq(C,B) | a(C,C) = real_one.  [clausify(3)].
+16 int_leq(int_one,c1).  [para(7(a,1),5(a,2))].
+17 -int_leq(int_one,A) | -int_leq(A,n) | -int_leq(A,n) | -int_leq(int_one,B) | -int_leq(B,A) | a(B,B) = real_one.  [factor(15,a,c)].
+18 -int_leq(int_one,A) | -int_leq(A,n) | -int_leq(int_one,B) | -int_leq(B,A) | a(B,B) = real_one.  [copy(17),merge(c)].
+19 int_leq(A,B) | int_leq(B,A).  [resolve(14,b,11,a)].
+20 int_leq(A,A).  [factor(19,a,b)].
+21 -int_leq(c1,n) | -int_leq(int_one,A) | -int_leq(A,c1) | a(A,A) = real_one.  [resolve(18,a,16,a)].
+22 -int_leq(int_one,A) | -int_leq(A,c1) | a(A,A) = real_one.  [resolve(21,a,6,a)].
+23 -int_leq(c1,c1) | a(c1,c1) = real_one.  [resolve(22,a,16,a)].
+24 -int_leq(c1,c1).  [resolve(23,b,13,a)].
+25 $F.  [resolve(20,a,24,a)].
+
+============================== end of proof ==========================

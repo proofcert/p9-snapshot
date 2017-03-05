@@ -1,0 +1,57 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n093.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:49:53 CDT 2014
+% CPUTime    : 0.88 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 32678 was started by sandbox on n093.star.cs.uiowa.edu,
+Fri Jun  6 00:49:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_32646_n093.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.65 (+ 0.01) seconds.
+% Length of proof is 22.
+% Level of proof is 7.
+% Maximum clause weight is 11.000.
+% Given clauses 402.
+
+
+1 (all A all B ((all C (model(C,A) -> model(C,B))) <-> status(A,B,thm))).  [assumption].
+2 (all A all B ((exists C (model(C,A) & model(C,not(B)))) <-> status(A,B,csa))).  [assumption].
+3 (all A all B ((exists C exists D (status(C,D,A) & -status(C,D,B))) <-> nota(A,B))).  [assumption].
+4 (all A all B -(model(A,B) <-> model(A,not(B)))).  [assumption].
+5 (exists A all B -model(B,A)).  [assumption].
+6 (exists A exists B ((exists C model(C,A)) & (all D (model(D,A) -> model(D,B))) & (exists E (-model(E,A) & model(E,B))) & (exists F -model(F,B)))).  [assumption].
+7 -status(A,B,C) | status(A,B,D) | nota(C,D).  [clausify(3)].
+8 -nota(csa,thm).  [assumption].
+9 -model(A,B) | model(A,C) | -status(B,C,thm).  [clausify(1)].
+10 -model(A,B) | -model(A,not(C)) | status(B,C,csa).  [clausify(2)].
+11 model(A,B) | model(A,not(B)).  [clausify(4)].
+12 -model(A,c5).  [clausify(5)].
+13 model(c12,c10).  [clausify(6)].
+14 -model(A,c10) | model(A,c11).  [clausify(6)].
+15 -status(A,B,csa) | status(A,B,thm).  [resolve(8,a,7,c)].
+16 model(A,B) | -model(A,C) | status(C,B,csa).  [resolve(11,b,10,b)].
+17 model(c12,c11).  [resolve(14,a,13,a)].
+18 model(c12,A) | status(c11,A,csa).  [resolve(16,b,17,a)].
+19 model(c12,A) | status(c11,A,thm).  [resolve(18,b,15,a)].
+20 model(c12,A) | -model(B,c11) | model(B,A).  [resolve(19,b,9,c)].
+21 model(c12,A) | -model(c12,c11).  [factor(20,a,c)].
+22 model(c12,A).  [resolve(17,a,21,b)].
+23 $F.  [resolve(22,a,12,a)].
+
+============================== end of proof ==========================

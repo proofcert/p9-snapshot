@@ -1,0 +1,67 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n108.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:58:08 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 31889 was started by sandbox on n108.star.cs.uiowa.edu,
+Fri Jun  6 09:58:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_31857_n108.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 26.
+% Level of proof is 4.
+% Maximum clause weight is 24.000.
+% Given clauses 43.
+
+
+1 (all A (rel_str(A) -> bottom_of_relstr(A) = join_on_relstr(A,empty_set))).  [assumption].
+2 (all A (rel_str(A) -> element(bottom_of_relstr(A),the_carrier(A)))).  [assumption].
+3 (all A (antisymmetric_relstr(A) & rel_str(A) -> (all B (element(B,the_carrier(A)) -> (all C ((B = join_on_relstr(A,C) & ex_sup_of_relstr_set(A,C) -> relstr_set_smaller(A,C,B) & (all D (element(D,the_carrier(A)) -> (relstr_set_smaller(A,C,D) -> related(A,B,D))))) & (relstr_set_smaller(A,C,B) & (all D (element(D,the_carrier(A)) -> (relstr_set_smaller(A,C,D) -> related(A,B,D)))) -> B = join_on_relstr(A,C) & ex_sup_of_relstr_set(A,C)))))))).  [assumption].
+4 (all A (-empty_carrier(A) & antisymmetric_relstr(A) & lower_bounded_relstr(A) & rel_str(A) -> ex_sup_of_relstr_set(A,empty_set) & ex_inf_of_relstr_set(A,the_carrier(A)))).  [assumption].
+5 (all A (rel_str(A) -> (all B (element(B,the_carrier(A)) -> relstr_set_smaller(A,empty_set,B) & relstr_element_smaller(A,empty_set,B))))).  [assumption].
+6 -(all A (-empty_carrier(A) & antisymmetric_relstr(A) & lower_bounded_relstr(A) & rel_str(A) -> (all B (element(B,the_carrier(A)) -> related(A,bottom_of_relstr(A),B))))).  [assumption].
+7 rel_str(c7).  [clausify(6)].
+8 -rel_str(A) | element(bottom_of_relstr(A),the_carrier(A)).  [clausify(2)].
+9 -rel_str(A) | join_on_relstr(A,empty_set) = bottom_of_relstr(A).  [clausify(1)].
+10 -rel_str(A) | -element(B,the_carrier(A)) | relstr_set_smaller(A,empty_set,B).  [clausify(5)].
+11 empty_carrier(A) | -antisymmetric_relstr(A) | -lower_bounded_relstr(A) | -rel_str(A) | ex_sup_of_relstr_set(A,empty_set).  [clausify(4)].
+12 -antisymmetric_relstr(A) | -rel_str(A) | -element(B,the_carrier(A)) | join_on_relstr(A,C) != B | -ex_sup_of_relstr_set(A,C) | -element(D,the_carrier(A)) | -relstr_set_smaller(A,C,D) | related(A,B,D).  [clausify(3)].
+13 antisymmetric_relstr(c7).  [clausify(6)].
+14 lower_bounded_relstr(c7).  [clausify(6)].
+15 element(c8,the_carrier(c7)).  [clausify(6)].
+16 -empty_carrier(c7).  [clausify(6)].
+17 -related(c7,bottom_of_relstr(c7),c8).  [clausify(6)].
+18 element(bottom_of_relstr(c7),the_carrier(c7)).  [resolve(8,a,7,a)].
+19 join_on_relstr(c7,empty_set) = bottom_of_relstr(c7).  [resolve(9,a,7,a)].
+20 -element(A,the_carrier(c7)) | relstr_set_smaller(c7,empty_set,A).  [resolve(10,a,7,a)].
+21 empty_carrier(c7) | -antisymmetric_relstr(c7) | -lower_bounded_relstr(c7) | ex_sup_of_relstr_set(c7,empty_set).  [resolve(11,d,7,a)].
+22 -antisymmetric_relstr(c7) | -lower_bounded_relstr(c7) | ex_sup_of_relstr_set(c7,empty_set).  [resolve(16,a,21,a)].
+23 -lower_bounded_relstr(c7) | ex_sup_of_relstr_set(c7,empty_set).  [resolve(13,a,22,a)].
+24 ex_sup_of_relstr_set(c7,empty_set).  [resolve(14,a,23,a)].
+25 -antisymmetric_relstr(c7) | -element(A,the_carrier(c7)) | join_on_relstr(c7,B) != A | -ex_sup_of_relstr_set(c7,B) | -element(C,the_carrier(c7)) | -relstr_set_smaller(c7,B,C) | related(c7,A,C).  [resolve(12,b,7,a)].
+26 -element(A,the_carrier(c7)) | join_on_relstr(c7,B) != A | -ex_sup_of_relstr_set(c7,B) | -element(C,the_carrier(c7)) | -relstr_set_smaller(c7,B,C) | related(c7,A,C).  [resolve(13,a,25,a)].
+27 relstr_set_smaller(c7,empty_set,c8).  [resolve(20,a,15,a)].
+28 join_on_relstr(c7,A) != bottom_of_relstr(c7) | -ex_sup_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_set_smaller(c7,A,B) | related(c7,bottom_of_relstr(c7),B).  [resolve(26,a,18,a)].
+29 -ex_sup_of_relstr_set(c7,empty_set) | -element(A,the_carrier(c7)) | -relstr_set_smaller(c7,empty_set,A) | related(c7,bottom_of_relstr(c7),A).  [resolve(28,a,19,a)].
+30 -element(A,the_carrier(c7)) | -relstr_set_smaller(c7,empty_set,A) | related(c7,bottom_of_relstr(c7),A).  [resolve(29,a,24,a)].
+31 -relstr_set_smaller(c7,empty_set,c8) | related(c7,bottom_of_relstr(c7),c8).  [resolve(30,a,15,a)].
+32 -relstr_set_smaller(c7,empty_set,c8).  [resolve(31,b,17,a)].
+33 $F.  [resolve(27,a,32,a)].
+
+============================== end of proof ==========================

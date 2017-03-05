@@ -1,0 +1,13 @@
+
+
+
+4 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(1)].
+5 -iext(uri_rdfs_domain,A,B) | -iext(A,C,D) | icext(B,C).  [clausify(2)].
+6 iext(uri_rdfs_domain,uri_owl_sameAs,uri_ex_Person).  [assumption].
+7 -iext(uri_rdf_type,uri_ex_u,uri_ex_Person).  [assumption].
+8 iext(uri_owl_sameAs,A,B) | B != A.  [clausify(3)].
+9 -iext(uri_rdfs_domain,A,B) | -iext(A,C,D) | iext(uri_rdf_type,C,B).  [resolve(5,c,4,b)].
+10 iext(uri_owl_sameAs,A,A).  [xx_res(8,b)].
+11 -iext(uri_owl_sameAs,A,B) | iext(uri_rdf_type,A,uri_ex_Person).  [resolve(9,a,6,a)].
+12 -iext(uri_owl_sameAs,uri_ex_u,A).  [resolve(11,b,7,a)].
+13 $F.  [resolve(12,a,10,a)].

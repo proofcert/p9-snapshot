@@ -1,0 +1,67 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n062.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:48:08 CDT 2014
+% CPUTime    : 0.21 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 55120 was started by sandbox on n062.star.cs.uiowa.edu,
+Fri Jun  6 05:48:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_55088_n062.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.05 (+ 0.00) seconds.
+% Length of proof is 32.
+% Level of proof is 5.
+% Maximum clause weight is 3.000.
+% Given clauses 0.
+
+
+1 (all A all B (human_person(A,B) -> animate(A,B))).  [assumption].
+2 (all A all B (man(A,B) -> human_person(A,B))).  [assumption].
+3 (all A all B (object(A,B) -> nonliving(A,B))).  [assumption].
+4 (all A all B (artifact(A,B) -> object(A,B))).  [assumption].
+5 (all A all B (instrumentality(A,B) -> artifact(A,B))).  [assumption].
+6 (all A all B (device(A,B) -> instrumentality(A,B))).  [assumption].
+7 (all A all B (wheel(A,B) -> device(A,B))).  [assumption].
+8 (all A all B (animate(A,B) -> -nonliving(A,B))).  [assumption].
+9 (all A all B all C all D (be(A,B,C,D) -> C = D)).  [assumption].
+10 --(exists A (actual_world(A) & (exists B exists C exists D exists E exists F exists V6 exists V7 exists V8 exists V9 exists V10 (of(A,C,B) & man(A,B) & jules_forename(A,C) & forename(A,C) & frontseat(A,F) & chevy(A,D) & white(A,D) & dirty(A,D) & old(A,D) & of(A,E,F) & city(A,F) & hollywood_placename(A,E) & placename(A,E) & street(A,F) & lonely(A,F) & event(A,V6) & agent(A,V6,D) & present(A,V6) & barrel(A,V6) & down(A,V6,F) & in(A,V6,F) & (all V11 (member(A,V11,V7) -> (exists V12 exists V13 (state(A,V12) & be(A,V12,V11,V13) & in(A,V13,F))))) & two(A,V7) & group(A,V7) & (all V14 (member(A,V14,V7) -> fellow(A,V14) & young(A,V14))) & (all V15 (member(A,V15,V8) -> (all V16 (member(A,V16,V7) -> (exists V17 (event(A,V17) & agent(A,V17,V16) & patient(A,V17,V15) & present(A,V17) & nonreflexive(A,V17) & wear(A,V17))))))) & group(A,V8) & (all V18 (member(A,V18,V8) -> coat(A,V18) & black(A,V18) & cheap(A,V18))) & wheel(A,V10) & state(A,V9) & be(A,V9,B,V10) & behind(A,V10,V10))))).  [assumption].
+11 -man(A,B) | human_person(A,B).  [clausify(2)].
+12 man(c1,c2).  [clausify(10)].
+13 -human_person(A,B) | animate(A,B).  [clausify(1)].
+14 human_person(c1,c2).  [resolve(12,a,11,a)].
+15 -artifact(A,B) | object(A,B).  [clausify(4)].
+16 -object(A,B) | nonliving(A,B).  [clausify(3)].
+17 -device(A,B) | instrumentality(A,B).  [clausify(6)].
+18 -instrumentality(A,B) | artifact(A,B).  [clausify(5)].
+19 wheel(c1,c11).  [clausify(10)].
+20 -wheel(A,B) | device(A,B).  [clausify(7)].
+21 -animate(A,B) | -nonliving(A,B).  [clausify(8)].
+22 animate(c1,c2).  [resolve(14,a,13,a)].
+23 -be(A,B,C,D) | D = C.  [clausify(9)].
+24 be(c1,c10,c2,c11).  [clausify(10)].
+25 -device(A,B) | artifact(A,B).  [resolve(17,b,18,a)].
+26 -artifact(A,B) | nonliving(A,B).  [resolve(15,b,16,a)].
+27 -device(A,B) | nonliving(A,B).  [resolve(25,b,26,a)].
+28 device(c1,c11).  [resolve(19,a,20,a)].
+29 -nonliving(c1,c2).  [resolve(22,a,21,a)].
+30 c11 = c2.  [resolve(24,a,23,a)].
+31 nonliving(c1,c11).  [resolve(27,a,28,a)].
+32 nonliving(c1,c2).  [para(30(a,1),31(a,2))].
+33 $F.  [resolve(29,a,32,a)].
+
+============================== end of proof ==========================

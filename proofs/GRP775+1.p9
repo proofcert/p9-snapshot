@@ -1,0 +1,210 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n101.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 21:37:18 CDT 2014
+% CPUTime    : 7.99 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 21787 was started by sandbox on n101.star.cs.uiowa.edu,
+Fri Jun  6 21:37:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_21755_n101.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 7.78 (+ 0.11) seconds.
+% Length of proof is 91.
+% Level of proof is 25.
+% Maximum clause weight is 29.000.
+% Given clauses 2278.
+
+
+1 (all A all B all C product(product(C,B),A) = product(C,product(B,A))).  [assumption].
+2 (all A product(A,A) = A).  [assumption].
+3 (all A all B (l(A,B) <-> product(A,B) = A & product(B,A) = B)).  [assumption].
+4 (all A all B (r(A,B) <-> product(A,B) = B & product(B,A) = A)).  [assumption].
+5 (all A all B (d(A,B) <-> (exists C (r(A,C) & l(C,B))))).  [assumption].
+6 -(all A all B (d(A,B) <-> product(A,product(B,A)) = A & product(B,product(A,B)) = B)).  [assumption].
+7 -d(A,B) | l(f1(A,B),B).  [clausify(5)].
+8 -l(A,B) | product(A,B) = A.  [clausify(3)].
+9 -l(A,B) | product(B,A) = B.  [clausify(3)].
+10 d(A,B) | -r(A,C) | -l(C,B).  [clausify(5)].
+11 l(A,B) | product(A,B) != A | product(B,A) != B.  [clausify(3)].
+12 product(A,A) = A.  [clausify(2)].
+13 d(c1,c2) | product(c1,product(c2,c1)) = c1.  [clausify(6)].
+14 d(c1,c2) | product(c2,product(c1,c2)) = c2.  [clausify(6)].
+15 product(product(A,B),C) = product(A,product(B,C)).  [clausify(1)].
+16 -d(c1,c2) | product(c1,product(c2,c1)) != c1 | product(c2,product(c1,c2)) != c2.  [clausify(6)].
+17 -r(A,B) | product(A,B) = B.  [clausify(4)].
+18 -r(A,B) | product(B,A) = A.  [clausify(4)].
+19 -d(A,B) | r(A,f1(A,B)).  [clausify(5)].
+20 r(A,B) | product(A,B) != B | product(B,A) != A.  [clausify(4)].
+21 -d(A,B) | product(f1(A,B),B) = f1(A,B).  [resolve(7,b,8,a)].
+22 -d(A,B) | product(B,f1(A,B)) = B.  [resolve(7,b,9,a)].
+23 d(A,B) | -r(A,f1(C,B)) | -d(C,B).  [resolve(10,c,7,b)].
+24 product(A,B) != A | product(B,A) != B | d(C,B) | -r(C,A).  [resolve(11,a,10,c)].
+25 product(A,A) != A | d(B,A) | -r(B,A).  [factor(24,a,b)].
+26 A != A | d(B,A) | -r(B,A).  [para(12(a,1),25(a,1))].
+27 d(A,B) | -r(A,B).  [copy(26),xx(a)].
+28 product(A,product(B,product(A,B))) = product(A,B).  [para(15(a,1),12(a,1))].
+29 product(A,B) = product(A,product(A,B)).  [para(12(a,1),15(a,1,1))].
+30 product(A,product(A,B)) = product(A,B).  [copy(29),flip(a)].
+31 r(c1,f1(c1,c2)) | product(c2,product(c1,c2)) = c2.  [resolve(19,a,14,a)].
+32 r(c1,f1(c1,c2)) | product(c1,product(c2,c1)) = c1.  [resolve(19,a,13,a)].
+33 product(f1(c1,c2),c2) = f1(c1,c2) | product(c1,product(c2,c1)) = c1.  [resolve(21,a,13,a)].
+34 product(c2,f1(c1,c2)) = c2 | product(c2,product(c1,c2)) = c2.  [resolve(22,a,14,a)].
+35 product(product(A,B),C) = product(A,product(product(B,product(A,B)),C)).  [para(28(a,1),15(a,1,1))].
+36 product(A,product(B,C)) = product(A,product(product(B,product(A,B)),C)).  [para(15(a,1),35(a,1))].
+37 product(A,product(B,C)) = product(A,product(B,product(product(A,B),C))).  [para(15(a,1),36(a,2,2))].
+38 product(A,product(B,C)) = product(A,product(B,product(A,product(B,C)))).  [para(15(a,1),37(a,2,2,2))].
+39 product(A,product(B,product(A,product(B,C)))) = product(A,product(B,C)).  [copy(38),flip(a)].
+40 r(product(A,B),A) | product(product(A,B),A) != A.  [resolve(30,a,20,c)].
+41 r(product(A,B),A) | product(A,product(B,A)) != A.  [para(15(a,1),40(b,1))].
+42 product(c2,product(c1,c2)) = c2 | product(c1,f1(c1,c2)) = f1(c1,c2).  [resolve(31,a,17,a)].
+43 product(c1,product(c2,c1)) = c1 | product(f1(c1,c2),c1) = c1.  [resolve(32,a,18,a)].
+44 r(product(product(A,product(B,A)),B),product(A,product(B,A))) | product(product(A,product(B,A)),product(B,A)) != product(A,product(B,A)).  [para(28(a,1),41(b,1,2))].
+45 r(product(A,product(product(B,A),B)),product(A,product(B,A))) | product(product(A,product(B,A)),product(B,A)) != product(A,product(B,A)).  [para(15(a,1),44(a,1))].
+46 r(product(A,product(B,product(A,B))),product(A,product(B,A))) | product(product(A,product(B,A)),product(B,A)) != product(A,product(B,A)).  [para(15(a,1),45(a,1,2))].
+47 r(product(A,B),product(A,product(B,A))) | product(product(A,product(B,A)),product(B,A)) != product(A,product(B,A)).  [para(28(a,1),46(a,1))].
+48 r(product(A,B),product(A,product(B,A))) | product(A,product(product(B,A),product(B,A))) != product(A,product(B,A)).  [para(15(a,1),47(b,1))].
+49 r(product(A,B),product(A,product(B,A))) | product(A,product(B,A)) != product(A,product(B,A)).  [para(12(a,1),48(b,1,2))].
+50 r(product(A,B),product(A,product(B,A))).  [copy(49),xx(b)].
+51 r(product(product(A,B),A),product(A,B)) | product(product(A,B),product(A,B)) != product(A,B).  [para(30(a,1),41(b,1,2))].
+52 r(product(A,product(B,A)),product(A,B)) | product(product(A,B),product(A,B)) != product(A,B).  [para(15(a,1),51(a,1))].
+53 r(product(A,product(B,A)),product(A,B)) | product(A,B) != product(A,B).  [para(12(a,1),52(b,1))].
+54 r(product(A,product(B,A)),product(A,B)).  [copy(53),xx(b)].
+55 d(product(A,B),product(A,product(B,A))).  [resolve(50,a,27,b)].
+56 product(product(A,product(B,A)),C) != product(A,product(B,A)) | product(C,product(A,product(B,A))) != C | d(product(A,B),C).  [resolve(50,a,24,d)].
+57 product(A,product(product(B,A),C)) != product(A,product(B,A)) | product(C,product(A,product(B,A))) != C | d(product(A,B),C).  [para(15(a,1),56(a,1))].
+58 product(A,product(B,product(A,C))) != product(A,product(B,A)) | product(C,product(A,product(B,A))) != C | d(product(A,B),C).  [para(15(a,1),57(a,1,2))].
+59 r(product(A,product(B,C)),product(A,product(B,product(C,A)))).  [para(15(a,1),50(a,2,2))].
+60 product(product(A,B),C) != product(A,B) | product(C,product(A,B)) != C | d(product(A,product(B,A)),C).  [resolve(54,a,24,d)].
+61 product(A,product(B,C)) != product(A,B) | product(C,product(A,B)) != C | d(product(A,product(B,A)),C).  [para(15(a,1),60(a,1))].
+62 r(product(A,product(B,product(C,product(A,B)))),product(product(A,B),C)).  [para(15(a,1),54(a,1))].
+63 r(product(A,product(B,product(C,product(A,B)))),product(A,product(B,C))).  [para(15(a,1),62(a,2))].
+64 product(f1(product(A,B),product(A,product(B,A))),product(A,product(B,A))) = f1(product(A,B),product(A,product(B,A))).  [resolve(55,a,21,a)].
+65 r(product(A,B),f1(product(A,B),product(A,product(B,A)))).  [resolve(55,a,19,a)].
+66 product(f1(product(A,B),product(A,product(B,A))),product(A,B)) = product(A,B).  [resolve(65,a,18,a)].
+67 product(c1,product(c2,c1)) = c1 | product(f1(c1,c2),A) = product(f1(c1,c2),product(c2,A)).  [para(33(a,1),15(a,1,1))].
+68 product(c1,product(c2,c1)) = c1 | product(f1(c1,c2),product(c2,A)) = product(f1(c1,c2),A).  [copy(67),flip(b)].
+69 product(c1,product(c2,c1)) = c1 | product(c1,A) = product(f1(c1,c2),product(c1,A)).  [para(43(b,1),15(a,1,1))].
+70 product(c1,product(c2,c1)) = c1 | product(f1(c1,c2),product(c1,A)) = product(c1,A).  [copy(69),flip(b)].
+71 product(product(A,B),product(C,D)) = product(A,product(B,product(C,product(product(A,B),product(C,D))))).  [para(39(a,1),15(a,1))].
+72 product(A,product(B,product(C,D))) = product(A,product(B,product(C,product(product(A,B),product(C,D))))).  [para(15(a,1),71(a,1))].
+73 product(A,product(B,product(C,D))) = product(A,product(B,product(C,product(A,product(B,product(C,D)))))).  [para(15(a,1),72(a,2,2,2,2))].
+74 product(A,product(B,product(C,product(A,product(B,product(C,D)))))) = product(A,product(B,product(C,D))).  [copy(73),flip(a)].
+75 product(product(A,B),product(B,product(A,B))) != product(A,B) | d(product(B,A),product(A,B)).  [resolve(58,a,39,a)].
+76 product(A,product(B,product(B,product(A,B)))) != product(A,B) | d(product(B,A),product(A,B)).  [para(15(a,1),75(a,1))].
+77 product(A,product(B,product(A,B))) != product(A,B) | d(product(B,A),product(A,B)).  [para(30(a,1),76(a,1,2))].
+78 product(A,B) != product(A,B) | d(product(B,A),product(A,B)).  [para(28(a,1),77(a,1))].
+79 d(product(A,B),product(B,A)).  [copy(78),xx(a)].
+80 d(product(A,product(B,C)),product(C,product(A,B))).  [para(15(a,1),79(a,1))].
+81 d(product(A,B),product(B,product(A,B))).  [para(12(a,1),80(a,1,2))].
+82 product(c1,product(c2,c2)) != product(c1,c2) | d(product(c1,product(c2,c1)),c2) | product(c1,f1(c1,c2)) = f1(c1,c2).  [resolve(61,b,42,a)].
+83 product(c1,c2) != product(c1,c2) | d(product(c1,product(c2,c1)),c2) | product(c1,f1(c1,c2)) = f1(c1,c2).  [para(12(a,1),82(a,1,2))].
+84 d(product(c1,product(c2,c1)),c2) | product(c1,f1(c1,c2)) = f1(c1,c2).  [copy(83),xx(a)].
+85 product(A,B) != product(A,B) | product(B,product(A,B)) != B | d(product(A,product(B,A)),B).  [para(12(a,1),61(a,1,2))].
+86 product(A,product(B,A)) != A | d(product(B,product(A,B)),A).  [copy(85),xx(a)].
+87 product(product(A,product(B,A)),f1(product(B,A),product(A,product(B,A)))) = product(A,product(B,A)).  [resolve(81,a,22,a)].
+88 product(A,product(product(B,A),f1(product(B,A),product(A,product(B,A))))) = product(A,product(B,A)).  [para(15(a,1),87(a,1))].
+89 product(A,product(B,product(A,f1(product(B,A),product(A,product(B,A)))))) = product(A,product(B,A)).  [para(15(a,1),88(a,1,2))].
+90 r(product(A,B),f1(product(A,B),product(B,product(A,B)))).  [resolve(81,a,19,a)].
+91 product(product(A,B),f1(product(A,B),product(B,product(A,B)))) = f1(product(A,B),product(B,product(A,B))).  [resolve(90,a,17,a)].
+92 product(A,product(B,f1(product(A,B),product(B,product(A,B))))) = f1(product(A,B),product(B,product(A,B))).  [para(15(a,1),91(a,1))].
+93 product(A,f1(product(B,A),product(A,product(B,A)))) = product(A,product(B,A)).  [para(92(a,1),89(a,1,2))].
+94 product(A,product(B,product(A,B))) = f1(product(A,B),product(B,product(A,B))).  [para(93(a,1),92(a,1,2))].
+95 product(A,B) = f1(product(A,B),product(B,product(A,B))).  [para(28(a,1),94(a,1))].
+96 f1(product(A,B),product(B,product(A,B))) = product(A,B).  [copy(95),flip(a)].
+97 product(f1(product(A,B),product(A,product(B,A))),C) = product(f1(product(A,B),product(A,product(B,A))),product(product(A,product(B,A)),C)).  [para(64(a,1),15(a,1,1))].
+98 product(f1(product(A,B),product(A,product(B,A))),C) = product(f1(product(A,B),product(A,product(B,A))),product(A,product(product(B,A),C))).  [para(15(a,1),97(a,2,2))].
+99 product(f1(product(A,B),product(A,product(B,A))),C) = product(f1(product(A,B),product(A,product(B,A))),product(A,product(B,product(A,C)))).  [para(15(a,1),98(a,2,2,2))].
+100 product(f1(product(A,B),product(A,product(B,A))),product(A,product(B,product(A,C)))) = product(f1(product(A,B),product(A,product(B,A))),C).  [copy(99),flip(a)].
+101 d(A,product(B,product(C,B))) | -r(A,product(C,B)) | -d(product(C,B),product(B,product(C,B))).  [para(96(a,1),23(b,2))].
+102 d(A,product(B,product(C,B))) | -r(A,product(C,B)).  [resolve(81,a,101,c)].
+103 d(A,product(B,product(product(C,D),B))) | -r(A,product(C,product(D,B))).  [para(15(a,1),102(b,2))].
+104 d(A,product(B,product(C,product(D,B)))) | -r(A,product(C,product(D,B))).  [para(15(a,1),103(a,2,2))].
+105 product(c1,f1(c1,c2)) = f1(c1,c2) | r(product(c1,product(c2,c1)),f1(product(c1,product(c2,c1)),c2)).  [resolve(84,a,19,a)].
+106 product(product(A,B),C) = product(f1(product(A,B),product(A,product(B,A))),product(product(A,B),C)).  [para(66(a,1),15(a,1,1))].
+107 product(A,product(B,C)) = product(f1(product(A,B),product(A,product(B,A))),product(product(A,B),C)).  [para(15(a,1),106(a,1))].
+108 product(A,product(B,C)) = product(f1(product(A,B),product(A,product(B,A))),product(A,product(B,C))).  [para(15(a,1),107(a,2,2))].
+109 product(f1(product(A,B),product(A,product(B,A))),product(A,product(B,C))) = product(A,product(B,C)).  [copy(108),flip(a)].
+110 r(product(A,product(f1(product(B,C),product(B,product(C,B))),product(product(B,C),product(A,f1(product(B,C),product(B,product(C,B))))))),product(A,product(B,C))).  [para(66(a,1),63(a,2,2))].
+111 r(product(A,product(f1(product(B,C),product(B,product(C,B))),product(B,product(C,product(A,f1(product(B,C),product(B,product(C,B)))))))),product(A,product(B,C))).  [para(15(a,1),110(a,1,2,2))].
+112 r(product(A,product(B,product(C,product(A,f1(product(B,C),product(B,product(C,B))))))),product(A,product(B,C))).  [para(109(a,1),111(a,1,2))].
+113 product(A,product(B,product(A,C))) = product(f1(product(A,B),product(A,product(B,A))),C).  [para(109(a,1),100(a,1))].
+114 product(f1(product(A,B),product(A,product(B,A))),C) = product(A,product(B,product(A,C))).  [copy(113),flip(a)].
+115 product(A,product(B,product(A,product(A,product(B,A))))) = f1(product(A,B),product(A,product(B,A))).  [para(114(a,1),64(a,1))].
+116 product(A,product(B,product(A,product(B,A)))) = f1(product(A,B),product(A,product(B,A))).  [para(30(a,1),115(a,1,2,2))].
+117 product(A,product(B,A)) = f1(product(A,B),product(A,product(B,A))).  [para(28(a,1),116(a,1,2))].
+118 f1(product(A,B),product(A,product(B,A))) = product(A,product(B,A)).  [copy(117),flip(a)].
+119 r(product(A,product(B,product(C,product(A,product(B,product(C,B)))))),product(A,product(B,C))).  [para(118(a,1),112(a,1,2,2,2,2))].
+120 r(product(A,product(B,product(C,B))),product(A,product(B,C))).  [para(74(a,1),119(a,1))].
+121 product(c1,product(c2,c1)) = c1 | product(c1,product(c2,c1)) = c1 | product(f1(c1,c2),product(c2,c1)) = c1.  [para(43(b,1),68(b,2))].
+122 product(c1,product(c2,c1)) = c1 | product(f1(c1,c2),product(c2,c1)) = c1.  [copy(121),merge(b)].
+123 d(product(A,product(B,C)),product(product(C,A),product(A,product(B,product(C,A))))).  [resolve(104,b,59,a)].
+124 d(product(A,product(B,C)),product(C,product(A,product(A,product(B,product(C,A)))))).  [para(15(a,1),123(a,2))].
+125 d(product(A,product(B,C)),product(C,product(A,product(B,product(C,A))))).  [para(30(a,1),124(a,2,2))].
+126 product(c1,product(c2,c1)) = c1 | r(product(f1(c1,c2),product(c2,product(c1,c2))),c1).  [para(122(b,1),120(a,2))].
+127 product(c1,product(c2,c1)) = c1 | product(c1,product(c2,c1)) = c1 | r(product(f1(c1,c2),product(c1,c2)),c1).  [para(68(b,1),126(b,1))].
+128 product(c1,product(c2,c1)) = c1 | r(product(f1(c1,c2),product(c1,c2)),c1).  [copy(127),merge(b)].
+129 product(c1,product(c2,c1)) = c1 | product(c1,product(c2,c1)) = c1 | r(product(c1,c2),c1).  [para(70(b,1),128(b,1))].
+130 product(c1,product(c2,c1)) = c1 | r(product(c1,c2),c1).  [copy(129),merge(b)].
+131 product(c1,product(c2,c1)) = c1 | product(product(c1,c2),c1) = c1.  [resolve(130,b,17,a)].
+132 product(c1,product(c2,c1)) = c1 | product(c1,product(c2,c1)) = c1.  [para(15(a,1),131(b,1))].
+133 product(c1,product(c2,c1)) = c1.  [copy(132),merge(b)].
+134 product(c1,f1(c1,c2)) = f1(c1,c2) | r(c1,f1(product(c1,product(c2,c1)),c2)).  [para(133(a,1),105(b,1))].
+135 product(c1,f1(c1,c2)) = f1(c1,c2) | r(c1,f1(c1,c2)).  [para(133(a,1),134(b,2,1))].
+136 -d(c1,c2) | c1 != c1 | product(c2,product(c1,c2)) != c2.  [para(133(a,1),16(b,1))].
+137 -d(c1,c2) | product(c2,product(c1,c2)) != c2.  [copy(136),xx(b)].
+138 product(c1,A) = product(c1,product(product(c2,c1),A)).  [para(133(a,1),15(a,1,1))].
+139 product(c1,A) = product(c1,product(c2,product(c1,A))).  [para(15(a,1),138(a,2,2))].
+140 product(c1,product(c2,product(c1,A))) = product(c1,A).  [copy(139),flip(a)].
+141 d(product(A,c1),product(product(c2,c1),product(A,product(c1,product(product(c2,c1),A))))).  [para(133(a,1),125(a,1,2))].
+142 d(product(A,c1),product(product(c2,c1),product(A,product(c1,product(c2,product(c1,A)))))).  [para(15(a,1),141(a,2,2,2,2))].
+143 d(product(A,c1),product(product(c2,c1),product(A,product(c1,A)))).  [para(140(a,1),142(a,2,2,2))].
+144 d(product(A,c1),product(c2,product(c1,product(A,product(c1,A))))).  [para(15(a,1),143(a,2))].
+145 d(product(A,c1),product(c2,product(c1,A))).  [para(28(a,1),144(a,2,2))].
+146 product(c1,f1(c1,c2)) = f1(c1,c2) | product(c1,f1(c1,c2)) = f1(c1,c2).  [resolve(135,b,17,a)].
+147 product(c1,f1(c1,c2)) = f1(c1,c2).  [copy(146),merge(b)].
+148 r(product(f1(c1,c2),c1),f1(c1,c2)) | product(f1(c1,c2),f1(c1,c2)) != f1(c1,c2).  [para(147(a,1),41(b,1,2))].
+149 r(product(f1(c1,c2),c1),f1(c1,c2)) | f1(c1,c2) != f1(c1,c2).  [para(12(a,1),148(b,1))].
+150 r(product(f1(c1,c2),c1),f1(c1,c2)).  [copy(149),xx(b)].
+151 d(product(f1(c1,c2),c1),product(c2,f1(c1,c2))).  [para(147(a,1),145(a,2,2))].
+152 product(c1,product(c2,f1(c1,c2))) = product(c1,f1(c1,c2)).  [para(147(a,1),140(a,1,2,2))].
+153 product(c1,product(c2,f1(c1,c2))) = f1(c1,c2).  [para(147(a,1),152(a,2))].
+154 d(product(f1(c1,c2),c1),c2) | -d(c1,c2).  [resolve(150,a,23,b)].
+155 d(product(f1(c1,c2),c1),c2) | product(c2,product(c1,c2)) = c2.  [resolve(154,b,14,a)].
+156 product(c2,product(c1,c2)) = c2 | product(c1,c2) = f1(c1,c2).  [para(34(a,1),153(a,1,2))].
+157 product(c2,product(c1,c2)) = c2 | f1(c1,c2) = product(c1,c2).  [copy(156),flip(b)].
+158 product(c2,product(c1,c2)) = c2 | product(c2,f1(product(f1(c1,c2),c1),c2)) = c2.  [resolve(155,a,22,a)].
+159 f1(c1,c2) = product(c1,c2) | d(product(c1,product(c2,c1)),c2).  [resolve(157,a,86,a)].
+160 f1(c1,c2) = product(c1,c2) | d(c1,c2).  [para(133(a,1),159(b,1))].
+161 f1(c1,c2) = product(c1,c2) | product(c2,product(c1,c2)) != c2.  [resolve(160,b,137,a)].
+162 f1(c1,c2) = product(c1,c2) | f1(c1,c2) = product(c1,c2).  [resolve(161,b,157,a)].
+163 f1(c1,c2) = product(c1,c2).  [copy(162),merge(b)].
+164 product(c2,product(c1,c2)) = c2 | product(c2,f1(product(product(c1,c2),c1),c2)) = c2.  [para(163(a,1),158(b,1,2,1,1))].
+165 product(c2,product(c1,c2)) = c2 | product(c2,f1(product(c1,product(c2,c1)),c2)) = c2.  [para(15(a,1),164(b,1,2,1))].
+166 product(c2,product(c1,c2)) = c2 | product(c2,f1(c1,c2)) = c2.  [para(133(a,1),165(b,1,2,1))].
+167 product(c2,product(c1,c2)) = c2 | product(c2,product(c1,c2)) = c2.  [para(163(a,1),166(b,1,2))].
+168 product(c2,product(c1,c2)) = c2.  [copy(167),merge(b)].
+169 d(product(product(c1,c2),c1),product(c2,f1(c1,c2))).  [para(163(a,1),151(a,1,1))].
+170 d(product(c1,product(c2,c1)),product(c2,f1(c1,c2))).  [para(15(a,1),169(a,1))].
+171 d(c1,product(c2,f1(c1,c2))).  [para(133(a,1),170(a,1))].
+172 d(c1,product(c2,product(c1,c2))).  [para(163(a,1),171(a,2,2))].
+173 d(c1,c2).  [para(168(a,1),172(a,2))].
+174 -d(c1,c2) | c2 != c2.  [para(168(a,1),137(b,1))].
+175 -d(c1,c2).  [copy(174),xx(b)].
+176 $F.  [resolve(173,a,175,a)].
+
+============================== end of proof ==========================

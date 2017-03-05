@@ -1,0 +1,68 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n152.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:18:53 CDT 2014
+% CPUTime    : 22.46 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 31670 was started by sandbox on n152.star.cs.uiowa.edu,
+Thu Jun  5 13:18:54 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_31638_n152.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 22.12 (+ 0.09) seconds.
+% Length of proof is 33.
+% Level of proof is 11.
+% Maximum clause weight is 16.000.
+% Given clauses 21785.
+
+
+1 (all A all B all C all D (accept_team(A,D,B,C) <-> accept_city(A,B) & accept_leader(A,D) & accept_number(A,C))).  [assumption].
+2 (all A all B all C (accept_number(A,B) & less(C,B) -> accept_number(A,C))).  [assumption].
+3 (all A all B all C (rdn_positive_less(rdnn(A),rdnn(B)) & rdn_positive_less(rdnn(B),rdnn(C)) -> rdn_positive_less(rdnn(A),rdnn(C)))).  [assumption].
+4 (all A all B all C all D (rdn_translate(A,rdn_pos(C)) & rdn_translate(B,rdn_pos(D)) & rdn_positive_less(C,D) -> less(A,B))).  [assumption].
+5 accept_team(A,B,C,D) | -accept_city(A,C) | -accept_leader(A,B) | -accept_number(A,D).  [clausify(1)].
+6 -accept_team(A,B,C,D) | accept_leader(A,B).  [clausify(1)].
+7 -accept_team(A,B,C,D) | accept_city(A,C).  [clausify(1)].
+8 -accept_number(A,B) | -less(C,B) | accept_number(A,C).  [clausify(2)].
+9 accept_team(christiansufferterrahumanitarianorganization,countryacivilorganization,towna,n6).  [assumption].
+10 accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,coastvillage,n6).  [assumption].
+11 accept_number(christiansufferterrahumanitarianorganization,n6).  [assumption].
+12 rdn_translate(n3,rdn_pos(rdnn(n3))).  [assumption].
+13 rdn_translate(n6,rdn_pos(rdnn(n6))).  [assumption].
+14 rdn_positive_less(rdnn(n3),rdnn(n4)).  [assumption].
+15 rdn_positive_less(rdnn(n4),rdnn(n5)).  [assumption].
+16 rdn_positive_less(rdnn(n5),rdnn(n6)).  [assumption].
+17 -rdn_positive_less(rdnn(A),rdnn(B)) | -rdn_positive_less(rdnn(B),rdnn(C)) | rdn_positive_less(rdnn(A),rdnn(C)).  [clausify(3)].
+18 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_positive_less(B,D) | less(A,C).  [clausify(4)].
+19 -accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,towna,n3).  [assumption].
+20 accept_team(A,B,C,D) | -accept_city(A,C) | -accept_number(A,D) | -accept_team(A,B,E,F).  [resolve(5,c,6,b)].
+21 accept_city(christiansufferterrahumanitarianorganization,towna).  [resolve(9,a,7,a)].
+22 -rdn_positive_less(rdnn(n5),rdnn(A)) | rdn_positive_less(rdnn(n4),rdnn(A)).  [resolve(17,a,15,a)].
+23 -rdn_positive_less(rdnn(n4),rdnn(A)) | rdn_positive_less(rdnn(n3),rdnn(A)).  [resolve(17,a,14,a)].
+24 accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,A,B) | -accept_city(christiansufferterrahumanitarianorganization,A) | -accept_number(christiansufferterrahumanitarianorganization,B).  [resolve(20,d,10,a)].
+25 rdn_positive_less(rdnn(n4),rdnn(n6)).  [resolve(22,a,16,a)].
+26 rdn_positive_less(rdnn(n3),rdnn(n6)).  [resolve(25,a,23,a)].
+27 -rdn_translate(A,rdn_pos(rdnn(n3))) | -rdn_translate(B,rdn_pos(rdnn(n6))) | less(A,B).  [resolve(26,a,18,c)].
+28 -rdn_translate(A,rdn_pos(rdnn(n6))) | less(n3,A).  [resolve(27,a,12,a)].
+29 less(n3,n6).  [resolve(28,a,13,a)].
+30 -accept_number(A,n6) | accept_number(A,n3).  [resolve(29,a,8,b)].
+31 accept_number(christiansufferterrahumanitarianorganization,n3).  [resolve(30,a,11,a)].
+32 accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,A,n3) | -accept_city(christiansufferterrahumanitarianorganization,A).  [resolve(31,a,24,c)].
+33 accept_team(christiansufferterrahumanitarianorganization,countryafirstaidorganization,towna,n3).  [resolve(32,b,21,a)].
+34 $F.  [resolve(19,a,33,a)].
+
+============================== end of proof ==========================

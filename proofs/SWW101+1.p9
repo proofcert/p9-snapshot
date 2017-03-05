@@ -1,0 +1,124 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n124.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:14:13 CDT 2014
+% CPUTime    : 0.31 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 24392 was started by sandbox on n124.star.cs.uiowa.edu,
+Thu Jun  5 17:14:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_24360_n124.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.09 (+ 0.00) seconds.
+% Length of proof is 60.
+% Level of proof is 11.
+% Maximum clause weight is 12.000.
+% Given clauses 258.
+
+
+1 (all A (bool(A) <-> A = false | A = true)).  [assumption].
+2 (all A all B (forallprefers(A,B) <-> -d(A) & d(B) | d(A) & d(B) & -bool(A) & bool(B) | A = false & B = true)).  [assumption].
+3 (all A (d(A) & phi(A) = A | -d(A) & phi(A) = err)).  [assumption].
+4 (all A (prop(A) = true <-> bool(A))).  [assumption].
+5 (all A (prop(A) = false <-> -bool(A))).  [assumption].
+6 (all A lazy_impl(false,A) = true).  [assumption].
+7 (all A lazy_impl(true,A) = phi(A)).  [assumption].
+8 (all A lazy_and1(false,A) = false).  [assumption].
+9 (all A all B f6(A,B) = lazy_impl(prop(B),impl(f5(A,B),B))).  [assumption].
+10 (all A f7(A) = lazy_impl(prop(A),A)).  [assumption].
+11 (exists A (false2 = phi(f7(A)) & -(exists B forallprefers(f7(B),f7(A))))).  [assumption].
+12 d(true).  [assumption].
+13 d(false).  [assumption].
+14 false1 = false.  [assumption].
+15 lazy_impl(false,A) = true.  [clausify(6)].
+16 lazy_and1(false,A) = false.  [clausify(8)].
+17 phi(f7(c1)) = false2.  [clausify(11)].
+18 prop(A) = false | bool(A).  [clausify(5)].
+19 lazy_impl(true,A) = phi(A).  [clausify(7)].
+20 f7(A) = lazy_impl(prop(A),A).  [clausify(10)].
+21 phi(A) = A | phi(A) = err.  [clausify(3)].
+22 f6(A,B) = lazy_impl(prop(B),impl(f5(A,B),B)).  [clausify(9)].
+23 lazy_impl(prop(A),impl(f5(B,A),A)) = f6(B,A).  [copy(22),flip(a)].
+24 true != err.  [assumption].
+25 err != true.  [copy(24),flip(a)].
+26 false != err.  [assumption].
+27 err != false.  [copy(26),flip(a)].
+28 false1 != false2.  [assumption].
+29 false != false2.  [para(14(a,1),28(a,1))].
+30 false2 != false.  [copy(29),flip(a)].
+31 -forallprefers(f7(A),f7(c1)).  [clausify(11)].
+32 -forallprefers(lazy_impl(prop(A),A),f7(c1)).  [para(20(a,1),31(a,1))].
+33 -forallprefers(lazy_impl(prop(A),A),lazy_impl(prop(c1),c1)).  [para(20(a,1),32(a,2))].
+34 bool(A) | A != false.  [clausify(1)].
+35 bool(A) | false != A.  [copy(34),flip(b)].
+36 phi(A) = A | -d(A).  [clausify(3)].
+37 prop(A) != true | bool(A).  [clausify(4)].
+38 prop(A) = true | -bool(A).  [clausify(4)].
+39 -bool(A) | A = false | A = true.  [clausify(1)].
+40 -bool(A) | false = A | A = true.  [copy(39),flip(b)].
+41 -bool(A) | false = A | true = A.  [copy(40),flip(c)].
+42 forallprefers(A,B) | A != false | B != true.  [clausify(2)].
+43 forallprefers(A,B) | false != A | B != true.  [copy(42),flip(b)].
+44 forallprefers(A,B) | false != A | true != B.  [copy(43),flip(c)].
+45 phi(lazy_impl(prop(c1),c1)) = false2.  [para(20(a,1),17(a,1,1))].
+46 bool(lazy_and1(false,A)).  [resolve(35,b,16,a(flip))].
+47 bool(false).  [para(16(a,1),46(a,1))].
+48 phi(false) = false.  [resolve(36,b,13,a)].
+49 phi(true) = true.  [resolve(36,b,12,a)].
+50 prop(A) = true | prop(A) = false.  [resolve(38,b,18,b)].
+51 -bool(err) | true = err.  [resolve(41,b,27,a(flip))].
+52 -bool(err).  [resolve(51,b,25,a(flip))].
+53 forallprefers(phi(false),A) | true != A | phi(false) = err.  [resolve(44,b,21,a(flip))].
+54 forallprefers(false,A) | true != A | phi(false) = err.  [para(48(a,1),53(a,1))].
+55 forallprefers(false,A) | true != A | false = err.  [para(48(a,1),54(c,1))].
+56 forallprefers(false,A) | true != A | err = false.  [copy(55),flip(c)].
+57 forallprefers(false,A) | true != A.  [resolve(27,a,56,c)].
+58 prop(err) = false.  [resolve(52,a,18,b)].
+59 prop(false) = true.  [resolve(47,a,38,b)].
+60 lazy_impl(false,impl(f5(A,err),err)) = f6(A,err).  [para(58(a,1),23(a,1,1))].
+61 true = f6(A,err).  [para(15(a,1),60(a,1))].
+62 f6(A,err) = true.  [copy(61),flip(a)].
+63 -forallprefers(lazy_impl(true,false),lazy_impl(prop(c1),c1)).  [para(59(a,1),33(a,1,1))].
+64 -forallprefers(phi(false),lazy_impl(prop(c1),c1)).  [para(19(a,1),63(a,1))].
+65 -forallprefers(false,lazy_impl(prop(c1),c1)).  [para(48(a,1),64(a,1))].
+66 forallprefers(false,f6(A,err)).  [resolve(57,b,62,a(flip))].
+67 forallprefers(false,true).  [para(62(a,1),66(a,2))].
+68 prop(c1) = true | -forallprefers(false,lazy_impl(false,c1)).  [para(50(b,1),65(a,2,1))].
+69 prop(c1) = true | -forallprefers(false,true).  [para(15(a,1),68(b,2))].
+70 prop(c1) = true.  [resolve(67,a,69,b)].
+71 -forallprefers(false,lazy_impl(true,c1)).  [para(70(a,1),65(a,2,1))].
+72 -forallprefers(false,phi(c1)).  [para(19(a,1),71(a,2))].
+73 phi(lazy_impl(true,c1)) = false2.  [para(70(a,1),45(a,1,1,1))].
+74 phi(phi(c1)) = false2.  [para(19(a,1),73(a,1,1))].
+75 bool(c1).  [resolve(70,a,37,a)].
+76 false = c1 | true = c1.  [resolve(75,a,41,a)].
+77 c1 = false | true = c1.  [copy(76),flip(a)].
+78 c1 = false | c1 = true.  [copy(77),flip(b)].
+79 phi(c1) = err | -forallprefers(false,c1).  [para(21(a,1),72(a,2))].
+80 c1 = true | phi(phi(false)) = false2.  [para(78(a,1),74(a,1,1,1))].
+81 c1 = true | phi(false) = false2.  [para(48(a,1),80(b,1,1))].
+82 c1 = true | false = false2.  [para(48(a,1),81(b,1))].
+83 c1 = true | false2 = false.  [copy(82),flip(b)].
+84 c1 = true.  [resolve(30,a,83,b)].
+85 phi(true) = err | -forallprefers(false,c1).  [para(84(a,1),79(a,1,1))].
+86 true = err | -forallprefers(false,c1).  [para(49(a,1),85(a,1))].
+87 true = err | -forallprefers(false,true).  [para(84(a,1),86(b,2))].
+88 err = true | -forallprefers(false,true).  [copy(87),flip(a)].
+89 -forallprefers(false,true).  [resolve(25,a,88,a)].
+90 $F.  [resolve(67,a,89,a)].
+
+============================== end of proof ==========================

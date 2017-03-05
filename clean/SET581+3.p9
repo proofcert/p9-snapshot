@@ -1,0 +1,19 @@
+
+
+
+
+
+6 member(c1,c2).  [clausify(5)].
+7 member(c1,c3).  [clausify(5)].
+8 not_equal(A,B) | B = A.  [clausify(3)].
+9 intersection(A,B) = intersection(B,A).  [clausify(4)].
+10 -member(A,empty_set).  [clausify(2)].
+11 -not_equal(intersection(c2,c3),empty_set).  [clausify(5)].
+12 member(A,intersection(B,C)) | -member(A,B) | -member(A,C).  [clausify(1)].
+13 empty_set = intersection(c2,c3).  [resolve(11,a,8,a)].
+14 intersection(c2,c3) = empty_set.  [copy(13),flip(a)].
+15 member(c1,intersection(c3,A)) | -member(c1,A).  [resolve(12,b,7,a)].
+16 member(c1,intersection(A,c3)) | -member(c1,A).  [para(9(a,1),15(a,2))].
+17 member(c1,intersection(c2,c3)).  [resolve(16,b,6,a)].
+18 member(c1,empty_set).  [para(14(a,1),17(a,2))].
+19 $F.  [resolve(10,a,18,a)].

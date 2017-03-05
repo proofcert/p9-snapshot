@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+
+
+
+11 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -subset(A,B) | -ilf_type(C,set_type) | -member(C,A) | member(C,B).  [clausify(5)].
+12 -ilf_type(A,set_type) | subset(identity_relation_of(A),cross_product(A,A)).  [clausify(2)].
+13 ilf_type(A,set_type).  [clausify(9)].
+14 -ilf_type(identity_relation_of(c2),identity_relation_of_type(c2)).  [clausify(10)].
+15 -ilf_type(A,set_type) | -empty(power_set(A)).  [clausify(7)].
+16 -empty(power_set(A)).  [resolve(13,a,15,a)].
+17 -ilf_type(A,set_type) | -ilf_type(B,set_type) | ilf_type(B,identity_relation_of_type(A)) | -ilf_type(B,relation_type(A,A)).  [clausify(3)].
+18 -ilf_type(A,set_type) | ilf_type(A,identity_relation_of_type(B)) | -ilf_type(A,relation_type(B,B)).  [resolve(13,a,17,a)].
+19 ilf_type(A,identity_relation_of_type(B)) | -ilf_type(A,relation_type(B,B)).  [resolve(13,a,18,a)].
+20 -ilf_type(A,set_type) | -ilf_type(B,set_type) | ilf_type(B,subset_type(A)) | -ilf_type(B,member_type(power_set(A))).  [clausify(4)].
+21 -ilf_type(A,set_type) | ilf_type(A,subset_type(B)) | -ilf_type(A,member_type(power_set(B))).  [resolve(13,a,20,a)].
+22 ilf_type(A,subset_type(B)) | -ilf_type(A,member_type(power_set(B))).  [resolve(13,a,21,a)].
+23 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(A,power_set(B)) | member(f5(A,B),A).  [clausify(6)].
+24 -ilf_type(A,set_type) | member(B,power_set(A)) | member(f5(B,A),B).  [resolve(13,a,23,a)].
+25 member(A,power_set(B)) | member(f5(A,B),A).  [resolve(13,a,24,a)].
+26 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(A,power_set(B)) | -member(f5(A,B),B).  [clausify(6)].
+27 -ilf_type(A,set_type) | member(B,power_set(A)) | -member(f5(B,A),A).  [resolve(13,a,26,a)].
+28 member(A,power_set(B)) | -member(f5(A,B),B).  [resolve(13,a,27,a)].
+29 -ilf_type(A,set_type) | empty(B) | -ilf_type(B,set_type) | ilf_type(A,member_type(B)) | -member(A,B).  [clausify(8)].
+30 empty(A) | -ilf_type(A,set_type) | ilf_type(B,member_type(A)) | -member(B,A).  [resolve(13,a,29,a)].
+31 empty(A) | ilf_type(B,member_type(A)) | -member(B,A).  [resolve(13,a,30,b)].
+32 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | ilf_type(C,relation_type(A,B)).  [clausify(1)].
+33 -ilf_type(A,set_type) | -ilf_type(B,subset_type(cross_product(C,A))) | ilf_type(B,relation_type(C,A)).  [resolve(13,a,32,a)].
+34 -ilf_type(A,subset_type(cross_product(B,C))) | ilf_type(A,relation_type(B,C)).  [resolve(13,a,33,a)].
+35 -ilf_type(identity_relation_of(A),set_type) | -ilf_type(cross_product(A,A),set_type) | -ilf_type(B,set_type) | -member(B,identity_relation_of(A)) | member(B,cross_product(A,A)) | -ilf_type(A,set_type).  [resolve(11,c,12,b)].
+36 -ilf_type(cross_product(A,A),set_type) | -ilf_type(B,set_type) | -member(B,identity_relation_of(A)) | member(B,cross_product(A,A)) | -ilf_type(A,set_type).  [resolve(13,a,35,a)].
+37 -ilf_type(A,set_type) | -member(A,identity_relation_of(B)) | member(A,cross_product(B,B)) | -ilf_type(B,set_type).  [resolve(13,a,36,a)].
+38 -member(A,identity_relation_of(B)) | member(A,cross_product(B,B)) | -ilf_type(B,set_type).  [resolve(13,a,37,a)].
+39 -member(A,identity_relation_of(B)) | member(A,cross_product(B,B)).  [resolve(13,a,38,c)].
+40 -ilf_type(identity_relation_of(c2),relation_type(c2,c2)).  [resolve(19,a,14,a)].
+41 -ilf_type(identity_relation_of(c2),subset_type(cross_product(c2,c2))).  [resolve(34,b,40,a)].
+42 -ilf_type(identity_relation_of(c2),member_type(power_set(cross_product(c2,c2)))).  [resolve(22,a,41,a)].
+43 ilf_type(A,member_type(power_set(B))) | -member(A,power_set(B)).  [resolve(31,a,16,a)].
+44 -member(identity_relation_of(c2),power_set(cross_product(c2,c2))).  [resolve(43,a,42,a)].
+45 -member(f5(identity_relation_of(c2),cross_product(c2,c2)),cross_product(c2,c2)).  [resolve(28,a,44,a)].
+46 -member(f5(identity_relation_of(c2),cross_product(c2,c2)),identity_relation_of(c2)).  [resolve(39,b,45,a)].
+47 member(identity_relation_of(c2),power_set(cross_product(c2,c2))).  [resolve(46,a,25,b)].
+48 $F.  [resolve(44,a,47,a)].

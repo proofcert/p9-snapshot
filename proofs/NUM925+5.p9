@@ -1,0 +1,125 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n112.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 23:37:18 CDT 2014
+% CPUTime    : 0.88 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 43021 was started by sandbox on n112.star.cs.uiowa.edu,
+Fri Jun  6 23:37:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_42989_n112.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.68 (+ 0.01) seconds.
+% Length of proof is 57.
+% Level of proof is 8.
+% Maximum clause weight is 36.000.
+% Given clauses 621.
+
+
+1 (all A all B (ord_less(int,bit1(A),bit1(B)) <-> ord_less(int,A,B))).  [assumption].
+2 (all A all B all C (ord_less(int,B,C) -> ord_less(int,plus_plus(int,B,A),plus_plus(int,C,A)))).  [assumption].
+3 (all A all B all C plus_plus(int,plus_plus(int,A,B),C) = plus_plus(int,A,plus_plus(int,B,C))).  [assumption].
+4 (all A all B plus_plus(int,A,B) = plus_plus(int,B,A)).  [assumption].
+5 (all A plus_plus(int,A,pls) = A).  [assumption].
+6 (all A bit0(A) = plus_plus(int,A,A)).  [assumption].
+7 (all A (number_semiring(A) -> number_number_of(A,pls) = zero_zero(A))).  [assumption].
+8 (all A (number_ring(A) -> (all B plus_plus(A,B,number_number_of(A,pls)) = ti(A,B)))).  [assumption].
+9 (all A (power(A) & mult_zero(A) & no_zero_divisors(A) & zero_neq_one(A) -> (all B all C (power_power(A,B,number_number_of(nat,C)) = zero_zero(A) <-> ti(A,B) = zero_zero(A) & number_number_of(nat,C) != zero_zero(nat))))).  [assumption].
+10 (all A bit1(A) = plus_plus(int,plus_plus(int,one_one(int),A),A)).  [assumption].
+11 -(power_power(int,plus_plus(int,one_one(int),semiring_1_of_nat(int,n)),number_number_of(nat,bit0(bit1(pls)))) != zero_zero(int)).  [assumption].
+12 power(int).  [assumption].
+13 -power(A) | -mult_zero(A) | -no_zero_divisors(A) | -zero_neq_one(A) | power_power(A,B,number_number_of(nat,C)) != zero_zero(A) | zero_zero(A) = ti(A,B).  [clausify(9)].
+14 number_semiring(int).  [assumption].
+15 -number_semiring(A) | number_number_of(A,pls) = zero_zero(A).  [clausify(7)].
+16 ord_less(int,zero_zero(int),plus_plus(int,one_one(int),semiring_1_of_nat(int,n))).  [assumption].
+17 -ord_less(int,bit1(A),bit1(B)) | ord_less(int,A,B).  [clausify(1)].
+18 -ord_less(int,A,B) | ord_less(int,plus_plus(int,A,C),plus_plus(int,B,C)).  [clausify(2)].
+19 plus_plus(int,plus_plus(int,A,B),C) = plus_plus(int,A,plus_plus(int,B,C)).  [clausify(3)].
+20 plus_plus(int,A,B) = plus_plus(int,B,A).  [clausify(4)].
+21 -ord_less(int,pls,zero_zero(int)).  [assumption].
+22 pls = zero_zero(int).  [assumption].
+23 zero_zero(int) != one_one(int).  [assumption].
+24 one_one(int) != zero_zero(int).  [copy(23),flip(a)].
+25 plus_plus(int,A,pls) = A.  [clausify(5)].
+26 plus_plus(int,A,zero_zero(int)) = A.  [para(22(a,1),25(a,1,3))].
+27 bit0(A) = plus_plus(int,A,A).  [clausify(6)].
+28 -number_ring(A) | plus_plus(A,B,number_number_of(A,pls)) = ti(A,B).  [clausify(8)].
+29 -number_ring(A) | plus_plus(A,B,number_number_of(A,zero_zero(int))) = ti(A,B).  [para(22(a,1),28(b,1,3,2))].
+30 bit1(A) = plus_plus(int,plus_plus(int,one_one(int),A),A).  [clausify(10)].
+31 bit1(A) = plus_plus(int,plus_plus(int,A,one_one(int)),A).  [para(20(a,1),30(a,2,2))].
+32 bit1(A) = plus_plus(int,A,plus_plus(int,A,one_one(int))).  [para(20(a,1),31(a,2))].
+33 no_zero_divisors(int).  [assumption].
+34 zero_neq_one(int).  [assumption].
+35 mult_zero(int).  [assumption].
+36 number_ring(int).  [assumption].
+37 power_power(int,plus_plus(int,one_one(int),semiring_1_of_nat(int,n)),number_number_of(nat,bit0(bit1(pls)))) = zero_zero(int).  [clausify(11)].
+38 power_power(int,plus_plus(int,one_one(int),semiring_1_of_nat(int,n)),number_number_of(nat,bit0(bit1(zero_zero(int))))) = zero_zero(int).  [para(22(a,1),37(a,1,3,2,1,1))].
+39 power_power(int,plus_plus(int,one_one(int),semiring_1_of_nat(int,n)),number_number_of(nat,bit0(plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),one_one(int)))))) = zero_zero(int).  [para(32(a,1),38(a,1,3,2,1))].
+40 power_power(int,plus_plus(int,one_one(int),semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),one_one(int))),plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),one_one(int)))))) = zero_zero(int).  [para(27(a,1),39(a,1,3,2))].
+41 power_power(int,plus_plus(int,one_one(int),semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,plus_plus(int,zero_zero(int),one_one(int)),plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),one_one(int))))))) = zero_zero(int).  [para(19(a,1),40(a,1,3,2))].
+42 power_power(int,plus_plus(int,one_one(int),semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),plus_plus(int,one_one(int),plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),one_one(int)))))))) = zero_zero(int).  [para(19(a,1),41(a,1,3,2,3))].
+43 -mult_zero(int) | -no_zero_divisors(int) | -zero_neq_one(int) | power_power(int,A,number_number_of(nat,B)) != zero_zero(int) | zero_zero(int) = ti(int,A).  [resolve(12,a,13,a)].
+44 -mult_zero(int) | -no_zero_divisors(int) | -zero_neq_one(int) | power_power(int,A,number_number_of(nat,B)) != zero_zero(int) | ti(int,A) = zero_zero(int).  [copy(43),flip(e)].
+45 -no_zero_divisors(int) | -zero_neq_one(int) | power_power(int,A,number_number_of(nat,B)) != zero_zero(int) | ti(int,A) = zero_zero(int).  [resolve(35,a,44,a)].
+46 -zero_neq_one(int) | power_power(int,A,number_number_of(nat,B)) != zero_zero(int) | ti(int,A) = zero_zero(int).  [resolve(33,a,45,a)].
+47 power_power(int,A,number_number_of(nat,B)) != zero_zero(int) | ti(int,A) = zero_zero(int).  [resolve(34,a,46,a)].
+48 number_number_of(int,pls) = zero_zero(int).  [resolve(14,a,15,a)].
+49 number_number_of(int,zero_zero(int)) = zero_zero(int).  [para(22(a,1),48(a,1,2))].
+50 plus_plus(int,C,plus_plus(int,A,B)) = plus_plus(int,A,plus_plus(int,B,C)).  [para(20(a,1),19(a,1))].
+51 plus_plus(int,A,plus_plus(int,B,C)) = plus_plus(int,C,plus_plus(int,A,B)).  [copy(50),flip(a)].
+52 -ord_less(int,zero_zero(int),zero_zero(int)).  [para(22(a,1),21(a,2))].
+53 one_one(int) = c_0.  [new_symbol(24)].
+54 -ord_less(int,plus_plus(int,A,plus_plus(int,A,one_one(int))),bit1(B)) | ord_less(int,A,B).  [para(32(a,1),17(a,2))].
+55 -ord_less(int,plus_plus(int,A,plus_plus(int,A,c_0)),bit1(B)) | ord_less(int,A,B).  [para(53(a,1),54(a,2,3,3))].
+56 -ord_less(int,plus_plus(int,A,plus_plus(int,A,c_0)),plus_plus(int,B,plus_plus(int,B,one_one(int)))) | ord_less(int,A,B).  [para(32(a,1),55(a,3))].
+57 -ord_less(int,plus_plus(int,A,plus_plus(int,A,c_0)),plus_plus(int,B,plus_plus(int,B,c_0))) | ord_less(int,A,B).  [para(53(a,1),56(a,3,3,3))].
+58 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),plus_plus(int,one_one(int),plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),one_one(int)))))))) = zero_zero(int).  [para(53(a,1),42(a,1,2,2))].
+59 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),plus_plus(int,c_0,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),one_one(int)))))))) = zero_zero(int).  [para(53(a,1),58(a,1,3,2,3,3,2))].
+60 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),plus_plus(int,c_0,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),c_0))))))) = zero_zero(int).  [para(53(a,1),59(a,1,3,2,3,3,3,3,3))].
+61 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),plus_plus(int,c_0,plus_plus(int,zero_zero(int),plus_plus(int,c_0,zero_zero(int)))))))) = zero_zero(int).  [para(20(a,1),60(a,1,3,2,3,3,3,3))].
+62 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),plus_plus(int,c_0,plus_plus(int,zero_zero(int),c_0)))))) = zero_zero(int).  [para(26(a,1),61(a,1,3,2,3,3,3,3))].
+63 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),plus_plus(int,c_0,plus_plus(int,c_0,zero_zero(int))))))) = zero_zero(int).  [para(20(a,1),62(a,1,3,2,3,3,3))].
+64 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,zero_zero(int),plus_plus(int,c_0,c_0))))) = zero_zero(int).  [para(26(a,1),63(a,1,3,2,3,3,3))].
+65 ord_less(int,zero_zero(int),plus_plus(int,c_0,semiring_1_of_nat(int,n))).  [para(53(a,1),16(a,3,2))].
+66 plus_plus(int,A,number_number_of(int,zero_zero(int))) = ti(int,A).  [resolve(36,a,29,a)].
+67 plus_plus(int,A,zero_zero(int)) = ti(int,A).  [para(49(a,1),66(a,1,3))].
+68 A = ti(int,A).  [para(26(a,1),67(a,1))].
+69 ti(int,A) = A.  [copy(68),flip(a)].
+70 power_power(int,A,number_number_of(nat,B)) != zero_zero(int) | A = zero_zero(int).  [para(69(a,1),47(b,1))].
+71 power_power(int,A,number_number_of(nat,B)) != zero_zero(int) | zero_zero(int) = A.  [copy(70),flip(b)].
+72 plus_plus(int,A,B) = plus_plus(int,zero_zero(int),plus_plus(int,A,B)).  [para(26(a,1),51(a,1,3))].
+73 plus_plus(int,zero_zero(int),plus_plus(int,A,B)) = plus_plus(int,A,B).  [copy(72),flip(a)].
+74 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,zero_zero(int),plus_plus(int,c_0,c_0)))) = zero_zero(int).  [para(73(a,1),64(a,1,3,2,3))].
+75 power_power(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),number_number_of(nat,plus_plus(int,c_0,c_0))) = zero_zero(int).  [para(73(a,1),74(a,1,3,2))].
+76 ord_less(int,plus_plus(int,zero_zero(int),A),plus_plus(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),A)).  [resolve(65,a,18,a)].
+77 ord_less(int,plus_plus(int,A,zero_zero(int)),plus_plus(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),A)).  [para(20(a,1),76(a,2))].
+78 ord_less(int,A,plus_plus(int,plus_plus(int,c_0,semiring_1_of_nat(int,n)),A)).  [para(26(a,1),77(a,2))].
+79 ord_less(int,A,plus_plus(int,A,plus_plus(int,c_0,semiring_1_of_nat(int,n)))).  [para(20(a,1),78(a,3))].
+80 -ord_less(int,plus_plus(int,zero_zero(int),c_0),plus_plus(int,A,plus_plus(int,A,c_0))) | ord_less(int,zero_zero(int),A).  [para(73(a,1),57(a,2))].
+81 -ord_less(int,plus_plus(int,c_0,zero_zero(int)),plus_plus(int,A,plus_plus(int,A,c_0))) | ord_less(int,zero_zero(int),A).  [para(20(a,1),80(a,2))].
+82 -ord_less(int,c_0,plus_plus(int,A,plus_plus(int,A,c_0))) | ord_less(int,zero_zero(int),A).  [para(26(a,1),81(a,2))].
+83 -ord_less(int,c_0,plus_plus(int,zero_zero(int),c_0)) | ord_less(int,zero_zero(int),zero_zero(int)).  [para(73(a,1),82(a,3))].
+84 -ord_less(int,c_0,plus_plus(int,c_0,zero_zero(int))) | ord_less(int,zero_zero(int),zero_zero(int)).  [para(20(a,1),83(a,3))].
+85 -ord_less(int,c_0,c_0) | ord_less(int,zero_zero(int),zero_zero(int)).  [para(26(a,1),84(a,3))].
+86 -ord_less(int,c_0,c_0).  [resolve(52,a,85,b)].
+87 zero_zero(int) = plus_plus(int,c_0,semiring_1_of_nat(int,n)).  [resolve(75,a,71,a)].
+88 plus_plus(int,c_0,semiring_1_of_nat(int,n)) = zero_zero(int).  [copy(87),flip(a)].
+89 ord_less(int,A,plus_plus(int,A,zero_zero(int))).  [para(88(a,1),79(a,3,3))].
+90 ord_less(int,A,A).  [para(26(a,1),89(a,3))].
+91 $F.  [resolve(90,a,86,a)].
+
+============================== end of proof ==========================

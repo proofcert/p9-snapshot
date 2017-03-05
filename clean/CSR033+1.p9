@@ -1,0 +1,47 @@
+
+
+
+
+
+
+
+
+
+
+11 -mtvisible(c_worldgeographymt) | geolevel_1(c_georegion_l1_x2_y0).  [clausify(2)].
+12 -inregion(c_geolocation_x76_y23,c_georegion_l1_x2_y0) | -geolevel_1(c_georegion_l1_x2_y0).  [clausify(10)].
+13 mtvisible(c_tptpgeo_spindlecollectormt).  [clausify(10)].
+14 genlmt(c_tptpgeo_spindleheadmt,c_worldgeographymt).  [assumption].
+15 genlmt(c_tptpgeo_spindlecollectormt,c_tptpgeo_member2_mt).  [assumption].
+16 genlmt(c_tptpgeo_member8_mt,c_tptpgeo_spindleheadmt).  [assumption].
+17 genlmt(c_tptpgeo_spindlecollectormt,c_tptpgeo_member8_mt).  [assumption].
+18 -mtvisible(c_tptpgeo_member2_mt) | geographicalsubregions(c_georegion_l1_x2_y0,c_georegion_l2_x8_y2).  [clausify(3)].
+19 -mtvisible(c_tptpgeo_member2_mt) | geographicalsubregions(c_georegion_l2_x8_y2,c_georegion_l3_x25_y7).  [clausify(4)].
+20 -mtvisible(c_tptpgeo_member2_mt) | geographicalsubregions(c_georegion_l3_x25_y7,c_georegion_l4_x76_y23).  [clausify(5)].
+21 -mtvisible(c_tptpgeo_member2_mt) | inregion(c_geolocation_x76_y23,c_georegion_l4_x76_y23).  [clausify(6)].
+22 -geographicalsubregions(A,B) | inregion(B,A).  [clausify(1)].
+23 -mtvisible(A) | -genlmt(A,B) | mtvisible(B).  [clausify(9)].
+24 -geographicalsubregions(A,B) | -geographicalsubregions(B,C) | geographicalsubregions(A,C).  [clausify(7)].
+25 -inregion(A,B) | -inregion(B,C) | inregion(A,C).  [clausify(8)].
+26 -mtvisible(c_worldgeographymt) | -inregion(c_geolocation_x76_y23,c_georegion_l1_x2_y0).  [resolve(11,b,12,b)].
+27 -genlmt(c_tptpgeo_spindlecollectormt,A) | mtvisible(A).  [resolve(23,a,13,a)].
+28 mtvisible(c_tptpgeo_member8_mt).  [resolve(27,a,17,a)].
+29 -genlmt(c_tptpgeo_spindlecollectormt,A) | mtvisible(A).  [resolve(23,a,13,a)].
+30 mtvisible(c_tptpgeo_member2_mt).  [resolve(29,a,15,a)].
+31 inregion(c_geolocation_x76_y23,c_georegion_l4_x76_y23).  [resolve(30,a,21,a)].
+32 geographicalsubregions(c_georegion_l3_x25_y7,c_georegion_l4_x76_y23).  [resolve(30,a,20,a)].
+33 geographicalsubregions(c_georegion_l2_x8_y2,c_georegion_l3_x25_y7).  [resolve(30,a,19,a)].
+34 geographicalsubregions(c_georegion_l1_x2_y0,c_georegion_l2_x8_y2).  [resolve(30,a,18,a)].
+35 -genlmt(c_tptpgeo_member8_mt,A) | mtvisible(A).  [resolve(23,a,28,a)].
+36 mtvisible(c_tptpgeo_spindleheadmt).  [resolve(35,a,16,a)].
+37 -genlmt(c_tptpgeo_spindleheadmt,A) | mtvisible(A).  [resolve(23,a,36,a)].
+38 mtvisible(c_worldgeographymt).  [resolve(37,a,14,a)].
+39 -inregion(c_geolocation_x76_y23,c_georegion_l1_x2_y0).  [resolve(38,a,26,a)].
+40 -inregion(c_georegion_l4_x76_y23,A) | inregion(c_geolocation_x76_y23,A).  [resolve(25,a,31,a)].
+41 -inregion(c_georegion_l4_x76_y23,c_georegion_l1_x2_y0).  [resolve(40,b,39,a)].
+42 -geographicalsubregions(c_georegion_l1_x2_y0,c_georegion_l4_x76_y23).  [resolve(41,a,22,b)].
+43 -geographicalsubregions(A,c_georegion_l3_x25_y7) | geographicalsubregions(A,c_georegion_l4_x76_y23).  [resolve(24,b,32,a)].
+44 -geographicalsubregions(c_georegion_l1_x2_y0,c_georegion_l3_x25_y7).  [resolve(43,b,42,a)].
+45 -geographicalsubregions(c_georegion_l2_x8_y2,A) | geographicalsubregions(c_georegion_l1_x2_y0,A).  [resolve(24,a,34,a)].
+46 geographicalsubregions(c_georegion_l1_x2_y0,c_georegion_l3_x25_y7).  [resolve(45,a,33,a)].
+47 $F.  [resolve(44,a,46,a)].

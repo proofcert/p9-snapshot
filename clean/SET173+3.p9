@@ -1,0 +1,40 @@
+
+
+
+
+5 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(3)].
+6 intersection(c1,union(c1,c2)) != c1.  [clausify(4)].
+7 member(A,union(B,C)) | -member(A,B).  [clausify(1)].
+8 -member(A,intersection(B,C)) | member(A,B).  [clausify(2)].
+9 -member(A,union(B,C)) | member(A,B) | member(A,C).  [clausify(1)].
+10 member(A,intersection(B,C)) | -member(A,B) | -member(A,C).  [clausify(2)].
+11 A = B | -member(f2(B,A),B) | -member(f2(B,A),A).  [clausify(3)].
+12 member(f2(A,B),union(B,C)) | B = A | member(f2(A,B),A).  [resolve(7,b,5,c)].
+13 member(f2(A,B),union(A,C)) | B = A | member(f2(A,B),B).  [resolve(7,b,5,b)].
+14 member(f2(union(A,B),A),union(A,B)) | A = union(A,B).  [factor(12,a,c)].
+15 member(f2(union(A,B),A),union(A,B)) | union(A,B) = A.  [copy(14),flip(b)].
+16 member(f2(A,intersection(B,C)),B) | intersection(B,C) = A | member(f2(A,intersection(B,C)),A).  [resolve(8,a,5,c)].
+17 member(f2(A,intersection(A,B)),A) | intersection(A,B) = A.  [factor(16,a,c)].
+18 member(f2(union(A,B),C),A) | member(f2(union(A,B),C),B) | C = union(A,B) | member(f2(union(A,B),C),C).  [resolve(9,a,5,b)].
+19 member(f2(union(A,B),C),A) | member(f2(union(A,B),C),B) | union(A,B) = C | member(f2(union(A,B),C),C).  [copy(18),flip(c)].
+20 member(f2(union(A,A),B),A) | union(A,A) = B | member(f2(union(A,A),B),B).  [factor(19,a,b)].
+21 member(f2(union(A,A),A),A) | union(A,A) = A.  [factor(20,a,c)].
+22 intersection(A,B) = A | intersection(A,B) = A | -member(f2(A,intersection(A,B)),intersection(A,B)).  [resolve(17,a,11,b)].
+23 intersection(A,B) = A | -member(f2(A,intersection(A,B)),intersection(A,B)).  [copy(22),merge(b)].
+24 union(A,B) = A | A = union(A,B) | -member(f2(union(A,B),A),A).  [resolve(15,a,11,b)].
+25 union(A,B) = A | union(A,B) = A | -member(f2(union(A,B),A),A).  [copy(24),flip(b)].
+26 union(A,B) = A | -member(f2(union(A,B),A),A).  [copy(25),merge(b)].
+27 union(A,A) = A | union(A,A) = A.  [resolve(26,b,21,a)].
+28 union(A,A) = A.  [copy(27),merge(b)].
+29 member(f2(A,B),A) | union(A,A) = B | member(f2(union(A,A),B),B).  [para(28(a,1),20(a,1,1))].
+30 member(f2(A,B),A) | A = B | member(f2(union(A,A),B),B).  [para(28(a,1),29(b,1))].
+31 member(f2(A,B),A) | A = B | member(f2(A,B),B).  [para(28(a,1),30(c,1,1))].
+32 -member(f2(c1,intersection(c1,union(c1,c2))),intersection(c1,union(c1,c2))).  [resolve(23,a,6,a)].
+33 member(f2(c1,intersection(c1,union(c1,c2))),c1) | c1 = intersection(c1,union(c1,c2)).  [resolve(32,a,31,c)].
+34 member(f2(c1,intersection(c1,union(c1,c2))),c1) | intersection(c1,union(c1,c2)) = c1.  [copy(33),flip(b)].
+35 member(f2(c1,intersection(c1,union(c1,c2))),c1).  [resolve(6,a,34,b)].
+36 -member(f2(c1,intersection(c1,union(c1,c2))),c1) | -member(f2(c1,intersection(c1,union(c1,c2))),union(c1,c2)).  [resolve(10,a,32,a)].
+37 -member(f2(c1,intersection(c1,union(c1,c2))),union(c1,c2)).  [resolve(36,a,35,a)].
+38 intersection(c1,union(c1,c2)) = c1 | member(f2(c1,intersection(c1,union(c1,c2))),intersection(c1,union(c1,c2))).  [resolve(37,a,13,a)].
+39 member(f2(c1,intersection(c1,union(c1,c2))),intersection(c1,union(c1,c2))).  [resolve(6,a,38,a)].
+40 $F.  [resolve(32,a,39,a)].

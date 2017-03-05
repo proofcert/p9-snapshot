@@ -1,0 +1,88 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n163.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:04:13 CDT 2014
+% CPUTime    : 0.21 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 43678 was started by sandbox on n163.star.cs.uiowa.edu,
+Fri Jun  6 06:04:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_43646_n163.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 45.
+% Level of proof is 9.
+% Maximum clause weight is 10.000.
+% Given clauses 77.
+
+
+1 (all A (ordinal(A) -> epsilon_transitive(A) & epsilon_connected(A))).  [assumption].
+2 (all A (epsilon_transitive(A) <-> (all B (in(B,A) -> subset(B,A))))).  [assumption].
+3 (all A all B (proper_subset(A,B) <-> subset(A,B) & A != B)).  [assumption].
+4 (all A all B subset(A,A)).  [assumption].
+5 (all A (epsilon_transitive(A) -> (all B (ordinal(B) -> (proper_subset(A,B) -> in(A,B)))))).  [assumption].
+6 (all A all B (element(A,B) -> empty(B) | in(A,B))).  [assumption].
+7 (all A all B (element(A,powerset(B)) <-> subset(A,B))).  [assumption].
+8 (all A all B all C (in(A,B) & element(B,powerset(C)) -> element(A,C))).  [assumption].
+9 (all A all B -(in(A,B) & empty(B))).  [assumption].
+10 (all A all B -(in(A,B) & subset(B,A))).  [assumption].
+11 -(all A (epsilon_transitive(A) -> (all B (ordinal(B) -> (all C (ordinal(C) -> (subset(A,B) & in(B,C) -> in(A,C)))))))).  [assumption].
+12 epsilon_transitive(c12).  [clausify(11)].
+13 -ordinal(A) | epsilon_transitive(A).  [clausify(1)].
+14 -epsilon_transitive(A) | -in(B,A) | subset(B,A).  [clausify(2)].
+15 -epsilon_transitive(A) | -ordinal(B) | -proper_subset(A,B) | in(A,B).  [clausify(5)].
+16 ordinal(c13).  [clausify(11)].
+17 ordinal(c14).  [clausify(11)].
+18 subset(A,A).  [clausify(4)].
+19 subset(c12,c13).  [clausify(11)].
+20 in(c13,c14).  [clausify(11)].
+21 -in(c12,c14).  [clausify(11)].
+22 -in(A,B) | -empty(B).  [clausify(9)].
+23 -in(A,B) | -subset(B,A).  [clausify(10)].
+24 -element(A,powerset(B)) | subset(A,B).  [clausify(7)].
+25 element(A,powerset(B)) | -subset(A,B).  [clausify(7)].
+26 -element(A,B) | empty(B) | in(A,B).  [clausify(6)].
+27 proper_subset(A,B) | -subset(A,B) | B = A.  [clausify(3)].
+28 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(8)].
+29 -in(A,B) | subset(A,B) | -ordinal(B).  [resolve(14,a,13,b)].
+30 -ordinal(A) | -proper_subset(c12,A) | in(c12,A).  [resolve(15,a,12,a)].
+31 -empty(c14).  [resolve(22,a,20,a)].
+32 -subset(c14,c13).  [resolve(23,a,20,a)].
+33 element(A,powerset(A)).  [resolve(25,b,18,a)].
+34 proper_subset(c12,c13) | c13 = c12.  [resolve(27,b,19,a)].
+35 subset(c13,c14) | -ordinal(c14).  [resolve(29,a,20,a)].
+36 subset(c13,c14).  [resolve(17,a,35,b)].
+37 -proper_subset(c12,c14) | in(c12,c14).  [resolve(30,a,17,a)].
+38 -proper_subset(c12,c14).  [resolve(37,b,21,a)].
+39 -element(A,c14) | in(A,c14).  [resolve(26,b,31,a)].
+40 -element(c12,c14).  [resolve(39,b,21,a)].
+41 -element(c14,powerset(c13)).  [resolve(24,b,32,a)].
+42 proper_subset(c13,c14) | c14 = c13.  [resolve(36,a,27,b)].
+43 element(c13,powerset(c14)).  [resolve(36,a,25,b)].
+44 -in(A,c13) | element(A,c14).  [resolve(28,b,43,a)].
+45 -in(c12,c13).  [resolve(44,b,40,a)].
+46 -proper_subset(c12,c13) | in(c12,c13).  [resolve(30,a,16,a)].
+47 -proper_subset(c12,c13).  [resolve(46,b,45,a)].
+48 c13 = c12.  [resolve(47,a,34,a)].
+49 proper_subset(c12,c14) | c14 = c13.  [para(48(a,1),42(a,1))].
+50 proper_subset(c12,c14) | c14 = c12.  [para(48(a,1),49(b,2))].
+51 c14 = c12.  [resolve(38,a,50,a)].
+52 -element(c12,powerset(c13)).  [para(51(a,1),41(a,1))].
+53 -element(c12,powerset(c12)).  [para(48(a,1),52(a,2,1))].
+54 $F.  [resolve(33,a,53,a)].
+
+============================== end of proof ==========================

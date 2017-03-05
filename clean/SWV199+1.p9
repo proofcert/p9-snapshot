@@ -1,0 +1,43 @@
+
+
+
+4 -leq(n0,A) | -leq(A,n0) | n0 = A.  [clausify(1)].
+5 -leq(n0,A) | -leq(A,n2) | n0 = A | n1 = A | n2 = A.  [clausify(2)].
+6 leq(n0,pv5).  [clausify(3)].
+7 leq(pv5,n0).  [clausify(3)].
+8 leq(n0,c1).  [clausify(3)].
+9 leq(n0,c2).  [clausify(3)].
+10 leq(c1,n2).  [clausify(3)].
+11 leq(c2,pv5).  [clausify(3)].
+12 c1 != n0 | pv5 != c2.  [clausify(3)].
+13 c1 != n0 | c2 != pv5.  [copy(12),flip(b)].
+14 n1 != c1 | pv5 != c2.  [clausify(3)].
+15 c1 != n1 | pv5 != c2.  [copy(14),flip(a)].
+16 c1 != n1 | c2 != pv5.  [copy(15),flip(b)].
+17 n2 != c1 | pv5 != c2.  [clausify(3)].
+18 c1 != n2 | pv5 != c2.  [copy(17),flip(a)].
+19 c1 != n2 | c2 != pv5.  [copy(18),flip(b)].
+20 -leq(pv5,n0) | n0 = pv5.  [resolve(6,a,4,a)].
+21 -leq(pv5,n0) | pv5 = n0.  [copy(20),flip(b)].
+22 pv5 = n0.  [resolve(7,a,21,a)].
+23 c1 != n2 | c2 != n0.  [para(22(a,1),19(b,2))].
+24 c1 != n1 | c2 != n0.  [para(22(a,1),16(b,2))].
+25 c1 != n0 | c2 != n0.  [para(22(a,1),13(b,2))].
+26 leq(c2,n0).  [para(22(a,1),11(a,2))].
+27 -leq(c1,n2) | n0 = c1 | n1 = c1 | n2 = c1.  [resolve(8,a,5,a)].
+28 -leq(c1,n2) | c1 = n0 | n1 = c1 | n2 = c1.  [copy(27),flip(b)].
+29 -leq(c1,n2) | c1 = n0 | c1 = n1 | n2 = c1.  [copy(28),flip(c)].
+30 -leq(c1,n2) | c1 = n0 | c1 = n1 | c1 = n2.  [copy(29),flip(d)].
+31 c1 = n0 | c1 = n1 | c1 = n2.  [resolve(10,a,30,a)].
+32 -leq(c2,n0) | n0 = c2.  [resolve(9,a,4,a)].
+33 -leq(c2,n0) | c2 = n0.  [copy(32),flip(b)].
+34 c2 = n0.  [resolve(26,a,33,a)].
+35 c1 != n0 | n0 != n0.  [para(34(a,1),25(b,1))].
+36 c1 != n0.  [copy(35),xx(b)].
+37 c1 != n1 | n0 != n0.  [para(34(a,1),24(b,1))].
+38 c1 != n1.  [copy(37),xx(b)].
+39 c1 != n2 | n0 != n0.  [para(34(a,1),23(b,1))].
+40 c1 != n2.  [copy(39),xx(b)].
+41 c1 = n1 | c1 = n2.  [resolve(36,a,31,a)].
+42 c1 = n2.  [resolve(38,a,41,a)].
+43 $F.  [resolve(40,a,42,a)].

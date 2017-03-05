@@ -1,0 +1,146 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n153.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:46:23 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 56191 was started by sandbox on n153.star.cs.uiowa.edu,
+Thu Jun  5 16:46:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_56159_n153.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 95.
+% Level of proof is 24.
+% Maximum clause weight is 31.000.
+% Given clauses 93.
+
+
+1 (all A all B (environment(A) & greater_or_equal(B,appear(efficient_producers,A)) & cardinality_at_time(efficient_producers,B) = zero -> (exists C (greater(C,appear(efficient_producers,A)) & in_environment(A,C) & greater(B,C) & greater(zero,growth_rate(efficient_producers,C)))))).  [assumption].
+2 (all A all B (environment(A) & in_environment(A,B) & greater(appear(an_organisation,A),B) -> number_of_organizations(A,B) = zero)).  [assumption].
+3 (all A all B (environment(A) & in_environment(A,B) & -decreases(number_of_organizations(A,B)) -> (exists C (subpopulation(C,A,B) & greater(cardinality_at_time(C,B),zero) & -greater(zero,growth_rate(C,B)))))).  [assumption].
+4 (all A all B all C (environment(A) & in_environment(A,B) & number_of_organizations(A,B) = zero & subpopulation(C,A,B) -> cardinality_at_time(C,B) = zero)).  [assumption].
+5 (all A all B (environment(A) & in_environment(A,B) -> subpopulation(first_movers,A,B) & subpopulation(efficient_producers,A,B))).  [assumption].
+6 (all A all B (cardinality_at_time(A,B) = zero -> -greater(zero,growth_rate(A,B)))).  [assumption].
+7 (all A all B (environment(A) & in_environment(A,B) -> cardinality_at_time(efficient_producers,B) = zero | greater(cardinality_at_time(efficient_producers,B),zero))).  [assumption].
+8 (all A (constant(A) -> -decreases(A))).  [assumption].
+9 (all A all B (environment(A) & in_environment(A,B) -> greater_or_equal(B,appear(an_organisation,A)) | greater(appear(an_organisation,A),B))).  [assumption].
+10 (all A all B (environment(A) & in_environment(A,B) & greater(number_of_organizations(A,B),zero) -> (greater(equilibrium(A),B) -> decreases(resources(A,B))) & (-greater(equilibrium(A),B) -> constant(resources(A,B))))).  [assumption].
+11 (all A all B (environment(A) & in_environment(A,B) & greater_or_equal(B,appear(an_organisation,A)) -> greater(number_of_organizations(A,B),zero))).  [assumption].
+12 (all A all B (environment(A) & in_environment(A,B) -> (decreases(resources(A,B)) -> -decreases(number_of_organizations(A,B))) & (constant(resources(A,B)) -> constant(number_of_organizations(A,B))))).  [assumption].
+13 (all A all B all C all D (environment(A) & in_environment(A,D) & -greater(zero,growth_rate(B,D)) & greater(resilience(C),resilience(B)) -> -greater(zero,growth_rate(C,D)))).  [assumption].
+14 (all A all B all C (environment(A) & subpopulation(B,A,C) & greater(cardinality_at_time(B,C),zero) -> B = efficient_producers | B = first_movers)).  [assumption].
+15 -(all A all B (environment(A) & in_environment(A,B) & greater_or_equal(B,appear(efficient_producers,A)) -> greater(cardinality_at_time(efficient_producers,B),zero))).  [assumption].
+16 -environment(A) | -in_environment(A,B) | -decreases(resources(A,B)) | -decreases(number_of_organizations(A,B)).  [clausify(12)].
+17 environment(c1).  [clausify(15)].
+18 -environment(A) | -in_environment(A,B) | subpopulation(efficient_producers,A,B).  [clausify(5)].
+19 -environment(A) | -in_environment(A,B) | -constant(resources(A,B)) | constant(number_of_organizations(A,B)).  [clausify(12)].
+20 -environment(A) | -in_environment(A,B) | -greater(appear(an_organisation,A),B) | number_of_organizations(A,B) = zero.  [clausify(2)].
+21 -environment(A) | -in_environment(A,B) | decreases(number_of_organizations(A,B)) | subpopulation(f2(A,B),A,B).  [clausify(3)].
+22 -environment(A) | -in_environment(A,B) | cardinality_at_time(efficient_producers,B) = zero | greater(cardinality_at_time(efficient_producers,B),zero).  [clausify(7)].
+23 -environment(A) | -in_environment(A,B) | greater_or_equal(B,appear(an_organisation,A)) | greater(appear(an_organisation,A),B).  [clausify(9)].
+24 -environment(A) | -in_environment(A,B) | -greater_or_equal(B,appear(an_organisation,A)) | greater(number_of_organizations(A,B),zero).  [clausify(11)].
+25 -environment(A) | -in_environment(A,B) | decreases(number_of_organizations(A,B)) | greater(cardinality_at_time(f2(A,B),B),zero).  [clausify(3)].
+26 -environment(A) | -in_environment(A,B) | decreases(number_of_organizations(A,B)) | -greater(zero,growth_rate(f2(A,B),B)).  [clausify(3)].
+27 -environment(A) | -greater_or_equal(B,appear(efficient_producers,A)) | cardinality_at_time(efficient_producers,B) != zero | in_environment(A,f1(A,B)).  [clausify(1)].
+28 -environment(A) | -subpopulation(B,A,C) | -greater(cardinality_at_time(B,C),zero) | B = efficient_producers | first_movers = B.  [clausify(14)].
+29 -environment(A) | -in_environment(A,B) | -greater(number_of_organizations(A,B),zero) | -greater(equilibrium(A),B) | decreases(resources(A,B)).  [clausify(10)].
+30 -environment(A) | -in_environment(A,B) | -greater(number_of_organizations(A,B),zero) | greater(equilibrium(A),B) | constant(resources(A,B)).  [clausify(10)].
+31 -environment(A) | -greater_or_equal(B,appear(efficient_producers,A)) | cardinality_at_time(efficient_producers,B) != zero | greater(zero,growth_rate(efficient_producers,f1(A,B))).  [clausify(1)].
+32 -environment(A) | -in_environment(A,B) | number_of_organizations(A,B) != zero | -subpopulation(C,A,B) | cardinality_at_time(C,B) = zero.  [clausify(4)].
+33 -environment(A) | -in_environment(A,B) | greater(zero,growth_rate(C,B)) | -greater(resilience(D),resilience(C)) | -greater(zero,growth_rate(D,B)).  [clausify(13)].
+34 in_environment(c1,c2).  [clausify(15)].
+35 greater(resilience(efficient_producers),resilience(first_movers)).  [assumption].
+36 greater_or_equal(c2,appear(efficient_producers,c1)).  [clausify(15)].
+37 -constant(A) | -decreases(A).  [clausify(8)].
+38 -greater(cardinality_at_time(efficient_producers,c2),zero).  [clausify(15)].
+39 cardinality_at_time(A,B) != zero | -greater(zero,growth_rate(A,B)).  [clausify(6)].
+40 -in_environment(c1,A) | -decreases(resources(c1,A)) | -decreases(number_of_organizations(c1,A)).  [resolve(16,a,17,a)].
+41 -in_environment(c1,A) | subpopulation(efficient_producers,c1,A).  [resolve(18,a,17,a)].
+42 -in_environment(c1,A) | -constant(resources(c1,A)) | constant(number_of_organizations(c1,A)).  [resolve(19,a,17,a)].
+43 -in_environment(c1,A) | -greater(appear(an_organisation,c1),A) | number_of_organizations(c1,A) = zero.  [resolve(20,a,17,a)].
+44 -in_environment(c1,A) | decreases(number_of_organizations(c1,A)) | subpopulation(f2(c1,A),c1,A).  [resolve(21,a,17,a)].
+45 -in_environment(c1,A) | cardinality_at_time(efficient_producers,A) = zero | greater(cardinality_at_time(efficient_producers,A),zero).  [resolve(22,a,17,a)].
+46 -in_environment(c1,A) | greater_or_equal(A,appear(an_organisation,c1)) | greater(appear(an_organisation,c1),A).  [resolve(23,a,17,a)].
+47 -in_environment(c1,A) | -greater_or_equal(A,appear(an_organisation,c1)) | greater(number_of_organizations(c1,A),zero).  [resolve(24,a,17,a)].
+48 -in_environment(c1,A) | decreases(number_of_organizations(c1,A)) | greater(cardinality_at_time(f2(c1,A),A),zero).  [resolve(25,a,17,a)].
+49 -in_environment(c1,A) | decreases(number_of_organizations(c1,A)) | -greater(zero,growth_rate(f2(c1,A),A)).  [resolve(26,a,17,a)].
+50 -greater_or_equal(A,appear(efficient_producers,c1)) | cardinality_at_time(efficient_producers,A) != zero | in_environment(c1,f1(c1,A)).  [resolve(27,a,17,a)].
+51 -subpopulation(A,c1,B) | -greater(cardinality_at_time(A,B),zero) | A = efficient_producers | first_movers = A.  [resolve(28,a,17,a)].
+52 -subpopulation(A,c1,B) | -greater(cardinality_at_time(A,B),zero) | efficient_producers = A | first_movers = A.  [copy(51),flip(c)].
+53 -in_environment(c1,A) | -greater(number_of_organizations(c1,A),zero) | -greater(equilibrium(c1),A) | decreases(resources(c1,A)).  [resolve(29,a,17,a)].
+54 -in_environment(c1,A) | -greater(number_of_organizations(c1,A),zero) | greater(equilibrium(c1),A) | constant(resources(c1,A)).  [resolve(30,a,17,a)].
+55 -greater_or_equal(A,appear(efficient_producers,c1)) | cardinality_at_time(efficient_producers,A) != zero | greater(zero,growth_rate(efficient_producers,f1(c1,A))).  [resolve(31,a,17,a)].
+56 -in_environment(c1,A) | number_of_organizations(c1,A) != zero | -subpopulation(B,c1,A) | cardinality_at_time(B,A) = zero.  [resolve(32,a,17,a)].
+57 -in_environment(c1,A) | greater(zero,growth_rate(B,A)) | -greater(resilience(C),resilience(B)) | -greater(zero,growth_rate(C,A)).  [resolve(33,a,17,a)].
+58 cardinality_at_time(efficient_producers,c2) = zero | greater(cardinality_at_time(efficient_producers,c2),zero).  [resolve(45,a,34,a)].
+59 cardinality_at_time(efficient_producers,c2) = zero.  [resolve(38,a,58,b)].
+60 cardinality_at_time(efficient_producers,c2) != zero | in_environment(c1,f1(c1,c2)).  [resolve(50,a,36,a)].
+61 zero != zero | in_environment(c1,f1(c1,c2)).  [para(59(a,1),60(a,1))].
+62 in_environment(c1,f1(c1,c2)).  [copy(61),xx(a)].
+63 cardinality_at_time(efficient_producers,c2) != zero | greater(zero,growth_rate(efficient_producers,f1(c1,c2))).  [resolve(55,a,36,a)].
+64 zero != zero | greater(zero,growth_rate(efficient_producers,f1(c1,c2))).  [para(59(a,1),63(a,1))].
+65 greater(zero,growth_rate(efficient_producers,f1(c1,c2))).  [copy(64),xx(a)].
+66 greater(zero,growth_rate(A,f1(c1,c2))) | -greater(resilience(B),resilience(A)) | -greater(zero,growth_rate(B,f1(c1,c2))).  [resolve(62,a,57,a)].
+67 -greater(number_of_organizations(c1,f1(c1,c2)),zero) | greater(equilibrium(c1),f1(c1,c2)) | constant(resources(c1,f1(c1,c2))).  [resolve(62,a,54,a)].
+68 -greater(number_of_organizations(c1,f1(c1,c2)),zero) | -greater(equilibrium(c1),f1(c1,c2)) | decreases(resources(c1,f1(c1,c2))).  [resolve(62,a,53,a)].
+69 decreases(number_of_organizations(c1,f1(c1,c2))) | -greater(zero,growth_rate(f2(c1,f1(c1,c2)),f1(c1,c2))).  [resolve(62,a,49,a)].
+70 decreases(number_of_organizations(c1,f1(c1,c2))) | greater(cardinality_at_time(f2(c1,f1(c1,c2)),f1(c1,c2)),zero).  [resolve(62,a,48,a)].
+71 greater_or_equal(f1(c1,c2),appear(an_organisation,c1)) | greater(appear(an_organisation,c1),f1(c1,c2)).  [resolve(62,a,46,a)].
+72 decreases(number_of_organizations(c1,f1(c1,c2))) | subpopulation(f2(c1,f1(c1,c2)),c1,f1(c1,c2)).  [resolve(62,a,44,a)].
+73 -greater(appear(an_organisation,c1),f1(c1,c2)) | number_of_organizations(c1,f1(c1,c2)) = zero.  [resolve(62,a,43,a)].
+74 -constant(resources(c1,f1(c1,c2))) | constant(number_of_organizations(c1,f1(c1,c2))).  [resolve(62,a,42,a)].
+75 subpopulation(efficient_producers,c1,f1(c1,c2)).  [resolve(62,a,41,a)].
+76 -decreases(resources(c1,f1(c1,c2))) | -decreases(number_of_organizations(c1,f1(c1,c2))).  [resolve(62,a,40,a)].
+77 -in_environment(c1,f1(c1,c2)) | number_of_organizations(c1,f1(c1,c2)) != zero | cardinality_at_time(efficient_producers,f1(c1,c2)) = zero.  [resolve(75,a,56,c)].
+78 number_of_organizations(c1,f1(c1,c2)) != zero | cardinality_at_time(efficient_producers,f1(c1,c2)) = zero.  [resolve(62,a,77,a)].
+79 cardinality_at_time(efficient_producers,f1(c1,c2)) != zero.  [resolve(65,a,39,b)].
+80 number_of_organizations(c1,f1(c1,c2)) != zero.  [resolve(79,a,78,b)].
+81 -greater(appear(an_organisation,c1),f1(c1,c2)).  [resolve(80,a,73,b)].
+82 greater_or_equal(f1(c1,c2),appear(an_organisation,c1)).  [resolve(81,a,71,b)].
+83 -in_environment(c1,f1(c1,c2)) | greater(number_of_organizations(c1,f1(c1,c2)),zero).  [resolve(82,a,47,b)].
+84 greater(number_of_organizations(c1,f1(c1,c2)),zero).  [resolve(62,a,83,a)].
+85 -greater(equilibrium(c1),f1(c1,c2)) | decreases(resources(c1,f1(c1,c2))).  [resolve(84,a,68,a)].
+86 greater(equilibrium(c1),f1(c1,c2)) | constant(resources(c1,f1(c1,c2))).  [resolve(84,a,67,a)].
+87 constant(resources(c1,f1(c1,c2))) | decreases(resources(c1,f1(c1,c2))).  [resolve(86,a,85,a)].
+88 decreases(resources(c1,f1(c1,c2))) | constant(number_of_organizations(c1,f1(c1,c2))).  [resolve(87,a,74,a)].
+89 decreases(resources(c1,f1(c1,c2))) | -decreases(number_of_organizations(c1,f1(c1,c2))).  [resolve(88,b,37,a)].
+90 decreases(number_of_organizations(c1,f1(c1,c2))) | -greater(cardinality_at_time(f2(c1,f1(c1,c2)),f1(c1,c2)),zero) | efficient_producers = f2(c1,f1(c1,c2)) | first_movers = f2(c1,f1(c1,c2)).  [resolve(72,b,52,a)].
+91 decreases(number_of_organizations(c1,f1(c1,c2))) | -greater(cardinality_at_time(f2(c1,f1(c1,c2)),f1(c1,c2)),zero) | f2(c1,f1(c1,c2)) = efficient_producers | first_movers = f2(c1,f1(c1,c2)).  [copy(90),flip(c)].
+92 decreases(number_of_organizations(c1,f1(c1,c2))) | -greater(cardinality_at_time(f2(c1,f1(c1,c2)),f1(c1,c2)),zero) | f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers.  [copy(91),flip(d)].
+93 greater(zero,growth_rate(first_movers,f1(c1,c2))) | -greater(zero,growth_rate(efficient_producers,f1(c1,c2))).  [resolve(66,b,35,a)].
+94 greater(zero,growth_rate(first_movers,f1(c1,c2))).  [resolve(65,a,93,b)].
+95 decreases(number_of_organizations(c1,f1(c1,c2))) | f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers | decreases(number_of_organizations(c1,f1(c1,c2))).  [resolve(92,b,70,b)].
+96 decreases(number_of_organizations(c1,f1(c1,c2))) | f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers.  [copy(95),merge(d)].
+97 f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers | decreases(resources(c1,f1(c1,c2))).  [resolve(96,a,89,b)].
+98 f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers | -decreases(number_of_organizations(c1,f1(c1,c2))).  [resolve(97,c,76,a)].
+99 f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers | f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers.  [resolve(98,c,96,a)].
+100 f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers | f2(c1,f1(c1,c2)) = first_movers.  [copy(99),merge(c)].
+101 f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = first_movers.  [copy(100),merge(c)].
+102 f2(c1,f1(c1,c2)) = efficient_producers | decreases(number_of_organizations(c1,f1(c1,c2))) | -greater(zero,growth_rate(first_movers,f1(c1,c2))).  [para(101(b,1),69(b,2,1))].
+103 f2(c1,f1(c1,c2)) = efficient_producers | decreases(number_of_organizations(c1,f1(c1,c2))).  [resolve(94,a,102,c)].
+104 f2(c1,f1(c1,c2)) = efficient_producers | decreases(resources(c1,f1(c1,c2))).  [resolve(103,b,89,b)].
+105 f2(c1,f1(c1,c2)) = efficient_producers | -decreases(number_of_organizations(c1,f1(c1,c2))).  [resolve(104,b,76,a)].
+106 f2(c1,f1(c1,c2)) = efficient_producers | f2(c1,f1(c1,c2)) = efficient_producers.  [resolve(105,b,103,b)].
+107 f2(c1,f1(c1,c2)) = efficient_producers.  [copy(106),merge(b)].
+108 decreases(number_of_organizations(c1,f1(c1,c2))) | -greater(zero,growth_rate(efficient_producers,f1(c1,c2))).  [para(107(a,1),69(b,2,1))].
+109 decreases(number_of_organizations(c1,f1(c1,c2))).  [resolve(65,a,108,b)].
+110 decreases(resources(c1,f1(c1,c2))).  [resolve(109,a,89,b)].
+111 -decreases(number_of_organizations(c1,f1(c1,c2))).  [resolve(110,a,76,a)].
+112 $F.  [resolve(109,a,111,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n034.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 16127.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:12:03 CDT 2014
+% CPUTime    : 0.23 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 37278 was started by sandbox on n034.star.cs.uiowa.edu,
+Fri Jun  6 03:12:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_37246_n034.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.07 (+ 0.00) seconds.
+% Length of proof is 20.
+% Level of proof is 6.
+% Maximum clause weight is 8.000.
+% Given clauses 155.
+
+
+1 (all A all B all C (connect(A,B,C) <-> once(at_the_same_time(at(A,C),at(B,C))))).  [assumption].
+2 (all A all B (once(at_the_same_time(A,B)) -> once(A) & once(B))).  [assumption].
+3 (all A all B (once(at(A,B)) <-> incident_o(B,trajectory_of(A)))).  [assumption].
+4 (all A exists B trajectory_of(A) = B).  [assumption].
+5 -(all A all B all C (connect(B,C,A) -> incident_o(A,trajectory_of(B)) & incident_o(A,trajectory_of(C)))).  [assumption].
+6 -connect(A,B,C) | once(at_the_same_time(at(A,C),at(B,C))).  [clausify(1)].
+7 connect(c11,c12,c10).  [clausify(5)].
+8 -once(at_the_same_time(A,B)) | once(A).  [clausify(2)].
+9 -once(at_the_same_time(A,B)) | once(B).  [clausify(2)].
+10 -once(at(A,B)) | incident_o(B,trajectory_of(A)).  [clausify(3)].
+11 trajectory_of(A) = f25(A).  [clausify(4)].
+12 -incident_o(c10,trajectory_of(c11)) | -incident_o(c10,trajectory_of(c12)).  [clausify(5)].
+13 -incident_o(c10,f25(c11)) | -incident_o(c10,trajectory_of(c12)).  [para(11(a,1),12(a,2))].
+14 -incident_o(c10,f25(c11)) | -incident_o(c10,f25(c12)).  [para(11(a,1),13(b,2))].
+15 once(at_the_same_time(at(c11,c10),at(c12,c10))).  [resolve(7,a,6,a)].
+16 -once(at(A,B)) | incident_o(B,f25(A)).  [para(11(a,1),10(b,2))].
+17 once(at(c12,c10)).  [resolve(15,a,9,a)].
+18 once(at(c11,c10)).  [resolve(15,a,8,a)].
+19 incident_o(c10,f25(c12)).  [resolve(17,a,16,a)].
+20 -incident_o(c10,f25(c11)).  [resolve(19,a,14,b)].
+21 incident_o(c10,f25(c11)).  [resolve(18,a,16,a)].
+22 $F.  [resolve(20,a,21,a)].
+
+============================== end of proof ==========================

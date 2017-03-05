@@ -1,0 +1,62 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n137.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:55:28 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 45458 was started by sandbox on n137.star.cs.uiowa.edu,
+Thu Jun  5 18:55:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_45426_n137.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 6.
+% Maximum clause weight is 6.000.
+% Given clauses 3.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A all B (rpath(A,B) -> rpath(B,A))).  [assumption].
+4 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & cowlThing(iAntwerp) & rpath(iAntwerp,iGhent) & cowlThing(iGhent)).  [assumption].
+5 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+6 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+7 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent).  [clausify(4)].
+8 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent).  [clausify(4)].
+9 -cowlThing(c1) | cowlNothing(c1) | -xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent) | -xsd_integer(c2).  [resolve(7,c,5,a)].
+10 -cowlNothing(A).  [clausify(1)].
+11 -cowlThing(c1) | cowlNothing(c1) | xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent) | xsd_integer(c2).  [resolve(8,c,6,a)].
+12 cowlThing(A).  [clausify(1)].
+13 rpath(iGhent,iAntwerp).  [assumption].
+14 -rpath(A,B) | rpath(B,A).  [clausify(3)].
+15 -cowlThing(c1) | -xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent) | -xsd_integer(c2).  [resolve(9,b,10,a)].
+16 -cowlThing(c1) | -xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent).  [copy(15),merge(f)].
+17 -xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent).  [resolve(12,a,16,a)].
+18 -xsd_integer(c2) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent).  [resolve(12,a,17,b)].
+19 -xsd_integer(c2) | -rpath(iAntwerp,iGhent).  [resolve(12,a,18,c)].
+20 -cowlThing(c1) | xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent) | xsd_integer(c2).  [resolve(11,b,10,a)].
+21 -cowlThing(c1) | xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent).  [copy(20),merge(f)].
+22 xsd_integer(c2) | -cowlThing(iAntwerp) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent).  [resolve(12,a,21,a)].
+23 xsd_integer(c2) | -rpath(iAntwerp,iGhent) | -cowlThing(iGhent).  [resolve(12,a,22,b)].
+24 xsd_integer(c2) | -rpath(iAntwerp,iGhent).  [resolve(12,a,23,c)].
+25 rpath(iAntwerp,iGhent).  [resolve(14,a,13,a)].
+26 xsd_integer(c2).  [resolve(25,a,24,b)].
+27 -rpath(iAntwerp,iGhent).  [resolve(26,a,19,a)].
+28 $F.  [resolve(25,a,27,a)].
+
+============================== end of proof ==========================

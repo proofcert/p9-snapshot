@@ -1,0 +1,91 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n165.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:22:18 CDT 2014
+% CPUTime    : 22.20 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 17704 was started by sandbox on n165.star.cs.uiowa.edu,
+Thu Jun  5 16:22:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_17672_n165.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 20.93 (+ 0.95) seconds.
+% Length of proof is 50.
+% Level of proof is 8.
+% Maximum clause weight is 25.000.
+% Given clauses 9640.
+
+
+1 (all A all B (relation(first_projection(A,B)) & function(first_projection(A,B)))).  [assumption].
+2 (all A all B (function(first_projection_as_func_of(A,B)) & quasi_total(first_projection_as_func_of(A,B),cartesian_product2(A,B),A) & relation_of2_as_subset(first_projection_as_func_of(A,B),cartesian_product2(A,B),A))).  [assumption].
+3 (all A all B (relation(A) & function(A) & finite(B) -> finite(relation_image(A,B)))).  [assumption].
+4 (all A all B (finite(A) & finite(B) -> finite(cartesian_product2(A,B)))).  [assumption].
+5 (all A all B all C all D (function(C) & quasi_total(C,A,B) & relation_of2(C,A,B) -> function_image(A,B,C,D) = relation_image(C,D))).  [assumption].
+6 (all A all B first_projection_as_func_of(A,B) = first_projection(A,B)).  [assumption].
+7 (all A all B all C (relation_of2_as_subset(C,A,B) <-> relation_of2(C,A,B))).  [assumption].
+8 (all A (relation(A) & function(A) -> function_image(cartesian_product2(relation_dom(A),relation_rng(A)),relation_dom(A),first_projection_as_func_of(relation_dom(A),relation_rng(A)),A) = relation_dom(A))).  [assumption].
+9 (all A all B (subset(A,B) & finite(B) -> finite(A))).  [assumption].
+10 (all A (relation(A) -> subset(A,cartesian_product2(relation_dom(A),relation_rng(A))))).  [assumption].
+11 (all A (relation(A) & function(A) -> (finite(relation_dom(A)) -> finite(relation_rng(A))))).  [assumption].
+12 -(all A (relation(A) & function(A) -> (finite(relation_dom(A)) <-> finite(A)))).  [assumption].
+13 function(first_projection(A,B)).  [clausify(1)].
+14 -relation(A) | -function(A) | -finite(B) | finite(relation_image(A,B)).  [clausify(3)].
+15 -function(A) | -quasi_total(A,B,C) | -relation_of2(A,B,C) | relation_image(A,D) = function_image(B,C,A,D).  [clausify(5)].
+16 -relation(A) | -function(A) | relation_dom(A) = function_image(cartesian_product2(relation_dom(A),relation_rng(A)),relation_dom(A),first_projection_as_func_of(relation_dom(A),relation_rng(A)),A).  [clausify(8)].
+17 -relation(A) | -function(A) | -finite(relation_dom(A)) | finite(relation_rng(A)).  [clausify(11)].
+18 function(c22).  [clausify(12)].
+19 relation_of2_as_subset(first_projection_as_func_of(A,B),cartesian_product2(A,B),A).  [clausify(2)].
+20 -relation_of2_as_subset(A,B,C) | relation_of2(A,B,C).  [clausify(7)].
+21 -subset(A,B) | -finite(B) | finite(A).  [clausify(9)].
+22 -relation(A) | subset(A,cartesian_product2(relation_dom(A),relation_rng(A))).  [clausify(10)].
+23 relation(first_projection(A,B)).  [clausify(1)].
+24 quasi_total(first_projection_as_func_of(A,B),cartesian_product2(A,B),A).  [clausify(2)].
+25 -finite(A) | -finite(B) | finite(cartesian_product2(A,B)).  [clausify(4)].
+26 first_projection_as_func_of(A,B) = first_projection(A,B).  [clausify(6)].
+27 relation(c22).  [clausify(12)].
+28 finite(relation_dom(c22)) | finite(c22).  [clausify(12)].
+29 -finite(relation_dom(c22)) | -finite(c22).  [clausify(12)].
+30 -relation(first_projection(A,B)) | -finite(C) | finite(relation_image(first_projection(A,B),C)).  [resolve(14,b,13,a)].
+31 -finite(A) | finite(relation_image(first_projection(B,C),A)).  [resolve(23,a,30,a)].
+32 -quasi_total(first_projection(A,B),C,D) | -relation_of2(first_projection(A,B),C,D) | relation_image(first_projection(A,B),E) = function_image(C,D,first_projection(A,B),E).  [resolve(15,a,13,a)].
+33 -quasi_total(first_projection(A,B),C,D) | -relation_of2(first_projection(A,B),C,D) | function_image(C,D,first_projection(A,B),E) = relation_image(first_projection(A,B),E).  [copy(32),flip(c)].
+34 -relation(c22) | relation_dom(c22) = function_image(cartesian_product2(relation_dom(c22),relation_rng(c22)),relation_dom(c22),first_projection_as_func_of(relation_dom(c22),relation_rng(c22)),c22).  [resolve(18,a,16,b)].
+35 -relation(c22) | relation_dom(c22) = function_image(cartesian_product2(relation_dom(c22),relation_rng(c22)),relation_dom(c22),first_projection(relation_dom(c22),relation_rng(c22)),c22).  [para(26(a,1),34(b,2,3))].
+36 -relation(c22) | function_image(cartesian_product2(relation_dom(c22),relation_rng(c22)),relation_dom(c22),first_projection(relation_dom(c22),relation_rng(c22)),c22) = relation_dom(c22).  [copy(35),flip(b)].
+37 function_image(cartesian_product2(relation_dom(c22),relation_rng(c22)),relation_dom(c22),first_projection(relation_dom(c22),relation_rng(c22)),c22) = relation_dom(c22).  [resolve(27,a,36,a)].
+38 -relation(c22) | -finite(relation_dom(c22)) | finite(relation_rng(c22)).  [resolve(18,a,17,b)].
+39 -finite(relation_dom(c22)) | finite(relation_rng(c22)).  [resolve(27,a,38,a)].
+40 relation_of2(first_projection_as_func_of(A,B),cartesian_product2(A,B),A).  [resolve(20,a,19,a)].
+41 relation_of2(first_projection(A,B),cartesian_product2(A,B),A).  [para(26(a,1),40(a,1))].
+42 -relation(A) | -finite(cartesian_product2(relation_dom(A),relation_rng(A))) | finite(A).  [resolve(22,b,21,a)].
+43 quasi_total(first_projection(A,B),cartesian_product2(A,B),A).  [para(26(a,1),24(a,1))].
+44 finite(c22) | -finite(A) | finite(cartesian_product2(relation_dom(c22),A)).  [resolve(28,a,25,a)].
+45 finite(relation_rng(c22)) | finite(c22).  [resolve(39,a,28,a)].
+46 -relation_of2(first_projection(A,B),cartesian_product2(A,B),A) | function_image(cartesian_product2(A,B),A,first_projection(A,B),C) = relation_image(first_projection(A,B),C).  [resolve(43,a,33,a)].
+47 function_image(cartesian_product2(A,B),A,first_projection(A,B),C) = relation_image(first_projection(A,B),C).  [resolve(41,a,46,a)].
+48 relation_image(first_projection(relation_dom(c22),relation_rng(c22)),c22) = relation_dom(c22).  [para(47(a,1),37(a,1))].
+49 finite(c22) | finite(cartesian_product2(relation_dom(c22),relation_rng(c22))) | finite(c22).  [resolve(44,b,45,a)].
+50 finite(c22) | finite(cartesian_product2(relation_dom(c22),relation_rng(c22))).  [copy(49),merge(c)].
+51 finite(c22) | -relation(c22) | finite(c22).  [resolve(50,b,42,b)].
+52 finite(c22) | -relation(c22).  [copy(51),merge(c)].
+53 finite(c22).  [resolve(27,a,52,b)].
+54 -finite(relation_dom(c22)).  [resolve(53,a,29,b)].
+55 finite(relation_image(first_projection(A,B),c22)).  [resolve(53,a,31,a)].
+56 finite(relation_dom(c22)).  [para(48(a,1),55(a,1))].
+57 $F.  [resolve(54,a,56,a)].
+
+============================== end of proof ==========================

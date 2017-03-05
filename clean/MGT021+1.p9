@@ -1,0 +1,36 @@
+
+
+
+
+
+
+7 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -constant(resources(A,B)) | -decreases(difference(disbanding_rate(first_movers,B),disbanding_rate(efficient_producers,B))).  [clausify(5)].
+8 environment(c1).  [clausify(6)].
+9 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | in_environment(A,B).  [clausify(1)].
+10 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | greater(number_of_organizations(A,B),zero).  [clausify(2)].
+11 -environment(A) | -in_environment(A,B) | -greater(number_of_organizations(A,B),zero) | -greater(equilibrium(A),B) | decreases(resources(A,B)).  [clausify(4)].
+12 -environment(A) | -in_environment(A,B) | -greater(number_of_organizations(A,B),zero) | greater(equilibrium(A),B) | constant(resources(A,B)).  [clausify(4)].
+13 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -decreases(resources(A,B)) | increases(difference(disbanding_rate(first_movers,B),disbanding_rate(efficient_producers,B))).  [clausify(5)].
+14 -subpopulations(first_movers,efficient_producers,c1,A) | -decreases(resources(c1,A)) | increases(difference(disbanding_rate(first_movers,A),disbanding_rate(efficient_producers,A))).  [resolve(13,a,8,a)].
+15 -increases(A) | -decreases(A).  [clausify(3)].
+16 subpopulations(first_movers,efficient_producers,c1,c2).  [clausify(6)].
+17 decreases(difference(disbanding_rate(first_movers,c2),disbanding_rate(efficient_producers,c2))).  [clausify(6)].
+18 -subpopulations(first_movers,efficient_producers,c1,A) | -constant(resources(c1,A)) | -decreases(difference(disbanding_rate(first_movers,A),disbanding_rate(efficient_producers,A))).  [resolve(7,a,8,a)].
+19 -subpopulations(first_movers,efficient_producers,c1,A) | in_environment(c1,A).  [resolve(9,a,8,a)].
+20 -subpopulations(first_movers,efficient_producers,c1,A) | greater(number_of_organizations(c1,A),zero).  [resolve(10,a,8,a)].
+21 -in_environment(c1,A) | -greater(number_of_organizations(c1,A),zero) | -greater(equilibrium(c1),A) | decreases(resources(c1,A)).  [resolve(11,a,8,a)].
+22 -in_environment(c1,A) | -greater(number_of_organizations(c1,A),zero) | greater(equilibrium(c1),A) | constant(resources(c1,A)).  [resolve(12,a,8,a)].
+23 -subpopulations(first_movers,efficient_producers,c1,A) | -decreases(resources(c1,A)) | -decreases(difference(disbanding_rate(first_movers,A),disbanding_rate(efficient_producers,A))).  [resolve(14,c,15,a)].
+24 -constant(resources(c1,c2)) | -decreases(difference(disbanding_rate(first_movers,c2),disbanding_rate(efficient_producers,c2))).  [resolve(18,a,16,a)].
+25 -constant(resources(c1,c2)).  [resolve(17,a,24,b)].
+26 in_environment(c1,c2).  [resolve(19,a,16,a)].
+27 greater(number_of_organizations(c1,c2),zero).  [resolve(20,a,16,a)].
+28 -decreases(resources(c1,c2)) | -decreases(difference(disbanding_rate(first_movers,c2),disbanding_rate(efficient_producers,c2))).  [resolve(23,a,16,a)].
+29 -decreases(resources(c1,c2)).  [resolve(17,a,28,b)].
+30 -greater(number_of_organizations(c1,c2),zero) | greater(equilibrium(c1),c2) | constant(resources(c1,c2)).  [resolve(26,a,22,a)].
+31 greater(equilibrium(c1),c2) | constant(resources(c1,c2)).  [resolve(27,a,30,a)].
+32 greater(equilibrium(c1),c2).  [resolve(25,a,31,b)].
+33 -greater(number_of_organizations(c1,c2),zero) | -greater(equilibrium(c1),c2) | decreases(resources(c1,c2)).  [resolve(26,a,21,a)].
+34 -greater(equilibrium(c1),c2) | decreases(resources(c1,c2)).  [resolve(27,a,33,a)].
+35 decreases(resources(c1,c2)).  [resolve(32,a,34,a)].
+36 $F.  [resolve(29,a,35,a)].

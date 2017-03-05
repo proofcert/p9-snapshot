@@ -1,0 +1,88 @@
+
+2 op(e0,unit) = e0.  [assumption].
+3 op(e1,unit) = e1.  [assumption].
+4 op(unit,e2) = e2.  [assumption].
+5 op(e4,unit) = e4.  [assumption].
+6 unit = e0 | unit = e1 | unit = e2 | unit = e3 | unit = e4.  [assumption].
+7 op(e1,e0) = e2 | op(e1,e1) = e2 | op(e1,e2) = e2 | op(e1,e3) = e2 | op(e1,e4) = e2.  [assumption].
+8 op(e1,e0) = e3 | op(e1,e1) = e3 | op(e1,e2) = e3 | op(e1,e3) = e3 | op(e1,e4) = e3.  [assumption].
+9 op(e1,e1) != op(e4,e1).  [assumption].
+10 op(e4,e1) != op(e1,e1).  [copy(9),flip(a)].
+11 op(e0,e2) != op(e1,e2).  [assumption].
+12 op(e1,e2) != op(e2,e2).  [assumption].
+13 op(e2,e2) != op(e1,e2).  [copy(12),flip(a)].
+14 op(e1,e3) != op(e2,e3).  [assumption].
+15 op(e2,e3) != op(e1,e3).  [copy(14),flip(a)].
+16 e0 != e2.  [assumption].
+17 e2 != e0.  [copy(16),flip(a)].
+18 e1 != e2.  [assumption].
+19 e2 != e1.  [copy(18),flip(a)].
+20 e1 != e3.  [assumption].
+21 e3 != e1.  [copy(20),flip(a)].
+22 e2 != e3.  [assumption].
+23 e3 != e2.  [copy(22),flip(a)].
+24 e2 != e4.  [assumption].
+25 e4 != e2.  [copy(24),flip(a)].
+26 e3 != e4.  [assumption].
+27 e4 != e3.  [copy(26),flip(a)].
+28 e0 = op(e1,op(op(e1,e1),op(e1,e1))).  [assumption].
+29 op(e1,op(op(e1,e1),op(e1,e1))) = e0.  [copy(28),flip(a)].
+30 e2 = op(op(e1,e1),op(e1,e1)).  [assumption].
+31 op(op(e1,e1),op(e1,e1)) = e2.  [copy(30),flip(a)].
+32 e3 = op(op(op(e1,e1),op(e1,e1)),op(op(e1,e1),op(e1,e1))).  [assumption].
+33 e3 = op(e2,op(op(e1,e1),op(e1,e1))).  [para(31(a,1),32(a,2,1))].
+34 e3 = op(e2,e2).  [para(31(a,1),33(a,2,2))].
+35 op(e2,e2) = e3.  [copy(34),flip(a)].
+36 e4 = op(e1,e1).  [assumption].
+37 op(e1,e1) = e4.  [copy(36),flip(a)].
+38 op(e1,e1) != e4 | op(e1,e4) = e1.  [clausify(1)].
+39 e4 != e4 | op(e1,e4) = e1.  [para(37(a,1),38(a,1))].
+40 op(e1,e4) = e1.  [copy(39),xx(a)].
+41 op(e2,e2) != e3 | op(e2,e3) = e2.  [clausify(1)].
+42 e3 != e3 | op(e2,e3) = e2.  [para(35(a,1),41(a,1))].
+43 op(e2,e3) = e2.  [copy(42),xx(a)].
+44 op(e4,e4) != e2 | op(e4,e2) = e4.  [clausify(1)].
+45 op(e1,op(e4,op(e1,e1))) = e0.  [para(37(a,1),29(a,1,2,1))].
+46 op(e1,op(e4,e4)) = e0.  [para(37(a,1),45(a,1,2,2))].
+47 e3 != op(e1,e2).  [para(35(a,1),13(a,1))].
+48 op(e1,e2) != e3.  [copy(47),flip(a)].
+49 op(e4,op(e1,e1)) = e2.  [para(37(a,1),31(a,1,1))].
+50 op(e4,e4) = e2.  [para(37(a,1),49(a,1,2))].
+51 op(e4,e1) != e4.  [para(37(a,1),10(a,2))].
+52 op(e1,e0) = e3 | e4 = e3 | op(e1,e2) = e3 | op(e1,e3) = e3 | op(e1,e4) = e3.  [para(37(a,1),8(b,1))].
+53 op(e1,e0) = e3 | e4 = e3 | op(e1,e2) = e3 | op(e1,e3) = e3 | e1 = e3.  [para(40(a,1),52(e,1))].
+54 op(e1,e0) = e3 | e4 = e3 | op(e1,e2) = e3 | op(e1,e3) = e3 | e3 = e1.  [copy(53),flip(e)].
+55 op(e1,e0) = e3 | op(e1,e2) = e3 | op(e1,e3) = e3 | e3 = e1.  [resolve(27,a,54,b)].
+56 op(e1,e0) = e3 | op(e1,e3) = e3 | e3 = e1.  [resolve(48,a,55,b)].
+57 op(e1,e0) = e3 | op(e1,e3) = e3.  [resolve(21,a,56,c)].
+58 op(e1,e0) = e2 | e4 = e2 | op(e1,e2) = e2 | op(e1,e3) = e2 | op(e1,e4) = e2.  [para(37(a,1),7(b,1))].
+59 op(e1,e0) = e2 | e4 = e2 | op(e1,e2) = e2 | op(e1,e3) = e2 | e1 = e2.  [para(40(a,1),58(e,1))].
+60 op(e1,e0) = e2 | e4 = e2 | op(e1,e2) = e2 | op(e1,e3) = e2 | e2 = e1.  [copy(59),flip(e)].
+61 op(e1,e0) = e2 | op(e1,e2) = e2 | op(e1,e3) = e2 | e2 = e1.  [resolve(25,a,60,b)].
+62 op(e1,e0) = e2 | op(e1,e2) = e2 | op(e1,e3) = e2.  [resolve(19,a,61,d)].
+63 e2 != op(e1,e3).  [para(43(a,1),15(a,1))].
+64 op(e1,e3) != e2.  [copy(63),flip(a)].
+65 op(e1,e2) = e0.  [para(50(a,1),46(a,1,2))].
+66 e2 != e2 | op(e4,e2) = e4.  [para(50(a,1),44(a,1))].
+67 op(e4,e2) = e4.  [copy(66),xx(a)].
+68 op(e1,e0) = e2 | e0 = e2 | op(e1,e3) = e2.  [para(65(a,1),62(b,1))].
+69 op(e1,e0) = e2 | e2 = e0 | op(e1,e3) = e2.  [copy(68),flip(b)].
+70 op(e1,e0) = e2 | op(e1,e3) = e2.  [resolve(17,a,69,b)].
+71 op(e1,e0) = e2.  [resolve(64,a,70,b)].
+72 op(e0,e2) != e0.  [para(65(a,1),11(a,2))].
+73 e2 = e3 | op(e1,e3) = e3.  [para(71(a,1),57(a,1))].
+74 e3 = e2 | op(e1,e3) = e3.  [copy(73),flip(a)].
+75 op(e1,e3) = e3.  [resolve(23,a,74,a)].
+76 unit = e0 | unit = e1 | unit = e2 | unit = e3 | op(e4,e2) = e2.  [para(6(e,1),4(a,1,1))].
+77 unit = e0 | unit = e1 | unit = e2 | unit = e3 | e4 = e2.  [para(67(a,1),76(e,1))].
+78 unit = e0 | unit = e1 | unit = e2 | unit = e3.  [resolve(25,a,77,e)].
+79 unit = e0 | unit = e1 | unit = e2 | op(e1,e3) = e1.  [para(78(d,1),3(a,1,2))].
+80 unit = e0 | unit = e1 | unit = e2 | e3 = e1.  [para(75(a,1),79(d,1))].
+81 unit = e0 | unit = e1 | unit = e2.  [resolve(21,a,80,d)].
+82 unit = e0 | unit = e1 | op(e0,e2) = e0.  [para(81(c,1),2(a,1,2))].
+83 unit = e0 | unit = e1.  [resolve(72,a,82,c)].
+84 unit = e1 | op(e1,e0) = e1.  [para(83(a,1),3(a,1,2))].
+85 unit = e1 | e2 = e1.  [para(71(a,1),84(b,1))].
+86 unit = e1.  [resolve(19,a,85,b)].
+87 op(e4,e1) = e4.  [para(86(a,1),5(a,1,2))].
+88 $F.  [resolve(51,a,87,a)].

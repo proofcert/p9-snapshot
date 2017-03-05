@@ -1,0 +1,19 @@
+
+
+
+
+5 status(f48(A,B),f49(A,B),A) | nevera(A,B).  [clausify(3)].
+6 status(f48(A,B),f49(A,B),B) | nevera(A,B).  [clausify(3)].
+7 -nevera(uns,thm).  [assumption].
+8 -model(A,B) | model(A,C) | -status(B,C,thm).  [clausify(1)].
+9 model(A,B) | -status(B,C,uns).  [clausify(2)].
+10 model(A,not(B)) | -status(C,B,uns).  [clausify(2)].
+11 -model(A,B) | -model(A,not(B)).  [clausify(4)].
+12 status(f48(uns,thm),f49(uns,thm),uns).  [resolve(7,a,5,b)].
+13 status(f48(uns,thm),f49(uns,thm),thm).  [resolve(7,a,6,b)].
+14 model(A,not(f49(uns,thm))).  [resolve(12,a,10,b)].
+15 model(A,f48(uns,thm)).  [resolve(12,a,9,b)].
+16 -model(A,f48(uns,thm)) | model(A,f49(uns,thm)).  [resolve(13,a,8,c)].
+17 model(A,f49(uns,thm)).  [resolve(15,a,16,a)].
+18 -model(A,f49(uns,thm)).  [resolve(14,a,11,b)].
+19 $F.  [resolve(17,a,18,a)].

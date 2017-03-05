@@ -1,0 +1,46 @@
+
+
+
+
+
+
+
+8 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+9 empty_set != A | -in(B,A).  [clausify(2)].
+10 empty_set = A | in(f2(A),A).  [clausify(2)].
+11 unordered_pair(A,B) != C | -in(D,C) | D = A | D = B.  [clausify(3)].
+12 unordered_pair(A,B) != C | in(D,C) | D != A.  [clausify(3)].
+13 singleton(A) != empty_set.  [clausify(4)].
+14 -subset(A,singleton(B)) | empty_set = A | singleton(B) = A.  [clausify(5)].
+15 singleton(A) = unordered_pair(A,A).  [clausify(6)].
+16 subset(singleton(c3),singleton(c4)).  [clausify(7)].
+17 subset(unordered_pair(c3,c3),singleton(c4)).  [para(15(a,1),16(a,1))].
+18 subset(unordered_pair(c3,c3),unordered_pair(c4,c4)).  [para(15(a,1),17(a,2))].
+19 c4 != c3.  [clausify(7)].
+20 -subset(A,unordered_pair(B,B)) | empty_set = A | singleton(B) = A.  [para(15(a,1),14(a,2))].
+21 -subset(A,unordered_pair(B,B)) | empty_set = A | unordered_pair(B,B) = A.  [para(15(a,1),20(c,1))].
+22 unordered_pair(A,A) != empty_set.  [para(15(a,1),13(a,1))].
+23 unordered_pair(A,B) != C | f2(C) = A | f2(C) = B | empty_set = C.  [resolve(11,b,10,b)].
+24 unordered_pair(A,A) != B | f2(B) = A | empty_set = B.  [factor(23,b,c)].
+25 in(A,unordered_pair(B,C)) | A != C.  [resolve(12,a,8,a)].
+26 empty_set = unordered_pair(c3,c3) | unordered_pair(c4,c4) = unordered_pair(c3,c3).  [resolve(21,a,18,a)].
+27 unordered_pair(c3,c3) = empty_set | unordered_pair(c4,c4) = unordered_pair(c3,c3).  [copy(26),flip(a)].
+28 unordered_pair(c4,c4) = unordered_pair(c3,c3).  [resolve(22,a,27,a)].
+29 f2(singleton(A)) = A | f2(singleton(A)) = A | empty_set = singleton(A).  [resolve(23,a,15,a(flip))].
+30 f2(unordered_pair(A,A)) = A | f2(singleton(A)) = A | empty_set = singleton(A).  [para(15(a,1),29(a,1,1))].
+31 f2(unordered_pair(A,A)) = A | f2(unordered_pair(A,A)) = A | empty_set = singleton(A).  [para(15(a,1),30(b,1,1))].
+32 f2(unordered_pair(A,A)) = A | f2(unordered_pair(A,A)) = A | empty_set = unordered_pair(A,A).  [para(15(a,1),31(c,2))].
+33 f2(unordered_pair(A,A)) = A | f2(unordered_pair(A,A)) = A | unordered_pair(A,A) = empty_set.  [copy(32),flip(c)].
+34 f2(unordered_pair(A,A)) = A | unordered_pair(A,A) = empty_set.  [copy(33),merge(b)].
+35 f2(unordered_pair(A,A)) = A.  [resolve(22,a,34,b)].
+36 in(f2(unordered_pair(A,A)),unordered_pair(B,A)).  [resolve(25,b,35,a)].
+37 in(A,unordered_pair(B,A)).  [para(35(a,1),36(a,1))].
+38 in(A,unordered_pair(A,B)).  [para(8(a,1),37(a,2))].
+39 empty_set != unordered_pair(A,B).  [resolve(38,a,9,b)].
+40 unordered_pair(A,B) != empty_set.  [copy(39),flip(a)].
+41 f2(unordered_pair(c3,c3)) = c4 | empty_set = unordered_pair(c3,c3).  [resolve(28,a,24,a)].
+42 c3 = c4 | empty_set = unordered_pair(c3,c3).  [para(35(a,1),41(a,1))].
+43 c4 = c3 | empty_set = unordered_pair(c3,c3).  [copy(42),flip(a)].
+44 c4 = c3 | unordered_pair(c3,c3) = empty_set.  [copy(43),flip(b)].
+45 unordered_pair(c3,c3) = empty_set.  [resolve(19,a,44,a)].
+46 $F.  [resolve(40,a,45,a)].

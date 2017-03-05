@@ -1,0 +1,50 @@
+
+
+
+
+
+
+
+
+
+
+11 subset(A,B) | in(f11(A,B),A).  [clausify(1)].
+12 -subset(A,singleton(B)) | empty_set = A | singleton(B) = A.  [clausify(2)].
+13 subset(A,A).  [clausify(3)].
+14 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(4)].
+15 subset(empty_set,A).  [clausify(5)].
+16 -in(A,B) | -in(A,C) | -disjoint(B,C).  [clausify(6)].
+17 set_difference(empty_set,A) = empty_set.  [clausify(7)].
+18 singleton(A) = unordered_pair(A,A).  [clausify(8)].
+19 disjoint(A,B) | set_difference(A,B) != A.  [clausify(9)].
+20 subset(c3,singleton(c4)) | empty_set = c3 | singleton(c4) = c3.  [clausify(10)].
+21 subset(c3,unordered_pair(c4,c4)) | empty_set = c3 | singleton(c4) = c3.  [para(18(a,1),20(a,2))].
+22 subset(c3,unordered_pair(c4,c4)) | empty_set = c3 | unordered_pair(c4,c4) = c3.  [para(18(a,1),21(c,1))].
+23 subset(c3,unordered_pair(c4,c4)) | c3 = empty_set | unordered_pair(c4,c4) = c3.  [copy(22),flip(b)].
+24 -subset(c3,singleton(c4)) | empty_set != c3.  [clausify(10)].
+25 -subset(c3,unordered_pair(c4,c4)) | empty_set != c3.  [para(18(a,1),24(a,2))].
+26 -subset(c3,unordered_pair(c4,c4)) | c3 != empty_set.  [copy(25),flip(b)].
+27 -subset(c3,singleton(c4)) | singleton(c4) != c3.  [clausify(10)].
+28 -subset(c3,unordered_pair(c4,c4)) | singleton(c4) != c3.  [para(18(a,1),27(a,2))].
+29 -subset(c3,unordered_pair(c4,c4)) | unordered_pair(c4,c4) != c3.  [para(18(a,1),28(b,1))].
+30 -in(A,B) | -disjoint(B,B).  [factor(16,a,b)].
+31 -subset(A,unordered_pair(B,B)) | empty_set = A | singleton(B) = A.  [para(18(a,1),12(a,2))].
+32 -subset(A,unordered_pair(B,B)) | empty_set = A | unordered_pair(B,B) = A.  [para(18(a,1),31(c,1))].
+33 -subset(A,empty_set) | subset(A,B).  [resolve(15,a,14,b)].
+34 disjoint(empty_set,A).  [resolve(19,b,17,a)].
+35 empty_set = c3 | unordered_pair(c4,c4) = c3 | c3 = empty_set | unordered_pair(c4,c4) = c3.  [resolve(32,a,23,a)].
+36 c3 = empty_set | unordered_pair(c4,c4) = c3 | c3 = empty_set | unordered_pair(c4,c4) = c3.  [copy(35),flip(a)].
+37 c3 = empty_set | unordered_pair(c4,c4) = c3 | unordered_pair(c4,c4) = c3.  [copy(36),merge(c)].
+38 c3 = empty_set | unordered_pair(c4,c4) = c3.  [copy(37),merge(c)].
+39 -in(A,empty_set).  [resolve(34,a,30,b)].
+40 subset(A,B) | in(f11(A,empty_set),A).  [resolve(33,a,11,a)].
+41 c3 = empty_set | -subset(c3,c3) | unordered_pair(c4,c4) != c3.  [para(38(b,1),29(a,2))].
+42 c3 = empty_set | unordered_pair(c4,c4) != c3.  [resolve(13,a,41,b)].
+43 in(f11(c3,empty_set),c3) | c3 != empty_set.  [resolve(40,a,26,a)].
+44 c3 = empty_set | c3 = empty_set.  [resolve(42,b,38,b)].
+45 c3 = empty_set.  [copy(44),merge(b)].
+46 in(f11(empty_set,empty_set),c3) | c3 != empty_set.  [para(45(a,1),43(a,1,1))].
+47 in(f11(empty_set,empty_set),empty_set) | c3 != empty_set.  [para(45(a,1),46(a,2))].
+48 in(f11(empty_set,empty_set),empty_set) | empty_set != empty_set.  [para(45(a,1),47(b,1))].
+49 in(f11(empty_set,empty_set),empty_set).  [copy(48),xx(b)].
+50 $F.  [resolve(39,a,49,a)].

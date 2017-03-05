@@ -1,0 +1,24 @@
+
+
+
+4 -environment(A) | -stable(A) | in_environment(A,f1(A)).  [clausify(2)].
+5 environment(c1).  [clausify(3)].
+6 -environment(A) | -subpopulations(B,C,A,D) | -greater(growth_rate(C,D),growth_rate(B,D)) | selection_favors(C,B,D).  [clausify(1)].
+7 -environment(A) | -stable(A) | -subpopulations(first_movers,efficient_producers,A,B) | -greater_or_equal(B,f1(A)) | greater(growth_rate(efficient_producers,B),growth_rate(first_movers,B)).  [clausify(2)].
+8 -stable(c1) | in_environment(c1,f1(c1)).  [resolve(4,a,5,a)].
+9 stable(c1).  [clausify(3)].
+10 -stable(c1) | -subpopulations(first_movers,efficient_producers,c1,A) | -greater_or_equal(A,f1(c1)) | greater(growth_rate(efficient_producers,A),growth_rate(first_movers,A)).  [resolve(7,a,5,a)].
+11 in_environment(c1,f1(c1)).  [resolve(8,a,9,a)].
+12 -in_environment(c1,A) | -selection_favors(efficient_producers,first_movers,f2(A)).  [clausify(3)].
+13 -in_environment(c1,A) | greater_or_equal(f2(A),A).  [clausify(3)].
+14 -in_environment(c1,A) | subpopulations(first_movers,efficient_producers,c1,f2(A)).  [clausify(3)].
+15 subpopulations(first_movers,efficient_producers,c1,f2(f1(c1))).  [resolve(11,a,14,a)].
+16 -subpopulations(A,B,c1,C) | -greater(growth_rate(B,C),growth_rate(A,C)) | selection_favors(B,A,C).  [resolve(6,a,5,a)].
+17 -subpopulations(first_movers,efficient_producers,c1,A) | -greater_or_equal(A,f1(c1)) | greater(growth_rate(efficient_producers,A),growth_rate(first_movers,A)).  [resolve(10,a,9,a)].
+18 -greater(growth_rate(efficient_producers,f2(f1(c1))),growth_rate(first_movers,f2(f1(c1)))) | selection_favors(efficient_producers,first_movers,f2(f1(c1))).  [resolve(15,a,16,a)].
+19 -selection_favors(efficient_producers,first_movers,f2(f1(c1))).  [resolve(11,a,12,a)].
+20 -greater_or_equal(f2(f1(c1)),f1(c1)) | greater(growth_rate(efficient_producers,f2(f1(c1))),growth_rate(first_movers,f2(f1(c1)))).  [resolve(15,a,17,a)].
+21 greater_or_equal(f2(f1(c1)),f1(c1)).  [resolve(11,a,13,a)].
+22 greater(growth_rate(efficient_producers,f2(f1(c1))),growth_rate(first_movers,f2(f1(c1)))).  [resolve(20,a,21,a)].
+23 -greater(growth_rate(efficient_producers,f2(f1(c1))),growth_rate(first_movers,f2(f1(c1)))).  [resolve(18,b,19,a)].
+24 $F.  [resolve(22,a,23,a)].

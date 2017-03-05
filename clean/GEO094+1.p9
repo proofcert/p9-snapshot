@@ -1,0 +1,40 @@
+
+
+
+
+
+
+7 -inner_point(A,B) | -end_point(A,B).  [clausify(3)].
+8 inner_point(f8(A),A).  [clausify(5)].
+9 -inner_point(A,B) | incident_c(A,B).  [clausify(3)].
+10 part_of(c11,c10).  [clausify(6)].
+11 part_of(c12,c10).  [clausify(6)].
+12 end_point(c13,c10).  [clausify(6)].
+13 meet(c13,c11,c12).  [clausify(6)].
+14 -meet(A,B,C) | incident_c(A,B).  [clausify(4)].
+15 -meet(A,B,C) | incident_c(A,C).  [clausify(4)].
+16 -part_of(A,B) | -incident_c(C,A) | incident_c(C,B).  [clausify(1)].
+17 -meet(A,B,C) | -incident_c(D,B) | -incident_c(D,C) | end_point(D,B).  [clausify(4)].
+18 -meet(A,B,C) | -incident_c(D,B) | -incident_c(D,C) | end_point(D,C).  [clausify(4)].
+19 -end_point(A,B) | -part_of(C,B) | -part_of(D,B) | -incident_c(A,C) | -incident_c(A,D) | part_of(C,D) | part_of(D,C).  [clausify(2)].
+20 -end_point(f8(A),A).  [resolve(7,a,8,a)].
+21 incident_c(f8(A),A).  [resolve(9,a,8,a)].
+22 incident_c(c13,c11).  [resolve(14,a,13,a)].
+23 incident_c(c13,c12).  [resolve(15,a,13,a)].
+24 -incident_c(A,c11) | -incident_c(A,c12) | end_point(A,c12).  [resolve(18,a,13,a)].
+25 -incident_c(f8(c12),c11) | end_point(f8(c12),c12).  [resolve(24,b,21,a)].
+26 -incident_c(f8(c12),c11).  [resolve(25,b,20,a)].
+27 -incident_c(A,c11) | -incident_c(A,c12) | end_point(A,c11).  [resolve(17,a,13,a)].
+28 -incident_c(f8(c11),c12) | end_point(f8(c11),c11).  [resolve(27,a,21,a)].
+29 -incident_c(f8(c11),c12).  [resolve(28,b,20,a)].
+30 -part_of(A,B) | incident_c(f8(A),B).  [resolve(16,b,21,a)].
+31 -part_of(c12,c11).  [resolve(30,b,26,a)].
+32 -part_of(A,B) | incident_c(f8(A),B).  [resolve(16,b,21,a)].
+33 -part_of(c11,c12).  [resolve(32,b,29,a)].
+34 -end_point(A,c10) | -part_of(B,c10) | -incident_c(A,c12) | -incident_c(A,B) | part_of(c12,B) | part_of(B,c12).  [resolve(19,b,11,a)].
+35 -end_point(A,c10) | -incident_c(A,c12) | -incident_c(A,c11) | part_of(c12,c11) | part_of(c11,c12).  [resolve(34,b,10,a)].
+36 -end_point(c13,c10) | -incident_c(c13,c11) | part_of(c12,c11) | part_of(c11,c12).  [resolve(35,b,23,a)].
+37 -end_point(c13,c10) | part_of(c12,c11) | part_of(c11,c12).  [resolve(36,b,22,a)].
+38 -end_point(c13,c10) | part_of(c11,c12).  [resolve(37,b,31,a)].
+39 -end_point(c13,c10).  [resolve(38,b,33,a)].
+40 $F.  [resolve(12,a,39,a)].

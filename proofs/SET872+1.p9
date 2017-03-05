@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n166.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:23:18 CDT 2014
+% CPUTime    : 0.26 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 25556 was started by sandbox on n166.star.cs.uiowa.edu,
+Sat Jun  7 00:23:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_25524_n166.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.13 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 13.000.
+% Given clauses 102.
+
+
+1 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+2 (all A all B all C (C = unordered_pair(A,B) <-> (all D (in(D,C) <-> D = A | D = B)))).  [assumption].
+3 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+4 -(all A all B subset(singleton(A),unordered_pair(A,B))).  [assumption].
+5 subset(A,B) | in(f3(A,B),A).  [clausify(3)].
+6 -subset(singleton(c3),unordered_pair(c3,c4)).  [clausify(4)].
+7 subset(A,B) | -in(f3(A,B),B).  [clausify(3)].
+8 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+9 unordered_pair(A,B) != C | in(D,C) | D != A.  [clausify(2)].
+10 in(f3(singleton(c3),unordered_pair(c3,c4)),singleton(c3)).  [resolve(6,a,5,a)].
+11 -in(f3(singleton(c3),unordered_pair(c3,c4)),unordered_pair(c3,c4)).  [resolve(7,a,6,a)].
+12 in(A,unordered_pair(B,C)) | A != B.  [xx_res(9,a)].
+13 singleton(A) != singleton(c3) | f3(singleton(c3),unordered_pair(c3,c4)) = A.  [resolve(10,a,8,b)].
+14 singleton(c3) != singleton(A) | f3(singleton(c3),unordered_pair(c3,c4)) = A.  [copy(13),flip(a)].
+15 f3(singleton(c3),unordered_pair(c3,c4)) != c3.  [resolve(12,a,11,a)].
+16 f3(singleton(c3),unordered_pair(c3,c4)) = c3.  [xx_res(14,a)].
+17 $F.  [resolve(15,a,16,a)].
+
+============================== end of proof ==========================

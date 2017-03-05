@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+8 -element(A,powerset(cartesian_product2(B,C))) | relation(A).  [clausify(1)].
+9 -relation(A) | -function(A) | relation_rng(A) != B | in(C,B) | -in(D,relation_dom(A)) | apply(A,D) != C.  [clausify(3)].
+10 -relation_of2_as_subset(A,B,C) | empty_set = C | -quasi_total(A,B,C) | relation_dom_as_subset(B,C,A) = B.  [clausify(2)].
+11 quasi_total(c14,c11,c12).  [clausify(7)].
+12 -relation_of2_as_subset(A,B,C) | relation_of2(A,B,C).  [clausify(6)].
+13 -relation_of2(A,B,C) | relation_dom(A) = relation_dom_as_subset(B,C,A).  [clausify(5)].
+14 function(c14).  [clausify(7)].
+15 in(c13,c11).  [clausify(7)].
+16 relation_of2_as_subset(c14,c11,c12).  [clausify(7)].
+17 empty_set != c12.  [clausify(7)].
+18 c12 != empty_set.  [copy(17),flip(a)].
+19 -in(apply(c14,c13),relation_rng(c14)).  [clausify(7)].
+20 -relation_of2_as_subset(A,B,C) | element(A,powerset(cartesian_product2(B,C))).  [clausify(4)].
+21 -function(A) | relation_rng(A) != B | in(C,B) | -in(D,relation_dom(A)) | apply(A,D) != C | -element(A,powerset(cartesian_product2(E,F))).  [resolve(9,a,8,b)].
+22 -relation_of2_as_subset(c14,c11,c12) | empty_set = c12 | relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(10,c,11,a)].
+23 -relation_of2_as_subset(c14,c11,c12) | c12 = empty_set | relation_dom_as_subset(c11,c12,c14) = c11.  [copy(22),flip(b)].
+24 c12 = empty_set | relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(16,a,23,a)].
+25 relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(18,a,24,a)].
+26 relation_dom(A) = relation_dom_as_subset(B,C,A) | -relation_of2_as_subset(A,B,C).  [resolve(13,a,12,b)].
+27 relation_dom_as_subset(A,B,C) = relation_dom(C) | -relation_of2_as_subset(C,A,B).  [copy(26),flip(a)].
+28 element(c14,powerset(cartesian_product2(c11,c12))).  [resolve(20,a,16,a)].
+29 relation_dom_as_subset(c11,c12,c14) = relation_dom(c14).  [resolve(27,b,16,a)].
+30 c11 = relation_dom(c14).  [para(25(a,1),29(a,1))].
+31 relation_dom(c14) = c11.  [copy(30),flip(a)].
+32 -function(c14) | relation_rng(c14) != A | in(B,A) | -in(C,relation_dom(c14)) | apply(c14,C) != B.  [resolve(28,a,21,f)].
+33 -function(c14) | relation_rng(c14) != A | in(B,A) | -in(C,c11) | apply(c14,C) != B.  [para(31(a,1),32(d,2))].
+34 relation_rng(c14) != A | in(B,A) | -in(C,c11) | apply(c14,C) != B.  [resolve(14,a,33,a)].
+35 relation_rng(c14) != A | in(B,A) | apply(c14,c13) != B.  [resolve(34,c,15,a)].
+36 in(A,relation_rng(c14)) | apply(c14,c13) != A.  [xx_res(35,a)].
+37 in(apply(c14,c13),relation_rng(c14)).  [xx_res(36,b)].
+38 $F.  [resolve(19,a,37,a)].

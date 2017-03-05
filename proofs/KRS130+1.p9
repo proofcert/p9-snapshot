@@ -1,0 +1,72 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n133.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:23:03 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 26700 was started by sandbox on n133.star.cs.uiowa.edu,
+Thu Jun  5 18:23:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_26668_n133.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 25.
+% Level of proof is 7.
+% Maximum clause weight is 2.000.
+% Given clauses 0.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A (cNothing(A) -> -(exists B rp(A,B)))).  [assumption].
+4 (all A (cNothing(A) -> (exists B rp(A,B)))).  [assumption].
+5 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & (all A (cNothing(A) <-> cowlNothing(A)))).  [assumption].
+6 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cNothing(c3) | cowlNothing(c3).  [clausify(5)].
+7 cowlThing(A).  [clausify(1)].
+8 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cNothing(c3) | cowlNothing(c3).  [clausify(5)].
+9 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+10 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+11 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cNothing(c3) | cowlNothing(c3).  [resolve(6,a,7,a)].
+12 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cNothing(c3) | cowlNothing(c3).  [resolve(8,a,7,a)].
+13 cowlNothing(c1) | -xsd_integer(c2) | cNothing(c3) | cowlNothing(c3) | -xsd_integer(c2).  [resolve(11,b,9,a)].
+14 -cNothing(A) | -rp(A,B).  [clausify(3)].
+15 -cNothing(A) | rp(A,f1(A)).  [clausify(4)].
+16 cowlNothing(c1) | xsd_integer(c2) | cNothing(c3) | cowlNothing(c3) | xsd_integer(c2).  [resolve(12,b,10,a)].
+17 cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | -xsd_integer(c2) | rp(c3,f1(c3)).  [resolve(13,c,15,a)].
+18 cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | -xsd_integer(c2) | -rp(c3,A).  [resolve(13,c,14,a)].
+19 cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | xsd_integer(c2) | -rp(c3,A).  [resolve(16,c,14,a)].
+20 cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | xsd_integer(c2) | rp(c3,f1(c3)).  [resolve(16,c,15,a)].
+21 -cowlNothing(A).  [clausify(1)].
+22 cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | -xsd_integer(c2) | cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | -xsd_integer(c2).  [resolve(17,e,18,e)].
+23 cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | -xsd_integer(c2).  [copy(22),merge(d)].
+24 cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | -xsd_integer(c2) | cowlNothing(c3) | -xsd_integer(c2).  [copy(23),merge(d)].
+25 cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | cowlNothing(c3) | -xsd_integer(c2).  [copy(24),merge(d)].
+26 cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3) | -xsd_integer(c2).  [copy(25),merge(d)].
+27 cowlNothing(c1) | -xsd_integer(c2) | cowlNothing(c3).  [copy(26),merge(d)].
+28 -xsd_integer(c2) | cowlNothing(c3).  [resolve(21,a,27,a)].
+29 -xsd_integer(c2).  [resolve(21,a,28,b)].
+30 cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | xsd_integer(c2) | cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | xsd_integer(c2).  [resolve(20,e,19,e)].
+31 cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | xsd_integer(c2).  [copy(30),merge(d)].
+32 cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | xsd_integer(c2) | cowlNothing(c3) | xsd_integer(c2).  [copy(31),merge(d)].
+33 cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | cowlNothing(c3) | xsd_integer(c2).  [copy(32),merge(d)].
+34 cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3) | xsd_integer(c2).  [copy(33),merge(d)].
+35 cowlNothing(c1) | xsd_integer(c2) | cowlNothing(c3).  [copy(34),merge(d)].
+36 xsd_integer(c2) | cowlNothing(c3).  [resolve(21,a,35,a)].
+37 cowlNothing(c3).  [resolve(29,a,36,a)].
+38 $F.  [resolve(21,a,37,a)].
+
+============================== end of proof ==========================

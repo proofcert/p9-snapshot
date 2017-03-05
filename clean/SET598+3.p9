@@ -1,0 +1,61 @@
+
+
+
+
+
+
+7 subset(A,A).  [clausify(5)].
+8 subset(intersection(A,B),A).  [clausify(1)].
+9 intersection(A,B) = intersection(B,A).  [clausify(4)].
+10 intersection(c2,c3) = c1 | subset(c1,c2).  [clausify(6)].
+11 intersection(c2,c3) = c1 | subset(c1,c3).  [clausify(6)].
+12 intersection(c2,c3) != c1 | -subset(c1,c2) | -subset(c1,c3) | -subset(c4,c1).  [clausify(6)].
+13 A = B | -subset(B,A) | -subset(A,B).  [clausify(3)].
+14 -subset(A,B) | -subset(A,C) | subset(A,intersection(B,C)).  [clausify(2)].
+15 intersection(c2,c3) = c1 | -subset(A,c2) | -subset(A,c3) | subset(A,c1).  [clausify(6)].
+16 intersection(c2,c3) != c1 | -subset(c1,c2) | -subset(c1,c3) | subset(c4,c2).  [clausify(6)].
+17 intersection(c2,c3) != c1 | -subset(c1,c2) | -subset(c1,c3) | subset(c4,c3).  [clausify(6)].
+18 subset(intersection(A,B),B).  [para(9(a,1),8(a,1))].
+19 A = intersection(A,B) | -subset(A,intersection(A,B)).  [resolve(13,b,8,a)].
+20 intersection(A,B) = A | -subset(A,intersection(A,B)).  [copy(19),flip(a)].
+21 -subset(A,B) | subset(A,intersection(A,B)).  [resolve(14,a,7,a)].
+22 intersection(c2,c3) = c1 | -subset(intersection(c3,A),c2) | subset(intersection(c3,A),c1).  [resolve(15,c,8,a)].
+23 intersection(c2,c3) = c1 | -subset(intersection(A,c3),c2) | subset(intersection(c3,A),c1).  [para(9(a,1),22(b,1))].
+24 intersection(c2,c3) = c1 | -subset(intersection(A,c3),c2) | subset(intersection(A,c3),c1).  [para(9(a,1),23(c,1))].
+25 subset(c1,intersection(c1,c3)) | intersection(c2,c3) = c1.  [resolve(21,a,11,b)].
+26 subset(c1,intersection(c1,c2)) | intersection(c2,c3) = c1.  [resolve(21,a,10,b)].
+27 intersection(c2,c3) = c1 | intersection(c1,c3) = c1.  [resolve(25,a,20,b)].
+28 intersection(c2,c3) = c1 | intersection(c1,c2) = c1.  [resolve(26,a,20,b)].
+29 intersection(c1,c3) = c1 | subset(c1,c3).  [para(27(a,1),18(a,1))].
+30 intersection(c1,c3) = c1 | subset(c1,intersection(c1,c3)).  [resolve(29,b,21,a)].
+31 intersection(c1,c2) = c1 | subset(c1,c2).  [para(28(a,1),8(a,1))].
+32 intersection(c1,c2) = c1 | subset(c1,intersection(c1,c2)).  [resolve(31,b,21,a)].
+33 intersection(c1,c3) = c1 | intersection(c1,c3) = c1.  [resolve(30,b,20,b)].
+34 intersection(c1,c3) = c1.  [copy(33),merge(b)].
+35 subset(c1,c3).  [para(34(a,1),18(a,1))].
+36 intersection(c2,c3) != c1 | -subset(c1,c2) | subset(c4,c3).  [resolve(35,a,17,c)].
+37 intersection(c2,c3) != c1 | -subset(c1,c2) | subset(c4,c2).  [resolve(35,a,16,c)].
+38 intersection(c2,c3) != c1 | -subset(c1,c2) | -subset(c4,c1).  [resolve(35,a,12,c)].
+39 -subset(c1,A) | subset(c1,intersection(A,c3)).  [resolve(35,a,14,b)].
+40 intersection(c1,c2) = c1 | intersection(c1,c2) = c1.  [resolve(32,b,20,b)].
+41 intersection(c1,c2) = c1.  [copy(40),merge(b)].
+42 subset(c1,c2).  [para(41(a,1),18(a,1))].
+43 intersection(c2,c3) != c1 | -subset(c4,c1).  [resolve(42,a,38,b)].
+44 intersection(c2,c3) != c1 | subset(c4,c2).  [resolve(42,a,37,b)].
+45 intersection(c2,c3) != c1 | subset(c4,c3).  [resolve(42,a,36,b)].
+46 subset(c1,intersection(c2,c3)).  [resolve(42,a,39,a)].
+47 c1 = intersection(c2,c3) | -subset(intersection(c2,c3),c1).  [resolve(46,a,13,c)].
+48 intersection(c2,c3) = c1 | -subset(intersection(c2,c3),c1).  [copy(47),flip(a)].
+49 intersection(c2,c3) = c1 | subset(intersection(c2,c3),c1).  [resolve(24,b,8,a)].
+50 intersection(c2,c3) = c1 | intersection(c2,c3) = c1.  [resolve(49,b,48,b)].
+51 intersection(c2,c3) = c1.  [copy(50),merge(b)].
+52 c1 != c1 | subset(c4,c3).  [para(51(a,1),45(a,1))].
+53 subset(c4,c3).  [copy(52),xx(a)].
+54 c1 != c1 | subset(c4,c2).  [para(51(a,1),44(a,1))].
+55 subset(c4,c2).  [copy(54),xx(a)].
+56 c1 != c1 | -subset(c4,c1).  [para(51(a,1),43(a,1))].
+57 -subset(c4,c1).  [copy(56),xx(a)].
+58 -subset(c4,A) | subset(c4,intersection(A,c3)).  [resolve(53,a,14,b)].
+59 subset(c4,intersection(c2,c3)).  [resolve(58,a,55,a)].
+60 subset(c4,c1).  [para(51(a,1),59(a,2))].
+61 $F.  [resolve(57,a,60,a)].

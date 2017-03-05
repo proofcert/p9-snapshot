@@ -1,0 +1,93 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n163.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 14:22:38 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 16697 was started by sandbox on n163.star.cs.uiowa.edu,
+Fri Jun  6 14:22:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_16665_n163.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.06 (+ 0.00) seconds.
+% Length of proof is 40.
+% Level of proof is 10.
+% Maximum clause weight is 26.000.
+% Given clauses 108.
+
+
+1 (all A all B all C (member(C,union(A,B)) <-> member(C,A) | member(C,B))).  [assumption].
+2 (all A -member(A,empty_set)).  [assumption].
+3 (all A all B (A = B <-> subset(A,B) & subset(B,A))).  [assumption].
+4 (all A all B union(A,B) = union(B,A)).  [assumption].
+5 (all A all B (subset(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+6 (all A all B (A = B <-> (all C (member(C,A) <-> member(C,B))))).  [assumption].
+7 -(all A all B (union(A,B) = empty_set <-> A = empty_set & B = empty_set)).  [assumption].
+8 union(A,B) = union(B,A).  [clausify(4)].
+9 union(c1,c2) = empty_set | empty_set = c1.  [clausify(7)].
+10 union(c1,c2) = empty_set | c1 = empty_set.  [copy(9),flip(b)].
+11 union(c1,c2) = empty_set | empty_set = c2.  [clausify(7)].
+12 union(c1,c2) = empty_set | c2 = empty_set.  [copy(11),flip(b)].
+13 A = B | member(f3(B,A),B) | member(f3(B,A),A).  [clausify(6)].
+14 -member(A,empty_set).  [clausify(2)].
+15 union(c1,c2) != empty_set | empty_set != c1 | empty_set != c2.  [clausify(7)].
+16 union(c1,c2) != empty_set | c1 != empty_set | empty_set != c2.  [copy(15),flip(b)].
+17 union(c1,c2) != empty_set | c1 != empty_set | c2 != empty_set.  [copy(16),flip(c)].
+18 A != B | subset(B,A).  [clausify(3)].
+19 member(A,union(B,C)) | -member(A,B).  [clausify(1)].
+20 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(5)].
+21 -member(A,union(B,C)) | member(A,B) | member(A,C).  [clausify(1)].
+22 A = B | -member(f3(B,A),B) | -member(f3(B,A),A).  [clausify(6)].
+23 subset(union(c1,c2),empty_set) | c1 = empty_set.  [resolve(18,a,10,a(flip))].
+24 member(f3(A,B),union(B,C)) | B = A | member(f3(A,B),A).  [resolve(19,b,13,c)].
+25 member(f3(union(A,B),A),union(A,B)) | A = union(A,B).  [factor(24,a,c)].
+26 member(f3(union(A,B),A),union(A,B)) | union(A,B) = A.  [copy(25),flip(b)].
+27 member(f3(union(A,B),C),A) | member(f3(union(A,B),C),B) | C = union(A,B) | member(f3(union(A,B),C),C).  [resolve(21,a,13,b)].
+28 member(f3(union(A,B),C),A) | member(f3(union(A,B),C),B) | union(A,B) = C | member(f3(union(A,B),C),C).  [copy(27),flip(c)].
+29 member(f3(union(A,A),B),A) | union(A,A) = B | member(f3(union(A,A),B),B).  [factor(28,a,b)].
+30 member(f3(union(A,B),A),A) | member(f3(union(A,B),A),B) | union(A,B) = A.  [factor(28,a,d)].
+31 member(f3(union(A,A),A),A) | union(A,A) = A.  [factor(29,a,c)].
+32 c1 = empty_set | -member(A,union(c1,c2)) | member(A,empty_set).  [resolve(23,a,20,a)].
+33 c1 = empty_set | -member(A,union(c1,c2)).  [resolve(14,a,32,c)].
+34 c1 = A | member(f3(A,c1),A) | c1 = empty_set.  [resolve(24,a,33,b)].
+35 c1 = empty_set | member(f3(empty_set,c1),empty_set).  [factor(34,a,c)].
+36 c1 = empty_set.  [resolve(14,a,35,b)].
+37 union(empty_set,c2) != empty_set | c1 != empty_set | c2 != empty_set.  [para(36(a,1),17(a,1,1))].
+38 union(empty_set,c2) != empty_set | empty_set != empty_set | c2 != empty_set.  [para(36(a,1),37(b,1))].
+39 union(empty_set,c2) != empty_set | c2 != empty_set.  [copy(38),xx(b)].
+40 union(empty_set,c2) = empty_set | c2 = empty_set.  [para(36(a,1),12(a,1,1))].
+41 union(A,B) = A | A = union(A,B) | -member(f3(union(A,B),A),A).  [resolve(26,a,22,b)].
+42 union(A,B) = A | union(A,B) = A | -member(f3(union(A,B),A),A).  [copy(41),flip(b)].
+43 union(A,B) = A | -member(f3(union(A,B),A),A).  [copy(42),merge(b)].
+44 union(A,A) = A | union(A,A) = A.  [resolve(43,b,31,a)].
+45 union(A,A) = A.  [copy(44),merge(b)].
+46 member(f3(union(A,B),A),B) | union(A,B) = A | union(A,B) = A.  [resolve(30,a,43,b)].
+47 member(f3(union(A,B),A),B) | union(A,B) = A.  [copy(46),merge(c)].
+48 member(f3(union(A,B),B),A) | union(B,A) = B.  [para(8(a,1),47(a,1,1))].
+49 member(f3(union(A,B),B),A) | union(A,B) = B.  [para(8(a,1),48(b,1))].
+50 c2 = empty_set | member(f3(empty_set,c2),empty_set) | union(empty_set,c2) = c2.  [para(40(a,1),49(a,1,1))].
+51 c2 = empty_set | union(empty_set,c2) = c2.  [resolve(14,a,50,b)].
+52 c2 = empty_set | c2 = empty_set | c2 = empty_set.  [para(51(b,1),40(a,1))].
+53 c2 = empty_set | c2 = empty_set.  [copy(52),merge(b)].
+54 c2 = empty_set.  [copy(53),merge(b)].
+55 union(empty_set,empty_set) != empty_set | c2 != empty_set.  [para(54(a,1),39(a,1,2))].
+56 empty_set != empty_set | c2 != empty_set.  [para(45(a,1),55(a,1))].
+57 empty_set != empty_set | empty_set != empty_set.  [para(54(a,1),56(b,1))].
+58 empty_set != empty_set.  [copy(57),xx(a)].
+59 $F.  [copy(58),xx(a)].
+
+============================== end of proof ==========================

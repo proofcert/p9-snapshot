@@ -1,0 +1,25 @@
+
+
+
+
+
+
+7 -orthogonal_lines(c2,c3).  [clausify(6)].
+8 orthogonal_lines(c1,c2).  [clausify(6)].
+9 orthogonal_lines(A,B) | unorthogonal_lines(A,B).  [clausify(5)].
+10 -orthogonal_lines(A,B) | -unorthogonal_lines(A,B).  [clausify(5)].
+11 -parallel_lines(A,B) | -convergent_lines(A,B).  [clausify(4)].
+12 parallel_lines(c1,c3).  [clausify(6)].
+13 convergent_lines(A,B) | unorthogonal_lines(A,B).  [clausify(2)].
+14 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(1)].
+15 unorthogonal_lines(A,B) | convergent_lines(A,C) | -convergent_lines(B,C) | -unorthogonal_lines(B,C).  [clausify(3)].
+16 unorthogonal_lines(c2,c3).  [resolve(7,a,9,a)].
+17 -unorthogonal_lines(c1,c2).  [resolve(10,a,8,a)].
+18 -convergent_lines(c1,c3).  [resolve(11,a,12,a)].
+19 convergent_lines(c1,c2).  [resolve(17,a,13,b)].
+20 convergent_lines(c1,A) | -convergent_lines(c2,A) | -unorthogonal_lines(c2,A).  [resolve(15,a,17,a)].
+21 -convergent_lines(c2,c3) | -unorthogonal_lines(c2,c3).  [resolve(20,a,18,a)].
+22 -convergent_lines(c2,c3).  [resolve(21,b,16,a)].
+23 -convergent_lines(c1,A) | convergent_lines(A,c3).  [resolve(14,b,18,a)].
+24 -convergent_lines(c1,c2).  [resolve(23,b,22,a)].
+25 $F.  [resolve(19,a,24,a)].

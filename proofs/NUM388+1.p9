@@ -1,0 +1,61 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n160.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:03:08 CDT 2014
+% CPUTime    : 0.18 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 52641 was started by sandbox on n160.star.cs.uiowa.edu,
+Fri Jun  6 06:03:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_52609_n160.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 24.
+% Level of proof is 5.
+% Maximum clause weight is 10.000.
+% Given clauses 48.
+
+
+1 (all A (ordinal(A) -> epsilon_transitive(A) & epsilon_connected(A))).  [assumption].
+2 (all A (epsilon_transitive(A) <-> (all B (in(B,A) -> subset(B,A))))).  [assumption].
+3 (all A all B (element(A,B) -> empty(B) | in(A,B))).  [assumption].
+4 (all A all B (element(A,powerset(B)) <-> subset(A,B))).  [assumption].
+5 (all A all B all C (in(A,B) & element(B,powerset(C)) -> element(A,C))).  [assumption].
+6 (all A all B -(in(A,B) & empty(B))).  [assumption].
+7 -(all A (ordinal(A) -> (all B (ordinal(B) -> (all C (epsilon_transitive(C) -> (in(C,A) & in(A,B) -> in(C,B)))))))).  [assumption].
+8 -ordinal(A) | epsilon_transitive(A).  [clausify(1)].
+9 -epsilon_transitive(A) | -in(B,A) | subset(B,A).  [clausify(2)].
+10 ordinal(c13).  [clausify(7)].
+11 -in(A,B) | subset(A,B) | -ordinal(B).  [resolve(9,a,8,b)].
+12 in(c14,c12).  [clausify(7)].
+13 in(c12,c13).  [clausify(7)].
+14 -in(c14,c13).  [clausify(7)].
+15 -in(A,B) | -empty(B).  [clausify(6)].
+16 element(A,powerset(B)) | -subset(A,B).  [clausify(4)].
+17 -element(A,B) | empty(B) | in(A,B).  [clausify(3)].
+18 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(5)].
+19 -in(A,c13) | subset(A,c13).  [resolve(11,c,10,a)].
+20 -empty(c13).  [resolve(15,a,13,a)].
+21 subset(c12,c13).  [resolve(19,a,13,a)].
+22 -element(A,c13) | in(A,c13).  [resolve(17,b,20,a)].
+23 -element(c14,c13).  [resolve(22,b,14,a)].
+24 -element(c12,powerset(A)) | element(c14,A).  [resolve(18,a,12,a)].
+25 -element(c12,powerset(c13)).  [resolve(24,b,23,a)].
+26 element(c12,powerset(c13)).  [resolve(21,a,16,b)].
+27 $F.  [resolve(25,a,26,a)].
+
+============================== end of proof ==========================

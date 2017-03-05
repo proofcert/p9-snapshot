@@ -1,0 +1,20 @@
+
+
+
+
+5 disjoint(c3,c4) | disjoint(c5,c6).  [clausify(4)].
+6 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+7 disjoint(A,B) | in(f3(A,B),set_intersection2(A,B)).  [clausify(3)].
+8 -disjoint(cartesian_product2(c3,c5),cartesian_product2(c4,c6)).  [clausify(4)].
+9 -in(A,set_intersection2(B,C)) | -disjoint(B,C).  [clausify(3)].
+10 -in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) | in(f1(A,B,C,D,E),set_intersection2(B,D)).  [clausify(2)].
+11 -in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) | in(f2(A,B,C,D,E),set_intersection2(C,E)).  [clausify(2)].
+12 in(f3(cartesian_product2(c3,c5),cartesian_product2(c4,c6)),set_intersection2(cartesian_product2(c3,c5),cartesian_product2(c4,c6))).  [resolve(8,a,7,a)].
+13 -in(A,set_intersection2(c5,c6)) | disjoint(c3,c4).  [resolve(9,b,5,b)].
+14 -in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) | in(f1(A,D,E,B,C),set_intersection2(D,B)).  [para(6(a,1),10(a,2))].
+15 -in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) | in(f1(A,D,E,B,C),set_intersection2(B,D)).  [para(6(a,1),14(b,2))].
+16 in(f2(f3(cartesian_product2(c3,c5),cartesian_product2(c4,c6)),c3,c5,c4,c6),set_intersection2(c5,c6)).  [resolve(12,a,11,a)].
+17 in(f1(f3(cartesian_product2(c3,c5),cartesian_product2(c4,c6)),c4,c6,c3,c5),set_intersection2(c3,c4)).  [resolve(15,a,12,a)].
+18 disjoint(c3,c4).  [resolve(16,a,13,a)].
+19 -in(A,set_intersection2(c3,c4)).  [resolve(18,a,9,b)].
+20 $F.  [resolve(19,a,17,a)].

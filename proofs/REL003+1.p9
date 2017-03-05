@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n076.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:13:33 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 44358 was started by sandbox on n076.star.cs.uiowa.edu,
+Thu Jun  5 13:13:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_44326_n076.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 5.
+% Maximum clause weight is 12.000.
+% Given clauses 12.
+
+
+1 (all A converse(converse(A)) = A).  [assumption].
+2 (all A all B converse(join(A,B)) = join(converse(A),converse(B))).  [assumption].
+3 -(all A all B ((join(A,B) = B -> join(converse(A),converse(B)) = converse(B)) & (join(converse(A),converse(B)) = converse(B) -> join(A,B) = B))).  [assumption].
+4 converse(converse(A)) = A.  [clausify(1)].
+5 converse(join(A,B)) = join(converse(A),converse(B)).  [clausify(2)].
+6 join(converse(A),converse(B)) = converse(join(A,B)).  [copy(5),flip(a)].
+7 join(c1,c2) = c2 | converse(c2) = join(converse(c1),converse(c2)).  [clausify(3)].
+8 join(c1,c2) = c2 | converse(c2) = converse(join(c1,c2)).  [para(6(a,1),7(b,2))].
+9 join(c1,c2) = c2 | converse(join(c1,c2)) = converse(c2).  [copy(8),flip(b)].
+10 converse(c2) != join(converse(c1),converse(c2)) | join(c1,c2) != c2.  [clausify(3)].
+11 converse(c2) != converse(join(c1,c2)) | join(c1,c2) != c2.  [para(6(a,1),10(a,2))].
+12 converse(join(c1,c2)) != converse(c2) | join(c1,c2) != c2.  [copy(11),flip(a)].
+13 join(c1,c2) = c2 | converse(converse(c2)) = join(c1,c2).  [para(9(b,1),4(a,1,1))].
+14 join(c1,c2) = c2 | c2 = join(c1,c2).  [para(4(a,1),13(b,1))].
+15 join(c1,c2) = c2 | join(c1,c2) = c2.  [copy(14),flip(b)].
+16 join(c1,c2) = c2.  [copy(15),merge(b)].
+17 converse(c2) != converse(c2) | join(c1,c2) != c2.  [para(16(a,1),12(a,1,1))].
+18 converse(c2) != converse(c2) | c2 != c2.  [para(16(a,1),17(b,1))].
+19 c2 != c2.  [copy(18),xx(a)].
+20 $F.  [copy(19),xx(a)].
+
+============================== end of proof ==========================

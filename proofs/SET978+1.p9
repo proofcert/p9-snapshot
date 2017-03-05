@@ -1,0 +1,52 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n052.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 01:08:53 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 37296 was started by sandbox on n052.star.cs.uiowa.edu,
+Sat Jun  7 01:08:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_37264_n052.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 18.000.
+% Given clauses 15.
+
+
+1 (all A all B (disjoint(A,B) -> disjoint(B,A))).  [assumption].
+2 (all A all B all C all D (disjoint(A,B) | disjoint(C,D) -> disjoint(cartesian_product2(A,C),cartesian_product2(B,D)))).  [assumption].
+3 (all A all B (A != B -> disjoint(singleton(A),singleton(B)))).  [assumption].
+4 -(all A all B all C all D (A != B -> disjoint(cartesian_product2(singleton(A),C),cartesian_product2(singleton(B),D)) & disjoint(cartesian_product2(C,singleton(A)),cartesian_product2(D,singleton(B))))).  [assumption].
+5 A = B | disjoint(singleton(B),singleton(A)).  [clausify(3)].
+6 c4 != c3.  [clausify(4)].
+7 -disjoint(cartesian_product2(singleton(c3),c5),cartesian_product2(singleton(c4),c6)) | -disjoint(cartesian_product2(c5,singleton(c3)),cartesian_product2(c6,singleton(c4))).  [clausify(4)].
+8 -disjoint(A,B) | disjoint(B,A).  [clausify(1)].
+9 -disjoint(A,B) | disjoint(cartesian_product2(A,C),cartesian_product2(B,D)).  [clausify(2)].
+10 -disjoint(A,B) | disjoint(cartesian_product2(C,A),cartesian_product2(D,B)).  [clausify(2)].
+11 disjoint(singleton(A),singleton(B)) | A = B.  [resolve(8,a,5,b)].
+12 disjoint(cartesian_product2(singleton(A),B),cartesian_product2(singleton(C),D)) | C = A.  [resolve(9,a,5,b)].
+13 A = B | disjoint(cartesian_product2(C,singleton(A)),cartesian_product2(D,singleton(B))).  [resolve(11,a,10,a)].
+14 c4 = c3 | -disjoint(cartesian_product2(c5,singleton(c3)),cartesian_product2(c6,singleton(c4))).  [resolve(12,a,7,a)].
+15 -disjoint(cartesian_product2(c5,singleton(c3)),cartesian_product2(c6,singleton(c4))).  [resolve(6,a,14,a)].
+16 c3 = c4.  [resolve(15,a,13,b)].
+17 c4 = c3.  [copy(16),flip(a)].
+18 $F.  [resolve(6,a,17,a)].
+
+============================== end of proof ==========================

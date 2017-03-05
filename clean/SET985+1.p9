@@ -1,0 +1,30 @@
+
+
+
+
+5 empty(empty_set).  [assumption].
+6 subset(empty_set,A).  [clausify(3)].
+7 subset(cartesian_product2(c3,c4),cartesian_product2(c5,c6)) | subset(cartesian_product2(c4,c3),cartesian_product2(c6,c5)).  [clausify(4)].
+8 -empty(c3).  [clausify(4)].
+9 -subset(c4,c6).  [clausify(4)].
+10 cartesian_product2(A,B) != empty_set | A = empty_set | B = empty_set.  [clausify(1)].
+11 cartesian_product2(A,B) != empty_set | empty_set = A | B = empty_set.  [copy(10),flip(b)].
+12 cartesian_product2(A,B) != empty_set | empty_set = A | empty_set = B.  [copy(11),flip(c)].
+13 -subset(cartesian_product2(A,B),cartesian_product2(C,D)) | cartesian_product2(A,B) = empty_set | subset(A,C).  [clausify(2)].
+14 -subset(cartesian_product2(A,B),cartesian_product2(C,D)) | cartesian_product2(A,B) = empty_set | subset(B,D).  [clausify(2)].
+15 cartesian_product2(c4,c3) = empty_set | subset(c4,c6) | subset(cartesian_product2(c3,c4),cartesian_product2(c5,c6)).  [resolve(13,a,7,b)].
+16 cartesian_product2(c4,c3) = empty_set | subset(cartesian_product2(c3,c4),cartesian_product2(c5,c6)).  [resolve(9,a,15,b)].
+17 cartesian_product2(c4,c3) = empty_set | cartesian_product2(c3,c4) = empty_set | subset(c4,c6).  [resolve(16,b,14,a)].
+18 cartesian_product2(c4,c3) = empty_set | cartesian_product2(c3,c4) = empty_set.  [resolve(9,a,17,c)].
+19 cartesian_product2(c3,c4) = empty_set | empty_set = c4 | empty_set = c3.  [resolve(18,a,12,a)].
+20 cartesian_product2(c3,c4) = empty_set | c4 = empty_set | empty_set = c3.  [copy(19),flip(b)].
+21 cartesian_product2(c3,c4) = empty_set | c4 = empty_set | c3 = empty_set.  [copy(20),flip(c)].
+22 c4 = empty_set | c3 = empty_set | empty_set = c3 | empty_set = c4.  [resolve(21,a,12,a)].
+23 c4 = empty_set | c3 = empty_set | c3 = empty_set | empty_set = c4.  [copy(22),flip(c)].
+24 c4 = empty_set | c3 = empty_set | c3 = empty_set | c4 = empty_set.  [copy(23),flip(d)].
+25 c4 = empty_set | c3 = empty_set | c4 = empty_set.  [copy(24),merge(c)].
+26 c4 = empty_set | c3 = empty_set.  [copy(25),merge(c)].
+27 c3 = empty_set | -subset(empty_set,c6).  [para(26(a,1),9(a,1))].
+28 c3 = empty_set.  [resolve(6,a,27,b)].
+29 -empty(empty_set).  [para(28(a,1),8(a,1))].
+30 $F.  [resolve(5,a,29,a)].

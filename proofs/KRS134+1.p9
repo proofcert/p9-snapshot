@@ -1,0 +1,70 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n096.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:32:38 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 6558 was started by sandbox on n096.star.cs.uiowa.edu,
+Thu Jun  5 18:32:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_6526_n096.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 27.
+% Level of proof is 7.
+% Maximum clause weight is 2.000.
+% Given clauses 0.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A all B (rprop(A,B) -> cA(B))).  [assumption].
+4 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & (all A (cowlThing(A) -> (all B (rprop(A,B) -> cA(B)))))).  [assumption].
+5 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+6 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+7 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA(c4).  [clausify(4)].
+8 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA(c4).  [clausify(4)].
+9 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rprop(c3,c4).  [clausify(4)].
+10 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rprop(c3,c4).  [clausify(4)].
+11 -cowlNothing(A).  [clausify(1)].
+12 -cowlThing(c1) | cowlNothing(c1) | -xsd_integer(c2) | -cA(c4) | -xsd_integer(c2).  [resolve(7,c,5,a)].
+13 -cowlThing(c1) | cowlNothing(c1) | xsd_integer(c2) | -cA(c4) | xsd_integer(c2).  [resolve(8,c,6,a)].
+14 -cowlThing(c1) | cowlNothing(c1) | -xsd_integer(c2) | rprop(c3,c4) | -xsd_integer(c2).  [resolve(9,c,5,a)].
+15 -cowlThing(c1) | cowlNothing(c1) | xsd_integer(c2) | rprop(c3,c4) | xsd_integer(c2).  [resolve(10,c,6,a)].
+16 -cowlThing(c1) | -xsd_integer(c2) | rprop(c3,c4) | -xsd_integer(c2).  [resolve(14,b,11,a)].
+17 -rprop(A,B) | cA(B).  [clausify(3)].
+18 -cowlThing(c1) | xsd_integer(c2) | rprop(c3,c4) | xsd_integer(c2).  [resolve(15,b,11,a)].
+19 -cowlThing(c1) | -xsd_integer(c2) | -xsd_integer(c2) | cA(c4).  [resolve(16,c,17,a)].
+20 -cowlThing(c1) | -xsd_integer(c2) | -cA(c4) | -xsd_integer(c2).  [resolve(12,b,11,a)].
+21 -cowlThing(c1) | xsd_integer(c2) | -cA(c4) | xsd_integer(c2).  [resolve(13,b,11,a)].
+22 -cowlThing(c1) | xsd_integer(c2) | xsd_integer(c2) | cA(c4).  [resolve(18,c,17,a)].
+23 cowlThing(A).  [clausify(1)].
+24 -cowlThing(c1) | -xsd_integer(c2) | -xsd_integer(c2) | -cowlThing(c1) | -xsd_integer(c2) | -xsd_integer(c2).  [resolve(19,d,20,c)].
+25 -cowlThing(c1) | -xsd_integer(c2) | -cowlThing(c1) | -xsd_integer(c2) | -xsd_integer(c2).  [copy(24),merge(c)].
+26 -cowlThing(c1) | -xsd_integer(c2) | -xsd_integer(c2) | -xsd_integer(c2).  [copy(25),merge(c)].
+27 -cowlThing(c1) | -xsd_integer(c2) | -xsd_integer(c2).  [copy(26),merge(c)].
+28 -cowlThing(c1) | -xsd_integer(c2).  [copy(27),merge(c)].
+29 -xsd_integer(c2).  [resolve(23,a,28,a)].
+30 -cowlThing(c1) | xsd_integer(c2) | xsd_integer(c2) | -cowlThing(c1) | xsd_integer(c2) | xsd_integer(c2).  [resolve(22,d,21,c)].
+31 -cowlThing(c1) | xsd_integer(c2) | -cowlThing(c1) | xsd_integer(c2) | xsd_integer(c2).  [copy(30),merge(c)].
+32 -cowlThing(c1) | xsd_integer(c2) | xsd_integer(c2) | xsd_integer(c2).  [copy(31),merge(c)].
+33 -cowlThing(c1) | xsd_integer(c2) | xsd_integer(c2).  [copy(32),merge(c)].
+34 -cowlThing(c1) | xsd_integer(c2).  [copy(33),merge(c)].
+35 xsd_integer(c2).  [resolve(23,a,34,a)].
+36 $F.  [resolve(29,a,35,a)].
+
+============================== end of proof ==========================

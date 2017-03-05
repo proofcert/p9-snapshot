@@ -1,0 +1,42 @@
+
+
+
+4 sorti2(c1).  [clausify(2)].
+5 sorti2(c2).  [clausify(2)].
+6 op2(c2,c1) != op2(c1,c2).  [clausify(2)].
+7 -sorti2(A) | sorti1(j(A)).  [clausify(3)].
+8 -sorti2(A) | h(j(A)) = A.  [clausify(3)].
+9 -sorti1(A) | -sorti1(B) | op1(B,A) = op1(A,B).  [clausify(1)].
+10 -sorti1(A) | -sorti1(B) | h(op1(A,B)) = op2(h(A),h(B)).  [clausify(3)].
+11 -sorti1(A) | -sorti1(B) | op2(h(A),h(B)) = h(op1(A,B)).  [copy(10),flip(c)].
+12 -sorti2(A) | -sorti2(B) | j(op2(A,B)) = op1(j(A),j(B)).  [clausify(3)].
+13 -sorti2(A) | -sorti2(B) | op1(j(A),j(B)) = j(op2(A,B)).  [copy(12),flip(c)].
+14 sorti1(j(c2)).  [resolve(7,a,5,a)].
+15 sorti1(j(c1)).  [resolve(7,a,4,a)].
+16 h(j(c2)) = c2.  [resolve(8,a,5,a)].
+17 h(j(c1)) = c1.  [resolve(8,a,4,a)].
+18 -sorti2(A) | op1(j(c2),j(A)) = j(op2(c2,A)).  [resolve(13,a,5,a)].
+19 op1(j(c2),j(c1)) = j(op2(c2,c1)).  [resolve(18,a,4,a)].
+20 -sorti2(A) | op1(j(c1),j(A)) = j(op2(c1,A)).  [resolve(13,a,4,a)].
+21 op1(j(c1),j(c2)) = j(op2(c1,c2)).  [resolve(20,a,5,a)].
+22 -sorti1(A) | op2(h(j(c2)),h(A)) = h(op1(j(c2),A)).  [resolve(11,a,14,a)].
+23 op2(h(j(c2)),h(j(c1))) = h(op1(j(c2),j(c1))).  [resolve(22,a,15,a)].
+24 op2(c2,h(j(c1))) = h(op1(j(c2),j(c1))).  [para(16(a,1),23(a,1,1))].
+25 op2(c2,c1) = h(op1(j(c2),j(c1))).  [para(17(a,1),24(a,1,2))].
+26 op2(c2,c1) = h(j(op2(c2,c1))).  [para(19(a,1),25(a,2,1))].
+27 h(j(op2(c2,c1))) = op2(c2,c1).  [copy(26),flip(a)].
+28 -sorti1(A) | op2(h(j(c1)),h(A)) = h(op1(j(c1),A)).  [resolve(11,a,15,a)].
+29 op2(h(j(c1)),h(j(c2))) = h(op1(j(c1),j(c2))).  [resolve(28,a,14,a)].
+30 op2(c1,h(j(c2))) = h(op1(j(c1),j(c2))).  [para(17(a,1),29(a,1,1))].
+31 op2(c1,c2) = h(op1(j(c1),j(c2))).  [para(16(a,1),30(a,1,2))].
+32 op2(c1,c2) = h(j(op2(c1,c2))).  [para(21(a,1),31(a,2,1))].
+33 h(j(op2(c1,c2))) = op2(c1,c2).  [copy(32),flip(a)].
+34 -sorti1(A) | op1(A,j(c2)) = op1(j(c2),A).  [resolve(9,a,14,a)].
+35 op1(j(c1),j(c2)) = op1(j(c2),j(c1)).  [resolve(34,a,15,a)].
+36 j(op2(c1,c2)) = op1(j(c2),j(c1)).  [para(21(a,1),35(a,1))].
+37 j(op2(c1,c2)) = j(op2(c2,c1)).  [para(19(a,1),36(a,2))].
+38 j(op2(c2,c1)) = j(op2(c1,c2)).  [copy(37),flip(a)].
+39 h(j(op2(c1,c2))) = op2(c2,c1).  [para(38(a,1),27(a,1,1))].
+40 op2(c1,c2) = op2(c2,c1).  [para(33(a,1),39(a,1))].
+41 op2(c2,c1) = op2(c1,c2).  [copy(40),flip(a)].
+42 $F.  [resolve(41,a,6,a)].

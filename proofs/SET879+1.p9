@@ -1,0 +1,67 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n143.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:26:28 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 350 was started by sandbox on n143.star.cs.uiowa.edu,
+Sat Jun  7 00:26:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_318_n143.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 25.
+% Level of proof is 10.
+% Maximum clause weight is 14.000.
+% Given clauses 36.
+
+
+1 (all A all B (in(A,B) -> -in(B,A))).  [assumption].
+2 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+3 (all A all B (set_difference(singleton(A),B) = singleton(A) <-> -in(A,B))).  [assumption].
+4 -(all A all B (set_difference(singleton(A),singleton(B)) = singleton(A) <-> A != B)).  [assumption].
+5 set_difference(singleton(A),B) = singleton(A) | in(A,B).  [clausify(3)].
+6 -in(A,B) | -in(B,A).  [clausify(1)].
+7 set_difference(singleton(A),B) != singleton(A) | -in(A,B).  [clausify(3)].
+8 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+9 singleton(A) != B | in(C,B) | C != A.  [clausify(2)].
+10 set_difference(singleton(c3),singleton(c4)) = singleton(c3) | c4 != c3.  [clausify(4)].
+11 set_difference(singleton(c3),singleton(c4)) != singleton(c3) | c4 = c3.  [clausify(4)].
+12 -in(A,A).  [factor(6,a,b)].
+13 singleton(A) != B | C = A | set_difference(singleton(C),B) = singleton(C).  [resolve(8,b,5,b)].
+14 in(A,singleton(B)) | A != B.  [xx_res(9,a)].
+15 singleton(A) != B | in(A,B).  [xx_res(9,c)].
+16 set_difference(singleton(A),A) = singleton(A).  [resolve(12,a,5,b)].
+17 in(A,singleton(A)).  [xx_res(14,b)].
+18 set_difference(singleton(A),singleton(A)) != singleton(A).  [resolve(17,a,7,b)].
+19 -in(singleton(A),A).  [resolve(17,a,6,b)].
+20 singleton(singleton(A)) != A.  [resolve(15,b,19,a)].
+21 -in(A,set_difference(singleton(B),B)) | A = B.  [resolve(8,a,16,a(flip))].
+22 -in(A,set_difference(singleton(singleton(singleton(A))),singleton(singleton(A)))).  [resolve(21,b,20,a(flip))].
+23 -in(A,singleton(singleton(singleton(A)))).  [para(16(a,1),22(a,2))].
+24 set_difference(singleton(A),singleton(singleton(singleton(A)))) = singleton(A).  [resolve(23,a,5,b)].
+25 A = B | set_difference(singleton(A),set_difference(singleton(B),singleton(singleton(singleton(B))))) = singleton(A).  [resolve(13,a,24,a(flip))].
+26 A = B | set_difference(singleton(A),singleton(B)) = singleton(A).  [para(24(a,1),25(b,1,2))].
+27 c3 = c4 | c4 = c3.  [resolve(26,b,11,a)].
+28 c4 = c3 | c4 = c3.  [copy(27),flip(a)].
+29 c4 = c3.  [copy(28),merge(b)].
+30 set_difference(singleton(c3),singleton(c3)) = singleton(c3) | c4 != c3.  [para(29(a,1),10(a,1,2,1))].
+31 set_difference(singleton(c3),singleton(c3)) = singleton(c3) | c3 != c3.  [para(29(a,1),30(b,1))].
+32 set_difference(singleton(c3),singleton(c3)) = singleton(c3).  [copy(31),xx(b)].
+33 $F.  [resolve(18,a,32,a)].
+
+============================== end of proof ==========================

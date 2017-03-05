@@ -1,0 +1,43 @@
+
+
+
+
+
+
+
+
+9 op_or.  [assumption].
+10 op_implies_and.  [assumption].
+11 modus_ponens.  [assumption].
+12 implies_1.  [assumption].
+13 implies_2.  [assumption].
+14 or_3.  [assumption].
+15 -cn3.  [assumption].
+16 -implies_1 | is_a_theorem(implies(A,implies(B,A))).  [clausify(2)].
+17 is_a_theorem(implies(A,implies(B,A))).  [resolve(12,a,16,a)].
+18 -r1 | is_a_theorem(implies(or(A,A),A)).  [clausify(6)].
+19 r1 | -is_a_theorem(implies(or(c45,c45),c45)).  [clausify(6)].
+20 cn3 | -is_a_theorem(implies(implies(not(c44),c44),c44)).  [clausify(5)].
+21 -is_a_theorem(implies(implies(not(c44),c44),c44)).  [resolve(15,a,20,a)].
+22 -modus_ponens | -is_a_theorem(A) | -is_a_theorem(implies(A,B)) | is_a_theorem(B).  [clausify(1)].
+23 -is_a_theorem(A) | -is_a_theorem(implies(A,B)) | is_a_theorem(B).  [resolve(11,a,22,a)].
+24 -op_implies_and | not(and(A,not(B))) = implies(A,B).  [clausify(8)].
+25 not(and(A,not(B))) = implies(A,B).  [resolve(10,a,24,a)].
+26 -implies_2 | is_a_theorem(implies(implies(A,implies(A,B)),implies(A,B))).  [clausify(3)].
+27 is_a_theorem(implies(implies(A,implies(A,B)),implies(A,B))).  [resolve(13,a,26,a)].
+28 -op_or | or(A,B) = not(and(not(A),not(B))).  [clausify(7)].
+29 -op_or | or(A,B) = implies(not(A),B).  [para(25(a,1),28(b,2))].
+30 or(A,B) = implies(not(A),B).  [resolve(9,a,29,a)].
+31 -or_3 | is_a_theorem(implies(implies(A,B),implies(implies(C,B),implies(or(A,C),B)))).  [clausify(4)].
+32 -or_3 | is_a_theorem(implies(implies(A,B),implies(implies(C,B),implies(implies(not(A),C),B)))).  [para(30(a,1),31(b,1,2,2,1))].
+33 is_a_theorem(implies(implies(A,B),implies(implies(C,B),implies(implies(not(A),C),B)))).  [resolve(14,a,32,a)].
+34 r1 | -is_a_theorem(implies(implies(not(c45),c45),c45)).  [para(30(a,1),19(b,1,1))].
+35 -r1 | is_a_theorem(implies(implies(not(A),A),A)).  [para(30(a,1),18(b,1,1))].
+36 -is_a_theorem(implies(A,implies(A,B))) | is_a_theorem(implies(A,B)).  [resolve(27,a,23,b)].
+37 -r1.  [resolve(35,b,21,a)].
+38 -is_a_theorem(implies(implies(not(c45),c45),c45)).  [resolve(37,a,34,a)].
+39 is_a_theorem(implies(implies(A,B),implies(implies(not(A),A),B))).  [resolve(36,a,33,a)].
+40 is_a_theorem(implies(A,A)).  [resolve(36,a,17,a)].
+41 -is_a_theorem(implies(implies(A,A),B)) | is_a_theorem(B).  [resolve(23,a,40,a)].
+42 -is_a_theorem(implies(implies(A,A),implies(implies(not(c45),c45),c45))).  [resolve(41,b,38,a)].
+43 $F.  [resolve(42,a,39,a)].

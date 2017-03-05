@@ -1,0 +1,43 @@
+
+
+
+
+
+
+
+
+9 element(c5,c3).  [clausify(8)].
+10 element(c4,powerset(c3)).  [clausify(8)].
+11 set_difference(A,empty_set) = A.  [clausify(6)].
+12 empty_set != c3.  [clausify(8)].
+13 c3 != empty_set.  [copy(12),flip(a)].
+14 -in(c5,c4).  [clausify(8)].
+15 -in(c5,subset_complement(c3,c4)).  [clausify(8)].
+16 -empty(A) | empty_set = A.  [clausify(7)].
+17 empty(A) | -element(B,A) | in(B,A).  [clausify(1)].
+18 -element(A,powerset(B)) | element(subset_complement(B,A),powerset(B)).  [clausify(4)].
+19 set_difference(A,B) != C | -in(D,C) | in(D,A).  [clausify(2)].
+20 -element(A,powerset(B)) | subset_complement(B,A) = set_difference(B,A).  [clausify(3)].
+21 -element(A,powerset(B)) | subset_complement(B,subset_complement(B,A)) = A.  [clausify(5)].
+22 set_difference(A,B) != C | in(D,C) | -in(D,A) | in(D,B).  [clausify(2)].
+23 -empty(c3).  [resolve(16,b,13,a(flip))].
+24 empty(c3) | in(c5,c3).  [resolve(17,b,9,a)].
+25 in(c5,c3).  [resolve(23,a,24,a)].
+26 element(subset_complement(c3,c4),powerset(c3)).  [resolve(18,a,10,a)].
+27 -in(A,set_difference(set_difference(B,C),empty_set)) | in(A,B).  [resolve(19,a,11,a(flip))].
+28 -in(c5,set_difference(set_difference(c4,A),empty_set)).  [resolve(27,b,14,a)].
+29 -in(c5,set_difference(c4,A)).  [para(11(a,1),28(a,2))].
+30 subset_complement(c3,c4) = set_difference(c3,c4).  [resolve(20,a,10,a)].
+31 element(set_difference(c3,c4),powerset(c3)).  [para(30(a,1),26(a,1))].
+32 -in(c5,set_difference(c3,c4)).  [para(30(a,1),15(a,2))].
+33 subset_complement(c3,subset_complement(c3,c4)) = c4.  [resolve(21,a,10,a)].
+34 subset_complement(c3,set_difference(c3,c4)) = c4.  [para(30(a,1),33(a,1,2))].
+35 subset_complement(c3,set_difference(c3,c4)) = set_difference(c3,set_difference(c3,c4)).  [resolve(31,a,20,a)].
+36 c4 = set_difference(c3,set_difference(c3,c4)).  [para(34(a,1),35(a,1))].
+37 set_difference(c3,set_difference(c3,c4)) = c4.  [copy(36),flip(a)].
+38 set_difference(A,B) != set_difference(c4,C) | -in(c5,A) | in(c5,B).  [resolve(22,b,29,a)].
+39 set_difference(c3,A) != set_difference(c4,B) | in(c5,A).  [resolve(38,b,25,a)].
+40 set_difference(c3,set_difference(c3,c4)) != set_difference(c4,A).  [resolve(39,b,32,a)].
+41 c4 != set_difference(c4,A).  [para(37(a,1),40(a,1))].
+42 set_difference(c4,A) != c4.  [copy(41),flip(a)].
+43 $F.  [resolve(42,a,11,a)].

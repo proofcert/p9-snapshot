@@ -1,0 +1,17 @@
+
+
+
+
+
+6 subset(c3,c4).  [clausify(5)].
+7 subset(set_intersection2(A,B),A).  [clausify(2)].
+8 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+9 -subset(set_intersection2(c3,c5),set_intersection2(c4,c5)).  [clausify(5)].
+10 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(4)].
+11 -subset(A,B) | -subset(A,C) | subset(A,set_intersection2(B,C)).  [clausify(3)].
+12 subset(set_intersection2(A,B),B).  [para(8(a,1),7(a,1))].
+13 -subset(A,c3) | subset(A,c4).  [resolve(10,b,6,a)].
+14 -subset(set_intersection2(A,B),C) | subset(set_intersection2(A,B),set_intersection2(C,B)).  [resolve(11,b,12,a)].
+15 -subset(set_intersection2(c3,c5),c4).  [resolve(14,b,9,a)].
+16 -subset(set_intersection2(c3,c5),c3).  [resolve(13,b,15,a)].
+17 $F.  [resolve(7,a,16,a)].

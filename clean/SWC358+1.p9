@@ -1,0 +1,20 @@
+
+
+3 -ssList(A) | -ssList(B) | -neq(A,B) | B != A.  [clausify(1)].
+4 neq(c4,nil).  [clausify(2)].
+5 ssList(nil).  [assumption].
+6 c6 = c4.  [clausify(2)].
+7 c5 = c3.  [clausify(2)].
+8 -segmentP(c4,c3).  [clausify(2)].
+9 nil = c6 | segmentP(c6,c5).  [clausify(2)].
+10 nil = c4 | segmentP(c6,c5).  [para(6(a,1),9(a,2))].
+11 nil = c4 | segmentP(c4,c5).  [para(6(a,1),10(b,1))].
+12 nil = c4 | segmentP(c4,c3).  [para(7(a,1),11(b,2))].
+13 c4 = nil | segmentP(c4,c3).  [copy(12),flip(a)].
+14 c4 = nil.  [resolve(8,a,13,b)].
+15 -ssList(c4) | -ssList(nil) | nil != c4.  [resolve(4,a,3,c)].
+16 -ssList(nil) | -ssList(nil) | nil != c4.  [para(14(a,1),15(a,1))].
+17 -ssList(nil) | -ssList(nil) | nil != nil.  [para(14(a,1),16(c,2))].
+18 -ssList(nil) | -ssList(nil).  [copy(17),xx(c)].
+19 -ssList(nil).  [copy(18),merge(b)].
+20 $F.  [resolve(5,a,19,a)].

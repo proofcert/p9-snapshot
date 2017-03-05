@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n143.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:57:08 CDT 2014
+% CPUTime    : 0.26 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 49753 was started by sandbox on n143.star.cs.uiowa.edu,
+Fri Jun  6 07:57:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_49721_n143.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 20.
+% Level of proof is 5.
+% Maximum clause weight is 16.000.
+% Given clauses 191.
+
+
+1 (all A all B subset(A,A)).  [assumption].
+2 (all A all B all C (element(B,powerset(A)) & element(C,powerset(A)) -> subset_difference(A,B,C) = set_difference(B,C))).  [assumption].
+3 (all A all B (element(A,powerset(B)) <-> subset(A,B))).  [assumption].
+4 (all A (one_sorted_str(A) -> cast_as_carrier_subset(A) = the_carrier(A))).  [assumption].
+5 (all A all B (element(B,powerset(A)) -> subset_complement(A,B) = set_difference(A,B))).  [assumption].
+6 -(all A (one_sorted_str(A) -> (all B (element(B,powerset(the_carrier(A))) -> subset_complement(the_carrier(A),B) = subset_difference(the_carrier(A),cast_as_carrier_subset(A),B))))).  [assumption].
+7 -one_sorted_str(A) | cast_as_carrier_subset(A) = the_carrier(A).  [clausify(4)].
+8 one_sorted_str(c3).  [clausify(6)].
+9 element(A,powerset(B)) | -subset(A,B).  [clausify(3)].
+10 subset(A,A).  [clausify(1)].
+11 element(c4,powerset(the_carrier(c3))).  [clausify(6)].
+12 subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),c4) != subset_complement(the_carrier(c3),c4).  [clausify(6)].
+13 -element(A,powerset(B)) | subset_complement(B,A) = set_difference(B,A).  [clausify(5)].
+14 -element(A,powerset(B)) | -element(C,powerset(B)) | subset_difference(B,A,C) = set_difference(A,C).  [clausify(2)].
+15 cast_as_carrier_subset(c3) = the_carrier(c3).  [resolve(7,a,8,a)].
+16 element(A,powerset(A)).  [resolve(9,b,10,a)].
+17 subset_difference(the_carrier(c3),the_carrier(c3),c4) != subset_complement(the_carrier(c3),c4).  [para(15(a,1),12(a,1,2))].
+18 subset_complement(the_carrier(c3),c4) = set_difference(the_carrier(c3),c4).  [resolve(13,a,11,a)].
+19 subset_difference(the_carrier(c3),the_carrier(c3),c4) != set_difference(the_carrier(c3),c4).  [para(18(a,1),17(a,2))].
+20 -element(A,powerset(the_carrier(c3))) | subset_difference(the_carrier(c3),A,c4) = set_difference(A,c4).  [resolve(14,b,11,a)].
+21 -element(the_carrier(c3),powerset(the_carrier(c3))).  [resolve(20,b,19,a)].
+22 $F.  [resolve(16,a,21,a)].
+
+============================== end of proof ==========================

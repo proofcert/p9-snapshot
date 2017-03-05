@@ -1,0 +1,56 @@
+
+
+
+
+5 ssList(nil).  [assumption].
+6 -ssList(A) | -ssList(B) | -rearsegP(A,B) | -rearsegP(B,A) | B = A.  [clausify(1)].
+7 -ssList(A) | rearsegP(A,A).  [clausify(2)].
+8 -ssList(A) | rearsegP(A,nil).  [clausify(3)].
+9 ssList(c3).  [clausify(4)].
+10 ssList(c4).  [clausify(4)].
+11 c6 = c4.  [clausify(4)].
+12 c5 = c3.  [clausify(4)].
+13 nil = c4 | -neq(c3,nil) | -rearsegP(c4,c3).  [clausify(4)].
+14 c4 = nil | -neq(c3,nil) | -rearsegP(c4,c3).  [copy(13),flip(a)].
+15 nil != c3 | neq(c4,nil).  [clausify(4)].
+16 c3 != nil | neq(c4,nil).  [copy(15),flip(a)].
+17 nil != c3 | -neq(c3,nil) | -rearsegP(c4,c3).  [clausify(4)].
+18 c3 != nil | -neq(c3,nil) | -rearsegP(c4,c3).  [copy(17),flip(a)].
+19 nil = c6 | neq(c5,nil).  [clausify(4)].
+20 nil = c4 | neq(c5,nil).  [para(11(a,1),19(a,2))].
+21 nil = c4 | neq(c3,nil).  [para(12(a,1),20(b,1))].
+22 c4 = nil | neq(c3,nil).  [copy(21),flip(a)].
+23 nil = c6 | rearsegP(c6,c5).  [clausify(4)].
+24 nil = c4 | rearsegP(c6,c5).  [para(11(a,1),23(a,2))].
+25 nil = c4 | rearsegP(c4,c5).  [para(11(a,1),24(b,1))].
+26 nil = c4 | rearsegP(c4,c3).  [para(12(a,1),25(b,2))].
+27 c4 = nil | rearsegP(c4,c3).  [copy(26),flip(a)].
+28 nil = c5 | rearsegP(c6,c5).  [clausify(4)].
+29 nil = c3 | rearsegP(c6,c5).  [para(12(a,1),28(a,2))].
+30 nil = c3 | rearsegP(c4,c5).  [para(11(a,1),29(b,1))].
+31 nil = c3 | rearsegP(c4,c3).  [para(12(a,1),30(b,2))].
+32 c3 = nil | rearsegP(c4,c3).  [copy(31),flip(a)].
+33 rearsegP(nil,nil).  [resolve(7,a,5,a)].
+34 rearsegP(c3,nil).  [resolve(9,a,8,a)].
+35 c4 = nil | c4 = nil | -rearsegP(c4,c3).  [resolve(22,b,14,b)].
+36 c4 = nil | -rearsegP(c4,c3).  [copy(35),merge(b)].
+37 c3 = nil | -ssList(c3) | -ssList(c4) | -rearsegP(c3,c4) | c4 = c3.  [resolve(32,b,6,d)].
+38 c3 = nil | -ssList(c4) | -rearsegP(c3,c4) | c4 = c3.  [resolve(9,a,37,b)].
+39 c3 = nil | -rearsegP(c3,c4) | c4 = c3.  [resolve(10,a,38,b)].
+40 c4 = nil | c4 = nil.  [resolve(36,b,27,b)].
+41 c4 = nil.  [copy(40),merge(b)].
+42 c3 = nil | -rearsegP(c3,nil) | c4 = c3.  [para(41(a,1),39(b,2))].
+43 c3 = nil | -rearsegP(c3,nil) | nil = c3.  [para(41(a,1),42(c,1))].
+44 c3 = nil | -rearsegP(c3,nil) | c3 = nil.  [copy(43),flip(c)].
+45 c3 = nil | -rearsegP(c3,nil).  [copy(44),merge(c)].
+46 c3 = nil.  [resolve(34,a,45,b)].
+47 nil != nil | -neq(c3,nil) | -rearsegP(c4,c3).  [para(46(a,1),18(a,1))].
+48 nil != nil | -neq(nil,nil) | -rearsegP(c4,c3).  [para(46(a,1),47(b,1))].
+49 nil != nil | -neq(nil,nil) | -rearsegP(nil,c3).  [para(41(a,1),48(c,1))].
+50 nil != nil | -neq(nil,nil) | -rearsegP(nil,nil).  [para(46(a,1),49(c,2))].
+51 -neq(nil,nil) | -rearsegP(nil,nil).  [copy(50),xx(a)].
+52 -neq(nil,nil).  [resolve(33,a,51,b)].
+53 nil != nil | neq(c4,nil).  [para(46(a,1),16(a,1))].
+54 nil != nil | neq(nil,nil).  [para(41(a,1),53(b,1))].
+55 neq(nil,nil).  [copy(54),xx(a)].
+56 $F.  [resolve(52,a,55,a)].

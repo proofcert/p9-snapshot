@@ -1,0 +1,271 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n160.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:47:18 CDT 2014
+% CPUTime    : 83.25 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 30401 was started by sandbox on n160.star.cs.uiowa.edu,
+Thu Jun  5 13:47:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_30369_n160.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 82.10 (+ 1.03) seconds.
+% Length of proof is 107.
+% Level of proof is 14.
+% Maximum clause weight is 21.000.
+% Given clauses 3936.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C addition(C,addition(B,A)) = addition(addition(C,B),A)).  [assumption].
+3 (all A addition(A,zero) = A).  [assumption].
+4 (all A addition(A,A) = A).  [assumption].
+5 (all A all B all C multiplication(A,multiplication(B,C)) = multiplication(multiplication(A,B),C)).  [assumption].
+6 (all A multiplication(A,one) = A).  [assumption].
+7 (all A multiplication(one,A) = A).  [assumption].
+8 (all A all B all C multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C))).  [assumption].
+9 (all A all B all C multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C))).  [assumption].
+10 (all A multiplication(A,zero) = zero).  [assumption].
+11 (all A multiplication(zero,A) = zero).  [assumption].
+12 (all A (test(A) <-> (exists B complement(B,A)))).  [assumption].
+13 (all A all B (complement(B,A) <-> multiplication(A,B) = zero & multiplication(B,A) = zero & addition(A,B) = one)).  [assumption].
+14 (all A all B (test(A) -> (c(A) = B <-> complement(A,B)))).  [assumption].
+15 -(all A all B (test(B) & test(A) -> one = addition(addition(multiplication(addition(B,c(B)),A),multiplication(addition(A,c(A)),B)),multiplication(c(A),c(B))))).  [assumption].
+16 -test(A) | complement(f1(A),A).  [clausify(12)].
+17 test(c2).  [clausify(15)].
+18 test(c1).  [clausify(15)].
+19 test(A) | -complement(B,A).  [clausify(12)].
+20 -test(A) | c(A) != B | complement(A,B).  [clausify(14)].
+21 -test(A) | c(A) = B | -complement(A,B).  [clausify(14)].
+22 addition(A,zero) = A.  [clausify(3)].
+23 addition(A,A) = A.  [clausify(4)].
+24 multiplication(A,one) = A.  [clausify(6)].
+25 multiplication(one,A) = A.  [clausify(7)].
+26 multiplication(A,zero) = zero.  [clausify(10)].
+27 multiplication(zero,A) = zero.  [clausify(11)].
+28 addition(A,B) = addition(B,A).  [clausify(1)].
+29 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+30 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(28(a,1),29(a,1))].
+31 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(30),flip(a)].
+32 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(5)].
+33 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(8)].
+34 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(33),flip(a)].
+35 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(9)].
+36 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(35),flip(a)].
+37 addition(addition(multiplication(addition(c2,c(c2)),c1),multiplication(addition(c1,c(c1)),c2)),multiplication(c(c1),c(c2))) != one.  [clausify(15)].
+38 addition(addition(multiplication(addition(c1,c(c1)),c2),multiplication(addition(c2,c(c2)),c1)),multiplication(c(c1),c(c2))) != one.  [para(28(a,1),37(a,1,1))].
+39 addition(multiplication(c(c1),c(c2)),addition(multiplication(addition(c1,c(c1)),c2),multiplication(addition(c2,c(c2)),c1))) != one.  [para(28(a,1),38(a,1))].
+40 -complement(A,B) | multiplication(A,B) = zero.  [clausify(13)].
+41 -complement(A,B) | addition(B,A) = one.  [clausify(13)].
+42 -complement(A,B) | addition(A,B) = one.  [para(28(a,1),41(b,1))].
+43 complement(A,B) | multiplication(B,A) != zero | multiplication(A,B) != zero | addition(B,A) != one.  [clausify(13)].
+44 complement(A,B) | multiplication(B,A) != zero | multiplication(A,B) != zero | addition(A,B) != one.  [para(28(a,1),43(d,1))].
+45 complement(f1(c2),c2).  [resolve(16,a,17,a)].
+46 complement(f1(c1),c1).  [resolve(16,a,18,a)].
+47 complement(f1(A),A) | -complement(B,A).  [resolve(16,a,19,a)].
+48 c(c2) != A | complement(c2,A).  [resolve(20,a,17,a)].
+49 c(c1) != A | complement(c1,A).  [resolve(20,a,18,a)].
+50 c(A) = B | -complement(A,B) | -complement(C,A).  [resolve(21,a,19,a)].
+51 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(31(a,1),23(a,1))].
+52 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(28(a,1),51(a,1,2,1))].
+53 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(28(a,1),52(a,1,2))].
+54 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(31(a,2),53(a,1,2))].
+55 addition(A,addition(A,B)) = addition(B,A).  [para(23(a,1),54(a,1,2,2))].
+56 addition(A,addition(A,B)) = addition(A,B).  [para(28(a,1),55(a,2))].
+57 addition(multiplication(A,B),multiplication(A,zero)) = multiplication(A,B).  [para(22(a,1),34(a,2,2))].
+58 addition(multiplication(A,B),zero) = multiplication(A,B).  [para(26(a,1),57(a,1,2))].
+59 addition(zero,multiplication(A,B)) = multiplication(A,B).  [para(28(a,1),58(a,1))].
+60 addition(A,multiplication(A,B)) = multiplication(A,addition(one,B)).  [para(24(a,1),34(a,1,1))].
+61 addition(A,multiplication(A,B)) = multiplication(A,addition(B,one)).  [para(28(a,1),60(a,2,2))].
+62 multiplication(A,addition(B,one)) = addition(A,multiplication(A,B)).  [copy(61),flip(a)].
+63 addition(A,multiplication(B,A)) = multiplication(addition(one,B),A).  [para(25(a,1),36(a,1,1))].
+64 addition(A,multiplication(B,A)) = multiplication(addition(B,one),A).  [para(28(a,1),63(a,2,1))].
+65 multiplication(addition(A,one),B) = addition(B,multiplication(A,B)).  [copy(64),flip(a)].
+66 addition(multiplication(A,multiplication(B,C)),multiplication(D,C)) = multiplication(addition(multiplication(A,B),D),C).  [para(32(a,1),36(a,1,1))].
+67 addition(multiplication(A,multiplication(B,C)),multiplication(D,C)) = multiplication(addition(D,multiplication(A,B)),C).  [para(28(a,1),66(a,2,1))].
+68 complement(one,zero) | multiplication(zero,one) != zero | multiplication(one,zero) != zero.  [resolve(44,d,22,a)].
+69 complement(one,zero) | zero != zero | multiplication(one,zero) != zero.  [para(24(a,1),68(b,1))].
+70 complement(one,zero) | zero != zero | zero != zero.  [para(26(a,1),69(c,1))].
+71 complement(one,zero) | zero != zero.  [copy(70),xx(b)].
+72 complement(one,zero).  [copy(71),xx(b)].
+73 addition(f1(c2),c2) = one.  [resolve(45,a,42,a)].
+74 addition(c2,f1(c2)) = one.  [para(28(a,1),73(a,1))].
+75 addition(f1(c1),c1) = one.  [resolve(46,a,42,a)].
+76 addition(c1,f1(c1)) = one.  [para(28(a,1),75(a,1))].
+77 complement(c2,multiplication(one,c(c2))).  [resolve(48,a,25,a(flip))].
+78 complement(c2,c(c2)).  [para(25(a,1),77(a,2))].
+79 complement(c1,multiplication(one,c(c1))).  [resolve(49,a,25,a(flip))].
+80 complement(c1,c(c1)).  [para(25(a,1),79(a,2))].
+81 c(zero) = A | -complement(zero,A).  [resolve(72,a,50,c)].
+82 addition(one,zero) = one.  [resolve(72,a,42,a)].
+83 addition(zero,one) = one.  [para(28(a,1),82(a,1))].
+84 addition(c2,c(c2)) = one.  [resolve(78,a,42,a)].
+85 multiplication(c2,c(c2)) = zero.  [resolve(78,a,40,a)].
+86 addition(multiplication(c(c1),c(c2)),addition(multiplication(addition(c1,c(c1)),c2),multiplication(one,c1))) != one.  [para(84(a,1),39(a,1,2,2,1))].
+87 addition(multiplication(c(c1),c(c2)),addition(multiplication(addition(c1,c(c1)),c2),c1)) != one.  [para(25(a,1),86(a,1,2,2))].
+88 addition(multiplication(c(c1),c(c2)),addition(c1,multiplication(addition(c1,c(c1)),c2))) != one.  [para(28(a,1),87(a,1,2))].
+89 addition(c1,addition(multiplication(addition(c1,c(c1)),c2),multiplication(c(c1),c(c2)))) != one.  [para(31(a,2),88(a,1))].
+90 addition(c1,addition(multiplication(c(c1),c(c2)),multiplication(addition(c1,c(c1)),c2))) != one.  [para(28(a,1),89(a,1,2))].
+91 complement(f1(c(c1)),c(c1)).  [resolve(80,a,47,b)].
+92 addition(c1,c(c1)) = one.  [resolve(80,a,42,a)].
+93 addition(c1,addition(multiplication(c(c1),c(c2)),multiplication(one,c2))) != one.  [para(92(a,1),90(a,1,2,2,1))].
+94 addition(c1,addition(multiplication(c(c1),c(c2)),c2)) != one.  [para(25(a,1),93(a,1,2,2))].
+95 addition(c1,addition(c2,multiplication(c(c1),c(c2)))) != one.  [para(28(a,1),94(a,1,2))].
+96 complement(zero,one) | multiplication(one,zero) != zero | multiplication(zero,one) != zero.  [resolve(83,a,44,d)].
+97 complement(zero,one) | zero != zero | multiplication(zero,one) != zero.  [para(26(a,1),96(b,1))].
+98 complement(zero,one) | zero != zero | zero != zero.  [para(24(a,1),97(c,1))].
+99 complement(zero,one) | zero != zero.  [copy(98),xx(b)].
+100 complement(zero,one).  [copy(99),xx(b)].
+101 addition(A,addition(multiplication(A,B),C)) = addition(C,multiplication(A,addition(B,one))).  [para(62(a,2),31(a,2,2))].
+102 addition(A,addition(C,multiplication(A,B))) = addition(C,multiplication(A,addition(B,one))).  [para(28(a,1),101(a,1,2))].
+103 addition(A,multiplication(B,addition(C,one))) = addition(B,addition(A,multiplication(B,C))).  [copy(102),flip(a)].
+104 addition(c2,one) = addition(c2,f1(c2)).  [para(74(a,1),56(a,1,2))].
+105 addition(one,c2) = addition(c2,f1(c2)).  [para(28(a,1),104(a,1))].
+106 addition(one,c2) = one.  [para(74(a,1),105(a,2))].
+107 addition(multiplication(A,one),multiplication(A,c2)) = multiplication(A,one).  [para(106(a,1),34(a,2,2))].
+108 addition(A,multiplication(A,c2)) = multiplication(A,one).  [para(24(a,1),107(a,1,1))].
+109 addition(A,multiplication(A,c2)) = A.  [para(24(a,1),108(a,2))].
+110 addition(multiplication(one,A),multiplication(c2,A)) = multiplication(one,A).  [para(106(a,1),36(a,2,1))].
+111 addition(A,multiplication(c2,A)) = multiplication(one,A).  [para(25(a,1),110(a,1,1))].
+112 addition(A,multiplication(c2,A)) = A.  [para(25(a,1),111(a,2))].
+113 addition(c1,one) = addition(c1,f1(c1)).  [para(76(a,1),56(a,1,2))].
+114 addition(one,c1) = addition(c1,f1(c1)).  [para(28(a,1),113(a,1))].
+115 addition(one,c1) = one.  [para(76(a,1),114(a,2))].
+116 addition(zero,multiplication(c2,A)) = multiplication(c2,addition(c(c2),A)).  [para(85(a,1),34(a,1,1))].
+117 multiplication(c2,A) = multiplication(c2,addition(c(c2),A)).  [para(59(a,1),116(a,1))].
+118 multiplication(c2,A) = multiplication(c2,addition(A,c(c2))).  [para(28(a,1),117(a,2,2))].
+119 multiplication(c2,addition(A,c(c2))) = multiplication(c2,A).  [copy(118),flip(a)].
+120 addition(zero,multiplication(A,c(c2))) = multiplication(addition(c2,A),c(c2)).  [para(85(a,1),36(a,1,1))].
+121 multiplication(A,c(c2)) = multiplication(addition(c2,A),c(c2)).  [para(59(a,1),120(a,1))].
+122 multiplication(A,c(c2)) = multiplication(addition(A,c2),c(c2)).  [para(28(a,1),121(a,2,1))].
+123 multiplication(addition(A,c2),c(c2)) = multiplication(A,c(c2)).  [copy(122),flip(a)].
+124 addition(multiplication(A,multiplication(B,c(c2))),zero) = multiplication(addition(c2,multiplication(A,B)),c(c2)).  [para(85(a,1),67(a,1,2))].
+125 addition(zero,multiplication(A,multiplication(B,c(c2)))) = multiplication(addition(c2,multiplication(A,B)),c(c2)).  [para(28(a,1),124(a,1))].
+126 multiplication(A,multiplication(B,c(c2))) = multiplication(addition(c2,multiplication(A,B)),c(c2)).  [para(59(a,1),125(a,1))].
+127 multiplication(addition(c2,multiplication(A,B)),c(c2)) = multiplication(A,multiplication(B,c(c2))).  [copy(126),flip(a)].
+128 addition(f1(c(c1)),c(c1)) = one.  [resolve(91,a,42,a)].
+129 addition(c(c1),f1(c(c1))) = one.  [para(28(a,1),128(a,1))].
+130 c(zero) = one.  [resolve(81,b,100,a)].
+131 one = A | -complement(zero,A).  [para(130(a,1),81(a,1))].
+132 -complement(zero,addition(c1,addition(c2,multiplication(c(c1),c(c2))))).  [resolve(131,a,95,a(flip))].
+133 multiplication(addition(c1,addition(c2,multiplication(c(c1),c(c2)))),zero) != zero | multiplication(zero,addition(c1,addition(c2,multiplication(c(c1),c(c2))))) != zero | addition(zero,addition(c1,addition(c2,multiplication(c(c1),c(c2))))) != one.  [resolve(44,a,132,a)].
+134 multiplication(zero,addition(c1,addition(c2,multiplication(c(c1),c(c2))))) != zero | addition(zero,addition(c1,addition(c2,multiplication(c(c1),c(c2))))) != one.  [resolve(133,a,26,a)].
+135 addition(zero,addition(c1,addition(c2,multiplication(c(c1),c(c2))))) != one.  [resolve(134,a,27,a)].
+136 -complement(zero,addition(zero,addition(c1,addition(c2,multiplication(c(c1),c(c2)))))).  [resolve(131,a,135,a(flip))].
+137 addition(A,addition(multiplication(A,c2),B)) = addition(B,A).  [para(109(a,1),31(a,2,2))].
+138 addition(A,addition(B,multiplication(A,c2))) = addition(B,A).  [para(28(a,1),137(a,1,2))].
+139 addition(A,addition(B,multiplication(A,c2))) = addition(A,B).  [para(28(a,1),138(a,2))].
+140 addition(A,addition(multiplication(c2,A),B)) = addition(B,A).  [para(112(a,1),31(a,2,2))].
+141 addition(A,addition(B,multiplication(c2,A))) = addition(B,A).  [para(28(a,1),140(a,1,2))].
+142 addition(A,addition(B,multiplication(c2,A))) = addition(A,B).  [para(28(a,1),141(a,2))].
+143 addition(c(c1),one) = addition(c(c1),f1(c(c1))).  [para(129(a,1),56(a,1,2))].
+144 addition(one,c(c1)) = addition(c(c1),f1(c(c1))).  [para(28(a,1),143(a,1))].
+145 addition(one,c(c1)) = one.  [para(129(a,1),144(a,2))].
+146 addition(multiplication(one,A),multiplication(c(c1),A)) = multiplication(one,A).  [para(145(a,1),36(a,2,1))].
+147 addition(A,multiplication(c(c1),A)) = multiplication(one,A).  [para(25(a,1),146(a,1,1))].
+148 addition(A,multiplication(c(c1),A)) = A.  [para(25(a,1),147(a,2))].
+149 addition(A,addition(multiplication(c(c1),A),B)) = addition(B,A).  [para(148(a,1),31(a,2,2))].
+150 addition(A,addition(B,multiplication(c(c1),A))) = addition(B,A).  [para(28(a,1),149(a,1,2))].
+151 addition(A,addition(B,multiplication(c(c1),A))) = addition(A,B).  [para(28(a,1),150(a,2))].
+152 multiplication(c2,one) = multiplication(c2,c2).  [para(84(a,1),119(a,1,2))].
+153 c2 = multiplication(c2,c2).  [para(24(a,1),152(a,1))].
+154 multiplication(c2,c2) = c2.  [copy(153),flip(a)].
+155 multiplication(c2,A) = multiplication(c2,multiplication(c2,A)).  [para(154(a,1),32(a,1,1))].
+156 multiplication(c2,multiplication(c2,A)) = multiplication(c2,A).  [copy(155),flip(a)].
+157 addition(c2,multiplication(c2,A)) = multiplication(c2,addition(c2,A)).  [para(154(a,1),34(a,1,1))].
+158 multiplication(c2,addition(A,one)) = multiplication(c2,addition(c2,A)).  [para(62(a,2),157(a,1))].
+159 multiplication(c2,addition(A,one)) = multiplication(c2,addition(A,c2)).  [para(28(a,1),158(a,2,2))].
+160 multiplication(c2,addition(A,c2)) = multiplication(c2,addition(A,one)).  [copy(159),flip(a)].
+161 addition(c2,multiplication(A,c2)) = multiplication(addition(c2,A),c2).  [para(154(a,1),36(a,1,1))].
+162 multiplication(addition(A,one),c2) = multiplication(addition(c2,A),c2).  [para(65(a,2),161(a,1))].
+163 multiplication(addition(A,one),c2) = multiplication(addition(A,c2),c2).  [para(28(a,1),162(a,2,1))].
+164 multiplication(addition(A,c2),c2) = multiplication(addition(A,one),c2).  [copy(163),flip(a)].
+165 addition(multiplication(c2,A),multiplication(c2,B)) = multiplication(c2,addition(multiplication(c2,A),B)).  [para(156(a,1),34(a,1,1))].
+166 multiplication(c2,addition(A,B)) = multiplication(c2,addition(multiplication(c2,A),B)).  [para(34(a,1),165(a,1))].
+167 multiplication(c2,addition(A,B)) = multiplication(c2,addition(B,multiplication(c2,A))).  [para(28(a,1),166(a,2,2))].
+168 multiplication(c2,addition(A,multiplication(c2,B))) = multiplication(c2,addition(B,A)).  [copy(167),flip(a)].
+169 addition(multiplication(A,c(c2)),multiplication(addition(A,c2),B)) = multiplication(addition(A,c2),addition(c(c2),B)).  [para(123(a,1),34(a,1,1))].
+170 addition(multiplication(A,c(c2)),multiplication(addition(A,c2),B)) = multiplication(addition(A,c2),addition(B,c(c2))).  [para(28(a,1),169(a,2,2))].
+171 addition(A,multiplication(addition(B,A),c2)) = addition(A,multiplication(B,c2)).  [para(36(a,1),139(a,1,2))].
+172 addition(A,multiplication(addition(A,B),c2)) = addition(A,multiplication(B,c2)).  [para(28(a,1),171(a,1,2,1))].
+173 addition(one,addition(c(c1),multiplication(one,c2))) = one.  [para(145(a,1),139(a,2))].
+174 addition(one,addition(c(c1),c2)) = one.  [para(25(a,1),173(a,1,2,2))].
+175 addition(one,addition(c2,c(c1))) = one.  [para(28(a,1),174(a,1,2))].
+176 addition(c1,multiplication(one,c2)) = addition(c1,multiplication(c(c1),c2)).  [para(92(a,1),172(a,1,2,1))].
+177 addition(c1,c2) = addition(c1,multiplication(c(c1),c2)).  [para(25(a,1),176(a,1,2))].
+178 addition(c1,multiplication(c(c1),c2)) = addition(c1,c2).  [copy(177),flip(a)].
+179 addition(one,multiplication(one,c2)) = addition(one,multiplication(c(c1),c2)).  [para(145(a,1),172(a,1,2,1))].
+180 addition(one,c2) = addition(one,multiplication(c(c1),c2)).  [para(25(a,1),179(a,1,2))].
+181 one = addition(one,multiplication(c(c1),c2)).  [para(106(a,1),180(a,1))].
+182 addition(one,multiplication(c(c1),c2)) = one.  [copy(181),flip(a)].
+183 addition(multiplication(one,A),multiplication(multiplication(c(c1),c2),A)) = multiplication(one,A).  [para(182(a,1),36(a,2,1))].
+184 addition(A,multiplication(multiplication(c(c1),c2),A)) = multiplication(one,A).  [para(25(a,1),183(a,1,1))].
+185 addition(A,multiplication(c(c1),multiplication(c2,A))) = multiplication(one,A).  [para(32(a,1),184(a,1,2))].
+186 addition(A,multiplication(c(c1),multiplication(c2,A))) = A.  [para(25(a,1),185(a,2))].
+187 multiplication(c2,addition(multiplication(c(c1),c2),multiplication(c2,c1))) = multiplication(c2,addition(c1,c2)).  [para(178(a,1),168(a,2,2))].
+188 multiplication(c2,addition(multiplication(c2,c1),multiplication(c(c1),c2))) = multiplication(c2,addition(c1,c2)).  [para(28(a,1),187(a,1,2))].
+189 multiplication(c2,addition(multiplication(c2,c1),multiplication(c(c1),c2))) = multiplication(c2,addition(c1,one)).  [para(160(a,1),188(a,2))].
+190 multiplication(c2,addition(multiplication(c2,c1),multiplication(c(c1),c2))) = multiplication(c2,addition(one,c1)).  [para(28(a,1),189(a,2,2))].
+191 multiplication(c2,addition(multiplication(c2,c1),multiplication(c(c1),c2))) = multiplication(c2,one).  [para(115(a,1),190(a,2,2))].
+192 multiplication(c2,addition(multiplication(c2,c1),multiplication(c(c1),c2))) = c2.  [para(24(a,1),191(a,2))].
+193 multiplication(c(c1),addition(multiplication(c2,c(c1)),one)) = c(c1).  [para(186(a,1),62(a,2))].
+194 multiplication(c(c1),addition(one,multiplication(c2,c(c1)))) = c(c1).  [para(28(a,1),193(a,1,2))].
+195 multiplication(addition(c2,one),addition(multiplication(c2,c1),multiplication(c(c1),c2))) = addition(addition(multiplication(c2,c1),multiplication(c(c1),c2)),c2).  [para(192(a,1),65(a,2,2))].
+196 multiplication(addition(one,c2),addition(multiplication(c2,c1),multiplication(c(c1),c2))) = addition(addition(multiplication(c2,c1),multiplication(c(c1),c2)),c2).  [para(28(a,1),195(a,1,1))].
+197 multiplication(one,addition(multiplication(c2,c1),multiplication(c(c1),c2))) = addition(addition(multiplication(c2,c1),multiplication(c(c1),c2)),c2).  [para(106(a,1),196(a,1,1))].
+198 addition(multiplication(c2,c1),multiplication(c(c1),c2)) = addition(addition(multiplication(c2,c1),multiplication(c(c1),c2)),c2).  [para(25(a,1),197(a,1))].
+199 addition(multiplication(c2,c1),multiplication(c(c1),c2)) = addition(c2,addition(multiplication(c2,c1),multiplication(c(c1),c2))).  [para(28(a,1),198(a,2))].
+200 addition(multiplication(c2,c1),multiplication(c(c1),c2)) = addition(c2,multiplication(c2,c1)).  [para(151(a,1),199(a,2))].
+201 addition(multiplication(c2,c1),multiplication(c(c1),c2)) = multiplication(c2,addition(c1,one)).  [para(62(a,2),200(a,2))].
+202 addition(multiplication(c2,c1),multiplication(c(c1),c2)) = multiplication(c2,addition(one,c1)).  [para(28(a,1),201(a,2,2))].
+203 addition(multiplication(c2,c1),multiplication(c(c1),c2)) = multiplication(c2,one).  [para(115(a,1),202(a,2,2))].
+204 addition(multiplication(c2,c1),multiplication(c(c1),c2)) = c2.  [para(24(a,1),203(a,2))].
+205 addition(multiplication(c2,c1),multiplication(c(c1),addition(c2,one))) = addition(c(c1),c2).  [para(204(a,1),103(a,2,2))].
+206 addition(multiplication(c2,c1),multiplication(c(c1),addition(one,c2))) = addition(c(c1),c2).  [para(28(a,1),205(a,1,2,2))].
+207 addition(multiplication(c2,c1),multiplication(c(c1),one)) = addition(c(c1),c2).  [para(106(a,1),206(a,1,2,2))].
+208 addition(multiplication(c2,c1),c(c1)) = addition(c(c1),c2).  [para(24(a,1),207(a,1,2))].
+209 addition(c(c1),multiplication(c2,c1)) = addition(c(c1),c2).  [para(28(a,1),208(a,1))].
+210 addition(c(c1),multiplication(c2,c1)) = addition(c2,c(c1)).  [para(28(a,1),209(a,2))].
+211 addition(c1,addition(c2,c(c1))) = addition(c1,c(c1)).  [para(210(a,1),142(a,1,2))].
+212 addition(c1,addition(c2,c(c1))) = one.  [para(92(a,1),211(a,2))].
+213 multiplication(addition(c(c1),one),addition(one,multiplication(c2,c(c1)))) = addition(addition(one,multiplication(c2,c(c1))),c(c1)).  [para(194(a,1),65(a,2,2))].
+214 multiplication(addition(one,c(c1)),addition(one,multiplication(c2,c(c1)))) = addition(addition(one,multiplication(c2,c(c1))),c(c1)).  [para(28(a,1),213(a,1,1))].
+215 multiplication(one,addition(one,multiplication(c2,c(c1)))) = addition(addition(one,multiplication(c2,c(c1))),c(c1)).  [para(145(a,1),214(a,1,1))].
+216 addition(one,multiplication(c2,c(c1))) = addition(addition(one,multiplication(c2,c(c1))),c(c1)).  [para(25(a,1),215(a,1))].
+217 addition(one,multiplication(c2,c(c1))) = addition(c(c1),addition(one,multiplication(c2,c(c1)))).  [para(28(a,1),216(a,2))].
+218 addition(one,multiplication(c2,c(c1))) = addition(c(c1),one).  [para(142(a,1),217(a,2))].
+219 addition(one,multiplication(c2,c(c1))) = addition(one,c(c1)).  [para(28(a,1),218(a,2))].
+220 addition(one,multiplication(c2,c(c1))) = one.  [para(145(a,1),219(a,2))].
+221 multiplication(addition(c2,c(c1)),c(c2)) = multiplication(c(c1),multiplication(addition(one,multiplication(c2,c(c1))),c(c2))).  [para(194(a,1),127(a,1,1,2))].
+222 multiplication(addition(c2,c(c1)),c(c2)) = multiplication(c(c1),multiplication(one,c(c2))).  [para(220(a,1),221(a,2,2,1))].
+223 multiplication(addition(c2,c(c1)),c(c2)) = multiplication(c(c1),c(c2)).  [para(25(a,1),222(a,2,2))].
+224 addition(multiplication(A,c(c2)),multiplication(addition(A,c2),c2)) = multiplication(addition(A,c2),one).  [para(84(a,1),170(a,2,2))].
+225 addition(multiplication(A,c(c2)),multiplication(addition(A,one),c2)) = multiplication(addition(A,c2),one).  [para(164(a,1),224(a,1,2))].
+226 addition(multiplication(A,c(c2)),multiplication(addition(A,one),c2)) = addition(A,c2).  [para(24(a,1),225(a,2))].
+227 addition(multiplication(c(c1),c(c2)),multiplication(addition(addition(c2,c(c1)),one),c2)) = addition(addition(c2,c(c1)),c2).  [para(223(a,1),226(a,1,1))].
+228 addition(multiplication(c(c1),c(c2)),multiplication(addition(one,addition(c2,c(c1))),c2)) = addition(addition(c2,c(c1)),c2).  [para(28(a,1),227(a,1,2,1))].
+229 addition(multiplication(c(c1),c(c2)),multiplication(one,c2)) = addition(addition(c2,c(c1)),c2).  [para(175(a,1),228(a,1,2,1))].
+230 addition(multiplication(c(c1),c(c2)),c2) = addition(addition(c2,c(c1)),c2).  [para(25(a,1),229(a,1,2))].
+231 addition(c2,multiplication(c(c1),c(c2))) = addition(addition(c2,c(c1)),c2).  [para(28(a,1),230(a,1))].
+232 addition(c2,multiplication(c(c1),c(c2))) = addition(c2,addition(c2,c(c1))).  [para(28(a,1),231(a,2))].
+233 addition(c2,multiplication(c(c1),c(c2))) = addition(c2,c(c1)).  [para(56(a,1),232(a,2))].
+234 -complement(zero,addition(zero,addition(c1,addition(c2,c(c1))))).  [para(233(a,1),136(a,2,2,2))].
+235 -complement(zero,addition(zero,one)).  [para(212(a,1),234(a,2,2))].
+236 -complement(zero,one).  [para(83(a,1),235(a,2))].
+237 $F.  [resolve(100,a,236,a)].
+
+============================== end of proof ==========================

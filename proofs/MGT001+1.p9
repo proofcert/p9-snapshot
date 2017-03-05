@@ -1,0 +1,102 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n104.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:02:45 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 27195 was started by sandbox on n104.star.cs.uiowa.edu,
+Thu Jun  5 13:02:46 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_27163_n104.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds: t1_FOL.
+% Length of proof is 35.
+% Level of proof is 6.
+% Maximum clause weight is 39.000.
+% Given clauses 35.
+
+
+1 (all A all B (organization(A,B) -> (exists C reliability(A,C,B)))).  [assumption].
+2 (all A all B (organization(A,B) -> (exists C accountability(A,C,B)))).  [assumption].
+3 (all A all B (organization(A,B) -> (exists C reproducibility(A,C,B)))).  [assumption].
+4 (all A all B all C all D all E all F all V6 all V7 all V8 all V9 (organization(A,V8) & organization(B,V9) & reliability(A,C,V8) & reliability(B,D,V9) & accountability(A,E,V8) & accountability(B,F,V9) & survival_chance(A,V6,V8) & survival_chance(B,V7,V9) & greater(D,C) & greater(F,E) -> greater(V7,V6))).  [assumption].
+5 (all A all B all C all D all E all F all V6 all V7 all V8 all V9 (organization(A,C) & organization(B,D) & reliability(A,E,C) & reliability(B,F,D) & accountability(A,V6,C) & accountability(B,V7,D) & reproducibility(A,V8,C) & reproducibility(B,V9,D) -> (greater(V9,V8) <-> greater(F,E) & greater(V7,V6)))).  [assumption].
+6 (all A all B all C all D all E all F all V6 all V7 (organization(A,C) & organization(B,D) & reorganization_free(A,C,C) & reorganization_free(B,D,D) & reproducibility(A,E,C) & reproducibility(B,F,D) & inertia(A,V6,C) & inertia(B,V7,D) -> (greater(F,E) <-> greater(V7,V6)))).  [assumption].
+7 -(all A all B all C all D all E all F all V6 all V7 (organization(A,C) & organization(B,D) & reorganization_free(A,C,C) & reorganization_free(B,D,D) & inertia(A,E,C) & inertia(B,F,D) & survival_chance(A,V6,C) & survival_chance(B,V7,D) & greater(F,E) -> greater(V7,V6))).  [assumption].
+8 organization(c1,c3).  [clausify(7)].
+9 organization(c2,c4).  [clausify(7)].
+10 greater(c6,c5).  [clausify(7)].
+11 reorganization_free(c1,c3,c3).  [clausify(7)].
+12 reorganization_free(c2,c4,c4).  [clausify(7)].
+13 inertia(c1,c5,c3).  [clausify(7)].
+14 inertia(c2,c6,c4).  [clausify(7)].
+15 survival_chance(c1,c7,c3).  [clausify(7)].
+16 survival_chance(c2,c8,c4).  [clausify(7)].
+17 -greater(c8,c7).  [clausify(7)].
+18 -organization(A,B) | reliability(A,f1(A,B),B).  [clausify(1)].
+19 -organization(A,B) | accountability(A,f2(A,B),B).  [clausify(2)].
+20 -organization(A,B) | reproducibility(A,f3(A,B),B).  [clausify(3)].
+21 -organization(A,B) | -organization(C,D) | -reliability(A,E,B) | -reliability(C,F,D) | -accountability(A,V6,B) | -accountability(C,V7,D) | -reproducibility(A,V8,B) | -reproducibility(C,V9,D) | -greater(V9,V8) | greater(F,E).  [clausify(5)].
+22 -organization(A,B) | -organization(C,D) | -reliability(A,E,B) | -reliability(C,F,D) | -accountability(A,V6,B) | -accountability(C,V7,D) | -reproducibility(A,V8,B) | -reproducibility(C,V9,D) | -greater(V9,V8) | greater(V7,V6).  [clausify(5)].
+23 -organization(A,B) | -organization(C,D) | -reorganization_free(A,B,B) | -reorganization_free(C,D,D) | -reproducibility(A,E,B) | -reproducibility(C,F,D) | -inertia(A,V6,B) | -inertia(C,V7,D) | greater(F,E) | -greater(V7,V6).  [clausify(6)].
+24 -organization(A,B) | -organization(C,D) | -reliability(A,E,B) | -reliability(C,F,D) | -accountability(A,V6,B) | -accountability(C,V7,D) | -survival_chance(A,V8,B) | -survival_chance(C,V9,D) | -greater(F,E) | -greater(V7,V6) | greater(V9,V8).  [clausify(4)].
+25 reliability(c2,f1(c2,c4),c4).  [resolve(18,a,9,a)].
+26 reliability(c1,f1(c1,c3),c3).  [resolve(18,a,8,a)].
+27 accountability(c2,f2(c2,c4),c4).  [resolve(19,a,9,a)].
+28 accountability(c1,f2(c1,c3),c3).  [resolve(19,a,8,a)].
+29 reproducibility(c2,f3(c2,c4),c4).  [resolve(20,a,9,a)].
+30 reproducibility(c1,f3(c1,c3),c3).  [resolve(20,a,8,a)].
+31 -organization(A,B) | -reorganization_free(c1,c3,c3) | -reorganization_free(A,B,B) | -reproducibility(c1,C,c3) | -reproducibility(A,D,B) | -inertia(c1,E,c3) | -inertia(A,F,B) | greater(D,C) | -greater(F,E).  [resolve(23,a,8,a)].
+32 -reorganization_free(c1,c3,c3) | -reorganization_free(c2,c4,c4) | -reproducibility(c1,A,c3) | -reproducibility(c2,B,c4) | -inertia(c1,C,c3) | -inertia(c2,D,c4) | greater(B,A) | -greater(D,C).  [resolve(31,a,9,a)].
+33 -reorganization_free(c2,c4,c4) | -reproducibility(c1,A,c3) | -reproducibility(c2,B,c4) | -inertia(c1,C,c3) | -inertia(c2,D,c4) | greater(B,A) | -greater(D,C).  [resolve(32,a,11,a)].
+34 -reproducibility(c1,A,c3) | -reproducibility(c2,B,c4) | -inertia(c1,C,c3) | -inertia(c2,D,c4) | greater(B,A) | -greater(D,C).  [resolve(33,a,12,a)].
+35 -reproducibility(c2,A,c4) | -inertia(c1,B,c3) | -inertia(c2,C,c4) | greater(A,f3(c1,c3)) | -greater(C,B).  [resolve(34,a,30,a)].
+36 -inertia(c1,A,c3) | -inertia(c2,B,c4) | greater(f3(c2,c4),f3(c1,c3)) | -greater(B,A).  [resolve(35,a,29,a)].
+37 -inertia(c2,A,c4) | greater(f3(c2,c4),f3(c1,c3)) | -greater(A,c5).  [resolve(36,a,13,a)].
+38 greater(f3(c2,c4),f3(c1,c3)) | -greater(c6,c5).  [resolve(37,a,14,a)].
+39 greater(f3(c2,c4),f3(c1,c3)).  [resolve(38,b,10,a)].
+40 -organization(A,B) | -reliability(c1,C,c3) | -reliability(A,D,B) | -accountability(c1,E,c3) | -accountability(A,F,B) | -reproducibility(c1,V6,c3) | -reproducibility(A,V7,B) | -greater(V7,V6) | greater(F,E).  [resolve(22,a,8,a)].
+41 -reliability(c1,A,c3) | -reliability(c2,B,c4) | -accountability(c1,C,c3) | -accountability(c2,D,c4) | -reproducibility(c1,E,c3) | -reproducibility(c2,F,c4) | -greater(F,E) | greater(D,C).  [resolve(40,a,9,a)].
+42 -reliability(c2,A,c4) | -accountability(c1,B,c3) | -accountability(c2,C,c4) | -reproducibility(c1,D,c3) | -reproducibility(c2,E,c4) | -greater(E,D) | greater(C,B).  [resolve(41,a,26,a)].
+43 -accountability(c1,A,c3) | -accountability(c2,B,c4) | -reproducibility(c1,C,c3) | -reproducibility(c2,D,c4) | -greater(D,C) | greater(B,A).  [resolve(42,a,25,a)].
+44 -accountability(c2,A,c4) | -reproducibility(c1,B,c3) | -reproducibility(c2,C,c4) | -greater(C,B) | greater(A,f2(c1,c3)).  [resolve(43,a,28,a)].
+45 -reproducibility(c1,A,c3) | -reproducibility(c2,B,c4) | -greater(B,A) | greater(f2(c2,c4),f2(c1,c3)).  [resolve(44,a,27,a)].
+46 -reproducibility(c2,A,c4) | -greater(A,f3(c1,c3)) | greater(f2(c2,c4),f2(c1,c3)).  [resolve(45,a,30,a)].
+47 -greater(f3(c2,c4),f3(c1,c3)) | greater(f2(c2,c4),f2(c1,c3)).  [resolve(46,a,29,a)].
+48 greater(f2(c2,c4),f2(c1,c3)).  [resolve(47,a,39,a)].
+49 -organization(A,B) | -reliability(c1,C,c3) | -reliability(A,D,B) | -accountability(c1,E,c3) | -accountability(A,F,B) | -reproducibility(c1,V6,c3) | -reproducibility(A,V7,B) | -greater(V7,V6) | greater(D,C).  [resolve(21,a,8,a)].
+50 -reliability(c1,A,c3) | -reliability(c2,B,c4) | -accountability(c1,C,c3) | -accountability(c2,D,c4) | -reproducibility(c1,E,c3) | -reproducibility(c2,F,c4) | -greater(F,E) | greater(B,A).  [resolve(49,a,9,a)].
+51 -reliability(c2,A,c4) | -accountability(c1,B,c3) | -accountability(c2,C,c4) | -reproducibility(c1,D,c3) | -reproducibility(c2,E,c4) | -greater(E,D) | greater(A,f1(c1,c3)).  [resolve(50,a,26,a)].
+52 -accountability(c1,A,c3) | -accountability(c2,B,c4) | -reproducibility(c1,C,c3) | -reproducibility(c2,D,c4) | -greater(D,C) | greater(f1(c2,c4),f1(c1,c3)).  [resolve(51,a,25,a)].
+53 -accountability(c2,A,c4) | -reproducibility(c1,B,c3) | -reproducibility(c2,C,c4) | -greater(C,B) | greater(f1(c2,c4),f1(c1,c3)).  [resolve(52,a,28,a)].
+54 -reproducibility(c1,A,c3) | -reproducibility(c2,B,c4) | -greater(B,A) | greater(f1(c2,c4),f1(c1,c3)).  [resolve(53,a,27,a)].
+55 -reproducibility(c2,A,c4) | -greater(A,f3(c1,c3)) | greater(f1(c2,c4),f1(c1,c3)).  [resolve(54,a,30,a)].
+56 -greater(f3(c2,c4),f3(c1,c3)) | greater(f1(c2,c4),f1(c1,c3)).  [resolve(55,a,29,a)].
+57 greater(f1(c2,c4),f1(c1,c3)).  [resolve(56,a,39,a)].
+58 -organization(A,B) | -reliability(c1,C,c3) | -reliability(A,D,B) | -accountability(c1,E,c3) | -accountability(A,F,B) | -survival_chance(c1,V6,c3) | -survival_chance(A,V7,B) | -greater(D,C) | -greater(F,E) | greater(V7,V6).  [resolve(24,a,8,a)].
+59 -reliability(c1,A,c3) | -reliability(c2,B,c4) | -accountability(c1,C,c3) | -accountability(c2,D,c4) | -survival_chance(c1,E,c3) | -survival_chance(c2,F,c4) | -greater(B,A) | -greater(D,C) | greater(F,E).  [resolve(58,a,9,a)].
+60 -reliability(c2,A,c4) | -accountability(c1,B,c3) | -accountability(c2,C,c4) | -survival_chance(c1,D,c3) | -survival_chance(c2,E,c4) | -greater(A,f1(c1,c3)) | -greater(C,B) | greater(E,D).  [resolve(59,a,26,a)].
+61 -accountability(c1,A,c3) | -accountability(c2,B,c4) | -survival_chance(c1,C,c3) | -survival_chance(c2,D,c4) | -greater(f1(c2,c4),f1(c1,c3)) | -greater(B,A) | greater(D,C).  [resolve(60,a,25,a)].
+62 -accountability(c2,A,c4) | -survival_chance(c1,B,c3) | -survival_chance(c2,C,c4) | -greater(f1(c2,c4),f1(c1,c3)) | -greater(A,f2(c1,c3)) | greater(C,B).  [resolve(61,a,28,a)].
+63 -survival_chance(c1,A,c3) | -survival_chance(c2,B,c4) | -greater(f1(c2,c4),f1(c1,c3)) | -greater(f2(c2,c4),f2(c1,c3)) | greater(B,A).  [resolve(62,a,27,a)].
+64 -survival_chance(c2,A,c4) | -greater(f1(c2,c4),f1(c1,c3)) | -greater(f2(c2,c4),f2(c1,c3)) | greater(A,c7).  [resolve(63,a,15,a)].
+65 -greater(f1(c2,c4),f1(c1,c3)) | -greater(f2(c2,c4),f2(c1,c3)) | greater(c8,c7).  [resolve(64,a,16,a)].
+66 -greater(f1(c2,c4),f1(c1,c3)) | greater(c8,c7).  [resolve(65,b,48,a)].
+67 -greater(f1(c2,c4),f1(c1,c3)).  [resolve(66,b,17,a)].
+68 $F.  [resolve(67,a,57,a)].
+
+============================== end of proof ==========================

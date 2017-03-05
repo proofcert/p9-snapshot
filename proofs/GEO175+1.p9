@@ -1,0 +1,65 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n159.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 04:18:53 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 6152 was started by sandbox on n159.star.cs.uiowa.edu,
+Fri Jun  6 04:18:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_6120_n159.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 24.
+% Level of proof is 5.
+% Maximum clause weight is 18.000.
+% Given clauses 30.
+
+
+1 (all A -convergent_lines(A,A)).  [assumption].
+2 (all A all B all C (convergent_lines(A,B) -> convergent_lines(A,C) | convergent_lines(B,C))).  [assumption].
+3 (all A all B (convergent_lines(A,B) -> -apart_point_and_line(intersection_point(A,B),A))).  [assumption].
+4 (all A all B (convergent_lines(A,B) -> -apart_point_and_line(intersection_point(A,B),B))).  [assumption].
+5 (all A all B all C all D (distinct_points(A,B) & distinct_lines(C,D) -> apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D))).  [assumption].
+6 (all A all B all C (convergent_lines(A,B) -> distinct_lines(B,C) | convergent_lines(A,C))).  [assumption].
+7 -(all A all B all C all D (distinct_points(A,B) & convergent_lines(C,D) & distinct_points(A,intersection_point(C,D)) -> apart_point_and_line(A,C) | apart_point_and_line(A,D))).  [assumption].
+8 convergent_lines(c3,c4).  [clausify(7)].
+9 distinct_points(c1,intersection_point(c3,c4)).  [clausify(7)].
+10 -convergent_lines(A,A).  [clausify(1)].
+11 -apart_point_and_line(c1,c3).  [clausify(7)].
+12 -apart_point_and_line(c1,c4).  [clausify(7)].
+13 -convergent_lines(A,B) | -apart_point_and_line(intersection_point(A,B),A).  [clausify(3)].
+14 -convergent_lines(A,B) | -apart_point_and_line(intersection_point(A,B),B).  [clausify(4)].
+15 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(2)].
+16 -convergent_lines(A,B) | distinct_lines(B,C) | convergent_lines(A,C).  [clausify(6)].
+17 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(5)].
+18 -apart_point_and_line(intersection_point(c3,c4),c3).  [resolve(13,a,8,a)].
+19 -apart_point_and_line(intersection_point(c3,c4),c4).  [resolve(14,a,8,a)].
+20 convergent_lines(c3,A) | convergent_lines(c4,A).  [resolve(15,a,8,a)].
+21 -distinct_lines(A,B) | apart_point_and_line(c1,A) | apart_point_and_line(c1,B) | apart_point_and_line(intersection_point(c3,c4),A) | apart_point_and_line(intersection_point(c3,c4),B).  [resolve(17,a,9,a)].
+22 -distinct_lines(c3,A) | apart_point_and_line(c1,A) | apart_point_and_line(intersection_point(c3,c4),c3) | apart_point_and_line(intersection_point(c3,c4),A).  [resolve(21,b,11,a)].
+23 -distinct_lines(c3,c4) | apart_point_and_line(intersection_point(c3,c4),c3) | apart_point_and_line(intersection_point(c3,c4),c4).  [resolve(22,b,12,a)].
+24 -distinct_lines(c3,c4) | apart_point_and_line(intersection_point(c3,c4),c4).  [resolve(23,b,18,a)].
+25 -distinct_lines(c3,c4).  [resolve(24,b,19,a)].
+26 convergent_lines(c3,A) | convergent_lines(c4,B) | convergent_lines(A,B).  [resolve(20,b,15,a)].
+27 convergent_lines(c3,c3) | convergent_lines(c4,c3).  [factor(26,a,c)].
+28 convergent_lines(c4,c3).  [resolve(10,a,27,a)].
+29 -convergent_lines(A,c3) | convergent_lines(A,c4).  [resolve(16,b,25,a)].
+30 -convergent_lines(c4,c3).  [resolve(29,b,10,a)].
+31 $F.  [resolve(28,a,30,a)].
+
+============================== end of proof ==========================

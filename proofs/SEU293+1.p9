@@ -1,0 +1,91 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n115.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:13:53 CDT 2014
+% CPUTime    : 8.76 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 59216 was started by sandbox on n115.star.cs.uiowa.edu,
+Fri Jun  6 07:13:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_59184_n115.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 8.39 (+ 0.14) seconds.
+% Length of proof is 41.
+% Level of proof is 10.
+% Maximum clause weight is 25.000.
+% Given clauses 3118.
+
+
+1 (all A all B all C (element(C,powerset(cartesian_product2(A,B))) -> relation(C))).  [assumption].
+2 (all A (relation(A) & function(A) -> (all B all C (C = relation_inverse_image(A,B) <-> (all D (in(D,C) <-> in(D,relation_dom(A)) & in(apply(A,D),B))))))).  [assumption].
+3 (all A all B all C (relation_of2_as_subset(C,A,B) -> ((B = empty_set -> A = empty_set) -> (quasi_total(C,A,B) <-> A = relation_dom_as_subset(A,B,C))) & (B = empty_set -> A = empty_set | (quasi_total(C,A,B) <-> C = empty_set)))).  [assumption].
+4 (all A all B all C (relation_of2_as_subset(C,A,B) -> element(C,powerset(cartesian_product2(A,B))))).  [assumption].
+5 (all A all B all C (relation_of2(C,A,B) -> relation_dom_as_subset(A,B,C) = relation_dom(C))).  [assumption].
+6 (all A all B all C (relation_of2_as_subset(C,A,B) <-> relation_of2(C,A,B))).  [assumption].
+7 -(all A all B all C all D (function(D) & quasi_total(D,A,B) & relation_of2_as_subset(D,A,B) -> (B != empty_set -> (all E (in(E,relation_inverse_image(D,C)) <-> in(E,A) & in(apply(D,E),C)))))).  [assumption].
+8 -element(A,powerset(cartesian_product2(B,C))) | relation(A).  [clausify(1)].
+9 -relation(A) | -function(A) | relation_inverse_image(A,B) != C | -in(D,C) | in(D,relation_dom(A)).  [clausify(2)].
+10 -relation(A) | -function(A) | relation_inverse_image(A,B) != C | -in(D,C) | in(apply(A,D),B).  [clausify(2)].
+11 -relation(A) | -function(A) | relation_inverse_image(A,B) != C | in(D,C) | -in(D,relation_dom(A)) | -in(apply(A,D),B).  [clausify(2)].
+12 -relation_of2_as_subset(A,B,C) | empty_set = C | -quasi_total(A,B,C) | relation_dom_as_subset(B,C,A) = B.  [clausify(3)].
+13 quasi_total(c14,c11,c12).  [clausify(7)].
+14 -relation_of2_as_subset(A,B,C) | relation_of2(A,B,C).  [clausify(6)].
+15 -relation_of2(A,B,C) | relation_dom_as_subset(B,C,A) = relation_dom(A).  [clausify(5)].
+16 function(c14).  [clausify(7)].
+17 relation_of2_as_subset(c14,c11,c12).  [clausify(7)].
+18 in(c15,relation_inverse_image(c14,c13)) | in(c15,c11).  [clausify(7)].
+19 in(c15,relation_inverse_image(c14,c13)) | in(apply(c14,c15),c13).  [clausify(7)].
+20 empty_set != c12.  [clausify(7)].
+21 c12 != empty_set.  [copy(20),flip(a)].
+22 -in(c15,relation_inverse_image(c14,c13)) | -in(c15,c11) | -in(apply(c14,c15),c13).  [clausify(7)].
+23 -relation_of2_as_subset(A,B,C) | element(A,powerset(cartesian_product2(B,C))).  [clausify(4)].
+24 -function(A) | relation_inverse_image(A,B) != C | -in(D,C) | in(D,relation_dom(A)) | -element(A,powerset(cartesian_product2(E,F))).  [resolve(9,a,8,b)].
+25 -function(A) | relation_inverse_image(A,B) != C | -in(D,C) | in(apply(A,D),B) | -element(A,powerset(cartesian_product2(E,F))).  [resolve(10,a,8,b)].
+26 -function(A) | relation_inverse_image(A,B) != C | in(D,C) | -in(D,relation_dom(A)) | -in(apply(A,D),B) | -element(A,powerset(cartesian_product2(E,F))).  [resolve(11,a,8,b)].
+27 -relation_of2_as_subset(c14,c11,c12) | empty_set = c12 | relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(12,c,13,a)].
+28 -relation_of2_as_subset(c14,c11,c12) | c12 = empty_set | relation_dom_as_subset(c11,c12,c14) = c11.  [copy(27),flip(b)].
+29 c12 = empty_set | relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(17,a,28,a)].
+30 relation_dom_as_subset(c11,c12,c14) = c11.  [resolve(21,a,29,a)].
+31 relation_dom_as_subset(A,B,C) = relation_dom(C) | -relation_of2_as_subset(C,A,B).  [resolve(15,a,14,b)].
+32 element(c14,powerset(cartesian_product2(c11,c12))).  [resolve(23,a,17,a)].
+33 relation_dom_as_subset(c11,c12,c14) = relation_dom(c14).  [resolve(31,b,17,a)].
+34 c11 = relation_dom(c14).  [para(30(a,1),33(a,1))].
+35 relation_dom(c14) = c11.  [copy(34),flip(a)].
+36 -function(c14) | relation_inverse_image(c14,A) != B | in(C,B) | -in(C,relation_dom(c14)) | -in(apply(c14,C),A).  [resolve(32,a,26,f)].
+37 -function(c14) | relation_inverse_image(c14,A) != B | in(C,B) | -in(C,c11) | -in(apply(c14,C),A).  [para(35(a,1),36(d,2))].
+38 relation_inverse_image(c14,A) != B | in(C,B) | -in(C,c11) | -in(apply(c14,C),A).  [resolve(16,a,37,a)].
+39 -function(c14) | relation_inverse_image(c14,A) != B | -in(C,B) | in(apply(c14,C),A).  [resolve(32,a,25,e)].
+40 relation_inverse_image(c14,A) != B | -in(C,B) | in(apply(c14,C),A).  [resolve(16,a,39,a)].
+41 -function(c14) | relation_inverse_image(c14,A) != B | -in(C,B) | in(C,relation_dom(c14)).  [resolve(32,a,24,e)].
+42 -function(c14) | relation_inverse_image(c14,A) != B | -in(C,B) | in(C,c11).  [para(35(a,1),41(d,2))].
+43 relation_inverse_image(c14,A) != B | -in(C,B) | in(C,c11).  [resolve(16,a,42,a)].
+44 relation_inverse_image(c14,A) != relation_inverse_image(c14,c13) | in(c15,c11) | in(c15,c11).  [resolve(43,b,18,a)].
+45 relation_inverse_image(c14,c13) != relation_inverse_image(c14,A) | in(c15,c11) | in(c15,c11).  [copy(44),flip(a)].
+46 in(c15,c11) | in(c15,c11).  [copy(45),xx(a)].
+47 in(c15,c11).  [copy(46),merge(b)].
+48 -in(c15,relation_inverse_image(c14,c13)) | -in(apply(c14,c15),c13).  [resolve(47,a,22,b)].
+49 relation_inverse_image(c14,c13) != A | in(c15,A) | -in(c15,c11) | in(c15,relation_inverse_image(c14,c13)).  [resolve(38,d,19,b)].
+50 relation_inverse_image(c14,c13) != A | in(c15,A) | in(c15,relation_inverse_image(c14,c13)).  [resolve(47,a,49,c)].
+51 relation_inverse_image(c14,c13) != relation_inverse_image(c14,c13) | in(c15,relation_inverse_image(c14,c13)).  [factor(50,b,c)].
+52 in(c15,relation_inverse_image(c14,c13)).  [copy(51),xx(a)].
+53 -in(apply(c14,c15),c13).  [resolve(52,a,48,a)].
+54 relation_inverse_image(c14,A) != relation_inverse_image(c14,c13) | in(apply(c14,c15),A).  [resolve(52,a,40,b)].
+55 relation_inverse_image(c14,c13) != relation_inverse_image(c14,A) | in(apply(c14,c15),A).  [copy(54),flip(a)].
+56 in(apply(c14,c15),c13).  [xx_res(55,a)].
+57 $F.  [resolve(53,a,56,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n107.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:43:48 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 53884 was started by sandbox on n107.star.cs.uiowa.edu,
+Fri Jun  6 09:43:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_53852_n107.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 5.
+% Maximum clause weight is 14.000.
+% Given clauses 50.
+
+
+1 (all A (rel_str(A) -> (all B all C (element(C,the_carrier(A)) -> (relstr_element_smaller(A,B,C) <-> (all D (element(D,the_carrier(A)) -> (in(D,B) -> related(A,C,D))))))))).  [assumption].
+2 (all A (rel_str(A) -> (all B all C (element(C,the_carrier(A)) -> (relstr_set_smaller(A,B,C) <-> (all D (element(D,the_carrier(A)) -> (in(D,B) -> related(A,D,C))))))))).  [assumption].
+3 (all A all B -(in(A,B) & empty(B))).  [assumption].
+4 -(all A (rel_str(A) -> (all B (element(B,the_carrier(A)) -> relstr_set_smaller(A,empty_set,B) & relstr_element_smaller(A,empty_set,B))))).  [assumption].
+5 rel_str(c6).  [clausify(4)].
+6 -rel_str(A) | -element(B,the_carrier(A)) | relstr_element_smaller(A,C,B) | in(f1(A,C,B),C).  [clausify(1)].
+7 -rel_str(A) | -element(B,the_carrier(A)) | relstr_set_smaller(A,C,B) | in(f2(A,C,B),C).  [clausify(2)].
+8 empty(empty_set).  [assumption].
+9 element(c7,the_carrier(c6)).  [clausify(4)].
+10 -in(A,B) | -empty(B).  [clausify(3)].
+11 -relstr_set_smaller(c6,empty_set,c7) | -relstr_element_smaller(c6,empty_set,c7).  [clausify(4)].
+12 -element(A,the_carrier(c6)) | relstr_element_smaller(c6,B,A) | in(f1(c6,B,A),B).  [resolve(6,a,5,a)].
+13 -element(A,the_carrier(c6)) | relstr_set_smaller(c6,B,A) | in(f2(c6,B,A),B).  [resolve(7,a,5,a)].
+14 -in(A,empty_set).  [resolve(10,b,8,a)].
+15 relstr_element_smaller(c6,A,c7) | in(f1(c6,A,c7),A).  [resolve(12,a,9,a)].
+16 relstr_set_smaller(c6,A,c7) | in(f2(c6,A,c7),A).  [resolve(13,a,9,a)].
+17 in(f2(c6,empty_set,c7),empty_set) | -relstr_element_smaller(c6,empty_set,c7).  [resolve(16,a,11,a)].
+18 -relstr_element_smaller(c6,empty_set,c7).  [resolve(14,a,17,a)].
+19 in(f1(c6,empty_set,c7),empty_set).  [resolve(18,a,15,a)].
+20 $F.  [resolve(14,a,19,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,96 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n107.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:35:08 CDT 2014
+% CPUTime    : 1.85 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 45426 was started by sandbox on n107.star.cs.uiowa.edu,
+Fri Jun  6 09:35:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_45394_n107.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.51 (+ 0.01) seconds.
+% Length of proof is 37.
+% Level of proof is 6.
+% Maximum clause weight is 17.000.
+% Given clauses 1801.
+
+
+1 (all A all B all C (aNaturalNumber0(A) & aNaturalNumber0(B) & aNaturalNumber0(C) -> (doDivides0(A,B) & doDivides0(A,C) -> doDivides0(A,sdtpldt0(B,C))))).  [assumption].
+2 (all A (aNaturalNumber0(A) -> (isPrime0(A) <-> A != sz00 & A != sz10 & (all B (aNaturalNumber0(B) & doDivides0(B,A) -> B = sz10 | B = A))))).  [assumption].
+3 (all A (aNaturalNumber0(A) & A != sz00 & A != sz10 -> (exists B (aNaturalNumber0(B) & doDivides0(B,A) & isPrime0(B))))).  [assumption].
+4 (all A (aNaturalNumber0(A) & ((exists B (aNaturalNumber0(B) & xp = sdtasdt0(A,B))) | doDivides0(A,xp)) -> A = sz10 | A = xp)).  [assumption].
+5 (exists A (aNaturalNumber0(A) & xr = sdtasdt0(xp,A))) & doDivides0(xp,xr) | (exists A (aNaturalNumber0(A) & xm = sdtasdt0(xp,A))) & doDivides0(xp,xm).  [assumption].
+6 -((exists A (aNaturalNumber0(A) & xn = sdtasdt0(xp,A))) | doDivides0(xp,xn) | (exists A (aNaturalNumber0(A) & xm = sdtasdt0(xp,A))) | doDivides0(xp,xm)).  [assumption].
+7 -aNaturalNumber0(A) | -isPrime0(A) | sz00 != A.  [clausify(2)].
+8 -aNaturalNumber0(A) | -isPrime0(A) | sz10 != A.  [clausify(2)].
+9 -aNaturalNumber0(A) | sz00 = A | sz10 = A | isPrime0(f4(A)).  [clausify(3)].
+10 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -aNaturalNumber0(C) | -doDivides0(A,B) | -doDivides0(A,C) | doDivides0(A,sdtpldt0(B,C)).  [clausify(1)].
+11 -aNaturalNumber0(A) | sz00 = A | sz10 = A | aNaturalNumber0(f4(A)).  [clausify(3)].
+12 -aNaturalNumber0(A) | sz00 = A | sz10 = A | doDivides0(f4(A),A).  [clausify(3)].
+13 aNaturalNumber0(xp).  [assumption].
+14 xp != sz00.  [assumption].
+15 sz00 != xp.  [copy(14),flip(a)].
+16 xp != sz10.  [assumption].
+17 sz10 != xp.  [copy(16),flip(a)].
+18 -aNaturalNumber0(A) | -doDivides0(A,xp) | sz10 = A | xp = A.  [clausify(4)].
+19 aNaturalNumber0(xr).  [assumption].
+20 sdtpldt0(xp,xr) = xn.  [assumption].
+21 doDivides0(xp,xr) | doDivides0(xp,xm).  [clausify(5)].
+22 -doDivides0(xp,xn).  [clausify(6)].
+23 -doDivides0(xp,xm).  [clausify(6)].
+24 -aNaturalNumber0(A) | sz00 = A | sz10 = A | -aNaturalNumber0(f4(A)) | sz00 != f4(A).  [resolve(9,d,7,b)].
+25 -aNaturalNumber0(A) | sz00 = A | sz10 = A | -aNaturalNumber0(f4(A)) | f4(A) != sz00.  [copy(24),flip(e)].
+26 -aNaturalNumber0(A) | sz00 = A | sz10 = A | -aNaturalNumber0(f4(A)) | sz10 != f4(A).  [resolve(9,d,8,b)].
+27 -aNaturalNumber0(A) | sz00 = A | sz10 = A | -aNaturalNumber0(f4(A)) | f4(A) != sz10.  [copy(26),flip(e)].
+28 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -doDivides0(A,A) | -doDivides0(A,B) | doDivides0(A,sdtpldt0(A,B)).  [factor(10,a,b)].
+29 doDivides0(xp,xr).  [resolve(23,a,21,b)].
+30 sz00 = xp | sz10 = xp | doDivides0(f4(xp),xp).  [resolve(13,a,12,a)].
+31 sz10 = xp | doDivides0(f4(xp),xp).  [resolve(15,a,30,a)].
+32 doDivides0(f4(xp),xp).  [resolve(17,a,31,a)].
+33 sz00 = xp | sz10 = xp | aNaturalNumber0(f4(xp)).  [resolve(13,a,11,a)].
+34 sz10 = xp | aNaturalNumber0(f4(xp)).  [resolve(15,a,33,a)].
+35 aNaturalNumber0(f4(xp)).  [resolve(17,a,34,a)].
+36 -aNaturalNumber0(xp) | -aNaturalNumber0(xr) | -doDivides0(xp,xp) | doDivides0(xp,sdtpldt0(xp,xr)).  [resolve(29,a,28,d)].
+37 -aNaturalNumber0(xp) | -aNaturalNumber0(xr) | -doDivides0(xp,xp) | doDivides0(xp,xn).  [para(20(a,1),36(d,2))].
+38 -aNaturalNumber0(xr) | -doDivides0(xp,xp) | doDivides0(xp,xn).  [resolve(13,a,37,a)].
+39 -doDivides0(xp,xp) | doDivides0(xp,xn).  [resolve(19,a,38,a)].
+40 -doDivides0(xp,xp).  [resolve(22,a,39,b)].
+41 -aNaturalNumber0(xp) | sz00 = xp | sz10 = xp | f4(xp) != sz10.  [resolve(35,a,27,d)].
+42 sz00 = xp | sz10 = xp | f4(xp) != sz10.  [resolve(13,a,41,a)].
+43 sz10 = xp | f4(xp) != sz10.  [resolve(15,a,42,a)].
+44 f4(xp) != sz10.  [resolve(17,a,43,a)].
+45 -aNaturalNumber0(xp) | sz00 = xp | sz10 = xp | f4(xp) != sz00.  [resolve(35,a,25,d)].
+46 sz00 = xp | sz10 = xp | f4(xp) != sz00.  [resolve(13,a,45,a)].
+47 sz10 = xp | f4(xp) != sz00.  [resolve(15,a,46,a)].
+48 f4(xp) != sz00.  [resolve(17,a,47,a)].
+49 sz00 = f4(xp) | sz10 = f4(xp) | doDivides0(f4(f4(xp)),f4(xp)).  [resolve(35,a,12,a)].
+50 f4(xp) = sz00 | sz10 = f4(xp) | doDivides0(f4(f4(xp)),f4(xp)).  [copy(49),flip(a)].
+51 f4(xp) = sz00 | f4(xp) = sz10 | doDivides0(f4(f4(xp)),f4(xp)).  [copy(50),flip(b)].
+52 f4(xp) = sz10 | doDivides0(f4(f4(xp)),f4(xp)).  [resolve(48,a,51,a)].
+53 doDivides0(f4(f4(xp)),f4(xp)).  [resolve(44,a,52,a)].
+54 -aNaturalNumber0(f4(xp)) | sz10 = f4(xp) | xp = f4(xp).  [resolve(32,a,18,b)].
+55 -aNaturalNumber0(f4(xp)) | f4(xp) = sz10 | xp = f4(xp).  [copy(54),flip(b)].
+56 -aNaturalNumber0(f4(xp)) | f4(xp) = sz10 | f4(xp) = xp.  [copy(55),flip(c)].
+57 f4(xp) = sz10 | f4(xp) = xp.  [resolve(35,a,56,a)].
+58 f4(xp) = xp.  [resolve(44,a,57,a)].
+59 doDivides0(f4(xp),f4(xp)).  [para(58(a,1),53(a,1,1))].
+60 doDivides0(xp,f4(xp)).  [para(58(a,1),59(a,1))].
+61 doDivides0(xp,xp).  [para(58(a,1),60(a,2))].
+62 $F.  [resolve(40,a,61,a)].
+
+============================== end of proof ==========================

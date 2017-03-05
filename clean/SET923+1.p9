@@ -1,0 +1,19 @@
+
+
+
+4 set_difference(c3,singleton(c4)) = empty_set.  [clausify(3)].
+5 empty_set = set_difference(c3,singleton(c4)).  [copy(4),flip(a)].
+6 c3 != empty_set.  [clausify(3)].
+7 c3 != set_difference(c3,singleton(c4)).  [para(5(a,1),6(a,2))].
+8 set_difference(c3,singleton(c4)) != c3.  [copy(7),flip(a)].
+9 singleton(c4) != c3.  [clausify(3)].
+10 set_difference(A,B) != empty_set | subset(A,B).  [clausify(2)].
+11 set_difference(A,B) != set_difference(c3,singleton(c4)) | subset(A,B).  [para(5(a,1),10(a,2))].
+12 set_difference(c3,singleton(c4)) != set_difference(A,B) | subset(A,B).  [copy(11),flip(a)].
+13 -subset(A,singleton(B)) | A = empty_set | singleton(B) = A.  [clausify(1)].
+14 -subset(A,singleton(B)) | A = set_difference(c3,singleton(c4)) | singleton(B) = A.  [para(5(a,1),13(b,2))].
+15 -subset(A,singleton(B)) | set_difference(c3,singleton(c4)) = A | singleton(B) = A.  [copy(14),flip(b)].
+16 subset(c3,singleton(c4)).  [xx_res(12,a)].
+17 -subset(c3,singleton(A)) | singleton(A) = c3.  [resolve(15,b,8,a)].
+18 -subset(c3,singleton(c4)).  [resolve(17,b,9,a)].
+19 $F.  [resolve(16,a,18,a)].

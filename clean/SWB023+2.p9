@@ -1,0 +1,32 @@
+
+
+
+
+
+
+7 iext(uri_rdf_type,uri_rdf_first,uri_owl_FunctionalProperty).  [clausify(5)].
+8 iext(uri_rdf_type,uri_ex_w,c1).  [clausify(5)].
+9 iext(uri_owl_oneOf,c1,c2).  [clausify(5)].
+10 iext(uri_rdf_first,c2,uri_ex_u).  [clausify(5)].
+11 iext(uri_rdf_first,c2,uri_ex_v).  [clausify(5)].
+12 iext(uri_rdf_rest,c2,uri_rdf_nil).  [clausify(5)].
+13 -iext(uri_owl_sameAs,uri_ex_w,uri_ex_u) | -iext(uri_owl_sameAs,uri_ex_w,uri_ex_v).  [clausify(6)].
+14 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(1)].
+15 iext(uri_owl_sameAs,A,B) | B != A.  [clausify(4)].
+16 -icext(uri_owl_FunctionalProperty,A) | -iext(A,B,C) | -iext(A,B,D) | D = C.  [clausify(3)].
+17 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,uri_rdf_nil) | -iext(uri_owl_oneOf,C,A) | -icext(C,D) | B = D.  [clausify(2)].
+18 icext(c1,uri_ex_w).  [resolve(14,a,8,a)].
+19 icext(uri_owl_FunctionalProperty,uri_rdf_first).  [resolve(14,a,7,a)].
+20 -icext(uri_owl_FunctionalProperty,uri_rdf_first) | -iext(uri_rdf_first,c2,A) | A = uri_ex_v.  [resolve(16,b,11,a)].
+21 -icext(uri_owl_FunctionalProperty,uri_rdf_first) | -iext(uri_rdf_first,c2,A) | uri_ex_v = A.  [copy(20),flip(c)].
+22 -iext(uri_rdf_first,c2,A) | uri_ex_v = A.  [resolve(19,a,21,a)].
+23 uri_ex_v = uri_ex_u.  [resolve(22,a,10,a)].
+24 -iext(uri_owl_sameAs,uri_ex_w,uri_ex_u) | -iext(uri_owl_sameAs,uri_ex_w,uri_ex_u).  [para(23(a,1),13(b,3))].
+25 -iext(uri_owl_sameAs,uri_ex_w,uri_ex_u).  [copy(24),merge(b)].
+26 uri_ex_u != uri_ex_w.  [resolve(15,a,25,a)].
+27 uri_ex_w != uri_ex_u.  [copy(26),flip(a)].
+28 -iext(uri_rdf_first,c2,A) | -iext(uri_owl_oneOf,B,c2) | -icext(B,C) | A = C.  [resolve(17,b,12,a)].
+29 -iext(uri_rdf_first,c2,A) | -icext(c1,B) | A = B.  [resolve(28,b,9,a)].
+30 -iext(uri_rdf_first,c2,A) | A = uri_ex_w.  [resolve(29,b,18,a)].
+31 -iext(uri_rdf_first,c2,uri_ex_u).  [resolve(30,b,27,a(flip))].
+32 $F.  [resolve(10,a,31,a)].

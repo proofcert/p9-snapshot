@@ -1,0 +1,25 @@
+
+
+
+
+5 int_leq(int_one,c1).  [clausify(4)].
+6 int_leq(c2,n).  [clausify(4)].
+7 c2 = c1.  [clausify(4)].
+8 a(c1,c2) = real_zero.  [clausify(4)].
+9 a(c1,c1) = real_zero.  [para(7(a,1),8(a,1,2))].
+10 real_zero = a(c1,c1).  [copy(9),flip(a)].
+11 int_less(A,B) | int_leq(B,A).  [clausify(2)].
+12 real_zero != real_one.  [assumption].
+13 a(c1,c1) != real_one.  [para(10(a,1),12(a,1))].
+14 int_leq(A,B) | -int_less(A,B).  [clausify(1)].
+15 -int_leq(int_one,A) | -int_leq(A,n) | -int_leq(int_one,B) | -int_leq(B,n) | -int_leq(int_one,C) | -int_leq(C,B) | a(C,C) = real_one.  [clausify(3)].
+16 int_leq(c1,n).  [para(7(a,1),6(a,1))].
+17 -int_leq(int_one,A) | -int_leq(A,n) | -int_leq(A,n) | -int_leq(int_one,B) | -int_leq(B,A) | a(B,B) = real_one.  [factor(15,a,c)].
+18 -int_leq(int_one,A) | -int_leq(A,n) | -int_leq(int_one,B) | -int_leq(B,A) | a(B,B) = real_one.  [copy(17),merge(c)].
+19 int_leq(A,B) | int_leq(B,A).  [resolve(14,b,11,a)].
+20 int_leq(A,A).  [factor(19,a,b)].
+21 -int_leq(c1,n) | -int_leq(int_one,A) | -int_leq(A,c1) | a(A,A) = real_one.  [resolve(18,a,5,a)].
+22 -int_leq(int_one,A) | -int_leq(A,c1) | a(A,A) = real_one.  [resolve(21,a,16,a)].
+23 -int_leq(c1,c1) | a(c1,c1) = real_one.  [resolve(22,a,5,a)].
+24 -int_leq(c1,c1).  [resolve(23,b,13,a)].
+25 $F.  [resolve(20,a,24,a)].

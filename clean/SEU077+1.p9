@@ -1,0 +1,43 @@
+
+
+
+
+5 relation(c11).  [clausify(4)].
+6 -relation(A) | -function(A) | relation_inverse_image(A,B) != C | -in(D,C) | in(apply(A,D),B).  [clausify(1)].
+7 -relation(A) | -function(A) | relation_rng(A) != B | -in(C,B) | in(f3(A,B,C),relation_dom(A)).  [clausify(3)].
+8 -relation(A) | -function(A) | relation_rng(A) != B | -in(C,B) | apply(A,f3(A,B,C)) = C.  [clausify(3)].
+9 -relation(A) | -function(A) | relation_inverse_image(A,B) != C | in(D,C) | -in(D,relation_dom(A)) | -in(apply(A,D),B).  [clausify(1)].
+10 function(c11).  [clausify(4)].
+11 subset(c9,relation_rng(c11)).  [clausify(4)].
+12 subset(relation_inverse_image(c11,c9),relation_inverse_image(c11,c10)).  [clausify(4)].
+13 subset(A,B) | in(f2(A,B),A).  [clausify(2)].
+14 -subset(c9,c10).  [clausify(4)].
+15 subset(A,B) | -in(f2(A,B),B).  [clausify(2)].
+16 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(2)].
+17 -function(c11) | relation_inverse_image(c11,A) != B | -in(C,B) | in(apply(c11,C),A).  [resolve(6,a,5,a)].
+18 relation_inverse_image(c11,A) != B | -in(C,B) | in(apply(c11,C),A).  [resolve(10,a,17,a)].
+19 -function(c11) | relation_rng(c11) != A | -in(B,A) | in(f3(c11,A,B),relation_dom(c11)).  [resolve(7,a,5,a)].
+20 relation_rng(c11) != A | -in(B,A) | in(f3(c11,A,B),relation_dom(c11)).  [resolve(10,a,19,a)].
+21 -function(c11) | relation_rng(c11) != A | -in(B,A) | apply(c11,f3(c11,A,B)) = B.  [resolve(8,a,5,a)].
+22 relation_rng(c11) != A | -in(B,A) | apply(c11,f3(c11,A,B)) = B.  [resolve(10,a,21,a)].
+23 -function(c11) | relation_inverse_image(c11,A) != B | in(C,B) | -in(C,relation_dom(c11)) | -in(apply(c11,C),A).  [resolve(9,a,5,a)].
+24 relation_inverse_image(c11,A) != B | in(C,B) | -in(C,relation_dom(c11)) | -in(apply(c11,C),A).  [resolve(10,a,23,a)].
+25 in(f2(c9,c10),c9).  [resolve(14,a,13,a)].
+26 -in(A,relation_inverse_image(c11,c9)) | in(A,relation_inverse_image(c11,c10)).  [resolve(16,a,12,a)].
+27 -in(A,c9) | in(A,relation_rng(c11)).  [resolve(16,a,11,a)].
+28 in(f2(c9,c10),relation_rng(c11)).  [resolve(27,a,25,a)].
+29 relation_rng(c11) != relation_rng(c11) | apply(c11,f3(c11,relation_rng(c11),f2(c9,c10))) = f2(c9,c10).  [resolve(28,a,22,b)].
+30 apply(c11,f3(c11,relation_rng(c11),f2(c9,c10))) = f2(c9,c10).  [copy(29),xx(a)].
+31 relation_rng(c11) != relation_rng(c11) | in(f3(c11,relation_rng(c11),f2(c9,c10)),relation_dom(c11)).  [resolve(28,a,20,b)].
+32 in(f3(c11,relation_rng(c11),f2(c9,c10)),relation_dom(c11)).  [copy(31),xx(a)].
+33 relation_inverse_image(c11,A) != B | in(f3(c11,relation_rng(c11),f2(c9,c10)),B) | -in(f3(c11,relation_rng(c11),f2(c9,c10)),relation_dom(c11)) | -in(f2(c9,c10),A).  [para(30(a,1),24(d,1))].
+34 relation_inverse_image(c11,A) != B | in(f3(c11,relation_rng(c11),f2(c9,c10)),B) | -in(f2(c9,c10),A).  [resolve(32,a,33,c)].
+35 relation_inverse_image(c11,c9) != A | in(f3(c11,relation_rng(c11),f2(c9,c10)),A).  [resolve(34,c,25,a)].
+36 in(f3(c11,relation_rng(c11),f2(c9,c10)),relation_inverse_image(c11,c9)).  [xx_res(35,a)].
+37 in(f3(c11,relation_rng(c11),f2(c9,c10)),relation_inverse_image(c11,c10)).  [resolve(36,a,26,a)].
+38 relation_inverse_image(c11,A) != relation_inverse_image(c11,c10) | in(apply(c11,f3(c11,relation_rng(c11),f2(c9,c10))),A).  [resolve(37,a,18,b)].
+39 relation_inverse_image(c11,A) != relation_inverse_image(c11,c10) | in(f2(c9,c10),A).  [para(30(a,1),38(b,1))].
+40 relation_inverse_image(c11,c10) != relation_inverse_image(c11,A) | in(f2(c9,c10),A).  [copy(39),flip(a)].
+41 in(f2(c9,c10),c10).  [xx_res(40,a)].
+42 subset(c9,c10).  [resolve(41,a,15,b)].
+43 $F.  [resolve(14,a,42,a)].

@@ -1,0 +1,14 @@
+
+
+
+4 -subset(A,B) | subset(cartesian_product2(A,C),cartesian_product2(B,C)).  [clausify(1)].
+5 -subset(A,B) | subset(cartesian_product2(C,A),cartesian_product2(C,B)).  [clausify(1)].
+6 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(2)].
+7 subset(c3,c4).  [clausify(3)].
+8 subset(c5,c6).  [clausify(3)].
+9 -subset(cartesian_product2(c3,c5),cartesian_product2(c4,c6)).  [clausify(3)].
+10 subset(cartesian_product2(c3,A),cartesian_product2(c4,A)).  [resolve(7,a,4,a)].
+11 subset(cartesian_product2(A,c5),cartesian_product2(A,c6)).  [resolve(8,a,5,a)].
+12 -subset(A,cartesian_product2(c3,B)) | subset(A,cartesian_product2(c4,B)).  [resolve(10,a,6,b)].
+13 subset(cartesian_product2(c3,c5),cartesian_product2(c4,c6)).  [resolve(12,a,11,a)].
+14 $F.  [resolve(9,a,13,a)].

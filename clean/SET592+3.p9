@@ -1,0 +1,17 @@
+
+
+
+4 subset(c1,c2).  [clausify(3)].
+5 subset(c1,c3).  [clausify(3)].
+6 intersection(c2,c3) = empty_set.  [clausify(3)].
+7 empty_set = intersection(c2,c3).  [copy(6),flip(a)].
+8 empty_set != c1.  [clausify(3)].
+9 intersection(c2,c3) != c1.  [para(7(a,1),8(a,1))].
+10 -subset(A,empty_set) | empty_set = A.  [clausify(1)].
+11 -subset(A,intersection(c2,c3)) | empty_set = A.  [para(7(a,1),10(a,2))].
+12 -subset(A,intersection(c2,c3)) | intersection(c2,c3) = A.  [para(7(a,1),11(b,1))].
+13 -subset(A,B) | -subset(A,C) | subset(A,intersection(B,C)).  [clausify(2)].
+14 -subset(c1,intersection(c2,c3)).  [resolve(12,b,9,a)].
+15 -subset(c1,A) | subset(c1,intersection(A,c3)).  [resolve(13,b,5,a)].
+16 -subset(c1,c2).  [resolve(15,b,14,a)].
+17 $F.  [resolve(4,a,16,a)].

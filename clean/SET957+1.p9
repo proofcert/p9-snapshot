@@ -1,0 +1,48 @@
+
+
+
+
+
+6 subset(c3,cartesian_product2(c4,c5)).  [clausify(5)].
+7 subset(c6,cartesian_product2(c7,c8)).  [clausify(5)].
+8 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+9 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(2)].
+10 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(8(a,1),9(a,2))].
+11 in(f3(A,B),A) | in(f3(A,B),B) | B = A.  [clausify(4)].
+12 c6 != c3.  [clausify(5)].
+13 -in(ordered_pair(A,B),c3) | in(ordered_pair(A,B),c6).  [clausify(5)].
+14 -in(unordered_pair(singleton(A),unordered_pair(A,B)),c3) | in(ordered_pair(A,B),c6).  [para(10(a,1),13(a,1))].
+15 -in(unordered_pair(singleton(A),unordered_pair(A,B)),c3) | in(unordered_pair(singleton(A),unordered_pair(A,B)),c6).  [para(10(a,1),14(b,1))].
+16 in(ordered_pair(A,B),c3) | -in(ordered_pair(A,B),c6).  [clausify(5)].
+17 in(unordered_pair(singleton(A),unordered_pair(A,B)),c3) | -in(ordered_pair(A,B),c6).  [para(10(a,1),16(a,1))].
+18 in(unordered_pair(singleton(A),unordered_pair(A,B)),c3) | -in(unordered_pair(singleton(A),unordered_pair(A,B)),c6).  [para(10(a,1),17(b,1))].
+19 -in(f3(A,B),A) | -in(f3(A,B),B) | B = A.  [clausify(4)].
+20 -subset(A,cartesian_product2(B,C)) | -in(D,A) | ordered_pair(f1(A,B,C,D),f2(A,B,C,D)) = D.  [clausify(3)].
+21 -subset(A,cartesian_product2(B,C)) | -in(D,A) | unordered_pair(singleton(f1(A,B,C,D)),unordered_pair(f1(A,B,C,D),f2(A,B,C,D))) = D.  [para(10(a,1),20(c,1))].
+22 -in(A,c6) | unordered_pair(singleton(f1(c6,c7,c8,A)),unordered_pair(f1(c6,c7,c8,A),f2(c6,c7,c8,A))) = A.  [resolve(21,a,7,a)].
+23 -in(A,c3) | unordered_pair(singleton(f1(c3,c4,c5,A)),unordered_pair(f1(c3,c4,c5,A),f2(c3,c4,c5,A))) = A.  [resolve(21,a,6,a)].
+24 unordered_pair(singleton(f1(c6,c7,c8,f3(A,c6))),unordered_pair(f1(c6,c7,c8,f3(A,c6)),f2(c6,c7,c8,f3(A,c6)))) = f3(A,c6) | in(f3(A,c6),A) | c6 = A.  [resolve(22,a,11,b)].
+25 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,A))),unordered_pair(f1(c3,c4,c5,f3(c3,A)),f2(c3,c4,c5,f3(c3,A)))) = f3(c3,A) | in(f3(c3,A),A) | A = c3.  [resolve(23,a,11,a)].
+26 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,A))),unordered_pair(f1(c3,c4,c5,f3(c3,A)),f2(c3,c4,c5,f3(c3,A)))) = f3(c3,A) | in(f3(c3,A),A) | c3 = A.  [copy(25),flip(c)].
+27 unordered_pair(singleton(f1(c6,c7,c8,f3(c3,c6))),unordered_pair(f1(c6,c7,c8,f3(c3,c6)),f2(c6,c7,c8,f3(c3,c6)))) = f3(c3,c6) | c6 = c3 | unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6).  [resolve(24,b,23,a)].
+28 unordered_pair(singleton(f1(c6,c7,c8,f3(c3,c6))),unordered_pair(f1(c6,c7,c8,f3(c3,c6)),f2(c6,c7,c8,f3(c3,c6)))) = f3(c3,c6) | unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6).  [resolve(12,a,27,b)].
+29 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | in(unordered_pair(singleton(f1(c6,c7,c8,f3(c3,c6))),unordered_pair(f1(c6,c7,c8,f3(c3,c6)),f2(c6,c7,c8,f3(c3,c6)))),c3) | -in(f3(c3,c6),c6).  [para(28(a,1),18(b,1))].
+30 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | in(unordered_pair(singleton(f1(c6,c7,c8,f3(c3,c6))),unordered_pair(f1(c6,c7,c8,f3(c3,c6)),f2(c6,c7,c8,f3(c3,c6)))),c3) | unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | c3 = c6.  [resolve(29,c,26,b)].
+31 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | in(unordered_pair(singleton(f1(c6,c7,c8,f3(c3,c6))),unordered_pair(f1(c6,c7,c8,f3(c3,c6)),f2(c6,c7,c8,f3(c3,c6)))),c3) | unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | c6 = c3.  [copy(30),flip(d)].
+32 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | in(unordered_pair(singleton(f1(c6,c7,c8,f3(c3,c6))),unordered_pair(f1(c6,c7,c8,f3(c3,c6)),f2(c6,c7,c8,f3(c3,c6)))),c3) | c6 = c3.  [copy(31),merge(c)].
+33 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | in(unordered_pair(singleton(f1(c6,c7,c8,f3(c3,c6))),unordered_pair(f1(c6,c7,c8,f3(c3,c6)),f2(c6,c7,c8,f3(c3,c6)))),c3).  [resolve(12,a,32,c)].
+34 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | in(f3(c3,c6),c3).  [para(28(a,1),33(b,1))].
+35 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | in(f3(c3,c6),c3).  [copy(34),merge(b)].
+36 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6) | unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6).  [resolve(35,b,23,a)].
+37 unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))) = f3(c3,c6).  [copy(36),merge(b)].
+38 -in(f3(c3,c6),c3) | in(unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))),c6).  [para(37(a,1),15(a,1))].
+39 -in(f3(c3,c6),c3) | in(f3(c3,c6),c6).  [para(37(a,1),38(b,1))].
+40 in(unordered_pair(singleton(f1(c3,c4,c5,f3(c3,c6))),unordered_pair(f1(c3,c4,c5,f3(c3,c6)),f2(c3,c4,c5,f3(c3,c6)))),c3) | -in(f3(c3,c6),c6).  [para(37(a,1),18(b,1))].
+41 in(f3(c3,c6),c3) | -in(f3(c3,c6),c6).  [para(37(a,1),40(a,1))].
+42 in(f3(c3,c6),c6) | in(f3(c3,c6),c6) | c6 = c3.  [resolve(39,a,11,a)].
+43 in(f3(c3,c6),c6) | c6 = c3.  [copy(42),merge(b)].
+44 in(f3(c3,c6),c6).  [resolve(12,a,43,b)].
+45 in(f3(c3,c6),c3).  [resolve(44,a,41,b)].
+46 -in(f3(c3,c6),c3) | c6 = c3.  [resolve(44,a,19,b)].
+47 c6 = c3.  [resolve(45,a,46,a)].
+48 $F.  [resolve(12,a,47,a)].

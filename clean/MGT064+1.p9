@@ -1,0 +1,125 @@
+
+
+
+
+
+
+
+
+
+
+
+
+13 -organization(A) | has_endowment(A) | -has_immunity(A,B).  [clausify(6)].
+14 organization(c1).  [clausify(12)].
+15 -dissimilar(A,B,C) | organization(A).  [clausify(7)].
+16 -organization(A) | age(A,B) != zero | is_aligned(A,B).  [clausify(8)].
+17 dissimilar(A,B,C) | -organization(A) | -is_aligned(A,B) | is_aligned(A,C).  [clausify(7)].
+18 -organization(A) | age(A,B) != zero | -greater(age(A,C),sigma) | dissimilar(A,B,C).  [clausify(9)].
+19 -organization(A) | age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C).  [clausify(9)].
+20 -organization(A) | has_immunity(A,B) | -is_aligned(A,B) | -positional_advantage(A,B) | hazard_of_mortality(A,B) = low.  [clausify(11)].
+21 -organization(A) | has_immunity(A,B) | is_aligned(A,B) | -positional_advantage(A,B) | hazard_of_mortality(A,B) = mod1.  [clausify(11)].
+22 -organization(A) | has_immunity(A,B) | -is_aligned(A,B) | positional_advantage(A,B) | hazard_of_mortality(A,B) = mod2.  [clausify(11)].
+23 -robust_position(A) | -smaller_or_equal(age(A,B),tau) | -positional_advantage(A,B).  [clausify(10)].
+24 robust_position(c1).  [clausify(12)].
+25 -robust_position(A) | -greater(age(A,B),tau) | positional_advantage(A,B).  [clausify(10)].
+26 greater(mod1,low).  [assumption].
+27 greater(mod2,mod1).  [assumption].
+28 greater(tau,zero).  [clausify(12)].
+29 greater(sigma,tau).  [clausify(12)].
+30 age(c1,c2) = zero.  [clausify(12)].
+31 smaller_or_equal(age(c1,c3),tau).  [clausify(12)].
+32 greater(age(c1,c4),tau).  [clausify(12)].
+33 smaller_or_equal(age(c1,c4),sigma).  [clausify(12)].
+34 greater(age(c1,c5),sigma).  [clausify(12)].
+35 smaller(A,B) | B = A | greater(A,B).  [clausify(5)].
+36 -has_endowment(c1).  [clausify(12)].
+37 -greater(A,B) | -greater(B,A).  [clausify(3)].
+38 -dissimilar(A,B,C) | -is_aligned(A,B) | -is_aligned(A,C).  [clausify(7)].
+39 -smaller(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c5)) | -smaller(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [clausify(12)].
+40 smaller_or_equal(A,B) | -smaller(A,B).  [clausify(1)].
+41 -smaller(A,B) | greater(B,A).  [clausify(2)].
+42 smaller(A,B) | -greater(B,A).  [clausify(2)].
+43 -smaller_or_equal(A,B) | smaller(A,B) | B = A.  [clausify(1)].
+44 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(4)].
+45 has_endowment(c1) | -has_immunity(c1,A).  [resolve(13,a,14,a)].
+46 -has_immunity(c1,A).  [resolve(36,a,45,a)].
+47 age(c1,A) != zero | is_aligned(c1,A).  [resolve(16,a,14,a)].
+48 dissimilar(c1,A,B) | -is_aligned(c1,A) | is_aligned(c1,B).  [resolve(17,b,14,a)].
+49 age(c1,A) != zero | -greater(age(c1,B),sigma) | dissimilar(c1,A,B).  [resolve(18,a,14,a)].
+50 age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C) | -dissimilar(A,D,E).  [resolve(19,a,15,b)].
+51 has_immunity(c1,A) | -is_aligned(c1,A) | -positional_advantage(c1,A) | hazard_of_mortality(c1,A) = low.  [resolve(20,a,14,a)].
+52 -is_aligned(c1,A) | -positional_advantage(c1,A) | hazard_of_mortality(c1,A) = low.  [resolve(46,a,51,a)].
+53 has_immunity(c1,A) | is_aligned(c1,A) | -positional_advantage(c1,A) | hazard_of_mortality(c1,A) = mod1.  [resolve(21,a,14,a)].
+54 is_aligned(c1,A) | -positional_advantage(c1,A) | hazard_of_mortality(c1,A) = mod1.  [resolve(46,a,53,a)].
+55 has_immunity(c1,A) | -is_aligned(c1,A) | positional_advantage(c1,A) | hazard_of_mortality(c1,A) = mod2.  [resolve(22,a,14,a)].
+56 -is_aligned(c1,A) | positional_advantage(c1,A) | hazard_of_mortality(c1,A) = mod2.  [resolve(46,a,55,a)].
+57 -smaller_or_equal(age(c1,A),tau) | -positional_advantage(c1,A).  [resolve(23,a,24,a)].
+58 -greater(age(c1,A),tau) | positional_advantage(c1,A).  [resolve(25,a,24,a)].
+59 -greater(A,A).  [factor(37,a,b)].
+60 age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C).  [factor(50,c,d)].
+61 greater(A,B) | A = B | greater(B,A).  [resolve(41,a,35,a)].
+62 smaller(zero,tau).  [resolve(42,b,28,a)].
+63 smaller(mod1,mod2).  [resolve(42,b,27,a)].
+64 smaller(low,mod1).  [resolve(42,b,26,a)].
+65 smaller(age(c1,c4),sigma) | sigma = age(c1,c4).  [resolve(43,a,33,a)].
+66 smaller(age(c1,c4),sigma) | age(c1,c4) = sigma.  [copy(65),flip(b)].
+67 -greater(sigma,A) | greater(age(c1,c5),A).  [resolve(44,a,34,a)].
+68 -greater(A,mod1) | greater(A,low).  [resolve(44,b,26,a)].
+69 is_aligned(c1,c2).  [resolve(47,a,30,a)].
+70 age(c1,A) != zero | dissimilar(c1,A,c5).  [resolve(49,b,34,a)].
+71 -positional_advantage(c1,c3).  [resolve(57,a,31,a)].
+72 -smaller_or_equal(zero,tau) | -positional_advantage(c1,c2).  [para(30(a,1),57(a,1))].
+73 positional_advantage(c1,c4).  [resolve(58,a,32,a)].
+74 -smaller(A,A).  [resolve(41,b,59,a)].
+75 smaller_or_equal(zero,tau).  [resolve(62,a,40,b)].
+76 -positional_advantage(c1,c2).  [resolve(75,a,72,a)].
+77 -greater(age(c1,c3),tau).  [resolve(58,b,71,a)].
+78 positional_advantage(c1,c2) | hazard_of_mortality(c1,c2) = mod2.  [resolve(69,a,56,a)].
+79 hazard_of_mortality(c1,c2) = mod2.  [resolve(76,a,78,a)].
+80 dissimilar(c1,c2,A) | is_aligned(c1,A).  [resolve(69,a,48,b)].
+81 -smaller(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c5)) | -smaller(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != mod2.  [para(79(a,1),39(c,2))].
+82 -is_aligned(c1,c4) | hazard_of_mortality(c1,c4) = low.  [resolve(73,a,52,b)].
+83 age(c1,c4) = sigma | greater(sigma,age(c1,c4)).  [resolve(66,a,41,a)].
+84 greater(age(c1,c5),tau).  [resolve(67,a,29,a)].
+85 -greater(A,sigma) | greater(A,tau).  [resolve(44,b,29,a)].
+86 -greater(age(c1,c3),sigma).  [resolve(85,b,77,a)].
+87 positional_advantage(c1,c5).  [resolve(84,a,58,a)].
+88 is_aligned(c1,c5) | hazard_of_mortality(c1,c5) = mod1.  [resolve(87,a,54,b)].
+89 greater(age(c1,A),sigma) | -dissimilar(c1,c2,A).  [resolve(60,a,30,a)].
+90 -dissimilar(c1,c2,c3).  [resolve(89,a,86,a)].
+91 greater(A,low) | greater(mod1,A) | mod1 = A.  [resolve(68,a,61,c)].
+92 dissimilar(c1,c2,c5).  [resolve(70,a,30,a)].
+93 -is_aligned(c1,c2) | -is_aligned(c1,c5).  [resolve(92,a,38,a)].
+94 -is_aligned(c1,c5).  [resolve(69,a,93,a)].
+95 hazard_of_mortality(c1,c5) = mod1.  [resolve(94,a,88,a)].
+96 -smaller(hazard_of_mortality(c1,c4),mod1) | -smaller(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != mod2.  [para(95(a,1),81(a,2))].
+97 -smaller(hazard_of_mortality(c1,c4),mod1) | -smaller(mod1,hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != mod2.  [para(95(a,1),96(b,1))].
+98 is_aligned(c1,c3).  [resolve(80,a,90,a)].
+99 is_aligned(c1,A) | age(c1,c2) != zero | greater(age(c1,A),sigma).  [resolve(80,a,60,c)].
+100 is_aligned(c1,A) | zero != zero | greater(age(c1,A),sigma).  [para(30(a,1),99(b,1))].
+101 is_aligned(c1,A) | greater(age(c1,A),sigma).  [copy(100),xx(b)].
+102 positional_advantage(c1,c3) | hazard_of_mortality(c1,c3) = mod2.  [resolve(98,a,56,a)].
+103 hazard_of_mortality(c1,c3) = mod2.  [resolve(71,a,102,a)].
+104 -smaller(hazard_of_mortality(c1,c4),mod1) | -smaller(mod1,mod2) | hazard_of_mortality(c1,c3) != mod2.  [para(103(a,1),97(b,2))].
+105 -smaller(hazard_of_mortality(c1,c4),mod1) | -smaller(mod1,mod2) | mod2 != mod2.  [para(103(a,1),104(c,1))].
+106 -smaller(hazard_of_mortality(c1,c4),mod1) | -smaller(mod1,mod2).  [copy(105),xx(c)].
+107 -smaller(hazard_of_mortality(c1,c4),mod1).  [resolve(63,a,106,b)].
+108 -greater(mod1,hazard_of_mortality(c1,c4)).  [resolve(42,a,107,a)].
+109 greater(age(c1,c4),sigma) | hazard_of_mortality(c1,c4) = low.  [resolve(101,a,82,a)].
+110 greater(hazard_of_mortality(c1,c4),low) | mod1 = hazard_of_mortality(c1,c4).  [resolve(91,b,108,a)].
+111 greater(hazard_of_mortality(c1,c4),low) | hazard_of_mortality(c1,c4) = mod1.  [copy(110),flip(b)].
+112 age(c1,c4) = sigma | -greater(age(c1,c4),sigma).  [resolve(83,b,37,b)].
+113 hazard_of_mortality(c1,c4) = low | smaller(sigma,age(c1,c4)).  [resolve(109,a,42,b)].
+114 hazard_of_mortality(c1,c4) = mod1 | smaller(low,hazard_of_mortality(c1,c4)).  [resolve(111,a,42,b)].
+115 age(c1,c4) = sigma | hazard_of_mortality(c1,c4) = low.  [resolve(112,b,109,a)].
+116 age(c1,c4) = sigma | -smaller(low,mod1).  [para(115(b,1),107(a,1))].
+117 age(c1,c4) = sigma.  [resolve(64,a,116,b)].
+118 hazard_of_mortality(c1,c4) = low | smaller(sigma,sigma).  [para(117(a,1),113(b,2))].
+119 hazard_of_mortality(c1,c4) = low.  [resolve(74,a,118,b)].
+120 low = mod1 | smaller(low,hazard_of_mortality(c1,c4)).  [para(119(a,1),114(a,1))].
+121 low = mod1 | smaller(low,low).  [para(119(a,1),120(b,2))].
+122 mod1 = low | smaller(low,low).  [copy(121),flip(a)].
+123 mod1 = low.  [resolve(74,a,122,b)].
+124 smaller(low,low).  [para(123(a,1),64(a,2))].
+125 $F.  [resolve(74,a,124,a)].

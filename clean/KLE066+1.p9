@@ -1,0 +1,34 @@
+
+
+
+
+
+
+
+
+9 multiplication(one,A) = A.  [clausify(3)].
+10 multiplication(zero,A) = zero.  [clausify(5)].
+11 addition(domain(A),one) = one.  [clausify(7)].
+12 multiplication(c1,domain(c2)) = zero.  [clausify(8)].
+13 zero = multiplication(c1,domain(c2)).  [copy(12),flip(a)].
+14 addition(A,B) = addition(B,A).  [clausify(1)].
+15 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(2)].
+16 multiplication(domain(A),A) = addition(A,multiplication(domain(A),A)).  [clausify(6)].
+17 addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A).  [copy(16),flip(a)].
+18 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(4)].
+19 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(18),flip(a)].
+20 multiplication(c1,c2) != zero.  [clausify(8)].
+21 multiplication(c1,c2) != multiplication(c1,domain(c2)).  [para(13(a,1),20(a,2))].
+22 multiplication(c1,domain(c2)) != multiplication(c1,c2).  [copy(21),flip(a)].
+23 multiplication(multiplication(c1,domain(c2)),A) = zero.  [para(13(a,1),10(a,1,1))].
+24 multiplication(c1,multiplication(domain(c2),A)) = zero.  [para(15(a,1),23(a,1))].
+25 multiplication(c1,multiplication(domain(c2),A)) = multiplication(c1,domain(c2)).  [para(13(a,1),24(a,2))].
+26 addition(multiplication(domain(A),B),multiplication(one,B)) = multiplication(one,B).  [para(11(a,1),19(a,2,1))].
+27 addition(multiplication(domain(A),B),B) = multiplication(one,B).  [para(9(a,1),26(a,1,2))].
+28 addition(B,multiplication(domain(A),B)) = multiplication(one,B).  [para(14(a,1),27(a,1))].
+29 addition(A,multiplication(domain(B),A)) = A.  [para(9(a,1),28(a,2))].
+30 A = multiplication(domain(A),A).  [para(29(a,1),17(a,1))].
+31 multiplication(domain(A),A) = A.  [copy(30),flip(a)].
+32 multiplication(c1,c2) = multiplication(c1,domain(c2)).  [para(31(a,1),25(a,1,2))].
+33 multiplication(c1,domain(c2)) = multiplication(c1,c2).  [copy(32),flip(a)].
+34 $F.  [resolve(33,a,22,a)].

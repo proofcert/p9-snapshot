@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n119.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 04:37:43 CDT 2014
+% CPUTime    : 0.53 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 28207 was started by sandbox on n119.star.cs.uiowa.edu,
+Fri Jun  6 04:37:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_28175_n119.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.30 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 5.
+% Maximum clause weight is 12.000.
+% Given clauses 404.
+
+
+1 (all A all B all C (sum(B,C,A) <-> difference(A,B,C))).  [assumption].
+2 -(exists A exists B exists C (sum(A,B,C) <-> difference(C,B,A) & difference(C,A,B))).  [assumption].
+3 -sum(A,B,C) | difference(C,A,B).  [clausify(1)].
+4 sum(A,B,C) | -difference(C,A,B).  [clausify(1)].
+5 sum(A,B,C) | difference(C,B,A).  [clausify(2)].
+6 sum(A,B,C) | difference(C,A,B).  [clausify(2)].
+7 -sum(A,B,C) | -difference(C,B,A) | -difference(C,A,B).  [clausify(2)].
+8 -sum(A,A,B) | -difference(B,A,A).  [factor(7,b,c)].
+9 sum(A,B,C) | sum(B,A,C).  [resolve(5,b,4,b)].
+10 sum(A,A,B).  [factor(9,a,b)].
+11 -difference(A,B,B).  [resolve(10,a,8,a)].
+12 sum(A,B,C) | sum(A,B,C).  [resolve(6,b,4,b)].
+13 sum(A,B,C).  [copy(12),merge(b)].
+14 difference(A,B,C).  [resolve(13,a,3,a)].
+15 $F.  [resolve(14,a,11,a)].
+
+============================== end of proof ==========================

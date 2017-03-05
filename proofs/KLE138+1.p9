@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n083.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:47:58 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 16222 was started by sandbox on n083.star.cs.uiowa.edu,
+Thu Jun  5 22:47:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_16190_n083.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: goals.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 9.000.
+% Given clauses 9.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A addition(A,zero) = A).  [assumption].
+3 (all A multiplication(zero,A) = zero).  [assumption].
+4 (all A strong_iteration(A) = addition(multiplication(A,strong_iteration(A)),one)).  [assumption].
+5 addition(A,zero) = A.  [clausify(2)].
+6 multiplication(zero,A) = zero.  [clausify(3)].
+7 addition(A,B) = addition(B,A).  [clausify(1)].
+8 strong_iteration(A) = addition(multiplication(A,strong_iteration(A)),one).  [clausify(4)].
+9 strong_iteration(A) = addition(one,multiplication(A,strong_iteration(A))).  [para(7(a,1),8(a,2))].
+10 addition(one,multiplication(A,strong_iteration(A))) = strong_iteration(A).  [copy(9),flip(a)].
+11 strong_iteration(zero) != one.  [assumption].
+12 addition(one,zero) = strong_iteration(zero).  [para(6(a,1),10(a,1,2))].
+13 one = strong_iteration(zero).  [para(5(a,1),12(a,1))].
+14 strong_iteration(zero) = one.  [copy(13),flip(a)].
+15 $F.  [resolve(14,a,11,a)].
+
+============================== end of proof ==========================

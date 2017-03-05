@@ -1,0 +1,44 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n117.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:15:48 CDT 2014
+% CPUTime    : 0.11 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 57601 was started by sandbox on n117.star.cs.uiowa.edu,
+Sat Jun  7 00:15:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_57569_n117.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds: ck.
+% Length of proof is 9.
+% Level of proof is 3.
+% Maximum clause weight is 13.000.
+% Given clauses 3.
+
+
+1 (all A r(A,zero,succ(A))).  [assumption].
+2 (all A all B all C all D (r(A,B,C) -> (r(C,B,D) -> r(A,succ(B),D)))).  [assumption].
+3 -(exists A exists B (r(zero,zero,A) & r(zero,A,B))).  [assumption].
+4 r(A,zero,succ(A)).  [clausify(1)].
+5 -r(zero,zero,A) | -r(zero,A,B).  [clausify(3)].
+6 -r(A,B,C) | -r(C,B,D) | r(A,succ(B),D).  [clausify(2)].
+7 -r(zero,succ(zero),A).  [resolve(5,a,4,a)].
+8 -r(succ(A),zero,B) | r(A,succ(zero),B).  [resolve(6,a,4,a)].
+9 r(A,succ(zero),succ(succ(A))).  [resolve(8,a,4,a)].
+10 $F.  [resolve(9,a,7,a)].
+
+============================== end of proof ==========================

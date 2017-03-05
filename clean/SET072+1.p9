@@ -1,0 +1,22 @@
+
+
+3 member(c3,universal_class).  [clausify(2)].
+4 member(c4,universal_class).  [clausify(2)].
+5 unordered_pair(c4,c5) = unordered_pair(c3,c5).  [clausify(2)].
+6 c4 != c3.  [clausify(2)].
+7 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(1)].
+8 member(A,unordered_pair(B,C)) | -member(A,universal_class) | A != B.  [clausify(1)].
+9 -member(c3,unordered_pair(c4,A)) | c3 = A.  [resolve(7,b,6,a(flip))].
+10 -member(c3,unordered_pair(c4,c4)).  [resolve(9,b,6,a(flip))].
+11 member(c4,unordered_pair(A,B)) | c4 != A.  [resolve(8,b,4,a)].
+12 member(c3,unordered_pair(A,B)) | c3 != A.  [resolve(8,b,3,a)].
+13 member(c4,unordered_pair(c4,A)).  [xx_res(11,b)].
+14 member(c4,unordered_pair(c3,c5)).  [para(5(a,1),13(a,2))].
+15 c4 = c3 | c4 = c5.  [resolve(14,a,7,a)].
+16 c4 = c3 | c5 = c4.  [copy(15),flip(b)].
+17 c5 = c4.  [resolve(6,a,16,a)].
+18 unordered_pair(c4,c4) = unordered_pair(c3,c5).  [para(17(a,1),5(a,1,2))].
+19 unordered_pair(c4,c4) = unordered_pair(c3,c4).  [para(17(a,1),18(a,2,2))].
+20 -member(c3,unordered_pair(c3,c4)).  [para(19(a,1),10(a,2))].
+21 member(c3,unordered_pair(c3,A)).  [xx_res(12,b)].
+22 $F.  [resolve(21,a,20,a)].

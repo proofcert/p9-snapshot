@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n122.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:09:18 CDT 2014
+% CPUTime    : 2.89 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 55212 was started by sandbox on n122.star.cs.uiowa.edu,
+Fri Jun  6 03:09:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_55180_n122.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 2.71 (+ 0.04) seconds.
+% Length of proof is 15.
+% Level of proof is 7.
+% Maximum clause weight is 16.000.
+% Given clauses 2009.
+
+
+1 (all A all B all C (connect(A,B,C) <-> once(at_the_same_time(at(A,C),at(B,C))))).  [assumption].
+2 (all A all B (once(at_the_same_time(A,B)) <-> once(at_the_same_time(B,A)))).  [assumption].
+3 -(all A all B all C (connect(A,B,C) <-> connect(B,A,C))).  [assumption].
+4 -connect(A,B,C) | once(at_the_same_time(at(A,C),at(B,C))).  [clausify(1)].
+5 connect(A,B,C) | -once(at_the_same_time(at(A,C),at(B,C))).  [clausify(1)].
+6 -once(at_the_same_time(A,B)) | once(at_the_same_time(B,A)).  [clausify(2)].
+7 connect(c10,c11,c12) | connect(c11,c10,c12).  [clausify(3)].
+8 -connect(c10,c11,c12) | -connect(c11,c10,c12).  [clausify(3)].
+9 connect(c10,c11,c12) | once(at_the_same_time(at(c11,c12),at(c10,c12))).  [resolve(7,b,4,a)].
+10 once(at_the_same_time(at(c11,c12),at(c10,c12))) | once(at_the_same_time(at(c10,c12),at(c11,c12))).  [resolve(9,a,4,a)].
+11 once(at_the_same_time(at(c10,c12),at(c11,c12))) | once(at_the_same_time(at(c10,c12),at(c11,c12))).  [resolve(10,a,6,a)].
+12 once(at_the_same_time(at(c10,c12),at(c11,c12))).  [copy(11),merge(b)].
+13 once(at_the_same_time(at(c11,c12),at(c10,c12))).  [resolve(12,a,6,a)].
+14 connect(c10,c11,c12).  [resolve(12,a,5,b)].
+15 -connect(c11,c10,c12).  [resolve(14,a,8,a)].
+16 connect(c11,c10,c12).  [resolve(13,a,5,b)].
+17 $F.  [resolve(15,a,16,a)].
+
+============================== end of proof ==========================

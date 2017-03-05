@@ -1,0 +1,22 @@
+
+
+
+4 part_of(c10,c11).  [clausify(3)].
+5 part_of(c11,c10).  [clausify(3)].
+6 incident_c(f13(A,B),A) | incident_c(f13(A,B),B) | B = A.  [clausify(2)].
+7 c11 != c10.  [clausify(3)].
+8 -part_of(A,B) | -incident_c(C,A) | incident_c(C,B).  [clausify(1)].
+9 -incident_c(f13(A,B),A) | -incident_c(f13(A,B),B) | B = A.  [clausify(2)].
+10 -incident_c(A,c11) | incident_c(A,c10).  [resolve(8,a,5,a)].
+11 -incident_c(A,c10) | incident_c(A,c11).  [resolve(8,a,4,a)].
+12 incident_c(f13(A,c11),c10) | incident_c(f13(A,c11),A) | c11 = A.  [resolve(10,a,6,b)].
+13 incident_c(f13(c10,c11),c10) | c11 = c10.  [factor(12,a,b)].
+14 incident_c(f13(c10,c11),c10).  [resolve(7,a,13,b)].
+15 incident_c(f13(c10,A),c11) | incident_c(f13(c10,A),A) | A = c10.  [resolve(11,a,6,a)].
+16 incident_c(f13(c10,A),c11) | incident_c(f13(c10,A),A) | c10 = A.  [copy(15),flip(c)].
+17 incident_c(f13(c10,c11),c11) | c10 = c11.  [factor(16,a,b)].
+18 incident_c(f13(c10,c11),c11) | c11 = c10.  [copy(17),flip(b)].
+19 incident_c(f13(c10,c11),c11).  [resolve(7,a,18,b)].
+20 -incident_c(f13(c10,c11),c11) | c11 = c10.  [resolve(14,a,9,a)].
+21 c11 = c10.  [resolve(19,a,20,a)].
+22 $F.  [resolve(7,a,21,a)].

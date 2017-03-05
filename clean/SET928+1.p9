@@ -1,0 +1,28 @@
+
+
+
+
+
+6 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+7 in(A,B) | in(C,B) | disjoint(unordered_pair(A,C),B).  [clausify(3)].
+8 -disjoint(unordered_pair(A,B),C) | -in(A,C).  [clausify(2)].
+9 -disjoint(A,B) | set_difference(A,B) = A.  [clausify(4)].
+10 disjoint(A,B) | set_difference(A,B) != A.  [clausify(4)].
+11 set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4) | -in(c3,c5).  [clausify(5)].
+12 set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4) | -in(c4,c5).  [clausify(5)].
+13 set_difference(unordered_pair(c3,c4),c5) != unordered_pair(c3,c4) | in(c3,c5) | in(c4,c5).  [clausify(5)].
+14 -disjoint(unordered_pair(A,B),C) | -in(B,C).  [para(6(a,1),8(a,1))].
+15 set_difference(unordered_pair(A,B),C) = unordered_pair(A,B) | in(A,C) | in(B,C).  [resolve(9,a,7,c)].
+16 set_difference(unordered_pair(c4,A),c5) = unordered_pair(c4,A) | in(A,c5) | set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4).  [resolve(15,b,12,b)].
+17 set_difference(unordered_pair(A,c4),c5) = unordered_pair(c4,A) | in(A,c5) | set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4).  [para(6(a,1),16(a,1,1))].
+18 set_difference(unordered_pair(A,c4),c5) = unordered_pair(A,c4) | in(A,c5) | set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4).  [para(6(a,1),17(a,2))].
+19 set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4) | in(c3,c5).  [factor(18,a,c)].
+20 set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4) | set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4).  [resolve(19,b,11,b)].
+21 set_difference(unordered_pair(c3,c4),c5) = unordered_pair(c3,c4).  [copy(20),merge(b)].
+22 unordered_pair(c3,c4) != unordered_pair(c3,c4) | in(c3,c5) | in(c4,c5).  [para(21(a,1),13(a,1))].
+23 in(c3,c5) | in(c4,c5).  [copy(22),xx(a)].
+24 disjoint(unordered_pair(c3,c4),c5).  [resolve(21,a,10,b)].
+25 -in(c4,c5).  [resolve(24,a,14,a)].
+26 -in(c3,c5).  [resolve(24,a,8,a)].
+27 in(c4,c5).  [resolve(26,a,23,a)].
+28 $F.  [resolve(25,a,27,a)].

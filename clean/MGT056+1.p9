@@ -1,0 +1,61 @@
+
+
+
+
+
+
+
+
+
+
+11 organization(c1).  [clausify(10)].
+12 -organization(A) | -has_immunity(A,B) | -has_immunity(A,C) | hazard_of_mortality(A,B) = hazard_of_mortality(A,C).  [clausify(8)].
+13 -organization(A) | -has_immunity(A,B) | has_immunity(A,C) | greater(hazard_of_mortality(A,C),hazard_of_mortality(A,B)).  [clausify(9)].
+14 -has_endowment(A) | -greater(age(A,B),eta) | -has_immunity(A,B).  [clausify(7)].
+15 has_endowment(c1).  [clausify(10)].
+16 -has_endowment(A) | -smaller_or_equal(age(A,B),eta) | has_immunity(A,B).  [clausify(7)].
+17 -greater_or_equal(A,B) | greater(A,B) | B = A.  [clausify(2)].
+18 greater_or_equal(eta,sigma).  [clausify(10)].
+19 smaller_or_equal(A,B) | -smaller(A,B).  [clausify(1)].
+20 smaller(A,B) | B = A | greater(A,B).  [clausify(6)].
+21 -smaller(A,B) | greater(B,A).  [clausify(3)].
+22 smaller(A,B) | -greater(B,A).  [clausify(3)].
+23 greater(sigma,zero).  [clausify(10)].
+24 age(c1,c2) = zero.  [clausify(10)].
+25 smaller_or_equal(age(c1,c3),eta).  [clausify(10)].
+26 greater(age(c1,c4),eta).  [clausify(10)].
+27 -greater(A,B) | -greater(B,A).  [clausify(4)].
+28 -greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [clausify(10)].
+29 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(5)].
+30 -has_immunity(c1,A) | -has_immunity(c1,B) | hazard_of_mortality(c1,A) = hazard_of_mortality(c1,B).  [resolve(12,a,11,a)].
+31 -has_immunity(c1,A) | has_immunity(c1,B) | greater(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(13,a,11,a)].
+32 -greater(age(c1,A),eta) | -has_immunity(c1,A).  [resolve(14,a,15,a)].
+33 -smaller_or_equal(age(c1,A),eta) | has_immunity(c1,A).  [resolve(16,a,15,a)].
+34 greater(eta,sigma) | sigma = eta.  [resolve(17,a,18,a)].
+35 greater(A,B) | A = B | greater(B,A).  [resolve(21,a,20,a)].
+36 -greater(A,B) | smaller_or_equal(B,A).  [resolve(22,a,19,b)].
+37 -greater(A,A).  [factor(27,a,b)].
+38 -greater(zero,A) | greater(sigma,A).  [resolve(29,a,23,a)].
+39 -greater(A,sigma) | greater(A,zero).  [resolve(29,b,23,a)].
+40 -has_immunity(c1,c4).  [resolve(32,a,26,a)].
+41 has_immunity(c1,c3).  [resolve(33,a,25,a)].
+42 -smaller_or_equal(zero,eta) | has_immunity(c1,c2).  [para(24(a,1),33(a,1))].
+43 has_immunity(c1,A) | greater(hazard_of_mortality(c1,A),hazard_of_mortality(c1,c3)).  [resolve(41,a,31,a)].
+44 greater(sigma,A) | greater(A,zero) | A = zero.  [resolve(38,a,35,c)].
+45 greater(sigma,A) | greater(A,zero) | zero = A.  [copy(44),flip(c)].
+46 greater(eta,zero) | sigma = eta.  [resolve(39,a,34,a)].
+47 sigma = eta | smaller_or_equal(zero,eta).  [resolve(46,a,36,a)].
+48 sigma = eta | has_immunity(c1,c2).  [resolve(47,b,42,a)].
+49 greater(sigma,A) | zero = A | smaller_or_equal(zero,A).  [resolve(45,b,36,a)].
+50 greater(sigma,eta) | zero = eta | has_immunity(c1,c2).  [resolve(49,c,42,a)].
+51 greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)).  [resolve(43,a,40,a)].
+52 hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [resolve(51,a,28,a)].
+53 -has_immunity(c1,A) | hazard_of_mortality(c1,c3) = hazard_of_mortality(c1,A).  [resolve(30,a,41,a)].
+54 -has_immunity(c1,c2).  [resolve(53,b,52,a)].
+55 greater(sigma,eta) | zero = eta.  [resolve(54,a,50,c)].
+56 sigma = eta.  [resolve(54,a,48,b)].
+57 greater(eta,eta) | zero = eta.  [para(56(a,1),55(a,1))].
+58 zero = eta.  [resolve(37,a,57,a)].
+59 greater(eta,zero).  [para(56(a,1),23(a,1))].
+60 greater(eta,eta).  [para(58(a,1),59(a,2))].
+61 $F.  [resolve(37,a,60,a)].

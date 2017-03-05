@@ -1,0 +1,52 @@
+
+
+
+
+
+
+7 -ssItem(A) | -ssItem(B) | -ssList(C) | memberP(cons(B,C),A) | B != A.  [clausify(1)].
+8 -ssItem(A) | -memberP(nil,A).  [clausify(2)].
+9 -ssList(A) | nil = A | ssItem(f44(A)).  [clausify(3)].
+10 -ssList(A) | nil = A | hd(A) = f44(A).  [clausify(3)].
+11 -ssList(A) | nil = A | f44(A) = hd(A).  [copy(10),flip(c)].
+12 -ssList(A) | nil = A | ssList(f45(A)).  [clausify(4)].
+13 -ssList(A) | nil = A | tl(A) = f45(A).  [clausify(4)].
+14 -ssList(A) | nil = A | f45(A) = tl(A).  [copy(13),flip(c)].
+15 -ssList(A) | nil = A | cons(hd(A),tl(A)) = A.  [clausify(5)].
+16 ssList(c3).  [clausify(6)].
+17 nil = c4.  [clausify(6)].
+18 c4 = nil.  [copy(17),flip(a)].
+19 c6 = c4.  [clausify(6)].
+20 c6 = nil.  [para(18(a,1),19(a,2))].
+21 c5 = c3.  [clausify(6)].
+22 nil != c3.  [clausify(6)].
+23 c3 != nil.  [copy(22),flip(a)].
+24 -ssItem(A) | -memberP(c5,A) | memberP(c6,A).  [clausify(6)].
+25 -ssItem(A) | -memberP(c3,A) | memberP(c6,A).  [para(21(a,1),24(b,1))].
+26 -ssItem(A) | -memberP(c3,A) | memberP(nil,A).  [para(20(a,1),25(c,1))].
+27 -ssItem(A) | -ssList(B) | memberP(cons(A,B),A) | A != A.  [factor(7,a,b)].
+28 -ssItem(A) | -ssList(B) | memberP(cons(A,B),A).  [copy(27),xx(d)].
+29 nil = c3 | cons(hd(c3),tl(c3)) = c3.  [resolve(16,a,15,a)].
+30 c3 = nil | cons(hd(c3),tl(c3)) = c3.  [copy(29),flip(a)].
+31 cons(hd(c3),tl(c3)) = c3.  [resolve(23,a,30,a)].
+32 nil = c3 | f45(c3) = tl(c3).  [resolve(16,a,14,a)].
+33 c3 = nil | f45(c3) = tl(c3).  [copy(32),flip(a)].
+34 f45(c3) = tl(c3).  [resolve(23,a,33,a)].
+35 nil = c3 | ssList(f45(c3)).  [resolve(16,a,12,a)].
+36 nil = c3 | ssList(tl(c3)).  [para(34(a,1),35(b,1))].
+37 c3 = nil | ssList(tl(c3)).  [copy(36),flip(a)].
+38 ssList(tl(c3)).  [resolve(23,a,37,a)].
+39 nil = c3 | f44(c3) = hd(c3).  [resolve(16,a,11,a)].
+40 c3 = nil | f44(c3) = hd(c3).  [copy(39),flip(a)].
+41 f44(c3) = hd(c3).  [resolve(23,a,40,a)].
+42 nil = c3 | ssItem(f44(c3)).  [resolve(16,a,9,a)].
+43 nil = c3 | ssItem(hd(c3)).  [para(41(a,1),42(b,1))].
+44 c3 = nil | ssItem(hd(c3)).  [copy(43),flip(a)].
+45 ssItem(hd(c3)).  [resolve(23,a,44,a)].
+46 -ssList(A) | memberP(cons(hd(c3),A),hd(c3)).  [resolve(45,a,28,a)].
+47 memberP(cons(hd(c3),tl(c3)),hd(c3)).  [resolve(46,a,38,a)].
+48 memberP(c3,hd(c3)).  [para(31(a,1),47(a,1))].
+49 -ssItem(hd(c3)) | memberP(nil,hd(c3)).  [resolve(48,a,26,b)].
+50 memberP(nil,hd(c3)).  [resolve(45,a,49,a)].
+51 -ssItem(hd(c3)).  [resolve(50,a,8,b)].
+52 $F.  [resolve(45,a,51,a)].

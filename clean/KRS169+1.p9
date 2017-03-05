@@ -1,0 +1,28 @@
+
+
+
+
+5 -rhasLeader(A,B) | rhasHead(A,B).  [clausify(3)].
+6 rhasLeader(iX,iY).  [assumption].
+7 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+8 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+9 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cowlThing(iX) | -rhasHead(iX,iY) | -cowlThing(iY).  [clausify(4)].
+10 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cowlThing(iX) | -rhasHead(iX,iY) | -cowlThing(iY).  [clausify(4)].
+11 -cowlThing(c1) | cowlNothing(c1) | -xsd_integer(c2) | -cowlThing(iX) | -rhasHead(iX,iY) | -cowlThing(iY) | -xsd_integer(c2).  [resolve(9,c,7,a)].
+12 -cowlNothing(A).  [clausify(1)].
+13 -cowlThing(c1) | cowlNothing(c1) | xsd_integer(c2) | -cowlThing(iX) | -rhasHead(iX,iY) | -cowlThing(iY) | xsd_integer(c2).  [resolve(10,c,8,a)].
+14 -cowlThing(c1) | -xsd_integer(c2) | -cowlThing(iX) | -rhasHead(iX,iY) | -cowlThing(iY) | -xsd_integer(c2).  [resolve(11,b,12,a)].
+15 rhasHead(iX,iY).  [resolve(5,a,6,a)].
+16 -cowlThing(c1) | xsd_integer(c2) | -cowlThing(iX) | -rhasHead(iX,iY) | -cowlThing(iY) | xsd_integer(c2).  [resolve(13,b,12,a)].
+17 cowlThing(A).  [clausify(1)].
+18 -cowlThing(c1) | -xsd_integer(c2) | -cowlThing(iX) | -cowlThing(iY) | -xsd_integer(c2).  [resolve(14,d,15,a)].
+19 -cowlThing(c1) | -xsd_integer(c2) | -cowlThing(iX) | -cowlThing(iY).  [copy(18),merge(e)].
+20 -xsd_integer(c2) | -cowlThing(iX) | -cowlThing(iY).  [resolve(17,a,19,a)].
+21 -xsd_integer(c2) | -cowlThing(iY).  [resolve(17,a,20,b)].
+22 -xsd_integer(c2).  [resolve(17,a,21,b)].
+23 -cowlThing(c1) | xsd_integer(c2) | -cowlThing(iX) | -cowlThing(iY) | xsd_integer(c2).  [resolve(16,d,15,a)].
+24 -cowlThing(c1) | xsd_integer(c2) | -cowlThing(iX) | -cowlThing(iY).  [copy(23),merge(e)].
+25 xsd_integer(c2) | -cowlThing(iX) | -cowlThing(iY).  [resolve(17,a,24,a)].
+26 -cowlThing(iX) | -cowlThing(iY).  [resolve(22,a,25,a)].
+27 -cowlThing(iY).  [resolve(17,a,26,a)].
+28 $F.  [resolve(17,a,27,a)].

@@ -1,0 +1,26 @@
+
+
+
+
+
+6 ilf_type(A,set_type).  [clausify(4)].
+7 subset(c1,c2).  [clausify(5)].
+8 ilf_type(c4,relation_type(c1,c3)).  [clausify(5)].
+9 -ilf_type(c4,relation_type(c2,c3)).  [clausify(5)].
+10 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | subset(domain_of(C),A).  [clausify(2)].
+11 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | subset(domain_of(B),C).  [resolve(6,a,10,a)].
+12 -ilf_type(A,relation_type(B,C)) | subset(domain_of(A),B).  [resolve(6,a,11,a)].
+13 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(1)].
+14 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -subset(C,A) | -subset(A,B) | subset(C,B).  [resolve(6,a,13,a)].
+15 -ilf_type(A,set_type) | -subset(B,C) | -subset(C,A) | subset(B,A).  [resolve(6,a,14,a)].
+16 -subset(A,B) | -subset(B,C) | subset(A,C).  [resolve(6,a,15,a)].
+17 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,relation_type(A,C)) | -subset(domain_of(D),B) | ilf_type(D,relation_type(B,C)).  [clausify(3)].
+18 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(D,B)) | -subset(domain_of(C),A) | ilf_type(C,relation_type(A,B)).  [resolve(6,a,17,a)].
+19 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | -subset(domain_of(B),D) | ilf_type(B,relation_type(D,A)).  [resolve(6,a,18,a)].
+20 -ilf_type(A,relation_type(B,C)) | -subset(domain_of(A),D) | ilf_type(A,relation_type(D,C)).  [resolve(6,a,19,a)].
+21 subset(domain_of(c4),c1).  [resolve(12,a,8,a)].
+22 -subset(domain_of(c4),A) | ilf_type(c4,relation_type(A,c3)).  [resolve(20,a,8,a)].
+23 -subset(domain_of(c4),c2).  [resolve(22,b,9,a)].
+24 -subset(A,c1) | subset(A,c2).  [resolve(16,b,7,a)].
+25 -subset(domain_of(c4),c1).  [resolve(24,b,23,a)].
+26 $F.  [resolve(21,a,25,a)].

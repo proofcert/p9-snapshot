@@ -1,0 +1,85 @@
+
+
+
+
+
+
+
+
+9 shortest_path(c1,c2,c5).  [clausify(8)].
+10 -shortest_path(A,B,C) | -precedes(D,E,C) | -precedes(E,D,C).  [clausify(5)].
+11 -shortest_path(A,B,C) | -precedes(D,E,C) | tail_of(F) != tail_of(D) | head_of(F) != head_of(E).  [clausify(5)].
+12 -shortest_path(A,B,C) | path(A,B,C).  [clausify(4)].
+13 -complete | -shortest_path(A,B,C) | -precedes(D,E,C) | edge(f9(A,B,D,E,C)).  [clausify(7)].
+14 -complete | -shortest_path(A,B,C) | -precedes(D,E,C) | tail_of(f9(A,B,D,E,C)) = head_of(E).  [clausify(7)].
+15 -complete | -shortest_path(A,B,C) | -precedes(D,E,C) | tail_of(D) = head_of(f9(A,B,D,E,C)).  [clausify(7)].
+16 complete.  [clausify(8)].
+17 sequential(c3,c4).  [clausify(8)].
+18 precedes(c3,c4,c5).  [clausify(8)].
+19 -triangle(c3,c4,A).  [clausify(8)].
+20 -sequential(A,B) | B != A.  [clausify(1)].
+21 -sequential(A,B) | edge(A).  [clausify(1)].
+22 -sequential(A,B) | edge(B).  [clausify(1)].
+23 -sequential(A,B) | tail_of(B) = head_of(A).  [clausify(1)].
+24 -path(A,B,C) | -precedes(D,E,C) | on_path(D,C).  [clausify(3)].
+25 -path(A,B,C) | -precedes(D,E,C) | on_path(E,C).  [clausify(3)].
+26 sequential(A,B) | -edge(A) | -edge(B) | B = A | tail_of(B) != head_of(A).  [clausify(1)].
+27 -path(A,B,C) | -on_path(D,C) | -on_path(E,C) | -sequential(D,E) | precedes(D,E,C).  [clausify(2)].
+28 triangle(A,B,C) | -edge(A) | -edge(B) | -edge(C) | -sequential(A,B) | -sequential(B,C) | -sequential(C,A).  [clausify(6)].
+29 -precedes(A,B,c5) | -precedes(B,A,c5).  [resolve(10,a,9,a)].
+30 -precedes(A,B,c5) | tail_of(C) != tail_of(A) | head_of(C) != head_of(B).  [resolve(11,a,9,a)].
+31 path(c1,c2,c5).  [resolve(12,a,9,a)].
+32 -complete | -precedes(A,B,c5) | edge(f9(c1,c2,A,B,c5)).  [resolve(13,b,9,a)].
+33 -precedes(A,B,c5) | edge(f9(c1,c2,A,B,c5)).  [resolve(16,a,32,a)].
+34 -complete | -precedes(A,B,c5) | tail_of(f9(c1,c2,A,B,c5)) = head_of(B).  [resolve(14,b,9,a)].
+35 -precedes(A,B,c5) | tail_of(f9(c1,c2,A,B,c5)) = head_of(B).  [resolve(16,a,34,a)].
+36 -complete | -precedes(A,B,c5) | tail_of(A) = head_of(f9(c1,c2,A,B,c5)).  [resolve(15,b,9,a)].
+37 -complete | -precedes(A,B,c5) | head_of(f9(c1,c2,A,B,c5)) = tail_of(A).  [copy(36),flip(c)].
+38 -precedes(A,B,c5) | head_of(f9(c1,c2,A,B,c5)) = tail_of(A).  [resolve(16,a,37,a)].
+39 c4 != c3.  [resolve(20,a,17,a)].
+40 edge(c3).  [resolve(21,a,17,a)].
+41 edge(c4).  [resolve(22,a,17,a)].
+42 tail_of(c4) = head_of(c3).  [resolve(23,a,17,a)].
+43 -path(A,B,c5) | on_path(c3,c5).  [resolve(24,b,18,a)].
+44 -path(A,B,c5) | on_path(c4,c5).  [resolve(25,b,18,a)].
+45 triangle(c3,c4,A) | -edge(c3) | -edge(c4) | -edge(A) | -sequential(c4,A) | -sequential(A,c3).  [resolve(28,e,17,a)].
+46 -edge(c3) | -edge(c4) | -edge(A) | -sequential(c4,A) | -sequential(A,c3).  [resolve(19,a,45,a)].
+47 -edge(c4) | -edge(A) | -sequential(c4,A) | -sequential(A,c3).  [resolve(40,a,46,a)].
+48 -edge(A) | -sequential(c4,A) | -sequential(A,c3).  [resolve(41,a,47,a)].
+49 -precedes(c4,c3,c5).  [resolve(29,a,18,a)].
+50 tail_of(A) != tail_of(c3) | head_of(A) != head_of(c4).  [resolve(30,a,18,a)].
+51 head_of(c3) != head_of(c4).  [xx_res(50,a)].
+52 head_of(c4) != head_of(c3).  [copy(51),flip(a)].
+53 -on_path(A,c5) | -on_path(B,c5) | -sequential(A,B) | precedes(A,B,c5).  [resolve(31,a,27,a)].
+54 edge(f9(c1,c2,c3,c4,c5)).  [resolve(33,a,18,a)].
+55 tail_of(f9(c1,c2,c3,c4,c5)) = head_of(c4).  [resolve(35,a,18,a)].
+56 head_of(f9(c1,c2,c3,c4,c5)) = tail_of(c3).  [resolve(38,a,18,a)].
+57 sequential(A,c3) | -edge(A) | c3 = A | tail_of(c3) != head_of(A).  [resolve(40,a,26,c)].
+58 sequential(c4,A) | -edge(A) | A = c4 | tail_of(A) != head_of(c4).  [resolve(41,a,26,b)].
+59 sequential(c4,A) | -edge(A) | c4 = A | tail_of(A) != head_of(c4).  [copy(58),flip(c)].
+60 on_path(c3,c5).  [resolve(43,a,31,a)].
+61 on_path(c4,c5).  [resolve(44,a,31,a)].
+62 sequential(f9(c1,c2,c3,c4,c5),c3) | c3 = f9(c1,c2,c3,c4,c5) | tail_of(c3) != head_of(f9(c1,c2,c3,c4,c5)).  [resolve(57,b,54,a)].
+63 sequential(f9(c1,c2,c3,c4,c5),c3) | c3 = f9(c1,c2,c3,c4,c5) | tail_of(c3) != tail_of(c3).  [para(56(a,1),62(c,2))].
+64 sequential(f9(c1,c2,c3,c4,c5),c3) | f9(c1,c2,c3,c4,c5) = c3 | tail_of(c3) != tail_of(c3).  [copy(63),flip(b)].
+65 sequential(f9(c1,c2,c3,c4,c5),c3) | f9(c1,c2,c3,c4,c5) = c3.  [copy(64),xx(c)].
+66 sequential(c4,f9(c1,c2,c3,c4,c5)) | c4 = f9(c1,c2,c3,c4,c5) | tail_of(f9(c1,c2,c3,c4,c5)) != head_of(c4).  [resolve(59,b,54,a)].
+67 sequential(c4,f9(c1,c2,c3,c4,c5)) | c4 = f9(c1,c2,c3,c4,c5) | head_of(c4) != head_of(c4).  [para(55(a,1),66(c,1))].
+68 sequential(c4,f9(c1,c2,c3,c4,c5)) | f9(c1,c2,c3,c4,c5) = c4 | head_of(c4) != head_of(c4).  [copy(67),flip(b)].
+69 sequential(c4,f9(c1,c2,c3,c4,c5)) | f9(c1,c2,c3,c4,c5) = c4.  [copy(68),xx(c)].
+70 f9(c1,c2,c3,c4,c5) = c3 | -edge(f9(c1,c2,c3,c4,c5)) | -sequential(c4,f9(c1,c2,c3,c4,c5)).  [resolve(65,a,48,c)].
+71 f9(c1,c2,c3,c4,c5) = c3 | -sequential(c4,f9(c1,c2,c3,c4,c5)).  [resolve(54,a,70,b)].
+72 f9(c1,c2,c3,c4,c5) = c4 | -on_path(c4,c5) | -on_path(f9(c1,c2,c3,c4,c5),c5) | precedes(c4,f9(c1,c2,c3,c4,c5),c5).  [resolve(69,a,53,c)].
+73 f9(c1,c2,c3,c4,c5) = c4 | -on_path(f9(c1,c2,c3,c4,c5),c5) | precedes(c4,f9(c1,c2,c3,c4,c5),c5).  [resolve(61,a,72,b)].
+74 f9(c1,c2,c3,c4,c5) = c3 | f9(c1,c2,c3,c4,c5) = c4.  [resolve(71,b,69,a)].
+75 f9(c1,c2,c3,c4,c5) = c3 | tail_of(c4) = head_of(c4).  [para(74(b,1),55(a,1,1))].
+76 f9(c1,c2,c3,c4,c5) = c3 | head_of(c3) = head_of(c4).  [para(42(a,1),75(b,1))].
+77 f9(c1,c2,c3,c4,c5) = c3 | head_of(c4) = head_of(c3).  [copy(76),flip(b)].
+78 f9(c1,c2,c3,c4,c5) = c3.  [resolve(52,a,77,b)].
+79 c3 = c4 | -on_path(f9(c1,c2,c3,c4,c5),c5) | precedes(c4,f9(c1,c2,c3,c4,c5),c5).  [para(78(a,1),73(a,1))].
+80 c3 = c4 | -on_path(c3,c5) | precedes(c4,f9(c1,c2,c3,c4,c5),c5).  [para(78(a,1),79(b,1))].
+81 c3 = c4 | -on_path(c3,c5) | precedes(c4,c3,c5).  [para(78(a,1),80(c,2))].
+82 c4 = c3 | -on_path(c3,c5) | precedes(c4,c3,c5).  [copy(81),flip(a)].
+83 -on_path(c3,c5) | precedes(c4,c3,c5).  [resolve(39,a,82,a)].
+84 precedes(c4,c3,c5).  [resolve(60,a,83,a)].
+85 $F.  [resolve(49,a,84,a)].

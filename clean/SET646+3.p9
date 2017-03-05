@@ -1,0 +1,69 @@
+
+
+
+
+
+
+
+
+
+
+
+12 ilf_type(A,set_type).  [clausify(10)].
+13 member(c3,c1).  [clausify(11)].
+14 member(c4,c2).  [clausify(11)].
+15 -ilf_type(A,set_type) | -empty(power_set(A)).  [clausify(8)].
+16 -empty(power_set(A)).  [resolve(12,a,15,a)].
+17 -ilf_type(singleton(ordered_pair(c3,c4)),relation_type(c1,c2)).  [clausify(11)].
+18 -ilf_type(A,set_type) | subset(A,A).  [clausify(6)].
+19 subset(A,A).  [resolve(12,a,18,a)].
+20 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -subset(singleton(A),B) | member(A,B).  [clausify(1)].
+21 -ilf_type(A,set_type) | -subset(singleton(B),A) | member(B,A).  [resolve(12,a,20,a)].
+22 -subset(singleton(A),B) | member(A,B).  [resolve(12,a,21,a)].
+23 -ilf_type(A,set_type) | -ilf_type(B,set_type) | ilf_type(B,subset_type(A)) | -ilf_type(B,member_type(power_set(A))).  [clausify(5)].
+24 -ilf_type(A,set_type) | ilf_type(A,subset_type(B)) | -ilf_type(A,member_type(power_set(B))).  [resolve(12,a,23,a)].
+25 ilf_type(A,subset_type(B)) | -ilf_type(A,member_type(power_set(B))).  [resolve(12,a,24,a)].
+26 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(A,power_set(B)) | member(f6(A,B),A).  [clausify(7)].
+27 -ilf_type(A,set_type) | member(B,power_set(A)) | member(f6(B,A),B).  [resolve(12,a,26,a)].
+28 member(A,power_set(B)) | member(f6(A,B),A).  [resolve(12,a,27,a)].
+29 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(A,power_set(B)) | -member(f6(A,B),B).  [clausify(7)].
+30 -ilf_type(A,set_type) | member(B,power_set(A)) | -member(f6(B,A),A).  [resolve(12,a,29,a)].
+31 member(A,power_set(B)) | -member(f6(A,B),B).  [resolve(12,a,30,a)].
+32 -ilf_type(A,set_type) | empty(B) | -ilf_type(B,set_type) | ilf_type(A,member_type(B)) | -member(A,B).  [clausify(9)].
+33 empty(A) | -ilf_type(A,set_type) | ilf_type(B,member_type(A)) | -member(B,A).  [resolve(12,a,32,a)].
+34 empty(A) | ilf_type(B,member_type(A)) | -member(B,A).  [resolve(12,a,33,b)].
+35 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | ilf_type(C,relation_type(A,B)).  [clausify(3)].
+36 -ilf_type(A,set_type) | -ilf_type(B,subset_type(cross_product(C,A))) | ilf_type(B,relation_type(C,A)).  [resolve(12,a,35,a)].
+37 -ilf_type(A,subset_type(cross_product(B,C))) | ilf_type(A,relation_type(B,C)).  [resolve(12,a,36,a)].
+38 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -member(A,power_set(B)) | -ilf_type(C,set_type) | -member(C,A) | member(C,B).  [clausify(7)].
+39 -ilf_type(A,set_type) | -member(B,power_set(A)) | -ilf_type(C,set_type) | -member(C,B) | member(C,A).  [resolve(12,a,38,a)].
+40 -member(A,power_set(B)) | -ilf_type(C,set_type) | -member(C,A) | member(C,B).  [resolve(12,a,39,a)].
+41 -member(A,power_set(B)) | -member(C,A) | member(C,B).  [resolve(12,a,40,b)].
+42 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | singleton(B) != C | -ilf_type(D,set_type) | -member(D,C) | D = B.  [clausify(4)].
+43 -ilf_type(A,set_type) | -ilf_type(B,set_type) | singleton(A) != B | -ilf_type(C,set_type) | -member(C,B) | C = A.  [resolve(12,a,42,a)].
+44 -ilf_type(A,set_type) | singleton(B) != A | -ilf_type(C,set_type) | -member(C,A) | C = B.  [resolve(12,a,43,a)].
+45 singleton(A) != B | -ilf_type(C,set_type) | -member(C,B) | C = A.  [resolve(12,a,44,a)].
+46 singleton(A) != B | -member(C,B) | C = A.  [resolve(12,a,45,b)].
+47 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,set_type) | member(ordered_pair(A,B),cross_product(C,D)) | -member(A,C) | -member(B,D).  [clausify(2)].
+48 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | member(ordered_pair(D,A),cross_product(B,C)) | -member(D,B) | -member(A,C).  [resolve(12,a,47,a)].
+49 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(ordered_pair(C,D),cross_product(A,B)) | -member(C,A) | -member(D,B).  [resolve(12,a,48,a)].
+50 -ilf_type(A,set_type) | member(ordered_pair(B,C),cross_product(D,A)) | -member(B,D) | -member(C,A).  [resolve(12,a,49,a)].
+51 member(ordered_pair(A,B),cross_product(C,D)) | -member(A,C) | -member(B,D).  [resolve(12,a,50,a)].
+52 member(A,singleton(A)).  [resolve(22,a,19,a)].
+53 -ilf_type(singleton(ordered_pair(c3,c4)),subset_type(cross_product(c1,c2))).  [resolve(37,b,17,a)].
+54 singleton(A) != B | f6(B,C) = A | member(B,power_set(C)).  [resolve(46,b,28,b)].
+55 member(ordered_pair(c3,A),cross_product(c1,B)) | -member(A,B).  [resolve(51,b,13,a)].
+56 -ilf_type(singleton(ordered_pair(c3,c4)),member_type(power_set(cross_product(c1,c2)))).  [resolve(25,a,53,a)].
+57 ilf_type(A,member_type(power_set(B))) | -member(A,power_set(B)).  [resolve(34,a,16,a)].
+58 -member(singleton(ordered_pair(c3,c4)),power_set(cross_product(c1,c2))).  [resolve(57,a,56,a)].
+59 -member(singleton(A),power_set(B)) | member(A,B).  [resolve(41,b,52,a)].
+60 -member(singleton(singleton(ordered_pair(c3,c4))),power_set(power_set(cross_product(c1,c2)))).  [resolve(59,b,58,a)].
+61 -member(f6(singleton(singleton(ordered_pair(c3,c4))),power_set(cross_product(c1,c2))),power_set(cross_product(c1,c2))).  [resolve(31,a,60,a)].
+62 f6(singleton(A),B) = A | member(singleton(A),power_set(B)).  [xx_res(54,a)].
+63 member(ordered_pair(c3,c4),cross_product(c1,c2)).  [resolve(55,b,14,a)].
+64 -member(f6(f6(singleton(singleton(ordered_pair(c3,c4))),power_set(cross_product(c1,c2))),cross_product(c1,c2)),cross_product(c1,c2)).  [resolve(31,a,61,a)].
+65 f6(singleton(singleton(ordered_pair(c3,c4))),power_set(cross_product(c1,c2))) = singleton(ordered_pair(c3,c4)).  [resolve(62,b,60,a)].
+66 f6(singleton(ordered_pair(c3,c4)),cross_product(c1,c2)) = ordered_pair(c3,c4).  [resolve(62,b,58,a)].
+67 -member(f6(singleton(ordered_pair(c3,c4)),cross_product(c1,c2)),cross_product(c1,c2)).  [para(65(a,1),64(a,1,1))].
+68 -member(ordered_pair(c3,c4),cross_product(c1,c2)).  [para(66(a,1),67(a,1))].
+69 $F.  [resolve(63,a,68,a)].

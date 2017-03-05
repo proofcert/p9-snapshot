@@ -1,0 +1,20 @@
+
+
+
+
+
+6 union(A,B) = union(B,A).  [clausify(4)].
+7 union(difference(A,B),difference(B,A)) = symmetric_difference(A,B).  [clausify(1)].
+8 symmetric_difference(A,B) = union(difference(A,B),difference(B,A)).  [copy(7),flip(a)].
+9 difference(difference(A,B),C) = difference(A,union(B,C)).  [clausify(2)].
+10 union(difference(A,B),difference(C,B)) = difference(union(A,C),B).  [clausify(3)].
+11 union(difference(c1,union(c2,c3)),difference(c2,union(c1,c3))) != difference(symmetric_difference(c1,c2),c3).  [clausify(5)].
+12 union(difference(c1,union(c2,c3)),difference(c2,union(c1,c3))) != difference(union(difference(c1,c2),difference(c2,c1)),c3).  [para(8(a,1),11(a,2,1))].
+13 union(difference(A,union(B,C)),difference(D,C)) = difference(union(difference(A,B),D),C).  [para(9(a,1),10(a,1,1))].
+14 union(difference(A,union(B,C)),difference(D,C)) = difference(union(D,difference(A,B)),C).  [para(6(a,1),13(a,2,1))].
+15 union(difference(A,union(B,C)),difference(D,union(E,C))) = difference(union(difference(D,E),difference(A,B)),C).  [para(9(a,1),14(a,1,2))].
+16 union(difference(A,union(B,C)),difference(D,union(C,E))) = difference(union(difference(D,E),difference(A,B)),C).  [para(6(a,1),15(a,1,2,2))].
+17 difference(union(difference(A,B),difference(C,D)),E) = union(difference(A,union(E,B)),difference(C,union(D,E))).  [para(16(a,1),6(a,1))].
+18 difference(union(difference(A,B),difference(C,D)),E) = union(difference(A,union(B,E)),difference(C,union(D,E))).  [para(6(a,1),17(a,2,1,2))].
+19 union(difference(A,union(B,C)),difference(D,union(E,C))) = difference(union(difference(A,B),difference(D,E)),C).  [copy(18),flip(a)].
+20 $F.  [resolve(19,a,12,a)].

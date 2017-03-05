@@ -1,0 +1,79 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n087.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:33:18 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 39894 was started by sandbox on n087.star.cs.uiowa.edu,
+Sat Jun  7 00:33:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_39862_n087.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 35.
+% Level of proof is 9.
+% Maximum clause weight is 18.000.
+% Given clauses 72.
+
+
+1 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+2 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+3 (all A all B ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A))).  [assumption].
+4 (all A all B all C all D (in(ordered_pair(A,B),cartesian_product2(C,D)) <-> in(A,C) & in(B,D))).  [assumption].
+5 -(all A all B all C all D (in(ordered_pair(A,B),cartesian_product2(singleton(C),singleton(D))) <-> A = C & B = D)).  [assumption].
+6 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+7 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(3)].
+8 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(6(a,1),7(a,2))].
+9 in(ordered_pair(c3,c4),cartesian_product2(singleton(c5),singleton(c6))) | c5 = c3.  [clausify(5)].
+10 in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c5),singleton(c6))) | c5 = c3.  [para(8(a,1),9(a,1))].
+11 in(ordered_pair(c3,c4),cartesian_product2(singleton(c5),singleton(c6))) | c6 = c4.  [clausify(5)].
+12 in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c5),singleton(c6))) | c6 = c4.  [para(8(a,1),11(a,1))].
+13 -in(ordered_pair(c3,c4),cartesian_product2(singleton(c5),singleton(c6))) | c5 != c3 | c6 != c4.  [clausify(5)].
+14 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c5),singleton(c6))) | c5 != c3 | c6 != c4.  [para(8(a,1),13(a,1))].
+15 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+16 singleton(A) != B | in(C,B) | C != A.  [clausify(2)].
+17 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(A,C).  [clausify(4)].
+18 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(A,C).  [para(8(a,1),17(a,1))].
+19 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(B,D).  [clausify(4)].
+20 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(B,D).  [para(8(a,1),19(a,1))].
+21 in(ordered_pair(A,B),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [clausify(4)].
+22 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [para(8(a,1),21(a,1))].
+23 in(A,singleton(B)) | A != B.  [xx_res(16,a)].
+24 in(c3,singleton(c5)) | c5 = c3.  [resolve(18,a,10,a)].
+25 in(c4,singleton(c6)) | c6 = c4.  [resolve(20,a,12,a)].
+26 in(A,singleton(A)).  [xx_res(23,b)].
+27 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,singleton(B))) | -in(A,C).  [resolve(26,a,22,c)].
+28 c5 = c3 | singleton(A) != singleton(c5) | c3 = A.  [resolve(24,a,15,b)].
+29 c5 = c3 | singleton(c5) != singleton(A) | c3 = A.  [copy(28),flip(b)].
+30 c6 = c4 | singleton(A) != singleton(c6) | c4 = A.  [resolve(25,a,15,b)].
+31 c6 = c4 | singleton(c6) != singleton(A) | c4 = A.  [copy(30),flip(b)].
+32 c5 = c3 | c3 = c5.  [xx_res(29,b)].
+33 c5 = c3 | c5 = c3.  [copy(32),flip(b)].
+34 c5 = c3.  [copy(33),merge(b)].
+35 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c3),singleton(c6))) | c5 != c3 | c6 != c4.  [para(34(a,1),14(a,2,1,1))].
+36 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c3),singleton(c6))) | c3 != c3 | c6 != c4.  [para(34(a,1),35(b,1))].
+37 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c3),singleton(c6))) | c6 != c4.  [copy(36),xx(b)].
+38 c6 = c4 | c4 = c6.  [xx_res(31,b)].
+39 c6 = c4 | c6 = c4.  [copy(38),flip(b)].
+40 c6 = c4.  [copy(39),merge(b)].
+41 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c3),singleton(c4))) | c6 != c4.  [para(40(a,1),37(a,2,2,1))].
+42 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c3),singleton(c4))) | c4 != c4.  [para(40(a,1),41(b,1))].
+43 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(singleton(c3),singleton(c4))).  [copy(42),xx(b)].
+44 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(singleton(A),singleton(B))).  [resolve(27,b,26,a)].
+45 $F.  [resolve(44,a,43,a)].
+
+============================== end of proof ==========================

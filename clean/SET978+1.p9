@@ -1,0 +1,18 @@
+
+
+
+
+5 A = B | disjoint(singleton(B),singleton(A)).  [clausify(3)].
+6 c4 != c3.  [clausify(4)].
+7 -disjoint(cartesian_product2(singleton(c3),c5),cartesian_product2(singleton(c4),c6)) | -disjoint(cartesian_product2(c5,singleton(c3)),cartesian_product2(c6,singleton(c4))).  [clausify(4)].
+8 -disjoint(A,B) | disjoint(B,A).  [clausify(1)].
+9 -disjoint(A,B) | disjoint(cartesian_product2(A,C),cartesian_product2(B,D)).  [clausify(2)].
+10 -disjoint(A,B) | disjoint(cartesian_product2(C,A),cartesian_product2(D,B)).  [clausify(2)].
+11 disjoint(singleton(A),singleton(B)) | A = B.  [resolve(8,a,5,b)].
+12 disjoint(cartesian_product2(singleton(A),B),cartesian_product2(singleton(C),D)) | C = A.  [resolve(9,a,5,b)].
+13 A = B | disjoint(cartesian_product2(C,singleton(A)),cartesian_product2(D,singleton(B))).  [resolve(11,a,10,a)].
+14 c4 = c3 | -disjoint(cartesian_product2(c5,singleton(c3)),cartesian_product2(c6,singleton(c4))).  [resolve(12,a,7,a)].
+15 -disjoint(cartesian_product2(c5,singleton(c3)),cartesian_product2(c6,singleton(c4))).  [resolve(6,a,14,a)].
+16 c3 = c4.  [resolve(15,a,13,b)].
+17 c4 = c3.  [copy(16),flip(a)].
+18 $F.  [resolve(6,a,17,a)].

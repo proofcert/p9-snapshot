@@ -1,0 +1,41 @@
+
+
+
+
+
+
+
+
+
+
+11 -wednesday(A) | -unicorn_lies(A).  [clausify(6)].
+12 -wednesday(A) | day(A).  [clausify(1)].
+13 -wednesday(A) | lion_lies(A).  [clausify(4)].
+14 -thursday(A) | wednesday(yesterday(A)).  [clausify(3)].
+15 -thursday(A) | -lion_lies(A).  [clausify(5)].
+16 thursday(a_thursday).  [assumption].
+17 -thursday(A) | day(A).  [clausify(2)].
+18 -thursday(A) | unicorn_lies(A).  [clausify(7)].
+19 -thursday(A) | -unicorn_lies(yesterday(A)).  [resolve(14,b,11,a)].
+20 -thursday(A) | day(yesterday(A)).  [resolve(14,b,12,a)].
+21 -thursday(A) | lion_lies(yesterday(A)).  [resolve(14,b,13,a)].
+22 -day(A) | -lies_on_one_of(a_lion,A,yesterday(A)) | -lies_on_one_of(a_unicorn,A,yesterday(A)).  [clausify(10)].
+23 -day(A) | -day(B) | lion_lies(A) | lies_on_one_of(a_lion,A,B) | -lion_lies(B).  [clausify(8)].
+24 -day(A) | -day(B) | -unicorn_lies(A) | lies_on_one_of(a_unicorn,A,B) | unicorn_lies(B).  [clausify(9)].
+25 -lion_lies(a_thursday).  [resolve(15,a,16,a)].
+26 day(a_thursday).  [resolve(17,a,16,a)].
+27 unicorn_lies(a_thursday).  [resolve(18,a,16,a)].
+28 -unicorn_lies(yesterday(a_thursday)).  [resolve(19,a,16,a)].
+29 day(yesterday(a_thursday)).  [resolve(20,a,16,a)].
+30 lion_lies(yesterday(a_thursday)).  [resolve(21,a,16,a)].
+31 -day(a_thursday) | -day(A) | lies_on_one_of(a_unicorn,a_thursday,A) | unicorn_lies(A).  [resolve(27,a,24,c)].
+32 -day(A) | lies_on_one_of(a_unicorn,a_thursday,A) | unicorn_lies(A).  [resolve(26,a,31,a)].
+33 -day(A) | -day(yesterday(a_thursday)) | lion_lies(A) | lies_on_one_of(a_lion,A,yesterday(a_thursday)).  [resolve(30,a,23,e)].
+34 -day(A) | lion_lies(A) | lies_on_one_of(a_lion,A,yesterday(a_thursday)).  [resolve(29,a,33,b)].
+35 lies_on_one_of(a_unicorn,a_thursday,yesterday(a_thursday)) | unicorn_lies(yesterday(a_thursday)).  [resolve(32,a,29,a)].
+36 lies_on_one_of(a_unicorn,a_thursday,yesterday(a_thursday)).  [resolve(28,a,35,b)].
+37 lion_lies(a_thursday) | lies_on_one_of(a_lion,a_thursday,yesterday(a_thursday)).  [resolve(34,a,26,a)].
+38 lies_on_one_of(a_lion,a_thursday,yesterday(a_thursday)).  [resolve(25,a,37,a)].
+39 -day(a_thursday) | -lies_on_one_of(a_lion,a_thursday,yesterday(a_thursday)).  [resolve(36,a,22,c)].
+40 -lies_on_one_of(a_lion,a_thursday,yesterday(a_thursday)).  [resolve(26,a,39,a)].
+41 $F.  [resolve(38,a,40,a)].

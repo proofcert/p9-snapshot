@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n114.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:08:08 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 34740 was started by sandbox on n114.star.cs.uiowa.edu,
+Fri Jun  6 00:08:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_34708_n114.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 3.
+% Maximum clause weight is 9.000.
+% Given clauses 99.
+
+
+1 (all A all B (subclass(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+2 (all A -member(A,null_class)).  [assumption].
+3 (all A (A != null_class -> (exists B (member(B,universal_class) & member(B,A) & disjoint(B,A))))).  [assumption].
+4 -(all A (subclass(A,null_class) -> A = null_class)).  [assumption].
+5 subclass(c3,null_class).  [clausify(4)].
+6 null_class = A | member(f5(A),A).  [clausify(3)].
+7 -member(A,null_class).  [clausify(2)].
+8 null_class != c3.  [clausify(4)].
+9 c3 != null_class.  [copy(8),flip(a)].
+10 -subclass(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+11 -member(A,c3) | member(A,null_class).  [resolve(10,a,5,a)].
+12 -member(A,c3).  [resolve(7,a,11,b)].
+13 null_class = c3.  [resolve(12,a,6,b)].
+14 c3 = null_class.  [copy(13),flip(a)].
+15 $F.  [resolve(9,a,14,a)].
+
+============================== end of proof ==========================

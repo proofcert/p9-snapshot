@@ -1,0 +1,90 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15 empty(empty_set).  [assumption].
+16 subset(set_intersection2(A,B),A).  [clausify(8)].
+17 set_difference(A,empty_set) = A.  [clausify(11)].
+18 subset(A,set_union2(A,B)).  [clausify(13)].
+19 set_union2(A,B) = set_union2(B,A).  [clausify(2)].
+20 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(3)].
+21 subset(A,B) | in(f3(A,B),A).  [clausify(5)].
+22 set_difference(c3,c4) = empty_set | subset(c3,c4).  [clausify(14)].
+23 set_difference(A,B) = C | in(f5(A,B,C),C) | in(f5(A,B,C),A).  [clausify(6)].
+24 -in(A,B) | -empty(B).  [clausify(12)].
+25 -in(A,B) | -in(B,A).  [clausify(1)].
+26 set_difference(c3,c4) != empty_set | -subset(c3,c4).  [clausify(14)].
+27 subset(A,B) | -in(f3(A,B),B).  [clausify(5)].
+28 -subset(A,B) | set_union2(A,B) = B.  [clausify(7)].
+29 -subset(A,B) | set_intersection2(A,B) = A.  [clausify(10)].
+30 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(5)].
+31 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(9)].
+32 set_union2(A,B) != C | in(D,C) | -in(D,B).  [clausify(4)].
+33 set_difference(A,B) != C | -in(D,C) | in(D,A).  [clausify(6)].
+34 set_union2(A,B) != C | -in(D,C) | in(D,A) | in(D,B).  [clausify(4)].
+35 set_difference(A,B) != C | in(D,C) | -in(D,A) | in(D,B).  [clausify(6)].
+36 set_difference(A,B) = C | in(f5(A,B,C),C) | -in(f5(A,B,C),B).  [clausify(6)].
+37 -in(A,A).  [factor(25,a,b)].
+38 subset(set_intersection2(A,B),B).  [para(20(a,1),16(a,1))].
+39 -in(A,empty_set).  [resolve(24,b,15,a)].
+40 set_difference(c3,c4) != empty_set | in(f3(c3,c4),c3).  [resolve(26,b,21,a)].
+41 set_intersection2(A,set_union2(A,B)) = A.  [resolve(29,a,18,a)].
+42 -in(A,c3) | in(A,c4) | set_difference(c3,c4) = empty_set.  [resolve(30,a,22,b)].
+43 -subset(A,B) | subset(set_intersection2(A,C),B).  [resolve(31,a,16,a)].
+44 set_difference(A,A) = B | in(f5(A,A,B),B) | set_difference(A,A) = B | in(f5(A,A,B),B).  [resolve(36,c,23,c)].
+45 set_difference(A,A) = B | in(f5(A,A,B),B) | in(f5(A,A,B),B).  [copy(44),merge(c)].
+46 set_difference(A,A) = B | in(f5(A,A,B),B).  [copy(45),merge(c)].
+47 in(A,set_union2(B,C)) | -in(A,B).  [resolve(32,a,19,a)].
+48 -in(set_union2(A,B),A).  [resolve(47,a,37,a)].
+49 in(A,set_difference(set_union2(B,C),empty_set)) | -in(A,C).  [resolve(32,a,17,a(flip))].
+50 -in(set_difference(set_union2(A,B),empty_set),B).  [resolve(49,a,37,a)].
+51 -in(set_union2(A,B),B).  [para(17(a,1),50(a,1))].
+52 set_union2(set_intersection2(A,B),B) = B.  [resolve(38,a,28,a)].
+53 set_union2(A,set_intersection2(B,A)) = A.  [para(19(a,1),52(a,1))].
+54 -in(A,set_difference(set_difference(B,C),empty_set)) | in(A,B).  [resolve(33,a,17,a(flip))].
+55 -in(set_union2(A,B),set_difference(set_difference(A,C),empty_set)).  [resolve(54,b,48,a)].
+56 -in(set_union2(A,B),set_difference(A,C)).  [para(17(a,1),55(a,2))].
+57 -in(A,set_union2(B,C)) | in(A,C) | in(A,B).  [resolve(34,a,19,a)].
+58 -in(set_union2(A,B),set_union2(C,B)) | in(set_union2(A,B),C).  [resolve(57,b,51,a)].
+59 -in(set_union2(A,B),set_union2(set_difference(A,C),B)).  [resolve(58,b,56,a)].
+60 -in(set_union2(A,B),set_union2(B,set_difference(A,C))).  [para(19(a,1),59(a,2))].
+61 subset(set_intersection2(set_intersection2(A,B),C),B).  [resolve(43,a,38,a)].
+62 subset(set_intersection2(A,set_intersection2(B,C)),C).  [para(20(a,1),61(a,1))].
+63 subset(set_intersection2(A,B),set_union2(B,C)).  [para(41(a,1),62(a,1,2))].
+64 set_union2(set_intersection2(A,B),set_union2(B,C)) = set_union2(B,C).  [resolve(63,a,28,a)].
+65 -in(A,set_union2(B,C)) | in(A,C) | in(A,B).  [resolve(34,a,19,a)].
+66 -in(set_union2(A,B),set_union2(C,A)) | in(set_union2(A,B),C).  [resolve(65,b,48,a)].
+67 -in(set_union2(A,B),set_union2(set_union2(B,set_difference(A,C)),A)).  [resolve(66,b,60,a)].
+68 -in(set_union2(A,B),set_union2(A,set_union2(B,set_difference(A,C)))).  [para(19(a,1),67(a,2))].
+69 in(f5(c3,A,B),c4) | set_difference(c3,c4) = empty_set | set_difference(c3,A) = B | in(f5(c3,A,B),B).  [resolve(42,a,23,c)].
+70 in(f5(c3,c4,empty_set),c4) | set_difference(c3,c4) = empty_set | in(f5(c3,c4,empty_set),empty_set).  [factor(69,b,c)].
+71 in(f5(c3,c4,empty_set),c4) | set_difference(c3,c4) = empty_set.  [resolve(39,a,70,c)].
+72 set_difference(A,A) = empty_set.  [resolve(46,b,39,a)].
+73 in(A,set_union2(set_intersection2(B,C),set_union2(C,D))) | -in(A,D).  [resolve(32,a,64,a(flip))].
+74 -in(set_union2(set_intersection2(A,B),B),set_difference(set_intersection2(A,B),C)).  [resolve(73,a,68,a)].
+75 -in(set_union2(B,set_intersection2(A,B)),set_difference(set_intersection2(A,B),C)).  [para(19(a,1),74(a,1))].
+76 -in(A,set_difference(set_intersection2(B,A),C)).  [para(53(a,1),75(a,1))].
+77 set_difference(c3,c4) = empty_set | set_difference(c3,c4) = empty_set | in(f5(c3,c4,empty_set),empty_set).  [resolve(71,a,36,c)].
+78 set_difference(c3,c4) = empty_set | in(f5(c3,c4,empty_set),empty_set).  [copy(77),merge(b)].
+79 set_difference(c3,c4) = empty_set.  [resolve(39,a,78,b)].
+80 empty_set != empty_set | in(f3(c3,c4),c3).  [para(79(a,1),40(a,1))].
+81 in(f3(c3,c4),c3).  [copy(80),xx(a)].
+82 empty_set != empty_set | -subset(c3,c4).  [para(79(a,1),26(a,1))].
+83 -subset(c3,c4).  [copy(82),xx(a)].
+84 -in(f3(c3,c4),c4).  [resolve(27,a,83,a)].
+85 set_difference(A,B) != set_difference(set_intersection2(C,D),E) | -in(D,A) | in(D,B).  [resolve(35,b,76,a)].
+86 set_difference(c3,A) != set_difference(set_intersection2(B,f3(c3,c4)),C) | in(f3(c3,c4),A).  [resolve(85,b,81,a)].
+87 set_difference(c3,c4) != set_difference(set_intersection2(A,f3(c3,c4)),B).  [resolve(86,b,84,a)].
+88 empty_set != set_difference(set_intersection2(A,f3(c3,c4)),B).  [para(79(a,1),87(a,1))].
+89 set_difference(set_intersection2(A,f3(c3,c4)),B) != empty_set.  [copy(88),flip(a)].
+90 $F.  [resolve(89,a,72,a)].

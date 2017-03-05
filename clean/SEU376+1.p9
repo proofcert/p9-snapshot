@@ -1,0 +1,66 @@
+
+
+
+
+
+6 -one_sorted_str(A) | -net_str(B,A) | rel_str(B).  [clausify(4)].
+7 empty_carrier(A) | -rel_str(A) | -directed_relstr(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | element(f5(A,B,C),the_carrier(A)).  [clausify(3)].
+8 empty_carrier(A) | -rel_str(A) | -directed_relstr(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | related(A,B,f5(A,B,C)).  [clausify(3)].
+9 empty_carrier(A) | -rel_str(A) | -directed_relstr(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | related(A,C,f5(A,B,C)).  [clausify(3)].
+10 net_str(c13,c12).  [clausify(5)].
+11 empty_carrier(A) | -one_sorted_str(A) | empty_carrier(B) | -net_str(B,A) | -is_eventually_in(A,B,C) | element(f1(A,B,C),the_carrier(B)).  [clausify(1)].
+12 empty_carrier(A) | -one_sorted_str(A) | empty_carrier(B) | -net_str(B,A) | is_often_in(A,B,C) | element(f4(A,B,C),the_carrier(B)).  [clausify(2)].
+13 empty_carrier(A) | -one_sorted_str(A) | empty_carrier(B) | -net_str(B,A) | -is_eventually_in(A,B,C) | -element(D,the_carrier(B)) | -related(B,f1(A,B,C),D) | in(apply_netmap(A,B,D),C).  [clausify(1)].
+14 empty_carrier(A) | -one_sorted_str(A) | empty_carrier(B) | -net_str(B,A) | is_often_in(A,B,C) | -element(D,the_carrier(B)) | -related(B,f4(A,B,C),D) | -in(apply_netmap(A,B,D),C).  [clausify(2)].
+15 empty_carrier(A) | -directed_relstr(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | element(f5(A,B,C),the_carrier(A)) | -one_sorted_str(D) | -net_str(A,D).  [resolve(7,b,6,c)].
+16 empty_carrier(A) | -directed_relstr(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | related(A,B,f5(A,B,C)) | -one_sorted_str(D) | -net_str(A,D).  [resolve(8,b,6,c)].
+17 empty_carrier(A) | -directed_relstr(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | related(A,C,f5(A,B,C)) | -one_sorted_str(D) | -net_str(A,D).  [resolve(9,b,6,c)].
+18 one_sorted_str(c12).  [clausify(5)].
+19 directed_relstr(c13).  [clausify(5)].
+20 is_eventually_in(c12,c13,c14).  [clausify(5)].
+21 -empty_carrier(c12).  [clausify(5)].
+22 -empty_carrier(c13).  [clausify(5)].
+23 -is_often_in(c12,c13,c14).  [clausify(5)].
+24 empty_carrier(c12) | -one_sorted_str(c12) | empty_carrier(c13) | -is_eventually_in(c12,c13,A) | element(f1(c12,c13,A),the_carrier(c13)).  [resolve(11,d,10,a)].
+25 -one_sorted_str(c12) | empty_carrier(c13) | -is_eventually_in(c12,c13,A) | element(f1(c12,c13,A),the_carrier(c13)).  [resolve(21,a,24,a)].
+26 empty_carrier(c13) | -is_eventually_in(c12,c13,A) | element(f1(c12,c13,A),the_carrier(c13)).  [resolve(18,a,25,a)].
+27 -is_eventually_in(c12,c13,A) | element(f1(c12,c13,A),the_carrier(c13)).  [resolve(22,a,26,a)].
+28 empty_carrier(c12) | -one_sorted_str(c12) | empty_carrier(c13) | is_often_in(c12,c13,A) | element(f4(c12,c13,A),the_carrier(c13)).  [resolve(12,d,10,a)].
+29 -one_sorted_str(c12) | empty_carrier(c13) | is_often_in(c12,c13,A) | element(f4(c12,c13,A),the_carrier(c13)).  [resolve(21,a,28,a)].
+30 empty_carrier(c13) | is_often_in(c12,c13,A) | element(f4(c12,c13,A),the_carrier(c13)).  [resolve(18,a,29,a)].
+31 is_often_in(c12,c13,A) | element(f4(c12,c13,A),the_carrier(c13)).  [resolve(22,a,30,a)].
+32 empty_carrier(c12) | -one_sorted_str(c12) | empty_carrier(c13) | -is_eventually_in(c12,c13,A) | -element(B,the_carrier(c13)) | -related(c13,f1(c12,c13,A),B) | in(apply_netmap(c12,c13,B),A).  [resolve(13,d,10,a)].
+33 -one_sorted_str(c12) | empty_carrier(c13) | -is_eventually_in(c12,c13,A) | -element(B,the_carrier(c13)) | -related(c13,f1(c12,c13,A),B) | in(apply_netmap(c12,c13,B),A).  [resolve(21,a,32,a)].
+34 empty_carrier(c13) | -is_eventually_in(c12,c13,A) | -element(B,the_carrier(c13)) | -related(c13,f1(c12,c13,A),B) | in(apply_netmap(c12,c13,B),A).  [resolve(18,a,33,a)].
+35 -is_eventually_in(c12,c13,A) | -element(B,the_carrier(c13)) | -related(c13,f1(c12,c13,A),B) | in(apply_netmap(c12,c13,B),A).  [resolve(22,a,34,a)].
+36 empty_carrier(c12) | -one_sorted_str(c12) | empty_carrier(c13) | is_often_in(c12,c13,A) | -element(B,the_carrier(c13)) | -related(c13,f4(c12,c13,A),B) | -in(apply_netmap(c12,c13,B),A).  [resolve(14,d,10,a)].
+37 -one_sorted_str(c12) | empty_carrier(c13) | is_often_in(c12,c13,A) | -element(B,the_carrier(c13)) | -related(c13,f4(c12,c13,A),B) | -in(apply_netmap(c12,c13,B),A).  [resolve(21,a,36,a)].
+38 empty_carrier(c13) | is_often_in(c12,c13,A) | -element(B,the_carrier(c13)) | -related(c13,f4(c12,c13,A),B) | -in(apply_netmap(c12,c13,B),A).  [resolve(18,a,37,a)].
+39 is_often_in(c12,c13,A) | -element(B,the_carrier(c13)) | -related(c13,f4(c12,c13,A),B) | -in(apply_netmap(c12,c13,B),A).  [resolve(22,a,38,a)].
+40 empty_carrier(c13) | -directed_relstr(c13) | -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | element(f5(c13,A,B),the_carrier(c13)) | -one_sorted_str(c12).  [resolve(15,g,10,a)].
+41 -directed_relstr(c13) | -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | element(f5(c13,A,B),the_carrier(c13)) | -one_sorted_str(c12).  [resolve(22,a,40,a)].
+42 -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | element(f5(c13,A,B),the_carrier(c13)) | -one_sorted_str(c12).  [resolve(19,a,41,a)].
+43 -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | element(f5(c13,A,B),the_carrier(c13)).  [resolve(18,a,42,d)].
+44 empty_carrier(c13) | -directed_relstr(c13) | -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | related(c13,A,f5(c13,A,B)) | -one_sorted_str(c12).  [resolve(16,g,10,a)].
+45 -directed_relstr(c13) | -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | related(c13,A,f5(c13,A,B)) | -one_sorted_str(c12).  [resolve(22,a,44,a)].
+46 -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | related(c13,A,f5(c13,A,B)) | -one_sorted_str(c12).  [resolve(19,a,45,a)].
+47 -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | related(c13,A,f5(c13,A,B)).  [resolve(18,a,46,d)].
+48 empty_carrier(c13) | -directed_relstr(c13) | -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | related(c13,B,f5(c13,A,B)) | -one_sorted_str(c12).  [resolve(17,g,10,a)].
+49 -directed_relstr(c13) | -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | related(c13,B,f5(c13,A,B)) | -one_sorted_str(c12).  [resolve(22,a,48,a)].
+50 -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | related(c13,B,f5(c13,A,B)) | -one_sorted_str(c12).  [resolve(19,a,49,a)].
+51 -element(A,the_carrier(c13)) | -element(B,the_carrier(c13)) | related(c13,B,f5(c13,A,B)).  [resolve(18,a,50,d)].
+52 element(f1(c12,c13,c14),the_carrier(c13)).  [resolve(27,a,20,a)].
+53 element(f4(c12,c13,c14),the_carrier(c13)).  [resolve(31,a,23,a)].
+54 -element(A,the_carrier(c13)) | -related(c13,f1(c12,c13,c14),A) | in(apply_netmap(c12,c13,A),c14).  [resolve(35,a,20,a)].
+55 -element(A,the_carrier(c13)) | related(c13,A,f5(c13,A,f1(c12,c13,c14))).  [resolve(52,a,47,b)].
+56 -element(A,the_carrier(c13)) | element(f5(c13,A,f1(c12,c13,c14)),the_carrier(c13)).  [resolve(52,a,43,b)].
+57 -element(A,the_carrier(c13)) | related(c13,A,f5(c13,f4(c12,c13,c14),A)).  [resolve(53,a,51,a)].
+58 related(c13,f4(c12,c13,c14),f5(c13,f4(c12,c13,c14),f1(c12,c13,c14))).  [resolve(55,a,53,a)].
+59 element(f5(c13,f4(c12,c13,c14),f1(c12,c13,c14)),the_carrier(c13)).  [resolve(56,a,53,a)].
+60 related(c13,f1(c12,c13,c14),f5(c13,f4(c12,c13,c14),f1(c12,c13,c14))).  [resolve(57,a,52,a)].
+61 is_often_in(c12,c13,c14) | -element(f5(c13,f4(c12,c13,c14),f1(c12,c13,c14)),the_carrier(c13)) | -in(apply_netmap(c12,c13,f5(c13,f4(c12,c13,c14),f1(c12,c13,c14))),c14).  [resolve(58,a,39,c)].
+62 -element(f5(c13,f4(c12,c13,c14),f1(c12,c13,c14)),the_carrier(c13)) | -in(apply_netmap(c12,c13,f5(c13,f4(c12,c13,c14),f1(c12,c13,c14))),c14).  [resolve(23,a,61,a)].
+63 -in(apply_netmap(c12,c13,f5(c13,f4(c12,c13,c14),f1(c12,c13,c14))),c14).  [resolve(59,a,62,a)].
+64 -element(f5(c13,f4(c12,c13,c14),f1(c12,c13,c14)),the_carrier(c13)) | in(apply_netmap(c12,c13,f5(c13,f4(c12,c13,c14),f1(c12,c13,c14))),c14).  [resolve(60,a,54,b)].
+65 in(apply_netmap(c12,c13,f5(c13,f4(c12,c13,c14),f1(c12,c13,c14))),c14).  [resolve(59,a,64,a)].
+66 $F.  [resolve(63,a,65,a)].

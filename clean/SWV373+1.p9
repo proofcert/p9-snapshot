@@ -1,0 +1,18 @@
+
+
+
+
+5 ok(findmin_cpq_eff(triple(c1,c2,c3))).  [clausify(4)].
+6 create_slb = A | findmin_cpq_res(triple(B,A,C)) = findmin_pqp_res(B).  [clausify(2)].
+7 -ok(findmin_cpq_eff(triple(A,B,C))) | create_slb != B.  [clausify(3)].
+8 -contains_cpq(triple(c1,c2,c3),findmin_cpq_res(triple(c1,c2,c3))).  [clausify(4)].
+9 contains_cpq(triple(A,B,C),D) | -contains_slb(B,D).  [clausify(1)].
+10 -ok(findmin_cpq_eff(triple(A,B,C))) | contains_slb(B,findmin_pqp_res(A)).  [clausify(3)].
+11 create_slb != c2.  [resolve(7,a,5,a)].
+12 c2 != create_slb.  [copy(11),flip(a)].
+13 create_slb = c2 | -contains_cpq(triple(c1,c2,c3),findmin_pqp_res(c1)).  [para(6(b,1),8(a,2))].
+14 c2 = create_slb | -contains_cpq(triple(c1,c2,c3),findmin_pqp_res(c1)).  [copy(13),flip(a)].
+15 -contains_cpq(triple(c1,c2,c3),findmin_pqp_res(c1)).  [resolve(12,a,14,a)].
+16 contains_slb(c2,findmin_pqp_res(c1)).  [resolve(10,a,5,a)].
+17 contains_cpq(triple(A,c2,B),findmin_pqp_res(c1)).  [resolve(16,a,9,b)].
+18 $F.  [resolve(17,a,15,a)].

@@ -1,0 +1,13 @@
+
+
+
+
+5 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+6 set_difference(singleton(c3),unordered_pair(c3,c4)) != empty_set.  [clausify(4)].
+7 set_difference(singleton(A),B) = empty_set | -in(A,B).  [clausify(3)].
+8 unordered_pair(A,B) != C | in(D,C) | D != B.  [clausify(2)].
+9 -in(c3,unordered_pair(c3,c4)).  [resolve(7,a,6,a)].
+10 unordered_pair(A,B) != unordered_pair(c3,c4) | c3 != B.  [resolve(8,b,9,a)].
+11 unordered_pair(A,c3) != unordered_pair(c3,c4).  [xx_res(10,b)].
+12 unordered_pair(c3,c4) != unordered_pair(A,c3).  [copy(11),flip(a)].
+13 $F.  [resolve(12,a,5,a)].

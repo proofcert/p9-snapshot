@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n150.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:36:33 CDT 2014
+% CPUTime    : 0.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 43989 was started by sandbox on n150.star.cs.uiowa.edu,
+Fri Jun  6 11:36:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_43957_n150.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 5.
+% Maximum clause weight is 10.000.
+% Given clauses 172.
+
+
+1 (all A (aSet0(A) -> (all B (aElementOf0(B,A) -> aElement0(B))))).  [assumption].
+2 (all A (A = slcrc0 <-> aSet0(A) & -(exists B aElementOf0(B,A)))).  [assumption].
+3 -(exists A (aElement0(A) & aElementOf0(A,xQ))).  [assumption].
+4 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(1)].
+5 slcrc0 = A | -aSet0(A) | aElementOf0(f1(A),A).  [clausify(2)].
+6 slbdtrb0(sz00) = slcrc0.  [assumption].
+7 slcrc0 = slbdtrb0(sz00).  [copy(6),flip(a)].
+8 aSet0(xQ).  [assumption].
+9 xQ != slcrc0.  [assumption].
+10 xQ != slbdtrb0(sz00).  [para(7(a,1),9(a,2))].
+11 slbdtrb0(sz00) != xQ.  [copy(10),flip(a)].
+12 -aElement0(A) | -aElementOf0(A,xQ).  [clausify(3)].
+13 slbdtrb0(sz00) = A | -aSet0(A) | aElementOf0(f1(A),A).  [para(7(a,1),5(a,1))].
+14 slbdtrb0(sz00) = xQ | aElementOf0(f1(xQ),xQ).  [resolve(13,b,8,a)].
+15 aElementOf0(f1(xQ),xQ).  [resolve(11,a,14,a)].
+16 -aElement0(f1(xQ)).  [resolve(15,a,12,b)].
+17 -aSet0(xQ) | aElement0(f1(xQ)).  [resolve(15,a,4,b)].
+18 aElement0(f1(xQ)).  [resolve(8,a,17,a)].
+19 $F.  [resolve(16,a,18,a)].
+
+============================== end of proof ==========================

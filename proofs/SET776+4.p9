@@ -1,0 +1,66 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n057.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 22:45:38 CDT 2014
+% CPUTime    : 26.08 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 62059 was started by sandbox on n057.star.cs.uiowa.edu,
+Fri Jun  6 22:45:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_62027_n057.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 25.41 (+ 0.54) seconds.
+% Length of proof is 21.
+% Level of proof is 5.
+% Maximum clause weight is 21.000.
+% Given clauses 4393.
+
+
+1 (all A all B (pre_order(A,B) <-> (all C (member(C,B) -> apply(A,C,C))) & (all C all D all E (member(C,B) & member(D,B) & member(E,B) -> (apply(A,C,D) & apply(A,D,E) -> apply(A,C,E)))))).  [assumption].
+2 -(all A all B all C (pre_order(B,A) & (all D all E (member(D,A) & member(E,A) -> (apply(C,D,E) <-> apply(B,D,E) & apply(B,E,D)))) -> (all F all V6 all V7 all V8 (member(F,A) & member(V6,A) & member(V7,A) & member(V8,A) -> (apply(C,F,V7) & apply(C,V6,V8) & apply(B,F,V6) -> apply(B,V7,V8)))))).  [assumption].
+3 -pre_order(A,B) | -member(C,B) | -member(D,B) | -member(E,B) | -apply(A,C,D) | -apply(A,D,E) | apply(A,C,E).  [clausify(1)].
+4 pre_order(c2,c1).  [clausify(2)].
+5 -member(A,c1) | -member(B,c1) | -apply(c3,A,B) | apply(c2,A,B).  [clausify(2)].
+6 -member(A,c1) | -member(B,c1) | -apply(c3,A,B) | apply(c2,B,A).  [clausify(2)].
+7 member(c4,c1).  [clausify(2)].
+8 member(c5,c1).  [clausify(2)].
+9 member(c6,c1).  [clausify(2)].
+10 member(c7,c1).  [clausify(2)].
+11 apply(c3,c4,c6).  [clausify(2)].
+12 apply(c3,c5,c7).  [clausify(2)].
+13 apply(c2,c4,c5).  [clausify(2)].
+14 -apply(c2,c6,c7).  [clausify(2)].
+15 -member(A,c1) | -member(B,c1) | -member(C,c1) | -apply(c2,A,B) | -apply(c2,B,C) | apply(c2,A,C).  [resolve(4,a,3,a)].
+16 -member(c4,c1) | -member(c6,c1) | apply(c2,c6,c4).  [resolve(11,a,6,c)].
+17 -member(c6,c1) | apply(c2,c6,c4).  [resolve(7,a,16,a)].
+18 apply(c2,c6,c4).  [resolve(9,a,17,a)].
+19 -member(c5,c1) | -member(c7,c1) | apply(c2,c5,c7).  [resolve(12,a,5,c)].
+20 -member(c7,c1) | apply(c2,c5,c7).  [resolve(8,a,19,a)].
+21 apply(c2,c5,c7).  [resolve(10,a,20,a)].
+22 -member(c4,c1) | -member(c5,c1) | -member(A,c1) | -apply(c2,c5,A) | apply(c2,c4,A).  [resolve(15,d,13,a)].
+23 -member(c5,c1) | -member(A,c1) | -apply(c2,c5,A) | apply(c2,c4,A).  [resolve(7,a,22,a)].
+24 -member(A,c1) | -apply(c2,c5,A) | apply(c2,c4,A).  [resolve(8,a,23,a)].
+25 -member(c6,c1) | -member(c4,c1) | -member(A,c1) | -apply(c2,c4,A) | apply(c2,c6,A).  [resolve(18,a,15,d)].
+26 -member(c4,c1) | -member(A,c1) | -apply(c2,c4,A) | apply(c2,c6,A).  [resolve(9,a,25,a)].
+27 -member(A,c1) | -apply(c2,c4,A) | apply(c2,c6,A).  [resolve(7,a,26,a)].
+28 -member(c7,c1) | apply(c2,c4,c7).  [resolve(24,b,21,a)].
+29 apply(c2,c4,c7).  [resolve(10,a,28,a)].
+30 -member(c7,c1) | apply(c2,c6,c7).  [resolve(27,b,29,a)].
+31 apply(c2,c6,c7).  [resolve(10,a,30,a)].
+32 $F.  [resolve(14,a,31,a)].
+
+============================== end of proof ==========================

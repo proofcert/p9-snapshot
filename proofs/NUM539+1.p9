@@ -1,0 +1,106 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n115.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:11:48 CDT 2014
+% CPUTime    : 7.43 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 11249 was started by sandbox on n115.star.cs.uiowa.edu,
+Fri Jun  6 11:11:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_11217_n115.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 7.14 (+ 0.02) seconds.
+% Length of proof is 46.
+% Level of proof is 11.
+% Maximum clause weight is 34.000.
+% Given clauses 866.
+
+
+1 (all A (aSet0(A) -> (all B (aElementOf0(B,A) -> aElement0(B))))).  [assumption].
+2 (all A (aSet0(A) -> (all B (aSubsetOf0(B,A) <-> aSet0(B) & (all C (aElementOf0(C,B) -> aElementOf0(C,A))))))).  [assumption].
+3 (all A all B (aSet0(A) & aElement0(B) -> (all C (C = sdtmndt0(A,B) <-> aSet0(C) & (all D (aElementOf0(D,C) <-> aElement0(D) & aElementOf0(D,A) & D != B)))))).  [assumption].
+4 (all A all B (aElementOf0(A,szNzAzT0) & aElementOf0(B,szNzAzT0) -> (sdtlseqdt0(A,B) & sdtlseqdt0(B,A) -> A = B))).  [assumption].
+5 (all A (aSubsetOf0(A,szNzAzT0) & A != slcrc0 -> (all B (B = szmzizndt0(A) <-> aElementOf0(B,A) & (all C (aElementOf0(C,A) -> sdtlseqdt0(B,C))))))).  [assumption].
+6 aSet0(szNzAzT0).  [assumption].
+7 aSubsetOf0(xS,szNzAzT0).  [assumption].
+8 aSubsetOf0(xT,szNzAzT0).  [assumption].
+9 aElementOf0(szmzizndt0(xS),xT).  [assumption].
+10 aElementOf0(szmzizndt0(xT),xS).  [assumption].
+11 xS != slcrc0.  [assumption].
+12 xT != slcrc0.  [assumption].
+13 szmzizndt0(xS) != szmzizndt0(xT).  [assumption].
+14 szmzizndt0(xT) != szmzizndt0(xS).  [copy(13),flip(a)].
+15 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) != C | -aElementOf0(D,C) | D != B.  [clausify(3)].
+16 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(1)].
+17 -aSet0(A) | -aSubsetOf0(B,A) | aSet0(B).  [clausify(2)].
+18 -aSet0(A) | -aSubsetOf0(B,A) | -aElementOf0(C,B) | aElementOf0(C,A).  [clausify(2)].
+19 -aElementOf0(A,szNzAzT0) | -aElementOf0(B,szNzAzT0) | -sdtlseqdt0(A,B) | -sdtlseqdt0(B,A) | B = A.  [clausify(4)].
+20 -aSubsetOf0(A,szNzAzT0) | slcrc0 = A | szmzizndt0(A) != B | -aElementOf0(C,A) | sdtlseqdt0(B,C).  [clausify(5)].
+21 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) = C | -aSet0(C) | aElementOf0(f4(A,B,C),C) | aElementOf0(f4(A,B,C),A).  [clausify(3)].
+22 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) = C | -aSet0(C) | -aElementOf0(f4(A,B,C),C) | -aElement0(f4(A,B,C)) | -aElementOf0(f4(A,B,C),A) | f4(A,B,C) = B.  [clausify(3)].
+23 szmzizndt0(xT) = c_0.  [new_symbol(14)].
+24 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) = A | aElementOf0(f4(A,B,A),A) | aElementOf0(f4(A,B,A),A).  [factor(21,a,d)].
+25 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) = A | aElementOf0(f4(A,B,A),A).  [copy(24),merge(e)].
+26 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) = A | -aElementOf0(f4(A,B,A),A) | -aElement0(f4(A,B,A)) | -aElementOf0(f4(A,B,A),A) | f4(A,B,A) = B.  [factor(22,a,d)].
+27 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) = A | -aElementOf0(f4(A,B,A),A) | -aElement0(f4(A,B,A)) | f4(A,B,A) = B.  [copy(26),merge(f)].
+28 c_0 != szmzizndt0(xS).  [para(23(a,1),14(a,1))].
+29 szmzizndt0(xS) != c_0.  [copy(28),flip(a)].
+30 aElementOf0(c_0,xS).  [para(23(a,1),10(a,1))].
+31 -aSet0(szNzAzT0) | aSet0(xS).  [resolve(17,b,7,a)].
+32 aSet0(xS).  [resolve(6,a,31,a)].
+33 -aSet0(szNzAzT0) | -aElementOf0(A,xT) | aElementOf0(A,szNzAzT0).  [resolve(18,b,8,a)].
+34 -aElementOf0(A,xT) | aElementOf0(A,szNzAzT0).  [resolve(6,a,33,a)].
+35 -aSet0(szNzAzT0) | -aElementOf0(A,xS) | aElementOf0(A,szNzAzT0).  [resolve(18,b,7,a)].
+36 -aElementOf0(A,xS) | aElementOf0(A,szNzAzT0).  [resolve(6,a,35,a)].
+37 slcrc0 = xT | szmzizndt0(xT) != A | -aElementOf0(B,xT) | sdtlseqdt0(A,B).  [resolve(20,a,8,a)].
+38 slcrc0 = xT | c_0 != A | -aElementOf0(B,xT) | sdtlseqdt0(A,B).  [para(23(a,1),37(b,1))].
+39 xT = slcrc0 | c_0 != A | -aElementOf0(B,xT) | sdtlseqdt0(A,B).  [copy(38),flip(a)].
+40 c_0 != A | -aElementOf0(B,xT) | sdtlseqdt0(A,B).  [resolve(12,a,39,a)].
+41 slcrc0 = xS | szmzizndt0(xS) != A | -aElementOf0(B,xS) | sdtlseqdt0(A,B).  [resolve(20,a,7,a)].
+42 xS = slcrc0 | szmzizndt0(xS) != A | -aElementOf0(B,xS) | sdtlseqdt0(A,B).  [copy(41),flip(a)].
+43 szmzizndt0(xS) != A | -aElementOf0(B,xS) | sdtlseqdt0(A,B).  [resolve(11,a,42,a)].
+44 -aSet0(xS) | aElement0(c_0).  [resolve(30,a,16,b)].
+45 aElement0(c_0).  [resolve(32,a,44,a)].
+46 -aSet0(A) | sdtmndt0(A,c_0) = A | aElementOf0(f4(A,c_0,A),A).  [resolve(45,a,25,b)].
+47 aElementOf0(szmzizndt0(xS),szNzAzT0).  [resolve(34,a,9,a)].
+48 aElementOf0(c_0,szNzAzT0).  [resolve(36,a,30,a)].
+49 -aElement0(A) | sdtmndt0(szNzAzT0,A) != B | -aElementOf0(C,B) | C != A.  [resolve(15,a,6,a)].
+50 sdtmndt0(szNzAzT0,c_0) != A | -aElementOf0(B,A) | B != c_0.  [resolve(49,a,45,a)].
+51 sdtmndt0(szNzAzT0,c_0) != szNzAzT0 | c_0 != c_0.  [resolve(50,b,48,a)].
+52 sdtmndt0(szNzAzT0,c_0) != szNzAzT0.  [xx_res(51,b)].
+53 c_0 != A | sdtlseqdt0(A,szmzizndt0(xS)).  [resolve(40,b,9,a)].
+54 szmzizndt0(xS) != A | sdtlseqdt0(A,c_0).  [resolve(43,b,30,a)].
+55 sdtmndt0(szNzAzT0,c_0) = szNzAzT0 | aElementOf0(f4(szNzAzT0,c_0,szNzAzT0),szNzAzT0).  [resolve(46,a,6,a)].
+56 aElementOf0(f4(szNzAzT0,c_0,szNzAzT0),szNzAzT0).  [resolve(52,a,55,a)].
+57 -aSet0(szNzAzT0) | -aElement0(c_0) | sdtmndt0(szNzAzT0,c_0) = szNzAzT0 | -aElement0(f4(szNzAzT0,c_0,szNzAzT0)) | f4(szNzAzT0,c_0,szNzAzT0) = c_0.  [resolve(56,a,27,d)].
+58 -aElement0(c_0) | sdtmndt0(szNzAzT0,c_0) = szNzAzT0 | -aElement0(f4(szNzAzT0,c_0,szNzAzT0)) | f4(szNzAzT0,c_0,szNzAzT0) = c_0.  [resolve(6,a,57,a)].
+59 sdtmndt0(szNzAzT0,c_0) = szNzAzT0 | -aElement0(f4(szNzAzT0,c_0,szNzAzT0)) | f4(szNzAzT0,c_0,szNzAzT0) = c_0.  [resolve(45,a,58,a)].
+60 -aElement0(f4(szNzAzT0,c_0,szNzAzT0)) | f4(szNzAzT0,c_0,szNzAzT0) = c_0.  [resolve(52,a,59,a)].
+61 -aSet0(szNzAzT0) | aElement0(f4(szNzAzT0,c_0,szNzAzT0)).  [resolve(56,a,16,b)].
+62 aElement0(f4(szNzAzT0,c_0,szNzAzT0)).  [resolve(6,a,61,a)].
+63 f4(szNzAzT0,c_0,szNzAzT0) = c_0.  [resolve(62,a,60,a)].
+64 sdtlseqdt0(f4(szNzAzT0,c_0,szNzAzT0),szmzizndt0(xS)).  [resolve(53,a,63,a(flip))].
+65 sdtlseqdt0(c_0,szmzizndt0(xS)).  [para(63(a,1),64(a,1))].
+66 -aElementOf0(szmzizndt0(xS),szNzAzT0) | -aElementOf0(c_0,szNzAzT0) | -sdtlseqdt0(szmzizndt0(xS),c_0) | c_0 = szmzizndt0(xS).  [resolve(65,a,19,d)].
+67 -aElementOf0(szmzizndt0(xS),szNzAzT0) | -aElementOf0(c_0,szNzAzT0) | -sdtlseqdt0(szmzizndt0(xS),c_0) | szmzizndt0(xS) = c_0.  [copy(66),flip(d)].
+68 -aElementOf0(c_0,szNzAzT0) | -sdtlseqdt0(szmzizndt0(xS),c_0) | szmzizndt0(xS) = c_0.  [resolve(47,a,67,a)].
+69 -sdtlseqdt0(szmzizndt0(xS),c_0) | szmzizndt0(xS) = c_0.  [resolve(48,a,68,a)].
+70 -sdtlseqdt0(szmzizndt0(xS),c_0).  [resolve(29,a,69,b)].
+71 sdtlseqdt0(szmzizndt0(xS),c_0).  [xx_res(54,a)].
+72 $F.  [resolve(70,a,71,a)].
+
+============================== end of proof ==========================

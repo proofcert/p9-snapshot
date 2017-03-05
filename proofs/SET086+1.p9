@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n060.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:14:15 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 55384 was started by sandbox on n060.star.cs.uiowa.edu,
+Fri Jun  6 02:14:15 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_55352_n060.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 107.
+
+
+1 (all A singleton(A) = unordered_pair(A,A)).  [assumption].
+2 -(all A exists B (member(B,universal_class) & A = singleton(B) | -(exists C (member(C,universal_class) & A = singleton(C))) & B = A)).  [assumption].
+3 singleton(A) = unordered_pair(A,A).  [clausify(1)].
+4 -member(A,universal_class) | singleton(A) != c3.  [clausify(2)].
+5 -member(A,universal_class) | unordered_pair(A,A) != c3.  [para(3(a,1),4(b,1))].
+6 member(f6(A),universal_class) | A != c3.  [clausify(2)].
+7 member(f6(A),universal_class) | c3 != A.  [copy(6),flip(b)].
+8 singleton(f6(A)) = c3 | A != c3.  [clausify(2)].
+9 unordered_pair(f6(A),f6(A)) = c3 | A != c3.  [para(3(a,1),8(a,1))].
+10 unordered_pair(f6(A),f6(A)) = c3 | c3 != A.  [copy(9),flip(b)].
+11 member(f6(c3),universal_class).  [xx_res(7,b)].
+12 unordered_pair(f6(c3),f6(c3)) = c3.  [xx_res(10,b)].
+13 unordered_pair(f6(c3),f6(c3)) != c3.  [resolve(11,a,5,a)].
+14 c3 != c3.  [para(12(a,1),13(a,1))].
+15 $F.  [copy(14),xx(a)].
+
+============================== end of proof ==========================

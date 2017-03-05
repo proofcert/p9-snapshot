@@ -1,0 +1,20 @@
+
+
+
+
+5 ilf_type(A,set_type).  [clausify(3)].
+6 subset(c1,c4).  [clausify(4)].
+7 ilf_type(c4,relation_type(c2,c3)).  [clausify(4)].
+8 -ilf_type(c1,relation_type(c2,c3)).  [clausify(4)].
+9 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -subset(A,cross_product(B,C)) | ilf_type(A,relation_type(B,C)).  [clausify(2)].
+10 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -subset(C,cross_product(A,B)) | ilf_type(C,relation_type(A,B)).  [resolve(5,a,9,a)].
+11 -ilf_type(A,set_type) | -subset(B,cross_product(C,A)) | ilf_type(B,relation_type(C,A)).  [resolve(5,a,10,a)].
+12 -subset(A,cross_product(B,C)) | ilf_type(A,relation_type(B,C)).  [resolve(5,a,11,a)].
+13 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,set_type) | -ilf_type(D,relation_type(B,C)) | -subset(A,D) | subset(A,cross_product(B,C)).  [clausify(1)].
+14 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | -subset(D,C) | subset(D,cross_product(A,B)).  [resolve(5,a,13,a)].
+15 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | -subset(D,B) | subset(D,cross_product(C,A)).  [resolve(5,a,14,a)].
+16 -ilf_type(A,relation_type(B,C)) | -subset(D,A) | subset(D,cross_product(B,C)).  [resolve(5,a,15,a)].
+17 -subset(c1,cross_product(c2,c3)).  [resolve(12,b,8,a)].
+18 -ilf_type(c4,relation_type(A,B)) | subset(c1,cross_product(A,B)).  [resolve(16,b,6,a)].
+19 -ilf_type(c4,relation_type(c2,c3)).  [resolve(18,b,17,a)].
+20 $F.  [resolve(7,a,19,a)].

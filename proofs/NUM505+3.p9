@@ -1,0 +1,88 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n101.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:57:03 CDT 2014
+% CPUTime    : 54.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 53031 was started by sandbox on n101.star.cs.uiowa.edu,
+Fri Jun  6 09:57:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_52999_n101.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 52.48 (+ 1.33) seconds.
+% Length of proof is 34.
+% Level of proof is 8.
+% Maximum clause weight is 14.000.
+% Given clauses 10397.
+
+
+1 (all A (aNaturalNumber0(A) -> sdtpldt0(A,sz00) = A & A = sdtpldt0(sz00,A))).  [assumption].
+2 (all A all B (aNaturalNumber0(A) & aNaturalNumber0(B) -> sdtlseqdt0(A,B) | B != A & sdtlseqdt0(B,A))).  [assumption].
+3 (exists A (aNaturalNumber0(A) & sdtpldt0(xn,A) = xp)).  [assumption].
+4 (exists A (aNaturalNumber0(A) & sdtpldt0(xm,A) = xp)).  [assumption].
+5 (exists A (aNaturalNumber0(A) & xk = sdtasdt0(xr,A))).  [assumption].
+6 (exists A (aNaturalNumber0(A) & sdtpldt0(xr,A) = xk)).  [assumption].
+7 -(-((exists A (aNaturalNumber0(A) & sdtpldt0(xp,A) = xk)) | sdtlseqdt0(xp,xk)) -> xk != xp & ((exists A (aNaturalNumber0(A) & sdtpldt0(xk,A) = xp)) | sdtlseqdt0(xk,xp))).  [assumption].
+8 aNaturalNumber0(sz00).  [assumption].
+9 -aNaturalNumber0(A) | sdtpldt0(A,sz00) = A.  [clausify(1)].
+10 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtlseqdt0(A,B) | sdtlseqdt0(B,A).  [clausify(2)].
+11 aNaturalNumber0(xp).  [assumption].
+12 sdtpldt0(xn,c2) = xp.  [clausify(3)].
+13 xp = sdtpldt0(xn,c2).  [copy(12),flip(a)].
+14 sdtpldt0(xm,c3) = xp.  [clausify(4)].
+15 sdtpldt0(xm,c3) = sdtpldt0(xn,c2).  [para(13(a,1),14(a,2))].
+16 sdtpldt0(xn,c2) = sdtpldt0(xm,c3).  [copy(15),flip(a)].
+17 aNaturalNumber0(xk).  [assumption].
+18 sdtasdt0(xr,c4) = xk.  [clausify(5)].
+19 xk = sdtasdt0(xr,c4).  [copy(18),flip(a)].
+20 sdtpldt0(xr,c5) = xk.  [clausify(6)].
+21 sdtpldt0(xr,c5) = sdtasdt0(xr,c4).  [para(19(a,1),20(a,2))].
+22 sdtasdt0(xr,c4) = sdtpldt0(xr,c5).  [copy(21),flip(a)].
+23 -aNaturalNumber0(A) | sdtpldt0(xp,A) != xk.  [clausify(7)].
+24 -aNaturalNumber0(A) | sdtpldt0(sdtpldt0(xn,c2),A) != xk.  [para(13(a,1),23(b,1,1))].
+25 -aNaturalNumber0(A) | sdtpldt0(sdtpldt0(xm,c3),A) != xk.  [para(16(a,1),24(b,1,1))].
+26 -aNaturalNumber0(A) | sdtpldt0(sdtpldt0(xm,c3),A) != sdtasdt0(xr,c4).  [para(19(a,1),25(b,2))].
+27 -aNaturalNumber0(A) | sdtpldt0(sdtpldt0(xm,c3),A) != sdtpldt0(xr,c5).  [para(22(a,1),26(b,2))].
+28 -sdtlseqdt0(xp,xk).  [clausify(7)].
+29 -sdtlseqdt0(sdtpldt0(xn,c2),xk).  [para(13(a,1),28(a,1))].
+30 -sdtlseqdt0(sdtpldt0(xm,c3),xk).  [para(16(a,1),29(a,1))].
+31 -sdtlseqdt0(sdtpldt0(xm,c3),sdtasdt0(xr,c4)).  [para(19(a,1),30(a,2))].
+32 -sdtlseqdt0(sdtpldt0(xm,c3),sdtpldt0(xr,c5)).  [para(22(a,1),31(a,2))].
+33 xk = xp | -sdtlseqdt0(xk,xp).  [clausify(7)].
+34 sdtasdt0(xr,c4) = xp | -sdtlseqdt0(xk,xp).  [para(19(a,1),33(a,1))].
+35 sdtpldt0(xr,c5) = xp | -sdtlseqdt0(xk,xp).  [para(22(a,1),34(a,1))].
+36 sdtpldt0(xr,c5) = sdtpldt0(xn,c2) | -sdtlseqdt0(xk,xp).  [para(13(a,1),35(a,2))].
+37 sdtpldt0(xr,c5) = sdtpldt0(xm,c3) | -sdtlseqdt0(xk,xp).  [para(16(a,1),36(a,2))].
+38 sdtpldt0(xr,c5) = sdtpldt0(xm,c3) | -sdtlseqdt0(sdtasdt0(xr,c4),xp).  [para(19(a,1),37(b,1))].
+39 sdtpldt0(xr,c5) = sdtpldt0(xm,c3) | -sdtlseqdt0(sdtpldt0(xr,c5),xp).  [para(22(a,1),38(b,1))].
+40 sdtpldt0(xr,c5) = sdtpldt0(xm,c3) | -sdtlseqdt0(sdtpldt0(xr,c5),sdtpldt0(xn,c2)).  [para(13(a,1),39(b,2))].
+41 sdtpldt0(xr,c5) = sdtpldt0(xm,c3) | -sdtlseqdt0(sdtpldt0(xr,c5),sdtpldt0(xm,c3)).  [para(16(a,1),40(b,2))].
+42 aNaturalNumber0(sdtpldt0(xn,c2)).  [para(13(a,1),11(a,1))].
+43 aNaturalNumber0(sdtpldt0(xm,c3)).  [para(16(a,1),42(a,1))].
+44 aNaturalNumber0(sdtasdt0(xr,c4)).  [para(19(a,1),17(a,1))].
+45 aNaturalNumber0(sdtpldt0(xr,c5)).  [para(22(a,1),44(a,1))].
+46 sdtpldt0(sdtpldt0(xm,c3),sz00) != sdtpldt0(xr,c5).  [resolve(27,a,8,a)].
+47 -aNaturalNumber0(A) | sdtlseqdt0(A,sdtpldt0(xm,c3)) | sdtlseqdt0(sdtpldt0(xm,c3),A).  [resolve(43,a,10,b)].
+48 sdtpldt0(sdtpldt0(xm,c3),sz00) = sdtpldt0(xm,c3).  [resolve(43,a,9,a)].
+49 sdtpldt0(xm,c3) != sdtpldt0(xr,c5).  [para(48(a,1),46(a,1))].
+50 sdtpldt0(xr,c5) != sdtpldt0(xm,c3).  [copy(49),flip(a)].
+51 -sdtlseqdt0(sdtpldt0(xr,c5),sdtpldt0(xm,c3)).  [resolve(50,a,41,a)].
+52 sdtlseqdt0(sdtpldt0(xr,c5),sdtpldt0(xm,c3)) | sdtlseqdt0(sdtpldt0(xm,c3),sdtpldt0(xr,c5)).  [resolve(47,a,45,a)].
+53 sdtlseqdt0(sdtpldt0(xm,c3),sdtpldt0(xr,c5)).  [resolve(51,a,52,a)].
+54 $F.  [resolve(32,a,53,a)].
+
+============================== end of proof ==========================

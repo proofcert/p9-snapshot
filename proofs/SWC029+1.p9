@@ -1,0 +1,87 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n072.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:25:48 CDT 2014
+% CPUTime    : 18.59 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 63126 was started by sandbox on n072.star.cs.uiowa.edu,
+Thu Jun  5 15:25:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_63033_n072.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 18.24 (+ 0.14) seconds.
+% Length of proof is 39.
+% Level of proof is 10.
+% Maximum clause weight is 12.000.
+% Given clauses 3601.
+
+
+1 (all A (ssList(A) -> (all B (ssList(B) -> (neq(A,B) <-> A != B))))).  [assumption].
+2 (all A (ssList(A) -> (all B (ssItem(B) -> ssList(cons(B,A)))))).  [assumption].
+3 (all A (ssList(A) -> (all B (ssItem(B) -> nil != cons(B,A))))).  [assumption].
+4 (all A (ssList(A) -> (all B (ssList(B) -> (nil = app(A,B) <-> nil = B & nil = A))))).  [assumption].
+5 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | nil != C & nil = D | (all E (ssItem(E) -> (all F (ssList(F) -> app(cons(E,nil),F) != D | app(F,cons(E,nil)) != C)))) & neq(D,nil) | (nil != B | nil = A) & (nil != A | nil = B))))))))).  [assumption].
+6 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(1)].
+7 -ssList(A) | -ssItem(B) | ssList(cons(B,A)).  [clausify(2)].
+8 ssList(nil).  [assumption].
+9 -ssList(A) | -ssItem(B) | cons(B,A) != nil.  [clausify(3)].
+10 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = B.  [clausify(4)].
+11 ssList(c4).  [clausify(5)].
+12 c6 = c4.  [clausify(5)].
+13 c5 = c3.  [clausify(5)].
+14 nil = c5 | nil != c6.  [clausify(5)].
+15 nil = c3 | nil != c6.  [para(13(a,1),14(a,2))].
+16 nil = c3 | nil != c4.  [para(12(a,1),15(b,2))].
+17 c3 = nil | nil != c4.  [copy(16),flip(a)].
+18 c3 = nil | c4 != nil.  [copy(17),flip(b)].
+19 ssItem(c7) | -neq(c6,nil).  [clausify(5)].
+20 ssItem(c7) | -neq(c4,nil).  [para(12(a,1),19(b,1))].
+21 ssList(c8) | -neq(c6,nil).  [clausify(5)].
+22 ssList(c8) | -neq(c4,nil).  [para(12(a,1),21(b,1))].
+23 app(c8,cons(c7,nil)) = c5 | -neq(c6,nil).  [clausify(5)].
+24 app(c8,cons(c7,nil)) = c3 | -neq(c6,nil).  [para(13(a,1),23(a,2))].
+25 app(c8,cons(c7,nil)) = c3 | -neq(c4,nil).  [para(12(a,1),24(b,1))].
+26 nil = c4 | nil = c3.  [clausify(5)].
+27 c4 = nil | nil = c3.  [copy(26),flip(a)].
+28 c4 = nil | c3 = nil.  [copy(27),flip(b)].
+29 nil != c3 | nil != c4.  [clausify(5)].
+30 c3 != nil | nil != c4.  [copy(29),flip(a)].
+31 c3 != nil | c4 != nil.  [copy(30),flip(b)].
+32 -ssList(A) | neq(A,nil) | nil = A.  [resolve(8,a,6,b)].
+33 c3 = nil | c3 = nil.  [resolve(28,a,18,b)].
+34 c3 = nil.  [copy(33),merge(b)].
+35 nil != nil | c4 != nil.  [para(34(a,1),31(a,1))].
+36 c4 != nil.  [copy(35),xx(a)].
+37 app(c8,cons(c7,nil)) = nil | -neq(c4,nil).  [para(34(a,1),25(a,2))].
+38 neq(c4,nil) | nil = c4.  [resolve(32,a,11,a)].
+39 neq(c4,nil) | c4 = nil.  [copy(38),flip(b)].
+40 neq(c4,nil).  [resolve(36,a,39,b)].
+41 app(c8,cons(c7,nil)) = nil.  [resolve(40,a,37,b)].
+42 ssList(c8).  [resolve(40,a,22,b)].
+43 ssItem(c7).  [resolve(40,a,20,b)].
+44 -ssList(A) | cons(c7,A) != nil.  [resolve(43,a,9,b)].
+45 -ssList(A) | ssList(cons(c7,A)).  [resolve(43,a,7,b)].
+46 cons(c7,nil) != nil.  [resolve(44,a,8,a)].
+47 ssList(cons(c7,nil)).  [resolve(45,a,8,a)].
+48 -ssList(A) | app(A,cons(c7,nil)) != nil | nil = cons(c7,nil).  [resolve(47,a,10,b)].
+49 -ssList(A) | app(A,cons(c7,nil)) != nil | cons(c7,nil) = nil.  [copy(48),flip(c)].
+50 -ssList(A) | app(A,cons(c7,nil)) != nil.  [resolve(46,a,49,c)].
+51 app(c8,cons(c7,nil)) != nil.  [resolve(50,a,42,a)].
+52 nil != nil.  [para(41(a,1),51(a,1))].
+53 $F.  [copy(52),xx(a)].
+
+============================== end of proof ==========================

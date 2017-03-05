@@ -1,0 +1,84 @@
+
+
+
+
+
+
+
+
+
+
+11 addition(A,A) = A.  [clausify(3)].
+12 multiplication(A,one) = A.  [clausify(4)].
+13 multiplication(one,A) = A.  [clausify(5)].
+14 addition(A,B) = addition(B,A).  [clausify(1)].
+15 leq(addition(one,multiplication(A,star(A))),star(A)).  [clausify(9)].
+16 leq(addition(one,multiplication(star(A),A)),star(A)).  [clausify(10)].
+17 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+18 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(14(a,1),17(a,1))].
+19 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(18),flip(a)].
+20 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(6)].
+21 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(20),flip(a)].
+22 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(7)].
+23 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(22),flip(a)].
+24 -leq(multiplication(a,a),star(a)).  [assumption].
+25 -leq(A,B) | addition(A,B) = B.  [clausify(8)].
+26 leq(A,B) | addition(A,B) != B.  [clausify(8)].
+27 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(19(a,1),11(a,1))].
+28 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(14(a,1),27(a,1,2,1))].
+29 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(14(a,1),28(a,1,2))].
+30 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(19(a,2),29(a,1,2))].
+31 addition(A,addition(A,B)) = addition(B,A).  [para(11(a,1),30(a,1,2,2))].
+32 addition(A,addition(A,B)) = addition(A,B).  [para(14(a,1),31(a,2))].
+33 addition(A,multiplication(A,B)) = multiplication(A,addition(one,B)).  [para(12(a,1),21(a,1,1))].
+34 addition(A,multiplication(A,B)) = multiplication(A,addition(B,one)).  [para(14(a,1),33(a,2,2))].
+35 multiplication(A,addition(B,one)) = addition(A,multiplication(A,B)).  [copy(34),flip(a)].
+36 addition(A,multiplication(B,A)) = multiplication(addition(one,B),A).  [para(13(a,1),23(a,1,1))].
+37 addition(A,multiplication(B,A)) = multiplication(addition(B,one),A).  [para(14(a,1),36(a,2,1))].
+38 multiplication(addition(A,one),B) = addition(B,multiplication(A,B)).  [copy(37),flip(a)].
+39 addition(addition(one,multiplication(star(A),A)),star(A)) = star(A).  [resolve(25,a,16,a)].
+40 addition(star(A),addition(one,multiplication(star(A),A))) = star(A).  [para(14(a,1),39(a,1))].
+41 addition(addition(one,multiplication(A,star(A))),star(A)) = star(A).  [resolve(25,a,15,a)].
+42 addition(star(A),addition(one,multiplication(A,star(A)))) = star(A).  [para(14(a,1),41(a,1))].
+43 addition(multiplication(a,a),star(a)) != star(a).  [resolve(26,a,24,a)].
+44 addition(star(a),multiplication(a,a)) != star(a).  [para(14(a,1),43(a,1))].
+45 leq(A,addition(A,B)).  [resolve(26,b,32,a)].
+46 leq(multiplication(A,B),multiplication(A,addition(B,C))).  [para(21(a,1),45(a,2))].
+47 multiplication(A,addition(A,one)) = multiplication(addition(A,one),A).  [para(38(a,2),35(a,2))].
+48 multiplication(addition(A,one),A) = multiplication(A,addition(A,one)).  [copy(47),flip(a)].
+49 star(A) = addition(multiplication(star(A),A),addition(star(A),one)).  [para(40(a,1),19(a,1))].
+50 star(A) = addition(one,addition(multiplication(star(A),A),star(A))).  [para(19(a,1),49(a,2))].
+51 star(A) = addition(one,addition(star(A),multiplication(star(A),A))).  [para(14(a,1),50(a,2,2))].
+52 addition(one,addition(star(A),multiplication(star(A),A))) = star(A).  [copy(51),flip(a)].
+53 star(A) = addition(multiplication(A,star(A)),addition(star(A),one)).  [para(42(a,1),19(a,1))].
+54 star(A) = addition(one,addition(multiplication(A,star(A)),star(A))).  [para(19(a,1),53(a,2))].
+55 star(A) = addition(one,addition(star(A),multiplication(A,star(A)))).  [para(14(a,1),54(a,2,2))].
+56 addition(one,addition(star(A),multiplication(A,star(A)))) = star(A).  [copy(55),flip(a)].
+57 addition(one,star(A)) = addition(one,addition(star(A),multiplication(star(A),A))).  [para(52(a,1),32(a,1,2))].
+58 addition(one,star(A)) = star(A).  [para(52(a,1),57(a,2))].
+59 leq(multiplication(A,one),multiplication(A,star(B))).  [para(52(a,1),46(a,2,2))].
+60 leq(A,multiplication(A,star(B))).  [para(12(a,1),59(a,1))].
+61 leq(addition(A,one),addition(star(B),multiplication(A,star(B)))).  [para(38(a,1),60(a,2))].
+62 star(A) = addition(multiplication(A,star(A)),addition(one,star(A))).  [para(56(a,1),19(a,1))].
+63 star(A) = addition(multiplication(A,star(A)),star(A)).  [para(58(a,1),62(a,2,2))].
+64 star(A) = addition(star(A),multiplication(A,star(A))).  [para(14(a,1),63(a,2))].
+65 addition(star(A),multiplication(A,star(A))) = star(A).  [copy(64),flip(a)].
+66 multiplication(addition(A,one),star(A)) = star(A).  [para(65(a,1),38(a,2))].
+67 leq(addition(A,one),star(A)).  [para(65(a,1),61(a,2))].
+68 addition(addition(A,one),star(A)) = star(A).  [resolve(25,a,67,a)].
+69 addition(star(A),addition(A,one)) = star(A).  [para(14(a,1),68(a,1))].
+70 addition(A,addition(one,star(A))) = star(A).  [para(19(a,2),69(a,1))].
+71 addition(A,star(A)) = star(A).  [para(58(a,1),70(a,1,2))].
+72 leq(multiplication(A,B),multiplication(A,star(B))).  [para(71(a,1),46(a,2,2))].
+73 leq(multiplication(A,addition(A,one)),multiplication(addition(A,one),star(A))).  [para(48(a,1),72(a,1))].
+74 leq(multiplication(A,addition(A,one)),star(A)).  [para(66(a,1),73(a,2))].
+75 leq(addition(A,multiplication(A,A)),star(A)).  [para(35(a,1),74(a,1))].
+76 addition(addition(A,multiplication(A,A)),star(A)) = star(A).  [resolve(25,a,75,a)].
+77 addition(star(A),addition(A,multiplication(A,A))) = star(A).  [para(14(a,1),76(a,1))].
+78 addition(A,addition(multiplication(A,A),star(A))) = star(A).  [para(19(a,2),77(a,1))].
+79 addition(A,addition(star(A),multiplication(A,A))) = star(A).  [para(14(a,1),78(a,1,2))].
+80 star(A) = addition(multiplication(A,A),addition(A,star(A))).  [para(79(a,1),19(a,1))].
+81 star(A) = addition(multiplication(A,A),star(A)).  [para(71(a,1),80(a,2,2))].
+82 star(A) = addition(star(A),multiplication(A,A)).  [para(14(a,1),81(a,2))].
+83 addition(star(A),multiplication(A,A)) = star(A).  [copy(82),flip(a)].
+84 $F.  [resolve(83,a,44,a)].

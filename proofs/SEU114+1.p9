@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n098.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:01:13 CDT 2014
+% CPUTime    : 1.00 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 34990 was started by sandbox on n098.star.cs.uiowa.edu,
+Thu Jun  5 17:01:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_34958_n098.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.85 (+ 0.01) seconds.
+% Length of proof is 34.
+% Level of proof is 9.
+% Maximum clause weight is 14.000.
+% Given clauses 2155.
+
+
+1 (all A (finite(A) -> (all B (element(B,powerset(A)) -> finite(B))))).  [assumption].
+2 (all A all B (A = B <-> subset(A,B) & subset(B,A))).  [assumption].
+3 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+4 (all A all B (preboolean(B) -> (B = finite_subsets(A) <-> (all C (in(C,B) <-> subset(C,A) & finite(C)))))).  [assumption].
+5 (all A preboolean(finite_subsets(A))).  [assumption].
+6 (all A all B (in(A,B) -> element(A,B))).  [assumption].
+7 (all A subset(finite_subsets(A),powerset(A))).  [assumption].
+8 (all A all B (element(A,powerset(B)) <-> subset(A,B))).  [assumption].
+9 -(all A (finite(A) -> finite_subsets(A) = powerset(A))).  [assumption].
+10 preboolean(finite_subsets(A)).  [clausify(5)].
+11 -preboolean(A) | finite_subsets(B) != A | in(C,A) | -subset(C,B) | -finite(C).  [clausify(4)].
+12 finite(c5).  [clausify(9)].
+13 subset(finite_subsets(A),powerset(A)).  [clausify(7)].
+14 subset(A,B) | in(f1(A,B),A).  [clausify(3)].
+15 finite_subsets(c5) != powerset(c5).  [clausify(9)].
+16 powerset(c5) != finite_subsets(c5).  [copy(15),flip(a)].
+17 -in(A,B) | element(A,B).  [clausify(6)].
+18 -element(A,powerset(B)) | subset(A,B).  [clausify(8)].
+19 -finite(A) | -element(B,powerset(A)) | finite(B).  [clausify(1)].
+20 subset(A,B) | -in(f1(A,B),B).  [clausify(3)].
+21 A = B | -subset(B,A) | -subset(A,B).  [clausify(2)].
+22 finite_subsets(A) != finite_subsets(B) | in(C,finite_subsets(B)) | -subset(C,A) | -finite(C).  [resolve(11,a,10,a)].
+23 powerset(c5) = c_0.  [new_symbol(16)].
+24 c_0 != finite_subsets(c5).  [para(23(a,1),16(a,1))].
+25 finite_subsets(c5) != c_0.  [copy(24),flip(a)].
+26 subset(finite_subsets(c5),c_0).  [para(23(a,1),13(a,2))].
+27 -element(A,c_0) | subset(A,c5).  [para(23(a,1),18(a,2))].
+28 -finite(c5) | -element(A,c_0) | finite(A).  [para(23(a,1),19(b,2))].
+29 -element(A,c_0) | finite(A).  [resolve(12,a,28,a)].
+30 finite_subsets(c5) = c_0 | -subset(c_0,finite_subsets(c5)).  [resolve(26,a,21,c)].
+31 -subset(c_0,finite_subsets(c5)).  [resolve(25,a,30,a)].
+32 in(f1(c_0,finite_subsets(c5)),c_0).  [resolve(31,a,14,a)].
+33 -in(f1(c_0,finite_subsets(c5)),finite_subsets(c5)).  [resolve(20,a,31,a)].
+34 element(f1(c_0,finite_subsets(c5)),c_0).  [resolve(32,a,17,a)].
+35 finite(f1(c_0,finite_subsets(c5))).  [resolve(34,a,29,a)].
+36 subset(f1(c_0,finite_subsets(c5)),c5).  [resolve(34,a,27,a)].
+37 finite_subsets(A) != finite_subsets(c5) | -subset(f1(c_0,finite_subsets(c5)),A) | -finite(f1(c_0,finite_subsets(c5))).  [resolve(22,b,33,a)].
+38 finite_subsets(c5) != finite_subsets(c5) | -finite(f1(c_0,finite_subsets(c5))).  [resolve(37,b,36,a)].
+39 finite_subsets(c5) != finite_subsets(c5).  [resolve(38,b,35,a)].
+40 $F.  [copy(39),xx(a)].
+
+============================== end of proof ==========================

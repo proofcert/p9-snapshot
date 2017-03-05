@@ -1,0 +1,47 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n104.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:23:58 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5312 was started by sandbox on n104.star.cs.uiowa.edu,
+Thu Jun  5 18:23:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5280_n104.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 9.
+% Level of proof is 4.
+% Maximum clause weight is 8.000.
+% Given clauses 17.
+
+
+1 (all A all B (set_difference(A,B) = empty_set <-> subset(A,B))).  [assumption].
+2 -(all A all B (set_difference(A,B) = empty_set <-> subset(A,B))).  [assumption].
+3 set_difference(c3,c4) = empty_set | subset(c3,c4).  [clausify(2)].
+4 set_difference(c3,c4) != empty_set | -subset(c3,c4).  [clausify(2)].
+5 set_difference(A,B) != empty_set | subset(A,B).  [clausify(1)].
+6 set_difference(A,B) = empty_set | -subset(A,B).  [clausify(1)].
+7 set_difference(c3,c4) = empty_set | set_difference(c3,c4) = empty_set.  [resolve(6,b,3,b)].
+8 set_difference(c3,c4) = empty_set.  [copy(7),merge(b)].
+9 empty_set != empty_set | -subset(c3,c4).  [para(8(a,1),4(a,1))].
+10 -subset(c3,c4).  [copy(9),xx(a)].
+11 set_difference(c3,c4) != empty_set.  [resolve(5,b,10,a)].
+12 empty_set != empty_set.  [para(8(a,1),11(a,1))].
+13 $F.  [copy(12),xx(a)].
+
+============================== end of proof ==========================

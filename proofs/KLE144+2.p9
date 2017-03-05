@@ -1,0 +1,152 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n110.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 23:52:18 CDT 2014
+% CPUTime    : 0.18 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 55155 was started by sandbox on n110.star.cs.uiowa.edu,
+Thu Jun  5 23:52:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_55123_n110.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.06 (+ 0.00) seconds: goals.
+% Length of proof is 72.
+% Level of proof is 17.
+% Maximum clause weight is 17.000.
+% Given clauses 156.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C addition(C,addition(B,A)) = addition(addition(C,B),A)).  [assumption].
+3 (all A addition(A,zero) = A).  [assumption].
+4 (all A addition(A,A) = A).  [assumption].
+5 (all A all B all C multiplication(A,multiplication(B,C)) = multiplication(multiplication(A,B),C)).  [assumption].
+6 (all A multiplication(A,one) = A).  [assumption].
+7 (all A multiplication(one,A) = A).  [assumption].
+8 (all A all B all C multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C))).  [assumption].
+9 (all A all B all C multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C))).  [assumption].
+10 (all A multiplication(zero,A) = zero).  [assumption].
+11 (all A addition(one,multiplication(A,star(A))) = star(A)).  [assumption].
+12 (all A all B all C (leq(addition(multiplication(A,C),B),C) -> leq(multiplication(star(A),B),C))).  [assumption].
+13 (all A all B all C (leq(C,addition(multiplication(A,C),B)) -> leq(C,multiplication(strong_iteration(A),B)))).  [assumption].
+14 (all A strong_iteration(A) = addition(star(A),multiplication(strong_iteration(A),zero))).  [assumption].
+15 (all A all B (leq(A,B) <-> addition(A,B) = B)).  [assumption].
+16 -(all A (leq(strong_iteration(star(A)),strong_iteration(one)) & leq(strong_iteration(one),strong_iteration(star(A))))).  [assumption].
+17 addition(A,zero) = A.  [clausify(3)].
+18 addition(A,A) = A.  [clausify(4)].
+19 multiplication(A,one) = A.  [clausify(6)].
+20 multiplication(one,A) = A.  [clausify(7)].
+21 multiplication(zero,A) = zero.  [clausify(10)].
+22 addition(A,B) = addition(B,A).  [clausify(1)].
+23 star(A) = addition(one,multiplication(A,star(A))).  [clausify(11)].
+24 addition(one,multiplication(A,star(A))) = star(A).  [copy(23),flip(a)].
+25 strong_iteration(A) = addition(star(A),multiplication(strong_iteration(A),zero)).  [clausify(14)].
+26 addition(star(A),multiplication(strong_iteration(A),zero)) = strong_iteration(A).  [copy(25),flip(a)].
+27 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+28 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(22(a,1),27(a,1))].
+29 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(28),flip(a)].
+30 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(5)].
+31 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(8)].
+32 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(31),flip(a)].
+33 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(9)].
+34 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(33),flip(a)].
+35 -leq(strong_iteration(star(c1)),strong_iteration(one)) | -leq(strong_iteration(one),strong_iteration(star(c1))).  [clausify(16)].
+36 -leq(A,B) | addition(A,B) = B.  [clausify(15)].
+37 leq(A,B) | addition(A,B) != B.  [clausify(15)].
+38 -leq(addition(multiplication(A,B),C),B) | leq(multiplication(star(A),C),B).  [clausify(12)].
+39 -leq(addition(A,multiplication(B,C)),C) | leq(multiplication(star(B),A),C).  [para(22(a,1),38(a,1))].
+40 -leq(A,addition(multiplication(B,A),C)) | leq(A,multiplication(strong_iteration(B),C)).  [clausify(13)].
+41 -leq(A,addition(B,multiplication(C,A))) | leq(A,multiplication(strong_iteration(C),B)).  [para(22(a,1),40(a,2))].
+42 addition(one,zero) = star(zero).  [para(21(a,1),24(a,1,2))].
+43 one = star(zero).  [para(17(a,1),42(a,1))].
+44 star(zero) = one.  [copy(43),flip(a)].
+45 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(29(a,1),18(a,1))].
+46 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(22(a,1),45(a,1,2,1))].
+47 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(22(a,1),46(a,1,2))].
+48 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(29(a,2),47(a,1,2))].
+49 addition(A,addition(A,B)) = addition(B,A).  [para(18(a,1),48(a,1,2,2))].
+50 addition(A,addition(A,B)) = addition(A,B).  [para(22(a,1),49(a,2))].
+51 addition(one,multiplication(A,multiplication(B,star(multiplication(A,B))))) = star(multiplication(A,B)).  [para(30(a,1),24(a,1,2))].
+52 addition(A,multiplication(A,B)) = multiplication(A,addition(one,B)).  [para(19(a,1),32(a,1,1))].
+53 addition(A,multiplication(A,B)) = multiplication(A,addition(B,one)).  [para(22(a,1),52(a,2,2))].
+54 multiplication(A,addition(B,one)) = addition(A,multiplication(A,B)).  [copy(53),flip(a)].
+55 addition(A,multiplication(B,A)) = multiplication(addition(one,B),A).  [para(20(a,1),34(a,1,1))].
+56 addition(A,multiplication(B,A)) = multiplication(addition(B,one),A).  [para(22(a,1),55(a,2,1))].
+57 multiplication(addition(A,one),B) = addition(B,multiplication(A,B)).  [copy(56),flip(a)].
+58 addition(multiplication(one,A),multiplication(multiplication(B,star(B)),A)) = multiplication(star(B),A).  [para(24(a,1),34(a,2,1))].
+59 addition(A,multiplication(multiplication(B,star(B)),A)) = multiplication(star(B),A).  [para(20(a,1),58(a,1,1))].
+60 addition(A,multiplication(B,multiplication(star(B),A))) = multiplication(star(B),A).  [para(30(a,1),59(a,1,2))].
+61 addition(multiplication(A,multiplication(B,C)),multiplication(D,C)) = multiplication(addition(multiplication(A,B),D),C).  [para(30(a,1),34(a,1,1))].
+62 addition(multiplication(A,multiplication(B,C)),multiplication(D,C)) = multiplication(addition(D,multiplication(A,B)),C).  [para(22(a,1),61(a,2,1))].
+63 leq(A,A).  [resolve(37,b,18,a)].
+64 -leq(addition(A,B),B) | leq(multiplication(star(one),A),B).  [para(20(a,1),39(a,1,2))].
+65 -leq(A,addition(B,A)) | leq(A,multiplication(strong_iteration(one),B)).  [para(20(a,1),41(a,2,2))].
+66 -leq(A,addition(A,B)) | leq(A,multiplication(strong_iteration(one),B)).  [para(22(a,1),65(a,2))].
+67 leq(A,addition(A,B)).  [resolve(37,b,50,a)].
+68 addition(one,star(A)) = addition(one,multiplication(A,star(A))).  [para(24(a,1),50(a,1,2))].
+69 addition(one,star(A)) = star(A).  [para(24(a,1),68(a,2))].
+70 leq(A,multiplication(strong_iteration(one),B)).  [resolve(67,a,66,a)].
+71 leq(multiplication(A,B),multiplication(A,addition(B,C))).  [para(32(a,1),67(a,2))].
+72 addition(A,multiplication(strong_iteration(one),B)) = multiplication(strong_iteration(one),B).  [resolve(36,a,70,a)].
+73 leq(A,strong_iteration(one)).  [para(19(a,1),70(a,2))].
+74 -leq(strong_iteration(one),strong_iteration(star(c1))).  [resolve(73,a,35,a)].
+75 addition(A,strong_iteration(one)) = strong_iteration(one).  [resolve(36,a,73,a)].
+76 leq(multiplication(A,B),addition(A,multiplication(A,B))).  [para(54(a,1),71(a,2))].
+77 leq(multiplication(one,multiplication(A,star(multiplication(one,A)))),star(multiplication(one,A))).  [para(51(a,1),76(a,2))].
+78 leq(multiplication(one,multiplication(A,star(A))),star(multiplication(one,A))).  [para(20(a,1),77(a,1,2,2,1))].
+79 leq(multiplication(A,star(A)),star(multiplication(one,A))).  [para(20(a,1),78(a,1))].
+80 leq(multiplication(A,star(A)),star(A)).  [para(20(a,1),79(a,2,1))].
+81 addition(multiplication(A,star(A)),star(A)) = star(A).  [resolve(36,a,80,a)].
+82 addition(star(A),multiplication(A,star(A))) = star(A).  [para(22(a,1),81(a,1))].
+83 multiplication(addition(A,one),star(A)) = star(A).  [para(57(a,2),82(a,1))].
+84 multiplication(addition(A,one),addition(star(A),one)) = addition(addition(A,one),star(A)).  [para(83(a,1),54(a,2,2))].
+85 multiplication(addition(A,one),addition(one,star(A))) = addition(addition(A,one),star(A)).  [para(22(a,1),84(a,1,2))].
+86 multiplication(addition(A,one),star(A)) = addition(addition(A,one),star(A)).  [para(69(a,1),85(a,1,2))].
+87 star(A) = addition(addition(A,one),star(A)).  [para(83(a,1),86(a,1))].
+88 star(A) = addition(star(A),addition(A,one)).  [para(22(a,1),87(a,2))].
+89 star(A) = addition(one,addition(star(A),A)).  [para(29(a,1),88(a,2))].
+90 star(A) = addition(one,addition(A,star(A))).  [para(22(a,1),89(a,2,2))].
+91 star(A) = addition(A,addition(star(A),one)).  [para(29(a,2),90(a,2))].
+92 star(A) = addition(A,addition(one,star(A))).  [para(22(a,1),91(a,2,2))].
+93 star(A) = addition(A,star(A)).  [para(69(a,1),92(a,2,2))].
+94 addition(A,star(A)) = star(A).  [copy(93),flip(a)].
+95 -leq(star(A),star(A)) | leq(multiplication(star(one),one),star(A)).  [para(69(a,1),64(a,1))].
+96 -leq(star(A),star(A)) | leq(star(one),star(A)).  [para(19(a,1),95(b,1))].
+97 leq(star(one),star(A)).  [resolve(63,a,96,a)].
+98 leq(star(one),one).  [para(44(a,1),97(a,2))].
+99 addition(star(one),one) = one.  [resolve(36,a,98,a)].
+100 addition(one,star(one)) = one.  [para(22(a,1),99(a,1))].
+101 star(one) = one.  [para(94(a,1),100(a,1))].
+102 addition(one,multiplication(strong_iteration(one),zero)) = strong_iteration(one).  [para(101(a,1),26(a,1,1))].
+103 multiplication(strong_iteration(one),zero) = strong_iteration(one).  [para(72(a,1),102(a,1))].
+104 multiplication(strong_iteration(one),A) = multiplication(strong_iteration(one),multiplication(zero,A)).  [para(103(a,1),30(a,1,1))].
+105 multiplication(strong_iteration(one),A) = multiplication(strong_iteration(one),zero).  [para(21(a,1),104(a,2,2))].
+106 multiplication(strong_iteration(one),A) = strong_iteration(one).  [para(103(a,1),105(a,2))].
+107 addition(multiplication(strong_iteration(one),multiplication(zero,A)),multiplication(B,A)) = multiplication(addition(B,strong_iteration(one)),A).  [para(103(a,1),62(a,2,1,2))].
+108 addition(multiplication(strong_iteration(one),zero),multiplication(B,A)) = multiplication(addition(B,strong_iteration(one)),A).  [para(21(a,1),107(a,1,1,2))].
+109 addition(strong_iteration(one),multiplication(B,A)) = multiplication(addition(B,strong_iteration(one)),A).  [para(106(a,1),108(a,1,1))].
+110 addition(strong_iteration(one),multiplication(B,A)) = multiplication(strong_iteration(one),A).  [para(75(a,1),109(a,2,1))].
+111 addition(strong_iteration(one),multiplication(A,B)) = strong_iteration(one).  [para(106(a,1),110(a,2))].
+112 strong_iteration(one) = multiplication(star(A),strong_iteration(one)).  [para(111(a,1),60(a,1))].
+113 multiplication(star(A),strong_iteration(one)) = strong_iteration(one).  [copy(112),flip(a)].
+114 -leq(strong_iteration(one),addition(A,strong_iteration(one))) | leq(strong_iteration(one),multiplication(strong_iteration(star(B)),A)).  [para(113(a,1),41(a,2,2))].
+115 -leq(strong_iteration(one),strong_iteration(one)) | leq(strong_iteration(one),multiplication(strong_iteration(star(B)),A)).  [para(75(a,1),114(a,2))].
+116 leq(strong_iteration(one),multiplication(strong_iteration(star(A)),B)).  [resolve(63,a,115,a)].
+117 leq(strong_iteration(one),strong_iteration(star(A))).  [para(19(a,1),116(a,2))].
+118 $F.  [resolve(117,a,74,a)].
+
+============================== end of proof ==========================

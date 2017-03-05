@@ -1,0 +1,20 @@
+
+
+
+
+5 -and_1 | is_a_theorem(implies(and(A,B),A)).  [clausify(1)].
+6 and_1.  [assumption].
+7 -necessitation | -is_a_theorem(A) | is_a_theorem(necessarily(A)).  [clausify(2)].
+8 axiom_m2 | -is_a_theorem(strict_implies(and(c79,c80),c79)).  [clausify(3)].
+9 -op_strict_implies | strict_implies(A,B) = necessarily(implies(A,B)).  [clausify(4)].
+10 -op_strict_implies | necessarily(implies(A,B)) = strict_implies(A,B).  [copy(9),flip(b)].
+11 necessitation.  [assumption].
+12 op_strict_implies.  [assumption].
+13 -axiom_m2.  [assumption].
+14 is_a_theorem(implies(and(A,B),A)).  [resolve(6,a,5,a)].
+15 -is_a_theorem(A) | is_a_theorem(necessarily(A)).  [resolve(11,a,7,a)].
+16 necessarily(implies(A,B)) = strict_implies(A,B).  [resolve(12,a,10,a)].
+17 -is_a_theorem(strict_implies(and(c79,c80),c79)).  [resolve(13,a,8,a)].
+18 is_a_theorem(necessarily(implies(and(A,B),A))).  [resolve(15,a,14,a)].
+19 is_a_theorem(strict_implies(and(A,B),A)).  [para(16(a,1),18(a,1))].
+20 $F.  [resolve(19,a,17,a)].

@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n090.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 04:12:38 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 49640 was started by sandbox on n090.star.cs.uiowa.edu,
+Fri Jun  6 04:12:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_49608_n090.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 3.
+% Maximum clause weight is 18.000.
+% Given clauses 22.
+
+
+1 (all A -distinct_points(A,A)).  [assumption].
+2 (all A all B all C (distinct_points(A,B) -> (apart_point_and_line(C,line_connecting(A,B)) -> distinct_points(C,A) & distinct_points(C,B)))).  [assumption].
+3 (all A all B all C all D (distinct_points(A,B) & distinct_lines(C,D) -> apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D))).  [assumption].
+4 -(all A all B all C all D (distinct_points(A,B) & convergent_lines(C,D) & distinct_lines(C,line_connecting(A,B)) -> apart_point_and_line(A,C) | apart_point_and_line(B,C))).  [assumption].
+5 distinct_points(c1,c2).  [clausify(4)].
+6 distinct_lines(c3,line_connecting(c1,c2)).  [clausify(4)].
+7 -distinct_points(A,A).  [clausify(1)].
+8 -apart_point_and_line(c1,c3).  [clausify(4)].
+9 -apart_point_and_line(c2,c3).  [clausify(4)].
+10 -distinct_points(A,B) | -apart_point_and_line(C,line_connecting(A,B)) | distinct_points(C,A).  [clausify(2)].
+11 -distinct_points(A,B) | -apart_point_and_line(C,line_connecting(A,B)) | distinct_points(C,B).  [clausify(2)].
+12 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(3)].
+13 -apart_point_and_line(A,line_connecting(c1,c2)) | distinct_points(A,c1).  [resolve(10,a,5,a)].
+14 -apart_point_and_line(c1,line_connecting(c1,c2)).  [resolve(13,b,7,a)].
+15 -apart_point_and_line(A,line_connecting(c1,c2)) | distinct_points(A,c2).  [resolve(11,a,5,a)].
+16 -apart_point_and_line(c2,line_connecting(c1,c2)).  [resolve(15,b,7,a)].
+17 -distinct_points(A,B) | apart_point_and_line(A,c3) | apart_point_and_line(A,line_connecting(c1,c2)) | apart_point_and_line(B,c3) | apart_point_and_line(B,line_connecting(c1,c2)).  [resolve(12,b,6,a)].
+18 -distinct_points(c1,A) | apart_point_and_line(c1,line_connecting(c1,c2)) | apart_point_and_line(A,c3) | apart_point_and_line(A,line_connecting(c1,c2)).  [resolve(17,b,8,a)].
+19 -distinct_points(c1,A) | apart_point_and_line(A,c3) | apart_point_and_line(A,line_connecting(c1,c2)).  [resolve(18,b,14,a)].
+20 -distinct_points(c1,c2) | apart_point_and_line(c2,line_connecting(c1,c2)).  [resolve(19,b,9,a)].
+21 -distinct_points(c1,c2).  [resolve(20,b,16,a)].
+22 $F.  [resolve(5,a,21,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,33 @@
+
+
+
+
+
+
+
+
+
+10 singleton(A) != empty_set.  [clausify(1)].
+11 subset(singleton(A),B) | -in(A,B).  [clausify(2)].
+12 -subset(A,B) | set_intersection2(A,B) = A.  [clausify(3)].
+13 set_intersection2(A,empty_set) = empty_set.  [clausify(4)].
+14 set_difference(A,empty_set) = A.  [clausify(5)].
+15 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(6)].
+16 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(15),flip(a)].
+17 singleton(A) = unordered_pair(A,A).  [clausify(7)].
+18 -disjoint(A,B) | set_difference(A,B) = A.  [clausify(8)].
+19 disjoint(singleton(c3),c4).  [clausify(9)].
+20 disjoint(unordered_pair(c3,c3),c4).  [para(17(a,1),19(a,1))].
+21 in(c3,c4).  [clausify(9)].
+22 set_difference(A,set_difference(A,empty_set)) = empty_set.  [para(16(a,1),13(a,1))].
+23 set_difference(A,A) = empty_set.  [para(14(a,1),22(a,1,2))].
+24 -subset(A,B) | set_difference(A,set_difference(A,B)) = A.  [para(16(a,1),12(b,1))].
+25 subset(unordered_pair(A,A),B) | -in(A,B).  [para(17(a,1),11(a,1))].
+26 unordered_pair(A,A) != empty_set.  [para(17(a,1),10(a,1))].
+27 set_difference(unordered_pair(c3,c3),c4) = unordered_pair(c3,c3).  [resolve(20,a,18,a)].
+28 subset(unordered_pair(c3,c3),c4).  [resolve(25,b,21,a)].
+29 set_difference(unordered_pair(c3,c3),set_difference(unordered_pair(c3,c3),c4)) = unordered_pair(c3,c3).  [resolve(28,a,24,a)].
+30 set_difference(unordered_pair(c3,c3),unordered_pair(c3,c3)) = unordered_pair(c3,c3).  [para(27(a,1),29(a,1,2))].
+31 empty_set = unordered_pair(c3,c3).  [para(23(a,1),30(a,1))].
+32 unordered_pair(c3,c3) = empty_set.  [copy(31),flip(a)].
+33 $F.  [resolve(26,a,32,a)].

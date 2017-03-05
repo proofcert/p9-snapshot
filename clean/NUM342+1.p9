@@ -1,0 +1,29 @@
+
+
+
+
+5 rdn_translate(n0,rdn_pos(rdnn(n0))).  [assumption].
+6 rdn_translate(n4,rdn_pos(rdnn(n4))).  [assumption].
+7 rdn_translate(n8,rdn_pos(rdnn(n8))).  [assumption].
+8 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_add_with_carry(rdnn(n0),B,D,E) | -rdn_translate(F,rdn_pos(E)) | sum(A,C,F).  [clausify(1)].
+9 -sum(A,B,C) | difference(C,A,B).  [clausify(2)].
+10 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(C),rdnn(n0)) | -rdn_digit_add(rdnn(C),rdnn(D),rdnn(E),rdnn(n0)) | rdn_add_with_carry(rdnn(D),rdnn(A),rdnn(B),rdnn(E)).  [clausify(3)].
+11 rdn_digit_add(rdnn(n4),rdnn(n0),rdnn(n4),rdnn(n0)).  [assumption].
+12 rdn_digit_add(rdnn(n4),rdnn(n4),rdnn(n8),rdnn(n0)).  [assumption].
+13 rdn_digit_add(rdnn(n8),rdnn(n0),rdnn(n8),rdnn(n0)).  [assumption].
+14 -sum(A,B,n8) | -difference(A,B,n0).  [clausify(4)].
+15 -rdn_translate(A,rdn_pos(B)) | -rdn_add_with_carry(rdnn(n0),B,B,C) | -rdn_translate(D,rdn_pos(C)) | sum(A,A,D).  [factor(8,a,b)].
+16 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_add_with_carry(rdnn(n0),B,D,B) | sum(A,C,A).  [factor(8,a,d)].
+17 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(A),rdnn(n0)) | rdn_add_with_carry(rdnn(B),rdnn(A),rdnn(B),rdnn(A)).  [factor(10,a,b)].
+18 -rdn_digit_add(rdnn(n8),rdnn(A),rdnn(B),rdnn(n0)) | rdn_add_with_carry(rdnn(A),rdnn(n4),rdnn(n4),rdnn(B)).  [resolve(12,a,10,a)].
+19 rdn_add_with_carry(rdnn(n0),rdnn(n4),rdnn(n0),rdnn(n4)).  [resolve(17,a,11,a)].
+20 rdn_add_with_carry(rdnn(n0),rdnn(n4),rdnn(n4),rdnn(n8)).  [resolve(18,a,13,a)].
+21 -rdn_translate(A,rdn_pos(rdnn(n4))) | -rdn_translate(B,rdn_pos(rdnn(n0))) | sum(A,B,A).  [resolve(19,a,16,c)].
+22 -rdn_translate(A,rdn_pos(rdnn(n4))) | -rdn_translate(B,rdn_pos(rdnn(n8))) | sum(A,A,B).  [resolve(20,a,15,b)].
+23 -rdn_translate(A,rdn_pos(rdnn(n0))) | sum(n4,A,n4).  [resolve(21,a,6,a)].
+24 sum(n4,n0,n4).  [resolve(23,a,5,a)].
+25 difference(n4,n4,n0).  [resolve(24,a,9,a)].
+26 -sum(n4,n4,n8).  [resolve(25,a,14,b)].
+27 -rdn_translate(A,rdn_pos(rdnn(n8))) | sum(n4,n4,A).  [resolve(22,a,6,a)].
+28 sum(n4,n4,n8).  [resolve(27,a,7,a)].
+29 $F.  [resolve(26,a,28,a)].

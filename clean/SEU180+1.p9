@@ -1,0 +1,91 @@
+
+
+
+
+
+
+
+
+
+
+11 empty(empty_set).  [assumption].
+12 relation(c6).  [clausify(10)].
+13 set_union2(A,A) = A.  [clausify(8)].
+14 in(ordered_pair(c4,c5),c6).  [clausify(10)].
+15 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+16 set_union2(A,B) = set_union2(B,A).  [clausify(2)].
+17 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(6)].
+18 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(15(a,1),17(a,2))].
+19 set_union2(A,B) = C | in(f1(A,B,C),C) | in(f1(A,B,C),A) | in(f1(A,B,C),B).  [clausify(3)].
+20 -in(A,B) | -empty(B).  [clausify(9)].
+21 -in(c4,relation_field(c6)) | -in(c5,relation_field(c6)).  [clausify(10)].
+22 -relation(A) | relation_field(A) = set_union2(relation_dom(A),relation_rng(A)).  [clausify(7)].
+23 -relation(A) | set_union2(relation_dom(A),relation_rng(A)) = relation_field(A).  [copy(22),flip(b)].
+24 set_union2(A,B) != C | in(D,C) | -in(D,A).  [clausify(3)].
+25 set_union2(A,B) != C | in(D,C) | -in(D,B).  [clausify(3)].
+26 set_union2(A,B) != C | -in(D,C) | in(D,A) | in(D,B).  [clausify(3)].
+27 -relation(A) | relation_dom(A) != B | in(C,B) | -in(ordered_pair(C,D),A).  [clausify(4)].
+28 -relation(A) | relation_dom(A) != B | in(C,B) | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A).  [para(18(a,1),27(d,1))].
+29 -relation(A) | relation_rng(A) != B | in(C,B) | -in(ordered_pair(D,C),A).  [clausify(5)].
+30 -relation(A) | relation_rng(A) != B | in(C,B) | -in(unordered_pair(singleton(D),unordered_pair(D,C)),A).  [para(18(a,1),29(d,1))].
+31 -relation(A) | relation_rng(A) != B | in(C,B) | -in(unordered_pair(singleton(D),unordered_pair(C,D)),A).  [para(15(a,1),30(d,1,2))].
+32 set_union2(A,B) = C | -in(f1(A,B,C),C) | -in(f1(A,B,C),A).  [clausify(3)].
+33 in(unordered_pair(singleton(c4),unordered_pair(c4,c5)),c6).  [para(18(a,1),14(a,1))].
+34 set_union2(A,B) = A | in(f1(A,B,A),A) | in(f1(A,B,A),B).  [factor(19,b,c)].
+35 set_union2(A,B) = A | -in(f1(A,B,A),A).  [factor(32,b,c)].
+36 -in(A,empty_set).  [resolve(20,b,11,a)].
+37 set_union2(relation_dom(c6),relation_rng(c6)) = relation_field(c6).  [resolve(23,a,12,a)].
+38 set_union2(A,B) != C | in(f1(D,E,A),C) | set_union2(D,E) = A | in(f1(D,E,A),D) | in(f1(D,E,A),E).  [resolve(24,c,19,b)].
+39 set_union2(A,B) != C | in(f1(C,D,A),C) | set_union2(C,D) = A | in(f1(C,D,A),D).  [factor(38,b,d)].
+40 -relation(c6) | relation_dom(c6) != A | in(c4,A).  [resolve(33,a,28,d)].
+41 relation_dom(c6) != A | in(c4,A).  [resolve(12,a,40,a)].
+42 set_union2(A,B) = A | set_union2(A,B) = A | in(f1(A,B,A),B).  [resolve(35,b,34,b)].
+43 set_union2(A,B) = A | in(f1(A,B,A),B).  [copy(42),merge(b)].
+44 in(c4,set_union2(relation_dom(c6),relation_dom(c6))).  [resolve(41,a,13,a(flip))].
+45 in(c4,relation_dom(c6)).  [para(13(a,1),44(a,2))].
+46 set_union2(A,relation_dom(c6)) != B | in(c4,B).  [resolve(45,a,25,c)].
+47 in(c4,set_union2(relation_dom(c6),A)).  [resolve(46,a,16,a)].
+48 in(c4,set_union2(A,relation_dom(c6))).  [para(16(a,1),47(a,2))].
+49 set_union2(A,B) != set_union2(C,relation_dom(c6)) | in(c4,A) | in(c4,B).  [resolve(48,a,26,b)].
+50 set_union2(A,relation_dom(c6)) != set_union2(B,C) | in(c4,B) | in(c4,C).  [copy(49),flip(a)].
+51 set_union2(A,B) = A | set_union2(C,B) != D | in(f1(A,B,A),D).  [resolve(43,b,25,c)].
+52 set_union2(A,B) = A | set_union2(B,C) != D | in(f1(A,B,A),D).  [para(16(a,1),51(b,1))].
+53 in(f1(set_union2(A,B),C,B),set_union2(A,B)) | set_union2(set_union2(A,B),C) = B | in(f1(set_union2(A,B),C,B),C).  [resolve(39,a,16,a)].
+54 in(f1(set_union2(A,B),C,B),set_union2(A,B)) | set_union2(C,set_union2(A,B)) = B | in(f1(set_union2(A,B),C,B),C).  [para(16(a,1),53(b,1))].
+55 set_union2(A,B) = A | in(f1(A,B,A),set_union2(C,B)).  [resolve(52,b,16,a)].
+56 set_union2(A,B) = A | in(f1(A,B,A),set_union2(B,C)).  [para(16(a,1),55(b,2))].
+57 set_union2(set_union2(A,B),A) = set_union2(A,B) | set_union2(set_union2(A,B),A) = set_union2(A,B).  [resolve(56,b,35,b)].
+58 set_union2(A,set_union2(A,B)) = set_union2(A,B) | set_union2(set_union2(A,B),A) = set_union2(A,B).  [para(16(a,1),57(a,1))].
+59 set_union2(A,set_union2(A,B)) = set_union2(A,B) | set_union2(A,set_union2(A,B)) = set_union2(A,B).  [para(16(a,1),58(b,1))].
+60 set_union2(A,set_union2(A,B)) = set_union2(A,B).  [copy(59),merge(b)].
+61 set_union2(A,B) = A | set_union2(C,set_union2(B,D)) != E | in(f1(A,B,A),E).  [resolve(56,b,25,c)].
+62 set_union2(relation_dom(c6),relation_field(c6)) = set_union2(relation_dom(c6),relation_rng(c6)).  [para(37(a,1),60(a,1,2))].
+63 set_union2(relation_dom(c6),relation_field(c6)) = relation_field(c6).  [para(37(a,1),62(a,2))].
+64 in(f1(set_union2(A,B),empty_set,B),set_union2(A,B)) | set_union2(empty_set,set_union2(A,B)) = B.  [resolve(54,c,36,a)].
+65 in(f1(relation_field(c6),empty_set,relation_field(c6)),set_union2(relation_dom(c6),relation_field(c6))) | set_union2(empty_set,set_union2(relation_dom(c6),relation_field(c6))) = relation_field(c6).  [para(63(a,1),64(a,1,1))].
+66 in(f1(relation_field(c6),empty_set,relation_field(c6)),relation_field(c6)) | set_union2(empty_set,set_union2(relation_dom(c6),relation_field(c6))) = relation_field(c6).  [para(63(a,1),65(a,2))].
+67 in(f1(relation_field(c6),empty_set,relation_field(c6)),relation_field(c6)) | set_union2(empty_set,relation_field(c6)) = relation_field(c6).  [para(63(a,1),66(b,1,2))].
+68 set_union2(empty_set,relation_field(c6)) = relation_field(c6) | set_union2(relation_field(c6),empty_set) = relation_field(c6).  [resolve(67,a,35,b)].
+69 set_union2(empty_set,relation_field(c6)) = relation_field(c6) | set_union2(empty_set,relation_field(c6)) = relation_field(c6).  [para(16(a,1),68(b,1))].
+70 set_union2(empty_set,relation_field(c6)) = relation_field(c6).  [copy(69),merge(b)].
+71 set_union2(A,B) = A | in(f1(A,B,A),set_union2(set_union2(B,C),D)).  [resolve(61,b,16,a)].
+72 set_union2(A,B) = A | in(f1(A,B,A),set_union2(C,set_union2(B,D))).  [para(16(a,1),71(b,2))].
+73 set_union2(set_union2(A,set_union2(B,C)),B) = set_union2(A,set_union2(B,C)) | set_union2(set_union2(A,set_union2(B,C)),B) = set_union2(A,set_union2(B,C)).  [resolve(72,b,35,b)].
+74 set_union2(B,set_union2(A,set_union2(B,C))) = set_union2(A,set_union2(B,C)) | set_union2(set_union2(A,set_union2(B,C)),B) = set_union2(A,set_union2(B,C)).  [para(16(a,1),73(a,1))].
+75 set_union2(B,set_union2(A,set_union2(B,C))) = set_union2(A,set_union2(B,C)) | set_union2(B,set_union2(A,set_union2(B,C))) = set_union2(A,set_union2(B,C)).  [para(16(a,1),74(b,1))].
+76 set_union2(A,set_union2(B,set_union2(A,C))) = set_union2(B,set_union2(A,C)).  [copy(75),merge(b)].
+77 set_union2(empty_set,set_union2(A,relation_field(c6))) = set_union2(A,set_union2(empty_set,relation_field(c6))).  [para(70(a,1),76(a,1,2,2))].
+78 set_union2(empty_set,set_union2(A,relation_field(c6))) = set_union2(A,relation_field(c6)).  [para(70(a,1),77(a,2,2))].
+79 set_union2(A,relation_dom(c6)) != set_union2(B,relation_field(c6)) | in(c4,empty_set) | in(c4,set_union2(B,relation_field(c6))).  [para(78(a,1),50(a,2))].
+80 set_union2(B,relation_field(c6)) != set_union2(A,relation_dom(c6)) | in(c4,empty_set) | in(c4,set_union2(B,relation_field(c6))).  [copy(79),flip(a)].
+81 set_union2(A,relation_field(c6)) != set_union2(B,relation_dom(c6)) | in(c4,set_union2(A,relation_field(c6))).  [resolve(36,a,80,b)].
+82 in(c4,set_union2(relation_dom(c6),relation_field(c6))).  [resolve(81,a,16,a)].
+83 in(c4,relation_field(c6)).  [para(63(a,1),82(a,2))].
+84 -in(c5,relation_field(c6)).  [resolve(83,a,21,a)].
+85 in(A,relation_field(c6)) | -in(A,relation_rng(c6)).  [resolve(25,a,37,a)].
+86 -in(c5,relation_rng(c6)).  [resolve(85,a,84,a)].
+87 relation_rng(c6) != A | in(B,A) | -in(unordered_pair(singleton(C),unordered_pair(B,C)),c6).  [resolve(31,a,12,a)].
+88 in(A,relation_rng(c6)) | -in(unordered_pair(singleton(B),unordered_pair(A,B)),c6).  [xx_res(87,a)].
+89 -in(unordered_pair(singleton(A),unordered_pair(c5,A)),c6).  [resolve(88,a,86,a)].
+90 -in(unordered_pair(singleton(A),unordered_pair(A,c5)),c6).  [para(15(a,1),89(a,1,2))].
+91 $F.  [resolve(90,a,33,a)].

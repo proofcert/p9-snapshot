@@ -1,0 +1,105 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n145.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:48:38 CDT 2014
+% CPUTime    : 169.76 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 52760 was started by sandbox on n145.star.cs.uiowa.edu,
+Thu Jun  5 14:48:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_52728_n145.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 168.75 (+ 0.80) seconds.
+% Length of proof is 57.
+% Level of proof is 9.
+% Maximum clause weight is 14.000.
+% Given clauses 15499.
+
+
+1 (all A all B (disjoint(A,B) <-> set_intersection2(A,B) = empty_set)).  [assumption].
+2 (all A (relation(A) & function(A) -> (one_to_one(A) <-> (all B all C (in(B,relation_dom(A)) & in(C,relation_dom(A)) & apply(A,B) = apply(A,C) -> B = C))))).  [assumption].
+3 (all A -empty(singleton(A))).  [assumption].
+4 (all A all B (-empty(A) & -empty(B) -> -disjoint_nonempty(A,A))).  [assumption].
+5 (all A all B (-empty(A) & -empty(B) -> (disjoint_nonempty(A,B) <-> disjoint(A,B)))).  [assumption].
+6 (all A all B (disjoint(A,B) -> disjoint(B,A))).  [assumption].
+7 (all A all B (relation(B) & function(B) -> (in(A,relation_dom(B)) -> relation_image(B,singleton(A)) = singleton(apply(B,A))))).  [assumption].
+8 (all A (relation(A) -> relation_image(A,empty_set) = empty_set)).  [assumption].
+9 (all A all B (A != B -> disjoint(singleton(A),singleton(B)))).  [assumption].
+10 -(all A (relation(A) & function(A) -> ((all B all C relation_image(A,set_intersection2(B,C)) = set_intersection2(relation_image(A,B),relation_image(A,C))) -> one_to_one(A)))).  [assumption].
+11 function(c9).  [clausify(10)].
+12 -relation(A) | -function(A) | one_to_one(A) | in(f2(A),relation_dom(A)).  [clausify(2)].
+13 -relation(A) | -function(A) | one_to_one(A) | in(f3(A),relation_dom(A)).  [clausify(2)].
+14 -relation(A) | -function(A) | one_to_one(A) | f3(A) != f2(A).  [clausify(2)].
+15 -relation(A) | -function(A) | one_to_one(A) | apply(A,f3(A)) = apply(A,f2(A)).  [clausify(2)].
+16 -relation(A) | -function(A) | -in(B,relation_dom(A)) | relation_image(A,singleton(B)) = singleton(apply(A,B)).  [clausify(7)].
+17 relation(c9).  [clausify(10)].
+18 A = B | disjoint(singleton(B),singleton(A)).  [clausify(9)].
+19 relation_image(c9,set_intersection2(A,B)) = set_intersection2(relation_image(c9,A),relation_image(c9,B)).  [clausify(10)].
+20 set_intersection2(relation_image(c9,A),relation_image(c9,B)) = relation_image(c9,set_intersection2(A,B)).  [copy(19),flip(a)].
+21 -one_to_one(c9).  [clausify(10)].
+22 -empty(singleton(A)).  [clausify(3)].
+23 -disjoint(A,B) | disjoint(B,A).  [clausify(6)].
+24 empty(A) | empty(B) | -disjoint_nonempty(A,A).  [clausify(4)].
+25 -relation(A) | relation_image(A,empty_set) = empty_set.  [clausify(8)].
+26 -disjoint(A,B) | set_intersection2(A,B) = empty_set.  [clausify(1)].
+27 disjoint(A,B) | set_intersection2(A,B) != empty_set.  [clausify(1)].
+28 empty(A) | empty(B) | disjoint_nonempty(A,B) | -disjoint(A,B).  [clausify(5)].
+29 -relation(c9) | one_to_one(c9) | in(f2(c9),relation_dom(c9)).  [resolve(12,b,11,a)].
+30 one_to_one(c9) | in(f2(c9),relation_dom(c9)).  [resolve(17,a,29,a)].
+31 in(f2(c9),relation_dom(c9)).  [resolve(21,a,30,a)].
+32 -relation(c9) | one_to_one(c9) | in(f3(c9),relation_dom(c9)).  [resolve(13,b,11,a)].
+33 one_to_one(c9) | in(f3(c9),relation_dom(c9)).  [resolve(17,a,32,a)].
+34 in(f3(c9),relation_dom(c9)).  [resolve(21,a,33,a)].
+35 -relation(c9) | one_to_one(c9) | f3(c9) != f2(c9).  [resolve(14,b,11,a)].
+36 one_to_one(c9) | f3(c9) != f2(c9).  [resolve(17,a,35,a)].
+37 f3(c9) != f2(c9).  [resolve(21,a,36,a)].
+38 -relation(c9) | one_to_one(c9) | apply(c9,f3(c9)) = apply(c9,f2(c9)).  [resolve(15,b,11,a)].
+39 one_to_one(c9) | apply(c9,f3(c9)) = apply(c9,f2(c9)).  [resolve(17,a,38,a)].
+40 apply(c9,f3(c9)) = apply(c9,f2(c9)).  [resolve(21,a,39,a)].
+41 -relation(c9) | -in(A,relation_dom(c9)) | relation_image(c9,singleton(A)) = singleton(apply(c9,A)).  [resolve(16,b,11,a)].
+42 -relation(c9) | -in(A,relation_dom(c9)) | singleton(apply(c9,A)) = relation_image(c9,singleton(A)).  [copy(41),flip(c)].
+43 -in(A,relation_dom(c9)) | singleton(apply(c9,A)) = relation_image(c9,singleton(A)).  [resolve(17,a,42,a)].
+44 empty(A) | -disjoint_nonempty(A,A).  [factor(24,a,b)].
+45 empty(A) | disjoint_nonempty(A,A) | -disjoint(A,A).  [factor(28,a,b)].
+46 f3(c9) = c_0.  [new_symbol(37)].
+47 apply(c9,c_0) = apply(c9,f2(c9)).  [para(46(a,1),40(a,1,2))].
+48 apply(c9,f2(c9)) = apply(c9,c_0).  [copy(47),flip(a)].
+49 c_0 != f2(c9).  [para(46(a,1),37(a,1))].
+50 f2(c9) != c_0.  [copy(49),flip(a)].
+51 in(c_0,relation_dom(c9)).  [para(46(a,1),34(a,1))].
+52 disjoint(singleton(A),singleton(B)) | A = B.  [resolve(23,a,18,b)].
+53 relation_image(c9,empty_set) = empty_set.  [resolve(25,a,17,a)].
+54 disjoint(relation_image(c9,A),relation_image(c9,B)) | relation_image(c9,set_intersection2(A,B)) != empty_set.  [para(20(a,1),27(b,1))].
+55 singleton(apply(c9,f2(c9))) = relation_image(c9,singleton(f2(c9))).  [resolve(43,a,31,a)].
+56 singleton(apply(c9,c_0)) = relation_image(c9,singleton(f2(c9))).  [para(48(a,1),55(a,1,1))].
+57 relation_image(c9,singleton(f2(c9))) = singleton(apply(c9,c_0)).  [copy(56),flip(a)].
+58 -disjoint_nonempty(singleton(A),singleton(A)).  [resolve(44,a,22,a)].
+59 singleton(apply(c9,c_0)) = relation_image(c9,singleton(c_0)).  [resolve(51,a,43,a)].
+60 relation_image(c9,singleton(f2(c9))) = relation_image(c9,singleton(c_0)).  [para(59(a,1),57(a,2))].
+61 A = B | set_intersection2(singleton(A),singleton(B)) = empty_set.  [resolve(52,a,26,a)].
+62 disjoint_nonempty(singleton(A),singleton(A)) | -disjoint(singleton(A),singleton(A)).  [resolve(45,a,22,a)].
+63 -disjoint(singleton(A),singleton(A)).  [resolve(62,a,58,a)].
+64 -disjoint(relation_image(c9,singleton(c_0)),singleton(apply(c9,c_0))).  [para(59(a,1),63(a,1))].
+65 -disjoint(relation_image(c9,singleton(c_0)),relation_image(c9,singleton(c_0))).  [para(59(a,1),64(a,2))].
+66 A = B | disjoint(relation_image(c9,singleton(A)),relation_image(c9,singleton(B))) | relation_image(c9,empty_set) != empty_set.  [para(61(b,1),54(b,1,2))].
+67 A = B | disjoint(relation_image(c9,singleton(A)),relation_image(c9,singleton(B))) | empty_set != empty_set.  [para(53(a,1),66(c,1))].
+68 A = B | disjoint(relation_image(c9,singleton(A)),relation_image(c9,singleton(B))).  [copy(67),xx(c)].
+69 f2(c9) = A | disjoint(relation_image(c9,singleton(c_0)),relation_image(c9,singleton(A))).  [para(60(a,1),68(b,1))].
+70 f2(c9) = c_0.  [resolve(69,b,65,a)].
+71 $F.  [resolve(50,a,70,a)].
+
+============================== end of proof ==========================

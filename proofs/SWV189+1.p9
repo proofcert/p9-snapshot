@@ -1,0 +1,55 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n128.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:35:08 CDT 2014
+% CPUTime    : 0.97 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 53203 was started by sandbox on n128.star.cs.uiowa.edu,
+Fri Jun  6 00:35:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_53171_n128.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.79 (+ 0.00) seconds.
+% Length of proof is 17.
+% Level of proof is 4.
+% Maximum clause weight is 9.000.
+% Given clauses 286.
+
+
+1 (all A -gt(A,A)).  [assumption].
+2 (all A all B (leq(A,B) -> leq(A,succ(B)))).  [assumption].
+3 (all A all B (leq(A,B) <-> gt(succ(B),A))).  [assumption].
+4 (all A (leq(n0,A) & leq(A,n0) -> A = n0)).  [assumption].
+5 -((all A (leq(n0,A) & leq(A,n4) -> a_select3(center_init,A,n0) = init)) -> (all B (leq(n0,B) & leq(B,tptp_minus_1) -> (all C (leq(n0,C) & leq(C,n4) -> a_select3(q_init,B,C) = init))))).  [assumption].
+6 -gt(A,A).  [clausify(1)].
+7 -leq(A,B) | leq(A,succ(B)).  [clausify(2)].
+8 -leq(A,B) | gt(succ(B),A).  [clausify(3)].
+9 succ(tptp_minus_1) = n0.  [assumption].
+10 -leq(n0,A) | -leq(A,n0) | n0 = A.  [clausify(4)].
+11 leq(n0,c1).  [clausify(5)].
+12 leq(c1,tptp_minus_1).  [clausify(5)].
+13 -leq(c1,n0) | n0 = c1.  [resolve(11,a,10,a)].
+14 -leq(c1,n0) | c1 = n0.  [copy(13),flip(b)].
+15 gt(succ(tptp_minus_1),c1).  [resolve(12,a,8,a)].
+16 gt(n0,c1).  [para(9(a,1),15(a,1))].
+17 leq(c1,succ(tptp_minus_1)).  [resolve(12,a,7,a)].
+18 leq(c1,n0).  [para(9(a,1),17(a,2))].
+19 c1 = n0.  [resolve(18,a,14,a)].
+20 gt(n0,n0).  [para(19(a,1),16(a,2))].
+21 $F.  [resolve(6,a,20,a)].
+
+============================== end of proof ==========================

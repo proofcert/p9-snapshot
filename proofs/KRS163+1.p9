@@ -1,0 +1,67 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n092.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 21:20:03 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 38189 was started by sandbox on n092.star.cs.uiowa.edu,
+Thu Jun  5 21:20:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_38157_n092.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 23.
+% Level of proof is 6.
+% Maximum clause weight is 7.000.
+% Given clauses 17.
+
+
+1 (all A all B (A = B & cA(A) -> cA(B))).  [assumption].
+2 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+3 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+4 (all A -(cB(A) & cA(A))).  [assumption].
+5 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & cowlThing(ia) & cowlThing(ib) & ia != ib).  [assumption].
+6 cowlThing(A).  [clausify(2)].
+7 cA(ia).  [assumption].
+8 cB(ib).  [assumption].
+9 xsd_string(A) | xsd_integer(A).  [clausify(3)].
+10 -cowlNothing(A).  [clausify(2)].
+11 -xsd_string(A) | -xsd_integer(A).  [clausify(3)].
+12 -cB(A) | -cA(A).  [clausify(4)].
+13 A != B | -cA(B) | cA(A).  [clausify(1)].
+14 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cowlThing(ia) | -cowlThing(ib) | ib = ia.  [clausify(5)].
+15 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cowlThing(ia) | -cowlThing(ib) | ib = ia.  [resolve(6,a,14,a)].
+16 xsd_string(c2) | -xsd_integer(c2) | -cowlThing(ia) | -cowlThing(ib) | ib = ia.  [resolve(10,a,15,a)].
+17 xsd_string(c2) | -xsd_integer(c2) | -cowlThing(ib) | ib = ia.  [resolve(6,a,16,c)].
+18 xsd_string(c2) | -xsd_integer(c2) | ib = ia.  [resolve(6,a,17,c)].
+19 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cowlThing(ia) | -cowlThing(ib) | ib = ia.  [clausify(5)].
+20 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cowlThing(ia) | -cowlThing(ib) | ib = ia.  [resolve(6,a,19,a)].
+21 -xsd_string(c2) | xsd_integer(c2) | -cowlThing(ia) | -cowlThing(ib) | ib = ia.  [resolve(10,a,20,a)].
+22 -xsd_string(c2) | xsd_integer(c2) | -cowlThing(ib) | ib = ia.  [resolve(6,a,21,c)].
+23 -xsd_string(c2) | xsd_integer(c2) | ib = ia.  [resolve(6,a,22,c)].
+24 -cA(ib).  [resolve(12,a,8,a)].
+25 xsd_integer(c2) | ib = ia | xsd_integer(c2).  [resolve(23,a,9,a)].
+26 xsd_integer(c2) | ib = ia.  [copy(25),merge(c)].
+27 A != ia | cA(A).  [resolve(13,b,7,a)].
+28 ib != ia.  [resolve(27,b,24,a)].
+29 xsd_integer(c2).  [resolve(28,a,26,b)].
+30 xsd_string(c2) | ib = ia.  [resolve(29,a,18,b)].
+31 xsd_string(c2).  [resolve(28,a,30,b)].
+32 -xsd_string(c2).  [resolve(11,b,29,a)].
+33 $F.  [resolve(31,a,32,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,92 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16 -organization(A) | stock_of_knowledge(A,B) = stock_of_knowledge(A,C).  [clausify(12)].
+17 organization(c1).  [clausify(15)].
+18 -organization(A) | external_ties(A,B) = external_ties(A,C).  [clausify(13)].
+19 -organization(A) | -has_immunity(A,B) | -has_immunity(A,C) | hazard_of_mortality(A,B) = hazard_of_mortality(A,C).  [clausify(7)].
+20 -organization(A) | -has_immunity(A,B) | has_immunity(A,C) | greater(hazard_of_mortality(A,C),hazard_of_mortality(A,B)).  [clausify(8)].
+21 -organization(A) | external_ties(A,B) != external_ties(A,C) | position(A,B) = position(A,C).  [clausify(11)].
+22 -organization(A) | -greater(age(A,B),age(A,C)) | greater(internal_friction(A,B),internal_friction(A,C)).  [clausify(14)].
+23 -organization(A) | -smaller_or_equal(stock_of_knowledge(A,B),stock_of_knowledge(A,C)) | -greater(internal_friction(A,B),internal_friction(A,C)) | smaller(capability(A,B),capability(A,C)).  [clausify(10)].
+24 -organization(A) | has_immunity(A,B) | has_immunity(A,C) | -greater(capability(A,C),capability(A,B)) | -greater_or_equal(position(A,C),position(A,B)) | smaller(hazard_of_mortality(A,C),hazard_of_mortality(A,B)).  [clausify(9)].
+25 -has_endowment(A) | -greater(age(A,B),eta) | -has_immunity(A,B).  [clausify(6)].
+26 has_endowment(c1).  [clausify(15)].
+27 -has_endowment(A) | -smaller_or_equal(age(A,B),eta) | has_immunity(A,B).  [clausify(6)].
+28 smaller_or_equal(A,B) | -smaller(A,B).  [clausify(1)].
+29 smaller(A,B) | B = A | greater(A,B).  [clausify(5)].
+30 -smaller(A,B) | greater(B,A).  [clausify(3)].
+31 smaller(A,B) | -greater(B,A).  [clausify(3)].
+32 -smaller_or_equal(A,B) | smaller(A,B) | B = A.  [clausify(1)].
+33 -smaller_or_equal(stock_of_knowledge(c1,A),stock_of_knowledge(c1,B)) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | smaller(capability(c1,A),capability(c1,B)).  [resolve(23,a,17,a)].
+34 has_immunity(c1,A) | has_immunity(c1,B) | -greater(capability(c1,B),capability(c1,A)) | -greater_or_equal(position(c1,B),position(c1,A)) | smaller(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(24,a,17,a)].
+35 smaller_or_equal(age(c1,c3),eta).  [clausify(15)].
+36 greater(age(c1,c4),eta).  [clausify(15)].
+37 smaller_or_equal(age(c1,c2),age(c1,c3)).  [clausify(15)].
+38 greater(age(c1,c5),age(c1,c4)).  [clausify(15)].
+39 -greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)) | -greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [clausify(15)].
+40 smaller_or_equal(A,B) | B != A.  [clausify(1)].
+41 greater_or_equal(A,B) | B != A.  [clausify(2)].
+42 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(4)].
+43 stock_of_knowledge(c1,A) = stock_of_knowledge(c1,B).  [resolve(16,a,17,a)].
+44 external_ties(c1,A) = external_ties(c1,B).  [resolve(18,a,17,a)].
+45 -has_immunity(c1,A) | -has_immunity(c1,B) | hazard_of_mortality(c1,A) = hazard_of_mortality(c1,B).  [resolve(19,a,17,a)].
+46 -has_immunity(c1,A) | has_immunity(c1,B) | greater(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(20,a,17,a)].
+47 external_ties(c1,A) != external_ties(c1,B) | position(c1,A) = position(c1,B).  [resolve(21,a,17,a)].
+48 position(c1,A) = position(c1,B).  [resolve(44,a,47,a)].
+49 -greater(age(c1,A),age(c1,B)) | greater(internal_friction(c1,A),internal_friction(c1,B)).  [resolve(22,a,17,a)].
+50 -greater(age(c1,A),eta) | -has_immunity(c1,A).  [resolve(25,a,26,a)].
+51 -smaller_or_equal(age(c1,A),eta) | has_immunity(c1,A).  [resolve(27,a,26,a)].
+52 greater(A,B) | A = B | greater(B,A).  [resolve(30,a,29,a)].
+53 -greater(A,B) | smaller_or_equal(B,A).  [resolve(31,a,28,b)].
+54 -smaller_or_equal(A,B) | B = A | greater(B,A).  [resolve(32,b,30,a)].
+55 -smaller_or_equal(stock_of_knowledge(c1,A),stock_of_knowledge(c1,B)) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [resolve(33,c,30,a)].
+56 has_immunity(c1,A) | has_immunity(c1,B) | -greater(capability(c1,B),capability(c1,A)) | -greater_or_equal(position(c1,B),position(c1,A)) | greater(hazard_of_mortality(c1,A),hazard_of_mortality(c1,B)).  [resolve(34,e,30,a)].
+57 stock_of_knowledge(c1,A) = c_0.  [new_symbol(43)].
+58 -smaller_or_equal(c_0,stock_of_knowledge(c1,B)) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [para(57(a,1),55(a,1))].
+59 -smaller_or_equal(c_0,c_0) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [para(57(a,1),58(a,2))].
+60 smaller_or_equal(A,A).  [xx_res(40,b)].
+61 -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [resolve(60,a,59,a)].
+62 -greater(age(c1,c4),A) | greater(age(c1,c5),A).  [resolve(42,a,38,a)].
+63 greater_or_equal(position(c1,A),position(c1,B)).  [resolve(48,a,41,b)].
+64 has_immunity(c1,A) | has_immunity(c1,B) | -greater(capability(c1,B),capability(c1,A)) | greater(hazard_of_mortality(c1,A),hazard_of_mortality(c1,B)).  [resolve(63,a,56,d)].
+65 greater(internal_friction(c1,c5),internal_friction(c1,c4)).  [resolve(49,a,38,a)].
+66 -has_immunity(c1,c4).  [resolve(50,a,36,a)].
+67 has_immunity(c1,c3).  [resolve(51,a,35,a)].
+68 smaller_or_equal(A,B) | greater(A,B) | A = B.  [resolve(53,a,52,c)].
+69 age(c1,c3) = age(c1,c2) | greater(age(c1,c3),age(c1,c2)).  [resolve(54,a,37,a)].
+70 -greater(age(c1,c3),eta).  [resolve(67,a,50,b)].
+71 has_immunity(c1,A) | greater(hazard_of_mortality(c1,A),hazard_of_mortality(c1,c3)).  [resolve(67,a,46,a)].
+72 greater(capability(c1,c4),capability(c1,c5)).  [resolve(65,a,61,a)].
+73 greater(age(c1,c5),eta).  [resolve(62,a,36,a)].
+74 -has_immunity(c1,c5).  [resolve(50,a,73,a)].
+75 greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)).  [resolve(71,a,66,a)].
+76 -greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [resolve(75,a,39,b)].
+77 has_immunity(c1,c5) | has_immunity(c1,c4) | greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)).  [resolve(64,c,72,a)].
+78 has_immunity(c1,c4) | greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)).  [resolve(74,a,77,a)].
+79 greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)).  [resolve(66,a,78,a)].
+80 hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [resolve(79,a,76,a)].
+81 -has_immunity(c1,A) | hazard_of_mortality(c1,c3) = hazard_of_mortality(c1,A).  [resolve(45,a,67,a)].
+82 -has_immunity(c1,c2).  [resolve(81,b,80,a)].
+83 -smaller_or_equal(age(c1,c2),eta).  [resolve(51,b,82,a)].
+84 greater(age(c1,c2),eta) | age(c1,c2) = eta.  [resolve(83,a,68,a)].
+85 eta != age(c1,c2).  [resolve(40,a,83,a)].
+86 age(c1,c2) != eta.  [copy(85),flip(a)].
+87 greater(age(c1,c2),eta).  [resolve(86,a,84,b)].
+88 -greater(A,age(c1,c2)) | greater(A,eta).  [resolve(42,b,87,a)].
+89 -greater(age(c1,c3),age(c1,c2)).  [resolve(88,b,70,a)].
+90 age(c1,c3) = age(c1,c2).  [resolve(89,a,69,b)].
+91 -greater(age(c1,c2),eta).  [para(90(a,1),70(a,1))].
+92 $F.  [resolve(87,a,91,a)].

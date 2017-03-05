@@ -1,0 +1,57 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n115.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:20:28 CDT 2014
+% CPUTime    : 2.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 63441 was started by sandbox on n115.star.cs.uiowa.edu,
+Thu Jun  5 15:20:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_63409_n115.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 2.19 (+ 0.04) seconds.
+% Length of proof is 18.
+% Level of proof is 7.
+% Maximum clause weight is 11.000.
+% Given clauses 2086.
+
+
+1 (all A all B all C (member(A,unordered_pair(B,C)) <-> member(A,universal_class) & (A = B | A = C))).  [assumption].
+2 -(all A all B all C (member(B,universal_class) & member(C,universal_class) & unordered_pair(A,B) = unordered_pair(A,C) -> B = C)).  [assumption].
+3 member(c4,universal_class).  [clausify(2)].
+4 member(c5,universal_class).  [clausify(2)].
+5 unordered_pair(c3,c5) = unordered_pair(c3,c4).  [clausify(2)].
+6 c5 != c4.  [clausify(2)].
+7 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(1)].
+8 member(A,unordered_pair(B,C)) | -member(A,universal_class) | A != C.  [clausify(1)].
+9 -member(c4,unordered_pair(c5,A)) | c4 = A.  [resolve(7,b,6,a(flip))].
+10 -member(c4,unordered_pair(c5,c5)).  [resolve(9,b,6,a(flip))].
+11 member(c5,unordered_pair(A,B)) | c5 != B.  [resolve(8,b,4,a)].
+12 member(c4,unordered_pair(A,B)) | c4 != B.  [resolve(8,b,3,a)].
+13 member(c5,unordered_pair(A,c5)).  [xx_res(11,b)].
+14 member(c5,unordered_pair(c3,c4)).  [para(5(a,1),13(a,2))].
+15 c5 = c3 | c5 = c4.  [resolve(14,a,7,a)].
+16 c5 = c3.  [resolve(6,a,15,b)].
+17 -member(c4,unordered_pair(c3,c5)).  [para(16(a,1),10(a,2,1))].
+18 -member(c4,unordered_pair(c3,c3)).  [para(16(a,1),17(a,2,2))].
+19 unordered_pair(c3,c3) = unordered_pair(c3,c4).  [para(16(a,1),5(a,1,2))].
+20 unordered_pair(c3,c4) = unordered_pair(c3,c3).  [copy(19),flip(a)].
+21 member(c4,unordered_pair(A,c4)).  [xx_res(12,b)].
+22 member(c4,unordered_pair(c3,c3)).  [para(20(a,1),21(a,2))].
+23 $F.  [resolve(18,a,22,a)].
+
+============================== end of proof ==========================

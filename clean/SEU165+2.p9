@@ -1,0 +1,36 @@
+
+
+
+
+
+6 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+7 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(2)].
+8 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(6(a,1),7(a,2))].
+9 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(A,C).  [clausify(3)].
+10 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(A,C).  [para(8(a,1),9(a,1))].
+11 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(B,D).  [clausify(3)].
+12 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(B,D).  [para(8(a,1),11(a,1))].
+13 in(ordered_pair(A,B),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [clausify(3)].
+14 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [para(8(a,1),13(a,1))].
+15 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+16 in(ordered_pair(c3,c4),cartesian_product2(c5,c6)) | in(c3,c5).  [clausify(5)].
+17 in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | in(c3,c5).  [para(8(a,1),16(a,1))].
+18 in(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | in(c3,c5).  [para(15(a,1),17(a,1,1))].
+19 in(ordered_pair(c3,c4),cartesian_product2(c5,c6)) | in(c4,c6).  [clausify(5)].
+20 in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | in(c4,c6).  [para(8(a,1),19(a,1))].
+21 in(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | in(c4,c6).  [para(15(a,1),20(a,1,1))].
+22 -in(ordered_pair(c3,c4),cartesian_product2(c5,c6)) | -in(c3,c5) | -in(c4,c6).  [clausify(5)].
+23 -in(unordered_pair(singleton(c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | -in(c3,c5) | -in(c4,c6).  [para(8(a,1),22(a,1))].
+24 -in(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | -in(c3,c5) | -in(c4,c6).  [para(15(a,1),23(a,1,1))].
+25 in(unordered_pair(unordered_pair(A,A),unordered_pair(A,B)),cartesian_product2(C,D)) | -in(A,C) | -in(B,D).  [para(15(a,1),14(a,1,1))].
+26 -in(unordered_pair(unordered_pair(A,A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(B,D).  [para(15(a,1),12(a,1,1))].
+27 -in(unordered_pair(unordered_pair(A,A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(A,C).  [para(15(a,1),10(a,1,1))].
+28 in(c4,c6) | in(c4,c6).  [resolve(26,a,21,a)].
+29 in(c4,c6).  [copy(28),merge(b)].
+30 -in(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)) | -in(c3,c5).  [resolve(29,a,24,c)].
+31 in(c3,c5) | in(c3,c5).  [resolve(27,a,18,a)].
+32 in(c3,c5).  [copy(31),merge(b)].
+33 -in(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)).  [resolve(32,a,30,b)].
+34 in(unordered_pair(unordered_pair(A,A),unordered_pair(A,c4)),cartesian_product2(B,c6)) | -in(A,B).  [resolve(29,a,25,c)].
+35 in(unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)),cartesian_product2(c5,c6)).  [resolve(34,b,32,a)].
+36 $F.  [resolve(33,a,35,a)].

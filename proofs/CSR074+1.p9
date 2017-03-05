@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n072.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:38:38 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 15924 was started by sandbox on n072.star.cs.uiowa.edu,
+Fri Jun  6 03:38:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_15892_n072.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 25.
+% Level of proof is 6.
+% Maximum clause weight is 9.000.
+% Given clauses 37.
+
+
+1 (all A all B (geographicalsubregions(A,B) -> inregion(B,A))).  [assumption].
+2 mtvisible(c_worldgeographymt) -> geolevel_3(c_georegion_l3_x17_y24).  [assumption].
+3 mtvisible(c_tptpgeo_member7_mt) -> geographicalsubregions(c_georegion_l3_x17_y24,c_georegion_l4_x53_y74).  [assumption].
+4 mtvisible(c_tptpgeo_member7_mt) -> inregion(c_geolocation_x53_y74,c_georegion_l4_x53_y74).  [assumption].
+5 (all A all B all C (inregion(A,B) & inregion(B,C) -> inregion(A,C))).  [assumption].
+6 (all A all B (mtvisible(A) & genlmt(A,B) -> mtvisible(B))).  [assumption].
+7 -(mtvisible(c_tptpgeo_member7_mt) -> inregion(c_geolocation_x53_y74,c_georegion_l3_x17_y24) & geolevel_3(c_georegion_l3_x17_y24)).  [assumption].
+8 -mtvisible(c_worldgeographymt) | geolevel_3(c_georegion_l3_x17_y24).  [clausify(2)].
+9 -inregion(c_geolocation_x53_y74,c_georegion_l3_x17_y24) | -geolevel_3(c_georegion_l3_x17_y24).  [clausify(7)].
+10 mtvisible(c_tptpgeo_member7_mt).  [clausify(7)].
+11 genlmt(c_tptpgeo_spindleheadmt,c_worldgeographymt).  [assumption].
+12 genlmt(c_tptpgeo_member7_mt,c_tptpgeo_spindleheadmt).  [assumption].
+13 -mtvisible(c_tptpgeo_member7_mt) | geographicalsubregions(c_georegion_l3_x17_y24,c_georegion_l4_x53_y74).  [clausify(3)].
+14 geographicalsubregions(c_georegion_l3_x17_y24,c_georegion_l4_x53_y74).  [resolve(10,a,13,a)].
+15 -mtvisible(c_tptpgeo_member7_mt) | inregion(c_geolocation_x53_y74,c_georegion_l4_x53_y74).  [clausify(4)].
+16 inregion(c_geolocation_x53_y74,c_georegion_l4_x53_y74).  [resolve(10,a,15,a)].
+17 -geographicalsubregions(A,B) | inregion(B,A).  [clausify(1)].
+18 -mtvisible(A) | -genlmt(A,B) | mtvisible(B).  [clausify(6)].
+19 -inregion(A,B) | -inregion(B,C) | inregion(A,C).  [clausify(5)].
+20 -mtvisible(c_worldgeographymt) | -inregion(c_geolocation_x53_y74,c_georegion_l3_x17_y24).  [resolve(8,b,9,b)].
+21 inregion(c_georegion_l4_x53_y74,c_georegion_l3_x17_y24).  [resolve(17,a,14,a)].
+22 -genlmt(c_tptpgeo_member7_mt,A) | mtvisible(A).  [resolve(18,a,10,a)].
+23 mtvisible(c_tptpgeo_spindleheadmt).  [resolve(22,a,12,a)].
+24 -inregion(c_georegion_l4_x53_y74,A) | inregion(c_geolocation_x53_y74,A).  [resolve(19,a,16,a)].
+25 inregion(c_geolocation_x53_y74,c_georegion_l3_x17_y24).  [resolve(24,a,21,a)].
+26 -mtvisible(c_worldgeographymt).  [resolve(25,a,20,b)].
+27 -mtvisible(c_tptpgeo_spindleheadmt) | mtvisible(c_worldgeographymt).  [resolve(18,b,11,a)].
+28 -mtvisible(c_tptpgeo_spindleheadmt).  [resolve(27,b,26,a)].
+29 $F.  [resolve(23,a,28,a)].
+
+============================== end of proof ==========================

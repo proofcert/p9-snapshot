@@ -1,0 +1,145 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n065.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:32:28 CDT 2014
+% CPUTime    : 0.70 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 57553 was started by sandbox on n065.star.cs.uiowa.edu,
+Thu Jun  5 17:32:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_57521_n065.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.57 (+ 0.01) seconds: goals.
+% Length of proof is 55.
+% Level of proof is 12.
+% Maximum clause weight is 24.000.
+% Given clauses 143.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C multiplication(A,multiplication(B,C)) = multiplication(multiplication(A,B),C)).  [assumption].
+3 (all A multiplication(A,one) = A).  [assumption].
+4 (all A multiplication(one,A) = A).  [assumption].
+5 (all A all B all C multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C))).  [assumption].
+6 (all A all B all C multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C))).  [assumption].
+7 (all A addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A)).  [assumption].
+8 (all A all B domain(multiplication(A,B)) = domain(multiplication(A,domain(B)))).  [assumption].
+9 (all A addition(domain(A),one) = one).  [assumption].
+10 (all A all B domain(addition(A,B)) = addition(domain(A),domain(B))).  [assumption].
+11 -(all A all B domain(multiplication(domain(A),domain(B))) = multiplication(domain(A),domain(B))).  [assumption].
+12 multiplication(A,one) = A.  [clausify(3)].
+13 multiplication(one,A) = A.  [clausify(4)].
+14 addition(domain(A),one) = one.  [clausify(9)].
+15 addition(A,B) = addition(B,A).  [clausify(1)].
+16 domain(multiplication(A,domain(B))) = domain(multiplication(A,B)).  [clausify(8)].
+17 domain(addition(A,B)) = addition(domain(A),domain(B)).  [clausify(10)].
+18 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(2)].
+19 multiplication(domain(A),A) = addition(A,multiplication(domain(A),A)).  [clausify(7)].
+20 addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A).  [copy(19),flip(a)].
+21 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(5)].
+22 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(21),flip(a)].
+23 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(6)].
+24 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(23),flip(a)].
+25 domain(multiplication(domain(c1),domain(c2))) != multiplication(domain(c1),domain(c2)).  [clausify(11)].
+26 domain(multiplication(domain(c1),c2)) != multiplication(domain(c1),domain(c2)).  [para(16(a,1),25(a,1))].
+27 domain(domain(A)) = domain(multiplication(one,A)).  [para(13(a,1),16(a,1,1))].
+28 domain(domain(A)) = domain(A).  [para(13(a,1),27(a,2,1))].
+29 addition(multiplication(A,domain(B)),multiplication(domain(multiplication(A,B)),multiplication(A,domain(B)))) = multiplication(domain(multiplication(A,domain(B))),multiplication(A,domain(B))).  [para(16(a,1),20(a,1,2,1))].
+30 addition(multiplication(A,domain(B)),multiplication(domain(multiplication(A,B)),multiplication(A,domain(B)))) = multiplication(domain(multiplication(A,B)),multiplication(A,domain(B))).  [para(16(a,1),29(a,2,1))].
+31 addition(A,multiplication(A,B)) = multiplication(A,addition(one,B)).  [para(12(a,1),22(a,1,1))].
+32 addition(A,multiplication(A,B)) = multiplication(A,addition(B,one)).  [para(15(a,1),31(a,2,2))].
+33 multiplication(A,addition(B,one)) = addition(A,multiplication(A,B)).  [copy(32),flip(a)].
+34 addition(multiplication(A,domain(B)),multiplication(A,one)) = multiplication(A,one).  [para(14(a,1),22(a,2,2))].
+35 addition(multiplication(A,domain(B)),A) = multiplication(A,one).  [para(12(a,1),34(a,1,2))].
+36 addition(A,multiplication(A,domain(B))) = multiplication(A,one).  [para(15(a,1),35(a,1))].
+37 addition(A,multiplication(A,domain(B))) = A.  [para(12(a,1),36(a,2))].
+38 addition(multiplication(domain(A),B),multiplication(one,B)) = multiplication(one,B).  [para(14(a,1),24(a,2,1))].
+39 addition(multiplication(domain(A),B),B) = multiplication(one,B).  [para(13(a,1),38(a,1,2))].
+40 addition(B,multiplication(domain(A),B)) = multiplication(one,B).  [para(15(a,1),39(a,1))].
+41 addition(A,multiplication(domain(B),A)) = A.  [para(13(a,1),40(a,2))].
+42 domain(multiplication(addition(A,B),C)) = addition(domain(multiplication(A,C)),domain(multiplication(B,C))).  [para(24(a,1),17(a,1,1))].
+43 addition(domain(multiplication(A,B)),domain(multiplication(C,B))) = domain(multiplication(addition(A,C),B)).  [copy(42),flip(a)].
+44 addition(multiplication(A,B),multiplication(multiplication(domain(A),A),B)) = multiplication(multiplication(domain(A),A),B).  [para(20(a,1),24(a,2,1))].
+45 addition(multiplication(A,B),multiplication(domain(A),multiplication(A,B))) = multiplication(multiplication(domain(A),A),B).  [para(18(a,1),44(a,1,2))].
+46 multiplication(A,B) = multiplication(multiplication(domain(A),A),B).  [para(41(a,1),45(a,1))].
+47 multiplication(A,B) = multiplication(domain(A),multiplication(A,B)).  [para(18(a,1),46(a,2))].
+48 multiplication(domain(A),multiplication(A,B)) = multiplication(A,B).  [copy(47),flip(a)].
+49 multiplication(A,domain(B)) = multiplication(domain(multiplication(A,B)),multiplication(A,domain(B))).  [para(41(a,1),30(a,1))].
+50 multiplication(domain(multiplication(A,B)),multiplication(A,domain(B))) = multiplication(A,domain(B)).  [copy(49),flip(a)].
+51 A = multiplication(domain(A),A).  [para(41(a,1),20(a,1))].
+52 multiplication(domain(A),A) = A.  [copy(51),flip(a)].
+53 addition(A,multiplication(B,A)) = multiplication(addition(domain(A),B),A).  [para(52(a,1),24(a,1,1))].
+54 addition(A,multiplication(B,A)) = multiplication(addition(B,domain(A)),A).  [para(15(a,1),53(a,2,1))].
+55 multiplication(domain(A),domain(A)) = domain(A).  [para(28(a,1),52(a,1,1))].
+56 multiplication(addition(domain(B),domain(A)),A) = A.  [para(54(a,1),41(a,1))].
+57 multiplication(addition(domain(A),domain(B)),A) = A.  [para(15(a,1),56(a,1,1))].
+58 domain(A) = addition(domain(A),domain(multiplication(A,domain(B)))).  [para(37(a,1),17(a,1,1))].
+59 domain(A) = addition(domain(A),domain(multiplication(A,B))).  [para(16(a,1),58(a,2,2))].
+60 addition(domain(A),domain(multiplication(A,B))) = domain(A).  [copy(59),flip(a)].
+61 addition(domain(A),multiplication(domain(A),B)) = multiplication(domain(A),addition(domain(A),B)).  [para(55(a,1),22(a,1,1))].
+62 addition(domain(A),multiplication(domain(A),B)) = multiplication(domain(A),addition(B,domain(A))).  [para(15(a,1),61(a,2,2))].
+63 multiplication(addition(domain(A),domain(B)),B) = B.  [para(15(a,1),57(a,1,1))].
+64 multiplication(domain(multiplication(A,B)),multiplication(multiplication(A,domain(B)),C)) = multiplication(multiplication(A,domain(B)),C).  [para(16(a,1),48(a,1,1))].
+65 multiplication(domain(multiplication(A,B)),multiplication(A,multiplication(domain(B),C))) = multiplication(multiplication(A,domain(B)),C).  [para(18(a,1),64(a,1,2))].
+66 multiplication(domain(multiplication(A,B)),multiplication(A,multiplication(domain(B),C))) = multiplication(A,multiplication(domain(B),C)).  [para(18(a,1),65(a,2))].
+67 addition(domain(A),domain(multiplication(domain(A),B))) = domain(domain(A)).  [para(28(a,1),60(a,1,1))].
+68 addition(domain(A),domain(multiplication(domain(A),B))) = domain(A).  [para(28(a,1),67(a,2))].
+69 addition(domain(multiplication(domain(A),B)),domain(multiplication(one,B))) = domain(multiplication(one,B)).  [para(14(a,1),43(a,2,1,1))].
+70 addition(domain(multiplication(domain(A),B)),domain(B)) = domain(multiplication(one,B)).  [para(13(a,1),69(a,1,2,1))].
+71 addition(domain(B),domain(multiplication(domain(A),B))) = domain(multiplication(one,B)).  [para(15(a,1),70(a,1))].
+72 addition(domain(A),domain(multiplication(domain(B),A))) = domain(A).  [para(13(a,1),71(a,2,1))].
+73 multiplication(domain(A),multiplication(domain(B),A)) = multiplication(domain(B),A).  [para(72(a,1),63(a,1,1))].
+74 addition(domain(multiplication(A,B)),multiplication(domain(multiplication(A,B)),domain(A))) = multiplication(domain(multiplication(A,B)),domain(A)).  [para(60(a,1),62(a,2,2))].
+75 multiplication(domain(multiplication(A,B)),addition(domain(A),one)) = multiplication(domain(multiplication(A,B)),domain(A)).  [para(33(a,2),74(a,1))].
+76 multiplication(domain(multiplication(A,B)),one) = multiplication(domain(multiplication(A,B)),domain(A)).  [para(14(a,1),75(a,1,2))].
+77 domain(multiplication(A,B)) = multiplication(domain(multiplication(A,B)),domain(A)).  [para(12(a,1),76(a,1))].
+78 multiplication(domain(multiplication(A,B)),domain(A)) = domain(multiplication(A,B)).  [copy(77),flip(a)].
+79 addition(domain(multiplication(domain(A),B)),multiplication(domain(multiplication(domain(A),B)),domain(A))) = multiplication(domain(multiplication(domain(A),B)),domain(A)).  [para(68(a,1),62(a,2,2))].
+80 multiplication(domain(multiplication(domain(A),B)),addition(domain(A),one)) = multiplication(domain(multiplication(domain(A),B)),domain(A)).  [para(33(a,2),79(a,1))].
+81 multiplication(domain(multiplication(domain(A),B)),one) = multiplication(domain(multiplication(domain(A),B)),domain(A)).  [para(14(a,1),80(a,1,2))].
+82 domain(multiplication(domain(A),B)) = multiplication(domain(multiplication(domain(A),B)),domain(A)).  [para(12(a,1),81(a,1))].
+83 multiplication(domain(multiplication(domain(A),B)),domain(A)) = domain(multiplication(domain(A),B)).  [copy(82),flip(a)].
+84 addition(domain(multiplication(domain(A),B)),multiplication(domain(multiplication(domain(A),B)),domain(B))) = multiplication(domain(multiplication(domain(A),B)),domain(B)).  [para(72(a,1),62(a,2,2))].
+85 multiplication(domain(multiplication(domain(A),B)),addition(domain(B),one)) = multiplication(domain(multiplication(domain(A),B)),domain(B)).  [para(33(a,2),84(a,1))].
+86 multiplication(domain(multiplication(domain(A),B)),one) = multiplication(domain(multiplication(domain(A),B)),domain(B)).  [para(14(a,1),85(a,1,2))].
+87 domain(multiplication(domain(A),B)) = multiplication(domain(multiplication(domain(A),B)),domain(B)).  [para(12(a,1),86(a,1))].
+88 multiplication(domain(multiplication(domain(A),B)),domain(B)) = domain(multiplication(domain(A),B)).  [copy(87),flip(a)].
+89 domain(domain(multiplication(A,B))) = domain(multiplication(domain(multiplication(A,B)),A)).  [para(78(a,1),16(a,1,1))].
+90 domain(multiplication(A,B)) = domain(multiplication(domain(multiplication(A,B)),A)).  [para(28(a,1),89(a,1))].
+91 domain(multiplication(domain(multiplication(A,B)),A)) = domain(multiplication(A,B)).  [copy(90),flip(a)].
+92 domain(multiplication(domain(A),B)) = domain(multiplication(domain(multiplication(domain(A),B)),A)).  [para(91(a,1),16(a,1))].
+93 domain(multiplication(domain(multiplication(domain(A),B)),A)) = domain(multiplication(domain(A),B)).  [copy(92),flip(a)].
+94 multiplication(domain(multiplication(domain(A),B)),C) = multiplication(domain(multiplication(domain(A),B)),multiplication(domain(B),C)).  [para(88(a,1),18(a,1,1))].
+95 multiplication(domain(multiplication(domain(A),B)),multiplication(domain(B),C)) = multiplication(domain(multiplication(domain(A),B)),C).  [copy(94),flip(a)].
+96 multiplication(domain(multiplication(domain(A),B)),multiplication(domain(B),A)) = multiplication(domain(A),multiplication(domain(B),A)).  [para(73(a,1),66(a,1,2))].
+97 multiplication(domain(multiplication(domain(A),B)),A) = multiplication(domain(A),multiplication(domain(B),A)).  [para(95(a,1),96(a,1))].
+98 multiplication(domain(multiplication(domain(A),B)),A) = multiplication(domain(B),A).  [para(73(a,1),97(a,2))].
+99 multiplication(domain(multiplication(domain(multiplication(domain(A),B)),A)),multiplication(domain(A),domain(B))) = multiplication(domain(multiplication(domain(A),B)),multiplication(domain(A),domain(B))).  [para(50(a,1),66(a,1,2))].
+100 multiplication(domain(multiplication(domain(B),A)),multiplication(domain(A),domain(B))) = multiplication(domain(multiplication(domain(A),B)),multiplication(domain(A),domain(B))).  [para(98(a,1),99(a,1,1,1))].
+101 multiplication(domain(multiplication(domain(B),A)),domain(B)) = multiplication(domain(multiplication(domain(A),B)),multiplication(domain(A),domain(B))).  [para(95(a,1),100(a,1))].
+102 domain(multiplication(domain(B),A)) = multiplication(domain(multiplication(domain(A),B)),multiplication(domain(A),domain(B))).  [para(83(a,1),101(a,1))].
+103 domain(multiplication(domain(A),B)) = multiplication(domain(B),domain(A)).  [para(50(a,1),102(a,2))].
+104 domain(multiplication(multiplication(domain(B),domain(A)),A)) = domain(multiplication(domain(A),B)).  [para(103(a,1),93(a,1,1,1))].
+105 domain(multiplication(domain(B),multiplication(domain(A),A))) = domain(multiplication(domain(A),B)).  [para(18(a,1),104(a,1,1))].
+106 domain(multiplication(domain(B),A)) = domain(multiplication(domain(A),B)).  [para(52(a,1),105(a,1,1,2))].
+107 multiplication(domain(A),domain(B)) = domain(multiplication(domain(A),B)).  [para(103(a,1),106(a,1))].
+108 multiplication(domain(A),domain(B)) = multiplication(domain(B),domain(A)).  [para(103(a,1),107(a,2))].
+109 multiplication(domain(c2),domain(c1)) != multiplication(domain(c1),domain(c2)).  [para(103(a,1),26(a,1))].
+110 multiplication(domain(c1),domain(c2)) != multiplication(domain(c1),domain(c2)).  [para(108(a,1),109(a,1))].
+111 $F.  [copy(110),xx(a)].
+
+============================== end of proof ==========================

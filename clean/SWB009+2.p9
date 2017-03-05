@@ -1,0 +1,22 @@
+
+
+
+
+5 iext(uri_rdf_type,uri_ex_s,c1).  [clausify(3)].
+6 iext(uri_owl_onProperty,c1,uri_ex_p).  [clausify(3)].
+7 iext(uri_owl_someValuesFrom,c1,uri_ex_c).  [clausify(3)].
+8 -iext(uri_ex_p,uri_ex_s,A) | -iext(uri_rdf_type,A,uri_ex_c).  [clausify(4)].
+9 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(1)].
+10 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(1)].
+11 -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | icext(B,f1(A,C,B,D)).  [clausify(2)].
+12 -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | iext(C,D,f1(A,C,B,D)).  [clausify(2)].
+13 icext(c1,uri_ex_s).  [resolve(9,a,5,a)].
+14 -icext(uri_ex_c,A) | -iext(uri_ex_p,uri_ex_s,A).  [resolve(10,a,8,b)].
+15 -icext(uri_ex_c,f1(A,uri_ex_p,B,uri_ex_s)) | -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,uri_ex_p) | -icext(A,uri_ex_s).  [resolve(14,b,12,d)].
+16 -icext(uri_ex_c,f1(c1,uri_ex_p,uri_ex_c,uri_ex_s)) | -iext(uri_owl_onProperty,c1,uri_ex_p) | -icext(c1,uri_ex_s).  [resolve(15,b,7,a)].
+17 -icext(uri_ex_c,f1(c1,uri_ex_p,uri_ex_c,uri_ex_s)) | -icext(c1,uri_ex_s).  [resolve(6,a,16,b)].
+18 -icext(uri_ex_c,f1(c1,uri_ex_p,uri_ex_c,uri_ex_s)).  [resolve(13,a,17,b)].
+19 -iext(uri_owl_someValuesFrom,c1,uri_ex_c) | -iext(uri_owl_onProperty,c1,uri_ex_p) | -icext(c1,uri_ex_s).  [resolve(18,a,11,d)].
+20 -iext(uri_owl_onProperty,c1,uri_ex_p) | -icext(c1,uri_ex_s).  [resolve(7,a,19,a)].
+21 -icext(c1,uri_ex_s).  [resolve(6,a,20,a)].
+22 $F.  [resolve(13,a,21,a)].

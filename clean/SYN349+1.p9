@@ -1,0 +1,22 @@
+
+2 big_f(A,f2(A,B)) | big_f(f2(A,B),B) | big_f(B,f2(A,B)) | big_f(f2(A,B),f1(A)).  [clausify(1)].
+3 -big_f(A,f2(A,B)) | -big_f(f2(A,B),B) | -big_f(B,f2(A,B)) | -big_f(f2(A,B),f1(A)).  [clausify(1)].
+4 -big_f(A,f2(A,B)) | big_f(f1(A),f2(A,B)).  [clausify(1)].
+5 big_f(A,f2(A,B)) | -big_f(f1(A),f2(A,B)).  [clausify(1)].
+6 -big_f(A,f2(A,B)) | big_f(f2(A,B),B) | -big_f(B,f2(A,B)) | big_f(f2(A,B),f1(A)).  [clausify(1)].
+7 big_f(A,f2(A,B)) | -big_f(f2(A,B),B) | big_f(B,f2(A,B)) | -big_f(f2(A,B),f1(A)).  [clausify(1)].
+8 big_f(A,f2(A,f1(A))) | big_f(f2(A,f1(A)),f1(A)) | big_f(f1(A),f2(A,f1(A))).  [factor(2,b,d)].
+9 -big_f(A,f2(A,f1(A))) | -big_f(f2(A,f1(A)),f1(A)) | -big_f(f1(A),f2(A,f1(A))).  [factor(3,b,d)].
+10 -big_f(A,f2(A,f1(A))) | big_f(f2(A,f1(A)),f1(A)) | -big_f(f1(A),f2(A,f1(A))).  [factor(6,b,d)].
+11 big_f(A,f2(A,f1(A))) | -big_f(f2(A,f1(A)),f1(A)) | big_f(f1(A),f2(A,f1(A))).  [factor(7,b,d)].
+12 big_f(A,f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))) | big_f(A,f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))).  [resolve(11,b,8,b)].
+13 big_f(A,f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))).  [copy(12),merge(c)].
+14 big_f(A,f2(A,f1(A))) | big_f(f1(A),f2(A,f1(A))).  [copy(13),merge(c)].
+15 big_f(A,f2(A,f1(A))) | big_f(A,f2(A,f1(A))).  [resolve(14,b,5,b)].
+16 big_f(A,f2(A,f1(A))).  [copy(15),merge(b)].
+17 big_f(f2(A,f1(A)),f1(A)) | -big_f(f1(A),f2(A,f1(A))).  [resolve(16,a,10,a)].
+18 -big_f(f2(A,f1(A)),f1(A)) | -big_f(f1(A),f2(A,f1(A))).  [resolve(16,a,9,a)].
+19 big_f(f1(A),f2(A,f1(A))).  [resolve(16,a,4,a)].
+20 -big_f(f2(A,f1(A)),f1(A)).  [resolve(19,a,18,b)].
+21 -big_f(f1(A),f2(A,f1(A))).  [resolve(20,a,17,a)].
+22 $F.  [resolve(19,a,21,a)].

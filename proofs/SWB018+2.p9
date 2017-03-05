@@ -1,0 +1,47 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n161.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:57:53 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 4032 was started by sandbox on n161.star.cs.uiowa.edu,
+Thu Jun  5 15:57:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_4000_n161.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds: testcase_conclusion_fullish_018_Modified_Logical_Vocabulary_Semantics.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 12.000.
+% Given clauses 6.
+
+
+1 (all A all B (iext(uri_rdf_type,A,B) <-> icext(B,A))).  [assumption].
+2 (all A all B all C all D (iext(uri_rdfs_domain,A,B) & iext(A,C,D) -> icext(B,C))).  [assumption].
+3 (all A all B (iext(uri_owl_sameAs,A,B) <-> A = B)).  [assumption].
+4 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(1)].
+5 -iext(uri_rdfs_domain,A,B) | -iext(A,C,D) | icext(B,C).  [clausify(2)].
+6 iext(uri_rdfs_domain,uri_owl_sameAs,uri_ex_Person).  [assumption].
+7 -iext(uri_rdf_type,uri_ex_u,uri_ex_Person).  [assumption].
+8 iext(uri_owl_sameAs,A,B) | B != A.  [clausify(3)].
+9 -iext(uri_rdfs_domain,A,B) | -iext(A,C,D) | iext(uri_rdf_type,C,B).  [resolve(5,c,4,b)].
+10 iext(uri_owl_sameAs,A,A).  [xx_res(8,b)].
+11 -iext(uri_owl_sameAs,A,B) | iext(uri_rdf_type,A,uri_ex_Person).  [resolve(9,a,6,a)].
+12 -iext(uri_owl_sameAs,uri_ex_u,A).  [resolve(11,b,7,a)].
+13 $F.  [resolve(12,a,10,a)].
+
+============================== end of proof ==========================

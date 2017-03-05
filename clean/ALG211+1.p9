@@ -1,0 +1,27 @@
+
+
+
+
+
+
+7 -a_vector_space(A) | basis_of(f2(A),A).  [clausify(3)].
+8 a_vector_space(c2).  [clausify(6)].
+9 -a_vector_subspace_of(A,B) | a_vector_space(A).  [clausify(4)].
+10 -a_vector_subspace_of(A,B) | -a_subset_of(C,vec_to_class(A)) | -lin_ind_subset(C,A) | lin_ind_subset(C,B).  [clausify(5)].
+11 a_vector_subspace_of(c1,c2).  [clausify(6)].
+12 basis_of(f2(A),A) | -a_vector_subspace_of(A,B).  [resolve(7,a,9,b)].
+13 -a_subset_of(A,vec_to_class(c1)) | -lin_ind_subset(A,c1) | lin_ind_subset(A,c2).  [resolve(10,a,11,a)].
+14 -basis_of(A,B) | a_subset_of(A,vec_to_class(B)).  [clausify(1)].
+15 -basis_of(union(A,B),c2) | -basis_of(A,c1).  [clausify(6)].
+16 -basis_of(A,B) | lin_ind_subset(A,B).  [clausify(1)].
+17 -lin_ind_subset(A,B) | -basis_of(C,B) | basis_of(union(A,f1(A,C,B)),B).  [clausify(2)].
+18 basis_of(f2(c2),c2).  [resolve(7,a,8,a)].
+19 basis_of(f2(c1),c1).  [resolve(12,b,11,a)].
+20 -lin_ind_subset(A,c1) | lin_ind_subset(A,c2) | -basis_of(A,c1).  [resolve(13,a,14,b)].
+21 -basis_of(union(f2(c1),A),c2).  [resolve(19,a,15,b)].
+22 lin_ind_subset(f2(c1),c1).  [resolve(16,a,19,a)].
+23 -lin_ind_subset(A,c2) | basis_of(union(A,f1(A,f2(c2),c2)),c2).  [resolve(17,b,18,a)].
+24 -lin_ind_subset(f2(c1),c2).  [resolve(23,b,21,a)].
+25 -lin_ind_subset(f2(c1),c1) | -basis_of(f2(c1),c1).  [resolve(24,a,20,b)].
+26 -basis_of(f2(c1),c1).  [resolve(22,a,25,a)].
+27 $F.  [resolve(19,a,26,a)].

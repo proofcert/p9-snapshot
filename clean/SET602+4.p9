@@ -1,0 +1,25 @@
+
+
+
+
+
+
+7 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+8 -member(A,empty_set).  [clausify(4)].
+9 -equal_set(difference(c1,c1),empty_set).  [clausify(6)].
+10 -member(A,difference(B,C)) | -member(A,C).  [clausify(5)].
+11 -member(A,power_set(B)) | subset(A,B).  [clausify(3)].
+12 member(A,power_set(B)) | -subset(A,B).  [clausify(3)].
+13 -member(A,difference(B,C)) | member(A,B).  [clausify(5)].
+14 equal_set(A,B) | -subset(A,B) | -subset(B,A).  [clausify(2)].
+15 member(A,power_set(B)) | member(f1(A,B),A).  [resolve(12,b,7,a)].
+16 member(difference(A,B),power_set(C)) | member(f1(difference(A,B),C),A).  [resolve(15,b,13,a)].
+17 member(difference(A,B),power_set(C)) | -member(f1(difference(A,B),C),B).  [resolve(15,b,10,a)].
+18 member(empty_set,power_set(A)).  [resolve(15,b,8,a)].
+19 subset(empty_set,A).  [resolve(18,a,11,a)].
+20 -subset(difference(c1,c1),empty_set) | -subset(empty_set,difference(c1,c1)).  [resolve(14,a,9,a)].
+21 -subset(difference(c1,c1),empty_set).  [resolve(20,b,19,a)].
+22 -member(difference(c1,c1),power_set(empty_set)).  [resolve(11,b,21,a)].
+23 member(difference(A,A),power_set(B)) | member(difference(A,A),power_set(B)).  [resolve(17,b,16,b)].
+24 member(difference(A,A),power_set(B)).  [copy(23),merge(b)].
+25 $F.  [resolve(24,a,22,a)].

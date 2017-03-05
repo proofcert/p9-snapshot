@@ -1,0 +1,73 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n055.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:10:53 CDT 2014
+% CPUTime    : 30.44 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 60007 was started by sandbox on n055.star.cs.uiowa.edu,
+Fri Jun  6 06:10:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_59975_n055.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 29.95 (+ 0.26) seconds.
+% Length of proof is 36.
+% Level of proof is 9.
+% Maximum clause weight is 26.000.
+% Given clauses 7778.
+
+
+1 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+2 (all A (relation(A) -> (all B (is_reflexive_in(A,B) <-> (all C (in(C,B) -> in(ordered_pair(C,C),A))))))).  [assumption].
+3 (all A all B (relation(B) -> (B = inclusion_relation(A) <-> relation_field(B) = A & (all C all D (in(C,A) & in(D,A) -> (in(ordered_pair(C,D),B) <-> subset(C,D))))))).  [assumption].
+4 (all A all B ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A))).  [assumption].
+5 (all A (relation(A) -> (reflexive(A) <-> is_reflexive_in(A,relation_field(A))))).  [assumption].
+6 (all A relation(inclusion_relation(A))).  [assumption].
+7 (all A all B subset(A,A)).  [assumption].
+8 -(all A reflexive(inclusion_relation(A))).  [assumption].
+9 relation(inclusion_relation(A)).  [clausify(6)].
+10 -relation(A) | reflexive(A) | -is_reflexive_in(A,relation_field(A)).  [clausify(5)].
+11 -relation(A) | is_reflexive_in(A,B) | in(f1(A,B),B).  [clausify(2)].
+12 -relation(A) | inclusion_relation(B) != A | relation_field(A) = B.  [clausify(3)].
+13 -relation(A) | is_reflexive_in(A,B) | -in(ordered_pair(f1(A,B),f1(A,B)),A).  [clausify(2)].
+14 -relation(A) | inclusion_relation(B) != A | -in(C,B) | -in(D,B) | in(ordered_pair(C,D),A) | -subset(C,D).  [clausify(3)].
+15 subset(A,A).  [clausify(7)].
+16 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+17 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(4)].
+18 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(16(a,1),17(a,2))].
+19 -reflexive(inclusion_relation(c10)).  [clausify(8)].
+20 reflexive(inclusion_relation(A)) | -is_reflexive_in(inclusion_relation(A),relation_field(inclusion_relation(A))).  [resolve(10,a,9,a)].
+21 is_reflexive_in(inclusion_relation(A),B) | in(f1(inclusion_relation(A),B),B).  [resolve(11,a,9,a)].
+22 inclusion_relation(A) != inclusion_relation(B) | relation_field(inclusion_relation(B)) = A.  [resolve(12,a,9,a)].
+23 is_reflexive_in(inclusion_relation(A),B) | -in(ordered_pair(f1(inclusion_relation(A),B),f1(inclusion_relation(A),B)),inclusion_relation(A)).  [resolve(13,a,9,a)].
+24 is_reflexive_in(inclusion_relation(A),B) | -in(unordered_pair(singleton(f1(inclusion_relation(A),B)),unordered_pair(f1(inclusion_relation(A),B),f1(inclusion_relation(A),B))),inclusion_relation(A)).  [para(18(a,1),23(b,1))].
+25 inclusion_relation(A) != inclusion_relation(B) | -in(C,A) | -in(D,A) | in(ordered_pair(C,D),inclusion_relation(B)) | -subset(C,D).  [resolve(14,a,9,a)].
+26 inclusion_relation(A) != inclusion_relation(B) | -in(C,A) | -in(D,A) | in(unordered_pair(singleton(C),unordered_pair(C,D)),inclusion_relation(B)) | -subset(C,D).  [para(18(a,1),25(d,1))].
+27 inclusion_relation(A) != inclusion_relation(B) | -in(C,A) | in(unordered_pair(singleton(C),unordered_pair(C,C)),inclusion_relation(B)) | -subset(C,C).  [factor(26,b,c)].
+28 inclusion_relation(A) != inclusion_relation(B) | -in(C,A) | in(unordered_pair(singleton(C),unordered_pair(C,C)),inclusion_relation(B)).  [resolve(15,a,27,d)].
+29 in(f1(inclusion_relation(A),relation_field(inclusion_relation(A))),relation_field(inclusion_relation(A))) | reflexive(inclusion_relation(A)).  [resolve(21,a,20,b)].
+30 relation_field(inclusion_relation(A)) = A.  [xx_res(22,a)].
+31 in(f1(inclusion_relation(A),A),relation_field(inclusion_relation(A))) | reflexive(inclusion_relation(A)).  [para(30(a,1),29(a,1,2))].
+32 in(f1(inclusion_relation(A),A),A) | reflexive(inclusion_relation(A)).  [para(30(a,1),31(a,2))].
+33 reflexive(inclusion_relation(A)) | -is_reflexive_in(inclusion_relation(A),A).  [para(30(a,1),20(b,2))].
+34 reflexive(inclusion_relation(A)) | inclusion_relation(A) != inclusion_relation(B) | in(unordered_pair(singleton(f1(inclusion_relation(A),A)),unordered_pair(f1(inclusion_relation(A),A),f1(inclusion_relation(A),A))),inclusion_relation(B)).  [resolve(32,a,28,b)].
+35 reflexive(inclusion_relation(A)) | in(unordered_pair(singleton(f1(inclusion_relation(A),A)),unordered_pair(f1(inclusion_relation(A),A),f1(inclusion_relation(A),A))),inclusion_relation(A)).  [xx_res(34,b)].
+36 reflexive(inclusion_relation(A)) | is_reflexive_in(inclusion_relation(A),A).  [resolve(35,b,24,b)].
+37 reflexive(inclusion_relation(A)) | reflexive(inclusion_relation(A)).  [resolve(36,b,33,b)].
+38 reflexive(inclusion_relation(A)).  [copy(37),merge(b)].
+39 $F.  [resolve(38,a,19,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,58 @@
+
+
+
+
+
+
+
+
+
+
+11 -status(A,B,C) | -status(A,B,D) | mighta(C,D).  [clausify(7)].
+12 -mighta(wtc,thm).  [assumption].
+13 -model(A,B) | status(C,B,sap).  [clausify(1)].
+14 -model(A,B) | model(f4(B,C),C) | -status(B,C,sap).  [clausify(1)].
+15 -model(A,B) | -model(C,D) | status(B,D,esa).  [clausify(2)].
+16 -model(A,B) | model(f7(B,C),C) | -status(B,C,esa).  [clausify(2)].
+17 model(f8(A,B),A) | -model(C,B) | -status(A,B,esa).  [clausify(2)].
+18 -model(A,B) | -model(A,C) | status(B,C,sat).  [clausify(3)].
+19 model(f9(A,B),A) | -status(A,B,sat).  [clausify(3)].
+20 model(f9(A,B),B) | -status(A,B,sat).  [clausify(3)].
+21 -model(f10(A,B),B) | status(A,B,thm).  [clausify(4)].
+22 -model(A,B) | -model(f13(B,C),C) | status(B,C,tac).  [clausify(5)].
+23 model(f14(A,B),A) | -status(A,B,tac).  [clausify(5)].
+24 -model(A,B) | model(C,B) | -model(f22(B,D),D) | status(B,D,wtc).  [clausify(6)].
+25 model(A,c1).  [clausify(8)].
+26 model(c3,c2).  [clausify(9)].
+27 -model(c4,c2).  [clausify(9)].
+28 model(c18,c17).  [clausify(10)].
+29 -status(A,B,wtc) | -status(A,B,thm).  [resolve(12,a,11,c)].
+30 -model(A,B) | status(B,B,sat).  [factor(18,a,b)].
+31 -model(A,B) | model(C,B) | status(B,c1,wtc).  [resolve(25,a,24,c)].
+32 -model(A,B) | status(B,c1,tac).  [resolve(25,a,22,b)].
+33 status(A,c1,thm).  [resolve(25,a,21,a)].
+34 -model(A,B) | status(B,c1,sat).  [resolve(25,a,18,b)].
+35 -model(A,B) | status(c1,B,sat).  [resolve(25,a,18,a)].
+36 -model(A,B) | status(B,c1,esa).  [resolve(25,a,15,b)].
+37 -model(A,B) | status(c1,B,esa).  [resolve(25,a,15,a)].
+38 status(A,c2,sap).  [resolve(26,a,13,a)].
+39 status(c17,c17,sat).  [resolve(30,a,28,a)].
+40 -model(A,B) | model(f4(B,c2),c2).  [resolve(38,a,14,c)].
+41 model(f9(c17,c17),c17).  [resolve(39,a,20,b)].
+42 status(c17,c1,tac).  [resolve(32,a,41,a)].
+43 model(f14(c17,c1),c17).  [resolve(42,a,23,b)].
+44 status(c17,c1,sat).  [resolve(34,a,43,a)].
+45 model(f9(c17,c1),c17).  [resolve(44,a,19,b)].
+46 status(c1,c17,sat).  [resolve(35,a,45,a)].
+47 model(f9(c1,c17),c17).  [resolve(46,a,20,b)].
+48 status(c17,c1,esa).  [resolve(36,a,47,a)].
+49 model(f8(c17,c1),c17) | -model(A,c1).  [resolve(48,a,17,c)].
+50 model(f8(c17,c1),c17).  [resolve(25,a,49,b)].
+51 status(c1,c17,esa).  [resolve(37,a,50,a)].
+52 -model(A,c1) | model(f7(c1,c17),c17).  [resolve(51,a,16,c)].
+53 model(f7(c1,c17),c17).  [resolve(25,a,52,a)].
+54 model(f4(c17,c2),c2).  [resolve(40,a,53,a)].
+55 model(A,c2) | status(c2,c1,wtc).  [resolve(31,a,54,a)].
+56 model(A,c2) | -status(c2,c1,thm).  [resolve(55,b,29,a)].
+57 model(A,c2).  [resolve(33,a,56,b)].
+58 $F.  [resolve(57,a,27,a)].

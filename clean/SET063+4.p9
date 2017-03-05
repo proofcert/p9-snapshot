@@ -1,0 +1,21 @@
+
+
+
+
+
+
+7 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+8 -member(A,empty_set).  [clausify(5)].
+9 -equal_set(intersection(c1,empty_set),empty_set).  [clausify(6)].
+10 -member(A,power_set(B)) | subset(A,B).  [clausify(3)].
+11 member(A,power_set(B)) | -subset(A,B).  [clausify(3)].
+12 -member(A,intersection(B,C)) | member(A,C).  [clausify(4)].
+13 equal_set(A,B) | -subset(A,B) | -subset(B,A).  [clausify(2)].
+14 member(A,power_set(B)) | member(f1(A,B),A).  [resolve(11,b,7,a)].
+15 -member(A,intersection(B,empty_set)).  [resolve(12,b,8,a)].
+16 member(empty_set,power_set(A)).  [resolve(14,b,8,a)].
+17 subset(empty_set,A).  [resolve(16,a,10,a)].
+18 -subset(intersection(c1,empty_set),empty_set) | -subset(empty_set,intersection(c1,empty_set)).  [resolve(13,a,9,a)].
+19 -subset(intersection(c1,empty_set),empty_set).  [resolve(18,b,17,a)].
+20 member(f1(intersection(c1,empty_set),empty_set),intersection(c1,empty_set)).  [resolve(19,a,7,a)].
+21 $F.  [resolve(15,a,20,a)].

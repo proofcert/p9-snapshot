@@ -1,0 +1,21 @@
+
+
+3 -relation(A) | -in(B,relation_dom(relation_dom_restriction(A,C))) | in(B,C).  [clausify(1)].
+4 -relation(A) | -in(B,relation_dom(relation_dom_restriction(A,C))) | in(B,relation_dom(A)).  [clausify(1)].
+5 -relation(A) | in(B,relation_dom(relation_dom_restriction(A,C))) | -in(B,C) | -in(B,relation_dom(A)).  [clausify(1)].
+6 relation(c11).  [clausify(2)].
+7 in(c10,relation_dom(relation_dom_restriction(c11,c9))) | in(c10,relation_dom(c11)).  [clausify(2)].
+8 in(c10,relation_dom(relation_dom_restriction(c11,c9))) | in(c10,c9).  [clausify(2)].
+9 -in(c10,relation_dom(relation_dom_restriction(c11,c9))) | -in(c10,relation_dom(c11)) | -in(c10,c9).  [clausify(2)].
+10 in(c10,relation_dom(c11)) | -relation(c11) | in(c10,relation_dom(c11)).  [resolve(7,a,4,b)].
+11 in(c10,relation_dom(c11)) | -relation(c11).  [copy(10),merge(c)].
+12 in(c10,relation_dom(c11)).  [resolve(6,a,11,b)].
+13 -in(c10,relation_dom(relation_dom_restriction(c11,c9))) | -in(c10,c9).  [resolve(12,a,9,b)].
+14 in(c10,c9) | -relation(c11) | in(c10,c9).  [resolve(8,a,3,b)].
+15 in(c10,c9) | -relation(c11).  [copy(14),merge(c)].
+16 in(c10,c9).  [resolve(6,a,15,b)].
+17 -in(c10,relation_dom(relation_dom_restriction(c11,c9))).  [resolve(16,a,13,b)].
+18 -relation(A) | in(c10,relation_dom(relation_dom_restriction(A,c9))) | -in(c10,relation_dom(A)).  [resolve(16,a,5,c)].
+19 -relation(c11) | in(c10,relation_dom(relation_dom_restriction(c11,c9))).  [resolve(18,c,12,a)].
+20 in(c10,relation_dom(relation_dom_restriction(c11,c9))).  [resolve(6,a,19,a)].
+21 $F.  [resolve(17,a,20,a)].

@@ -1,0 +1,19 @@
+
+
+
+
+5 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+6 subset(c3,c4).  [clausify(4)].
+7 -least_upper_bound(A,B,C,D) | member(A,B).  [clausify(3)].
+8 -least_upper_bound(A,B,C,D) | upper_bound(A,C,B).  [clausify(3)].
+9 least_upper_bound(c5,c3,c1,c2).  [clausify(4)].
+10 least_upper_bound(c6,c4,c1,c2).  [clausify(4)].
+11 -upper_bound(A,B,C) | -member(D,C) | apply(B,D,A).  [clausify(2)].
+12 -apply(c1,c5,c6).  [clausify(4)].
+13 -member(A,c3) | member(A,c4).  [resolve(6,a,5,a)].
+14 member(c5,c3).  [resolve(9,a,7,a)].
+15 upper_bound(c6,c1,c4).  [resolve(10,a,8,a)].
+16 member(c5,c4).  [resolve(14,a,13,a)].
+17 -member(A,c4) | apply(c1,A,c6).  [resolve(15,a,11,a)].
+18 apply(c1,c5,c6).  [resolve(17,a,16,a)].
+19 $F.  [resolve(12,a,18,a)].

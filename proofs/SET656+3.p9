@@ -1,0 +1,83 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n051.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 19:31:58 CDT 2014
+% CPUTime    : 0.19 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 4101 was started by sandbox on n051.star.cs.uiowa.edu,
+Fri Jun  6 19:31:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_4069_n051.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.05 (+ 0.00) seconds.
+% Length of proof is 35.
+% Level of proof is 7.
+% Maximum clause weight is 11.000.
+% Given clauses 117.
+
+
+1 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (subset(A,B) -> intersection(A,B) = A))))).  [assumption].
+2 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,subset_type(cross_product(A,B))) -> ilf_type(C,relation_type(A,B)))) & (all D (ilf_type(D,relation_type(A,B)) -> ilf_type(D,subset_type(cross_product(A,B))))))))).  [assumption].
+3 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (ilf_type(B,subset_type(A)) <-> ilf_type(B,member_type(power_set(A)))))))).  [assumption].
+4 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (subset(A,B) <-> (all C (ilf_type(C,set_type) -> (member(C,A) -> member(C,B))))))))).  [assumption].
+5 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (member(A,power_set(B)) <-> (all C (ilf_type(C,set_type) -> (member(C,A) -> member(C,B))))))))).  [assumption].
+6 (all A (ilf_type(A,set_type) -> -empty(power_set(A)) & ilf_type(power_set(A),set_type))).  [assumption].
+7 (all A (ilf_type(A,set_type) -> (all B (-empty(B) & ilf_type(B,set_type) -> (ilf_type(A,member_type(B)) <-> member(A,B)))))).  [assumption].
+8 (all A ilf_type(A,set_type)).  [assumption].
+9 -(all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,relation_type(A,B)) -> intersection(C,cross_product(A,B)) = C)))))).  [assumption].
+10 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -subset(A,B) | intersection(A,B) = A.  [clausify(1)].
+11 -ilf_type(A,set_type) | -ilf_type(B,set_type) | subset(A,B) | member(f7(A,B),A).  [clausify(4)].
+12 -ilf_type(A,set_type) | -ilf_type(B,set_type) | subset(A,B) | -member(f7(A,B),B).  [clausify(4)].
+13 ilf_type(A,set_type).  [clausify(8)].
+14 ilf_type(c4,relation_type(c2,c3)).  [clausify(9)].
+15 -ilf_type(A,set_type) | -empty(power_set(A)).  [clausify(6)].
+16 -empty(power_set(A)).  [resolve(13,a,15,a)].
+17 intersection(c4,cross_product(c2,c3)) != c4.  [clausify(9)].
+18 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(B,subset_type(A)) | ilf_type(B,member_type(power_set(A))).  [clausify(3)].
+19 -ilf_type(A,set_type) | -ilf_type(A,subset_type(B)) | ilf_type(A,member_type(power_set(B))).  [resolve(13,a,18,a)].
+20 -ilf_type(A,subset_type(B)) | ilf_type(A,member_type(power_set(B))).  [resolve(13,a,19,a)].
+21 -ilf_type(A,set_type) | empty(B) | -ilf_type(B,set_type) | -ilf_type(A,member_type(B)) | member(A,B).  [clausify(7)].
+22 empty(A) | -ilf_type(A,set_type) | -ilf_type(B,member_type(A)) | member(B,A).  [resolve(13,a,21,a)].
+23 empty(A) | -ilf_type(B,member_type(A)) | member(B,A).  [resolve(13,a,22,b)].
+24 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | ilf_type(C,subset_type(cross_product(A,B))).  [clausify(2)].
+25 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | ilf_type(B,subset_type(cross_product(C,A))).  [resolve(13,a,24,a)].
+26 -ilf_type(A,relation_type(B,C)) | ilf_type(A,subset_type(cross_product(B,C))).  [resolve(13,a,25,a)].
+27 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -member(A,power_set(B)) | -ilf_type(C,set_type) | -member(C,A) | member(C,B).  [clausify(5)].
+28 -ilf_type(A,set_type) | -member(B,power_set(A)) | -ilf_type(C,set_type) | -member(C,B) | member(C,A).  [resolve(13,a,27,a)].
+29 -member(A,power_set(B)) | -ilf_type(C,set_type) | -member(C,A) | member(C,B).  [resolve(13,a,28,a)].
+30 -member(A,power_set(B)) | -member(C,A) | member(C,B).  [resolve(13,a,29,b)].
+31 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(f7(A,B),A) | -ilf_type(A,set_type) | -ilf_type(B,set_type) | intersection(A,B) = A.  [resolve(11,c,10,c)].
+32 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(f7(A,B),A) | -ilf_type(B,set_type) | intersection(A,B) = A.  [copy(31),merge(d)].
+33 -ilf_type(A,set_type) | -ilf_type(B,set_type) | member(f7(A,B),A) | intersection(A,B) = A.  [copy(32),merge(d)].
+34 -ilf_type(A,set_type) | member(f7(B,A),B) | intersection(B,A) = B.  [resolve(13,a,33,a)].
+35 member(f7(A,B),A) | intersection(A,B) = A.  [resolve(13,a,34,a)].
+36 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -member(f7(A,B),B) | -ilf_type(A,set_type) | -ilf_type(B,set_type) | intersection(A,B) = A.  [resolve(12,c,10,c)].
+37 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -member(f7(A,B),B) | -ilf_type(B,set_type) | intersection(A,B) = A.  [copy(36),merge(d)].
+38 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -member(f7(A,B),B) | intersection(A,B) = A.  [copy(37),merge(d)].
+39 -ilf_type(A,set_type) | -member(f7(B,A),A) | intersection(B,A) = B.  [resolve(13,a,38,a)].
+40 -member(f7(A,B),B) | intersection(A,B) = A.  [resolve(13,a,39,a)].
+41 ilf_type(c4,subset_type(cross_product(c2,c3))).  [resolve(26,a,14,a)].
+42 -member(f7(c4,cross_product(c2,c3)),cross_product(c2,c3)).  [resolve(40,b,17,a)].
+43 ilf_type(c4,member_type(power_set(cross_product(c2,c3)))).  [resolve(41,a,20,a)].
+44 empty(power_set(cross_product(c2,c3))) | member(c4,power_set(cross_product(c2,c3))).  [resolve(43,a,23,b)].
+45 member(c4,power_set(cross_product(c2,c3))).  [resolve(16,a,44,a)].
+46 -member(A,c4) | member(A,cross_product(c2,c3)).  [resolve(30,a,45,a)].
+47 -member(f7(c4,cross_product(c2,c3)),c4).  [resolve(46,b,42,a)].
+48 intersection(c4,cross_product(c2,c3)) = c4.  [resolve(47,a,35,a)].
+49 $F.  [resolve(17,a,48,a)].
+
+============================== end of proof ==========================

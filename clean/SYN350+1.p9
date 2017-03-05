@@ -1,0 +1,12 @@
+
+2 big_f(c1,f1(A,B)) | big_f(B,f1(A,B)).  [clausify(1)].
+3 -big_f(c1,f1(A,B)) | -big_f(B,f1(A,B)) | -big_f(A,B).  [clausify(1)].
+4 -big_f(c1,f1(A,B)) | big_f(f1(A,B),c1).  [clausify(1)].
+5 -big_f(c1,f1(A,B)) | -big_f(B,f1(A,B)) | big_f(A,f1(A,B)).  [clausify(1)].
+6 big_f(c1,f1(A,c1)).  [factor(2,a,b)].
+7 -big_f(c1,f1(A,c1)) | -big_f(A,c1).  [factor(3,a,b)].
+8 -big_f(A,c1).  [resolve(6,a,7,a)].
+9 -big_f(c1,f1(A,c1)) | big_f(A,f1(A,c1)).  [factor(5,a,b)].
+10 big_f(A,f1(A,c1)).  [resolve(6,a,9,a)].
+11 -big_f(c1,f1(A,B)).  [resolve(8,a,4,b)].
+12 $F.  [resolve(11,a,10,a)].

@@ -1,0 +1,27 @@
+
+
+
+
+
+
+7 addition(A,A) = A.  [clausify(3)].
+8 domain(A) = antidomain(antidomain(A)).  [clausify(5)].
+9 addition(A,B) = addition(B,A).  [clausify(1)].
+10 addition(antidomain(antidomain(A)),antidomain(A)) = one.  [clausify(4)].
+11 addition(antidomain(A),antidomain(antidomain(A))) = one.  [para(9(a,1),10(a,1))].
+12 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+13 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(9(a,1),12(a,1))].
+14 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(13),flip(a)].
+15 addition(domain(c1),one) != one.  [clausify(6)].
+16 addition(antidomain(antidomain(c1)),one) != one.  [para(8(a,1),15(a,1,1))].
+17 addition(one,antidomain(antidomain(c1))) != one.  [para(9(a,1),16(a,1))].
+18 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(14(a,1),7(a,1))].
+19 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(9(a,1),18(a,1,2,1))].
+20 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(9(a,1),19(a,1,2))].
+21 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(14(a,2),20(a,1,2))].
+22 addition(A,addition(A,B)) = addition(B,A).  [para(7(a,1),21(a,1,2,2))].
+23 addition(A,addition(A,B)) = addition(A,B).  [para(9(a,1),22(a,2))].
+24 addition(antidomain(A),one) = addition(antidomain(A),antidomain(antidomain(A))).  [para(11(a,1),23(a,1,2))].
+25 addition(one,antidomain(A)) = addition(antidomain(A),antidomain(antidomain(A))).  [para(9(a,1),24(a,1))].
+26 addition(one,antidomain(A)) = one.  [para(11(a,1),25(a,2))].
+27 $F.  [resolve(26,a,17,a)].

@@ -1,0 +1,29 @@
+
+
+
+
+
+6 -finish_point(A,B) | incident_o(A,B).  [clausify(3)].
+7 finish_point(c11,c10).  [clausify(5)].
+8 finish_point(c12,c10).  [clausify(5)].
+9 -finish_point(A,B) | C = A | -incident_o(C,B) | ordered_by(B,C,A).  [clausify(3)].
+10 between_o(A,B,C,D) | -ordered_by(A,D,C) | -ordered_by(A,C,B).  [clausify(2)].
+11 -between_o(A,B,C,D) | between_c(f18(B,C,D,A),B,C,D).  [clausify(4)].
+12 c12 != c11.  [clausify(5)].
+13 -between_c(A,B,C,D) | D != B.  [clausify(1)].
+14 incident_o(c11,c10).  [resolve(6,a,7,a)].
+15 incident_o(c12,c10).  [resolve(6,a,8,a)].
+16 A = c11 | -incident_o(A,c10) | ordered_by(c10,A,c11).  [resolve(9,a,7,a)].
+17 c11 = A | -incident_o(A,c10) | ordered_by(c10,A,c11).  [copy(16),flip(a)].
+18 A = c12 | -incident_o(A,c10) | ordered_by(c10,A,c12).  [resolve(9,a,8,a)].
+19 c12 = A | -incident_o(A,c10) | ordered_by(c10,A,c12).  [copy(18),flip(a)].
+20 between_c(f18(A,B,C,D),A,B,C) | -ordered_by(D,C,B) | -ordered_by(D,B,A).  [resolve(11,a,10,a)].
+21 c11 = c12 | ordered_by(c10,c12,c11).  [resolve(17,b,15,a)].
+22 c12 = c11 | ordered_by(c10,c12,c11).  [copy(21),flip(a)].
+23 ordered_by(c10,c12,c11).  [resolve(12,a,22,a)].
+24 c12 = c11 | ordered_by(c10,c11,c12).  [resolve(19,b,14,a)].
+25 ordered_by(c10,c11,c12).  [resolve(12,a,24,a)].
+26 between_c(f18(c11,c12,A,c10),c11,c12,A) | -ordered_by(c10,A,c12).  [resolve(23,a,20,c)].
+27 between_c(f18(c11,c12,c11,c10),c11,c12,c11).  [resolve(26,b,25,a)].
+28 c11 != c11.  [resolve(27,a,13,a)].
+29 $F.  [copy(28),xx(a)].

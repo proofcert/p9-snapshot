@@ -1,0 +1,62 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n101.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:09:13 CDT 2014
+% CPUTime    : 2.05 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 1628 was started by sandbox on n101.star.cs.uiowa.edu,
+Thu Jun  5 15:09:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_1596_n101.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.87 (+ 0.01) seconds.
+% Length of proof is 24.
+% Level of proof is 6.
+% Maximum clause weight is 9.000.
+% Given clauses 801.
+
+
+1 (all A -gt(A,A)).  [assumption].
+2 (all A all B (leq(A,B) -> leq(A,succ(B)))).  [assumption].
+3 (all A all B (leq(A,B) <-> gt(succ(B),A))).  [assumption].
+4 (all A minus(A,n1) = pred(A)).  [assumption].
+5 (all A pred(succ(A)) = A).  [assumption].
+6 (all A (leq(n0,A) & leq(A,n0) -> A = n0)).  [assumption].
+7 -(geq(minus(n330,n1),n0) & geq(minus(n410,n1),n0) -> (all A (leq(n0,A) & leq(A,n2) -> (all B (leq(n0,B) & leq(B,minus(n0,n1)) -> a_select3(tptp_const_array2(dim(n0,n3),dim(n0,n2),uninit),B,A) = init))))).  [assumption].
+8 -gt(A,A).  [clausify(1)].
+9 -leq(A,B) | leq(A,succ(B)).  [clausify(2)].
+10 -leq(A,B) | gt(succ(B),A).  [clausify(3)].
+11 succ(tptp_minus_1) = n0.  [assumption].
+12 minus(A,n1) = pred(A).  [clausify(4)].
+13 pred(succ(A)) = A.  [clausify(5)].
+14 -leq(n0,A) | -leq(A,n0) | n0 = A.  [clausify(6)].
+15 leq(n0,c2).  [clausify(7)].
+16 leq(c2,minus(n0,n1)).  [clausify(7)].
+17 leq(c2,pred(n0)).  [para(12(a,1),16(a,2))].
+18 pred(n0) = tptp_minus_1.  [para(11(a,1),13(a,1,1))].
+19 leq(c2,tptp_minus_1).  [para(18(a,1),17(a,2))].
+20 -leq(c2,n0) | n0 = c2.  [resolve(15,a,14,a)].
+21 -leq(c2,n0) | c2 = n0.  [copy(20),flip(b)].
+22 gt(succ(tptp_minus_1),c2).  [resolve(19,a,10,a)].
+23 gt(n0,c2).  [para(11(a,1),22(a,1))].
+24 leq(c2,succ(tptp_minus_1)).  [resolve(19,a,9,a)].
+25 leq(c2,n0).  [para(11(a,1),24(a,2))].
+26 c2 = n0.  [resolve(25,a,21,a)].
+27 gt(n0,n0).  [para(26(a,1),23(a,2))].
+28 $F.  [resolve(8,a,27,a)].
+
+============================== end of proof ==========================

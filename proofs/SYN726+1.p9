@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n137.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 19:11:13 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 55107 was started by sandbox on n137.star.cs.uiowa.edu,
+Fri Jun  6 19:11:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_55075_n137.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 19.
+% Level of proof is 8.
+% Maximum clause weight is 9.000.
+% Given clauses 21.
+
+
+1 -(((all A all B all C (p(A,B) & p(B,C) -> p(A,C))) & (all A all B all C (q(A,B) & q(B,C) -> q(A,C))) & (all A all B (q(A,B) -> q(B,A))) & (all A all B (p(A,B) | q(A,B))) -> (all A all B p(A,B))) | (all A all B q(A,B))).  [assumption].
+2 p(A,B) | q(A,B).  [clausify(1)].
+3 -p(c1,c2).  [clausify(1)].
+4 -q(c3,c4).  [clausify(1)].
+5 -q(A,B) | q(B,A).  [clausify(1)].
+6 -p(A,B) | -p(B,C) | p(A,C).  [clausify(1)].
+7 -q(A,B) | -q(B,C) | q(A,C).  [clausify(1)].
+8 q(c1,c2).  [resolve(3,a,2,a)].
+9 -q(c4,c3).  [resolve(5,b,4,a)].
+10 -p(A,B) | p(C,B) | q(C,A).  [resolve(6,a,2,a)].
+11 q(c2,c1).  [resolve(8,a,5,a)].
+12 -q(c1,A) | q(c2,A).  [resolve(11,a,7,a)].
+13 p(A,B) | q(A,C) | q(C,B).  [resolve(10,a,2,a)].
+14 q(c1,A) | q(A,c2).  [resolve(13,a,3,a)].
+15 q(A,c2) | q(c2,A).  [resolve(14,a,12,a)].
+16 q(c2,A) | q(c2,A).  [resolve(15,a,5,a)].
+17 q(c2,A).  [copy(16),merge(b)].
+18 q(A,c2) | q(A,c2).  [resolve(15,b,5,a)].
+19 q(A,c2).  [copy(18),merge(b)].
+20 -q(A,c2) | q(A,B).  [resolve(17,a,7,b)].
+21 q(A,B).  [resolve(19,a,20,a)].
+22 $F.  [resolve(21,a,9,a)].
+
+============================== end of proof ==========================

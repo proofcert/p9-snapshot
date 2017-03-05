@@ -1,0 +1,18 @@
+
+
+
+4 rdn_translate(nn2,rdn_neg(rdnn(n2))).  [assumption].
+5 rdn_translate(nn5,rdn_neg(rdnn(n5))).  [assumption].
+6 rdn_translate(nn7,rdn_neg(rdnn(n7))).  [assumption].
+7 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_neg(D)) | -rdn_add_with_carry(rdnn(n0),B,D,E) | -rdn_translate(F,rdn_neg(E)) | sum(A,C,F).  [clausify(1)].
+8 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(C),rdnn(n0)) | -rdn_digit_add(rdnn(C),rdnn(D),rdnn(E),rdnn(n0)) | rdn_add_with_carry(rdnn(D),rdnn(A),rdnn(B),rdnn(E)).  [clausify(2)].
+9 rdn_digit_add(rdnn(n2),rdnn(n5),rdnn(n7),rdnn(n0)).  [assumption].
+10 rdn_digit_add(rdnn(n7),rdnn(n0),rdnn(n7),rdnn(n0)).  [assumption].
+11 -sum(nn2,nn5,A).  [clausify(3)].
+12 -rdn_digit_add(rdnn(n7),rdnn(A),rdnn(B),rdnn(n0)) | rdn_add_with_carry(rdnn(A),rdnn(n2),rdnn(n5),rdnn(B)).  [resolve(9,a,8,a)].
+13 rdn_add_with_carry(rdnn(n0),rdnn(n2),rdnn(n5),rdnn(n7)).  [resolve(12,a,10,a)].
+14 -rdn_translate(A,rdn_neg(rdnn(n2))) | -rdn_translate(B,rdn_neg(rdnn(n5))) | -rdn_translate(C,rdn_neg(rdnn(n7))) | sum(A,B,C).  [resolve(13,a,7,c)].
+15 -rdn_translate(A,rdn_neg(rdnn(n5))) | -rdn_translate(B,rdn_neg(rdnn(n7))) | sum(nn2,A,B).  [resolve(14,a,4,a)].
+16 -rdn_translate(A,rdn_neg(rdnn(n7))) | sum(nn2,nn5,A).  [resolve(15,a,5,a)].
+17 -rdn_translate(A,rdn_neg(rdnn(n7))).  [resolve(11,a,16,b)].
+18 $F.  [resolve(17,a,6,a)].

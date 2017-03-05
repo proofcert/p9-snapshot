@@ -1,0 +1,61 @@
+
+
+
+
+
+
+7 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+8 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+9 ordered_pair(c5,c6) = ordered_pair(c3,c4).  [clausify(6)].
+10 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(2)].
+11 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),unordered_pair(A,A)).  [para(7(a,1),10(a,2,2))].
+12 c5 != c3 | c6 != c4.  [clausify(6)].
+13 singleton(A) != unordered_pair(B,C) | C = B.  [clausify(5)].
+14 unordered_pair(A,A) != unordered_pair(B,C) | C = B.  [para(7(a,1),13(a,1))].
+15 unordered_pair(A,B) != unordered_pair(C,C) | B = A.  [copy(14),flip(a)].
+16 unordered_pair(A,B) != unordered_pair(C,D) | A = C | B = C.  [clausify(3)].
+17 unordered_pair(unordered_pair(c5,c6),unordered_pair(c5,c5)) = ordered_pair(c3,c4).  [para(11(a,1),9(a,1))].
+18 unordered_pair(unordered_pair(c5,c5),unordered_pair(c5,c6)) = ordered_pair(c3,c4).  [para(8(a,1),17(a,1))].
+19 unordered_pair(unordered_pair(c5,c5),unordered_pair(c5,c6)) = unordered_pair(unordered_pair(c3,c4),unordered_pair(c3,c3)).  [para(11(a,1),18(a,2))].
+20 unordered_pair(unordered_pair(c5,c5),unordered_pair(c5,c6)) = unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)).  [para(8(a,1),19(a,2))].
+21 unordered_pair(A,B) != unordered_pair(C,C) | A = B.  [para(8(a,1),15(a,1))].
+22 unordered_pair(A,B) != unordered_pair(C,D) | A = D | B = D.  [para(8(a,1),16(a,2))].
+23 unordered_pair(A,A) != unordered_pair(B,C) | A = C.  [factor(22,b,c)].
+24 unordered_pair(A,B) != unordered_pair(C,C) | C = B.  [copy(23),flip(a)].
+25 unordered_pair(c5,c5) = unordered_pair(c3,c3) | unordered_pair(c5,c6) = unordered_pair(c3,c3).  [resolve(20,a,16,a)].
+26 unordered_pair(c3,c3) = unordered_pair(c5,c6) | unordered_pair(c3,c4) = unordered_pair(c5,c6).  [resolve(22,a,20,a(flip))].
+27 unordered_pair(c5,c6) = unordered_pair(c3,c3) | unordered_pair(c3,c4) = unordered_pair(c5,c6).  [copy(26),flip(a)].
+28 unordered_pair(c5,c6) = unordered_pair(c3,c3) | unordered_pair(c5,c6) = unordered_pair(c3,c4).  [copy(27),flip(b)].
+29 unordered_pair(c5,c5) = unordered_pair(c3,c3) | c3 = c6.  [resolve(25,b,24,a)].
+30 unordered_pair(c5,c5) = unordered_pair(c3,c3) | c6 = c3.  [copy(29),flip(b)].
+31 unordered_pair(c5,c5) = unordered_pair(c3,c3) | c5 = c6.  [resolve(25,b,21,a)].
+32 unordered_pair(c5,c5) = unordered_pair(c3,c3) | c6 = c5.  [copy(31),flip(b)].
+33 c6 = c3 | c3 = c5.  [resolve(30,a,24,a)].
+34 c6 = c3 | c5 = c3.  [copy(33),flip(b)].
+35 c6 = c5 | c3 = c5.  [resolve(32,a,24,a)].
+36 c6 = c5 | c5 = c3.  [copy(35),flip(b)].
+37 c5 = c3 | c5 = c3 | c5 = c3.  [para(36(a,1),34(a,1))].
+38 c5 = c3 | c5 = c3.  [copy(37),merge(b)].
+39 c5 = c3.  [copy(38),merge(b)].
+40 unordered_pair(c3,c6) = unordered_pair(c3,c3) | unordered_pair(c5,c6) = unordered_pair(c3,c4).  [para(39(a,1),28(a,1,1))].
+41 unordered_pair(c3,c6) = unordered_pair(c3,c3) | unordered_pair(c3,c6) = unordered_pair(c3,c4).  [para(39(a,1),40(b,1,1))].
+42 unordered_pair(unordered_pair(c3,c5),unordered_pair(c5,c6)) = unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)).  [para(39(a,1),20(a,1,1,1))].
+43 unordered_pair(unordered_pair(c3,c3),unordered_pair(c5,c6)) = unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)).  [para(39(a,1),42(a,1,1,2))].
+44 unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c6)) = unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)).  [para(39(a,1),43(a,1,2,1))].
+45 c3 != c3 | c6 != c4.  [para(39(a,1),12(a,1))].
+46 c6 != c4.  [copy(45),xx(a)].
+47 unordered_pair(c6,c4) != unordered_pair(A,A).  [resolve(21,b,46,a)].
+48 unordered_pair(c4,c6) != unordered_pair(A,A).  [para(8(a,1),47(a,1))].
+49 unordered_pair(unordered_pair(A,A),unordered_pair(c4,c6)) != unordered_pair(B,B).  [resolve(15,b,48,a)].
+50 unordered_pair(c3,c6) = unordered_pair(c3,c3) | c3 = c6 | c4 = c6.  [resolve(41,b,22,a(flip))].
+51 unordered_pair(c3,c6) = unordered_pair(c3,c3) | c6 = c3 | c4 = c6.  [copy(50),flip(b)].
+52 unordered_pair(c3,c6) = unordered_pair(c3,c3) | c6 = c3 | c6 = c4.  [copy(51),flip(c)].
+53 unordered_pair(c3,c6) = unordered_pair(c3,c3) | c6 = c3.  [resolve(46,a,52,c)].
+54 c6 = c3 | c3 = c6.  [resolve(53,a,24,a)].
+55 c6 = c3 | c6 = c3.  [copy(54),flip(b)].
+56 c6 = c3.  [copy(55),merge(b)].
+57 unordered_pair(unordered_pair(A,A),unordered_pair(c4,c3)) != unordered_pair(B,B).  [para(56(a,1),49(a,1,2,2))].
+58 unordered_pair(unordered_pair(A,A),unordered_pair(c3,c4)) != unordered_pair(B,B).  [para(8(a,1),57(a,1,2))].
+59 unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c3)) = unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)).  [para(56(a,1),44(a,1,2,2))].
+60 unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c4)) = unordered_pair(unordered_pair(c3,c3),unordered_pair(c3,c3)).  [copy(59),flip(a)].
+61 $F.  [resolve(58,a,60,a)].

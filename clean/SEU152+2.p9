@@ -1,0 +1,18 @@
+
+
+
+
+
+6 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+7 subset(singleton(A),B) | -in(A,B).  [clausify(2)].
+8 -subset(A,B) | set_union2(A,B) = B.  [clausify(3)].
+9 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+10 in(c3,c4).  [clausify(5)].
+11 set_union2(singleton(c3),c4) != c4.  [clausify(5)].
+12 set_union2(unordered_pair(c3,c3),c4) != c4.  [para(9(a,1),11(a,1,1))].
+13 set_union2(c4,unordered_pair(c3,c3)) != c4.  [para(6(a,1),12(a,1))].
+14 subset(unordered_pair(A,A),B) | -in(A,B).  [para(9(a,1),7(a,1))].
+15 subset(unordered_pair(c3,c3),c4).  [resolve(14,b,10,a)].
+16 set_union2(unordered_pair(c3,c3),c4) = c4.  [resolve(15,a,8,a)].
+17 set_union2(c4,unordered_pair(c3,c3)) = c4.  [para(6(a,1),16(a,1))].
+18 $F.  [resolve(13,a,17,a)].

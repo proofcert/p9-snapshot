@@ -1,0 +1,9 @@
+
+2 happens(A,B) | -holdsAt(waterLevel(n3),B) | -holdsAt(filling,B) | overflow != A.  [clausify(1)].
+3 holdsAt(waterLevel(n3),n3).  [assumption].
+4 holdsAt(filling,n3).  [assumption].
+5 -happens(overflow,n3).  [assumption].
+6 happens(A,n3) | -holdsAt(filling,n3) | overflow != A.  [resolve(3,a,2,b)].
+7 happens(A,n3) | overflow != A.  [resolve(4,a,6,b)].
+8 happens(overflow,n3).  [xx_res(7,b)].
+9 $F.  [resolve(5,a,8,a)].

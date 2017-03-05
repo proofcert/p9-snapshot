@@ -1,0 +1,51 @@
+
+
+
+
+
+
+
+
+9 -rel_str(A) | -subrelstr(B,A) | rel_str(B).  [clausify(3)].
+10 subrelstr(c7,c6).  [clausify(8)].
+11 -rel_str(A) | -rel_str(B) | -subrelstr(B,A) | subset(the_InternalRel(B),the_InternalRel(A)).  [clausify(1)].
+12 element(A,powerset(B)) | -subset(A,B).  [clausify(5)].
+13 -rel_str(c6) | -rel_str(c7) | subset(the_InternalRel(c7),the_InternalRel(c6)).  [resolve(11,c,10,a)].
+14 rel_str(c6).  [clausify(8)].
+15 c10 = c8.  [clausify(8)].
+16 c11 = c9.  [clausify(8)].
+17 element(c8,the_carrier(c6)).  [clausify(8)].
+18 element(c9,the_carrier(c6)).  [clausify(8)].
+19 element(c10,the_carrier(c7)).  [clausify(8)].
+20 element(c8,the_carrier(c7)).  [para(15(a,1),19(a,1))].
+21 element(c11,the_carrier(c7)).  [clausify(8)].
+22 element(c9,the_carrier(c7)).  [para(16(a,1),21(a,1))].
+23 related(c7,c10,c11).  [clausify(8)].
+24 related(c7,c8,c11).  [para(15(a,1),23(a,2))].
+25 related(c7,c8,c9).  [para(16(a,1),24(a,3))].
+26 -related(c6,c8,c9).  [clausify(8)].
+27 -in(A,B) | -element(B,powerset(C)) | -empty(C).  [clausify(7)].
+28 -element(A,B) | empty(B) | in(A,B).  [clausify(4)].
+29 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(6)].
+30 -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | -related(A,B,C) | in(ordered_pair(B,C),the_InternalRel(A)).  [clausify(2)].
+31 -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | related(A,B,C) | -in(ordered_pair(B,C),the_InternalRel(A)).  [clausify(2)].
+32 -rel_str(c6) | rel_str(c7).  [resolve(9,b,10,a)].
+33 rel_str(c7).  [resolve(14,a,32,a)].
+34 -rel_str(c6) | -rel_str(c7) | element(the_InternalRel(c7),powerset(the_InternalRel(c6))).  [resolve(13,c,12,b)].
+35 -rel_str(c7) | element(the_InternalRel(c7),powerset(the_InternalRel(c6))).  [resolve(14,a,34,a)].
+36 element(the_InternalRel(c7),powerset(the_InternalRel(c6))).  [resolve(33,a,35,a)].
+37 -rel_str(c7) | -element(c8,the_carrier(c7)) | -element(c9,the_carrier(c7)) | in(ordered_pair(c8,c9),the_InternalRel(c7)).  [resolve(30,d,25,a)].
+38 -element(c8,the_carrier(c7)) | -element(c9,the_carrier(c7)) | in(ordered_pair(c8,c9),the_InternalRel(c7)).  [resolve(33,a,37,a)].
+39 -element(c9,the_carrier(c7)) | in(ordered_pair(c8,c9),the_InternalRel(c7)).  [resolve(20,a,38,a)].
+40 in(ordered_pair(c8,c9),the_InternalRel(c7)).  [resolve(22,a,39,a)].
+41 -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | related(c6,A,B) | -in(ordered_pair(A,B),the_InternalRel(c6)).  [resolve(31,a,14,a)].
+42 -element(A,the_carrier(c6)) | related(c6,c8,A) | -in(ordered_pair(c8,A),the_InternalRel(c6)).  [resolve(41,a,17,a)].
+43 related(c6,c8,c9) | -in(ordered_pair(c8,c9),the_InternalRel(c6)).  [resolve(42,a,18,a)].
+44 -in(ordered_pair(c8,c9),the_InternalRel(c6)).  [resolve(43,a,26,a)].
+45 -element(the_InternalRel(c7),powerset(A)) | -empty(A).  [resolve(27,a,40,a)].
+46 -empty(the_InternalRel(c6)).  [resolve(45,a,36,a)].
+47 -element(A,the_InternalRel(c6)) | in(A,the_InternalRel(c6)).  [resolve(28,b,46,a)].
+48 -element(ordered_pair(c8,c9),the_InternalRel(c6)).  [resolve(47,b,44,a)].
+49 -in(A,the_InternalRel(c7)) | element(A,the_InternalRel(c6)).  [resolve(29,b,36,a)].
+50 -in(ordered_pair(c8,c9),the_InternalRel(c7)).  [resolve(49,b,48,a)].
+51 $F.  [resolve(40,a,50,a)].

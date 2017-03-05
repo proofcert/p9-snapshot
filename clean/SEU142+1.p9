@@ -1,0 +1,38 @@
+
+
+
+4 unordered_pair(A,B) = C | in(f2(A,B,C),C) | f2(A,B,C) = A | f2(A,B,C) = B.  [clausify(2)].
+5 singleton(c1) != unordered_pair(c1,c1).  [clausify(3)].
+6 unordered_pair(c1,c1) != singleton(c1).  [copy(5),flip(a)].
+7 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+8 singleton(A) != B | in(C,B) | C != A.  [clausify(1)].
+9 unordered_pair(A,B) != C | in(D,C) | D != B.  [clausify(2)].
+10 unordered_pair(A,B) != C | -in(D,C) | D = A | D = B.  [clausify(2)].
+11 unordered_pair(A,B) = C | -in(f2(A,B,C),C) | f2(A,B,C) != A.  [clausify(2)].
+12 unordered_pair(c1,c1) = c_0.  [new_symbol(6)].
+13 unordered_pair(A,A) != B | -in(C,B) | C = A.  [factor(10,c,d)].
+14 c_0 != singleton(c1).  [para(12(a,1),6(a,1))].
+15 singleton(c1) != c_0.  [copy(14),flip(a)].
+16 singleton(A) != B | f2(C,D,B) = A | unordered_pair(C,D) = B | f2(C,D,B) = C | f2(C,D,B) = D.  [resolve(7,b,4,b)].
+17 in(A,singleton(B)) | A != B.  [xx_res(8,a)].
+18 in(A,c_0) | A != c1.  [resolve(12,a,9,a)].
+19 in(A,c_0) | c1 != A.  [copy(18),flip(b)].
+20 in(A,singleton(A)).  [xx_res(17,b)].
+21 f2(A,B,singleton(C)) = C | unordered_pair(A,B) = singleton(C) | f2(A,B,singleton(C)) = A | f2(A,B,singleton(C)) = B.  [xx_res(16,a)].
+22 f2(A,B,singleton(C)) = C | singleton(C) = unordered_pair(A,B) | f2(A,B,singleton(C)) = A | f2(A,B,singleton(C)) = B.  [copy(21),flip(b)].
+23 f2(A,B,singleton(A)) = A | singleton(A) = unordered_pair(A,B) | f2(A,B,singleton(A)) = B.  [factor(22,a,c)].
+24 f2(A,B,singleton(A)) = A | unordered_pair(A,B) = singleton(A) | f2(A,B,singleton(A)) = B.  [copy(23),flip(b)].
+25 f2(A,A,singleton(A)) = A | unordered_pair(A,A) = singleton(A).  [factor(24,a,c)].
+26 unordered_pair(c1,c1) = singleton(c1) | in(f2(c1,c1,singleton(c1)),c_0).  [resolve(25,a,19,b(flip))].
+27 c_0 = singleton(c1) | in(f2(c1,c1,singleton(c1)),c_0).  [para(12(a,1),26(a,1))].
+28 singleton(c1) = c_0 | in(f2(c1,c1,singleton(c1)),c_0).  [copy(27),flip(a)].
+29 in(f2(c1,c1,singleton(c1)),c_0).  [resolve(15,a,28,a)].
+30 unordered_pair(A,A) != c_0 | f2(c1,c1,singleton(c1)) = A.  [resolve(29,a,13,b)].
+31 f2(c1,c1,singleton(c1)) = c1.  [resolve(30,a,12,a)].
+32 unordered_pair(c1,c1) = singleton(c1) | -in(c1,singleton(c1)) | f2(c1,c1,singleton(c1)) != c1.  [para(31(a,1),11(b,1))].
+33 c_0 = singleton(c1) | -in(c1,singleton(c1)) | f2(c1,c1,singleton(c1)) != c1.  [para(12(a,1),32(a,1))].
+34 c_0 = singleton(c1) | -in(c1,singleton(c1)) | c1 != c1.  [para(31(a,1),33(c,1))].
+35 singleton(c1) = c_0 | -in(c1,singleton(c1)) | c1 != c1.  [copy(34),flip(a)].
+36 singleton(c1) = c_0 | -in(c1,singleton(c1)).  [copy(35),xx(c)].
+37 -in(c1,singleton(c1)).  [resolve(15,a,36,a)].
+38 $F.  [resolve(20,a,37,a)].

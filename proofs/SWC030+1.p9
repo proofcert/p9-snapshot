@@ -1,0 +1,96 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n137.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:30:48 CDT 2014
+% CPUTime    : 12.18 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 46079 was started by sandbox on n137.star.cs.uiowa.edu,
+Thu Jun  5 15:30:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_46047_n137.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 11.79 (+ 0.18) seconds.
+% Length of proof is 41.
+% Level of proof is 8.
+% Maximum clause weight is 17.000.
+% Given clauses 3935.
+
+
+1 (all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> app(app(A,B),C) = app(A,app(B,C)))))))).  [assumption].
+2 (all A (ssList(A) -> (all B (ssList(B) -> (nil = app(A,B) <-> nil = B & nil = A))))).  [assumption].
+3 (all A (ssList(A) -> app(A,nil) = A)).  [assumption].
+4 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | (all E (ssList(E) -> (all F (ssList(F) -> app(E,F) != D | app(F,E) != C)))) | (nil != B | nil = A) & (nil != A | nil = B))))))))).  [assumption].
+5 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) = app(A,app(B,C)).  [clausify(1)].
+6 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = B.  [clausify(2)].
+7 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = A.  [clausify(2)].
+8 -ssList(A) | app(A,nil) = A.  [clausify(3)].
+9 ssList(c4).  [clausify(4)].
+10 c6 = c4.  [clausify(4)].
+11 c5 = c3.  [clausify(4)].
+12 ssList(c7).  [clausify(4)].
+13 ssList(c8).  [clausify(4)].
+14 app(c7,c8) = c6.  [clausify(4)].
+15 app(c7,c8) = c4.  [para(10(a,1),14(a,2))].
+16 app(c8,c7) = c5.  [clausify(4)].
+17 app(c8,c7) = c3.  [para(11(a,1),16(a,2))].
+18 nil = c4 | nil = c3.  [clausify(4)].
+19 c4 = nil | nil = c3.  [copy(18),flip(a)].
+20 c4 = nil | c3 = nil.  [copy(19),flip(b)].
+21 nil != c3 | nil != c4.  [clausify(4)].
+22 c3 != nil | nil != c4.  [copy(21),flip(a)].
+23 c3 != nil | c4 != nil.  [copy(22),flip(b)].
+24 app(c4,nil) = c4.  [resolve(9,a,8,a)].
+25 app(c7,nil) = c7.  [resolve(12,a,8,a)].
+26 -ssList(A) | app(c7,A) != nil | nil = c7.  [resolve(12,a,7,a)].
+27 -ssList(A) | app(c7,A) != nil | c7 = nil.  [copy(26),flip(c)].
+28 -ssList(A) | app(A,c7) != nil | nil = c7.  [resolve(12,a,6,b)].
+29 -ssList(A) | app(A,c7) != nil | c7 = nil.  [copy(28),flip(c)].
+30 -ssList(A) | app(c7,A) != nil | nil = A.  [resolve(12,a,6,a)].
+31 app(c8,nil) = c8.  [resolve(13,a,8,a)].
+32 -ssList(A) | -ssList(B) | app(app(A,c8),B) = app(A,app(c8,B)).  [resolve(13,a,5,b)].
+33 -ssList(A) | app(app(A,c8),A) = app(A,app(c8,A)).  [factor(32,a,b)].
+34 app(c7,c8) != nil | c7 = nil.  [resolve(27,a,13,a)].
+35 c4 != nil | c7 = nil.  [para(15(a,1),34(a,1))].
+36 app(c8,c7) != nil | c7 = nil.  [resolve(29,a,13,a)].
+37 c3 != nil | c7 = nil.  [para(17(a,1),36(a,1))].
+38 app(c7,c8) != nil | nil = c8.  [resolve(30,a,13,a)].
+39 c4 != nil | nil = c8.  [para(15(a,1),38(a,1))].
+40 c4 != nil | c8 = nil.  [copy(39),flip(b)].
+41 c7 = nil | c3 = nil.  [resolve(35,a,20,a)].
+42 c8 = nil | c3 = nil.  [resolve(40,a,20,a)].
+43 c3 = nil | app(c8,nil) = c3.  [para(41(a,1),17(a,1,2))].
+44 c3 = nil | c8 = c3.  [para(31(a,1),43(b,1))].
+45 app(app(c7,c8),c7) = app(c7,app(c8,c7)).  [resolve(33,a,12,a)].
+46 app(c4,c7) = app(c7,app(c8,c7)).  [para(15(a,1),45(a,1,1))].
+47 app(c4,c7) = app(c7,c3).  [para(17(a,1),46(a,2,2))].
+48 app(c7,c3) = app(c4,c7).  [copy(47),flip(a)].
+49 c3 = nil | c3 = nil | c3 = nil.  [para(44(b,1),42(a,1))].
+50 c3 = nil | c3 = nil.  [copy(49),merge(b)].
+51 c3 = nil.  [copy(50),merge(b)].
+52 app(c7,nil) = app(c4,c7).  [para(51(a,1),48(a,1,2))].
+53 c7 = app(c4,c7).  [para(25(a,1),52(a,1))].
+54 app(c4,c7) = c7.  [copy(53),flip(a)].
+55 nil != nil | c7 = nil.  [para(51(a,1),37(a,1))].
+56 c7 = nil.  [copy(55),xx(a)].
+57 nil != nil | c4 != nil.  [para(51(a,1),23(a,1))].
+58 c4 != nil.  [copy(57),xx(a)].
+59 app(c4,nil) = c7.  [para(56(a,1),54(a,1,2))].
+60 c4 = c7.  [para(24(a,1),59(a,1))].
+61 c4 = nil.  [para(56(a,1),60(a,2))].
+62 $F.  [resolve(58,a,61,a)].
+
+============================== end of proof ==========================

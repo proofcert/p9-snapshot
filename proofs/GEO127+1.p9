@@ -1,0 +1,126 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n073.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:12:08 CDT 2014
+% CPUTime    : 0.37 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 49148 was started by sandbox on n073.star.cs.uiowa.edu,
+Fri Jun  6 02:12:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_49116_n073.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.22 (+ 0.00) seconds.
+% Length of proof is 68.
+% Level of proof is 13.
+% Maximum clause weight is 18.000.
+% Given clauses 337.
+
+
+1 (all A all B (end_point(A,B) <-> incident_c(A,B) & (all C all D (part_of(C,B) & part_of(D,B) & incident_c(A,C) & incident_c(A,D) -> part_of(C,D) | part_of(D,C))))).  [assumption].
+2 (all A all B (inner_point(A,B) <-> incident_c(A,B) & -end_point(A,B))).  [assumption].
+3 (all A (closed(A) <-> -(exists B end_point(B,A)))).  [assumption].
+4 (all A (open(A) <-> (exists B end_point(B,A)))).  [assumption].
+5 (all A exists B inner_point(B,A)).  [assumption].
+6 (all A all B (end_point(B,A) -> (exists C (end_point(C,A) & B != C)))).  [assumption].
+7 (all A all B (start_point(A,B) <-> incident_o(A,B) & (all C (A != C & incident_o(C,B) -> ordered_by(B,A,C))))).  [assumption].
+8 (all A all B (finish_point(A,B) <-> incident_o(A,B) & (all C (A != C & incident_o(C,B) -> ordered_by(B,C,A))))).  [assumption].
+9 (all A all B all C (ordered_by(A,B,C) -> incident_o(B,A) & incident_o(C,A))).  [assumption].
+10 (all A exists B (open(B) & (all C (incident_o(C,A) <-> incident_c(C,B))))).  [assumption].
+11 (all A exists B start_point(B,A)).  [assumption].
+12 -(all A all B (incident_o(B,A) <-> (exists C (ordered_by(A,B,C) | ordered_by(A,C,B))))).  [assumption].
+13 -open(A) | end_point(f7(A),A).  [clausify(4)].
+14 open(f17(A)).  [clausify(10)].
+15 -inner_point(A,B) | -end_point(A,B).  [clausify(2)].
+16 inner_point(f8(A),A).  [clausify(5)].
+17 -inner_point(A,B) | incident_c(A,B).  [clausify(2)].
+18 start_point(f20(A),A).  [clausify(11)].
+19 -start_point(A,B) | C = A | -incident_o(C,B) | ordered_by(B,A,C).  [clausify(7)].
+20 -closed(A) | -end_point(B,A).  [clausify(3)].
+21 closed(A) | end_point(f6(A),A).  [clausify(3)].
+22 finish_point(A,B) | -incident_o(A,B) | f16(A,B) != A.  [clausify(8)].
+23 finish_point(A,B) | -incident_o(A,B) | incident_o(f16(A,B),B).  [clausify(8)].
+24 -finish_point(A,B) | C = A | -incident_o(C,B) | ordered_by(B,C,A).  [clausify(8)].
+25 incident_o(c11,c10) | ordered_by(c10,c11,c12) | ordered_by(c10,c12,c11).  [clausify(12)].
+26 -incident_o(c11,c10) | -ordered_by(c10,c11,A).  [clausify(12)].
+27 -incident_o(c11,c10) | -ordered_by(c10,A,c11).  [clausify(12)].
+28 -end_point(A,B) | f11(B,A) != A.  [clausify(6)].
+29 -end_point(A,B) | incident_c(A,B).  [clausify(1)].
+30 -ordered_by(A,B,C) | incident_o(B,A).  [clausify(9)].
+31 -ordered_by(A,B,C) | incident_o(C,A).  [clausify(9)].
+32 incident_o(A,B) | -incident_c(A,f17(B)).  [clausify(10)].
+33 -end_point(A,B) | end_point(f11(B,A),B).  [clausify(6)].
+34 end_point(f7(f17(A)),f17(A)).  [resolve(13,a,14,a)].
+35 -end_point(f8(A),A).  [resolve(15,a,16,a)].
+36 incident_c(f8(A),A).  [resolve(17,a,16,a)].
+37 A = f20(B) | -incident_o(A,B) | ordered_by(B,f20(B),A).  [resolve(19,a,18,a)].
+38 f20(A) = B | -incident_o(B,A) | ordered_by(A,f20(A),B).  [copy(37),flip(a)].
+39 -end_point(A,B) | end_point(f6(B),B).  [resolve(20,a,21,a)].
+40 A = B | -incident_o(A,C) | ordered_by(C,A,B) | -incident_o(B,C) | f16(B,C) != B.  [resolve(24,a,22,a)].
+41 A = B | -incident_o(A,C) | ordered_by(C,A,B) | -incident_o(B,C) | incident_o(f16(B,C),C).  [resolve(24,a,23,a)].
+42 incident_o(c11,c10) | incident_o(c11,c10) | ordered_by(c10,c11,c12).  [resolve(31,a,25,c)].
+43 incident_o(c11,c10) | ordered_by(c10,c11,c12).  [copy(42),merge(b)].
+44 incident_o(f8(f17(A)),A).  [resolve(36,a,32,b)].
+45 end_point(f6(f17(A)),f17(A)).  [resolve(39,a,34,a)].
+46 end_point(f11(f17(A),f6(f17(A))),f17(A)).  [resolve(45,a,33,a)].
+47 incident_c(f6(f17(A)),f17(A)).  [resolve(45,a,29,a)].
+48 f11(f17(A),f6(f17(A))) != f6(f17(A)).  [resolve(45,a,28,a)].
+49 incident_o(f6(f17(A)),A).  [resolve(47,a,32,b)].
+50 incident_o(c11,c10) | incident_o(c11,c10).  [resolve(43,b,30,a)].
+51 incident_o(c11,c10).  [copy(50),merge(b)].
+52 -ordered_by(c10,A,c11).  [resolve(51,a,27,a)].
+53 -ordered_by(c10,c11,A).  [resolve(51,a,26,a)].
+54 A = c11 | -incident_o(A,c10) | ordered_by(c10,A,c11) | incident_o(f16(c11,c10),c10).  [resolve(51,a,41,d)].
+55 c11 = A | -incident_o(A,c10) | ordered_by(c10,A,c11) | incident_o(f16(c11,c10),c10).  [copy(54),flip(a)].
+56 c11 = A | -incident_o(A,c10) | incident_o(f16(c11,c10),c10).  [resolve(52,a,55,c)].
+57 A = c11 | -incident_o(A,c10) | ordered_by(c10,A,c11) | f16(c11,c10) != c11.  [resolve(51,a,40,d)].
+58 c11 = A | -incident_o(A,c10) | ordered_by(c10,A,c11) | f16(c11,c10) != c11.  [copy(57),flip(a)].
+59 c11 = A | -incident_o(A,c10) | f16(c11,c10) != c11.  [resolve(52,a,58,c)].
+60 f20(c10) = c11 | ordered_by(c10,f20(c10),c11).  [resolve(51,a,38,b)].
+61 f20(c10) = c11.  [resolve(52,a,60,b)].
+62 incident_c(f11(f17(A),f6(f17(A))),f17(A)).  [resolve(46,a,29,a)].
+63 incident_o(f11(f17(A),f6(f17(A))),A).  [resolve(62,a,32,b)].
+64 c11 = f6(f17(c10)) | incident_o(f16(c11,c10),c10).  [resolve(56,b,49,a)].
+65 f6(f17(c10)) = c11 | incident_o(f16(c11,c10),c10).  [copy(64),flip(a)].
+66 c11 = f8(f17(c10)) | incident_o(f16(c11,c10),c10).  [resolve(56,b,44,a)].
+67 f8(f17(c10)) = c11 | incident_o(f16(c11,c10),c10).  [copy(66),flip(a)].
+68 f6(f17(c10)) = c11 | f20(c10) = f16(c11,c10) | ordered_by(c10,f20(c10),f16(c11,c10)).  [resolve(65,b,38,b)].
+69 f6(f17(c10)) = c11 | c11 = f16(c11,c10) | ordered_by(c10,f20(c10),f16(c11,c10)).  [para(61(a,1),68(b,1))].
+70 f6(f17(c10)) = c11 | c11 = f16(c11,c10) | ordered_by(c10,c11,f16(c11,c10)).  [para(61(a,1),69(c,2))].
+71 f6(f17(c10)) = c11 | f16(c11,c10) = c11 | ordered_by(c10,c11,f16(c11,c10)).  [copy(70),flip(b)].
+72 f6(f17(c10)) = c11 | f16(c11,c10) = c11.  [resolve(53,a,71,c)].
+73 f8(f17(c10)) = c11 | f20(c10) = f16(c11,c10) | ordered_by(c10,f20(c10),f16(c11,c10)).  [resolve(67,b,38,b)].
+74 f8(f17(c10)) = c11 | c11 = f16(c11,c10) | ordered_by(c10,f20(c10),f16(c11,c10)).  [para(61(a,1),73(b,1))].
+75 f8(f17(c10)) = c11 | c11 = f16(c11,c10) | ordered_by(c10,c11,f16(c11,c10)).  [para(61(a,1),74(c,2))].
+76 f8(f17(c10)) = c11 | f16(c11,c10) = c11 | ordered_by(c10,c11,f16(c11,c10)).  [copy(75),flip(b)].
+77 f8(f17(c10)) = c11 | f16(c11,c10) = c11.  [resolve(53,a,76,c)].
+78 f16(c11,c10) = c11 | end_point(c11,f17(c10)).  [para(72(a,1),45(a,1))].
+79 f16(c11,c10) = c11 | -end_point(c11,f17(c10)).  [para(77(a,1),35(a,1))].
+80 f16(c11,c10) = c11 | f16(c11,c10) = c11.  [resolve(79,b,78,b)].
+81 f16(c11,c10) = c11.  [copy(80),merge(b)].
+82 c11 = A | -incident_o(A,c10) | c11 != c11.  [para(81(a,1),59(c,1))].
+83 c11 = A | -incident_o(A,c10).  [copy(82),xx(c)].
+84 c11 = f11(f17(c10),f6(f17(c10))).  [resolve(83,b,63,a)].
+85 f11(f17(c10),f6(f17(c10))) = c11.  [copy(84),flip(a)].
+86 c11 = f6(f17(c10)).  [resolve(83,b,49,a)].
+87 f6(f17(c10)) = c11.  [copy(86),flip(a)].
+88 f11(f17(c10),c11) = c11.  [para(87(a,1),85(a,1,2))].
+89 f11(f17(c10),c11) != f6(f17(c10)).  [para(87(a,1),48(a,1,2))].
+90 c11 != f6(f17(c10)).  [para(88(a,1),89(a,1))].
+91 c11 != c11.  [para(87(a,1),90(a,2))].
+92 $F.  [copy(91),xx(a)].
+
+============================== end of proof ==========================

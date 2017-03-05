@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n102.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:26:33 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 11236 was started by sandbox on n102.star.cs.uiowa.edu,
+Thu Jun  5 18:26:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_11204_n102.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 9.
+% Maximum clause weight is 12.000.
+% Given clauses 6.
+
+
+1 (all A all B (big_f(A) & (big_f(B) & big_h(B,A) -> big_g(B)) -> big_g(A))).  [assumption].
+2 (exists A (big_f(A) & -big_g(A))) -> (exists B (big_f(B) & -big_g(B) & (all C (big_f(C) & -big_g(C) -> big_j(B,C))))).  [assumption].
+3 (all A all B (big_f(A) & big_f(B) & big_h(A,B) -> -big_j(B,A))).  [assumption].
+4 -(all A (big_f(A) -> big_g(A))).  [assumption].
+5 -big_f(A) | big_h(B,A) | big_g(A).  [clausify(1)].
+6 -big_f(A) | -big_f(B) | -big_h(A,B) | -big_j(B,A).  [clausify(3)].
+7 -big_f(A) | big_g(A) | -big_f(B) | -big_f(A) | -big_j(A,B).  [resolve(5,b,6,c)].
+8 -big_f(A) | big_g(A) | -big_f(B) | big_g(B) | big_j(c1,B).  [clausify(2)].
+9 big_f(c2).  [clausify(4)].
+10 -big_g(c2).  [clausify(4)].
+11 -big_f(A) | big_f(B) | big_g(A).  [clausify(1)].
+12 -big_f(A) | -big_g(B) | big_g(A).  [clausify(1)].
+13 -big_f(c1) | big_g(c1) | -big_f(A) | -big_f(c1) | -big_f(B) | big_g(B) | -big_f(A) | big_g(A).  [resolve(7,e,8,e)].
+14 -big_f(c1) | big_g(c1) | -big_f(A) | -big_f(B) | big_g(B) | -big_f(A) | big_g(A).  [copy(13),merge(d)].
+15 -big_f(c1) | big_g(c1) | -big_f(A) | -big_f(B) | big_g(B) | big_g(A).  [copy(14),merge(f)].
+16 -big_f(c1) | big_g(c1) | -big_f(A) | big_g(A) | big_g(c1).  [factor(15,a,c)].
+17 -big_f(c1) | big_g(c1) | -big_f(A) | big_g(A).  [copy(16),merge(e)].
+18 -big_f(c1) | big_g(c1) | big_g(c1).  [factor(17,a,c)].
+19 -big_f(c1) | big_g(c1).  [copy(18),merge(c)].
+20 big_f(A) | big_g(c2).  [resolve(11,a,9,a)].
+21 big_f(A).  [resolve(10,a,20,b)].
+22 big_g(c1).  [resolve(21,a,19,a)].
+23 -big_g(A) | big_g(B).  [resolve(21,a,12,a)].
+24 big_g(A).  [resolve(23,a,22,a)].
+25 $F.  [resolve(24,a,10,a)].
+
+============================== end of proof ==========================

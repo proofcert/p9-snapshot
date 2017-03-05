@@ -1,0 +1,20 @@
+
+
+
+
+
+
+7 subclass(A,universal_class).  [clausify(2)].
+8 member(unordered_pair(A,B),universal_class).  [clausify(3)].
+9 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+10 ordered_pair(first(c3),second(c3)) = c3.  [clausify(6)].
+11 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,singleton(B))).  [clausify(5)].
+12 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,singleton(B))).  [para(9(a,1),11(a,2,1))].
+13 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))).  [para(9(a,1),12(a,2,2,2))].
+14 -member(c3,universal_class).  [clausify(6)].
+15 -subclass(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+16 unordered_pair(unordered_pair(first(c3),first(c3)),unordered_pair(first(c3),unordered_pair(second(c3),second(c3)))) = c3.  [para(13(a,1),10(a,1))].
+17 -member(A,B) | member(A,universal_class).  [resolve(15,a,7,a)].
+18 -member(c3,A).  [resolve(17,b,14,a)].
+19 member(c3,universal_class).  [para(16(a,1),8(a,1))].
+20 $F.  [resolve(18,a,19,a)].

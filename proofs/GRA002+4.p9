@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n106.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:09:58 CDT 2014
+% CPUTime    : 0.21 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 58811 was started by sandbox on n106.star.cs.uiowa.edu,
+Thu Jun  5 13:09:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_58779_n106.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 5.
+% Maximum clause weight is 12.000.
+% Given clauses 54.
+
+
+1 (all A all B all C (shortest_path(A,B,C) <-> path(A,B,C) & A != B & (all D (path(A,B,D) -> less_or_equal(length_of(C),length_of(D)))))).  [assumption].
+2 (all A all B all C (path(A,B,C) -> number_of_in(sequential_pairs,C) = minus(length_of(C),n1))).  [assumption].
+3 (all A all B less_or_equal(number_of_in(A,B),number_of_in(A,graph))).  [assumption].
+4 complete -> (all A all B all C (shortest_path(B,C,A) -> number_of_in(sequential_pairs,A) = number_of_in(triangles,A))).  [assumption].
+5 -(complete -> (all A all B all C (shortest_path(B,C,A) -> less_or_equal(minus(length_of(A),n1),number_of_in(triangles,graph))))).  [assumption].
+6 shortest_path(c2,c3,c1).  [clausify(5)].
+7 -shortest_path(A,B,C) | path(A,B,C).  [clausify(1)].
+8 -complete | -shortest_path(A,B,C) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(4)].
+9 complete.  [clausify(5)].
+10 less_or_equal(number_of_in(A,B),number_of_in(A,graph)).  [clausify(3)].
+11 -less_or_equal(minus(length_of(c1),n1),number_of_in(triangles,graph)).  [clausify(5)].
+12 -path(A,B,C) | minus(length_of(C),n1) = number_of_in(sequential_pairs,C).  [clausify(2)].
+13 path(c2,c3,c1).  [resolve(7,a,6,a)].
+14 -complete | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(8,b,6,a)].
+15 number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(9,a,14,a)].
+16 minus(length_of(c1),n1) = number_of_in(sequential_pairs,c1).  [resolve(13,a,12,a)].
+17 -less_or_equal(number_of_in(sequential_pairs,c1),number_of_in(triangles,graph)).  [para(16(a,1),11(a,1))].
+18 less_or_equal(number_of_in(sequential_pairs,c1),number_of_in(triangles,graph)).  [para(15(a,1),10(a,1))].
+19 $F.  [resolve(17,a,18,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,47 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n058.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:32:18 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 22407 was started by sandbox on n058.star.cs.uiowa.edu,
+Fri Jun  6 02:32:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_22375_n058.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 11.
+% Level of proof is 3.
+% Maximum clause weight is 11.000.
+% Given clauses 50.
+
+
+1 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+2 (all A all B all C (relation(C) -> (in(A,relation_rng(relation_rng_restriction(B,C))) <-> in(A,B) & in(A,relation_rng(C))))).  [assumption].
+3 -(all A all B (relation(B) -> subset(relation_rng(relation_rng_restriction(A,B)),A))).  [assumption].
+4 relation(c6).  [clausify(3)].
+5 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+6 -subset(relation_rng(relation_rng_restriction(c5,c6)),c5).  [clausify(3)].
+7 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+8 -relation(A) | -in(B,relation_rng(relation_rng_restriction(C,A))) | in(B,C).  [clausify(2)].
+9 in(f1(relation_rng(relation_rng_restriction(c5,c6)),c5),relation_rng(relation_rng_restriction(c5,c6))).  [resolve(6,a,5,a)].
+10 -in(f1(relation_rng(relation_rng_restriction(c5,c6)),c5),c5).  [resolve(7,a,6,a)].
+11 -relation(c6) | in(f1(relation_rng(relation_rng_restriction(c5,c6)),c5),c5).  [resolve(9,a,8,b)].
+12 in(f1(relation_rng(relation_rng_restriction(c5,c6)),c5),c5).  [resolve(4,a,11,a)].
+13 $F.  [resolve(10,a,12,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,48 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n037.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:39:58 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 34166 was started by sandbox on n037.star.cs.uiowa.edu,
+Fri Jun  6 07:39:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_34134_n037.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 4.
+% Maximum clause weight is 9.000.
+% Given clauses 42.
+
+
+1 (all A -contains_pq(create_pq,A)).  [assumption].
+2 (all A -contains_slb(create_slb,A)).  [assumption].
+3 (all A all B all C all D (contains_cpq(triple(A,B,C),D) <-> contains_slb(B,D))).  [assumption].
+4 (all A all B i(triple(A,create_slb,B)) = create_pq).  [assumption].
+5 -(all A all B all C (contains_cpq(triple(A,create_slb,B),C) <-> contains_pq(i(triple(A,create_slb,B)),C))).  [assumption].
+6 i(triple(A,create_slb,B)) = create_pq.  [clausify(4)].
+7 contains_cpq(triple(c1,create_slb,c2),c3) | contains_pq(i(triple(c1,create_slb,c2)),c3).  [clausify(5)].
+8 contains_cpq(triple(c1,create_slb,c2),c3) | contains_pq(create_pq,c3).  [para(6(a,1),7(b,1))].
+9 -contains_pq(create_pq,A).  [clausify(1)].
+10 -contains_slb(create_slb,A).  [clausify(2)].
+11 -contains_cpq(triple(A,B,C),D) | contains_slb(B,D).  [clausify(3)].
+12 contains_cpq(triple(c1,create_slb,c2),c3).  [resolve(9,a,8,b)].
+13 -contains_cpq(triple(A,create_slb,B),C).  [resolve(11,b,10,a)].
+14 $F.  [resolve(13,a,12,a)].
+
+============================== end of proof ==========================

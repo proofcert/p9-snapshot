@@ -1,0 +1,37 @@
+
+
+
+
+
+
+7 -relation(A) | -function(A) | -one_to_one(A) | relation_rng(A) = relation_dom(function_inverse(A)).  [clausify(5)].
+8 one_to_one(c9).  [clausify(6)].
+9 -relation(A) | -function(A) | -one_to_one(A) | relation_rng(function_inverse(A)) = relation_dom(A).  [clausify(5)].
+10 relation(c9).  [clausify(6)].
+11 function(c9).  [clausify(6)].
+12 subset(A,A).  [clausify(2)].
+13 relation_dom(relation_composition(c9,function_inverse(c9))) != relation_dom(c9) | relation_rng(relation_composition(c9,function_inverse(c9))) != relation_dom(c9).  [clausify(6)].
+14 -relation(A) | -function(A) | relation(function_inverse(A)).  [clausify(1)].
+15 -relation(A) | -relation(B) | -subset(relation_rng(A),relation_dom(B)) | relation_dom(relation_composition(A,B)) = relation_dom(A).  [clausify(3)].
+16 -relation(A) | -relation(B) | -subset(relation_dom(A),relation_rng(B)) | relation_rng(relation_composition(B,A)) = relation_rng(A).  [clausify(4)].
+17 -relation(c9) | -function(c9) | relation_rng(c9) = relation_dom(function_inverse(c9)).  [resolve(7,c,8,a)].
+18 -relation(c9) | -function(c9) | relation_dom(function_inverse(c9)) = relation_rng(c9).  [copy(17),flip(c)].
+19 -function(c9) | relation_dom(function_inverse(c9)) = relation_rng(c9).  [resolve(10,a,18,a)].
+20 relation_dom(function_inverse(c9)) = relation_rng(c9).  [resolve(11,a,19,a)].
+21 -relation(c9) | -function(c9) | relation_rng(function_inverse(c9)) = relation_dom(c9).  [resolve(9,c,8,a)].
+22 -function(c9) | relation_rng(function_inverse(c9)) = relation_dom(c9).  [resolve(10,a,21,a)].
+23 relation_rng(function_inverse(c9)) = relation_dom(c9).  [resolve(11,a,22,a)].
+24 -relation(c9) | relation(function_inverse(c9)).  [resolve(14,b,11,a)].
+25 relation(function_inverse(c9)).  [resolve(10,a,24,a)].
+26 -relation(A) | -relation(function_inverse(c9)) | -subset(relation_rng(A),relation_rng(c9)) | relation_dom(relation_composition(A,function_inverse(c9))) = relation_dom(A).  [para(20(a,1),15(c,2))].
+27 -relation(A) | -subset(relation_rng(A),relation_rng(c9)) | relation_dom(relation_composition(A,function_inverse(c9))) = relation_dom(A).  [resolve(25,a,26,b)].
+28 -relation(function_inverse(c9)) | -relation(A) | -subset(relation_rng(c9),relation_rng(A)) | relation_rng(relation_composition(A,function_inverse(c9))) = relation_rng(function_inverse(c9)).  [para(20(a,1),16(c,1))].
+29 -relation(function_inverse(c9)) | -relation(A) | -subset(relation_rng(c9),relation_rng(A)) | relation_rng(relation_composition(A,function_inverse(c9))) = relation_dom(c9).  [para(23(a,1),28(d,2))].
+30 -relation(A) | -subset(relation_rng(c9),relation_rng(A)) | relation_rng(relation_composition(A,function_inverse(c9))) = relation_dom(c9).  [resolve(25,a,29,a)].
+31 -relation(c9) | relation_dom(relation_composition(c9,function_inverse(c9))) = relation_dom(c9).  [resolve(27,b,12,a)].
+32 relation_dom(relation_composition(c9,function_inverse(c9))) = relation_dom(c9).  [resolve(10,a,31,a)].
+33 relation_dom(c9) != relation_dom(c9) | relation_rng(relation_composition(c9,function_inverse(c9))) != relation_dom(c9).  [para(32(a,1),13(a,1))].
+34 relation_rng(relation_composition(c9,function_inverse(c9))) != relation_dom(c9).  [copy(33),xx(a)].
+35 -relation(c9) | relation_rng(relation_composition(c9,function_inverse(c9))) = relation_dom(c9).  [resolve(30,b,12,a)].
+36 relation_rng(relation_composition(c9,function_inverse(c9))) = relation_dom(c9).  [resolve(10,a,35,a)].
+37 $F.  [resolve(34,a,36,a)].

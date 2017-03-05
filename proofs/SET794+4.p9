@@ -1,0 +1,65 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n075.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 23:03:18 CDT 2014
+% CPUTime    : 1.68 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 46380 was started by sandbox on n075.star.cs.uiowa.edu,
+Fri Jun  6 23:03:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_46348_n075.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.54 (+ 0.01) seconds.
+% Length of proof is 23.
+% Level of proof is 8.
+% Maximum clause weight is 14.000.
+% Given clauses 688.
+
+
+1 (all A all B (total_order(A,B) <-> order(A,B) & (all C all D (member(C,B) & member(D,B) -> apply(A,C,D) | apply(A,D,C))))).  [assumption].
+2 (all A all B all C (least(C,A,B) <-> member(C,B) & (all D (member(D,B) -> apply(A,C,D))))).  [assumption].
+3 (all A all B all C (min(C,A,B) <-> member(C,B) & (all D (member(D,B) & apply(A,D,C) -> C = D)))).  [assumption].
+4 -(all A all B all C (total_order(A,B) & min(C,A,B) -> least(C,A,B))).  [assumption].
+5 total_order(c1,c2).  [clausify(4)].
+6 -total_order(A,B) | -member(C,B) | -member(D,B) | apply(A,C,D) | apply(A,D,C).  [clausify(1)].
+7 -min(A,B,C) | member(A,C).  [clausify(3)].
+8 -min(A,B,C) | -member(D,C) | -apply(B,D,A) | A = D.  [clausify(3)].
+9 min(c3,c1,c2).  [clausify(4)].
+10 least(A,B,C) | -member(A,C) | member(f12(B,C,A),C).  [clausify(2)].
+11 least(A,B,C) | -member(A,C) | -apply(B,A,f12(B,C,A)).  [clausify(2)].
+12 -least(c3,c1,c2).  [clausify(4)].
+13 -member(A,c2) | -member(B,c2) | apply(c1,A,B) | apply(c1,B,A).  [resolve(5,a,6,a)].
+14 member(c3,c2).  [resolve(9,a,7,a)].
+15 -member(A,c2) | -apply(c1,A,c3) | c3 = A.  [resolve(9,a,8,a)].
+16 -member(A,c2) | apply(c1,A,c3) | apply(c1,c3,A).  [resolve(14,a,13,b)].
+17 least(c3,A,c2) | member(f12(A,c2,c3),c2).  [resolve(14,a,10,b)].
+18 -member(c3,c2) | apply(c1,c3,c3).  [factor(16,b,c)].
+19 apply(c1,c3,c3).  [resolve(14,a,18,a)].
+20 member(f12(c1,c2,c3),c2).  [resolve(17,a,12,a)].
+21 apply(c1,f12(c1,c2,c3),c3) | apply(c1,c3,f12(c1,c2,c3)).  [resolve(16,a,20,a)].
+22 apply(c1,c3,f12(c1,c2,c3)) | -member(f12(c1,c2,c3),c2) | c3 = f12(c1,c2,c3).  [resolve(21,a,15,b)].
+23 apply(c1,c3,f12(c1,c2,c3)) | -member(f12(c1,c2,c3),c2) | f12(c1,c2,c3) = c3.  [copy(22),flip(c)].
+24 apply(c1,c3,f12(c1,c2,c3)) | f12(c1,c2,c3) = c3.  [resolve(20,a,23,b)].
+25 f12(c1,c2,c3) = c3 | least(c3,c1,c2) | -member(c3,c2).  [resolve(24,a,11,c)].
+26 f12(c1,c2,c3) = c3 | -member(c3,c2).  [resolve(12,a,25,b)].
+27 f12(c1,c2,c3) = c3.  [resolve(14,a,26,b)].
+28 least(c3,c1,c2) | -member(c3,c2) | -apply(c1,c3,c3).  [para(27(a,1),11(c,3))].
+29 -member(c3,c2) | -apply(c1,c3,c3).  [resolve(12,a,28,a)].
+30 -apply(c1,c3,c3).  [resolve(14,a,29,a)].
+31 $F.  [resolve(19,a,30,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n057.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:02:33 CDT 2014
+% CPUTime    : 0.21 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 25518 was started by sandbox on n057.star.cs.uiowa.edu,
+Thu Jun  5 18:02:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_25486_n057.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.07 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 11.000.
+% Given clauses 141.
+
+
+1 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+2 (all A all B subset(set_intersection2(A,B),A)).  [assumption].
+3 (all A all B all C (subset(A,B) & subset(A,C) -> subset(A,set_intersection2(B,C)))).  [assumption].
+4 (all A all B all C (subset(A,B) & subset(B,C) -> subset(A,C))).  [assumption].
+5 -(all A all B all C (subset(A,B) -> subset(set_intersection2(A,C),set_intersection2(B,C)))).  [assumption].
+6 subset(c3,c4).  [clausify(5)].
+7 subset(set_intersection2(A,B),A).  [clausify(2)].
+8 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+9 -subset(set_intersection2(c3,c5),set_intersection2(c4,c5)).  [clausify(5)].
+10 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(4)].
+11 -subset(A,B) | -subset(A,C) | subset(A,set_intersection2(B,C)).  [clausify(3)].
+12 subset(set_intersection2(A,B),B).  [para(8(a,1),7(a,1))].
+13 -subset(A,c3) | subset(A,c4).  [resolve(10,b,6,a)].
+14 -subset(set_intersection2(A,B),C) | subset(set_intersection2(A,B),set_intersection2(C,B)).  [resolve(11,b,12,a)].
+15 -subset(set_intersection2(c3,c5),c4).  [resolve(14,b,9,a)].
+16 -subset(set_intersection2(c3,c5),c3).  [resolve(13,b,15,a)].
+17 $F.  [resolve(7,a,16,a)].
+
+============================== end of proof ==========================

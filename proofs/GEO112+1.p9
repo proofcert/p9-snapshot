@@ -1,0 +1,55 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n080.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:22:43 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 61540 was started by sandbox on n080.star.cs.uiowa.edu,
+Fri Jun  6 01:22:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_61508_n080.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 16.
+% Level of proof is 3.
+% Maximum clause weight is 34.000.
+% Given clauses 71.
+
+
+1 (all A all B all C all D (between_c(A,B,C,D) <-> B != D & (exists E (part_of(E,A) & end_point(B,E) & end_point(D,E) & inner_point(C,E))))).  [assumption].
+2 -(all A all B all C all D (between_c(A,B,C,D) -> between_c(A,D,C,B))).  [assumption].
+3 -between_c(A,B,C,D) | inner_point(C,f14(A,B,C,D)).  [clausify(1)].
+4 between_c(A,B,C,D) | D = B | -part_of(E,A) | -end_point(B,E) | -end_point(D,E) | -inner_point(C,E).  [clausify(1)].
+5 between_c(c10,c11,c12,c13).  [clausify(2)].
+6 -between_c(c10,c13,c12,c11).  [clausify(2)].
+7 -between_c(A,B,C,D) | D != B.  [clausify(1)].
+8 -between_c(A,B,C,D) | part_of(f14(A,B,C,D),A).  [clausify(1)].
+9 -between_c(A,B,C,D) | end_point(B,f14(A,B,C,D)).  [clausify(1)].
+10 -between_c(A,B,C,D) | end_point(D,f14(A,B,C,D)).  [clausify(1)].
+11 between_c(A,B,C,D) | D = B | -part_of(f14(E,F,C,V6),A) | -end_point(B,f14(E,F,C,V6)) | -end_point(D,f14(E,F,C,V6)) | -between_c(E,F,C,V6).  [resolve(4,f,3,b)].
+12 c13 != c11.  [resolve(7,a,5,a)].
+13 part_of(f14(c10,c11,c12,c13),c10).  [resolve(8,a,5,a)].
+14 end_point(c11,f14(c10,c11,c12,c13)).  [resolve(9,a,5,a)].
+15 end_point(c13,f14(c10,c11,c12,c13)).  [resolve(10,a,5,a)].
+16 c11 = c13 | -part_of(f14(A,B,c12,C),c10) | -end_point(c13,f14(A,B,c12,C)) | -end_point(c11,f14(A,B,c12,C)) | -between_c(A,B,c12,C).  [resolve(11,a,6,a)].
+17 -part_of(f14(A,B,c12,C),c10) | -end_point(c13,f14(A,B,c12,C)) | -end_point(c11,f14(A,B,c12,C)) | -between_c(A,B,c12,C).  [resolve(16,a,12,a(flip))].
+18 -end_point(c13,f14(c10,c11,c12,c13)) | -end_point(c11,f14(c10,c11,c12,c13)) | -between_c(c10,c11,c12,c13).  [resolve(17,a,13,a)].
+19 -end_point(c13,f14(c10,c11,c12,c13)) | -between_c(c10,c11,c12,c13).  [resolve(18,b,14,a)].
+20 -end_point(c13,f14(c10,c11,c12,c13)).  [resolve(19,b,5,a)].
+21 $F.  [resolve(15,a,20,a)].
+
+============================== end of proof ==========================

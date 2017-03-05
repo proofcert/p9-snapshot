@@ -1,0 +1,14 @@
+
+
+
+4 subset(c3,c4).  [clausify(3)].
+5 proper_subset(c4,c3).  [clausify(3)].
+6 -proper_subset(A,B) | B != A.  [clausify(2)].
+7 -proper_subset(A,B) | subset(A,B).  [clausify(2)].
+8 A = B | -subset(B,A) | -subset(A,B).  [clausify(1)].
+9 c3 != c4.  [resolve(6,a,5,a)].
+10 c4 != c3.  [copy(9),flip(a)].
+11 subset(c4,c3).  [resolve(7,a,5,a)].
+12 c4 = c3 | -subset(c4,c3).  [resolve(8,b,4,a)].
+13 -subset(c4,c3).  [resolve(10,a,12,a)].
+14 $F.  [resolve(11,a,13,a)].

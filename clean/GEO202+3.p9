@@ -1,0 +1,47 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15 equal_points(A,B) | distinct_points(A,B).  [clausify(13)].
+16 -equal_points(intersection_point(line_connecting(c1,c2),line_connecting(c1,c3)),c1).  [clausify(14)].
+17 convergent_lines(A,B) | unorthogonal_lines(A,B).  [clausify(11)].
+18 -distinct_lines(A,A).  [clausify(1)].
+19 -convergent_lines(A,A).  [clausify(2)].
+20 -convergent_lines(parallel_through_point(A,B),A).  [clausify(9)].
+21 -apart_point_and_line(A,parallel_through_point(B,A)).  [clausify(10)].
+22 -unorthogonal_lines(orthogonal_through_point(A,B),A).  [clausify(12)].
+23 -distinct_lines(A,B) | convergent_lines(A,B).  [clausify(8)].
+24 -distinct_lines(A,B) | distinct_lines(A,C) | distinct_lines(B,C).  [clausify(3)].
+25 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(4)].
+26 -apart_point_and_line(A,B) | distinct_lines(B,C) | apart_point_and_line(A,C).  [clausify(6)].
+27 -convergent_lines(A,B) | distinct_lines(B,C) | convergent_lines(A,C).  [clausify(7)].
+28 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(5)].
+29 distinct_points(intersection_point(line_connecting(c1,c2),line_connecting(c1,c3)),c1).  [resolve(16,a,15,a)].
+30 convergent_lines(orthogonal_through_point(A,B),A).  [resolve(22,a,17,b)].
+31 -distinct_lines(parallel_through_point(A,B),A).  [resolve(23,b,20,a)].
+32 -convergent_lines(A,B) | convergent_lines(B,A).  [resolve(25,b,19,a)].
+33 -convergent_lines(A,parallel_through_point(A,B)).  [resolve(32,b,20,a)].
+34 -distinct_lines(A,B) | apart_point_and_line(intersection_point(line_connecting(c1,c2),line_connecting(c1,c3)),A) | apart_point_and_line(intersection_point(line_connecting(c1,c2),line_connecting(c1,c3)),B) | apart_point_and_line(c1,A) | apart_point_and_line(c1,B).  [resolve(29,a,28,a)].
+35 distinct_lines(A,B) | convergent_lines(orthogonal_through_point(A,C),B).  [resolve(30,a,27,a)].
+36 -distinct_lines(A,B) | distinct_lines(B,A).  [resolve(24,b,18,a)].
+37 -distinct_lines(A,parallel_through_point(A,B)).  [resolve(36,b,31,a)].
+38 -convergent_lines(A,parallel_through_point(B,C)) | convergent_lines(A,B).  [resolve(27,b,31,a)].
+39 -convergent_lines(A,parallel_through_point(parallel_through_point(A,B),C)).  [resolve(38,b,33,a)].
+40 -apart_point_and_line(A,B) | apart_point_and_line(A,parallel_through_point(B,C)).  [resolve(26,b,37,a)].
+41 -apart_point_and_line(A,B).  [resolve(40,b,21,a)].
+42 -distinct_lines(A,B) | apart_point_and_line(intersection_point(line_connecting(c1,c2),line_connecting(c1,c3)),B) | apart_point_and_line(c1,A) | apart_point_and_line(c1,B).  [resolve(41,a,34,b)].
+43 -distinct_lines(A,B) | apart_point_and_line(c1,A) | apart_point_and_line(c1,B).  [resolve(41,a,42,b)].
+44 -distinct_lines(A,B) | apart_point_and_line(c1,B).  [resolve(41,a,43,b)].
+45 -distinct_lines(A,B).  [resolve(41,a,44,b)].
+46 convergent_lines(orthogonal_through_point(A,B),C).  [resolve(45,a,35,a)].
+47 $F.  [resolve(46,a,39,a)].

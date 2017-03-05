@@ -1,0 +1,21 @@
+
+
+
+4 big_f(c1).  [clausify(3)].
+5 -big_f(A) | big_g(f1(A)) | big_g(B).  [clausify(1)].
+6 -big_f(A) | -big_j(A,f1(A)) | big_k(B).  [clausify(1)].
+7 -big_f(A) | big_h(A,f1(A)) | big_h(A,B).  [clausify(1)].
+8 -big_h(c1,A) | big_l(A).  [clausify(3)].
+9 -big_l(A) | -big_k(A).  [clausify(2)].
+10 -big_g(A) | -big_h(c1,A) | big_j(c1,A).  [clausify(3)].
+11 -big_j(c1,f1(c1)) | big_k(A).  [resolve(6,a,4,a)].
+12 -big_h(c1,A) | -big_k(A).  [resolve(8,b,9,a)].
+13 big_k(A) | -big_g(f1(c1)) | -big_h(c1,f1(c1)).  [resolve(11,a,10,c)].
+14 big_g(f1(c1)) | big_g(A).  [resolve(5,a,4,a)].
+15 big_h(c1,f1(c1)) | big_h(c1,A).  [resolve(7,a,4,a)].
+16 -big_g(f1(c1)) | -big_h(c1,f1(c1)) | -big_h(c1,A).  [resolve(13,a,12,b)].
+17 big_g(f1(c1)).  [factor(14,a,b)].
+18 big_h(c1,f1(c1)).  [factor(15,a,b)].
+19 -big_g(f1(c1)) | -big_h(c1,f1(c1)).  [factor(16,b,c)].
+20 -big_h(c1,f1(c1)).  [resolve(17,a,19,a)].
+21 $F.  [resolve(18,a,20,a)].

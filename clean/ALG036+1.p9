@@ -1,0 +1,55 @@
+
+2 op(e0,unit) = e0.  [assumption].
+3 op(e1,unit) = e1.  [assumption].
+4 op(e2,unit) = e2.  [assumption].
+5 unit = e0.  [assumption].
+6 op(e1,e0) != op(e1,e1).  [assumption].
+7 op(e1,e1) != op(e1,e0).  [copy(6),flip(a)].
+8 op(e2,e0) != op(e2,e2).  [assumption].
+9 op(e2,e2) != op(e2,e0).  [copy(8),flip(a)].
+10 e0 != e1.  [assumption].
+11 e1 != e0.  [copy(10),flip(a)].
+12 e0 != e2.  [assumption].
+13 e2 != e0.  [copy(12),flip(a)].
+14 e0 != e3.  [assumption].
+15 e3 != e0.  [copy(14),flip(a)].
+16 op(e0,e0) != e0 | op(e1,e1) != e0 | op(e2,e2) != e0 | op(e3,e3) != e0.  [clausify(1)].
+17 op(e1,e1) = e0 | op(e3,e3) = e1 | op(e3,e3) = e2 | op(e0,e0) = e3.  [clausify(1)].
+18 op(e2,e2) = e0 | op(e3,e3) = e1 | op(e3,e3) = e2 | op(e0,e0) = e3.  [clausify(1)].
+19 op(e3,e3) = e0 | op(e1,e1) = e1 | op(e2,e2) = e2 | op(e0,e0) = e3.  [clausify(1)].
+20 op(e2,e0) = e2.  [para(5(a,1),4(a,1,2))].
+21 op(e1,e0) = e1.  [para(5(a,1),3(a,1,2))].
+22 op(e0,e0) = e0.  [para(5(a,1),2(a,1,2))].
+23 op(e2,e2) != e2.  [para(20(a,1),9(a,2))].
+24 op(e1,e1) != e1.  [para(21(a,1),7(a,2))].
+25 op(e3,e3) = e0 | op(e1,e1) = e1 | op(e2,e2) = e2 | e0 = e3.  [para(22(a,1),19(d,1))].
+26 op(e3,e3) = e0 | op(e1,e1) = e1 | op(e2,e2) = e2 | e3 = e0.  [copy(25),flip(d)].
+27 op(e3,e3) = e0 | op(e2,e2) = e2 | e3 = e0.  [resolve(24,a,26,b)].
+28 op(e3,e3) = e0 | e3 = e0.  [resolve(23,a,27,b)].
+29 op(e3,e3) = e0.  [resolve(15,a,28,b)].
+30 op(e2,e2) = e0 | e0 = e1 | op(e3,e3) = e2 | op(e0,e0) = e3.  [para(29(a,1),18(b,1))].
+31 op(e2,e2) = e0 | e0 = e1 | e0 = e2 | op(e0,e0) = e3.  [para(29(a,1),30(c,1))].
+32 op(e2,e2) = e0 | e0 = e1 | e0 = e2 | e0 = e3.  [para(22(a,1),31(d,1))].
+33 op(e2,e2) = e0 | e1 = e0 | e0 = e2 | e0 = e3.  [copy(32),flip(b)].
+34 op(e2,e2) = e0 | e1 = e0 | e2 = e0 | e0 = e3.  [copy(33),flip(c)].
+35 op(e2,e2) = e0 | e1 = e0 | e2 = e0 | e3 = e0.  [copy(34),flip(d)].
+36 op(e2,e2) = e0 | e2 = e0 | e3 = e0.  [resolve(11,a,35,b)].
+37 op(e2,e2) = e0 | e3 = e0.  [resolve(13,a,36,b)].
+38 op(e2,e2) = e0.  [resolve(15,a,37,b)].
+39 op(e1,e1) = e0 | e0 = e1 | op(e3,e3) = e2 | op(e0,e0) = e3.  [para(29(a,1),17(b,1))].
+40 op(e1,e1) = e0 | e0 = e1 | e0 = e2 | op(e0,e0) = e3.  [para(29(a,1),39(c,1))].
+41 op(e1,e1) = e0 | e0 = e1 | e0 = e2 | e0 = e3.  [para(22(a,1),40(d,1))].
+42 op(e1,e1) = e0 | e1 = e0 | e0 = e2 | e0 = e3.  [copy(41),flip(b)].
+43 op(e1,e1) = e0 | e1 = e0 | e2 = e0 | e0 = e3.  [copy(42),flip(c)].
+44 op(e1,e1) = e0 | e1 = e0 | e2 = e0 | e3 = e0.  [copy(43),flip(d)].
+45 op(e1,e1) = e0 | e2 = e0 | e3 = e0.  [resolve(11,a,44,b)].
+46 op(e1,e1) = e0 | e3 = e0.  [resolve(13,a,45,b)].
+47 op(e1,e1) = e0.  [resolve(15,a,46,b)].
+48 e0 != e0 | op(e1,e1) != e0 | op(e2,e2) != e0 | op(e3,e3) != e0.  [para(22(a,1),16(a,1))].
+49 e0 != e0 | e0 != e0 | op(e2,e2) != e0 | op(e3,e3) != e0.  [para(47(a,1),48(b,1))].
+50 e0 != e0 | e0 != e0 | e0 != e0 | op(e3,e3) != e0.  [para(38(a,1),49(c,1))].
+51 e0 != e0 | e0 != e0 | e0 != e0 | e0 != e0.  [para(29(a,1),50(d,1))].
+52 e0 != e0 | e0 != e0 | e0 != e0.  [copy(51),xx(a)].
+53 e0 != e0 | e0 != e0.  [copy(52),xx(a)].
+54 e0 != e0.  [copy(53),xx(a)].
+55 $F.  [copy(54),xx(a)].

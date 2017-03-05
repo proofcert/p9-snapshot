@@ -1,0 +1,27 @@
+
+
+
+
+5 -happens(A,B) | -initiates(A,C,B) | holdsAt(C,plus(B,n1)).  [clausify(1)].
+6 initiates(A,B,C) | pull != A | spinning != B | -happens(push,C).  [clausify(2)].
+7 happens(A,B) | pull != A | n2 != B.  [clausify(3)].
+8 happens(A,B) | push != A | n2 != B.  [clausify(3)].
+9 plus(n0,n2) = n2.  [assumption].
+10 plus(n1,n2) = n3.  [assumption].
+11 plus(A,B) = plus(B,A).  [clausify(4)].
+12 -holdsAt(spinning,n3).  [assumption].
+13 plus(n2,n0) = n2.  [para(11(a,1),9(a,1))].
+14 happens(pull,A) | n2 != A.  [xx_res(7,b)].
+15 happens(push,A) | n2 != A.  [xx_res(8,b)].
+16 happens(pull,plus(n2,n0)).  [resolve(14,b,13,a(flip))].
+17 happens(pull,n2).  [para(13(a,1),16(a,2))].
+18 happens(push,plus(n2,n0)).  [resolve(15,b,13,a(flip))].
+19 happens(push,n2).  [para(13(a,1),18(a,2))].
+20 initiates(A,B,n2) | pull != A | spinning != B.  [resolve(19,a,6,d)].
+21 initiates(pull,A,n2) | spinning != A.  [xx_res(20,b)].
+22 initiates(pull,spinning,n2).  [xx_res(21,b)].
+23 -happens(pull,n2) | holdsAt(spinning,plus(n2,n1)).  [resolve(22,a,5,b)].
+24 -happens(pull,n2) | holdsAt(spinning,plus(n1,n2)).  [para(11(a,1),23(b,2))].
+25 -happens(pull,n2) | holdsAt(spinning,n3).  [para(10(a,1),24(b,2))].
+26 holdsAt(spinning,n3).  [resolve(17,a,25,a)].
+27 $F.  [resolve(12,a,26,a)].

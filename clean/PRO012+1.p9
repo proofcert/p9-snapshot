@@ -1,0 +1,158 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20 -activity(A) | subactivity(A,A).  [clausify(4)].
+21 -occurrence_of(A,B) | activity(B).  [clausify(1)].
+22 -atocc(A,B) | -legal(A) | root(A,B).  [clausify(11)].
+23 -min_precedes(A,B,C) | -root(B,C).  [clausify(9)].
+24 -root(A,B) | atocc(A,f4(B,A)).  [clausify(8)].
+25 -root_occ(A,B) | root(A,f14(A,B)).  [clausify(17)].
+26 -activity_occurrence(A) | occurrence_of(A,f1(A)).  [clausify(2)].
+27 -occurrence_of(A,B) | activity_occurrence(A).  [clausify(1)].
+28 -subactivity_occurrence(A,B) | activity_occurrence(A).  [clausify(13)].
+29 -min_precedes(A,B,C) | precedes(A,B).  [clausify(10)].
+30 -precedes(A,B) | legal(B).  [clausify(7)].
+31 atocc(A,B) | -subactivity(B,C) | -atomic(C) | -occurrence_of(A,C).  [clausify(12)].
+32 subactivity(A,A) | -occurrence_of(B,A).  [resolve(20,a,21,b)].
+33 atomic(tptp2).  [assumption].
+34 atomic(tptp3).  [assumption].
+35 occurrence_of(c1,tptp0).  [clausify(19)].
+36 tptp3 != tptp2.  [assumption].
+37 tptp3 != tptp1.  [assumption].
+38 -occurrence_of(A,tptp3) | -root_occ(A,c1) | -occurrence_of(B,tptp2) | -min_precedes(A,B,tptp0).  [clausify(19)].
+39 -occurrence_of(A,tptp3) | -root_occ(A,c1) | -occurrence_of(B,tptp1) | -min_precedes(A,B,tptp0).  [clausify(19)].
+40 -legal(A) | arboreal(A).  [clausify(6)].
+41 -occurrence_of(A,B) | -arboreal(A) | atomic(B).  [clausify(5)].
+42 -occurrence_of(A,B) | arboreal(A) | -atomic(B).  [clausify(5)].
+43 -atocc(A,B) | atomic(f9(A,B)).  [clausify(12)].
+44 -occurrence_of(A,tptp0) | occurrence_of(f16(A),tptp3).  [clausify(18)].
+45 -occurrence_of(A,tptp0) | root_occ(f16(A),A).  [clausify(18)].
+46 -atocc(A,B) | occurrence_of(A,f9(A,B)).  [clausify(12)].
+47 -root_occ(A,B) | occurrence_of(B,f14(A,B)).  [clausify(17)].
+48 -occurrence_of(A,B) | -occurrence_of(A,C) | C = B.  [clausify(3)].
+49 -occurrence_of(A,tptp0) | min_precedes(f16(A),f17(A),tptp0).  [clausify(18)].
+50 -occurrence_of(A,tptp0) | min_precedes(f17(A),f18(A),tptp0).  [clausify(18)].
+51 -min_precedes(A,B,C) | occurrence_of(f10(C,A,B),C).  [clausify(14)].
+52 -min_precedes(A,B,C) | subactivity_occurrence(A,f10(C,A,B)).  [clausify(14)].
+53 -min_precedes(A,B,C) | subactivity_occurrence(B,f10(C,A,B)).  [clausify(14)].
+54 -occurrence_of(A,tptp0) | occurrence_of(f18(A),tptp2) | occurrence_of(f18(A),tptp1).  [clausify(18)].
+55 -min_precedes(A,B,C) | -occurrence_of(D,C) | -subactivity_occurrence(B,D) | subactivity_occurrence(A,D).  [clausify(16)].
+56 -occurrence_of(A,B) | -arboreal(C) | -arboreal(D) | -subactivity_occurrence(C,A) | -subactivity_occurrence(D,A) | min_precedes(C,D,B) | min_precedes(D,C,B) | D = C.  [clausify(15)].
+57 -atocc(A,B) | -legal(A) | atocc(A,f4(B,A)).  [resolve(22,c,24,a)].
+58 -root_occ(A,B) | -min_precedes(C,A,f14(A,B)).  [resolve(25,b,23,b)].
+59 occurrence_of(A,f1(A)) | -occurrence_of(A,B).  [resolve(26,a,27,b)].
+60 occurrence_of(A,f1(A)) | -subactivity_occurrence(A,B).  [resolve(26,a,28,b)].
+61 -min_precedes(A,B,C) | legal(B).  [resolve(29,b,30,a)].
+62 -occurrence_of(A,B) | atocc(C,B) | -atomic(B) | -occurrence_of(C,B).  [resolve(32,a,31,b)].
+63 -occurrence_of(A,B) | atocc(A,B) | -atomic(B).  [factor(62,a,d)].
+64 occurrence_of(f16(c1),tptp3).  [resolve(44,a,35,a)].
+65 root_occ(f16(c1),c1).  [resolve(45,a,35,a)].
+66 -occurrence_of(c1,A) | A = tptp0.  [resolve(48,a,35,a)].
+67 -occurrence_of(c1,A) | tptp0 = A.  [copy(66),flip(b)].
+68 min_precedes(f16(c1),f17(c1),tptp0).  [resolve(49,a,35,a)].
+69 min_precedes(f17(c1),f18(c1),tptp0).  [resolve(50,a,35,a)].
+70 occurrence_of(f18(c1),tptp2) | occurrence_of(f18(c1),tptp1).  [resolve(54,a,35,a)].
+71 occurrence_of(f16(c1),f1(f16(c1))).  [resolve(64,a,59,b)].
+72 -occurrence_of(f16(c1),A) | tptp3 = A.  [resolve(64,a,48,b)].
+73 arboreal(f16(c1)) | -atomic(tptp3).  [resolve(64,a,42,a)].
+74 arboreal(f16(c1)).  [resolve(34,a,73,b)].
+75 occurrence_of(c1,f14(f16(c1),c1)).  [resolve(65,a,47,a)].
+76 -occurrence_of(A,tptp0) | -subactivity_occurrence(f17(c1),A) | subactivity_occurrence(f16(c1),A).  [resolve(68,a,55,a)].
+77 legal(f18(c1)).  [resolve(69,a,61,a)].
+78 subactivity_occurrence(f18(c1),f10(tptp0,f17(c1),f18(c1))).  [resolve(69,a,53,a)].
+79 subactivity_occurrence(f17(c1),f10(tptp0,f17(c1),f18(c1))).  [resolve(69,a,52,a)].
+80 occurrence_of(f10(tptp0,f17(c1),f18(c1)),tptp0).  [resolve(69,a,51,a)].
+81 arboreal(f18(c1)).  [resolve(77,a,40,a)].
+82 occurrence_of(f18(c1),tptp1) | atocc(f18(c1),tptp2) | -atomic(tptp2).  [resolve(70,a,63,a)].
+83 occurrence_of(f18(c1),tptp1) | atocc(f18(c1),tptp2).  [resolve(33,a,82,c)].
+84 tptp0 = f14(f16(c1),c1).  [resolve(75,a,67,a)].
+85 f14(f16(c1),c1) = tptp0.  [copy(84),flip(a)].
+86 -root_occ(f16(c1),c1) | -min_precedes(A,f16(c1),tptp0).  [para(85(a,1),58(b,3))].
+87 -min_precedes(A,f16(c1),tptp0).  [resolve(65,a,86,a)].
+88 tptp3 = f1(f16(c1)).  [resolve(72,a,71,a)].
+89 f1(f16(c1)) = tptp3.  [copy(88),flip(a)].
+90 occurrence_of(f18(c1),tptp1) | atomic(f9(f18(c1),tptp2)).  [resolve(83,b,43,a)].
+91 occurrence_of(f18(c1),f1(f18(c1))).  [resolve(78,a,60,b)].
+92 -occurrence_of(f10(tptp0,f17(c1),f18(c1)),A) | -arboreal(B) | -arboreal(f18(c1)) | -subactivity_occurrence(B,f10(tptp0,f17(c1),f18(c1))) | min_precedes(B,f18(c1),A) | min_precedes(f18(c1),B,A) | f18(c1) = B.  [resolve(78,a,56,e)].
+93 -occurrence_of(f10(tptp0,f17(c1),f18(c1)),A) | -arboreal(B) | -subactivity_occurrence(B,f10(tptp0,f17(c1),f18(c1))) | min_precedes(B,f18(c1),A) | min_precedes(f18(c1),B,A) | f18(c1) = B.  [resolve(81,a,92,c)].
+94 atocc(f18(c1),f1(f18(c1))) | -atomic(f1(f18(c1))).  [resolve(91,a,63,a)].
+95 -occurrence_of(f18(c1),A) | f1(f18(c1)) = A.  [resolve(91,a,48,b)].
+96 -arboreal(f18(c1)) | atomic(f1(f18(c1))).  [resolve(91,a,41,a)].
+97 atomic(f1(f18(c1))).  [resolve(81,a,96,a)].
+98 atocc(f18(c1),f1(f18(c1))).  [resolve(97,a,94,b)].
+99 f1(f18(c1)) = tptp1 | atomic(f9(f18(c1),tptp2)).  [resolve(95,a,90,a)].
+100 f1(f18(c1)) = tptp2 | occurrence_of(f18(c1),tptp1).  [resolve(95,a,70,a)].
+101 f1(f18(c1)) = tptp2 | f1(f18(c1)) = tptp1.  [resolve(100,b,95,a)].
+102 f1(f18(c1)) = tptp1 | occurrence_of(f18(c1),tptp2).  [para(101(a,1),91(a,2))].
+103 f1(f18(c1)) = tptp1 | atocc(f18(c1),tptp2).  [para(101(a,1),98(a,2))].
+104 f1(f18(c1)) = tptp1 | -occurrence_of(f18(c1),A) | tptp2 = A.  [resolve(102,b,48,b)].
+105 f1(f18(c1)) = tptp1 | occurrence_of(f18(c1),f9(f18(c1),tptp2)).  [resolve(103,b,46,a)].
+106 -occurrence_of(f10(tptp0,f17(c1),f18(c1)),tptp0) | subactivity_occurrence(f16(c1),f10(tptp0,f17(c1),f18(c1))).  [resolve(76,b,79,a)].
+107 subactivity_occurrence(f16(c1),f10(tptp0,f17(c1),f18(c1))).  [resolve(80,a,106,a)].
+108 f1(f18(c1)) = tptp1 | atocc(f18(c1),f9(f18(c1),tptp2)) | -atomic(f9(f18(c1),tptp2)).  [resolve(105,b,63,a)].
+109 -occurrence_of(f10(tptp0,f17(c1),f18(c1)),A) | -arboreal(f16(c1)) | min_precedes(f16(c1),f18(c1),A) | min_precedes(f18(c1),f16(c1),A) | f18(c1) = f16(c1).  [resolve(93,c,107,a)].
+110 -occurrence_of(f10(tptp0,f17(c1),f18(c1)),A) | min_precedes(f16(c1),f18(c1),A) | min_precedes(f18(c1),f16(c1),A) | f18(c1) = f16(c1).  [resolve(74,a,109,b)].
+111 f1(f18(c1)) = tptp1 | atocc(f18(c1),f9(f18(c1),tptp2)) | f1(f18(c1)) = tptp1.  [resolve(108,c,99,b)].
+112 f1(f18(c1)) = tptp1 | atocc(f18(c1),f9(f18(c1),tptp2)).  [copy(111),merge(c)].
+113 f1(f18(c1)) = tptp1 | occurrence_of(f18(c1),f9(f18(c1),f9(f18(c1),tptp2))).  [resolve(112,b,46,a)].
+114 f1(f18(c1)) = tptp1 | atomic(f9(f18(c1),f9(f18(c1),tptp2))).  [resolve(112,b,43,a)].
+115 f1(f18(c1)) = tptp1 | atocc(f18(c1),f9(f18(c1),f9(f18(c1),tptp2))) | -atomic(f9(f18(c1),f9(f18(c1),tptp2))).  [resolve(113,b,63,a)].
+116 f1(f18(c1)) = tptp1 | atocc(f18(c1),f9(f18(c1),f9(f18(c1),tptp2))) | f1(f18(c1)) = tptp1.  [resolve(115,c,114,b)].
+117 f1(f18(c1)) = tptp1 | atocc(f18(c1),f9(f18(c1),f9(f18(c1),tptp2))).  [copy(116),merge(c)].
+118 f1(f18(c1)) = tptp1 | -legal(f18(c1)) | atocc(f18(c1),f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1))).  [resolve(117,b,57,a)].
+119 f1(f18(c1)) = tptp1 | atocc(f18(c1),f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1))).  [resolve(77,a,118,b)].
+120 f1(f18(c1)) = tptp1 | -legal(f18(c1)) | atocc(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))).  [resolve(119,b,57,a)].
+121 f1(f18(c1)) = tptp1 | atocc(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))).  [resolve(77,a,120,b)].
+122 f1(f18(c1)) = tptp1 | occurrence_of(f18(c1),f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1)))).  [resolve(121,b,46,a)].
+123 f1(f18(c1)) = tptp1 | f1(f18(c1)) = tptp1 | tptp2 = f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))).  [resolve(122,b,104,b)].
+124 f1(f18(c1)) = tptp1 | f1(f18(c1)) = tptp1 | f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = tptp2.  [copy(123),flip(c)].
+125 f1(f18(c1)) = tptp1 | f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = tptp2.  [copy(124),merge(b)].
+126 f1(f18(c1)) = tptp1 | f1(f18(c1)) = f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))).  [resolve(122,b,95,a)].
+127 f1(f18(c1)) = tptp1 | f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = f1(f18(c1)).  [copy(126),flip(b)].
+128 min_precedes(f16(c1),f18(c1),tptp0) | min_precedes(f18(c1),f16(c1),tptp0) | f18(c1) = f16(c1).  [resolve(110,a,80,a)].
+129 min_precedes(f16(c1),f18(c1),tptp0) | f18(c1) = f16(c1).  [resolve(87,a,128,b)].
+130 f18(c1) = f16(c1) | -occurrence_of(f16(c1),tptp3) | -root_occ(f16(c1),c1) | -occurrence_of(f18(c1),tptp1).  [resolve(129,a,39,d)].
+131 f18(c1) = f16(c1) | -root_occ(f16(c1),c1) | -occurrence_of(f18(c1),tptp1).  [resolve(64,a,130,b)].
+132 f18(c1) = f16(c1) | -occurrence_of(f18(c1),tptp1).  [resolve(65,a,131,b)].
+133 f18(c1) = f16(c1) | -occurrence_of(f16(c1),tptp3) | -root_occ(f16(c1),c1) | -occurrence_of(f18(c1),tptp2).  [resolve(129,a,38,d)].
+134 f18(c1) = f16(c1) | -root_occ(f16(c1),c1) | -occurrence_of(f18(c1),tptp2).  [resolve(64,a,133,b)].
+135 f18(c1) = f16(c1) | -occurrence_of(f18(c1),tptp2).  [resolve(65,a,134,b)].
+136 f18(c1) = f16(c1) | occurrence_of(f18(c1),tptp1).  [resolve(135,b,70,a)].
+137 f18(c1) = f16(c1) | f18(c1) = f16(c1).  [resolve(136,b,132,b)].
+138 f18(c1) = f16(c1).  [copy(137),merge(b)].
+139 f1(f16(c1)) = tptp1 | f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = f1(f18(c1)).  [para(138(a,1),127(a,1,1))].
+140 tptp3 = tptp1 | f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = f1(f18(c1)).  [para(89(a,1),139(a,1))].
+141 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = f1(f18(c1)).  [para(138(a,1),140(b,1,1))].
+142 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = f1(f18(c1)).  [para(138(a,1),141(b,1,2,1,1,1))].
+143 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f18(c1)),f18(c1))) = f1(f18(c1)).  [para(138(a,1),142(b,1,2,1,1,2,1))].
+144 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f16(c1)),f18(c1))) = f1(f18(c1)).  [para(138(a,1),143(b,1,2,1,2))].
+145 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f16(c1)),f16(c1))) = f1(f18(c1)).  [para(138(a,1),144(b,1,2,2))].
+146 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f16(c1)),f16(c1))) = f1(f16(c1)).  [para(138(a,1),145(b,2,1))].
+147 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f16(c1)),f16(c1))) = tptp3.  [para(89(a,1),146(b,2))].
+148 f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f16(c1)),f16(c1))) = tptp3.  [resolve(37,a,147,a)].
+149 f1(f16(c1)) = tptp1 | f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = tptp2.  [para(138(a,1),125(a,1,1))].
+150 tptp3 = tptp1 | f9(f18(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = tptp2.  [para(89(a,1),149(a,1))].
+151 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f18(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = tptp2.  [para(138(a,1),150(b,1,1))].
+152 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f18(c1),tptp2)),f18(c1)),f18(c1))) = tptp2.  [para(138(a,1),151(b,1,2,1,1,1))].
+153 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f18(c1)),f18(c1))) = tptp2.  [para(138(a,1),152(b,1,2,1,1,2,1))].
+154 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f16(c1)),f18(c1))) = tptp2.  [para(138(a,1),153(b,1,2,1,2))].
+155 tptp3 = tptp1 | f9(f16(c1),f4(f4(f9(f16(c1),f9(f16(c1),tptp2)),f16(c1)),f16(c1))) = tptp2.  [para(138(a,1),154(b,1,2,2))].
+156 tptp3 = tptp1 | tptp3 = tptp2.  [para(148(a,1),155(b,1))].
+157 tptp3 = tptp2.  [resolve(37,a,156,a)].
+158 $F.  [resolve(36,a,157,a)].

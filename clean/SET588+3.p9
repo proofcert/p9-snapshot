@@ -1,0 +1,20 @@
+
+
+
+4 -subset(difference(c1,c3),difference(c2,c3)).  [clausify(3)].
+5 subset(c1,c2).  [clausify(3)].
+6 subset(A,B) | member(f1(A,B),A).  [clausify(2)].
+7 subset(A,B) | -member(f1(A,B),B).  [clausify(2)].
+8 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(2)].
+9 -member(A,difference(B,C)) | -member(A,C).  [clausify(1)].
+10 -member(A,difference(B,C)) | member(A,B).  [clausify(1)].
+11 member(A,difference(B,C)) | -member(A,B) | member(A,C).  [clausify(1)].
+12 member(f1(difference(c1,c3),difference(c2,c3)),difference(c1,c3)).  [resolve(4,a,6,a)].
+13 -member(f1(difference(c1,c3),difference(c2,c3)),difference(c2,c3)).  [resolve(7,a,4,a)].
+14 -member(A,c1) | member(A,c2).  [resolve(8,a,5,a)].
+15 member(f1(difference(c1,c3),difference(c2,c3)),c1).  [resolve(12,a,10,a)].
+16 -member(f1(difference(c1,c3),difference(c2,c3)),c3).  [resolve(12,a,9,a)].
+17 -member(f1(difference(c1,c3),difference(c2,c3)),c2) | member(f1(difference(c1,c3),difference(c2,c3)),c3).  [resolve(11,a,13,a)].
+18 -member(f1(difference(c1,c3),difference(c2,c3)),c2).  [resolve(17,b,16,a)].
+19 -member(f1(difference(c1,c3),difference(c2,c3)),c1).  [resolve(14,b,18,a)].
+20 $F.  [resolve(15,a,19,a)].

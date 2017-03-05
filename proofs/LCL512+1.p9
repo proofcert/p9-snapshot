@@ -1,0 +1,48 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n107.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 10:15:48 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 65240 was started by sandbox on n107.star.cs.uiowa.edu,
+Fri Jun  6 10:15:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_65208_n107.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 4.
+% Maximum clause weight is 11.000.
+% Given clauses 34.
+
+
+1 equivalence_1 <-> (all A all B is_a_theorem(implies(equiv(A,B),implies(A,B)))).  [assumption].
+2 kn2 <-> (all A all B is_a_theorem(implies(and(A,B),A))).  [assumption].
+3 op_equiv -> (all A all B equiv(A,B) = and(implies(A,B),implies(B,A))).  [assumption].
+4 op_equiv.  [assumption].
+5 kn2.  [assumption].
+6 -equivalence_1.  [assumption].
+7 -kn2 | is_a_theorem(implies(and(A,B),A)).  [clausify(2)].
+8 is_a_theorem(implies(and(A,B),A)).  [resolve(5,a,7,a)].
+9 equivalence_1 | -is_a_theorem(implies(equiv(c27,c28),implies(c27,c28))).  [clausify(1)].
+10 -is_a_theorem(implies(equiv(c27,c28),implies(c27,c28))).  [resolve(6,a,9,a)].
+11 -op_equiv | and(implies(A,B),implies(B,A)) = equiv(A,B).  [clausify(3)].
+12 and(implies(A,B),implies(B,A)) = equiv(A,B).  [resolve(4,a,11,a)].
+13 is_a_theorem(implies(equiv(A,B),implies(A,B))).  [para(12(a,1),8(a,1,1))].
+14 $F.  [resolve(13,a,10,a)].
+
+============================== end of proof ==========================

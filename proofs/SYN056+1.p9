@@ -1,0 +1,70 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n052.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:01:33 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 63087 was started by sandbox on n052.star.cs.uiowa.edu,
+Thu Jun  5 17:01:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_63055_n052.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 31.
+% Level of proof is 9.
+% Maximum clause weight is 12.000.
+% Given clauses 9.
+
+
+1 (exists A big_p(A)) <-> (exists B big_q(B)).  [assumption].
+2 (all A all B (big_p(A) & big_q(B) -> (big_r(A) <-> big_s(B)))).  [assumption].
+3 -((all A (big_p(A) -> big_r(A))) <-> (all B (big_q(B) -> big_s(B)))).  [assumption].
+4 -big_p(A) | big_q(c1).  [clausify(1)].
+5 big_p(c3) | big_q(c4).  [clausify(3)].
+6 big_p(c2) | -big_q(A).  [clausify(1)].
+7 big_p(c3) | -big_s(c4).  [clausify(3)].
+8 -big_p(A) | -big_q(B) | -big_r(A) | big_s(B).  [clausify(2)].
+9 -big_p(A) | -big_q(B) | big_r(A) | -big_s(B).  [clausify(2)].
+10 -big_p(A) | big_r(A) | -big_q(B) | big_s(B).  [clausify(3)].
+11 -big_q(A) | big_r(c3) | -big_s(A) | big_q(c4).  [resolve(9,a,5,a)].
+12 -big_r(c3) | -big_s(c4).  [clausify(3)].
+13 -big_r(c3) | big_q(c4).  [clausify(3)].
+14 -big_q(A) | -big_r(c2) | big_s(A) | -big_q(B).  [resolve(8,a,6,a)].
+15 -big_q(A) | big_r(c3) | -big_s(A) | -big_s(c4).  [resolve(9,a,7,a)].
+16 big_r(c2) | -big_q(A) | big_s(A) | -big_q(B).  [resolve(10,a,6,a)].
+17 big_q(c1) | big_q(c4).  [resolve(4,a,5,a)].
+18 -big_q(A) | big_q(c1).  [resolve(6,a,4,a)].
+19 -big_q(A) | -big_s(A) | big_q(c4) | big_q(c4).  [resolve(11,b,13,a)].
+20 -big_q(A) | -big_s(A) | big_q(c4).  [copy(19),merge(d)].
+21 -big_q(A) | -big_s(A) | -big_s(c4) | -big_s(c4).  [resolve(15,b,12,a)].
+22 -big_q(A) | -big_s(A) | -big_s(c4).  [copy(21),merge(d)].
+23 -big_q(A) | big_s(A) | -big_q(B) | -big_q(C) | big_s(C) | -big_q(D).  [resolve(16,a,14,b)].
+24 -big_q(A) | big_s(A) | -big_q(B) | big_s(B) | -big_q(C).  [factor(23,a,c)].
+25 -big_q(A) | big_s(A) | big_s(A) | -big_q(B).  [factor(24,a,c)].
+26 -big_q(A) | big_s(A) | -big_q(B).  [copy(25),merge(c)].
+27 -big_q(A) | big_s(A).  [factor(26,a,c)].
+28 big_q(c1) | big_q(c1).  [resolve(18,a,17,b)].
+29 big_q(c1).  [copy(28),merge(b)].
+30 big_s(c1).  [resolve(29,a,27,a)].
+31 -big_q(c1) | -big_s(c4).  [resolve(30,a,22,b)].
+32 -big_s(c4).  [resolve(29,a,31,a)].
+33 -big_q(c1) | big_q(c4).  [resolve(30,a,20,b)].
+34 big_q(c4).  [resolve(29,a,33,a)].
+35 big_s(c4).  [resolve(34,a,27,a)].
+36 $F.  [resolve(32,a,35,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,22 @@
+
+
+
+
+
+
+7 disjoint(A,B) | intersect(A,B).  [clausify(4)].
+8 disjoint(intersection(A,B),difference(A,B)).  [clausify(3)].
+9 intersection(A,B) = intersection(B,A).  [clausify(5)].
+10 union(difference(A,B),difference(B,A)) = symmetric_difference(A,B).  [clausify(1)].
+11 symmetric_difference(A,B) = union(difference(A,B),difference(B,A)).  [copy(10),flip(a)].
+12 -disjoint(A,B) | -intersect(A,B).  [clausify(4)].
+13 -disjoint(intersection(c1,c2),symmetric_difference(c1,c2)).  [clausify(6)].
+14 -disjoint(intersection(c1,c2),union(difference(c1,c2),difference(c2,c1))).  [para(11(a,1),13(a,2))].
+15 -intersect(A,union(B,C)) | intersect(A,B) | intersect(A,C).  [clausify(2)].
+16 disjoint(intersection(A,B),difference(B,A)).  [para(9(a,1),8(a,1))].
+17 -intersect(intersection(A,B),difference(A,B)).  [resolve(12,a,8,a)].
+18 intersect(intersection(c1,c2),union(difference(c1,c2),difference(c2,c1))).  [resolve(14,a,7,a)].
+19 -intersect(intersection(A,B),difference(B,A)).  [resolve(16,a,12,a)].
+20 -intersect(intersection(A,B),union(difference(A,B),C)) | intersect(intersection(A,B),C).  [resolve(15,b,17,a)].
+21 -intersect(intersection(A,B),union(difference(A,B),difference(B,A))).  [resolve(20,b,19,a)].
+22 $F.  [resolve(21,a,18,a)].

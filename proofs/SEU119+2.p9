@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n112.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:13:48 CDT 2014
+% CPUTime    : 4.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 15624 was started by sandbox on n112.star.cs.uiowa.edu,
+Thu Jun  5 17:13:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_15592_n112.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 4.02 (+ 0.00) seconds.
+% Length of proof is 30.
+% Level of proof is 10.
+% Maximum clause weight is 20.000.
+% Given clauses 161.
+
+
+1 (all A (A = empty_set <-> (all B -in(B,A)))).  [assumption].
+2 (all A all B all C (C = set_intersection2(A,B) <-> (all D (in(D,C) <-> in(D,A) & in(D,B))))).  [assumption].
+3 (all A all B (disjoint(A,B) <-> set_intersection2(A,B) = empty_set)).  [assumption].
+4 (all A all B set_intersection2(A,A) = A).  [assumption].
+5 -(all A all B (-(-disjoint(A,B) & (all C -(in(C,A) & in(C,B)))) & -((exists C (in(C,A) & in(C,B))) & disjoint(A,B)))).  [assumption].
+6 set_intersection2(A,A) = A.  [clausify(4)].
+7 set_intersection2(A,B) = C | in(f2(A,B,C),C) | in(f2(A,B,C),A).  [clausify(2)].
+8 set_intersection2(A,B) = C | in(f2(A,B,C),C) | in(f2(A,B,C),B).  [clausify(2)].
+9 empty_set != A | -in(B,A).  [clausify(1)].
+10 -disjoint(c3,c4) | in(c5,c3).  [clausify(5)].
+11 -disjoint(c3,c4) | in(c5,c4).  [clausify(5)].
+12 -disjoint(A,B) | set_intersection2(A,B) = empty_set.  [clausify(3)].
+13 disjoint(A,B) | set_intersection2(A,B) != empty_set.  [clausify(3)].
+14 -in(A,c3) | -in(A,c4) | in(c5,c3).  [clausify(5)].
+15 -in(A,c3) | -in(A,c4) | in(c5,c4).  [clausify(5)].
+16 -in(A,c3) | -in(A,c4) | disjoint(c3,c4).  [clausify(5)].
+17 set_intersection2(A,B) != C | in(D,C) | -in(D,A) | -in(D,B).  [clausify(2)].
+18 -in(A,set_intersection2(empty_set,empty_set)).  [resolve(9,a,6,a(flip))].
+19 -in(A,empty_set).  [para(6(a,1),18(a,2))].
+20 -in(f2(A,c4,B),c3) | in(c5,c3) | set_intersection2(A,c4) = B | in(f2(A,c4,B),B).  [resolve(14,b,8,c)].
+21 -in(f2(A,c4,B),c3) | in(c5,c4) | set_intersection2(A,c4) = B | in(f2(A,c4,B),B).  [resolve(15,b,8,c)].
+22 set_intersection2(A,B) = empty_set | in(f2(A,B,empty_set),A).  [resolve(19,a,7,b)].
+23 in(c5,c3) | set_intersection2(c3,c4) = empty_set | in(f2(c3,c4,empty_set),empty_set) | set_intersection2(c3,c4) = empty_set.  [resolve(20,a,22,b)].
+24 in(c5,c3) | set_intersection2(c3,c4) = empty_set | in(f2(c3,c4,empty_set),empty_set).  [copy(23),merge(d)].
+25 in(c5,c3) | set_intersection2(c3,c4) = empty_set.  [resolve(19,a,24,c)].
+26 in(c5,c4) | set_intersection2(c3,c4) = empty_set | in(f2(c3,c4,empty_set),empty_set) | set_intersection2(c3,c4) = empty_set.  [resolve(21,a,22,b)].
+27 in(c5,c4) | set_intersection2(c3,c4) = empty_set | in(f2(c3,c4,empty_set),empty_set).  [copy(26),merge(d)].
+28 in(c5,c4) | set_intersection2(c3,c4) = empty_set.  [resolve(19,a,27,c)].
+29 set_intersection2(c3,c4) = empty_set | -in(c5,c3) | disjoint(c3,c4).  [resolve(28,a,16,b)].
+30 set_intersection2(c3,c4) = empty_set | disjoint(c3,c4) | set_intersection2(c3,c4) = empty_set.  [resolve(29,b,25,a)].
+31 set_intersection2(c3,c4) = empty_set | disjoint(c3,c4).  [copy(30),merge(c)].
+32 set_intersection2(c3,c4) = empty_set | set_intersection2(c3,c4) = empty_set.  [resolve(31,b,12,a)].
+33 set_intersection2(c3,c4) = empty_set.  [copy(32),merge(b)].
+34 disjoint(c3,c4).  [resolve(33,a,13,b)].
+35 in(c5,c4).  [resolve(34,a,11,a)].
+36 in(c5,c3).  [resolve(34,a,10,a)].
+37 in(A,empty_set) | -in(A,c3) | -in(A,c4).  [resolve(17,a,33,a)].
+38 -in(A,c3) | -in(A,c4).  [resolve(37,a,19,a)].
+39 -in(c5,c3).  [resolve(38,b,35,a)].
+40 $F.  [resolve(36,a,39,a)].
+
+============================== end of proof ==========================

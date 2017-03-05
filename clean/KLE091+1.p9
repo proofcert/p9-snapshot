@@ -1,0 +1,131 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+19 addition(A,zero) = A.  [clausify(3)].
+20 addition(A,A) = A.  [clausify(4)].
+21 multiplication(A,one) = A.  [clausify(6)].
+22 multiplication(one,A) = A.  [clausify(7)].
+23 multiplication(A,zero) = zero.  [clausify(10)].
+24 multiplication(antidomain(A),A) = zero.  [clausify(11)].
+25 domain(A) = antidomain(antidomain(A)).  [clausify(14)].
+26 multiplication(A,coantidomain(A)) = zero.  [clausify(15)].
+27 codomain(A) = coantidomain(coantidomain(A)).  [clausify(17)].
+28 addition(A,B) = addition(B,A).  [clausify(1)].
+29 addition(antidomain(antidomain(A)),antidomain(A)) = one.  [clausify(13)].
+30 addition(antidomain(A),antidomain(antidomain(A))) = one.  [para(28(a,1),29(a,1))].
+31 addition(coantidomain(coantidomain(A)),coantidomain(A)) = one.  [clausify(16)].
+32 addition(coantidomain(A),coantidomain(coantidomain(A))) = one.  [para(28(a,1),31(a,1))].
+33 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+34 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(28(a,1),33(a,1))].
+35 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(34),flip(a)].
+36 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(5)].
+37 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(8)].
+38 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(37),flip(a)].
+39 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(9)].
+40 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(39),flip(a)].
+41 antidomain(multiplication(A,antidomain(antidomain(B)))) = addition(antidomain(multiplication(A,B)),antidomain(multiplication(A,antidomain(antidomain(B))))).  [clausify(12)].
+42 addition(antidomain(multiplication(A,B)),antidomain(multiplication(A,antidomain(antidomain(B))))) = antidomain(multiplication(A,antidomain(antidomain(B)))).  [copy(41),flip(a)].
+43 codomain(c1) != domain(codomain(c1)).  [clausify(18)].
+44 coantidomain(coantidomain(c1)) != domain(codomain(c1)).  [para(27(a,1),43(a,1))].
+45 coantidomain(coantidomain(c1)) != domain(coantidomain(coantidomain(c1))).  [para(27(a,1),44(a,2,1))].
+46 coantidomain(coantidomain(c1)) != antidomain(antidomain(coantidomain(coantidomain(c1)))).  [para(25(a,1),45(a,2))].
+47 antidomain(antidomain(coantidomain(coantidomain(c1)))) != coantidomain(coantidomain(c1)).  [copy(46),flip(a)].
+48 zero = antidomain(one).  [para(24(a,1),21(a,1))].
+49 antidomain(one) = zero.  [copy(48),flip(a)].
+50 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(35(a,1),20(a,1))].
+51 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(28(a,1),50(a,1,2,1))].
+52 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(28(a,1),51(a,1,2))].
+53 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(35(a,2),52(a,1,2))].
+54 addition(A,addition(A,B)) = addition(B,A).  [para(20(a,1),53(a,1,2,2))].
+55 addition(A,addition(A,B)) = addition(A,B).  [para(28(a,1),54(a,2))].
+56 addition(multiplication(A,B),multiplication(A,zero)) = multiplication(A,B).  [para(19(a,1),38(a,2,2))].
+57 addition(multiplication(A,B),zero) = multiplication(A,B).  [para(23(a,1),56(a,1,2))].
+58 addition(zero,multiplication(A,B)) = multiplication(A,B).  [para(28(a,1),57(a,1))].
+59 addition(zero,multiplication(antidomain(A),B)) = multiplication(antidomain(A),addition(A,B)).  [para(24(a,1),38(a,1,1))].
+60 multiplication(antidomain(A),B) = multiplication(antidomain(A),addition(A,B)).  [para(58(a,1),59(a,1))].
+61 multiplication(antidomain(A),addition(A,B)) = multiplication(antidomain(A),B).  [copy(60),flip(a)].
+62 addition(zero,multiplication(A,coantidomain(B))) = multiplication(addition(B,A),coantidomain(B)).  [para(26(a,1),40(a,1,1))].
+63 multiplication(A,coantidomain(B)) = multiplication(addition(B,A),coantidomain(B)).  [para(58(a,1),62(a,1))].
+64 multiplication(A,coantidomain(B)) = multiplication(addition(A,B),coantidomain(B)).  [para(28(a,1),63(a,2,1))].
+65 multiplication(addition(A,B),coantidomain(B)) = multiplication(A,coantidomain(B)).  [copy(64),flip(a)].
+66 addition(antidomain(zero),antidomain(multiplication(A,antidomain(antidomain(coantidomain(A)))))) = antidomain(multiplication(A,antidomain(antidomain(coantidomain(A))))).  [para(26(a,1),42(a,1,1,1))].
+67 addition(zero,antidomain(antidomain(one))) = one.  [para(49(a,1),30(a,1,1))].
+68 addition(zero,antidomain(zero)) = one.  [para(49(a,1),67(a,1,2,1))].
+69 addition(multiplication(A,zero),multiplication(A,antidomain(zero))) = multiplication(A,one).  [para(68(a,1),38(a,2,2))].
+70 addition(zero,multiplication(A,antidomain(zero))) = multiplication(A,one).  [para(23(a,1),69(a,1,1))].
+71 multiplication(A,antidomain(zero)) = multiplication(A,one).  [para(58(a,1),70(a,1))].
+72 multiplication(A,antidomain(zero)) = A.  [para(21(a,1),71(a,2))].
+73 addition(antidomain(A),one) = addition(antidomain(A),antidomain(antidomain(A))).  [para(30(a,1),55(a,1,2))].
+74 addition(one,antidomain(A)) = addition(antidomain(A),antidomain(antidomain(A))).  [para(28(a,1),73(a,1))].
+75 addition(one,antidomain(A)) = one.  [para(30(a,1),74(a,2))].
+76 addition(coantidomain(A),one) = addition(coantidomain(A),coantidomain(coantidomain(A))).  [para(32(a,1),55(a,1,2))].
+77 addition(one,coantidomain(A)) = addition(coantidomain(A),coantidomain(coantidomain(A))).  [para(28(a,1),76(a,1))].
+78 addition(one,coantidomain(A)) = one.  [para(32(a,1),77(a,2))].
+79 one = antidomain(zero).  [para(72(a,1),22(a,1))].
+80 antidomain(zero) = one.  [copy(79),flip(a)].
+81 addition(one,antidomain(multiplication(A,antidomain(antidomain(coantidomain(A)))))) = antidomain(multiplication(A,antidomain(antidomain(coantidomain(A))))).  [para(80(a,1),66(a,1,1))].
+82 one = antidomain(multiplication(A,antidomain(antidomain(coantidomain(A))))).  [para(75(a,1),81(a,1))].
+83 antidomain(multiplication(A,antidomain(antidomain(coantidomain(A))))) = one.  [copy(82),flip(a)].
+84 addition(multiplication(one,A),multiplication(antidomain(B),A)) = multiplication(one,A).  [para(75(a,1),40(a,2,1))].
+85 addition(A,multiplication(antidomain(B),A)) = multiplication(one,A).  [para(22(a,1),84(a,1,1))].
+86 addition(A,multiplication(antidomain(B),A)) = A.  [para(22(a,1),85(a,2))].
+87 addition(multiplication(one,A),multiplication(coantidomain(B),A)) = multiplication(one,A).  [para(78(a,1),40(a,2,1))].
+88 addition(A,multiplication(coantidomain(B),A)) = multiplication(one,A).  [para(22(a,1),87(a,1,1))].
+89 addition(A,multiplication(coantidomain(B),A)) = A.  [para(22(a,1),88(a,2))].
+90 multiplication(one,multiplication(A,antidomain(antidomain(coantidomain(A))))) = zero.  [para(83(a,1),24(a,1,1))].
+91 multiplication(A,antidomain(antidomain(coantidomain(A)))) = zero.  [para(22(a,1),90(a,1))].
+92 addition(zero,multiplication(A,B)) = multiplication(A,addition(antidomain(antidomain(coantidomain(A))),B)).  [para(91(a,1),38(a,1,1))].
+93 multiplication(A,B) = multiplication(A,addition(antidomain(antidomain(coantidomain(A))),B)).  [para(58(a,1),92(a,1))].
+94 multiplication(A,B) = multiplication(A,addition(B,antidomain(antidomain(coantidomain(A))))).  [para(28(a,1),93(a,2,2))].
+95 multiplication(A,addition(B,antidomain(antidomain(coantidomain(A))))) = multiplication(A,B).  [copy(94),flip(a)].
+96 multiplication(antidomain(coantidomain(A)),one) = multiplication(antidomain(coantidomain(A)),coantidomain(coantidomain(A))).  [para(32(a,1),61(a,1,2))].
+97 antidomain(coantidomain(A)) = multiplication(antidomain(coantidomain(A)),coantidomain(coantidomain(A))).  [para(21(a,1),96(a,1))].
+98 multiplication(antidomain(coantidomain(A)),coantidomain(coantidomain(A))) = antidomain(coantidomain(A)).  [copy(97),flip(a)].
+99 multiplication(addition(A,B),coantidomain(A)) = multiplication(B,coantidomain(A)).  [para(28(a,1),65(a,1,1))].
+100 multiplication(one,coantidomain(coantidomain(coantidomain(A)))) = multiplication(coantidomain(A),coantidomain(coantidomain(coantidomain(A)))).  [para(32(a,1),65(a,1,1))].
+101 coantidomain(coantidomain(coantidomain(A))) = multiplication(coantidomain(A),coantidomain(coantidomain(coantidomain(A)))).  [para(22(a,1),100(a,1))].
+102 multiplication(coantidomain(A),coantidomain(coantidomain(coantidomain(A)))) = coantidomain(coantidomain(coantidomain(A))).  [copy(101),flip(a)].
+103 addition(coantidomain(coantidomain(A)),antidomain(coantidomain(A))) = coantidomain(coantidomain(A)).  [para(98(a,1),86(a,1,2))].
+104 addition(antidomain(coantidomain(A)),coantidomain(coantidomain(A))) = coantidomain(coantidomain(A)).  [para(28(a,1),103(a,1))].
+105 multiplication(one,coantidomain(antidomain(A))) = multiplication(antidomain(antidomain(A)),coantidomain(antidomain(A))).  [para(30(a,1),99(a,1,1))].
+106 coantidomain(antidomain(A)) = multiplication(antidomain(antidomain(A)),coantidomain(antidomain(A))).  [para(22(a,1),105(a,1))].
+107 multiplication(antidomain(antidomain(A)),coantidomain(antidomain(A))) = coantidomain(antidomain(A)).  [copy(106),flip(a)].
+108 multiplication(A,one) = multiplication(A,antidomain(coantidomain(A))).  [para(30(a,1),95(a,1,2))].
+109 A = multiplication(A,antidomain(coantidomain(A))).  [para(21(a,1),108(a,1))].
+110 multiplication(A,antidomain(coantidomain(A))) = A.  [copy(109),flip(a)].
+111 multiplication(A,B) = multiplication(A,multiplication(antidomain(coantidomain(A)),B)).  [para(110(a,1),36(a,1,1))].
+112 multiplication(A,multiplication(antidomain(coantidomain(A)),B)) = multiplication(A,B).  [copy(111),flip(a)].
+113 addition(antidomain(coantidomain(coantidomain(A))),coantidomain(A)) = antidomain(coantidomain(coantidomain(A))).  [para(110(a,1),89(a,1,2))].
+114 addition(coantidomain(A),antidomain(coantidomain(coantidomain(A)))) = antidomain(coantidomain(coantidomain(A))).  [para(28(a,1),113(a,1))].
+115 multiplication(A,antidomain(coantidomain(A))) = multiplication(A,coantidomain(coantidomain(A))).  [para(98(a,1),112(a,1,2))].
+116 A = multiplication(A,coantidomain(coantidomain(A))).  [para(110(a,1),115(a,1))].
+117 multiplication(A,coantidomain(coantidomain(A))) = A.  [copy(116),flip(a)].
+118 coantidomain(A) = coantidomain(coantidomain(coantidomain(A))).  [para(117(a,1),102(a,1))].
+119 coantidomain(coantidomain(coantidomain(A))) = coantidomain(A).  [copy(118),flip(a)].
+120 addition(antidomain(coantidomain(coantidomain(A))),coantidomain(A)) = coantidomain(coantidomain(coantidomain(A))).  [para(119(a,1),104(a,1,2))].
+121 addition(coantidomain(A),antidomain(coantidomain(coantidomain(A)))) = coantidomain(coantidomain(coantidomain(A))).  [para(28(a,1),120(a,1))].
+122 antidomain(coantidomain(coantidomain(A))) = coantidomain(coantidomain(coantidomain(A))).  [para(114(a,1),121(a,1))].
+123 antidomain(coantidomain(coantidomain(A))) = coantidomain(A).  [para(119(a,1),122(a,2))].
+124 antidomain(coantidomain(c1)) != coantidomain(coantidomain(c1)).  [para(123(a,1),47(a,1,1))].
+125 coantidomain(coantidomain(c1)) != antidomain(coantidomain(c1)).  [copy(124),flip(a)].
+126 multiplication(antidomain(coantidomain(A)),coantidomain(antidomain(coantidomain(coantidomain(A))))) = coantidomain(antidomain(coantidomain(coantidomain(A)))).  [para(123(a,1),107(a,1,1,1))].
+127 multiplication(antidomain(coantidomain(A)),coantidomain(coantidomain(A))) = coantidomain(antidomain(coantidomain(coantidomain(A)))).  [para(123(a,1),126(a,1,2,1))].
+128 antidomain(coantidomain(A)) = coantidomain(antidomain(coantidomain(coantidomain(A)))).  [para(98(a,1),127(a,1))].
+129 antidomain(coantidomain(A)) = coantidomain(coantidomain(A)).  [para(123(a,1),128(a,2,1))].
+130 coantidomain(coantidomain(A)) = antidomain(coantidomain(A)).  [copy(129),flip(a)].
+131 $F.  [resolve(130,a,125,a)].

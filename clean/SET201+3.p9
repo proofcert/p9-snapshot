@@ -1,0 +1,23 @@
+
+
+
+4 subset(c1,c2).  [clausify(3)].
+5 subset(c3,c4).  [clausify(3)].
+6 subset(A,B) | member(f1(A,B),A).  [clausify(2)].
+7 -subset(intersection(c1,c3),intersection(c2,c4)).  [clausify(3)].
+8 -member(A,intersection(B,C)) | member(A,B).  [clausify(1)].
+9 -member(A,intersection(B,C)) | member(A,C).  [clausify(1)].
+10 subset(A,B) | -member(f1(A,B),B).  [clausify(2)].
+11 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(2)].
+12 member(A,intersection(B,C)) | -member(A,B) | -member(A,C).  [clausify(1)].
+13 member(f1(intersection(c1,c3),intersection(c2,c4)),intersection(c1,c3)).  [resolve(7,a,6,a)].
+14 -member(f1(intersection(c1,c3),intersection(c2,c4)),intersection(c2,c4)).  [resolve(10,a,7,a)].
+15 -member(A,c3) | member(A,c4).  [resolve(11,a,5,a)].
+16 -member(A,c1) | member(A,c2).  [resolve(11,a,4,a)].
+17 member(f1(intersection(c1,c3),intersection(c2,c4)),c3).  [resolve(13,a,9,a)].
+18 member(f1(intersection(c1,c3),intersection(c2,c4)),c1).  [resolve(13,a,8,a)].
+19 member(f1(intersection(c1,c3),intersection(c2,c4)),c4).  [resolve(17,a,15,a)].
+20 member(f1(intersection(c1,c3),intersection(c2,c4)),c2).  [resolve(18,a,16,a)].
+21 -member(f1(intersection(c1,c3),intersection(c2,c4)),c2) | -member(f1(intersection(c1,c3),intersection(c2,c4)),c4).  [resolve(12,a,14,a)].
+22 -member(f1(intersection(c1,c3),intersection(c2,c4)),c2).  [resolve(21,b,19,a)].
+23 $F.  [resolve(20,a,22,a)].

@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+
+10 addition(A,zero) = A.  [clausify(2)].
+11 multiplication(A,one) = A.  [clausify(3)].
+12 multiplication(one,A) = A.  [clausify(4)].
+13 multiplication(A,zero) = zero.  [clausify(6)].
+14 multiplication(antidomain(A),A) = zero.  [clausify(7)].
+15 domain(A) = antidomain(antidomain(A)).  [clausify(9)].
+16 addition(A,B) = addition(B,A).  [clausify(1)].
+17 addition(antidomain(antidomain(A)),antidomain(A)) = one.  [clausify(8)].
+18 addition(antidomain(A),antidomain(antidomain(A))) = one.  [para(16(a,1),17(a,1))].
+19 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(5)].
+20 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(19),flip(a)].
+21 domain(zero) != zero.  [assumption].
+22 antidomain(antidomain(zero)) != zero.  [para(15(a,1),21(a,1))].
+23 zero = antidomain(one).  [para(14(a,1),11(a,1))].
+24 antidomain(one) = zero.  [copy(23),flip(a)].
+25 addition(multiplication(A,B),multiplication(A,zero)) = multiplication(A,B).  [para(10(a,1),20(a,2,2))].
+26 addition(multiplication(A,B),zero) = multiplication(A,B).  [para(13(a,1),25(a,1,2))].
+27 addition(zero,multiplication(A,B)) = multiplication(A,B).  [para(16(a,1),26(a,1))].
+28 addition(zero,antidomain(antidomain(one))) = one.  [para(24(a,1),18(a,1,1))].
+29 addition(zero,antidomain(zero)) = one.  [para(24(a,1),28(a,1,2,1))].
+30 addition(multiplication(A,zero),multiplication(A,antidomain(zero))) = multiplication(A,one).  [para(29(a,1),20(a,2,2))].
+31 addition(zero,multiplication(A,antidomain(zero))) = multiplication(A,one).  [para(13(a,1),30(a,1,1))].
+32 multiplication(A,antidomain(zero)) = multiplication(A,one).  [para(27(a,1),31(a,1))].
+33 multiplication(A,antidomain(zero)) = A.  [para(11(a,1),32(a,2))].
+34 one = antidomain(zero).  [para(33(a,1),12(a,1))].
+35 antidomain(zero) = one.  [copy(34),flip(a)].
+36 antidomain(one) != zero.  [para(35(a,1),22(a,1,1))].
+37 zero != zero.  [para(24(a,1),36(a,1))].
+38 $F.  [copy(37),xx(a)].

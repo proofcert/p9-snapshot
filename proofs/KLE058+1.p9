@@ -1,0 +1,50 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n073.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:08:43 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 51002 was started by sandbox on n073.star.cs.uiowa.edu,
+Thu Jun  5 17:08:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_50970_n073.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: goals.
+% Length of proof is 13.
+% Level of proof is 4.
+% Maximum clause weight is 11.000.
+% Given clauses 14.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A multiplication(A,one) = A).  [assumption].
+3 (all A addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A)).  [assumption].
+4 (all A addition(domain(A),one) = one).  [assumption].
+5 multiplication(A,one) = A.  [clausify(2)].
+6 addition(domain(A),one) = one.  [clausify(4)].
+7 addition(A,B) = addition(B,A).  [clausify(1)].
+8 multiplication(domain(A),A) = addition(A,multiplication(domain(A),A)).  [clausify(3)].
+9 addition(A,multiplication(domain(A),A)) = multiplication(domain(A),A).  [copy(8),flip(a)].
+10 domain(one) != one.  [assumption].
+11 addition(one,domain(A)) = one.  [para(7(a,1),6(a,1))].
+12 addition(one,domain(one)) = multiplication(domain(one),one).  [para(5(a,1),9(a,1,2))].
+13 one = multiplication(domain(one),one).  [para(11(a,1),12(a,1))].
+14 one = domain(one).  [para(5(a,1),13(a,2))].
+15 domain(one) = one.  [copy(14),flip(a)].
+16 $F.  [resolve(15,a,10,a)].
+
+============================== end of proof ==========================

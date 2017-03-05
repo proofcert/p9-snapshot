@@ -1,0 +1,71 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n060.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:47:18 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 26518 was started by sandbox on n060.star.cs.uiowa.edu,
+Fri Jun  6 00:47:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_26486_n060.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds: ax3_AndRHS.
+% Length of proof is 24.
+% Level of proof is 6.
+% Maximum clause weight is 14.000.
+% Given clauses 39.
+
+
+1 (exists A (sorti1(A) & op1(A,A) = A)).  [assumption].
+2 (exists A (sorti1(A) & op1(A,A) != A)).  [assumption].
+3 -((exists A (sorti2(A) & op2(A,A) = A)) & (exists B (sorti2(B) & op2(B,B) != B))).  [assumption].
+4 -((all A (sorti1(A) -> sorti2(h(A)))) & (all B (sorti2(B) -> sorti1(j(B)))) -> -((all C (sorti1(C) -> (all D (sorti1(D) -> h(op1(C,D)) = op2(h(C),h(D)))))) & (all E (sorti2(E) -> (all F (sorti2(F) -> j(op2(E,F)) = op1(j(E),j(F)))))) & (all V6 (sorti2(V6) -> h(j(V6)) = V6)) & (all V7 (sorti1(V7) -> j(h(V7)) = V7)))).  [assumption].
+5 sorti1(c1).  [clausify(1)].
+6 sorti1(c2).  [clausify(2)].
+7 op1(c1,c1) = c1.  [clausify(1)].
+8 op1(c2,c2) != c2.  [clausify(2)].
+9 -sorti1(A) | sorti2(h(A)).  [clausify(4)].
+10 -sorti1(A) | j(h(A)) = A.  [clausify(4)].
+11 -sorti2(A) | op2(A,A) != A | -sorti2(B) | op2(B,B) = B.  [clausify(3)].
+12 -sorti1(A) | -sorti1(B) | h(op1(A,B)) = op2(h(A),h(B)).  [clausify(4)].
+13 -sorti1(A) | -sorti1(B) | op2(h(A),h(B)) = h(op1(A,B)).  [copy(12),flip(c)].
+14 -sorti2(A) | -sorti2(B) | j(op2(A,B)) = op1(j(A),j(B)).  [clausify(4)].
+15 -sorti2(A) | -sorti2(B) | op1(j(A),j(B)) = j(op2(A,B)).  [copy(14),flip(c)].
+16 sorti2(h(c2)).  [resolve(9,a,6,a)].
+17 sorti2(h(c1)).  [resolve(9,a,5,a)].
+18 j(h(c2)) = c2.  [resolve(10,a,6,a)].
+19 -sorti1(A) | op2(h(c2),h(A)) = h(op1(c2,A)).  [resolve(13,a,6,a)].
+20 op2(h(c2),h(c2)) = h(op1(c2,c2)).  [resolve(19,a,6,a)].
+21 -sorti1(A) | op2(h(c1),h(A)) = h(op1(c1,A)).  [resolve(13,a,5,a)].
+22 op2(h(c1),h(c1)) = h(op1(c1,c1)).  [resolve(21,a,5,a)].
+23 op2(h(c1),h(c1)) = h(c1).  [para(7(a,1),22(a,2,1))].
+24 -sorti2(A) | op1(j(h(c2)),j(A)) = j(op2(h(c2),A)).  [resolve(15,a,16,a)].
+25 op1(j(h(c2)),j(h(c2))) = j(op2(h(c2),h(c2))).  [resolve(24,a,16,a)].
+26 op1(c2,j(h(c2))) = j(op2(h(c2),h(c2))).  [para(18(a,1),25(a,1,1))].
+27 op1(c2,c2) = j(op2(h(c2),h(c2))).  [para(18(a,1),26(a,1,2))].
+28 op1(c2,c2) = j(h(op1(c2,c2))).  [para(20(a,1),27(a,2,1))].
+29 j(h(op1(c2,c2))) = op1(c2,c2).  [copy(28),flip(a)].
+30 op2(h(c1),h(c1)) != h(c1) | -sorti2(A) | op2(A,A) = A.  [resolve(11,a,17,a)].
+31 -sorti2(A) | op2(A,A) = A.  [resolve(30,a,23,a)].
+32 op2(h(c2),h(c2)) = h(c2).  [resolve(31,a,16,a)].
+33 h(op1(c2,c2)) = h(c2).  [para(20(a,1),32(a,1))].
+34 j(h(c2)) = op1(c2,c2).  [para(33(a,1),29(a,1,1))].
+35 c2 = op1(c2,c2).  [para(18(a,1),34(a,1))].
+36 op1(c2,c2) = c2.  [copy(35),flip(a)].
+37 $F.  [resolve(36,a,8,a)].
+
+============================== end of proof ==========================

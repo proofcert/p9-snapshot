@@ -1,0 +1,48 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n163.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:46:58 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 30529 was started by sandbox on n163.star.cs.uiowa.edu,
+Thu Jun  5 22:46:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_30497_n163.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 9.000.
+% Given clauses 54.
+
+
+1 (all A (open(A) <-> (exists B end_point(B,A)))).  [assumption].
+2 (all A all B (end_point(B,A) -> (exists C (end_point(C,A) & B != C)))).  [assumption].
+3 -(all A (open(A) -> (exists B exists C (B != C & end_point(B,A) & end_point(C,A))))).  [assumption].
+4 -open(A) | end_point(f7(A),A).  [clausify(1)].
+5 open(c10).  [clausify(3)].
+6 -end_point(A,B) | f11(B,A) != A.  [clausify(2)].
+7 -end_point(A,B) | end_point(f11(B,A),B).  [clausify(2)].
+8 A = B | -end_point(B,c10) | -end_point(A,c10).  [clausify(3)].
+9 end_point(f7(c10),c10).  [resolve(4,a,5,a)].
+10 end_point(f11(c10,f7(c10)),c10).  [resolve(9,a,7,a)].
+11 f11(c10,f7(c10)) != f7(c10).  [resolve(9,a,6,a)].
+12 -end_point(f7(c10),c10) | -end_point(f11(c10,f7(c10)),c10).  [resolve(8,a,11,a)].
+13 -end_point(f11(c10,f7(c10)),c10).  [resolve(12,a,9,a)].
+14 $F.  [resolve(10,a,13,a)].
+
+============================== end of proof ==========================

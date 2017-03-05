@@ -1,0 +1,89 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n083.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:59:08 CDT 2014
+% CPUTime    : 12.75 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 57653 was started by sandbox on n083.star.cs.uiowa.edu,
+Fri Jun  6 01:59:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_57621_n083.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 12.45 (+ 0.18) seconds: find_pin.
+% Length of proof is 34.
+% Level of proof is 6.
+% Maximum clause weight is 20.000.
+% Given clauses 587.
+
+
+1 (all A all B xor(A,B) = xor(B,A)).  [assumption].
+2 (all A all B all C xor(A,xor(B,C)) = xor(xor(A,B),C)).  [assumption].
+3 (all A xor(A,id) = A).  [assumption].
+4 (all A xor(A,A) = id).  [assumption].
+5 (all A all B all C (p(crypt(xor(km,A),B)) & p(A) & p(crypt(xor(km,exp),C)) -> p(crypt(xor(C,A),B)))).  [assumption].
+6 (all A all B (p(A) & p(B) -> p(crypt(xor(km,xor(kp,B)),A)))).  [assumption].
+7 (all A all B (p(A) & p(B) -> p(xor(A,B)))).  [assumption].
+8 (all A all B (p(crypt(A,B)) & p(A) -> p(B))).  [assumption].
+9 (all A all B (p(B) & p(A) -> p(crypt(A,B)))).  [assumption].
+10 p(kp).  [assumption].
+11 p(pin).  [assumption].
+12 p(exp).  [assumption].
+13 p(a).  [assumption].
+14 xor(A,id) = A.  [clausify(3)].
+15 xor(A,A) = id.  [clausify(4)].
+16 p(crypt(xor(km,pin),pp)).  [assumption].
+17 xor(A,B) = xor(B,A).  [clausify(1)].
+18 xor(xor(A,B),C) = xor(A,xor(B,C)).  [clausify(2)].
+19 xor(C,xor(A,B)) = xor(A,xor(B,C)).  [para(17(a,1),18(a,1))].
+20 xor(A,xor(B,C)) = xor(C,xor(A,B)).  [copy(19),flip(a)].
+21 -p(crypt(pp,a)).  [assumption].
+22 -p(A) | -p(B) | p(xor(A,B)).  [clausify(7)].
+23 -p(crypt(A,B)) | -p(A) | p(B).  [clausify(8)].
+24 -p(A) | -p(B) | p(crypt(B,A)).  [clausify(9)].
+25 -p(A) | -p(B) | p(crypt(xor(km,xor(kp,B)),A)).  [clausify(6)].
+26 -p(A) | -p(B) | p(crypt(xor(km,xor(B,kp)),A)).  [para(17(a,1),25(c,1,1,2))].
+27 -p(A) | -p(B) | p(crypt(xor(B,xor(kp,km)),A)).  [para(20(a,2),26(c,1,1))].
+28 -p(A) | -p(B) | p(crypt(xor(B,xor(km,kp)),A)).  [para(17(a,1),27(c,1,1,2))].
+29 -p(crypt(xor(km,A),B)) | -p(A) | -p(crypt(xor(km,exp),C)) | p(crypt(xor(C,A),B)).  [clausify(5)].
+30 -p(crypt(xor(A,km),B)) | -p(A) | -p(crypt(xor(km,exp),C)) | p(crypt(xor(C,A),B)).  [para(17(a,1),29(a,1,1))].
+31 -p(crypt(xor(A,km),B)) | -p(A) | -p(crypt(xor(km,exp),C)) | p(crypt(xor(A,C),B)).  [para(17(a,1),30(d,1,1))].
+32 -p(A) | p(xor(a,A)).  [resolve(22,a,13,a)].
+33 p(xor(a,pin)).  [resolve(32,a,11,a)].
+34 p(xor(pin,a)).  [para(17(a,1),33(a,1))].
+35 -p(A) | p(xor(exp,A)).  [resolve(22,a,12,a)].
+36 p(xor(exp,kp)).  [resolve(35,a,10,a)].
+37 p(xor(kp,exp)).  [para(17(a,1),36(a,1))].
+38 -p(A) | p(crypt(A,a)).  [resolve(24,a,13,a)].
+39 -p(pp).  [resolve(38,b,21,a)].
+40 -p(crypt(xor(pin,a),A)) | p(A).  [resolve(23,b,34,a)].
+41 -p(crypt(xor(pin,a),pp)).  [resolve(40,b,39,a)].
+42 -p(A) | p(crypt(xor(A,xor(km,kp)),a)).  [resolve(28,a,13,a)].
+43 p(crypt(xor(xor(kp,exp),xor(km,kp)),a)).  [resolve(42,a,37,a)].
+44 p(crypt(xor(xor(km,kp),xor(kp,exp)),a)).  [para(17(a,1),43(a,1,1))].
+45 p(crypt(xor(exp,xor(xor(km,kp),kp)),a)).  [para(20(a,1),44(a,1,1))].
+46 p(crypt(xor(exp,xor(kp,xor(km,kp))),a)).  [para(17(a,1),45(a,1,1,2))].
+47 p(crypt(xor(exp,xor(km,xor(kp,kp))),a)).  [para(20(a,2),46(a,1,1,2))].
+48 p(crypt(xor(exp,xor(km,id)),a)).  [para(15(a,1),47(a,1,1,2,2))].
+49 p(crypt(xor(exp,km),a)).  [para(14(a,1),48(a,1,1,2))].
+50 p(crypt(xor(km,exp),a)).  [para(17(a,1),49(a,1,1))].
+51 -p(crypt(xor(pin,km),A)) | -p(crypt(xor(km,exp),B)) | p(crypt(xor(pin,B),A)).  [resolve(31,b,11,a)].
+52 -p(crypt(xor(pin,km),A)) | p(crypt(xor(pin,a),A)).  [resolve(51,b,50,a)].
+53 -p(crypt(xor(pin,km),pp)).  [resolve(52,b,41,a)].
+54 -p(crypt(xor(km,pin),pp)).  [para(17(a,1),53(a,1,1))].
+55 $F.  [resolve(54,a,16,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n154.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:33:43 CDT 2014
+% CPUTime    : 6.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 23857 was started by sandbox on n154.star.cs.uiowa.edu,
+Thu Jun  5 13:33:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_23825_n154.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 6.11 (+ 0.04) seconds.
+% Length of proof is 19.
+% Level of proof is 7.
+% Maximum clause weight is 18.000.
+% Given clauses 1803.
+
+
+1 (all A (ssList(A) -> app(nil,A) = A)).  [assumption].
+2 (all A (ssList(A) -> app(A,nil) = A)).  [assumption].
+3 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> nil != C | B != D | A != C | (exists E (ssList(E) & (exists F (ssList(F) & (exists V6 (ssList(V6) & app(app(E,F),V6) = B & app(E,V6) = A)))))))))))))).  [assumption].
+4 ssList(nil).  [assumption].
+5 -ssList(A) | app(nil,A) = A.  [clausify(1)].
+6 -ssList(A) | app(A,nil) = A.  [clausify(2)].
+7 ssList(c4).  [clausify(3)].
+8 nil = c5.  [clausify(3)].
+9 c5 = nil.  [copy(8),flip(a)].
+10 c5 = c3.  [clausify(3)].
+11 nil = c3.  [para(9(a,1),10(a,1))].
+12 c3 = nil.  [copy(11),flip(a)].
+13 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) != c4 | app(A,C) != c3.  [clausify(3)].
+14 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) != c4 | app(A,C) != nil.  [para(12(a,1),13(e,2))].
+15 -ssList(A) | -ssList(B) | app(app(A,B),A) != c4 | app(A,A) != nil.  [factor(14,a,c)].
+16 app(nil,nil) = nil.  [resolve(5,a,4,a)].
+17 app(c4,nil) = c4.  [resolve(7,a,6,a)].
+18 app(nil,c4) = c4.  [resolve(7,a,5,a)].
+19 -ssList(A) | app(app(nil,A),nil) != c4 | app(nil,nil) != nil.  [resolve(15,a,4,a)].
+20 -ssList(A) | app(app(nil,A),nil) != c4 | nil != nil.  [para(16(a,1),19(c,1))].
+21 -ssList(A) | app(app(nil,A),nil) != c4.  [copy(20),xx(c)].
+22 app(app(nil,c4),nil) != c4.  [resolve(21,a,7,a)].
+23 app(c4,nil) != c4.  [para(18(a,1),22(a,1,1))].
+24 c4 != c4.  [para(17(a,1),23(a,1))].
+25 $F.  [copy(24),xx(a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,45 @@
+
+
+
+
+5 -organization(A,B) | -organization(A,C) | -reorganization_free(A,B,C) | -reproducibility(A,D,B) | -reproducibility(A,E,C) | -greater(C,B) | greater(E,D).  [clausify(3)].
+6 reorganization_free(c1,c6,c7).  [clausify(4)].
+7 organization(c1,c6).  [clausify(4)].
+8 organization(c1,c7).  [clausify(4)].
+9 greater(c7,c6).  [clausify(4)].
+10 reliability(c1,c2,c6).  [clausify(4)].
+11 reliability(c1,c3,c7).  [clausify(4)].
+12 accountability(c1,c4,c6).  [clausify(4)].
+13 accountability(c1,c5,c7).  [clausify(4)].
+14 -greater(c3,c2) | -greater(c5,c4).  [clausify(4)].
+15 -organization(A,B) | reproducibility(A,f1(A,B),B).  [clausify(1)].
+16 -organization(A,B) | -organization(C,D) | -reliability(A,E,B) | -reliability(C,F,D) | -accountability(A,V6,B) | -accountability(C,V7,D) | -reproducibility(A,V8,B) | -reproducibility(C,V9,D) | -greater(V9,V8) | greater(F,E).  [clausify(2)].
+17 -organization(A,B) | -organization(C,D) | -reliability(A,E,B) | -reliability(C,F,D) | -accountability(A,V6,B) | -accountability(C,V7,D) | -reproducibility(A,V8,B) | -reproducibility(C,V9,D) | -greater(V9,V8) | greater(V7,V6).  [clausify(2)].
+18 -organization(c1,c6) | -organization(c1,c7) | -reproducibility(c1,A,c6) | -reproducibility(c1,B,c7) | -greater(c7,c6) | greater(B,A).  [resolve(5,c,6,a)].
+19 -organization(c1,c7) | -reproducibility(c1,A,c6) | -reproducibility(c1,B,c7) | -greater(c7,c6) | greater(B,A).  [resolve(7,a,18,a)].
+20 -reproducibility(c1,A,c6) | -reproducibility(c1,B,c7) | -greater(c7,c6) | greater(B,A).  [resolve(8,a,19,a)].
+21 -reproducibility(c1,A,c6) | -reproducibility(c1,B,c7) | greater(B,A).  [resolve(9,a,20,c)].
+22 reproducibility(c1,f1(c1,c7),c7).  [resolve(15,a,8,a)].
+23 reproducibility(c1,f1(c1,c6),c6).  [resolve(15,a,7,a)].
+24 -reproducibility(c1,A,c7) | greater(A,f1(c1,c6)).  [resolve(21,a,23,a)].
+25 greater(f1(c1,c7),f1(c1,c6)).  [resolve(24,a,22,a)].
+26 -organization(A,B) | -reliability(c1,C,c6) | -reliability(A,D,B) | -accountability(c1,E,c6) | -accountability(A,F,B) | -reproducibility(c1,V6,c6) | -reproducibility(A,V7,B) | -greater(V7,V6) | greater(F,E).  [resolve(17,a,7,a)].
+27 -reliability(c1,A,c6) | -reliability(c1,B,c7) | -accountability(c1,C,c6) | -accountability(c1,D,c7) | -reproducibility(c1,E,c6) | -reproducibility(c1,F,c7) | -greater(F,E) | greater(D,C).  [resolve(26,a,8,a)].
+28 -reliability(c1,A,c7) | -accountability(c1,B,c6) | -accountability(c1,C,c7) | -reproducibility(c1,D,c6) | -reproducibility(c1,E,c7) | -greater(E,D) | greater(C,B).  [resolve(27,a,10,a)].
+29 -accountability(c1,A,c6) | -accountability(c1,B,c7) | -reproducibility(c1,C,c6) | -reproducibility(c1,D,c7) | -greater(D,C) | greater(B,A).  [resolve(28,a,11,a)].
+30 -accountability(c1,A,c7) | -reproducibility(c1,B,c6) | -reproducibility(c1,C,c7) | -greater(C,B) | greater(A,c4).  [resolve(29,a,12,a)].
+31 -reproducibility(c1,A,c6) | -reproducibility(c1,B,c7) | -greater(B,A) | greater(c5,c4).  [resolve(30,a,13,a)].
+32 -reproducibility(c1,A,c7) | -greater(A,f1(c1,c6)) | greater(c5,c4).  [resolve(31,a,23,a)].
+33 -greater(f1(c1,c7),f1(c1,c6)) | greater(c5,c4).  [resolve(32,a,22,a)].
+34 greater(c5,c4).  [resolve(33,a,25,a)].
+35 -organization(A,B) | -reliability(c1,C,c6) | -reliability(A,D,B) | -accountability(c1,E,c6) | -accountability(A,F,B) | -reproducibility(c1,V6,c6) | -reproducibility(A,V7,B) | -greater(V7,V6) | greater(D,C).  [resolve(16,a,7,a)].
+36 -reliability(c1,A,c6) | -reliability(c1,B,c7) | -accountability(c1,C,c6) | -accountability(c1,D,c7) | -reproducibility(c1,E,c6) | -reproducibility(c1,F,c7) | -greater(F,E) | greater(B,A).  [resolve(35,a,8,a)].
+37 -reliability(c1,A,c7) | -accountability(c1,B,c6) | -accountability(c1,C,c7) | -reproducibility(c1,D,c6) | -reproducibility(c1,E,c7) | -greater(E,D) | greater(A,c2).  [resolve(36,a,10,a)].
+38 -accountability(c1,A,c6) | -accountability(c1,B,c7) | -reproducibility(c1,C,c6) | -reproducibility(c1,D,c7) | -greater(D,C) | greater(c3,c2).  [resolve(37,a,11,a)].
+39 -accountability(c1,A,c7) | -reproducibility(c1,B,c6) | -reproducibility(c1,C,c7) | -greater(C,B) | greater(c3,c2).  [resolve(38,a,12,a)].
+40 -reproducibility(c1,A,c6) | -reproducibility(c1,B,c7) | -greater(B,A) | greater(c3,c2).  [resolve(39,a,13,a)].
+41 -reproducibility(c1,A,c7) | -greater(A,f1(c1,c6)) | greater(c3,c2).  [resolve(40,a,23,a)].
+42 -greater(f1(c1,c7),f1(c1,c6)) | greater(c3,c2).  [resolve(41,a,22,a)].
+43 greater(c3,c2).  [resolve(42,a,25,a)].
+44 -greater(c5,c4).  [resolve(43,a,14,a)].
+45 $F.  [resolve(34,a,44,a)].

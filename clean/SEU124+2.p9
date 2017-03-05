@@ -1,0 +1,15 @@
+
+
+
+
+5 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+6 subset(A,B) | in(f3(A,B),A).  [clausify(3)].
+7 -subset(c3,set_union2(c3,c4)).  [clausify(4)].
+8 subset(A,B) | -in(f3(A,B),B).  [clausify(3)].
+9 set_union2(A,B) != C | in(D,C) | -in(D,B).  [clausify(2)].
+10 in(f3(c3,set_union2(c3,c4)),c3).  [resolve(7,a,6,a)].
+11 -in(f3(c3,set_union2(c3,c4)),set_union2(c3,c4)).  [resolve(8,a,7,a)].
+12 set_union2(A,B) != set_union2(c3,c4) | -in(f3(c3,set_union2(c3,c4)),B).  [resolve(9,b,11,a)].
+13 set_union2(A,c3) != set_union2(c3,c4).  [resolve(12,b,10,a)].
+14 set_union2(c3,c4) != set_union2(A,c3).  [copy(13),flip(a)].
+15 $F.  [resolve(14,a,5,a)].

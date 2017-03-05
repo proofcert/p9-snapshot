@@ -1,0 +1,13 @@
+
+
+
+4 member(c2,c1).  [clausify(3)].
+5 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+6 -subset(singleton(c2),c1).  [clausify(3)].
+7 -member(A,singleton(B)) | A = B.  [clausify(2)].
+8 subset(A,B) | -member(f1(A,B),B).  [clausify(1)].
+9 member(f1(singleton(c2),c1),singleton(c2)).  [resolve(6,a,5,a)].
+10 -member(f1(singleton(c2),c1),c1).  [resolve(8,a,6,a)].
+11 f1(singleton(c2),c1) = c2.  [resolve(9,a,7,a)].
+12 -member(c2,c1).  [para(11(a,1),10(a,1))].
+13 $F.  [resolve(4,a,12,a)].

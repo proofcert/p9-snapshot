@@ -1,0 +1,412 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n033.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 13:40:18 CDT 2014
+% CPUTime    : 0.28 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 34823 was started by sandbox on n033.star.cs.uiowa.edu,
+Fri Jun  6 13:40:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_34791_n033.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.16 (+ 0.00) seconds.
+% Length of proof is 139.
+% Level of proof is 58.
+% Maximum clause weight is 27.000.
+% Given clauses 322.
+
+
+1 -((exists A (A = f(g(A)) & (all B (B = f(g(B)) -> B = A)))) <-> (exists A (A = g(f(A)) & (all B (B = g(f(B)) -> B = A))))).  [assumption].
+2 f(g(c1)) = c1 | g(f(c2)) = c2.  [clausify(1)].
+3 f(g(A)) != A | f1(A) != A | g(f(B)) != B | f2(B) != B.  [clausify(1)].
+4 f(g(c1)) = c1 | g(f(A)) != A | A = c2.  [clausify(1)].
+5 f(g(c1)) = c1 | g(f(A)) != A | c2 = A.  [copy(4),flip(c)].
+6 f(g(A)) != A | A = c1 | g(f(c2)) = c2.  [clausify(1)].
+7 f(g(A)) != A | c1 = A | g(f(c2)) = c2.  [copy(6),flip(b)].
+8 f(g(A)) != A | A = c1 | g(f(B)) != B | B = c2.  [clausify(1)].
+9 f(g(A)) != A | c1 = A | g(f(B)) != B | B = c2.  [copy(8),flip(b)].
+10 f(g(A)) != A | c1 = A | g(f(B)) != B | c2 = B.  [copy(9),flip(d)].
+11 f(g(A)) != A | f(g(f1(A))) = f1(A) | g(f(B)) != B | f2(B) != B.  [clausify(1)].
+12 f(g(A)) != A | f1(A) != A | g(f(B)) != B | g(f(f2(B))) = f2(B).  [clausify(1)].
+13 f(g(A)) != A | f(g(f1(A))) = f1(A) | g(f(B)) != B | g(f(f2(B))) = f2(B).  [clausify(1)].
+14 f(g(A)) != A | f1(A) != A | f2(c2) != c2 | f(g(c1)) = c1.  [resolve(3,c,2,b)].
+15 f(g(c1)) = c1 | f(c2) != f(c2) | f1(f(c2)) != f(c2) | g(f(A)) != A | f2(A) != A.  [para(2(b,1),3(a,1,1))].
+16 f(g(c1)) = c1 | f1(f(c2)) != f(c2) | g(f(A)) != A | f2(A) != A.  [copy(15),xx(b)].
+17 f(g(A)) != A | f(g(f1(A))) = f1(A) | f2(c2) != c2 | f(g(c1)) = c1.  [resolve(11,c,2,b)].
+18 f(g(A)) != A | f1(A) != A | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [resolve(12,c,2,b)].
+19 f(g(A)) != A | f(g(f1(A))) = f1(A) | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [resolve(13,c,2,b)].
+20 f(g(c1)) = c1 | f(c2) != f(c2) | f1(f(c2)) != f(c2) | f2(c2) != c2 | f(g(c1)) = c1.  [para(2(b,1),14(a,1,1))].
+21 f(g(c1)) = c1 | f1(f(c2)) != f(c2) | f2(c2) != c2 | f(g(c1)) = c1.  [copy(20),xx(b)].
+22 f(g(c1)) = c1 | f1(f(c2)) != f(c2) | f2(c2) != c2.  [copy(21),merge(d)].
+23 f(g(c1)) = c1 | f(c2) != f(c2) | f(g(f1(f(c2)))) = f1(f(c2)) | f2(c2) != c2 | f(g(c1)) = c1.  [para(2(b,1),17(a,1,1))].
+24 f(g(c1)) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f2(c2) != c2 | f(g(c1)) = c1.  [copy(23),xx(b)].
+25 f(g(c1)) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f2(c2) != c2.  [copy(24),merge(d)].
+26 f(g(c1)) = c1 | f(c2) != f(c2) | f1(f(c2)) != f(c2) | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [para(2(b,1),18(a,1,1))].
+27 f(g(c1)) = c1 | f1(f(c2)) != f(c2) | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [copy(26),xx(b)].
+28 f(g(c1)) = c1 | f1(f(c2)) != f(c2) | g(f(f2(c2))) = f2(c2).  [copy(27),merge(d)].
+29 f(g(c1)) = c1 | f(c2) != f(c2) | f(g(f1(f(c2)))) = f1(f(c2)) | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [para(2(b,1),19(a,1,1))].
+30 f(g(c1)) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [copy(29),xx(b)].
+31 f(g(c1)) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | g(f(f2(c2))) = f2(c2).  [copy(30),merge(d)].
+32 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(f1(f1(f(c2))))) = f1(f1(f(c2))) | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [resolve(31,b,19,a)].
+33 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(f1(f1(f(c2))))) = f1(f1(f(c2))) | f(g(c1)) = c1.  [copy(32),merge(d)].
+34 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(f1(f1(f(c2))))) = f1(f1(f(c2))).  [copy(33),merge(d)].
+35 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | c2 = g(f1(f(c2))).  [para(31(b,1),5(b,1,1))].
+36 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | g(f1(f(c2))) = c2.  [copy(35),flip(e)].
+37 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f(c2))) = c2.  [copy(36),xx(d)].
+38 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | g(f1(f(c2))) = c2.  [copy(37),merge(c)].
+39 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | f(c2) = f1(f(c2)) | g(f(f2(c2))) = f2(c2).  [para(38(c,1),31(b,1,1))].
+40 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | f1(f(c2)) = f(c2) | g(f(f2(c2))) = f2(c2).  [copy(39),flip(d)].
+41 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f(c2)) = f(c2) | g(f(f2(c2))) = f2(c2).  [copy(40),merge(c)].
+42 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f(c2)) = f(c2).  [copy(41),merge(d)].
+43 f(g(c1)) = c1 | f1(f(c2)) = f(c2) | f(g(c1)) = c1 | c2 = f2(c2).  [resolve(42,b,5,b)].
+44 f(g(c1)) = c1 | f1(f(c2)) = f(c2) | f(g(c1)) = c1 | f2(c2) = c2.  [copy(43),flip(d)].
+45 f(g(c1)) = c1 | f1(f(c2)) = f(c2) | f2(c2) = c2.  [copy(44),merge(c)].
+46 f(g(c1)) = c1 | f2(c2) = c2 | f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2).  [resolve(45,b,28,b)].
+47 f(g(c1)) = c1 | f2(c2) = c2 | g(f(f2(c2))) = f2(c2).  [copy(46),merge(c)].
+48 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(f1(f1(f1(f(c2)))))) = f1(f1(f1(f(c2)))) | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [resolve(34,c,19,a)].
+49 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(f1(f1(f1(f(c2)))))) = f1(f1(f1(f(c2)))) | f(g(c1)) = c1.  [copy(48),merge(d)].
+50 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(f1(f1(f1(f(c2)))))) = f1(f1(f1(f(c2)))).  [copy(49),merge(d)].
+51 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) != f1(f1(f(c2))) | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1.  [resolve(34,c,18,a)].
+52 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) != f1(f1(f(c2))) | f(g(c1)) = c1.  [copy(51),merge(d)].
+53 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) != f1(f1(f(c2))).  [copy(52),merge(d)].
+54 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f1(f(c2)))) != g(f1(f1(f(c2)))) | c2 = g(f1(f1(f(c2)))).  [para(34(c,1),5(b,1,1))].
+55 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f1(f(c2)))) != g(f1(f1(f(c2)))) | g(f1(f1(f(c2)))) = c2.  [copy(54),flip(e)].
+56 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f1(f(c2)))) = c2.  [copy(55),xx(d)].
+57 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | g(f1(f1(f(c2)))) = c2.  [copy(56),merge(c)].
+58 f(g(c1)) = c1 | f2(c2) = c2 | f(g(c1)) = c1 | c2 = f2(c2).  [resolve(47,c,5,b)].
+59 f(g(c1)) = c1 | f2(c2) = c2 | f(g(c1)) = c1 | f2(c2) = c2.  [copy(58),flip(d)].
+60 f(g(c1)) = c1 | f2(c2) = c2 | f2(c2) = c2.  [copy(59),merge(c)].
+61 f(g(c1)) = c1 | f2(c2) = c2.  [copy(60),merge(c)].
+62 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(A)) != A | g(f(f2(A))) = f2(A).  [resolve(61,a,13,a)].
+63 f2(c2) = c2 | f1(c1) != c1 | g(f(A)) != A | g(f(f2(A))) = f2(A).  [resolve(61,a,12,a)].
+64 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(A)) != A | f2(A) != A.  [resolve(61,a,11,a)].
+65 f2(c2) = c2 | f1(c1) != c1 | g(f(A)) != A | f2(A) != A.  [resolve(61,a,3,a)].
+66 f2(c2) = c2 | f(g(A)) != A | c1 = A | g(c1) != g(c1) | c2 = g(c1).  [para(61(a,1),10(c,1,1))].
+67 f2(c2) = c2 | f(g(A)) != A | c1 = A | g(c1) != g(c1) | g(c1) = c2.  [copy(66),flip(e)].
+68 f2(c2) = c2 | f(g(A)) != A | c1 = A | g(c1) = c2.  [copy(67),xx(d)].
+69 f2(c2) = c2 | f(g(A)) != A | f(g(f1(A))) = f1(A) | g(c1) != g(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [para(61(a,1),13(c,1,1))].
+70 f2(c2) = c2 | f(g(A)) != A | f(g(f1(A))) = f1(A) | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(69),xx(d)].
+71 f2(c2) = c2 | f2(c2) = c2 | f1(c1) != c1 | g(c1) != g(c1) | f2(g(c1)) != g(c1).  [para(61(a,1),65(c,1,1))].
+72 f2(c2) = c2 | f2(c2) = c2 | f1(c1) != c1 | f2(g(c1)) != g(c1).  [copy(71),xx(d)].
+73 f2(c2) = c2 | f1(c1) != c1 | f2(g(c1)) != g(c1).  [copy(72),merge(b)].
+74 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(c2) = f1(f1(f(c2))).  [para(57(c,1),34(c,1,1))].
+75 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f(c2))) = f(c2).  [copy(74),flip(e)].
+76 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | g(f(f2(c2))) = f2(c2) | f1(f1(f(c2))) = f(c2).  [copy(75),merge(c)].
+77 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f(c2))) = f(c2).  [copy(76),merge(c)].
+78 f2(c2) = c2 | f2(c2) = c2 | f1(c1) != c1 | g(c1) != g(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [para(61(a,1),63(c,1,1))].
+79 f2(c2) = c2 | f2(c2) = c2 | f1(c1) != c1 | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(78),xx(d)].
+80 f2(c2) = c2 | f1(c1) != c1 | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(79),merge(b)].
+81 f2(c2) = c2 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) != g(c1) | f2(g(c1)) != g(c1).  [para(61(a,1),64(c,1,1))].
+82 f2(c2) = c2 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) != g(c1).  [copy(81),xx(d)].
+83 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) != g(c1).  [copy(82),merge(b)].
+84 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) != f(c2).  [para(77(c,1),53(c,2))].
+85 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) != f(c2).  [copy(84),merge(c)].
+86 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) != f(c2).  [copy(85),merge(c)].
+87 f2(c2) = c2 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) != g(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [para(61(a,1),62(c,1,1))].
+88 f2(c2) = c2 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(87),xx(d)].
+89 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(88),merge(b)].
+90 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(f2(f2(g(c1))))) = f2(f2(g(c1))).  [resolve(89,c,62,c)].
+91 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f(g(f1(c1))) = f1(c1) | g(f(f2(f2(g(c1))))) = f2(f2(g(c1))).  [copy(90),merge(c)].
+92 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(f2(f2(g(c1))))) = f2(f2(g(c1))).  [copy(91),merge(c)].
+93 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f(f2(g(c1))) != f(f2(g(c1))) | c1 = f(f2(g(c1))) | g(f(c2)) = c2.  [para(89(c,1),7(a,1,1))].
+94 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f(f2(g(c1))) != f(f2(g(c1))) | f(f2(g(c1))) = c1 | g(f(c2)) = c2.  [copy(93),flip(d)].
+95 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f(f2(g(c1))) = c1 | g(f(c2)) = c2.  [copy(94),xx(c)].
+96 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f(f2(g(c1))) != f(f2(g(c1))) | c1 = f(f2(g(c1))) | g(c1) = c2.  [para(89(c,1),68(b,1,1))].
+97 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f(f2(g(c1))) != f(f2(g(c1))) | f(f2(g(c1))) = c1 | g(c1) = c2.  [copy(96),flip(e)].
+98 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f(f2(g(c1))) = c1 | g(c1) = c2.  [copy(97),xx(d)].
+99 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f(f2(g(c1))) = c1 | g(c1) = c2.  [copy(98),merge(c)].
+100 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) = f2(g(c1)).  [para(99(c,1),89(c,1,1))].
+101 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) = g(c1).  [copy(100),flip(f)].
+102 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) = g(c1).  [copy(101),merge(d)].
+103 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f2(g(c1)) = g(c1).  [copy(102),merge(d)].
+104 f2(c2) = c2 | g(c1) = c2 | f2(g(c1)) = g(c1) | f2(c2) = c2 | c1 = f1(c1) | g(c1) = c2.  [resolve(103,b,68,b)].
+105 f2(c2) = c2 | g(c1) = c2 | f2(g(c1)) = g(c1) | f2(c2) = c2 | f1(c1) = c1 | g(c1) = c2.  [copy(104),flip(e)].
+106 f2(c2) = c2 | g(c1) = c2 | f2(g(c1)) = g(c1) | f1(c1) = c1 | g(c1) = c2.  [copy(105),merge(d)].
+107 f2(c2) = c2 | g(c1) = c2 | f2(g(c1)) = g(c1) | f1(c1) = c1.  [copy(106),merge(e)].
+108 f2(c2) = c2 | g(c1) = c2 | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1).  [resolve(107,c,83,c)].
+109 f2(c2) = c2 | g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1).  [copy(108),merge(d)].
+110 f2(c2) = c2 | g(c1) = c2 | f1(c1) = c1 | f2(c2) = c2 | c1 = f1(c1) | g(c1) = c2.  [resolve(109,d,68,b)].
+111 f2(c2) = c2 | g(c1) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | g(c1) = c2.  [copy(110),flip(e)].
+112 f2(c2) = c2 | g(c1) = c2 | f1(c1) = c1 | f1(c1) = c1 | g(c1) = c2.  [copy(111),merge(d)].
+113 f2(c2) = c2 | g(c1) = c2 | f1(c1) = c1 | g(c1) = c2.  [copy(112),merge(d)].
+114 f2(c2) = c2 | g(c1) = c2 | f1(c1) = c1.  [copy(113),merge(d)].
+115 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f(g(f1(f(c2)))) = f1(f(c2)).  [resolve(114,a,25,c)].
+116 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(f2(f2(g(c1)))) != f2(f2(g(c1))).  [resolve(92,c,64,c)].
+117 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f(g(f1(c1))) = f1(c1) | f2(f2(f2(g(c1)))) != f2(f2(g(c1))).  [copy(116),merge(c)].
+118 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(f2(f2(g(c1)))) != f2(f2(g(c1))).  [copy(117),merge(c)].
+119 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(f2(f2(f2(g(c1)))))) = f2(f2(f2(g(c1)))).  [resolve(92,c,62,c)].
+120 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f(g(f1(c1))) = f1(c1) | g(f(f2(f2(f2(g(c1)))))) = f2(f2(f2(g(c1)))).  [copy(119),merge(c)].
+121 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(f2(f2(f2(g(c1)))))) = f2(f2(f2(g(c1)))).  [copy(120),merge(c)].
+122 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(c2)) = c2 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) = f2(g(c1)).  [para(95(c,1),89(c,1,1))].
+123 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(c2)) = c2 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) = g(c1).  [copy(122),flip(f)].
+124 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(c2)) = c2 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) = g(c1).  [copy(123),merge(d)].
+125 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(c2)) = c2 | f2(g(c1)) = g(c1).  [copy(124),merge(d)].
+126 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | c2 = g(f1(f(c2))).  [para(115(d,1),5(b,1,1))].
+127 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | g(f1(f(c2))) = c2.  [copy(126),flip(f)].
+128 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(f1(f(c2))) = c2.  [copy(127),xx(e)].
+129 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | g(f1(f(c2))) = c2.  [copy(128),merge(d)].
+130 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f(c2) = f1(f(c2)).  [para(129(d,1),115(d,1,1))].
+131 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f1(f(c2)) = f(c2).  [copy(130),flip(g)].
+132 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f1(c1) = c1 | f(g(c1)) = c1 | f1(f(c2)) = f(c2).  [copy(131),merge(d)].
+133 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f(g(c1)) = c1 | f1(f(c2)) = f(c2).  [copy(132),merge(d)].
+134 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f1(f(c2)) = f(c2).  [copy(133),merge(d)].
+135 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f(g(c1)) = c1 | f2(c2) != c2.  [resolve(134,d,22,b)].
+136 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f2(c2) != c2.  [copy(135),merge(d)].
+137 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | g(c1) = c2 | f1(c1) = c1.  [resolve(136,d,114,a)].
+138 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1 | f1(c1) = c1.  [copy(137),merge(d)].
+139 g(c1) = c2 | f1(c1) = c1 | f(g(c1)) = c1.  [copy(138),merge(d)].
+140 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(f(A)) != A | g(f(f2(A))) = f2(A).  [resolve(139,c,13,a)].
+141 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(f(A)) != A | f2(A) != A.  [resolve(139,c,11,a)].
+142 g(c1) = c2 | f1(c1) = c1 | f(g(A)) != A | c1 = A | g(c1) != g(c1) | c2 = g(c1).  [para(139(c,1),10(c,1,1))].
+143 g(c1) = c2 | f1(c1) = c1 | f(g(A)) != A | c1 = A | g(c1) != g(c1) | g(c1) = c2.  [copy(142),flip(f)].
+144 g(c1) = c2 | f1(c1) = c1 | f(g(A)) != A | c1 = A | g(c1) = c2.  [copy(143),xx(e)].
+145 g(c1) = c2 | f1(c1) = c1 | f(g(A)) != A | c1 = A.  [copy(144),merge(e)].
+146 f2(c2) = c2 | g(f(c2)) = c2 | f2(g(c1)) = g(c1) | c1 = f1(c1) | g(f(c2)) = c2.  [resolve(125,b,7,a)].
+147 f2(c2) = c2 | g(f(c2)) = c2 | f2(g(c1)) = g(c1) | f1(c1) = c1 | g(f(c2)) = c2.  [copy(146),flip(d)].
+148 f2(c2) = c2 | g(f(c2)) = c2 | f2(g(c1)) = g(c1) | f1(c1) = c1.  [copy(147),merge(e)].
+149 f2(c2) = c2 | g(f(c2)) = c2 | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1).  [resolve(148,c,83,c)].
+150 f2(c2) = c2 | g(f(c2)) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1).  [copy(149),merge(d)].
+151 f2(c2) = c2 | g(f(c2)) = c2 | f1(c1) = c1 | c1 = f1(c1) | g(f(c2)) = c2.  [resolve(150,d,7,a)].
+152 f2(c2) = c2 | g(f(c2)) = c2 | f1(c1) = c1 | f1(c1) = c1 | g(f(c2)) = c2.  [copy(151),flip(d)].
+153 f2(c2) = c2 | g(f(c2)) = c2 | f1(c1) = c1 | g(f(c2)) = c2.  [copy(152),merge(d)].
+154 f2(c2) = c2 | g(f(c2)) = c2 | f1(c1) = c1.  [copy(153),merge(d)].
+155 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(f(f2(c2))) = f2(c2).  [resolve(154,b,62,c)].
+156 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(f(f2(c2))) = f2(c2).  [copy(155),merge(c)].
+157 f2(c2) = c2 | f1(c1) = c1 | f(g(A)) != A | f1(A) != A | g(f(f2(c2))) = f2(c2).  [resolve(154,b,12,c)].
+158 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f1(f1(f(c2))))) != g(f1(f1(f1(f(c2))))) | c2 = g(f1(f1(f1(f(c2))))).  [para(50(c,1),5(b,1,1))].
+159 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f1(f1(f(c2))))) != g(f1(f1(f1(f(c2))))) | g(f1(f1(f1(f(c2))))) = c2.  [copy(158),flip(e)].
+160 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f1(f1(f1(f(c2))))) = c2.  [copy(159),xx(d)].
+161 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | g(f1(f1(f1(f(c2))))) = c2.  [copy(160),merge(c)].
+162 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(c2) = f1(f1(f1(f(c2)))).  [para(161(c,1),50(c,1,1))].
+163 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) = f(c2).  [copy(162),flip(e)].
+164 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) = f(c2).  [copy(163),merge(c)].
+165 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f1(f1(f1(f(c2)))) = f(c2).  [copy(164),merge(c)].
+166 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2).  [resolve(165,c,86,c)].
+167 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2) | g(f(f2(c2))) = f2(c2).  [copy(166),merge(c)].
+168 f(g(c1)) = c1 | g(f(f2(c2))) = f2(c2).  [copy(167),merge(c)].
+169 f(g(c1)) = c1 | f(g(c1)) = c1 | f1(f(c2)) != f(c2) | f2(f2(c2)) != f2(c2).  [resolve(168,b,16,c)].
+170 f(g(c1)) = c1 | f1(f(c2)) != f(c2) | f2(f2(c2)) != f2(c2).  [copy(169),merge(b)].
+171 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f(c2) != f(c2) | f(g(f1(f(c2)))) = f1(f(c2)) | g(f(f2(g(c1)))) = f2(g(c1)).  [para(154(b,1),70(b,1,1))].
+172 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(f(c2)))) = f1(f(c2)) | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(171),xx(d)].
+173 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(172),merge(c)].
+174 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(g(A)) != A | c1 = A | c2 = f2(c2).  [resolve(156,d,10,c)].
+175 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(g(A)) != A | c1 = A | f2(c2) = c2.  [copy(174),flip(f)].
+176 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(g(A)) != A | c1 = A.  [copy(175),merge(f)].
+177 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(f2(g(c1)))) != f(f2(f2(g(c1)))) | c1 = f(f2(f2(g(c1)))).  [para(92(c,1),176(d,1,1))].
+178 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(f2(g(c1)))) != f(f2(f2(g(c1)))) | f(f2(f2(g(c1)))) = c1.  [copy(177),flip(g)].
+179 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(f2(g(c1)))) = c1.  [copy(178),xx(f)].
+180 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(f2(g(c1)))) = c1.  [copy(179),merge(c)].
+181 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(f2(f2(g(c1)))) = c1.  [copy(180),merge(d)].
+182 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) = f2(f2(g(c1))).  [para(181(d,1),92(c,1,1))].
+183 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(f2(g(c1))) = g(c1).  [copy(182),flip(f)].
+184 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(f2(g(c1))) = g(c1).  [copy(183),merge(d)].
+185 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(f2(g(c1))) = g(c1).  [copy(184),merge(d)].
+186 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(f2(f2(g(c1)))) != g(c1).  [para(185(d,1),118(c,2))].
+187 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(f2(f2(g(c1)))) != g(c1).  [copy(186),merge(d)].
+188 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(f2(f2(g(c1)))) != g(c1).  [copy(187),merge(d)].
+189 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(f2(f2(g(c1))))) != f(f2(f2(f2(g(c1))))) | c1 = f(f2(f2(f2(g(c1))))).  [para(121(c,1),176(d,1,1))].
+190 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(f2(f2(g(c1))))) != f(f2(f2(f2(g(c1))))) | f(f2(f2(f2(g(c1))))) = c1.  [copy(189),flip(g)].
+191 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(c2) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(f2(f2(g(c1))))) = c1.  [copy(190),xx(f)].
+192 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(f2(f2(g(c1))))) = c1.  [copy(191),merge(c)].
+193 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(f2(f2(f2(g(c1))))) = c1.  [copy(192),merge(d)].
+194 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | g(c1) = f2(f2(f2(g(c1)))).  [para(193(d,1),121(c,1,1))].
+195 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f2(f2(f2(g(c1)))) = g(c1).  [copy(194),flip(f)].
+196 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(f2(f2(g(c1)))) = g(c1).  [copy(195),merge(d)].
+197 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(f2(f2(g(c1)))) = g(c1).  [copy(196),merge(d)].
+198 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1.  [resolve(197,d,188,d)].
+199 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1.  [copy(198),merge(d)].
+200 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f1(c1) = c1.  [copy(199),merge(d)].
+201 f2(c2) = c2 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1.  [copy(200),merge(d)].
+202 f2(c2) = c2 | f1(c1) = c1 | c1 = f1(c1) | g(f(A)) != A | c2 = A.  [resolve(201,b,10,a)].
+203 f2(c2) = c2 | f1(c1) = c1 | f1(c1) = c1 | g(f(A)) != A | c2 = A.  [copy(202),flip(c)].
+204 f2(c2) = c2 | f1(c1) = c1 | g(f(A)) != A | c2 = A.  [copy(203),merge(c)].
+205 g(c1) = c2 | f1(c1) = c1 | g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(c1) != g(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [para(139(c,1),140(d,1,1))].
+206 g(c1) = c2 | f1(c1) = c1 | g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(205),xx(f)].
+207 g(c1) = c2 | f1(c1) = c1 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(206),merge(c)].
+208 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(207),merge(c)].
+209 g(c1) = c2 | f1(c1) = c1 | g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(c1) != g(c1) | f2(g(c1)) != g(c1).  [para(139(c,1),141(d,1,1))].
+210 g(c1) = c2 | f1(c1) = c1 | g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) != g(c1).  [copy(209),xx(f)].
+211 g(c1) = c2 | f1(c1) = c1 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) != g(c1).  [copy(210),merge(c)].
+212 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) != g(c1).  [copy(211),merge(c)].
+213 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | f(c2) != f(c2) | f1(f(c2)) != f(c2) | g(f(f2(c2))) = f2(c2).  [para(154(b,1),157(c,1,1))].
+214 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | f1(f(c2)) != f(c2) | g(f(f2(c2))) = f2(c2).  [copy(213),xx(e)].
+215 f2(c2) = c2 | f1(c1) = c1 | f1(c1) = c1 | f1(f(c2)) != f(c2) | g(f(f2(c2))) = f2(c2).  [copy(214),merge(c)].
+216 f2(c2) = c2 | f1(c1) = c1 | f1(f(c2)) != f(c2) | g(f(f2(c2))) = f2(c2).  [copy(215),merge(c)].
+217 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f1(c1) = c1 | f(f2(g(c1))) != f(f2(g(c1))) | c1 = f(f2(g(c1))).  [para(208(d,1),145(c,1,1))].
+218 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f1(c1) = c1 | f(f2(g(c1))) != f(f2(g(c1))) | f(f2(g(c1))) = c1.  [copy(217),flip(g)].
+219 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f1(c1) = c1 | f(f2(g(c1))) = c1.  [copy(218),xx(f)].
+220 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(f2(g(c1))) = c1.  [copy(219),merge(d)].
+221 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(f2(g(c1))) = c1.  [copy(220),merge(d)].
+222 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(c1) = f2(g(c1)).  [para(221(d,1),208(d,1,1))].
+223 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) = g(c1).  [copy(222),flip(g)].
+224 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) = g(c1).  [copy(223),merge(d)].
+225 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f(g(f1(c1))) = f1(c1) | f2(g(c1)) = g(c1).  [copy(224),merge(d)].
+226 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1) | f2(g(c1)) = g(c1).  [copy(225),merge(d)].
+227 g(c1) = c2 | f1(c1) = c1 | f2(g(c1)) = g(c1) | g(c1) = c2 | f1(c1) = c1 | c1 = f1(c1).  [resolve(226,c,145,c)].
+228 g(c1) = c2 | f1(c1) = c1 | f2(g(c1)) = g(c1) | g(c1) = c2 | f1(c1) = c1 | f1(c1) = c1.  [copy(227),flip(f)].
+229 g(c1) = c2 | f1(c1) = c1 | f2(g(c1)) = g(c1) | f1(c1) = c1 | f1(c1) = c1.  [copy(228),merge(d)].
+230 g(c1) = c2 | f1(c1) = c1 | f2(g(c1)) = g(c1) | f1(c1) = c1.  [copy(229),merge(d)].
+231 g(c1) = c2 | f1(c1) = c1 | f2(g(c1)) = g(c1).  [copy(230),merge(d)].
+232 g(c1) = c2 | f1(c1) = c1 | g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1).  [resolve(231,c,212,d)].
+233 g(c1) = c2 | f1(c1) = c1 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1).  [copy(232),merge(c)].
+234 g(c1) = c2 | f1(c1) = c1 | f(g(f1(c1))) = f1(c1).  [copy(233),merge(c)].
+235 g(c1) = c2 | f1(c1) = c1 | g(c1) = c2 | f1(c1) = c1 | c1 = f1(c1).  [resolve(234,c,145,c)].
+236 g(c1) = c2 | f1(c1) = c1 | g(c1) = c2 | f1(c1) = c1 | f1(c1) = c1.  [copy(235),flip(e)].
+237 g(c1) = c2 | f1(c1) = c1 | f1(c1) = c1 | f1(c1) = c1.  [copy(236),merge(c)].
+238 g(c1) = c2 | f1(c1) = c1 | f1(c1) = c1.  [copy(237),merge(c)].
+239 g(c1) = c2 | f1(c1) = c1.  [copy(238),merge(c)].
+240 g(c1) = c2 | f2(c2) = c2 | g(f(f2(g(c1)))) = f2(g(c1)).  [resolve(239,b,80,b)].
+241 g(c1) = c2 | f2(c2) = c2 | f2(c2) = c2 | f(f2(g(c1))) != f(f2(g(c1))) | c1 = f(f2(g(c1))) | g(c1) = c2.  [para(240(c,1),68(b,1,1))].
+242 g(c1) = c2 | f2(c2) = c2 | f2(c2) = c2 | f(f2(g(c1))) != f(f2(g(c1))) | f(f2(g(c1))) = c1 | g(c1) = c2.  [copy(241),flip(e)].
+243 g(c1) = c2 | f2(c2) = c2 | f2(c2) = c2 | f(f2(g(c1))) = c1 | g(c1) = c2.  [copy(242),xx(d)].
+244 g(c1) = c2 | f2(c2) = c2 | f(f2(g(c1))) = c1 | g(c1) = c2.  [copy(243),merge(c)].
+245 g(c1) = c2 | f2(c2) = c2 | f(f2(g(c1))) = c1.  [copy(244),merge(d)].
+246 g(c1) = c2 | f2(c2) = c2 | g(c1) = c2 | f2(c2) = c2 | g(c1) = f2(g(c1)).  [para(245(c,1),240(c,1,1))].
+247 g(c1) = c2 | f2(c2) = c2 | g(c1) = c2 | f2(c2) = c2 | f2(g(c1)) = g(c1).  [copy(246),flip(e)].
+248 g(c1) = c2 | f2(c2) = c2 | f2(c2) = c2 | f2(g(c1)) = g(c1).  [copy(247),merge(c)].
+249 g(c1) = c2 | f2(c2) = c2 | f2(g(c1)) = g(c1).  [copy(248),merge(c)].
+250 g(c1) = c2 | f2(c2) = c2 | f2(c2) = c2 | f1(c1) != c1.  [resolve(249,c,73,c)].
+251 g(c1) = c2 | f2(c2) = c2 | f1(c1) != c1.  [copy(250),merge(c)].
+252 g(c1) = c2 | f2(c2) = c2 | g(c1) = c2.  [resolve(251,c,239,b)].
+253 g(c1) = c2 | f2(c2) = c2.  [copy(252),merge(c)].
+254 g(c1) = c2 | f(g(c1)) = c1 | f(g(f1(f(c2)))) = f1(f(c2)).  [resolve(253,b,25,c)].
+255 g(c1) = c2 | f(g(c1)) = c1 | f1(f(c2)) != f(c2) | f2(c2) != f2(c2).  [para(253(b,1),170(c,1,1))].
+256 g(c1) = c2 | f(g(c1)) = c1 | f1(f(c2)) != f(c2).  [copy(255),xx(d)].
+257 g(c1) = c2 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | c2 = g(f1(f(c2))).  [para(254(c,1),5(b,1,1))].
+258 g(c1) = c2 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | g(f1(f(c2))) = c2.  [copy(257),flip(e)].
+259 g(c1) = c2 | f(g(c1)) = c1 | f(g(c1)) = c1 | g(f1(f(c2))) = c2.  [copy(258),xx(d)].
+260 g(c1) = c2 | f(g(c1)) = c1 | g(f1(f(c2))) = c2.  [copy(259),merge(c)].
+261 g(c1) = c2 | f(g(c1)) = c1 | g(c1) = c2 | f(g(c1)) = c1 | f(c2) = f1(f(c2)).  [para(260(c,1),254(c,1,1))].
+262 g(c1) = c2 | f(g(c1)) = c1 | g(c1) = c2 | f(g(c1)) = c1 | f1(f(c2)) = f(c2).  [copy(261),flip(e)].
+263 g(c1) = c2 | f(g(c1)) = c1 | f(g(c1)) = c1 | f1(f(c2)) = f(c2).  [copy(262),merge(c)].
+264 g(c1) = c2 | f(g(c1)) = c1 | f1(f(c2)) = f(c2).  [copy(263),merge(c)].
+265 g(c1) = c2 | f(g(c1)) = c1 | g(c1) = c2 | f(g(c1)) = c1.  [resolve(264,c,256,c)].
+266 g(c1) = c2 | f(g(c1)) = c1 | f(g(c1)) = c1.  [copy(265),merge(c)].
+267 g(c1) = c2 | f(g(c1)) = c1.  [copy(266),merge(c)].
+268 g(c1) = c2 | f1(c1) != c1 | g(f(A)) != A | g(f(f2(A))) = f2(A).  [resolve(267,b,12,a)].
+269 g(c1) = c2 | f1(c1) != c1 | g(f(A)) != A | f2(A) != A.  [resolve(267,b,3,a)].
+270 g(c1) = c2 | f(g(A)) != A | c1 = A | g(c1) != g(c1) | c2 = g(c1).  [para(267(b,1),10(c,1,1))].
+271 g(c1) = c2 | f(g(A)) != A | c1 = A | g(c1) != g(c1) | g(c1) = c2.  [copy(270),flip(e)].
+272 g(c1) = c2 | f(g(A)) != A | c1 = A | g(c1) = c2.  [copy(271),xx(d)].
+273 g(c1) = c2 | f(g(A)) != A | c1 = A.  [copy(272),merge(d)].
+274 g(c1) = c2 | g(c1) = c2 | f1(c1) != c1 | g(c1) != g(c1) | f2(g(c1)) != g(c1).  [para(267(b,1),269(c,1,1))].
+275 g(c1) = c2 | g(c1) = c2 | f1(c1) != c1 | f2(g(c1)) != g(c1).  [copy(274),xx(d)].
+276 g(c1) = c2 | f1(c1) != c1 | f2(g(c1)) != g(c1).  [copy(275),merge(b)].
+277 g(c1) = c2 | g(c1) = c2 | f1(c1) != c1 | g(c1) != g(c1) | g(f(f2(g(c1)))) = f2(g(c1)).  [para(267(b,1),268(c,1,1))].
+278 g(c1) = c2 | g(c1) = c2 | f1(c1) != c1 | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(277),xx(d)].
+279 g(c1) = c2 | f1(c1) != c1 | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(278),merge(b)].
+280 g(c1) = c2 | g(f(f2(g(c1)))) = f2(g(c1)) | g(c1) = c2.  [resolve(279,b,239,b)].
+281 g(c1) = c2 | g(f(f2(g(c1)))) = f2(g(c1)).  [copy(280),merge(c)].
+282 g(c1) = c2 | g(c1) = c2 | f(f2(g(c1))) != f(f2(g(c1))) | c1 = f(f2(g(c1))).  [para(281(b,1),273(b,1,1))].
+283 g(c1) = c2 | g(c1) = c2 | f(f2(g(c1))) != f(f2(g(c1))) | f(f2(g(c1))) = c1.  [copy(282),flip(d)].
+284 g(c1) = c2 | g(c1) = c2 | f(f2(g(c1))) = c1.  [copy(283),xx(c)].
+285 g(c1) = c2 | f(f2(g(c1))) = c1.  [copy(284),merge(b)].
+286 g(c1) = c2 | g(c1) = c2 | g(c1) = f2(g(c1)).  [para(285(b,1),281(b,1,1))].
+287 g(c1) = c2 | g(c1) = c2 | f2(g(c1)) = g(c1).  [copy(286),flip(c)].
+288 g(c1) = c2 | f2(g(c1)) = g(c1).  [copy(287),merge(b)].
+289 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f2(c2) = c2 | f1(c1) = c1 | c2 = f2(g(c1)).  [resolve(173,d,204,c)].
+290 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f2(c2) = c2 | f1(c1) = c1 | f2(g(c1)) = c2.  [copy(289),flip(f)].
+291 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f1(c1) = c1 | f2(g(c1)) = c2.  [copy(290),merge(d)].
+292 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f2(g(c1)) = c2.  [copy(291),merge(d)].
+293 g(c1) = c2 | g(c1) = c2 | f1(c1) != c1.  [resolve(288,b,276,c)].
+294 g(c1) = c2 | f1(c1) != c1.  [copy(293),merge(b)].
+295 g(c1) = c2 | g(c1) = c2.  [resolve(294,b,239,b)].
+296 g(c1) = c2.  [copy(295),merge(b)].
+297 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f2(c2) = c2.  [para(296(a,1),292(d,1,1))].
+298 f2(c2) = c2 | f1(c1) = c1 | f(g(f1(f(c2)))) = f1(f(c2)).  [copy(297),merge(d)].
+299 f(c2) = c1 | f1(f(c2)) != f(c2) | f2(f2(c2)) != f2(c2).  [para(296(a,1),170(a,1,1))].
+300 f(c2) = c1 | f2(c2) = c2.  [para(296(a,1),61(a,1,1))].
+301 f(c2) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f2(c2) != c2.  [para(296(a,1),25(a,1,1))].
+302 f(c2) = c1 | g(f(A)) != A | c2 = A.  [para(296(a,1),5(a,1,1))].
+303 f(c2) != c1 | f1(c1) != c1 | g(f(A)) != A | f2(A) != A.  [para(296(a,1),3(a,1,1))].
+304 f(c2) != c1 | f(g(f1(c1))) = f1(c1) | g(f(A)) != A | f2(A) != A.  [para(296(a,1),11(a,1,1))].
+305 f(c2) != c1 | f1(c1) != c1 | g(f(A)) != A | g(f(f2(A))) = f2(A).  [para(296(a,1),12(a,1,1))].
+306 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | c2 = g(f1(f(c2))).  [para(298(c,1),204(c,1,1))].
+307 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | g(f1(f(c2))) = c2.  [copy(306),flip(f)].
+308 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | g(f1(f(c2))) = c2.  [copy(307),xx(e)].
+309 f2(c2) = c2 | f1(c1) = c1 | f1(c1) = c1 | g(f1(f(c2))) = c2.  [copy(308),merge(c)].
+310 f2(c2) = c2 | f1(c1) = c1 | g(f1(f(c2))) = c2.  [copy(309),merge(c)].
+311 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | f(c2) = f1(f(c2)).  [para(310(c,1),298(c,1,1))].
+312 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | f1(f(c2)) = f(c2).  [copy(311),flip(e)].
+313 f2(c2) = c2 | f1(c1) = c1 | f1(c1) = c1 | f1(f(c2)) = f(c2).  [copy(312),merge(c)].
+314 f2(c2) = c2 | f1(c1) = c1 | f1(f(c2)) = f(c2).  [copy(313),merge(c)].
+315 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | g(f(f2(c2))) = f2(c2).  [resolve(314,c,216,c)].
+316 f2(c2) = c2 | f1(c1) = c1 | f1(c1) = c1 | g(f(f2(c2))) = f2(c2).  [copy(315),merge(c)].
+317 f2(c2) = c2 | f1(c1) = c1 | g(f(f2(c2))) = f2(c2).  [copy(316),merge(c)].
+318 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | c2 = f2(c2).  [resolve(317,c,204,c)].
+319 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2.  [copy(318),flip(e)].
+320 f2(c2) = c2 | f1(c1) = c1 | f1(c1) = c1 | f2(c2) = c2.  [copy(319),merge(c)].
+321 f2(c2) = c2 | f1(c1) = c1 | f2(c2) = c2.  [copy(320),merge(c)].
+322 f2(c2) = c2 | f1(c1) = c1.  [copy(321),merge(c)].
+323 f(c2) = c1 | f(c2) = c1 | f1(f(c2)) != f(c2) | f2(c2) != f2(c2).  [para(300(b,1),299(c,1,1))].
+324 f(c2) = c1 | f(c2) = c1 | f1(f(c2)) != f(c2).  [copy(323),xx(d)].
+325 f(c2) = c1 | f1(f(c2)) != f(c2).  [copy(324),merge(b)].
+326 f(c2) = c1 | f(g(f1(f(c2)))) = f1(f(c2)) | f(c2) = c1.  [resolve(301,c,300,b)].
+327 f(c2) = c1 | f(g(f1(f(c2)))) = f1(f(c2)).  [copy(326),merge(c)].
+328 f(c2) = c1 | f(c2) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | c2 = g(f1(f(c2))).  [para(327(b,1),302(b,1,1))].
+329 f(c2) = c1 | f(c2) = c1 | g(f1(f(c2))) != g(f1(f(c2))) | g(f1(f(c2))) = c2.  [copy(328),flip(d)].
+330 f(c2) = c1 | f(c2) = c1 | g(f1(f(c2))) = c2.  [copy(329),xx(c)].
+331 f(c2) = c1 | g(f1(f(c2))) = c2.  [copy(330),merge(b)].
+332 f(c2) = c1 | f(c2) = c1 | f(c2) = f1(f(c2)).  [para(331(b,1),327(b,1,1))].
+333 f(c2) = c1 | f(c2) = c1 | f1(f(c2)) = f(c2).  [copy(332),flip(c)].
+334 f(c2) = c1 | f1(f(c2)) = f(c2).  [copy(333),merge(b)].
+335 f(c2) = c1 | f(c2) = c1.  [resolve(334,b,325,b)].
+336 f(c2) = c1.  [copy(335),merge(b)].
+337 c1 != c1 | f1(c1) != c1 | g(f(A)) != A | g(f(f2(A))) = f2(A).  [para(336(a,1),305(a,1))].
+338 f1(c1) != c1 | g(f(A)) != A | g(f(f2(A))) = f2(A).  [copy(337),xx(a)].
+339 c1 != c1 | f(g(f1(c1))) = f1(c1) | g(f(A)) != A | f2(A) != A.  [para(336(a,1),304(a,1))].
+340 f(g(f1(c1))) = f1(c1) | g(f(A)) != A | f2(A) != A.  [copy(339),xx(a)].
+341 c1 != c1 | f1(c1) != c1 | g(f(A)) != A | f2(A) != A.  [para(336(a,1),303(a,1))].
+342 f1(c1) != c1 | g(f(A)) != A | f2(A) != A.  [copy(341),xx(a)].
+343 f1(c1) != c1 | g(c1) != c2 | f2(c2) != c2.  [para(336(a,1),342(b,1,1))].
+344 f1(c1) != c1 | c2 != c2 | f2(c2) != c2.  [para(296(a,1),343(b,1))].
+345 f1(c1) != c1 | f2(c2) != c2.  [copy(344),xx(b)].
+346 f1(c1) != c1 | g(c1) != c2 | g(f(f2(c2))) = f2(c2).  [para(336(a,1),338(b,1,1))].
+347 f1(c1) != c1 | c2 != c2 | g(f(f2(c2))) = f2(c2).  [para(296(a,1),346(b,1))].
+348 f1(c1) != c1 | g(f(f2(c2))) = f2(c2).  [copy(347),xx(b)].
+349 f(g(f1(c1))) = f1(c1) | g(c1) != c2 | f2(c2) != c2.  [para(336(a,1),340(b,1,1))].
+350 f(g(f1(c1))) = f1(c1) | c2 != c2 | f2(c2) != c2.  [para(296(a,1),349(b,1))].
+351 f(g(f1(c1))) = f1(c1) | f2(c2) != c2.  [copy(350),xx(b)].
+352 f(g(f1(c1))) = f1(c1) | f1(c1) = c1.  [resolve(351,b,322,a)].
+353 f1(c1) = c1 | c1 = f1(c1) | g(f(A)) != A | c2 = A.  [resolve(352,a,10,a)].
+354 f1(c1) = c1 | f1(c1) = c1 | g(f(A)) != A | c2 = A.  [copy(353),flip(b)].
+355 f1(c1) = c1 | g(f(A)) != A | c2 = A.  [copy(354),merge(b)].
+356 f1(c1) = c1 | f1(c1) = c1 | g(f1(c1)) != g(f1(c1)) | c2 = g(f1(c1)).  [para(352(a,1),355(b,1,1))].
+357 f1(c1) = c1 | f1(c1) = c1 | g(f1(c1)) != g(f1(c1)) | g(f1(c1)) = c2.  [copy(356),flip(d)].
+358 f1(c1) = c1 | f1(c1) = c1 | g(f1(c1)) = c2.  [copy(357),xx(c)].
+359 f1(c1) = c1 | g(f1(c1)) = c2.  [copy(358),merge(b)].
+360 f1(c1) = c1 | f(c2) = f1(c1) | f1(c1) = c1.  [para(359(b,1),352(a,1,1))].
+361 f1(c1) = c1 | c1 = f1(c1) | f1(c1) = c1.  [para(336(a,1),360(b,1))].
+362 f1(c1) = c1 | f1(c1) = c1 | f1(c1) = c1.  [copy(361),flip(b)].
+363 f1(c1) = c1 | f1(c1) = c1.  [copy(362),merge(b)].
+364 f1(c1) = c1.  [copy(363),merge(b)].
+365 c1 != c1 | g(f(f2(c2))) = f2(c2).  [para(364(a,1),348(a,1))].
+366 g(f(f2(c2))) = f2(c2).  [copy(365),xx(a)].
+367 c1 != c1 | f2(c2) != c2.  [para(364(a,1),345(a,1))].
+368 f2(c2) != c2.  [copy(367),xx(a)].
+369 f(g(A)) != A | c1 = A | c2 = f2(c2).  [resolve(366,a,10,c)].
+370 f(g(A)) != A | c1 = A | f2(c2) = c2.  [copy(369),flip(c)].
+371 f(g(A)) != A | c1 = A.  [resolve(368,a,370,c)].
+372 f(f2(c2)) != f(f2(c2)) | c1 = f(f2(c2)).  [para(366(a,1),371(a,1,1))].
+373 f(f2(c2)) != f(f2(c2)) | f(f2(c2)) = c1.  [copy(372),flip(b)].
+374 f(f2(c2)) = c1.  [copy(373),xx(a)].
+375 g(c1) = f2(c2).  [para(374(a,1),366(a,1,1))].
+376 c2 = f2(c2).  [para(296(a,1),375(a,1))].
+377 f2(c2) = c2.  [copy(376),flip(a)].
+378 $F.  [resolve(368,a,377,a)].
+
+============================== end of proof ==========================

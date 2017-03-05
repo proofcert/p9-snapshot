@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n133.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:23:08 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 7490 was started by sandbox on n133.star.cs.uiowa.edu,
+Fri Jun  6 05:23:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_7458_n133.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 6.
+% Maximum clause weight is 13.000.
+% Given clauses 58.
+
+
+1 (all A -distinct_lines(A,A)).  [assumption].
+2 (all A all B all C (distinct_lines(A,B) -> distinct_lines(A,C) | distinct_lines(B,C))).  [assumption].
+3 (all A all B all C (apart_point_and_line(A,B) -> distinct_lines(B,C) | apart_point_and_line(A,C))).  [assumption].
+4 (all A all B (distinct_lines(A,B) -> convergent_lines(A,B))).  [assumption].
+5 (all A all B -convergent_lines(parallel_through_point(B,A),B)).  [assumption].
+6 (all A all B -apart_point_and_line(A,parallel_through_point(B,A))).  [assumption].
+7 -(all A all B all C all D (convergent_lines(A,B) & convergent_lines(C,D) & (apart_point_and_line(intersection_point(A,B),C) | apart_point_and_line(intersection_point(A,B),D)) -> apart_point_and_line(intersection_point(C,D),A) | apart_point_and_line(intersection_point(C,D),B))).  [assumption].
+8 apart_point_and_line(intersection_point(c1,c2),c3) | apart_point_and_line(intersection_point(c1,c2),c4).  [clausify(7)].
+9 -distinct_lines(A,A).  [clausify(1)].
+10 -convergent_lines(parallel_through_point(A,B),A).  [clausify(5)].
+11 -apart_point_and_line(A,parallel_through_point(B,A)).  [clausify(6)].
+12 -distinct_lines(A,B) | convergent_lines(A,B).  [clausify(4)].
+13 -distinct_lines(A,B) | distinct_lines(A,C) | distinct_lines(B,C).  [clausify(2)].
+14 -apart_point_and_line(A,B) | distinct_lines(B,C) | apart_point_and_line(A,C).  [clausify(3)].
+15 -distinct_lines(parallel_through_point(A,B),A).  [resolve(12,b,10,a)].
+16 distinct_lines(c4,A) | apart_point_and_line(intersection_point(c1,c2),A) | apart_point_and_line(intersection_point(c1,c2),c3).  [resolve(14,a,8,b)].
+17 -distinct_lines(A,B) | distinct_lines(B,A).  [resolve(13,b,9,a)].
+18 -distinct_lines(A,parallel_through_point(A,B)).  [resolve(17,b,15,a)].
+19 -apart_point_and_line(A,B) | apart_point_and_line(A,parallel_through_point(B,C)).  [resolve(14,b,18,a)].
+20 -apart_point_and_line(A,B).  [resolve(19,b,11,a)].
+21 -distinct_lines(A,B) | distinct_lines(B,parallel_through_point(A,C)).  [resolve(13,b,18,a)].
+22 -distinct_lines(A,parallel_through_point(parallel_through_point(A,B),C)).  [resolve(21,b,15,a)].
+23 distinct_lines(c4,A) | apart_point_and_line(intersection_point(c1,c2),c3).  [resolve(20,a,16,b)].
+24 distinct_lines(c4,A).  [resolve(20,a,23,b)].
+25 $F.  [resolve(24,a,22,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,12 @@
+
+
+
+4 relation(c2).  [clausify(3)].
+5 relation_rng_restriction(c1,relation_dom_restriction(c2,c1)) != relation_restriction(c2,c1).  [clausify(3)].
+6 -relation(A) | relation_dom_restriction(relation_rng_restriction(B,A),B) = relation_restriction(A,B).  [clausify(2)].
+7 -relation(A) | relation_rng_restriction(B,relation_dom_restriction(A,C)) = relation_dom_restriction(relation_rng_restriction(B,A),C).  [clausify(1)].
+8 relation_dom_restriction(relation_rng_restriction(A,c2),A) = relation_restriction(c2,A).  [resolve(6,a,4,a)].
+9 relation_rng_restriction(A,relation_dom_restriction(c2,B)) = relation_dom_restriction(relation_rng_restriction(A,c2),B).  [resolve(7,a,4,a)].
+10 relation_dom_restriction(relation_rng_restriction(c1,c2),c1) != relation_restriction(c2,c1).  [para(9(a,1),5(a,1))].
+11 relation_restriction(c2,c1) != relation_restriction(c2,c1).  [para(8(a,1),10(a,1))].
+12 $F.  [copy(11),xx(a)].

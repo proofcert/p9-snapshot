@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n109.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:12:23 CDT 2014
+% CPUTime    : 0.24 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 6023 was started by sandbox on n109.star.cs.uiowa.edu,
+Thu Jun  5 13:12:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5991_n109.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 35.
+% Level of proof is 7.
+% Maximum clause weight is 18.000.
+% Given clauses 109.
+
+
+1 (all A all B all C (path(A,B,C) -> vertex(A) & vertex(B) & (exists D (edge(D) & A = tail_of(D) & -(B = head_of(D) & C = path_cons(D,empty) <-> (exists E (path(head_of(D),B,E) & C = path_cons(D,E)))))))).  [assumption].
+2 (all A all B all C all D (path(A,B,C) & on_path(D,C) -> edge(D) & in_path(head_of(D),C) & in_path(tail_of(D),C))).  [assumption].
+3 (all A all B all C (path(B,C,A) -> (all D all E (precedes(D,E,A) -> on_path(D,A) & on_path(E,A) & -(sequential(D,E) <-> (exists F (sequential(D,F) & precedes(F,E,A)))))))).  [assumption].
+4 (all A all B all C (shortest_path(A,B,C) <-> path(A,B,C) & A != B & (all D (path(A,B,D) -> less_or_equal(length_of(C),length_of(D)))))).  [assumption].
+5 (all A all B all C all D all E (shortest_path(A,B,E) & precedes(C,D,E) -> -(exists F (tail_of(F) = tail_of(C) & head_of(F) = head_of(D))) & -precedes(D,C,E))).  [assumption].
+6 -(all A all B all C all D all E (shortest_path(A,B,E) & precedes(C,D,E) -> vertex(A) & vertex(B) & A != B & edge(C) & edge(D) & C != D & path(A,B,E))).  [assumption].
+7 -shortest_path(A,B,C) | B != A.  [clausify(4)].
+8 shortest_path(c1,c2,c5).  [clausify(6)].
+9 -shortest_path(A,B,C) | -precedes(D,E,C) | tail_of(F) != tail_of(D) | head_of(F) != head_of(E).  [clausify(5)].
+10 -shortest_path(A,B,C) | path(A,B,C).  [clausify(4)].
+11 precedes(c3,c4,c5).  [clausify(6)].
+12 -path(A,B,C) | vertex(A).  [clausify(1)].
+13 -path(A,B,C) | vertex(B).  [clausify(1)].
+14 -path(A,B,C) | -on_path(D,C) | edge(D).  [clausify(2)].
+15 -path(A,B,C) | -precedes(D,E,C) | on_path(D,C).  [clausify(3)].
+16 -path(A,B,C) | -precedes(D,E,C) | on_path(E,C).  [clausify(3)].
+17 -vertex(c1) | -vertex(c2) | c2 = c1 | -edge(c3) | -edge(c4) | c4 = c3 | -path(c1,c2,c5).  [clausify(6)].
+18 c2 != c1.  [resolve(7,a,8,a)].
+19 -precedes(A,B,c5) | tail_of(C) != tail_of(A) | head_of(C) != head_of(B).  [resolve(9,a,8,a)].
+20 path(c1,c2,c5).  [resolve(10,a,8,a)].
+21 -vertex(c1) | -vertex(c2) | -edge(c3) | -edge(c4) | c4 = c3 | -path(c1,c2,c5).  [resolve(18,a,17,c)].
+22 -vertex(c1) | -vertex(c2) | -edge(c3) | -edge(c4) | c4 = c3.  [resolve(20,a,21,f)].
+23 -path(A,B,c5) | on_path(c3,c5).  [resolve(15,b,11,a)].
+24 -path(A,B,c5) | on_path(c4,c5).  [resolve(16,b,11,a)].
+25 tail_of(A) != tail_of(c3) | head_of(A) != head_of(c4).  [resolve(19,a,11,a)].
+26 head_of(c3) != head_of(c4).  [xx_res(25,a)].
+27 head_of(c4) != head_of(c3).  [copy(26),flip(a)].
+28 -on_path(A,c5) | edge(A).  [resolve(20,a,14,a)].
+29 vertex(c2).  [resolve(20,a,13,a)].
+30 vertex(c1).  [resolve(20,a,12,a)].
+31 -vertex(c2) | -edge(c3) | -edge(c4) | c4 = c3.  [resolve(30,a,22,a)].
+32 -edge(c3) | -edge(c4) | c4 = c3.  [resolve(29,a,31,a)].
+33 on_path(c3,c5).  [resolve(23,a,20,a)].
+34 edge(c3).  [resolve(33,a,28,a)].
+35 -edge(c4) | c4 = c3.  [resolve(34,a,32,a)].
+36 on_path(c4,c5).  [resolve(24,a,20,a)].
+37 edge(c4).  [resolve(36,a,28,a)].
+38 c4 = c3.  [resolve(37,a,35,a)].
+39 head_of(c3) != head_of(c3).  [para(38(a,1),27(a,1,1))].
+40 $F.  [copy(39),xx(a)].
+
+============================== end of proof ==========================

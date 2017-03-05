@@ -1,0 +1,51 @@
+
+
+
+
+5 subset(A,B) | member(f1(A,B),A).  [clausify(3)].
+6 difference(c2,c3) != c1.  [clausify(4)].
+7 -member(A,c1) | -member(A,c3).  [clausify(4)].
+8 -member(A,difference(B,C)) | -member(A,C).  [clausify(1)].
+9 -member(A,c1) | member(A,c2).  [clausify(4)].
+10 -member(A,difference(B,C)) | member(A,B).  [clausify(1)].
+11 subset(A,B) | -member(f1(A,B),B).  [clausify(3)].
+12 A = B | -subset(B,A) | -subset(A,B).  [clausify(2)].
+13 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(3)].
+14 member(A,c1) | -member(A,c2) | member(A,c3).  [clausify(4)].
+15 member(A,difference(B,C)) | -member(A,B) | member(A,C).  [clausify(1)].
+16 A = B | -subset(A,B) | member(f1(B,A),B).  [resolve(12,b,5,a)].
+17 A = B | -subset(B,A) | member(f1(A,B),A).  [resolve(12,c,5,a)].
+18 -member(A,B) | member(A,C) | member(f1(B,C),B).  [resolve(13,a,5,a)].
+19 A = B | member(f1(B,A),B) | member(f1(A,B),A).  [resolve(16,b,5,a)].
+20 A = B | member(f1(A,B),A) | member(f1(B,A),C) | member(f1(B,C),B).  [resolve(19,b,18,a)].
+21 A = difference(B,C) | member(f1(A,difference(B,C)),A) | member(f1(difference(B,C),A),B).  [resolve(19,b,10,a)].
+22 difference(A,B) = C | member(f1(C,difference(A,B)),C) | member(f1(difference(A,B),C),A).  [copy(21),flip(a)].
+23 A = difference(B,C) | member(f1(A,difference(B,C)),A) | member(f1(difference(B,C),A),D) | -member(f1(difference(B,C),D),C).  [resolve(20,d,8,a)].
+24 difference(A,B) = C | member(f1(C,difference(A,B)),C) | member(f1(difference(A,B),C),D) | -member(f1(difference(A,B),D),B).  [copy(23),flip(a)].
+25 difference(c2,A) = B | member(f1(B,difference(c2,A)),B) | member(f1(difference(c2,A),B),c1) | member(f1(difference(c2,A),B),c3).  [resolve(22,c,14,b)].
+26 difference(c2,c3) = A | member(f1(A,difference(c2,c3)),A) | member(f1(difference(c2,c3),A),c1) | difference(c2,c3) = B | member(f1(B,difference(c2,c3)),B) | member(f1(difference(c2,c3),B),A).  [resolve(25,d,24,d)].
+27 difference(c2,c3) = c1 | member(f1(c1,difference(c2,c3)),c1) | member(f1(difference(c2,c3),c1),c1) | difference(c2,c3) = c1 | member(f1(c1,difference(c2,c3)),c1).  [factor(26,c,f)].
+28 difference(c2,c3) = c1 | member(f1(c1,difference(c2,c3)),c1) | member(f1(difference(c2,c3),c1),c1) | member(f1(c1,difference(c2,c3)),c1).  [copy(27),merge(d)].
+29 difference(c2,c3) = c1 | member(f1(c1,difference(c2,c3)),c1) | member(f1(difference(c2,c3),c1),c1).  [copy(28),merge(d)].
+30 member(f1(c1,difference(c2,c3)),c1) | member(f1(difference(c2,c3),c1),c1).  [resolve(6,a,29,a)].
+31 member(f1(c1,difference(c2,c3)),c1) | subset(difference(c2,c3),c1).  [resolve(30,b,11,b)].
+32 member(f1(c1,difference(c2,c3)),c1) | c1 = difference(c2,c3) | member(f1(c1,difference(c2,c3)),c1).  [resolve(31,b,17,b)].
+33 member(f1(c1,difference(c2,c3)),c1) | difference(c2,c3) = c1 | member(f1(c1,difference(c2,c3)),c1).  [copy(32),flip(b)].
+34 member(f1(c1,difference(c2,c3)),c1) | difference(c2,c3) = c1.  [copy(33),merge(c)].
+35 member(f1(c1,difference(c2,c3)),c1).  [resolve(6,a,34,b)].
+36 member(f1(c1,difference(c2,c3)),c2).  [resolve(35,a,9,a)].
+37 -member(f1(c1,difference(c2,c3)),c3).  [resolve(7,a,35,a)].
+38 member(f1(c1,difference(c2,c3)),difference(c2,A)) | member(f1(c1,difference(c2,c3)),A).  [resolve(36,a,15,b)].
+39 member(f1(c1,difference(c2,c3)),c3) | subset(c1,difference(c2,c3)).  [resolve(38,a,11,b)].
+40 subset(c1,difference(c2,c3)).  [resolve(37,a,39,a)].
+41 difference(c2,c3) = c1 | member(f1(difference(c2,c3),c1),difference(c2,c3)).  [resolve(40,a,17,b)].
+42 member(f1(difference(c2,c3),c1),difference(c2,c3)).  [resolve(6,a,41,a)].
+43 c1 = difference(c2,c3) | -subset(difference(c2,c3),c1).  [resolve(40,a,12,c)].
+44 difference(c2,c3) = c1 | -subset(difference(c2,c3),c1).  [copy(43),flip(a)].
+45 -subset(difference(c2,c3),c1).  [resolve(6,a,44,a)].
+46 -member(f1(difference(c2,c3),c1),c1).  [resolve(11,a,45,a)].
+47 member(f1(difference(c2,c3),c1),c2).  [resolve(42,a,10,a)].
+48 -member(f1(difference(c2,c3),c1),c3).  [resolve(42,a,8,a)].
+49 member(f1(difference(c2,c3),c1),c1) | member(f1(difference(c2,c3),c1),c3).  [resolve(47,a,14,b)].
+50 member(f1(difference(c2,c3),c1),c3).  [resolve(46,a,49,a)].
+51 $F.  [resolve(48,a,50,a)].

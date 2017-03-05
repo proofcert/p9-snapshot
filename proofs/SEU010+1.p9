@@ -1,0 +1,50 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n055.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:15:58 CDT 2014
+% CPUTime    : 0.26 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 22546 was started by sandbox on n055.star.cs.uiowa.edu,
+Thu Jun  5 13:15:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_22514_n055.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.08 (+ 0.00) seconds.
+% Length of proof is 13.
+% Level of proof is 5.
+% Maximum clause weight is 14.000.
+% Given clauses 315.
+
+
+1 (all A all B subset(A,A)).  [assumption].
+2 (all A all B (relation(B) -> (subset(relation_dom(B),A) -> relation_composition(identity_relation(A),B) = B))).  [assumption].
+3 (all A all B (relation(B) -> (subset(relation_rng(B),A) -> relation_composition(B,identity_relation(A)) = B))).  [assumption].
+4 -(all A (relation(A) & function(A) -> relation_composition(identity_relation(relation_dom(A)),A) = A & relation_composition(A,identity_relation(relation_rng(A))) = A)).  [assumption].
+5 relation(c7).  [clausify(4)].
+6 subset(A,A).  [clausify(1)].
+7 relation_composition(identity_relation(relation_dom(c7)),c7) != c7 | relation_composition(c7,identity_relation(relation_rng(c7))) != c7.  [clausify(4)].
+8 -relation(A) | -subset(relation_dom(A),B) | relation_composition(identity_relation(B),A) = A.  [clausify(2)].
+9 -relation(A) | -subset(relation_rng(A),B) | relation_composition(A,identity_relation(B)) = A.  [clausify(3)].
+10 -relation(A) | relation_composition(identity_relation(relation_dom(A)),A) = A.  [resolve(8,b,6,a)].
+11 relation_composition(identity_relation(relation_dom(c7)),c7) = c7.  [resolve(10,a,5,a)].
+12 c7 != c7 | relation_composition(c7,identity_relation(relation_rng(c7))) != c7.  [para(11(a,1),7(a,1))].
+13 relation_composition(c7,identity_relation(relation_rng(c7))) != c7.  [copy(12),xx(a)].
+14 -relation(A) | relation_composition(A,identity_relation(relation_rng(A))) = A.  [resolve(9,b,6,a)].
+15 -relation(c7).  [resolve(14,b,13,a)].
+16 $F.  [resolve(5,a,15,a)].
+
+============================== end of proof ==========================

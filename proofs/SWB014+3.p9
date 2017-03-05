@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n143.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:18:38 CDT 2014
+% CPUTime    : 30.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 26646 was started by sandbox on n143.star.cs.uiowa.edu,
+Thu Jun  5 15:18:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_26614_n143.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 29.63 (+ 0.54) seconds.
+% Length of proof is 25.
+% Level of proof is 7.
+% Maximum clause weight is 29.000.
+% Given clauses 32186.
+
+
+1 (all A all B all C all D all E (iext(uri_rdf_first,B,C) & iext(uri_rdf_rest,B,D) & iext(uri_rdf_first,D,E) & iext(uri_rdf_rest,D,uri_rdf_nil) -> (iext(uri_owl_unionOf,A,B) <-> ic(A) & ic(C) & ic(E) & (all F (icext(A,F) <-> icext(C,F) | icext(E,F)))))).  [assumption].
+2 (all A all B (iext(uri_rdf_type,A,B) <-> icext(B,A))).  [assumption].
+3 (exists A exists B exists C (iext(uri_rdf_type,uri_ex_Eagle,uri_ex_Species) & iext(uri_rdf_type,uri_ex_Falcon,uri_ex_Species) & iext(uri_rdf_type,uri_ex_harry,A) & iext(uri_owl_unionOf,A,B) & iext(uri_rdf_first,B,uri_ex_Eagle) & iext(uri_rdf_rest,B,C) & iext(uri_rdf_first,C,uri_ex_Falcon) & iext(uri_rdf_rest,C,uri_rdf_nil))).  [assumption].
+4 -(exists A (iext(uri_rdf_type,uri_ex_harry,A) & iext(uri_rdf_type,A,uri_ex_Species))).  [assumption].
+5 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_unionOf,E,A) | -icext(E,F) | icext(B,F) | icext(D,F).  [clausify(1)].
+6 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(2)].
+7 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(2)].
+8 iext(uri_rdf_type,uri_ex_Eagle,uri_ex_Species).  [clausify(3)].
+9 iext(uri_rdf_type,uri_ex_Falcon,uri_ex_Species).  [clausify(3)].
+10 iext(uri_rdf_type,uri_ex_harry,c2).  [clausify(3)].
+11 iext(uri_owl_unionOf,c2,c3).  [clausify(3)].
+12 iext(uri_rdf_first,c3,uri_ex_Eagle).  [clausify(3)].
+13 iext(uri_rdf_rest,c3,c4).  [clausify(3)].
+14 iext(uri_rdf_first,c4,uri_ex_Falcon).  [clausify(3)].
+15 iext(uri_rdf_rest,c4,uri_rdf_nil).  [clausify(3)].
+16 -iext(uri_rdf_type,uri_ex_harry,A) | -iext(uri_rdf_type,A,uri_ex_Species).  [clausify(4)].
+17 icext(c2,uri_ex_harry).  [resolve(10,a,6,a)].
+18 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c3,B) | -iext(uri_rdf_first,B,C) | -iext(uri_rdf_rest,B,uri_rdf_nil) | -icext(c2,D) | icext(A,D) | icext(C,D).  [resolve(11,a,5,e)].
+19 -iext(uri_rdf_type,uri_ex_harry,uri_ex_Falcon).  [resolve(16,b,9,a)].
+20 -iext(uri_rdf_type,uri_ex_harry,uri_ex_Eagle).  [resolve(16,b,8,a)].
+21 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c3,c4) | -iext(uri_rdf_rest,c4,uri_rdf_nil) | -icext(c2,B) | icext(A,B) | icext(uri_ex_Falcon,B).  [resolve(18,c,14,a)].
+22 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c4,uri_rdf_nil) | -icext(c2,B) | icext(A,B) | icext(uri_ex_Falcon,B).  [resolve(13,a,21,b)].
+23 -iext(uri_rdf_first,c3,A) | -icext(c2,B) | icext(A,B) | icext(uri_ex_Falcon,B).  [resolve(15,a,22,b)].
+24 -icext(c2,A) | icext(uri_ex_Eagle,A) | icext(uri_ex_Falcon,A).  [resolve(23,a,12,a)].
+25 icext(uri_ex_Eagle,uri_ex_harry) | icext(uri_ex_Falcon,uri_ex_harry).  [resolve(24,a,17,a)].
+26 icext(uri_ex_Eagle,uri_ex_harry) | iext(uri_rdf_type,uri_ex_harry,uri_ex_Falcon).  [resolve(25,b,7,b)].
+27 icext(uri_ex_Eagle,uri_ex_harry).  [resolve(19,a,26,b)].
+28 iext(uri_rdf_type,uri_ex_harry,uri_ex_Eagle).  [resolve(27,a,7,b)].
+29 $F.  [resolve(20,a,28,a)].
+
+============================== end of proof ==========================

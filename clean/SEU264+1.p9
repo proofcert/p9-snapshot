@@ -1,0 +1,16 @@
+
+
+
+
+5 subset(c1,c2).  [clausify(4)].
+6 relation_of2_as_subset(c4,c3,c1).  [clausify(4)].
+7 -relation_of2_as_subset(c4,c3,c2).  [clausify(4)].
+8 -relation_of2_as_subset(A,B,C) | subset(relation_rng(A),C).  [clausify(1)].
+9 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(3)].
+10 -relation_of2_as_subset(A,B,C) | -subset(relation_rng(A),D) | relation_of2_as_subset(A,B,D).  [clausify(2)].
+11 subset(relation_rng(c4),c1).  [resolve(8,a,6,a)].
+12 -subset(relation_rng(c4),A) | relation_of2_as_subset(c4,c3,A).  [resolve(10,a,6,a)].
+13 -subset(relation_rng(c4),c2).  [resolve(12,b,7,a)].
+14 -subset(A,c1) | subset(A,c2).  [resolve(9,b,5,a)].
+15 -subset(relation_rng(c4),c1).  [resolve(14,b,13,a)].
+16 $F.  [resolve(15,a,11,a)].

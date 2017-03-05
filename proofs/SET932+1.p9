@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n072.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:53:28 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 36041 was started by sandbox on n072.star.cs.uiowa.edu,
+Sat Jun  7 00:53:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_36009_n072.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 5.
+% Maximum clause weight is 12.000.
+% Given clauses 64.
+
+
+1 (all A all B (B = powerset(A) <-> (all C (in(C,B) <-> subset(C,A))))).  [assumption].
+2 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+3 (all A all B all C (subset(A,B) & subset(B,C) -> subset(A,C))).  [assumption].
+4 -(all A all B (subset(A,B) -> subset(powerset(A),powerset(B)))).  [assumption].
+5 subset(c3,c4).  [clausify(4)].
+6 subset(A,B) | in(f2(A,B),A).  [clausify(2)].
+7 -subset(powerset(c3),powerset(c4)).  [clausify(4)].
+8 subset(A,B) | -in(f2(A,B),B).  [clausify(2)].
+9 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(3)].
+10 powerset(A) != B | -in(C,B) | subset(C,A).  [clausify(1)].
+11 powerset(A) != B | in(C,B) | -subset(C,A).  [clausify(1)].
+12 -in(f2(powerset(c3),powerset(c4)),powerset(c4)).  [resolve(8,a,7,a)].
+13 -subset(A,c3) | subset(A,c4).  [resolve(9,b,5,a)].
+14 powerset(A) != B | subset(f2(B,C),A) | subset(B,C).  [resolve(10,b,6,b)].
+15 in(A,powerset(B)) | -subset(A,B).  [xx_res(11,a)].
+16 -subset(f2(powerset(c3),powerset(c4)),c4).  [resolve(15,a,12,a)].
+17 subset(f2(powerset(A),B),A) | subset(powerset(A),B).  [xx_res(14,a)].
+18 subset(powerset(c3),A) | subset(f2(powerset(c3),A),c4).  [resolve(17,a,13,a)].
+19 subset(powerset(c3),powerset(c4)).  [resolve(16,a,18,b)].
+20 $F.  [resolve(7,a,19,a)].
+
+============================== end of proof ==========================

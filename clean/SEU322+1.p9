@@ -1,0 +1,65 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15 -top_str(A) | one_sorted_str(A).  [clausify(7)].
+16 top_str(c5).  [clausify(14)].
+17 -top_str(A) | -element(B,powerset(the_carrier(A))) | subset(B,topstr_closure(A,B)).  [clausify(10)].
+18 -top_str(A) | -element(B,powerset(the_carrier(A))) | element(interior(A,B),powerset(the_carrier(A))).  [clausify(4)].
+19 -top_str(A) | -element(B,powerset(the_carrier(A))) | element(topstr_closure(A,B),powerset(the_carrier(A))).  [clausify(6)].
+20 -top_str(A) | -element(B,powerset(the_carrier(A))) | interior(A,B) = subset_complement(the_carrier(A),topstr_closure(A,subset_complement(the_carrier(A),B))).  [clausify(2)].
+21 -one_sorted_str(A) | -empty_carrier(A) | empty(the_carrier(A)).  [clausify(1)].
+22 empty_carrier(A) | -one_sorted_str(A) | -element(B,powerset(the_carrier(A))) | -element(C,the_carrier(A)) | in(C,subset_complement(the_carrier(A),B)) | in(C,B).  [clausify(9)].
+23 one_sorted_str(c5).  [resolve(15,a,16,a)].
+24 element(c6,powerset(the_carrier(c5))).  [clausify(14)].
+25 subset(A,B) | in(f1(A,B),A).  [clausify(3)].
+26 -subset(interior(c5,c6),c6).  [clausify(14)].
+27 -in(A,B) | -element(B,powerset(C)) | -empty(C).  [clausify(13)].
+28 -element(A,powerset(B)) | -in(C,subset_complement(B,A)) | -in(C,A).  [clausify(12)].
+29 subset(A,B) | -in(f1(A,B),B).  [clausify(3)].
+30 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(3)].
+31 -element(A,powerset(B)) | element(subset_complement(B,A),powerset(B)).  [clausify(5)].
+32 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(11)].
+33 -element(A,powerset(B)) | subset_complement(B,subset_complement(B,A)) = A.  [clausify(8)].
+34 -element(A,powerset(the_carrier(c5))) | subset(A,topstr_closure(c5,A)).  [resolve(17,a,16,a)].
+35 -element(A,powerset(the_carrier(c5))) | element(interior(c5,A),powerset(the_carrier(c5))).  [resolve(18,a,16,a)].
+36 -element(A,powerset(the_carrier(c5))) | element(topstr_closure(c5,A),powerset(the_carrier(c5))).  [resolve(19,a,16,a)].
+37 -element(A,powerset(the_carrier(c5))) | interior(c5,A) = subset_complement(the_carrier(c5),topstr_closure(c5,subset_complement(the_carrier(c5),A))).  [resolve(20,a,16,a)].
+38 -element(A,powerset(the_carrier(c5))) | subset_complement(the_carrier(c5),topstr_closure(c5,subset_complement(the_carrier(c5),A))) = interior(c5,A).  [copy(37),flip(b)].
+39 -empty_carrier(c5) | empty(the_carrier(c5)).  [resolve(23,a,21,a)].
+40 empty_carrier(c5) | -element(A,powerset(the_carrier(c5))) | -element(B,the_carrier(c5)) | in(B,subset_complement(the_carrier(c5),A)) | in(B,A).  [resolve(23,a,22,b)].
+41 in(f1(interior(c5,c6),c6),interior(c5,c6)).  [resolve(26,a,25,a)].
+42 -in(f1(interior(c5,c6),c6),c6).  [resolve(29,a,26,a)].
+43 element(subset_complement(the_carrier(c5),c6),powerset(the_carrier(c5))).  [resolve(31,a,24,a)].
+44 element(interior(c5,c6),powerset(the_carrier(c5))).  [resolve(35,a,24,a)].
+45 subset_complement(the_carrier(c5),topstr_closure(c5,subset_complement(the_carrier(c5),c6))) = interior(c5,c6).  [resolve(38,a,24,a)].
+46 empty_carrier(c5) | -element(A,the_carrier(c5)) | in(A,subset_complement(the_carrier(c5),c6)) | in(A,c6).  [resolve(40,b,24,a)].
+47 -element(interior(c5,c6),powerset(A)) | element(f1(interior(c5,c6),c6),A).  [resolve(41,a,32,a)].
+48 -element(interior(c5,c6),powerset(A)) | -empty(A).  [resolve(41,a,27,a)].
+49 element(topstr_closure(c5,subset_complement(the_carrier(c5),c6)),powerset(the_carrier(c5))).  [resolve(43,a,36,a)].
+50 subset(subset_complement(the_carrier(c5),c6),topstr_closure(c5,subset_complement(the_carrier(c5),c6))).  [resolve(43,a,34,a)].
+51 -empty(the_carrier(c5)).  [resolve(44,a,48,a)].
+52 -in(A,subset_complement(the_carrier(c5),interior(c5,c6))) | -in(A,interior(c5,c6)).  [resolve(28,a,44,a)].
+53 -in(f1(interior(c5,c6),c6),subset_complement(the_carrier(c5),interior(c5,c6))).  [resolve(52,b,41,a)].
+54 -empty_carrier(c5).  [resolve(51,a,39,b)].
+55 -element(A,the_carrier(c5)) | in(A,subset_complement(the_carrier(c5),c6)) | in(A,c6).  [resolve(54,a,46,a)].
+56 element(f1(interior(c5,c6),c6),the_carrier(c5)).  [resolve(47,a,44,a)].
+57 subset_complement(the_carrier(c5),subset_complement(the_carrier(c5),topstr_closure(c5,subset_complement(the_carrier(c5),c6)))) = topstr_closure(c5,subset_complement(the_carrier(c5),c6)).  [resolve(49,a,33,a)].
+58 subset_complement(the_carrier(c5),interior(c5,c6)) = topstr_closure(c5,subset_complement(the_carrier(c5),c6)).  [para(45(a,1),57(a,1,2))].
+59 topstr_closure(c5,subset_complement(the_carrier(c5),c6)) = subset_complement(the_carrier(c5),interior(c5,c6)).  [copy(58),flip(a)].
+60 subset(subset_complement(the_carrier(c5),c6),subset_complement(the_carrier(c5),interior(c5,c6))).  [para(59(a,1),50(a,2))].
+61 in(f1(interior(c5,c6),c6),subset_complement(the_carrier(c5),c6)) | in(f1(interior(c5,c6),c6),c6).  [resolve(55,a,56,a)].
+62 in(f1(interior(c5,c6),c6),subset_complement(the_carrier(c5),c6)).  [resolve(42,a,61,b)].
+63 -subset(subset_complement(the_carrier(c5),c6),A) | in(f1(interior(c5,c6),c6),A).  [resolve(30,b,62,a)].
+64 -subset(subset_complement(the_carrier(c5),c6),subset_complement(the_carrier(c5),interior(c5,c6))).  [resolve(63,b,53,a)].
+65 $F.  [resolve(60,a,64,a)].

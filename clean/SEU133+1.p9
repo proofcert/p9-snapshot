@@ -1,0 +1,15 @@
+
+
+
+
+5 set_difference(A,empty_set) = A.  [clausify(3)].
+6 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+7 -subset(set_difference(c3,c4),c3).  [clausify(4)].
+8 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+9 set_difference(A,B) != C | -in(D,C) | in(D,A).  [clausify(2)].
+10 in(f1(set_difference(c3,c4),c3),set_difference(c3,c4)).  [resolve(7,a,6,a)].
+11 -in(f1(set_difference(c3,c4),c3),c3).  [resolve(8,a,7,a)].
+12 -in(A,set_difference(set_difference(B,C),empty_set)) | in(A,B).  [resolve(9,a,5,a(flip))].
+13 -in(f1(set_difference(c3,c4),c3),set_difference(set_difference(c3,A),empty_set)).  [resolve(12,b,11,a)].
+14 -in(f1(set_difference(c3,c4),c3),set_difference(c3,A)).  [para(5(a,1),13(a,2))].
+15 $F.  [resolve(14,a,10,a)].

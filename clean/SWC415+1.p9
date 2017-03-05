@@ -1,0 +1,43 @@
+
+
+
+4 -ssList(A) | -ssList(B) | -neq(A,B) | B != A.  [clausify(1)].
+5 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(1)].
+6 ssList(nil).  [assumption].
+7 -ssList(A) | nil = A | ssList(tl(A)).  [clausify(2)].
+8 ssList(c4).  [clausify(3)].
+9 c6 = c4.  [clausify(3)].
+10 c5 = c3.  [clausify(3)].
+11 neq(c4,nil).  [clausify(3)].
+12 -ssList(A) | A = c5 | tl(c6) != A | -neq(nil,c6) | -neq(c6,nil).  [clausify(3)].
+13 -ssList(A) | A = c3 | tl(c6) != A | -neq(nil,c6) | -neq(c6,nil).  [para(10(a,1),12(b,2))].
+14 -ssList(A) | A = c3 | tl(c4) != A | -neq(nil,c6) | -neq(c6,nil).  [para(9(a,1),13(c,1,1))].
+15 -ssList(A) | A = c3 | tl(c4) != A | -neq(nil,c4) | -neq(c6,nil).  [para(9(a,1),14(d,2))].
+16 -ssList(A) | A = c3 | tl(c4) != A | -neq(nil,c4) | -neq(c4,nil).  [para(9(a,1),15(e,1))].
+17 -ssList(A) | c3 = A | tl(c4) != A | -neq(nil,c4) | -neq(c4,nil).  [copy(16),flip(b)].
+18 -ssList(A) | c3 = A | tl(c4) != A | -neq(nil,c4).  [resolve(11,a,17,e)].
+19 -ssList(A) | tl(c4) != A | A != c3 | -neq(nil,c4) | -neq(c6,nil).  [clausify(3)].
+20 -ssList(A) | tl(c4) != A | A != c3 | -neq(nil,c4) | -neq(c4,nil).  [para(9(a,1),19(e,1))].
+21 -ssList(A) | tl(c4) != A | c3 != A | -neq(nil,c4) | -neq(c4,nil).  [copy(20),flip(c)].
+22 -ssList(A) | tl(c4) != A | c3 != A | -neq(nil,c4).  [resolve(11,a,21,e)].
+23 -ssList(A) | neq(nil,A) | A = nil.  [resolve(6,a,5,a)].
+24 -ssList(A) | neq(nil,A) | nil = A.  [copy(23),flip(c)].
+25 nil = c4 | ssList(tl(c4)).  [resolve(8,a,7,a)].
+26 c4 = nil | ssList(tl(c4)).  [copy(25),flip(a)].
+27 -ssList(c4) | -ssList(nil) | nil != c4.  [resolve(11,a,4,c)].
+28 -ssList(c4) | -ssList(nil) | c4 != nil.  [copy(27),flip(c)].
+29 -ssList(nil) | c4 != nil.  [resolve(8,a,28,a)].
+30 c4 != nil.  [resolve(6,a,29,a)].
+31 ssList(tl(c4)).  [resolve(30,a,26,a)].
+32 neq(nil,c4) | nil = c4.  [resolve(24,a,8,a)].
+33 neq(nil,c4) | c4 = nil.  [copy(32),flip(b)].
+34 neq(nil,c4).  [resolve(30,a,33,b)].
+35 -ssList(A) | tl(c4) != A | c3 != A.  [resolve(34,a,22,d)].
+36 -ssList(A) | c3 = A | tl(c4) != A.  [resolve(34,a,18,d)].
+37 tl(c4) != tl(c4) | c3 != tl(c4).  [resolve(35,a,31,a)].
+38 tl(c4) != tl(c4) | tl(c4) != c3.  [copy(37),flip(b)].
+39 tl(c4) != c3.  [copy(38),xx(a)].
+40 c3 = tl(c4) | tl(c4) != tl(c4).  [resolve(36,a,31,a)].
+41 tl(c4) = c3 | tl(c4) != tl(c4).  [copy(40),flip(a)].
+42 tl(c4) = c3.  [copy(41),xx(b)].
+43 $F.  [resolve(39,a,42,a)].

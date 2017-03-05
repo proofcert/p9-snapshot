@@ -1,0 +1,13 @@
+
+
+
+4 subset(A,B) | in(f3(A,B),A).  [clausify(1)].
+5 -subset(set_difference(c3,c4),c3).  [clausify(3)].
+6 subset(A,B) | -in(f3(A,B),B).  [clausify(1)].
+7 set_difference(A,B) != C | -in(D,C) | in(D,A).  [clausify(2)].
+8 in(f3(set_difference(c3,c4),c3),set_difference(c3,c4)).  [resolve(5,a,4,a)].
+9 -in(f3(set_difference(c3,c4),c3),c3).  [resolve(6,a,5,a)].
+10 set_difference(A,B) != set_difference(c3,c4) | in(f3(set_difference(c3,c4),c3),A).  [resolve(7,b,8,a)].
+11 set_difference(c3,A) != set_difference(c3,c4).  [resolve(10,b,9,a)].
+12 set_difference(c3,c4) != set_difference(c3,A).  [copy(11),flip(a)].
+13 $F.  [copy(12),xx(a)].

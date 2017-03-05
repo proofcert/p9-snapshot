@@ -1,0 +1,41 @@
+
+
+
+
+
+
+
+8 -accept_population(A,B,C) | -less(D,C) | accept_population(A,B,D).  [clausify(1)].
+9 -accept_population(A,atheist,n75) | -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [clausify(2)].
+10 accept_population(A,atheist,n75) | -accept_city(A,citya).  [clausify(3)].
+11 accept_population(A,christian,n25) | -accept_city(A,citya).  [clausify(3)].
+12 accept_population(A,native,n0) | -accept_city(A,citya).  [clausify(3)].
+13 accept_population(A,other,n0) | -accept_city(A,citya).  [clausify(3)].
+14 accept_population(muslimcountrybhumanitarianorganization,muslim,n1).  [assumption].
+15 -accept_city(muslimcountrybhumanitarianorganization,towna).  [assumption].
+16 rdn_translate(n24,rdn_pos(rdn(rdnn(n4),rdnn(n2)))).  [assumption].
+17 rdn_translate(n25,rdn_pos(rdn(rdnn(n5),rdnn(n2)))).  [assumption].
+18 rdn_non_zero_digit(rdnn(n2)).  [assumption].
+19 rdn_positive_less(rdnn(n4),rdnn(n5)).  [assumption].
+20 -rdn_positive_less(rdnn(A),rdnn(B)) | -rdn_non_zero(C) | rdn_positive_less(rdn(rdnn(A),C),rdn(rdnn(B),C)).  [clausify(4)].
+21 -rdn_non_zero_digit(rdnn(A)) | rdn_non_zero(rdnn(A)).  [clausify(5)].
+22 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_positive_less(B,D) | less(A,C).  [clausify(6)].
+23 accept_city(A,citya).  [clausify(7)].
+24 accept_population(A,other,n0).  [resolve(23,a,13,b)].
+25 accept_population(A,native,n0).  [resolve(23,a,12,b)].
+26 accept_population(A,christian,n25).  [resolve(23,a,11,b)].
+27 accept_population(A,atheist,n75).  [resolve(23,a,10,b)].
+28 -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(27,a,9,a)].
+29 -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(25,a,28,c)].
+30 -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | accept_city(A,towna).  [resolve(24,a,29,c)].
+31 -rdn_non_zero(A) | rdn_positive_less(rdn(rdnn(n4),A),rdn(rdnn(n5),A)).  [resolve(20,a,19,a)].
+32 rdn_non_zero(rdnn(n2)).  [resolve(21,a,18,a)].
+33 -less(A,n25) | accept_population(B,christian,A).  [resolve(26,a,8,a)].
+34 -accept_population(muslimcountrybhumanitarianorganization,christian,n24) | accept_city(muslimcountrybhumanitarianorganization,towna).  [resolve(30,b,14,a)].
+35 -accept_population(muslimcountrybhumanitarianorganization,christian,n24).  [resolve(15,a,34,b)].
+36 rdn_positive_less(rdn(rdnn(n4),rdnn(n2)),rdn(rdnn(n5),rdnn(n2))).  [resolve(31,a,32,a)].
+37 -rdn_translate(A,rdn_pos(rdn(rdnn(n4),rdnn(n2)))) | -rdn_translate(B,rdn_pos(rdn(rdnn(n5),rdnn(n2)))) | less(A,B).  [resolve(36,a,22,c)].
+38 -rdn_translate(A,rdn_pos(rdn(rdnn(n5),rdnn(n2)))) | less(n24,A).  [resolve(37,a,16,a)].
+39 less(n24,n25).  [resolve(38,a,17,a)].
+40 accept_population(A,christian,n24).  [resolve(39,a,33,a)].
+41 $F.  [resolve(40,a,35,a)].

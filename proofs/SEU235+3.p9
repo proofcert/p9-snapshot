@@ -1,0 +1,140 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n151.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 04:42:48 CDT 2014
+% CPUTime    : 1.02 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 8087 was started by sandbox on n151.star.cs.uiowa.edu,
+Fri Jun  6 04:42:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_8055_n151.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.80 (+ 0.01) seconds.
+% Length of proof is 77.
+% Level of proof is 18.
+% Maximum clause weight is 23.000.
+% Given clauses 2367.
+
+
+1 (all A (ordinal(A) -> epsilon_transitive(A) & epsilon_connected(A))).  [assumption].
+2 (all A (epsilon_transitive(A) <-> (all B (in(B,A) -> subset(B,A))))).  [assumption].
+3 (all A exists B element(B,A)).  [assumption].
+4 (all A all B (ordinal(A) & ordinal(B) -> (ordinal_subset(A,B) <-> subset(A,B)))).  [assumption].
+5 (all A all B (ordinal(A) & ordinal(B) -> ordinal_subset(A,A))).  [assumption].
+6 (all A all B (ordinal(B) -> (in(A,B) -> ordinal(A)))).  [assumption].
+7 (all A (ordinal(A) -> (all B (ordinal(B) -> -(-in(A,B) & A != B & -in(B,A)))))).  [assumption].
+8 (all A all B (element(A,B) -> empty(B) | in(A,B))).  [assumption].
+9 (all A all B (element(A,powerset(B)) <-> subset(A,B))).  [assumption].
+10 (all A all B all C (in(A,B) & element(B,powerset(C)) -> element(A,C))).  [assumption].
+11 (all A all B all C -(in(A,B) & element(B,powerset(C)) & empty(C))).  [assumption].
+12 (all A (empty(A) -> A = empty_set)).  [assumption].
+13 (all A all B -(in(A,B) & (all C -(in(C,B) & (all D -(in(D,B) & in(D,C))))))).  [assumption].
+14 -(all A all B (ordinal(B) -> -(subset(A,B) & A != empty_set & (all C (ordinal(C) -> -(in(C,A) & (all D (ordinal(D) -> (in(D,A) -> ordinal_subset(C,D)))))))))).  [assumption].
+15 -ordinal(A) | epsilon_transitive(A).  [clausify(1)].
+16 -epsilon_transitive(A) | -in(B,A) | subset(B,A).  [clausify(2)].
+17 ordinal(c15).  [clausify(14)].
+18 subset(c14,c15).  [clausify(14)].
+19 element(f2(A),A).  [clausify(3)].
+20 empty_set != c14.  [clausify(14)].
+21 c14 != empty_set.  [copy(20),flip(a)].
+22 -in(A,B) | -element(B,powerset(C)) | -empty(C).  [clausify(11)].
+23 -ordinal(A) | -in(A,c14) | -ordinal_subset(A,f4(A)).  [clausify(14)].
+24 -in(A,B) | -in(C,B) | -in(C,f3(A,B)).  [clausify(13)].
+25 -empty(A) | empty_set = A.  [clausify(12)].
+26 -ordinal(A) | -ordinal(B) | ordinal_subset(A,A).  [clausify(5)].
+27 -ordinal(A) | -in(B,A) | ordinal(B).  [clausify(6)].
+28 element(A,powerset(B)) | -subset(A,B).  [clausify(9)].
+29 -element(A,B) | empty(B) | in(A,B).  [clausify(8)].
+30 -in(A,B) | in(f3(A,B),B).  [clausify(13)].
+31 -ordinal(A) | -in(A,c14) | ordinal(f4(A)).  [clausify(14)].
+32 -ordinal(A) | -in(A,c14) | in(f4(A),c14).  [clausify(14)].
+33 -ordinal(A) | -ordinal(B) | ordinal_subset(A,B) | -subset(A,B).  [clausify(4)].
+34 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(10)].
+35 -ordinal(A) | -ordinal(B) | in(A,B) | B = A | in(B,A).  [clausify(7)].
+36 -in(A,B) | subset(A,B) | -ordinal(B).  [resolve(16,a,15,b)].
+37 -in(A,B) | -in(A,f3(A,B)).  [factor(24,a,b)].
+38 -ordinal(A) | ordinal_subset(A,A).  [factor(26,a,b)].
+39 -empty(c14).  [resolve(25,b,21,a(flip))].
+40 element(c14,powerset(c15)).  [resolve(28,b,18,a)].
+41 empty(A) | in(f2(A),A).  [resolve(29,a,19,a)].
+42 -in(A,c14) | element(A,c15).  [resolve(40,a,34,b)].
+43 -in(A,c14) | -empty(c15).  [resolve(40,a,22,b)].
+44 empty(c14) | -ordinal(f2(c14)) | in(f4(f2(c14)),c14).  [resolve(41,b,32,b)].
+45 -ordinal(f2(c14)) | in(f4(f2(c14)),c14).  [resolve(39,a,44,a)].
+46 -empty(c15) | empty(c14).  [resolve(43,a,41,b)].
+47 -empty(c15).  [resolve(39,a,46,b)].
+48 element(f2(c14),c15) | empty(c14).  [resolve(42,a,41,b)].
+49 element(f2(c14),c15).  [resolve(39,a,48,b)].
+50 empty(c15) | in(f2(c14),c15).  [resolve(49,a,29,a)].
+51 in(f2(c14),c15).  [resolve(47,a,50,a)].
+52 -ordinal(c15) | ordinal(f2(c14)).  [resolve(51,a,27,b)].
+53 ordinal(f2(c14)).  [resolve(17,a,52,a)].
+54 in(f4(f2(c14)),c14).  [resolve(53,a,45,a)].
+55 in(f3(f4(f2(c14)),c14),c14).  [resolve(54,a,30,a)].
+56 element(f3(f4(f2(c14)),c14),c15).  [resolve(55,a,42,a)].
+57 -ordinal(f3(f4(f2(c14)),c14)) | in(f4(f3(f4(f2(c14)),c14)),c14).  [resolve(55,a,32,b)].
+58 -ordinal(f3(f4(f2(c14)),c14)) | ordinal(f4(f3(f4(f2(c14)),c14))).  [resolve(55,a,31,b)].
+59 in(f3(f3(f4(f2(c14)),c14),c14),c14).  [resolve(55,a,30,a)].
+60 -in(f3(f4(f2(c14)),c14),f3(f3(f4(f2(c14)),c14),c14)).  [resolve(37,a,55,a)].
+61 empty(c15) | in(f3(f4(f2(c14)),c14),c15).  [resolve(56,a,29,a)].
+62 in(f3(f4(f2(c14)),c14),c15).  [resolve(47,a,61,a)].
+63 -ordinal(c15) | ordinal(f3(f4(f2(c14)),c14)).  [resolve(62,a,27,b)].
+64 ordinal(f3(f4(f2(c14)),c14)).  [resolve(17,a,63,a)].
+65 ordinal(f4(f3(f4(f2(c14)),c14))).  [resolve(64,a,58,a)].
+66 in(f4(f3(f4(f2(c14)),c14)),c14).  [resolve(64,a,57,a)].
+67 ordinal_subset(f3(f4(f2(c14)),c14),f3(f4(f2(c14)),c14)).  [resolve(64,a,38,a)].
+68 -ordinal(A) | in(A,f3(f4(f2(c14)),c14)) | f3(f4(f2(c14)),c14) = A | in(f3(f4(f2(c14)),c14),A).  [resolve(64,a,35,b)].
+69 -in(f3(f4(f2(c14)),c14),c14) | -ordinal_subset(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [resolve(23,a,64,a)].
+70 -ordinal_subset(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [resolve(69,a,55,a)].
+71 -ordinal(A) | ordinal_subset(f3(f4(f2(c14)),c14),A) | -subset(f3(f4(f2(c14)),c14),A).  [resolve(33,a,64,a)].
+72 ordinal_subset(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))) | -subset(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [resolve(71,a,65,a)].
+73 -subset(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [resolve(72,a,70,a)].
+74 -in(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))) | -ordinal(f4(f3(f4(f2(c14)),c14))).  [resolve(36,b,73,a)].
+75 -in(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [resolve(74,b,65,a)].
+76 in(f3(f4(f3(f4(f2(c14)),c14)),c14),c14).  [resolve(66,a,30,a)].
+77 -in(A,c14) | -in(A,f3(f4(f2(c14)),c14)).  [resolve(24,a,54,a)].
+78 -in(f4(f3(f4(f2(c14)),c14)),f3(f4(f2(c14)),c14)).  [resolve(77,a,66,a)].
+79 element(f3(f3(f4(f2(c14)),c14),c14),c15).  [resolve(59,a,42,a)].
+80 -in(A,c14) | -in(A,f3(f4(f2(c14)),c14)).  [resolve(24,a,54,a)].
+81 -in(f3(f3(f4(f2(c14)),c14),c14),f3(f4(f2(c14)),c14)).  [resolve(80,a,59,a)].
+82 empty(c15) | in(f3(f3(f4(f2(c14)),c14),c14),c15).  [resolve(79,a,29,a)].
+83 in(f3(f3(f4(f2(c14)),c14),c14),c15).  [resolve(47,a,82,a)].
+84 -ordinal(c15) | ordinal(f3(f3(f4(f2(c14)),c14),c14)).  [resolve(83,a,27,b)].
+85 ordinal(f3(f3(f4(f2(c14)),c14),c14)).  [resolve(17,a,84,a)].
+86 element(f3(f4(f3(f4(f2(c14)),c14)),c14),c15).  [resolve(76,a,42,a)].
+87 empty(c15) | in(f3(f4(f3(f4(f2(c14)),c14)),c14),c15).  [resolve(86,a,29,a)].
+88 in(f3(f4(f3(f4(f2(c14)),c14)),c14),c15).  [resolve(47,a,87,a)].
+89 -ordinal(c15) | ordinal(f3(f4(f3(f4(f2(c14)),c14)),c14)).  [resolve(88,a,27,b)].
+90 ordinal(f3(f4(f3(f4(f2(c14)),c14)),c14)).  [resolve(17,a,89,a)].
+91 -in(f3(f4(f3(f4(f2(c14)),c14)),c14),c14) | -ordinal_subset(f3(f4(f3(f4(f2(c14)),c14)),c14),f4(f3(f4(f3(f4(f2(c14)),c14)),c14))).  [resolve(23,a,90,a)].
+92 -ordinal_subset(f3(f4(f3(f4(f2(c14)),c14)),c14),f4(f3(f4(f3(f4(f2(c14)),c14)),c14))).  [resolve(91,a,76,a)].
+93 in(f3(f3(f4(f2(c14)),c14),c14),f3(f4(f2(c14)),c14)) | f3(f4(f2(c14)),c14) = f3(f3(f4(f2(c14)),c14),c14) | in(f3(f4(f2(c14)),c14),f3(f3(f4(f2(c14)),c14),c14)).  [resolve(68,a,85,a)].
+94 in(f3(f3(f4(f2(c14)),c14),c14),f3(f4(f2(c14)),c14)) | f3(f3(f4(f2(c14)),c14),c14) = f3(f4(f2(c14)),c14) | in(f3(f4(f2(c14)),c14),f3(f3(f4(f2(c14)),c14),c14)).  [copy(93),flip(b)].
+95 f3(f3(f4(f2(c14)),c14),c14) = f3(f4(f2(c14)),c14) | in(f3(f4(f2(c14)),c14),f3(f3(f4(f2(c14)),c14),c14)).  [resolve(81,a,94,a)].
+96 f3(f3(f4(f2(c14)),c14),c14) = f3(f4(f2(c14)),c14).  [resolve(60,a,95,b)].
+97 in(f4(f3(f4(f2(c14)),c14)),f3(f4(f2(c14)),c14)) | f3(f4(f2(c14)),c14) = f4(f3(f4(f2(c14)),c14)) | in(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [resolve(68,a,65,a)].
+98 in(f4(f3(f4(f2(c14)),c14)),f3(f4(f2(c14)),c14)) | f4(f3(f4(f2(c14)),c14)) = f3(f4(f2(c14)),c14) | in(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [copy(97),flip(b)].
+99 f4(f3(f4(f2(c14)),c14)) = f3(f4(f2(c14)),c14) | in(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [resolve(78,a,98,a)].
+100 f4(f3(f4(f2(c14)),c14)) = f3(f4(f2(c14)),c14).  [resolve(75,a,99,b)].
+101 -ordinal_subset(f3(f3(f4(f2(c14)),c14),c14),f4(f3(f4(f3(f4(f2(c14)),c14)),c14))).  [para(100(a,1),92(a,1,1))].
+102 -ordinal_subset(f3(f4(f2(c14)),c14),f4(f3(f4(f3(f4(f2(c14)),c14)),c14))).  [para(96(a,1),101(a,1))].
+103 -ordinal_subset(f3(f4(f2(c14)),c14),f4(f3(f3(f4(f2(c14)),c14),c14))).  [para(100(a,1),102(a,2,1,1))].
+104 -ordinal_subset(f3(f4(f2(c14)),c14),f4(f3(f4(f2(c14)),c14))).  [para(96(a,1),103(a,2,1))].
+105 -ordinal_subset(f3(f4(f2(c14)),c14),f3(f4(f2(c14)),c14)).  [para(100(a,1),104(a,2))].
+106 $F.  [resolve(67,a,105,a)].
+
+============================== end of proof ==========================

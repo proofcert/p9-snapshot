@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n040.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:02:33 CDT 2014
+% CPUTime    : 3.52 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 23138 was started by sandbox on n040.star.cs.uiowa.edu,
+Thu Jun  5 16:02:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_23106_n040.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 3.07 (+ 0.18) seconds.
+% Length of proof is 13.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 216.
+
+
+1 (all A all B all C cartesian_product3(A,B,C) = cartesian_product2(cartesian_product2(A,B),C)).  [assumption].
+2 (all A all B (finite(A) & finite(B) -> finite(cartesian_product2(A,B)))).  [assumption].
+3 -(all A all B all C (finite(A) & finite(B) & finite(C) -> finite(cartesian_product3(A,B,C)))).  [assumption].
+4 cartesian_product3(A,B,C) = cartesian_product2(cartesian_product2(A,B),C).  [clausify(1)].
+5 -finite(A) | -finite(B) | finite(cartesian_product2(A,B)).  [clausify(2)].
+6 finite(c22).  [clausify(3)].
+7 finite(c23).  [clausify(3)].
+8 finite(c24).  [clausify(3)].
+9 -finite(cartesian_product3(c22,c23,c24)).  [clausify(3)].
+10 -finite(cartesian_product2(cartesian_product2(c22,c23),c24)).  [para(4(a,1),9(a,1))].
+11 -finite(A) | finite(cartesian_product2(c22,A)).  [resolve(6,a,5,a)].
+12 -finite(A) | finite(cartesian_product2(A,c24)).  [resolve(5,b,8,a)].
+13 -finite(cartesian_product2(c22,c23)).  [resolve(12,b,10,a)].
+14 finite(cartesian_product2(c22,c23)).  [resolve(11,a,7,a)].
+15 $F.  [resolve(13,a,14,a)].
+
+============================== end of proof ==========================

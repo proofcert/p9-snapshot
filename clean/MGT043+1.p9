@@ -1,0 +1,37 @@
+
+
+
+
+
+
+
+8 organization(c1).  [clausify(7)].
+9 -organization(A) | external_ties(A,B) != external_ties(A,C) | position(A,B) = position(A,C).  [clausify(6)].
+10 -organization(A) | -smaller_or_equal(stock_of_knowledge(A,B),stock_of_knowledge(A,C)) | -greater(internal_friction(A,B),internal_friction(A,C)) | smaller(capability(A,B),capability(A,C)).  [clausify(5)].
+11 -organization(A) | has_immunity(A,B) | has_immunity(A,C) | -greater(capability(A,C),capability(A,B)) | -greater_or_equal(position(A,C),position(A,B)) | smaller(hazard_of_mortality(A,C),hazard_of_mortality(A,B)).  [clausify(4)].
+12 -smaller(A,B) | greater(B,A).  [clausify(3)].
+13 -smaller_or_equal(stock_of_knowledge(c1,A),stock_of_knowledge(c1,B)) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | smaller(capability(c1,A),capability(c1,B)).  [resolve(10,a,8,a)].
+14 has_immunity(c1,A) | has_immunity(c1,B) | -greater(capability(c1,B),capability(c1,A)) | -greater_or_equal(position(c1,B),position(c1,A)) | smaller(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(11,a,8,a)].
+15 stock_of_knowledge(c1,c3) = stock_of_knowledge(c1,c2).  [clausify(7)].
+16 greater(internal_friction(c1,c3),internal_friction(c1,c2)).  [clausify(7)].
+17 external_ties(c1,c3) = external_ties(c1,c2).  [clausify(7)].
+18 -has_immunity(c1,c2).  [clausify(7)].
+19 -has_immunity(c1,c3).  [clausify(7)].
+20 -greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c2)).  [clausify(7)].
+21 smaller_or_equal(A,B) | B != A.  [clausify(1)].
+22 greater_or_equal(A,B) | B != A.  [clausify(2)].
+23 external_ties(c1,A) != external_ties(c1,B) | position(c1,A) = position(c1,B).  [resolve(9,a,8,a)].
+24 -smaller_or_equal(stock_of_knowledge(c1,A),stock_of_knowledge(c1,B)) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [resolve(13,c,12,a)].
+25 has_immunity(c1,A) | has_immunity(c1,B) | -greater(capability(c1,B),capability(c1,A)) | -greater_or_equal(position(c1,B),position(c1,A)) | greater(hazard_of_mortality(c1,A),hazard_of_mortality(c1,B)).  [resolve(14,e,12,a)].
+26 smaller_or_equal(A,A).  [xx_res(21,b)].
+27 greater_or_equal(A,A).  [xx_res(22,b)].
+28 position(c1,c3) = position(c1,c2).  [resolve(23,a,17,a)].
+29 -smaller_or_equal(stock_of_knowledge(c1,c2),stock_of_knowledge(c1,A)) | -greater(internal_friction(c1,c3),internal_friction(c1,A)) | greater(capability(c1,A),capability(c1,c3)).  [para(15(a,1),24(a,1))].
+30 -greater(internal_friction(c1,c3),internal_friction(c1,c2)) | greater(capability(c1,c2),capability(c1,c3)).  [resolve(29,a,26,a)].
+31 greater(capability(c1,c2),capability(c1,c3)).  [resolve(16,a,30,a)].
+32 has_immunity(c1,A) | -greater(capability(c1,A),capability(c1,c3)) | -greater_or_equal(position(c1,A),position(c1,c3)) | greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,A)).  [resolve(25,a,19,a)].
+33 -greater(capability(c1,c2),capability(c1,c3)) | -greater_or_equal(position(c1,c2),position(c1,c3)) | greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c2)).  [resolve(32,a,18,a)].
+34 -greater_or_equal(position(c1,c2),position(c1,c3)) | greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c2)).  [resolve(33,a,31,a)].
+35 -greater_or_equal(position(c1,c2),position(c1,c3)).  [resolve(34,b,20,a)].
+36 -greater_or_equal(position(c1,c2),position(c1,c2)).  [para(28(a,1),35(a,2))].
+37 $F.  [resolve(27,a,36,a)].

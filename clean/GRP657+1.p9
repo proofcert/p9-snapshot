@@ -1,0 +1,27 @@
+
+
+
+
+
+6 mult(A,ld(A,B)) = B.  [clausify(1)].
+7 ld(A,mult(A,B)) = B.  [clausify(2)].
+8 rd(mult(A,B),B) = A.  [clausify(3)].
+9 mult(mult(A,B),mult(C,A)) = mult(A,mult(mult(B,C),A)).  [clausify(4)].
+10 mult(f1(A),A) != f1(A) | mult(A,f1(A)) != f1(A).  [clausify(5)].
+11 mult(A,mult(B,C)) = mult(C,mult(mult(ld(C,A),B),C)).  [para(6(a,1),9(a,1,1))].
+12 mult(A,mult(mult(ld(A,B),C),A)) = mult(B,mult(C,A)).  [copy(11),flip(a)].
+13 ld(A,mult(B,mult(C,A))) = mult(mult(ld(A,B),C),A).  [para(12(a,1),7(a,1,2))].
+14 mult(mult(ld(A,A),B),A) = mult(B,A).  [para(13(a,1),7(a,1))].
+15 rd(mult(A,B),B) = mult(ld(B,B),A).  [para(14(a,1),8(a,1,1))].
+16 A = mult(ld(B,B),A).  [para(8(a,1),15(a,1))].
+17 mult(ld(A,A),B) = B.  [copy(16),flip(a)].
+18 mult(f1(ld(A,A)),ld(A,A)) != f1(ld(A,A)).  [resolve(10,b,17,a)].
+19 rd(A,A) = ld(B,B).  [para(17(a,1),8(a,1,1))].
+20 rd(A,A) = c_0.  [new_symbol(19)].
+21 c_0 = ld(B,B).  [para(20(a,1),19(a,1))].
+22 ld(A,A) = c_0.  [copy(21),flip(a)].
+23 mult(f1(c_0),ld(A,A)) != f1(ld(A,A)).  [para(22(a,1),18(a,1,1,1))].
+24 mult(f1(c_0),c_0) != f1(ld(A,A)).  [para(22(a,1),23(a,1,2))].
+25 mult(f1(c_0),c_0) != f1(c_0).  [para(22(a,1),24(a,2,1))].
+26 mult(A,c_0) = A.  [para(22(a,1),6(a,1,2))].
+27 $F.  [resolve(26,a,25,a)].

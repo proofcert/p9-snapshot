@@ -1,0 +1,27 @@
+
+
+
+
+5 -top_str(A) | one_sorted_str(A).  [clausify(2)].
+6 top_str(c3).  [clausify(4)].
+7 -top_str(A) | -element(B,powerset(the_carrier(A))) | -closed_subset(B,A) | open_subset(subset_difference(the_carrier(A),cast_as_carrier_subset(A),B),A).  [clausify(1)].
+8 -top_str(A) | -element(B,powerset(the_carrier(A))) | closed_subset(B,A) | -open_subset(subset_difference(the_carrier(A),cast_as_carrier_subset(A),B),A).  [clausify(1)].
+9 -one_sorted_str(A) | -element(B,powerset(the_carrier(A))) | subset_complement(the_carrier(A),B) = subset_difference(the_carrier(A),cast_as_carrier_subset(A),B).  [clausify(3)].
+10 one_sorted_str(c3).  [resolve(5,a,6,a)].
+11 element(c4,powerset(the_carrier(c3))).  [clausify(4)].
+12 closed_subset(c4,c3) | open_subset(subset_complement(the_carrier(c3),c4),c3).  [clausify(4)].
+13 -closed_subset(c4,c3) | -open_subset(subset_complement(the_carrier(c3),c4),c3).  [clausify(4)].
+14 -element(A,powerset(the_carrier(c3))) | -closed_subset(A,c3) | open_subset(subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),A),c3).  [resolve(7,a,6,a)].
+15 -element(A,powerset(the_carrier(c3))) | closed_subset(A,c3) | -open_subset(subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),A),c3).  [resolve(8,a,6,a)].
+16 -element(A,powerset(the_carrier(c3))) | subset_complement(the_carrier(c3),A) = subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),A).  [resolve(10,a,9,a)].
+17 -element(A,powerset(the_carrier(c3))) | subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),A) = subset_complement(the_carrier(c3),A).  [copy(16),flip(b)].
+18 subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),c4) = subset_complement(the_carrier(c3),c4).  [resolve(17,a,11,a)].
+19 -element(c4,powerset(the_carrier(c3))) | closed_subset(c4,c3) | -open_subset(subset_complement(the_carrier(c3),c4),c3).  [para(18(a,1),15(c,1))].
+20 closed_subset(c4,c3) | -open_subset(subset_complement(the_carrier(c3),c4),c3).  [resolve(11,a,19,a)].
+21 closed_subset(c4,c3) | closed_subset(c4,c3).  [resolve(20,b,12,b)].
+22 closed_subset(c4,c3).  [copy(21),merge(b)].
+23 -open_subset(subset_complement(the_carrier(c3),c4),c3).  [resolve(22,a,13,a)].
+24 -element(c4,powerset(the_carrier(c3))) | open_subset(subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),c4),c3).  [resolve(22,a,14,b)].
+25 -element(c4,powerset(the_carrier(c3))) | open_subset(subset_complement(the_carrier(c3),c4),c3).  [para(18(a,1),24(b,1))].
+26 open_subset(subset_complement(the_carrier(c3),c4),c3).  [resolve(11,a,25,a)].
+27 $F.  [resolve(23,a,26,a)].

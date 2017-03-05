@@ -1,0 +1,25 @@
+
+
+
+
+
+
+7 subclass(A,universal_class).  [clausify(2)].
+8 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+9 null_class = A | member(f5(A),universal_class).  [clausify(5)].
+10 null_class = A | member(f5(A),A).  [clausify(5)].
+11 -member(c3,universal_class).  [clausify(6)].
+12 singleton(c3) != null_class.  [clausify(6)].
+13 unordered_pair(c3,c3) != null_class.  [para(8(a,1),12(a,1))].
+14 -subclass(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+15 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(3)].
+16 -member(A,B) | member(A,universal_class).  [resolve(14,a,7,a)].
+17 -member(c3,A).  [resolve(16,b,11,a)].
+18 f5(unordered_pair(A,B)) = A | f5(unordered_pair(A,B)) = B | null_class = unordered_pair(A,B).  [resolve(15,a,10,b)].
+19 f5(unordered_pair(A,B)) = A | f5(unordered_pair(A,B)) = B | unordered_pair(A,B) = null_class.  [copy(18),flip(c)].
+20 f5(unordered_pair(A,A)) = A | unordered_pair(A,A) = null_class.  [factor(19,a,b)].
+21 unordered_pair(A,A) = null_class | null_class = unordered_pair(A,A) | member(A,universal_class).  [para(20(a,1),9(b,1))].
+22 unordered_pair(A,A) = null_class | unordered_pair(A,A) = null_class | member(A,universal_class).  [copy(21),flip(b)].
+23 unordered_pair(A,A) = null_class | member(A,universal_class).  [copy(22),merge(b)].
+24 unordered_pair(c3,c3) = null_class.  [resolve(23,b,17,a)].
+25 $F.  [resolve(13,a,24,a)].

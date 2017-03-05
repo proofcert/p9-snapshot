@@ -1,0 +1,16 @@
+
+
+
+
+5 -disjoint(c1,c2).  [clausify(4)].
+6 disjoint(A,B) | intersect(A,B).  [clausify(2)].
+7 -member(A,c1) | -member(A,c2).  [clausify(4)].
+8 -intersect(A,B) | intersect(B,A).  [clausify(3)].
+9 -intersect(A,B) | member(f1(A,B),A).  [clausify(1)].
+10 -intersect(A,B) | member(f1(A,B),B).  [clausify(1)].
+11 intersect(c1,c2).  [resolve(5,a,6,a)].
+12 -intersect(c2,A) | -member(f1(c2,A),c1).  [resolve(9,b,7,b)].
+13 intersect(c2,c1).  [resolve(8,a,11,a)].
+14 -intersect(c2,c1) | -intersect(c2,c1).  [resolve(12,b,10,b)].
+15 -intersect(c2,c1).  [copy(14),merge(b)].
+16 $F.  [resolve(13,a,15,a)].

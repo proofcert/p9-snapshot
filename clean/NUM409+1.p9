@@ -1,0 +1,40 @@
+
+
+
+
+
+
+
+8 relation(empty_set).  [assumption].
+9 -empty(A) | relation(relation_dom(A)).  [clausify(3)].
+10 -relation(A) | -function(A) | transfinite_sequence(A) | -ordinal(relation_dom(A)).  [clausify(1)].
+11 -relation(A) | relation_dom(A) != empty_set | relation_rng(A) = empty_set.  [clausify(5)].
+12 -relation(A) | -function(A) | -transfinite_sequence(A) | transfinite_sequence_of(A,B) | -subset(relation_rng(A),B).  [clausify(2)].
+13 empty(empty_set).  [assumption].
+14 function(empty_set).  [assumption].
+15 ordinal(empty_set).  [assumption].
+16 subset(empty_set,A).  [clausify(4)].
+17 -transfinite_sequence_of(empty_set,c15).  [clausify(7)].
+18 -empty(A) | empty(relation_dom(A)).  [clausify(3)].
+19 -empty(A) | empty_set = A.  [clausify(6)].
+20 -function(empty_set) | transfinite_sequence(empty_set) | -ordinal(relation_dom(empty_set)).  [resolve(10,a,8,a)].
+21 transfinite_sequence(empty_set) | -ordinal(relation_dom(empty_set)).  [resolve(14,a,20,a)].
+22 relation_dom(relation_dom(A)) != empty_set | relation_rng(relation_dom(A)) = empty_set | -empty(A).  [resolve(11,a,9,b)].
+23 -function(empty_set) | -transfinite_sequence(empty_set) | transfinite_sequence_of(empty_set,A) | -subset(relation_rng(empty_set),A).  [resolve(12,a,8,a)].
+24 -transfinite_sequence(empty_set) | transfinite_sequence_of(empty_set,A) | -subset(relation_rng(empty_set),A).  [resolve(14,a,23,a)].
+25 empty(relation_dom(empty_set)).  [resolve(18,a,13,a)].
+26 relation_dom(relation_dom(relation_dom(empty_set))) != empty_set | relation_rng(relation_dom(relation_dom(empty_set))) = empty_set.  [resolve(25,a,22,c)].
+27 empty_set = relation_dom(empty_set).  [resolve(25,a,19,a)].
+28 relation_dom(empty_set) = empty_set.  [copy(27),flip(a)].
+29 relation_dom(relation_dom(empty_set)) != empty_set | relation_rng(relation_dom(relation_dom(empty_set))) = empty_set.  [para(28(a,1),26(a,1,1,1))].
+30 relation_dom(empty_set) != empty_set | relation_rng(relation_dom(relation_dom(empty_set))) = empty_set.  [para(28(a,1),29(a,1,1))].
+31 empty_set != empty_set | relation_rng(relation_dom(relation_dom(empty_set))) = empty_set.  [para(28(a,1),30(a,1))].
+32 empty_set != empty_set | relation_rng(relation_dom(empty_set)) = empty_set.  [para(28(a,1),31(b,1,1,1))].
+33 empty_set != empty_set | relation_rng(empty_set) = empty_set.  [para(28(a,1),32(b,1,1))].
+34 relation_rng(empty_set) = empty_set.  [copy(33),xx(a)].
+35 transfinite_sequence(empty_set) | -ordinal(empty_set).  [para(28(a,1),21(b,1))].
+36 transfinite_sequence(empty_set).  [resolve(15,a,35,b)].
+37 -transfinite_sequence(empty_set) | transfinite_sequence_of(empty_set,A) | -subset(empty_set,A).  [para(34(a,1),24(c,1))].
+38 transfinite_sequence_of(empty_set,A) | -subset(empty_set,A).  [resolve(36,a,37,a)].
+39 transfinite_sequence_of(empty_set,A).  [resolve(16,a,38,b)].
+40 $F.  [resolve(39,a,17,a)].

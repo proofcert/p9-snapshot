@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n101.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:57:53 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 23679 was started by sandbox on n101.star.cs.uiowa.edu,
+Fri Jun  6 08:57:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_23646_n101.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 5.
+% Maximum clause weight is 9.000.
+% Given clauses 0.
+
+
+1 or_1 <-> (all A all B is_a_theorem(implies(A,or(A,B)))).  [assumption].
+2 cn2 <-> (all A all B is_a_theorem(implies(A,implies(not(A),B)))).  [assumption].
+3 op_or -> (all A all B or(A,B) = not(and(not(A),not(B)))).  [assumption].
+4 op_implies_and -> (all A all B implies(A,B) = not(and(A,not(B)))).  [assumption].
+5 op_or.  [assumption].
+6 op_implies_and.  [assumption].
+7 or_1.  [assumption].
+8 -cn2.  [assumption].
+9 -or_1 | is_a_theorem(implies(A,or(A,B))).  [clausify(1)].
+10 is_a_theorem(implies(A,or(A,B))).  [resolve(7,a,9,a)].
+11 cn2 | -is_a_theorem(implies(c42,implies(not(c42),c43))).  [clausify(2)].
+12 -is_a_theorem(implies(c42,implies(not(c42),c43))).  [resolve(8,a,11,a)].
+13 -op_implies_and | not(and(A,not(B))) = implies(A,B).  [clausify(4)].
+14 not(and(A,not(B))) = implies(A,B).  [resolve(6,a,13,a)].
+15 -op_or | or(A,B) = not(and(not(A),not(B))).  [clausify(3)].
+16 -op_or | or(A,B) = implies(not(A),B).  [para(14(a,1),15(b,2))].
+17 or(A,B) = implies(not(A),B).  [resolve(5,a,16,a)].
+18 is_a_theorem(implies(A,implies(not(A),B))).  [para(17(a,1),10(a,1,2))].
+19 $F.  [resolve(18,a,12,a)].
+
+============================== end of proof ==========================

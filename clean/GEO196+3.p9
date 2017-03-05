@@ -1,0 +1,25 @@
+
+
+
+
+
+
+
+
+9 incident_point_and_line(A,B) | apart_point_and_line(A,B).  [clausify(7)].
+10 -distinct_lines(A,A).  [clausify(1)].
+11 -convergent_lines(parallel_through_point(A,B),A).  [clausify(5)].
+12 -apart_point_and_line(A,parallel_through_point(B,A)).  [clausify(6)].
+13 -incident_point_and_line(intersection_point(c3,c4),c1) | -incident_point_and_line(intersection_point(c3,c4),c2).  [clausify(8)].
+14 -distinct_lines(A,B) | convergent_lines(A,B).  [clausify(4)].
+15 -distinct_lines(A,B) | distinct_lines(A,C) | distinct_lines(B,C).  [clausify(2)].
+16 -apart_point_and_line(A,B) | distinct_lines(B,C) | apart_point_and_line(A,C).  [clausify(3)].
+17 -incident_point_and_line(intersection_point(c3,c4),c1) | apart_point_and_line(intersection_point(c3,c4),c2).  [resolve(13,b,9,a)].
+18 -distinct_lines(parallel_through_point(A,B),A).  [resolve(14,b,11,a)].
+19 -distinct_lines(A,B) | distinct_lines(B,A).  [resolve(15,b,10,a)].
+20 -distinct_lines(A,parallel_through_point(A,B)).  [resolve(19,b,18,a)].
+21 apart_point_and_line(intersection_point(c3,c4),c2) | apart_point_and_line(intersection_point(c3,c4),c1).  [resolve(17,a,9,a)].
+22 -apart_point_and_line(A,B) | apart_point_and_line(A,parallel_through_point(B,C)).  [resolve(16,b,20,a)].
+23 -apart_point_and_line(A,B).  [resolve(22,b,12,a)].
+24 apart_point_and_line(intersection_point(c3,c4),c1).  [resolve(23,a,21,a)].
+25 $F.  [resolve(23,a,24,a)].

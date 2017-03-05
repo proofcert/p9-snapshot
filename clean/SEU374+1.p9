@@ -1,0 +1,43 @@
+
+
+
+
+
+6 one_sorted_str(c11).  [clausify(5)].
+7 -one_sorted_str(A) | -net_str(B,A) | rel_str(B).  [clausify(2)].
+8 -one_sorted_str(A) | -net_str(B,A) | -subnetstr(C,A,B) | net_str(C,A).  [clausify(3)].
+9 -one_sorted_str(A) | -net_str(B,A) | -net_str(C,A) | -subnetstr(C,A,B) | subrelstr(C,B).  [clausify(1)].
+10 -rel_str(A) | -subrelstr(B,A) | -element(C,the_carrier(A)) | -element(D,the_carrier(A)) | -element(E,the_carrier(B)) | -element(F,the_carrier(B)) | E != C | F != D | -related(B,E,F) | related(A,C,D).  [clausify(4)].
+11 -net_str(A,c11) | -net_str(B,c11) | -subnetstr(B,c11,A) | subrelstr(B,A).  [resolve(9,a,6,a)].
+12 net_str(c12,c11).  [clausify(5)].
+13 c16 = c14.  [clausify(5)].
+14 c17 = c15.  [clausify(5)].
+15 subnetstr(c13,c11,c12).  [clausify(5)].
+16 element(c14,the_carrier(c12)).  [clausify(5)].
+17 element(c15,the_carrier(c12)).  [clausify(5)].
+18 element(c16,the_carrier(c13)).  [clausify(5)].
+19 element(c14,the_carrier(c13)).  [para(13(a,1),18(a,1))].
+20 element(c17,the_carrier(c13)).  [clausify(5)].
+21 element(c15,the_carrier(c13)).  [para(14(a,1),20(a,1))].
+22 related(c13,c16,c17).  [clausify(5)].
+23 related(c13,c14,c17).  [para(13(a,1),22(a,2))].
+24 related(c13,c14,c15).  [para(14(a,1),23(a,3))].
+25 -related(c12,c14,c15).  [clausify(5)].
+26 -net_str(A,c11) | rel_str(A).  [resolve(7,a,6,a)].
+27 -net_str(A,c11) | -subnetstr(B,c11,A) | net_str(B,c11).  [resolve(8,a,6,a)].
+28 -net_str(A,c11) | -net_str(B,c11) | -subnetstr(B,c11,A) | -rel_str(A) | -element(C,the_carrier(A)) | -element(D,the_carrier(A)) | -element(E,the_carrier(B)) | -element(F,the_carrier(B)) | E != C | F != D | -related(B,E,F) | related(A,C,D).  [resolve(11,d,10,b)].
+29 rel_str(c12).  [resolve(26,a,12,a)].
+30 -net_str(c12,c11) | net_str(c13,c11).  [resolve(27,b,15,a)].
+31 net_str(c13,c11).  [resolve(12,a,30,a)].
+32 -net_str(A,c11) | -net_str(c13,c11) | -subnetstr(c13,c11,A) | -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | -element(c14,the_carrier(c13)) | -element(c15,the_carrier(c13)) | c14 != B | c15 != C | related(A,B,C).  [resolve(28,k,24,a)].
+33 -net_str(A,c11) | -subnetstr(c13,c11,A) | -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | -element(c14,the_carrier(c13)) | -element(c15,the_carrier(c13)) | c14 != B | c15 != C | related(A,B,C).  [resolve(31,a,32,b)].
+34 -net_str(A,c11) | -subnetstr(c13,c11,A) | -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | -element(c15,the_carrier(c13)) | c14 != B | c15 != C | related(A,B,C).  [resolve(19,a,33,f)].
+35 -net_str(A,c11) | -subnetstr(c13,c11,A) | -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | c14 != B | c15 != C | related(A,B,C).  [resolve(21,a,34,f)].
+36 -net_str(c12,c11) | -rel_str(c12) | -element(A,the_carrier(c12)) | -element(B,the_carrier(c12)) | c14 != A | c15 != B | related(c12,A,B).  [resolve(35,b,15,a)].
+37 -rel_str(c12) | -element(A,the_carrier(c12)) | -element(B,the_carrier(c12)) | c14 != A | c15 != B | related(c12,A,B).  [resolve(12,a,36,a)].
+38 -element(A,the_carrier(c12)) | -element(B,the_carrier(c12)) | c14 != A | c15 != B | related(c12,A,B).  [resolve(29,a,37,a)].
+39 -element(A,the_carrier(c12)) | c14 != c14 | c15 != A | related(c12,c14,A).  [resolve(38,a,16,a)].
+40 -element(A,the_carrier(c12)) | c15 != A | related(c12,c14,A).  [copy(39),xx(b)].
+41 c15 != c15 | related(c12,c14,c15).  [resolve(40,a,17,a)].
+42 related(c12,c14,c15).  [copy(41),xx(a)].
+43 $F.  [resolve(25,a,42,a)].

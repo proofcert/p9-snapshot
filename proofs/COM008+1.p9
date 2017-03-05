@@ -1,0 +1,100 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n143.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:41:43 CDT 2014
+% CPUTime    : 18.49 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 56643 was started by sandbox on n143.star.cs.uiowa.edu,
+Thu Jun  5 13:41:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_56611_n143.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 18.30 (+ 0.05) seconds.
+% Length of proof is 61.
+% Level of proof is 13.
+% Maximum clause weight is 32.000.
+% Given clauses 5495.
+
+
+1 (all A (transitive_reflexive_rewrite(b,A) & transitive_reflexive_rewrite(c,A) -> goal)).  [assumption].
+2 (all A equalish(A,A)).  [assumption].
+3 (all A all B (equalish(A,B) -> equalish(B,A))).  [assumption].
+4 (all A all B (equalish(A,B) -> transitive_reflexive_rewrite(A,B))).  [assumption].
+5 (all A all B all C (transitive_reflexive_rewrite(A,B) & transitive_reflexive_rewrite(B,C) -> transitive_reflexive_rewrite(A,C))).  [assumption].
+6 (all A all B all C (rewrite(A,B) & rewrite(A,C) -> (exists D (transitive_reflexive_rewrite(B,D) & transitive_reflexive_rewrite(C,D))))).  [assumption].
+7 (all A all B all C (rewrite(a,A) & transitive_reflexive_rewrite(A,B) & transitive_reflexive_rewrite(A,C) -> (exists D (transitive_reflexive_rewrite(B,D) & transitive_reflexive_rewrite(C,D))))).  [assumption].
+8 (all A all B (transitive_reflexive_rewrite(A,B) -> equalish(A,B) | (exists C (rewrite(A,C) & transitive_reflexive_rewrite(C,B))))).  [assumption].
+9 transitive_reflexive_rewrite(a,b).  [assumption].
+10 transitive_reflexive_rewrite(a,c).  [assumption].
+11 equalish(A,A).  [clausify(2)].
+12 -goal.  [assumption].
+13 -equalish(A,B) | equalish(B,A).  [clausify(3)].
+14 -equalish(A,B) | transitive_reflexive_rewrite(A,B).  [clausify(4)].
+15 -transitive_reflexive_rewrite(b,A) | -transitive_reflexive_rewrite(c,A) | goal.  [clausify(1)].
+16 -transitive_reflexive_rewrite(b,A) | -transitive_reflexive_rewrite(c,A).  [resolve(12,a,15,c)].
+17 -transitive_reflexive_rewrite(A,B) | -transitive_reflexive_rewrite(B,C) | transitive_reflexive_rewrite(A,C).  [clausify(5)].
+18 -transitive_reflexive_rewrite(A,B) | equalish(A,B) | rewrite(A,f3(A,B)).  [clausify(8)].
+19 -transitive_reflexive_rewrite(A,B) | equalish(A,B) | transitive_reflexive_rewrite(f3(A,B),B).  [clausify(8)].
+20 -rewrite(A,B) | -rewrite(A,C) | transitive_reflexive_rewrite(B,f1(A,B,C)).  [clausify(6)].
+21 -rewrite(A,B) | -rewrite(A,C) | transitive_reflexive_rewrite(C,f1(A,B,C)).  [clausify(6)].
+22 -rewrite(a,A) | -transitive_reflexive_rewrite(A,B) | -transitive_reflexive_rewrite(A,C) | transitive_reflexive_rewrite(B,f2(A,B,C)).  [clausify(7)].
+23 -rewrite(a,A) | -transitive_reflexive_rewrite(A,B) | -transitive_reflexive_rewrite(A,C) | transitive_reflexive_rewrite(C,f2(A,B,C)).  [clausify(7)].
+24 transitive_reflexive_rewrite(A,A).  [resolve(14,a,11,a)].
+25 equalish(a,c) | rewrite(a,f3(a,c)).  [resolve(18,a,10,a)].
+26 equalish(a,b) | rewrite(a,f3(a,b)).  [resolve(18,a,9,a)].
+27 equalish(a,c) | transitive_reflexive_rewrite(f3(a,c),c).  [resolve(19,a,10,a)].
+28 equalish(a,b) | transitive_reflexive_rewrite(f3(a,b),b).  [resolve(19,a,9,a)].
+29 -transitive_reflexive_rewrite(b,c).  [resolve(24,a,16,b)].
+30 -transitive_reflexive_rewrite(c,b).  [resolve(16,a,24,a)].
+31 -transitive_reflexive_rewrite(A,a) | transitive_reflexive_rewrite(A,c).  [resolve(17,b,10,a)].
+32 -transitive_reflexive_rewrite(b,a).  [resolve(31,b,29,a)].
+33 -transitive_reflexive_rewrite(A,a) | transitive_reflexive_rewrite(A,b).  [resolve(17,b,9,a)].
+34 -transitive_reflexive_rewrite(c,a).  [resolve(33,b,30,a)].
+35 -equalish(b,a).  [resolve(14,b,32,a)].
+36 rewrite(a,f3(a,c)) | equalish(c,a).  [resolve(25,a,13,a)].
+37 -equalish(c,a).  [resolve(14,b,34,a)].
+38 rewrite(a,f3(a,c)).  [resolve(37,a,36,b)].
+39 -transitive_reflexive_rewrite(f3(a,c),A) | -transitive_reflexive_rewrite(f3(a,c),B) | transitive_reflexive_rewrite(B,f2(f3(a,c),A,B)).  [resolve(38,a,23,a)].
+40 -transitive_reflexive_rewrite(f3(a,c),A) | -transitive_reflexive_rewrite(f3(a,c),B) | transitive_reflexive_rewrite(A,f2(f3(a,c),A,B)).  [resolve(38,a,22,a)].
+41 -rewrite(a,A) | transitive_reflexive_rewrite(A,f1(a,f3(a,c),A)).  [resolve(38,a,21,a)].
+42 rewrite(a,f3(a,b)) | equalish(b,a).  [resolve(26,a,13,a)].
+43 rewrite(a,f3(a,b)).  [resolve(35,a,42,b)].
+44 -transitive_reflexive_rewrite(f3(a,b),A) | -transitive_reflexive_rewrite(f3(a,b),B) | transitive_reflexive_rewrite(B,f2(f3(a,b),A,B)).  [resolve(43,a,23,a)].
+45 -transitive_reflexive_rewrite(f3(a,b),A) | -transitive_reflexive_rewrite(f3(a,b),B) | transitive_reflexive_rewrite(A,f2(f3(a,b),A,B)).  [resolve(43,a,22,a)].
+46 -rewrite(a,A) | transitive_reflexive_rewrite(A,f1(a,A,f3(a,b))).  [resolve(43,a,20,b)].
+47 transitive_reflexive_rewrite(f3(a,c),c) | equalish(c,a).  [resolve(27,a,13,a)].
+48 transitive_reflexive_rewrite(f3(a,c),c).  [resolve(37,a,47,b)].
+49 -equalish(a,b).  [resolve(13,b,35,a)].
+50 transitive_reflexive_rewrite(f3(a,b),b).  [resolve(49,a,28,a)].
+51 -transitive_reflexive_rewrite(f3(a,c),A) | transitive_reflexive_rewrite(A,f2(f3(a,c),c,A)).  [resolve(39,a,48,a)].
+52 transitive_reflexive_rewrite(f3(a,b),f1(a,f3(a,c),f3(a,b))).  [resolve(41,a,43,a)].
+53 -transitive_reflexive_rewrite(f3(a,c),A) | transitive_reflexive_rewrite(c,f2(f3(a,c),c,A)).  [resolve(40,a,48,a)].
+54 transitive_reflexive_rewrite(f3(a,c),f1(a,f3(a,c),f3(a,b))).  [resolve(46,a,38,a)].
+55 -transitive_reflexive_rewrite(f1(a,f3(a,c),f3(a,b)),A) | transitive_reflexive_rewrite(f3(a,b),A).  [resolve(52,a,17,a)].
+56 -transitive_reflexive_rewrite(f3(a,b),A) | transitive_reflexive_rewrite(A,f2(f3(a,b),b,A)).  [resolve(44,a,50,a)].
+57 -transitive_reflexive_rewrite(f3(a,b),A) | transitive_reflexive_rewrite(b,f2(f3(a,b),b,A)).  [resolve(45,a,50,a)].
+58 transitive_reflexive_rewrite(f1(a,f3(a,c),f3(a,b)),f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b)))).  [resolve(51,a,54,a)].
+59 transitive_reflexive_rewrite(c,f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b)))).  [resolve(53,a,54,a)].
+60 -transitive_reflexive_rewrite(f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b))),A) | transitive_reflexive_rewrite(c,A).  [resolve(59,a,17,a)].
+61 transitive_reflexive_rewrite(f3(a,b),f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b)))).  [resolve(58,a,55,a)].
+62 transitive_reflexive_rewrite(b,f2(f3(a,b),b,f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b))))).  [resolve(61,a,57,a)].
+63 transitive_reflexive_rewrite(f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b))),f2(f3(a,b),b,f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b))))).  [resolve(61,a,56,a)].
+64 -transitive_reflexive_rewrite(c,f2(f3(a,b),b,f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b))))).  [resolve(16,a,62,a)].
+65 -transitive_reflexive_rewrite(f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b))),f2(f3(a,b),b,f2(f3(a,c),c,f1(a,f3(a,c),f3(a,b))))).  [resolve(60,b,64,a)].
+66 $F.  [resolve(63,a,65,a)].
+
+============================== end of proof ==========================

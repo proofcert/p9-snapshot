@@ -1,0 +1,139 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n111.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:39:58 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 1821 was started by sandbox on n111.star.cs.uiowa.edu,
+Thu Jun  5 13:39:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_1789_n111.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 47.
+% Level of proof is 7.
+% Maximum clause weight is 46.000.
+% Given clauses 68.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C addition(C,addition(B,A)) = addition(addition(C,B),A)).  [assumption].
+3 (all A addition(A,A) = A).  [assumption].
+4 (all A multiplication(A,one) = A).  [assumption].
+5 (all A multiplication(one,A) = A).  [assumption].
+6 (all A all B all C multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C))).  [assumption].
+7 (all A all B all C multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C))).  [assumption].
+8 (all A all B (leq(A,B) <-> addition(A,B) = B)).  [assumption].
+9 (all A (test(A) <-> (exists B complement(B,A)))).  [assumption].
+10 (all A all B (complement(B,A) <-> multiplication(A,B) = zero & multiplication(B,A) = zero & addition(A,B) = one)).  [assumption].
+11 (all A all B (test(A) -> (c(A) = B <-> complement(A,B)))).  [assumption].
+12 -(all A all B (test(B) & test(A) -> leq(one,addition(addition(addition(addition(multiplication(B,A),multiplication(c(B),A)),multiplication(A,B)),multiplication(c(A),B)),multiplication(c(A),c(B)))) & leq(addition(addition(addition(addition(multiplication(B,A),multiplication(c(B),A)),multiplication(A,B)),multiplication(c(A),B)),multiplication(c(A),c(B))),one))).  [assumption].
+13 -test(A) | complement(f1(A),A).  [clausify(9)].
+14 test(c2).  [clausify(12)].
+15 test(c1).  [clausify(12)].
+16 -test(A) | c(A) != B | complement(A,B).  [clausify(11)].
+17 addition(A,A) = A.  [clausify(3)].
+18 multiplication(A,one) = A.  [clausify(4)].
+19 multiplication(one,A) = A.  [clausify(5)].
+20 addition(A,B) = addition(B,A).  [clausify(1)].
+21 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+22 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(20(a,1),21(a,1))].
+23 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(22),flip(a)].
+24 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(6)].
+25 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(24),flip(a)].
+26 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(7)].
+27 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(26),flip(a)].
+28 -leq(one,addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2)))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [clausify(12)].
+29 -leq(one,addition(addition(addition(multiplication(addition(c2,c(c2)),c1),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2)))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(27(a,1),28(a,2,1,1,1))].
+30 -leq(one,addition(addition(addition(multiplication(c1,c2),multiplication(addition(c2,c(c2)),c1)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2)))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(20(a,1),29(a,2,1,1))].
+31 -leq(one,addition(addition(multiplication(c(c1),c2),addition(multiplication(c1,c2),multiplication(addition(c2,c(c2)),c1))),multiplication(c(c1),c(c2)))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(20(a,1),30(a,2,1))].
+32 -leq(one,addition(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),c2))),multiplication(c(c1),c(c2)))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(23(a,2),31(a,2,1))].
+33 -leq(one,addition(addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),multiplication(addition(c2,c(c2)),c1))),multiplication(c(c1),c(c2)))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(20(a,1),32(a,2,1,2))].
+34 -leq(one,addition(multiplication(c(c1),c(c2)),addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(20(a,1),33(a,2))].
+35 -leq(one,addition(multiplication(c1,c2),addition(addition(multiplication(c(c1),c2),multiplication(addition(c2,c(c2)),c1)),multiplication(c(c1),c(c2))))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(23(a,2),34(a,2))].
+36 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c(c2)),addition(multiplication(c(c1),c2),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(20(a,1),35(a,2,2))].
+37 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),c(c2)))))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(23(a,2),36(a,2,2))].
+38 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(addition(addition(addition(multiplication(c2,c1),multiplication(c(c2),c1)),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(20(a,1),37(a,2,2,2))].
+39 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(addition(addition(multiplication(addition(c2,c(c2)),c1),multiplication(c1,c2)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(27(a,1),38(b,1,1,1,1))].
+40 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(addition(addition(multiplication(c1,c2),multiplication(addition(c2,c(c2)),c1)),multiplication(c(c1),c2)),multiplication(c(c1),c(c2))),one).  [para(20(a,1),39(b,1,1,1))].
+41 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(addition(multiplication(c(c1),c2),addition(multiplication(c1,c2),multiplication(addition(c2,c(c2)),c1))),multiplication(c(c1),c(c2))),one).  [para(20(a,1),40(b,1,1))].
+42 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),c2))),multiplication(c(c1),c(c2))),one).  [para(23(a,2),41(b,1,1))].
+43 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),multiplication(addition(c2,c(c2)),c1))),multiplication(c(c1),c(c2))),one).  [para(20(a,1),42(b,1,1,2))].
+44 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(multiplication(c(c1),c(c2)),addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),multiplication(addition(c2,c(c2)),c1)))),one).  [para(20(a,1),43(b,1))].
+45 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(multiplication(c1,c2),addition(addition(multiplication(c(c1),c2),multiplication(addition(c2,c(c2)),c1)),multiplication(c(c1),c(c2)))),one).  [para(23(a,2),44(b,1))].
+46 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(c(c1),c(c2)),addition(multiplication(c(c1),c2),multiplication(addition(c2,c(c2)),c1)))),one).  [para(20(a,1),45(b,1,2))].
+47 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),c(c2))))),one).  [para(23(a,2),46(b,1,2))].
+48 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1)))),one).  [para(20(a,1),47(b,1,2,2))].
+49 leq(A,B) | addition(A,B) != B.  [clausify(8)].
+50 -complement(A,B) | addition(B,A) = one.  [clausify(10)].
+51 -complement(A,B) | addition(A,B) = one.  [para(20(a,1),50(b,1))].
+52 complement(f1(c2),c2).  [resolve(13,a,14,a)].
+53 c(c2) != A | complement(c2,A).  [resolve(16,a,14,a)].
+54 c(c1) != A | complement(c1,A).  [resolve(16,a,15,a)].
+55 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(23(a,1),17(a,1))].
+56 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(20(a,1),55(a,1,2,1))].
+57 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(20(a,1),56(a,1,2))].
+58 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(23(a,2),57(a,1,2))].
+59 addition(A,addition(A,B)) = addition(B,A).  [para(17(a,1),58(a,1,2,2))].
+60 addition(A,addition(A,B)) = addition(A,B).  [para(20(a,1),59(a,2))].
+61 addition(A,multiplication(A,B)) = multiplication(A,addition(one,B)).  [para(18(a,1),25(a,1,1))].
+62 addition(A,multiplication(A,B)) = multiplication(A,addition(B,one)).  [para(20(a,1),61(a,2,2))].
+63 multiplication(A,addition(B,one)) = addition(A,multiplication(A,B)).  [copy(62),flip(a)].
+64 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),addition(multiplication(c(c1),c2),multiplication(c(c1),c(c2))))),one).  [para(23(a,1),48(b,1,2))].
+65 -leq(one,addition(multiplication(c1,c2),addition(multiplication(c(c1),c2),addition(multiplication(c(c1),c(c2)),multiplication(addition(c2,c(c2)),c1))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(25(a,1),64(b,1,2,2))].
+66 leq(A,A).  [resolve(49,b,17,a)].
+67 addition(f1(c2),c2) = one.  [resolve(52,a,51,a)].
+68 addition(c2,f1(c2)) = one.  [para(20(a,1),67(a,1))].
+69 complement(c2,multiplication(one,c(c2))).  [resolve(53,a,19,a(flip))].
+70 complement(c2,c(c2)).  [para(19(a,1),69(a,2))].
+71 complement(c1,multiplication(one,c(c1))).  [resolve(54,a,19,a(flip))].
+72 complement(c1,c(c1)).  [para(19(a,1),71(a,2))].
+73 -leq(one,addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),addition(multiplication(c(c1),c2),multiplication(c(c1),c(c2)))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(23(a,1),65(a,2,2))].
+74 -leq(one,addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2)))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(25(a,1),73(a,2,2,2))].
+75 addition(c2,c(c2)) = one.  [resolve(70,a,51,a)].
+76 -leq(one,addition(multiplication(c1,c2),addition(multiplication(one,c1),multiplication(c(c1),addition(c2,c(c2)))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(75(a,1),74(a,2,2,1,1))].
+77 -leq(one,addition(multiplication(c1,c2),addition(c1,multiplication(c(c1),addition(c2,c(c2)))))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(19(a,1),76(a,2,2,1))].
+78 -leq(one,addition(multiplication(c1,c2),addition(c1,multiplication(c(c1),one)))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(75(a,1),77(a,2,2,2,2))].
+79 -leq(one,addition(multiplication(c1,c2),addition(c1,c(c1)))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(18(a,1),78(a,2,2,2))].
+80 -leq(one,addition(c(c1),addition(multiplication(c1,c2),c1))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(23(a,1),79(a,2))].
+81 -leq(one,addition(c(c1),addition(c1,multiplication(c1,c2)))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(20(a,1),80(a,2,2))].
+82 -leq(one,addition(c(c1),multiplication(c1,addition(c2,one)))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(63(a,2),81(a,2,2))].
+83 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(multiplication(c1,c2),addition(multiplication(addition(c2,c(c2)),c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(20(a,1),82(a,2,2,2))].
+84 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(multiplication(c1,c2),addition(multiplication(one,c1),multiplication(c(c1),addition(c2,c(c2))))),one).  [para(75(a,1),83(b,1,2,1,1))].
+85 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(multiplication(c1,c2),addition(c1,multiplication(c(c1),addition(c2,c(c2))))),one).  [para(19(a,1),84(b,1,2,1))].
+86 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(multiplication(c1,c2),addition(c1,multiplication(c(c1),one))),one).  [para(75(a,1),85(b,1,2,2,2))].
+87 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(multiplication(c1,c2),addition(c1,c(c1))),one).  [para(18(a,1),86(b,1,2,2))].
+88 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(c(c1),addition(multiplication(c1,c2),c1)),one).  [para(23(a,1),87(b,1))].
+89 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(c(c1),addition(c1,multiplication(c1,c2))),one).  [para(20(a,1),88(b,1,2))].
+90 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(c(c1),multiplication(c1,addition(c2,one))),one).  [para(63(a,2),89(b,1,2))].
+91 -leq(one,addition(c(c1),multiplication(c1,addition(one,c2)))) | -leq(addition(c(c1),multiplication(c1,addition(one,c2))),one).  [para(20(a,1),90(b,1,2,2))].
+92 addition(c1,c(c1)) = one.  [resolve(72,a,51,a)].
+93 addition(c2,one) = addition(c2,f1(c2)).  [para(68(a,1),60(a,1,2))].
+94 addition(one,c2) = addition(c2,f1(c2)).  [para(20(a,1),93(a,1))].
+95 addition(one,c2) = one.  [para(68(a,1),94(a,2))].
+96 -leq(one,addition(c(c1),multiplication(c1,one))) | -leq(addition(c(c1),multiplication(c1,addition(one,c2))),one).  [para(95(a,1),91(a,2,2,2))].
+97 -leq(one,addition(c(c1),c1)) | -leq(addition(c(c1),multiplication(c1,addition(one,c2))),one).  [para(18(a,1),96(a,2,2))].
+98 -leq(one,addition(c1,c(c1))) | -leq(addition(c(c1),multiplication(c1,addition(one,c2))),one).  [para(20(a,1),97(a,2))].
+99 -leq(one,one) | -leq(addition(c(c1),multiplication(c1,addition(one,c2))),one).  [para(92(a,1),98(a,2))].
+100 -leq(one,one) | -leq(addition(c(c1),multiplication(c1,one)),one).  [para(95(a,1),99(b,1,2,2))].
+101 -leq(one,one) | -leq(addition(c(c1),c1),one).  [para(18(a,1),100(b,1,2))].
+102 -leq(one,one) | -leq(addition(c1,c(c1)),one).  [para(20(a,1),101(b,1))].
+103 -leq(one,one) | -leq(one,one).  [para(92(a,1),102(b,1))].
+104 -leq(one,one).  [copy(103),merge(b)].
+105 $F.  [resolve(66,a,104,a)].
+
+============================== end of proof ==========================

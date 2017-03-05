@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n052.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 10:49:08 CDT 2014
+% CPUTime    : 0.18 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 35952 was started by sandbox on n052.star.cs.uiowa.edu,
+Fri Jun  6 10:49:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_35920_n052.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 19.
+% Level of proof is 5.
+% Maximum clause weight is 9.000.
+% Given clauses 97.
+
+
+1 and_1 <-> (all A all B is_a_theorem(implies(and(A,B),A))).  [assumption].
+2 necessitation <-> (all A (is_a_theorem(A) -> is_a_theorem(necessarily(A)))).  [assumption].
+3 axiom_m2 <-> (all A all B is_a_theorem(strict_implies(and(A,B),A))).  [assumption].
+4 op_strict_implies -> (all A all B strict_implies(A,B) = necessarily(implies(A,B))).  [assumption].
+5 -and_1 | is_a_theorem(implies(and(A,B),A)).  [clausify(1)].
+6 and_1.  [assumption].
+7 -necessitation | -is_a_theorem(A) | is_a_theorem(necessarily(A)).  [clausify(2)].
+8 axiom_m2 | -is_a_theorem(strict_implies(and(c79,c80),c79)).  [clausify(3)].
+9 -op_strict_implies | strict_implies(A,B) = necessarily(implies(A,B)).  [clausify(4)].
+10 -op_strict_implies | necessarily(implies(A,B)) = strict_implies(A,B).  [copy(9),flip(b)].
+11 necessitation.  [assumption].
+12 op_strict_implies.  [assumption].
+13 -axiom_m2.  [assumption].
+14 is_a_theorem(implies(and(A,B),A)).  [resolve(6,a,5,a)].
+15 -is_a_theorem(A) | is_a_theorem(necessarily(A)).  [resolve(11,a,7,a)].
+16 necessarily(implies(A,B)) = strict_implies(A,B).  [resolve(12,a,10,a)].
+17 -is_a_theorem(strict_implies(and(c79,c80),c79)).  [resolve(13,a,8,a)].
+18 is_a_theorem(necessarily(implies(and(A,B),A))).  [resolve(15,a,14,a)].
+19 is_a_theorem(strict_implies(and(A,B),A)).  [para(16(a,1),18(a,1))].
+20 $F.  [resolve(19,a,17,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,128 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n130.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 19:35:03 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 784 was started by sandbox on n130.star.cs.uiowa.edu,
+Thu Jun  5 19:35:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_752_n130.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 82.
+% Level of proof is 9.
+% Maximum clause weight is 21.000.
+% Given clauses 127.
+
+
+1 (all A all B (smaller_or_equal(A,B) <-> smaller(A,B) | A = B)).  [assumption].
+2 (all A all B (smaller(A,B) <-> greater(B,A))).  [assumption].
+3 (all A all B -(greater(A,B) & greater(B,A))).  [assumption].
+4 (all A all B all C (greater(A,B) & greater(B,C) -> greater(A,C))).  [assumption].
+5 (all A all B (smaller(A,B) | A = B | greater(A,B))).  [assumption].
+6 (all A all B (organization(A) & -has_endowment(A) -> -has_immunity(A,B))).  [assumption].
+7 (all A all B all C (dissimilar(A,B,C) <-> organization(A) & -(is_aligned(A,B) <-> is_aligned(A,C)))).  [assumption].
+8 (all A all B (organization(A) & age(A,B) = zero -> is_aligned(A,B))).  [assumption].
+9 (all A all B all C (organization(A) & age(A,B) = zero -> (greater(age(A,C),sigma) <-> dissimilar(A,B,C)))).  [assumption].
+10 (all A (fragile_position(A) <-> (all B ((smaller_or_equal(age(A,B),sigma) -> positional_advantage(A,B)) & (greater(age(A,B),sigma) -> -positional_advantage(A,B)))))).  [assumption].
+11 (all A all B (organization(A) -> (has_immunity(A,B) -> hazard_of_mortality(A,B) = very_low) & (-has_immunity(A,B) -> (is_aligned(A,B) & positional_advantage(A,B) -> hazard_of_mortality(A,B) = low) & (-is_aligned(A,B) & positional_advantage(A,B) -> hazard_of_mortality(A,B) = mod1) & (is_aligned(A,B) & -positional_advantage(A,B) -> hazard_of_mortality(A,B) = mod2) & (-is_aligned(A,B) & -positional_advantage(A,B) -> hazard_of_mortality(A,B) = high)))).  [assumption].
+12 -(all A all B all C all D (organization(A) & fragile_position(A) & -has_endowment(A) & age(A,B) = zero & greater(sigma,zero) & smaller_or_equal(age(A,C),sigma) & greater(age(A,D),sigma) -> greater(hazard_of_mortality(A,D),hazard_of_mortality(A,C)) & hazard_of_mortality(A,C) = hazard_of_mortality(A,B))).  [assumption].
+13 -organization(A) | has_endowment(A) | -has_immunity(A,B).  [clausify(6)].
+14 organization(c1).  [clausify(12)].
+15 -dissimilar(A,B,C) | organization(A).  [clausify(7)].
+16 -organization(A) | age(A,B) != zero | is_aligned(A,B).  [clausify(8)].
+17 dissimilar(A,B,C) | -organization(A) | -is_aligned(A,B) | is_aligned(A,C).  [clausify(7)].
+18 -organization(A) | age(A,B) != zero | -greater(age(A,C),sigma) | dissimilar(A,B,C).  [clausify(9)].
+19 -organization(A) | age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C).  [clausify(9)].
+20 -organization(A) | has_immunity(A,B) | -is_aligned(A,B) | -positional_advantage(A,B) | hazard_of_mortality(A,B) = low.  [clausify(11)].
+21 -organization(A) | has_immunity(A,B) | is_aligned(A,B) | positional_advantage(A,B) | hazard_of_mortality(A,B) = high.  [clausify(11)].
+22 -fragile_position(A) | -greater(age(A,B),sigma) | -positional_advantage(A,B).  [clausify(10)].
+23 fragile_position(c1).  [clausify(12)].
+24 -fragile_position(A) | -smaller_or_equal(age(A,B),sigma) | positional_advantage(A,B).  [clausify(10)].
+25 smaller_or_equal(A,B) | -smaller(A,B).  [clausify(1)].
+26 smaller(A,B) | B = A | greater(A,B).  [clausify(5)].
+27 -smaller(A,B) | greater(B,A).  [clausify(2)].
+28 smaller(A,B) | -greater(B,A).  [clausify(2)].
+29 greater(high,mod2).  [assumption].
+30 greater(mod2,low).  [assumption].
+31 greater(sigma,zero).  [clausify(12)].
+32 age(c1,c2) = zero.  [clausify(12)].
+33 smaller_or_equal(age(c1,c3),sigma).  [clausify(12)].
+34 greater(age(c1,c4),sigma).  [clausify(12)].
+35 -has_endowment(c1).  [clausify(12)].
+36 -greater(A,B) | -greater(B,A).  [clausify(3)].
+37 -dissimilar(A,B,C) | -is_aligned(A,B) | -is_aligned(A,C).  [clausify(7)].
+38 -greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [clausify(12)].
+39 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(4)].
+40 has_endowment(c1) | -has_immunity(c1,A).  [resolve(13,a,14,a)].
+41 -has_immunity(c1,A).  [resolve(35,a,40,a)].
+42 age(c1,A) != zero | is_aligned(c1,A).  [resolve(16,a,14,a)].
+43 dissimilar(c1,A,B) | -is_aligned(c1,A) | is_aligned(c1,B).  [resolve(17,b,14,a)].
+44 age(c1,A) != zero | -greater(age(c1,B),sigma) | dissimilar(c1,A,B).  [resolve(18,a,14,a)].
+45 age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C) | -dissimilar(A,D,E).  [resolve(19,a,15,b)].
+46 has_immunity(c1,A) | -is_aligned(c1,A) | -positional_advantage(c1,A) | hazard_of_mortality(c1,A) = low.  [resolve(20,a,14,a)].
+47 -is_aligned(c1,A) | -positional_advantage(c1,A) | hazard_of_mortality(c1,A) = low.  [resolve(41,a,46,a)].
+48 has_immunity(c1,A) | is_aligned(c1,A) | positional_advantage(c1,A) | hazard_of_mortality(c1,A) = high.  [resolve(21,a,14,a)].
+49 is_aligned(c1,A) | positional_advantage(c1,A) | hazard_of_mortality(c1,A) = high.  [resolve(41,a,48,a)].
+50 -greater(age(c1,A),sigma) | -positional_advantage(c1,A).  [resolve(22,a,23,a)].
+51 -smaller_or_equal(age(c1,A),sigma) | positional_advantage(c1,A).  [resolve(24,a,23,a)].
+52 greater(A,B) | A = B | greater(B,A).  [resolve(27,a,26,a)].
+53 -greater(A,B) | smaller_or_equal(B,A).  [resolve(28,a,25,b)].
+54 -greater(A,A).  [factor(36,a,b)].
+55 age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C).  [factor(45,c,d)].
+56 -greater(low,mod2).  [resolve(36,a,30,a)].
+57 -greater(mod2,A) | greater(high,A).  [resolve(39,a,29,a)].
+58 is_aligned(c1,c2).  [resolve(42,a,32,a)].
+59 age(c1,A) != zero | dissimilar(c1,A,c4).  [resolve(44,b,34,a)].
+60 -positional_advantage(c1,c4).  [resolve(50,a,34,a)].
+61 positional_advantage(c1,c3).  [resolve(51,a,33,a)].
+62 -smaller_or_equal(zero,sigma) | positional_advantage(c1,c2).  [para(32(a,1),51(a,1))].
+63 hazard_of_mortality(c1,c4) = hazard_of_mortality(c1,c3) | greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c4)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [resolve(52,a,38,a)].
+64 smaller_or_equal(zero,sigma).  [resolve(53,a,31,a)].
+65 positional_advantage(c1,c2).  [resolve(64,a,62,a)].
+66 -greater(A,high) | greater(A,mod2).  [resolve(39,b,29,a)].
+67 -greater(low,high).  [resolve(66,b,56,a)].
+68 dissimilar(c1,c2,A) | is_aligned(c1,A).  [resolve(58,a,43,b)].
+69 -greater(age(c1,c3),sigma).  [resolve(61,a,50,b)].
+70 -is_aligned(c1,c3) | hazard_of_mortality(c1,c3) = low.  [resolve(61,a,47,b)].
+71 is_aligned(c1,c4) | hazard_of_mortality(c1,c4) = high.  [resolve(60,a,49,b)].
+72 -is_aligned(c1,c2) | hazard_of_mortality(c1,c2) = low.  [resolve(65,a,47,b)].
+73 hazard_of_mortality(c1,c2) = low.  [resolve(58,a,72,a)].
+74 hazard_of_mortality(c1,c4) = hazard_of_mortality(c1,c3) | greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c4)) | hazard_of_mortality(c1,c3) != low.  [para(73(a,1),63(c,2))].
+75 greater(age(c1,A),sigma) | -dissimilar(c1,c2,A).  [resolve(55,a,32,a)].
+76 -dissimilar(c1,c2,c3).  [resolve(75,a,69,a)].
+77 greater(high,low).  [resolve(57,a,30,a)].
+78 dissimilar(c1,c2,c4).  [resolve(59,a,32,a)].
+79 -is_aligned(c1,c2) | -is_aligned(c1,c4).  [resolve(78,a,37,a)].
+80 -is_aligned(c1,c4).  [resolve(58,a,79,a)].
+81 hazard_of_mortality(c1,c4) = high.  [resolve(80,a,71,a)].
+82 high = hazard_of_mortality(c1,c3) | greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c4)) | hazard_of_mortality(c1,c3) != low.  [para(81(a,1),74(a,1))].
+83 high = hazard_of_mortality(c1,c3) | greater(hazard_of_mortality(c1,c3),high) | hazard_of_mortality(c1,c3) != low.  [para(81(a,1),82(b,2))].
+84 hazard_of_mortality(c1,c3) = high | greater(hazard_of_mortality(c1,c3),high) | hazard_of_mortality(c1,c3) != low.  [copy(83),flip(a)].
+85 is_aligned(c1,c3).  [resolve(68,a,76,a)].
+86 hazard_of_mortality(c1,c3) = low.  [resolve(85,a,70,a)].
+87 low = high | greater(hazard_of_mortality(c1,c3),high) | hazard_of_mortality(c1,c3) != low.  [para(86(a,1),84(a,1))].
+88 low = high | greater(low,high) | hazard_of_mortality(c1,c3) != low.  [para(86(a,1),87(b,1))].
+89 low = high | greater(low,high) | low != low.  [para(86(a,1),88(c,1))].
+90 high = low | greater(low,high) | low != low.  [copy(89),flip(a)].
+91 high = low | greater(low,high).  [copy(90),xx(c)].
+92 high = low.  [resolve(67,a,91,b)].
+93 greater(low,low).  [para(92(a,1),77(a,1))].
+94 $F.  [resolve(54,a,93,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,20 @@
+
+
+
+4 subset(c1,c2).  [clausify(3)].
+5 subset(c2,c3).  [clausify(3)].
+6 subset(c3,c1).  [clausify(3)].
+7 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+8 -equal_set(c1,c3).  [clausify(3)].
+9 subset(A,B) | -member(f1(A,B),B).  [clausify(1)].
+10 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+11 equal_set(A,B) | -subset(A,B) | -subset(B,A).  [clausify(2)].
+12 -member(A,c2) | member(A,c3).  [resolve(10,a,5,a)].
+13 -member(A,c1) | member(A,c2).  [resolve(10,a,4,a)].
+14 equal_set(c1,c3) | -subset(c1,c3).  [resolve(11,c,6,a)].
+15 -subset(c1,c3).  [resolve(8,a,14,a)].
+16 member(f1(c1,c3),c1).  [resolve(15,a,7,a)].
+17 -member(f1(c1,c3),c3).  [resolve(9,a,15,a)].
+18 member(f1(c1,c3),c2).  [resolve(13,a,16,a)].
+19 member(f1(c1,c3),c3).  [resolve(18,a,12,a)].
+20 $F.  [resolve(17,a,19,a)].

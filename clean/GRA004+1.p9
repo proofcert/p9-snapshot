@@ -1,0 +1,63 @@
+
+
+
+
+
+
+
+
+9 shortest_path(c1,c2,c5).  [clausify(8)].
+10 -shortest_path(A,B,C) | -precedes(D,E,C) | -precedes(E,D,C).  [clausify(7)].
+11 -shortest_path(A,B,C) | -precedes(D,E,C) | tail_of(F) != tail_of(D) | head_of(F) != head_of(E).  [clausify(7)].
+12 -shortest_path(A,B,C) | path(A,B,C).  [clausify(6)].
+13 precedes(c3,c4,c5).  [clausify(8)].
+14 tail_of(c6) = tail_of(c3) | tail_of(c3) = head_of(c4) | head_of(c4) = head_of(c3).  [clausify(8)].
+15 head_of(c6) = head_of(c4) | tail_of(c3) = head_of(c4) | head_of(c4) = head_of(c3).  [clausify(8)].
+16 -edge(A) | tail_of(A) != head_of(A).  [clausify(1)].
+17 -path(A,B,C) | -on_path(D,C) | edge(D).  [clausify(2)].
+18 -path(A,B,C) | -precedes(D,E,C) | on_path(D,C).  [clausify(5)].
+19 -path(A,B,C) | -precedes(D,E,C) | on_path(E,C).  [clausify(5)].
+20 sequential(A,B) | -edge(A) | -edge(B) | B = A | tail_of(B) != head_of(A).  [clausify(3)].
+21 -path(A,B,C) | -on_path(D,C) | -on_path(E,C) | -sequential(D,F) | -precedes(F,E,C) | precedes(D,E,C).  [clausify(4)].
+22 -precedes(A,B,c5) | -precedes(B,A,c5).  [resolve(10,a,9,a)].
+23 -precedes(A,B,c5) | tail_of(C) != tail_of(A) | head_of(C) != head_of(B).  [resolve(11,a,9,a)].
+24 path(c1,c2,c5).  [resolve(12,a,9,a)].
+25 -precedes(A,A,c5).  [factor(22,a,b)].
+26 -path(A,B,c5) | on_path(c3,c5).  [resolve(18,b,13,a)].
+27 -path(A,B,c5) | on_path(c4,c5).  [resolve(19,b,13,a)].
+28 -path(A,B,c5) | -on_path(C,c5) | -on_path(c4,c5) | -sequential(C,c3) | precedes(C,c4,c5).  [resolve(21,e,13,a)].
+29 -path(A,B,c5) | -on_path(c4,c5) | -sequential(c4,c3) | precedes(c4,c4,c5).  [factor(28,b,c)].
+30 -path(A,B,c5) | -on_path(c4,c5) | -sequential(c4,c3).  [resolve(25,a,29,d)].
+31 tail_of(A) != tail_of(c3) | head_of(A) != head_of(c4).  [resolve(23,a,13,a)].
+32 tail_of(c3) != tail_of(A) | head_of(A) != head_of(c4).  [copy(31),flip(a)].
+33 tail_of(c3) != tail_of(A) | head_of(c4) != head_of(A).  [copy(32),flip(b)].
+34 tail_of(A) != tail_of(c3) | head_of(A) != head_of(c4).  [resolve(23,a,13,a)].
+35 head_of(c3) != head_of(c4).  [xx_res(34,a)].
+36 head_of(c4) != head_of(c3).  [copy(35),flip(a)].
+37 head_of(c6) = head_of(c4) | tail_of(c3) = head_of(c4).  [resolve(36,a,15,c)].
+38 tail_of(c6) = tail_of(c3) | tail_of(c3) = head_of(c4).  [resolve(36,a,14,c)].
+39 -on_path(A,c5) | edge(A).  [resolve(24,a,17,a)].
+40 -on_path(c4,c5) | -sequential(c4,c3).  [resolve(30,a,24,a)].
+41 on_path(c3,c5).  [resolve(26,a,24,a)].
+42 edge(c3).  [resolve(41,a,39,a)].
+43 on_path(c4,c5).  [resolve(27,a,24,a)].
+44 -sequential(c4,c3).  [resolve(43,a,40,a)].
+45 sequential(A,c3) | -edge(A) | c3 = A | tail_of(c3) != head_of(A).  [resolve(42,a,20,c)].
+46 tail_of(c3) != head_of(c3).  [resolve(42,a,16,a)].
+47 edge(c4).  [resolve(43,a,39,a)].
+48 tail_of(c3) = head_of(c4) | head_of(c4) != head_of(c6).  [resolve(38,a,33,a(flip))].
+49 tail_of(c3) = head_of(c4) | head_of(c6) != head_of(c4).  [copy(48),flip(b)].
+50 sequential(c4,c3) | c3 = c4 | tail_of(c3) != head_of(c4).  [resolve(45,b,47,a)].
+51 sequential(c4,c3) | c4 = c3 | tail_of(c3) != head_of(c4).  [copy(50),flip(b)].
+52 c4 = c3 | tail_of(c3) != head_of(c4).  [resolve(44,a,51,a)].
+53 c4 = c3 | head_of(c6) = head_of(c4).  [resolve(52,b,37,b)].
+54 c4 = c3 | tail_of(c3) = head_of(c4).  [resolve(53,b,49,b)].
+55 c4 = c3 | c4 = c3.  [resolve(54,b,52,b)].
+56 c4 = c3.  [copy(55),merge(b)].
+57 tail_of(c3) = head_of(c3) | head_of(c6) != head_of(c4).  [para(56(a,1),49(a,2,1))].
+58 tail_of(c3) = head_of(c3) | head_of(c6) != head_of(c3).  [para(56(a,1),57(b,2,1))].
+59 head_of(c6) != head_of(c3).  [resolve(46,a,58,a)].
+60 head_of(c6) = head_of(c3) | tail_of(c3) = head_of(c4).  [para(56(a,1),37(a,2,1))].
+61 head_of(c6) = head_of(c3) | tail_of(c3) = head_of(c3).  [para(56(a,1),60(b,2,1))].
+62 tail_of(c3) = head_of(c3).  [resolve(59,a,61,a)].
+63 $F.  [resolve(46,a,62,a)].

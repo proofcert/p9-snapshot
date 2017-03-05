@@ -1,0 +1,16 @@
+
+
+
+
+5 domain(multiplication(A,domain(B))) = domain(multiplication(A,B)).  [clausify(2)].
+6 domain(addition(A,B)) = addition(domain(A),domain(B)).  [clausify(3)].
+7 multiplication(addition(A,B),C) = addition(multiplication(A,C),multiplication(B,C)).  [clausify(1)].
+8 addition(multiplication(A,B),multiplication(C,B)) = multiplication(addition(A,C),B).  [copy(7),flip(a)].
+9 domain(multiplication(addition(c1,c2),domain(c3))) != addition(domain(multiplication(c1,domain(c3))),domain(multiplication(c2,domain(c3)))).  [clausify(4)].
+10 domain(multiplication(addition(c1,c2),c3)) != addition(domain(multiplication(c1,domain(c3))),domain(multiplication(c2,domain(c3)))).  [para(5(a,1),9(a,1))].
+11 domain(multiplication(addition(c1,c2),c3)) != addition(domain(multiplication(c1,c3)),domain(multiplication(c2,domain(c3)))).  [para(5(a,1),10(a,2,1))].
+12 domain(multiplication(addition(c1,c2),c3)) != addition(domain(multiplication(c1,c3)),domain(multiplication(c2,c3))).  [para(5(a,1),11(a,2,2))].
+13 addition(domain(multiplication(c1,c3)),domain(multiplication(c2,c3))) != domain(multiplication(addition(c1,c2),c3)).  [copy(12),flip(a)].
+14 domain(multiplication(addition(A,B),C)) = addition(domain(multiplication(A,C)),domain(multiplication(B,C))).  [para(8(a,1),6(a,1,1))].
+15 addition(domain(multiplication(A,B)),domain(multiplication(C,B))) = domain(multiplication(addition(A,C),B)).  [copy(14),flip(a)].
+16 $F.  [resolve(15,a,13,a)].

@@ -1,0 +1,34 @@
+
+
+
+4 -ssList(A) | -ssList(B) | -neq(A,B) | B != A.  [clausify(1)].
+5 neq(c7,nil) | nil = c5.  [clausify(3)].
+6 ssList(nil).  [assumption].
+7 -ssList(A) | -segmentP(nil,A) | nil = A.  [clausify(2)].
+8 nil = c4.  [clausify(3)].
+9 c4 = nil.  [copy(8),flip(a)].
+10 c6 = c4.  [clausify(3)].
+11 c6 = nil.  [para(9(a,1),10(a,2))].
+12 c5 = c3.  [clausify(3)].
+13 nil != c3.  [clausify(3)].
+14 c3 != nil.  [copy(13),flip(a)].
+15 ssList(c7) | nil = c5.  [clausify(3)].
+16 ssList(c7) | nil = c3.  [para(12(a,1),15(b,2))].
+17 ssList(c7) | c3 = nil.  [copy(16),flip(b)].
+18 ssList(c7).  [resolve(14,a,17,b)].
+19 segmentP(c6,c7) | nil = c5.  [clausify(3)].
+20 segmentP(nil,c7) | nil = c5.  [para(11(a,1),19(a,1))].
+21 segmentP(nil,c7) | nil = c3.  [para(12(a,1),20(b,2))].
+22 segmentP(nil,c7) | c3 = nil.  [copy(21),flip(b)].
+23 segmentP(nil,c7).  [resolve(14,a,22,b)].
+24 nil = c5 | -ssList(c7) | -ssList(nil) | nil != c7.  [resolve(5,a,4,c)].
+25 nil = c3 | -ssList(c7) | -ssList(nil) | nil != c7.  [para(12(a,1),24(a,2))].
+26 c3 = nil | -ssList(c7) | -ssList(nil) | nil != c7.  [copy(25),flip(a)].
+27 c3 = nil | -ssList(c7) | -ssList(nil) | c7 != nil.  [copy(26),flip(d)].
+28 -ssList(c7) | -ssList(nil) | c7 != nil.  [resolve(14,a,27,a)].
+29 -ssList(nil) | c7 != nil.  [resolve(18,a,28,a)].
+30 c7 != nil.  [resolve(6,a,29,a)].
+31 -ssList(c7) | nil = c7.  [resolve(23,a,7,b)].
+32 -ssList(c7) | c7 = nil.  [copy(31),flip(b)].
+33 c7 = nil.  [resolve(18,a,32,a)].
+34 $F.  [resolve(30,a,33,a)].

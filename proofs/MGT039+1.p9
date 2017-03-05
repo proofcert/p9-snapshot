@@ -1,0 +1,128 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n162.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:04:38 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 50128 was started by sandbox on n162.star.cs.uiowa.edu,
+Thu Jun  5 17:04:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_50096_n162.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 67.
+% Level of proof is 18.
+% Maximum clause weight is 22.000.
+% Given clauses 57.
+
+
+1 (all A (observational_period(A) & propagation_strategy(first_movers) & propagation_strategy(efficient_producers) & (all B (environment(B) & in_environment(A,B) -> selection_favors(efficient_producers,first_movers,end_time(B)))) -> selection_favors(efficient_producers,first_movers,A))).  [assumption].
+2 (all A (observational_period(A) & slow_change(A) -> (all B (environment(B) & in_environment(A,B) -> (exists C (in_environment(B,C) & greater(C,critical_point(B)))))))).  [assumption].
+3 (all A all B (environment(A) & greater_or_equal(B,start_time(A)) & greater_or_equal(end_time(A),B) -> in_environment(A,B))).  [assumption].
+4 (all A all B (environment(A) & in_environment(A,B) -> greater_or_equal(end_time(A),B))).  [assumption].
+5 (all A (environment(A) -> greater_or_equal(critical_point(A),start_time(A)))).  [assumption].
+6 (all A all B all C (greater(A,B) & greater(B,C) -> greater(A,C))).  [assumption].
+7 (all A all B (greater_or_equal(A,B) <-> greater(A,B) | A = B)).  [assumption].
+8 (all A all B (environment(A) & in_environment(A,B) & greater(B,critical_point(A)) -> selection_favors(efficient_producers,first_movers,B))).  [assumption].
+9 -(all A (observational_period(A) & slow_change(A) -> selection_favors(efficient_producers,first_movers,A))).  [assumption].
+10 -observational_period(A) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | environment(f1(A)) | selection_favors(efficient_producers,first_movers,A).  [clausify(1)].
+11 observational_period(c1).  [clausify(9)].
+12 -observational_period(A) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | in_environment(A,f1(A)) | selection_favors(efficient_producers,first_movers,A).  [clausify(1)].
+13 -observational_period(A) | -slow_change(A) | -environment(B) | -in_environment(A,B) | in_environment(B,f2(A,B)).  [clausify(2)].
+14 -observational_period(A) | -slow_change(A) | -environment(B) | -in_environment(A,B) | greater(f2(A,B),critical_point(B)).  [clausify(2)].
+15 -observational_period(A) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | -selection_favors(efficient_producers,first_movers,end_time(f1(A))) | selection_favors(efficient_producers,first_movers,A).  [clausify(1)].
+16 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | environment(f1(c1)) | selection_favors(efficient_producers,first_movers,c1).  [resolve(10,a,11,a)].
+17 -environment(A) | greater_or_equal(critical_point(A),start_time(A)).  [clausify(5)].
+18 -environment(A) | -in_environment(A,B) | greater_or_equal(end_time(A),B).  [clausify(4)].
+19 -environment(A) | -greater_or_equal(B,start_time(A)) | -greater_or_equal(end_time(A),B) | in_environment(A,B).  [clausify(3)].
+20 -environment(A) | -in_environment(A,B) | -greater(B,critical_point(A)) | selection_favors(efficient_producers,first_movers,B).  [clausify(8)].
+21 -slow_change(c1) | -environment(A) | -in_environment(c1,A) | in_environment(A,f2(c1,A)).  [resolve(13,a,11,a)].
+22 -slow_change(c1) | -environment(A) | -in_environment(c1,A) | greater(f2(c1,A),critical_point(A)).  [resolve(14,a,11,a)].
+23 propagation_strategy(first_movers).  [assumption].
+24 propagation_strategy(efficient_producers).  [assumption].
+25 slow_change(c1).  [clausify(9)].
+26 -selection_favors(efficient_producers,first_movers,c1).  [clausify(9)].
+27 greater_or_equal(A,B) | -greater(A,B).  [clausify(7)].
+28 greater_or_equal(A,B) | B != A.  [clausify(7)].
+29 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(6)].
+30 -greater_or_equal(A,B) | greater(A,B) | B = A.  [clausify(7)].
+31 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | in_environment(c1,f1(c1)) | selection_favors(efficient_producers,first_movers,c1).  [resolve(12,a,11,a)].
+32 -propagation_strategy(efficient_producers) | in_environment(c1,f1(c1)) | selection_favors(efficient_producers,first_movers,c1).  [resolve(23,a,31,a)].
+33 in_environment(c1,f1(c1)) | selection_favors(efficient_producers,first_movers,c1).  [resolve(24,a,32,a)].
+34 in_environment(c1,f1(c1)).  [resolve(26,a,33,b)].
+35 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | -selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(15,a,11,a)].
+36 -propagation_strategy(efficient_producers) | -selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(23,a,35,a)].
+37 -selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(24,a,36,a)].
+38 -selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [resolve(26,a,37,b)].
+39 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),start_time(f1(c1))).  [resolve(16,c,17,a)].
+40 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),start_time(f1(c1))).  [resolve(23,a,39,a)].
+41 selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),start_time(f1(c1))).  [resolve(24,a,40,a)].
+42 greater_or_equal(critical_point(f1(c1)),start_time(f1(c1))).  [resolve(26,a,41,a)].
+43 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(end_time(f1(c1)),A).  [resolve(16,c,18,a)].
+44 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(end_time(f1(c1)),A).  [resolve(23,a,43,a)].
+45 selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(end_time(f1(c1)),A).  [resolve(24,a,44,a)].
+46 -in_environment(f1(c1),A) | greater_or_equal(end_time(f1(c1)),A).  [resolve(26,a,45,a)].
+47 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -greater_or_equal(A,start_time(f1(c1))) | -greater_or_equal(end_time(f1(c1)),A) | in_environment(f1(c1),A).  [resolve(16,c,19,a)].
+48 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -greater_or_equal(A,start_time(f1(c1))) | -greater_or_equal(end_time(f1(c1)),A) | in_environment(f1(c1),A).  [resolve(23,a,47,a)].
+49 selection_favors(efficient_producers,first_movers,c1) | -greater_or_equal(A,start_time(f1(c1))) | -greater_or_equal(end_time(f1(c1)),A) | in_environment(f1(c1),A).  [resolve(24,a,48,a)].
+50 -greater_or_equal(A,start_time(f1(c1))) | -greater_or_equal(end_time(f1(c1)),A) | in_environment(f1(c1),A).  [resolve(26,a,49,a)].
+51 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater(A,critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,A).  [resolve(16,c,20,a)].
+52 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater(A,critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,A).  [resolve(23,a,51,a)].
+53 selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater(A,critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,A).  [resolve(24,a,52,a)].
+54 -in_environment(f1(c1),A) | -greater(A,critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,A).  [resolve(26,a,53,a)].
+55 -slow_change(c1) | -in_environment(c1,f1(c1)) | in_environment(f1(c1),f2(c1,f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(21,b,16,c)].
+56 -in_environment(c1,f1(c1)) | in_environment(f1(c1),f2(c1,f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(25,a,55,a)].
+57 in_environment(f1(c1),f2(c1,f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(34,a,56,a)].
+58 in_environment(f1(c1),f2(c1,f1(c1))) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(23,a,57,b)].
+59 in_environment(f1(c1),f2(c1,f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(24,a,58,b)].
+60 in_environment(f1(c1),f2(c1,f1(c1))).  [resolve(26,a,59,b)].
+61 -slow_change(c1) | -in_environment(c1,f1(c1)) | greater(f2(c1,f1(c1)),critical_point(f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(22,b,16,c)].
+62 -in_environment(c1,f1(c1)) | greater(f2(c1,f1(c1)),critical_point(f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(25,a,61,a)].
+63 greater(f2(c1,f1(c1)),critical_point(f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(34,a,62,a)].
+64 greater(f2(c1,f1(c1)),critical_point(f1(c1))) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(23,a,63,b)].
+65 greater(f2(c1,f1(c1)),critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(24,a,64,b)].
+66 greater(f2(c1,f1(c1)),critical_point(f1(c1))).  [resolve(26,a,65,b)].
+67 greater_or_equal(A,A).  [xx_res(28,b)].
+68 greater(critical_point(f1(c1)),start_time(f1(c1))) | start_time(f1(c1)) = critical_point(f1(c1)).  [resolve(42,a,30,a)].
+69 -greater(f2(c1,f1(c1)),critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(60,a,54,a)].
+70 selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(66,a,69,a)].
+71 greater_or_equal(end_time(f1(c1)),f2(c1,f1(c1))).  [resolve(60,a,46,a)].
+72 -greater(A,f2(c1,f1(c1))) | greater(A,critical_point(f1(c1))).  [resolve(66,a,29,b)].
+73 -greater_or_equal(end_time(f1(c1)),start_time(f1(c1))) | in_environment(f1(c1),end_time(f1(c1))).  [resolve(67,a,50,b)].
+74 greater(end_time(f1(c1)),f2(c1,f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(71,a,30,a)].
+75 start_time(f1(c1)) = critical_point(f1(c1)) | -greater(A,critical_point(f1(c1))) | greater(A,start_time(f1(c1))).  [resolve(68,a,29,b)].
+76 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(end_time(f1(c1)),critical_point(f1(c1))).  [resolve(74,a,72,a)].
+77 f2(c1,f1(c1)) = end_time(f1(c1)) | greater_or_equal(end_time(f1(c1)),critical_point(f1(c1))).  [resolve(76,b,27,b)].
+78 start_time(f1(c1)) = critical_point(f1(c1)) | greater(end_time(f1(c1)),start_time(f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(75,b,76,b)].
+79 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater_or_equal(end_time(f1(c1)),start_time(f1(c1))).  [resolve(78,b,27,b)].
+80 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | in_environment(f1(c1),end_time(f1(c1))).  [resolve(79,c,73,a)].
+81 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(end_time(f1(c1)),critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [resolve(80,c,54,a)].
+82 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(end_time(f1(c1)),critical_point(f1(c1))).  [resolve(38,a,81,d)].
+83 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(82,c,76,b)].
+84 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(83),merge(c)].
+85 start_time(f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(84(b,1),70(a,3))].
+86 start_time(f1(c1)) = critical_point(f1(c1)).  [resolve(38,a,85,b)].
+87 -greater_or_equal(end_time(f1(c1)),critical_point(f1(c1))) | in_environment(f1(c1),end_time(f1(c1))).  [para(86(a,1),73(a,2))].
+88 in_environment(f1(c1),end_time(f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(87,a,77,b)].
+89 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(end_time(f1(c1)),critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [resolve(88,a,54,a)].
+90 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(end_time(f1(c1)),critical_point(f1(c1))).  [resolve(38,a,89,c)].
+91 f2(c1,f1(c1)) = end_time(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(90,b,76,b)].
+92 f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(91),merge(b)].
+93 selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(92(a,1),70(a,3))].
+94 $F.  [resolve(38,a,93,a)].
+
+============================== end of proof ==========================

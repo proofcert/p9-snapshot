@@ -1,0 +1,30 @@
+
+
+
+
+
+6 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(3)].
+7 subset(c3,cartesian_product2(c4,c5)).  [clausify(5)].
+8 in(c6,c3).  [clausify(5)].
+9 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+10 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(4)].
+11 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(9(a,1),10(a,2))].
+12 -in(A,c4) | -in(B,c5) | ordered_pair(A,B) != c6.  [clausify(5)].
+13 -in(A,c4) | -in(B,c5) | unordered_pair(singleton(A),unordered_pair(A,B)) != c6.  [para(11(a,1),12(c,1))].
+14 cartesian_product2(A,B) != C | -in(D,C) | in(f1(A,B,C,D),A).  [clausify(2)].
+15 cartesian_product2(A,B) != C | -in(D,C) | in(f2(A,B,C,D),B).  [clausify(2)].
+16 cartesian_product2(A,B) != C | -in(D,C) | ordered_pair(f1(A,B,C,D),f2(A,B,C,D)) = D.  [clausify(2)].
+17 cartesian_product2(A,B) != C | -in(D,C) | unordered_pair(singleton(f1(A,B,C,D)),unordered_pair(f1(A,B,C,D),f2(A,B,C,D))) = D.  [para(11(a,1),16(c,1))].
+18 -in(A,c3) | in(A,cartesian_product2(c4,c5)).  [resolve(6,a,7,a)].
+19 in(c6,cartesian_product2(c4,c5)).  [resolve(18,a,8,a)].
+20 cartesian_product2(A,B) != cartesian_product2(c4,c5) | in(f2(A,B,cartesian_product2(c4,c5),c6),B).  [resolve(19,a,15,b)].
+21 cartesian_product2(c4,c5) != cartesian_product2(A,B) | in(f2(A,B,cartesian_product2(c4,c5),c6),B).  [copy(20),flip(a)].
+22 cartesian_product2(A,B) != cartesian_product2(c4,c5) | in(f1(A,B,cartesian_product2(c4,c5),c6),A).  [resolve(19,a,14,b)].
+23 cartesian_product2(c4,c5) != cartesian_product2(A,B) | in(f1(A,B,cartesian_product2(c4,c5),c6),A).  [copy(22),flip(a)].
+24 in(f2(c4,c5,cartesian_product2(c4,c5),c6),c5).  [xx_res(21,a)].
+25 -in(A,c4) | unordered_pair(singleton(A),unordered_pair(A,f2(c4,c5,cartesian_product2(c4,c5),c6))) != c6.  [resolve(24,a,13,b)].
+26 in(f1(c4,c5,cartesian_product2(c4,c5),c6),c4).  [xx_res(23,a)].
+27 unordered_pair(singleton(f1(c4,c5,cartesian_product2(c4,c5),c6)),unordered_pair(f1(c4,c5,cartesian_product2(c4,c5),c6),f2(c4,c5,cartesian_product2(c4,c5),c6))) != c6.  [resolve(26,a,25,a)].
+28 cartesian_product2(A,B) != cartesian_product2(c4,c5) | unordered_pair(singleton(f1(A,B,cartesian_product2(c4,c5),c6)),unordered_pair(f1(A,B,cartesian_product2(c4,c5),c6),f2(A,B,cartesian_product2(c4,c5),c6))) = c6.  [resolve(17,b,19,a)].
+29 cartesian_product2(c4,c5) != cartesian_product2(c4,c5).  [resolve(28,b,27,a)].
+30 $F.  [copy(29),xx(a)].

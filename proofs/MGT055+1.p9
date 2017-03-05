@@ -1,0 +1,128 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n069.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:30:03 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5219 was started by sandbox on n069.star.cs.uiowa.edu,
+Thu Jun  5 18:30:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5187_n069.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 82.
+% Level of proof is 12.
+% Maximum clause weight is 24.000.
+% Given clauses 160.
+
+
+1 (all A all B (smaller_or_equal(A,B) <-> smaller(A,B) | A = B)).  [assumption].
+2 (all A all B (smaller(A,B) <-> greater(B,A))).  [assumption].
+3 (all A all B -(greater(A,B) & greater(B,A))).  [assumption].
+4 (all A all B all C (greater(A,B) & greater(B,C) -> greater(A,C))).  [assumption].
+5 (all A (has_endowment(A) <-> (all B (organization(A) & (smaller_or_equal(age(A,B),eta) -> has_immunity(A,B)) & (greater(age(A,B),eta) -> -has_immunity(A,B)))))).  [assumption].
+6 (all A all B all C (organization(A) & has_immunity(A,B) & has_immunity(A,C) -> hazard_of_mortality(A,B) = hazard_of_mortality(A,C))).  [assumption].
+7 (all A all B all C (organization(A) & has_immunity(A,B) & -has_immunity(A,C) -> greater(hazard_of_mortality(A,C),hazard_of_mortality(A,B)))).  [assumption].
+8 (all A all B all C (dissimilar(A,B,C) <-> organization(A) & -(is_aligned(A,B) <-> is_aligned(A,C)))).  [assumption].
+9 (all A all B (organization(A) & age(A,B) = zero -> is_aligned(A,B))).  [assumption].
+10 (all A all B all C (organization(A) & is_aligned(A,B) & -is_aligned(A,C) -> greater(capability(A,B),capability(A,C)))).  [assumption].
+11 (all A all B all C (organization(A) & age(A,B) = zero -> (greater(age(A,C),sigma) <-> dissimilar(A,B,C)))).  [assumption].
+12 (all A all B all C (organization(A) & -has_immunity(A,B) & -has_immunity(A,C) & greater(capability(A,C),capability(A,B)) -> greater(hazard_of_mortality(A,B),hazard_of_mortality(A,C)))).  [assumption].
+13 -(all A all B all C all D all E (organization(A) & has_endowment(A) & age(A,B) = zero & smaller_or_equal(age(A,C),eta) & greater(age(A,D),eta) & smaller_or_equal(age(A,D),sigma) & greater(age(A,E),sigma) & greater(sigma,eta) & greater(eta,zero) -> greater(hazard_of_mortality(A,E),hazard_of_mortality(A,D)) & greater(hazard_of_mortality(A,D),hazard_of_mortality(A,C)) & hazard_of_mortality(A,C) = hazard_of_mortality(A,B))).  [assumption].
+14 -organization(A) | age(A,B) != zero | is_aligned(A,B).  [clausify(9)].
+15 organization(c1).  [clausify(13)].
+16 -dissimilar(A,B,C) | organization(A).  [clausify(8)].
+17 dissimilar(A,B,C) | -organization(A) | -is_aligned(A,B) | is_aligned(A,C).  [clausify(8)].
+18 -organization(A) | -has_immunity(A,B) | -has_immunity(A,C) | hazard_of_mortality(A,B) = hazard_of_mortality(A,C).  [clausify(6)].
+19 -organization(A) | -has_immunity(A,B) | has_immunity(A,C) | greater(hazard_of_mortality(A,C),hazard_of_mortality(A,B)).  [clausify(7)].
+20 -organization(A) | -is_aligned(A,B) | is_aligned(A,C) | greater(capability(A,B),capability(A,C)).  [clausify(10)].
+21 -organization(A) | age(A,B) != zero | -greater(age(A,C),sigma) | dissimilar(A,B,C).  [clausify(11)].
+22 -organization(A) | age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C).  [clausify(11)].
+23 -organization(A) | has_immunity(A,B) | has_immunity(A,C) | -greater(capability(A,C),capability(A,B)) | greater(hazard_of_mortality(A,B),hazard_of_mortality(A,C)).  [clausify(12)].
+24 -has_endowment(A) | -greater(age(A,B),eta) | -has_immunity(A,B).  [clausify(5)].
+25 has_endowment(c1).  [clausify(13)].
+26 -has_endowment(A) | -smaller_or_equal(age(A,B),eta) | has_immunity(A,B).  [clausify(5)].
+27 smaller_or_equal(A,B) | -smaller(A,B).  [clausify(1)].
+28 -smaller(A,B) | greater(B,A).  [clausify(2)].
+29 smaller(A,B) | -greater(B,A).  [clausify(2)].
+30 -smaller_or_equal(A,B) | smaller(A,B) | B = A.  [clausify(1)].
+31 greater(sigma,eta).  [clausify(13)].
+32 greater(eta,zero).  [clausify(13)].
+33 age(c1,c2) = zero.  [clausify(13)].
+34 smaller_or_equal(age(c1,c3),eta).  [clausify(13)].
+35 greater(age(c1,c4),eta).  [clausify(13)].
+36 smaller_or_equal(age(c1,c4),sigma).  [clausify(13)].
+37 greater(age(c1,c5),sigma).  [clausify(13)].
+38 -greater(A,B) | -greater(B,A).  [clausify(3)].
+39 -dissimilar(A,B,C) | -is_aligned(A,B) | -is_aligned(A,C).  [clausify(8)].
+40 -greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)) | -greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [clausify(13)].
+41 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(4)].
+42 age(c1,A) != zero | is_aligned(c1,A).  [resolve(14,a,15,a)].
+43 dissimilar(c1,A,B) | -is_aligned(c1,A) | is_aligned(c1,B).  [resolve(17,b,15,a)].
+44 -has_immunity(c1,A) | -has_immunity(c1,B) | hazard_of_mortality(c1,A) = hazard_of_mortality(c1,B).  [resolve(18,a,15,a)].
+45 -has_immunity(c1,A) | has_immunity(c1,B) | greater(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(19,a,15,a)].
+46 -is_aligned(A,B) | is_aligned(A,C) | greater(capability(A,B),capability(A,C)) | -dissimilar(A,D,E).  [resolve(20,a,16,b)].
+47 age(c1,A) != zero | -greater(age(c1,B),sigma) | dissimilar(c1,A,B).  [resolve(21,a,15,a)].
+48 age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C) | -dissimilar(A,D,E).  [resolve(22,a,16,b)].
+49 has_immunity(A,B) | has_immunity(A,C) | -greater(capability(A,C),capability(A,B)) | greater(hazard_of_mortality(A,B),hazard_of_mortality(A,C)) | -dissimilar(A,D,E).  [resolve(23,a,16,b)].
+50 -greater(age(c1,A),eta) | -has_immunity(c1,A).  [resolve(24,a,25,a)].
+51 -smaller_or_equal(age(c1,A),eta) | has_immunity(c1,A).  [resolve(26,a,25,a)].
+52 -greater(A,B) | smaller_or_equal(B,A).  [resolve(29,a,27,b)].
+53 -smaller_or_equal(A,B) | B = A | greater(B,A).  [resolve(30,b,28,a)].
+54 -greater(A,A).  [factor(38,a,b)].
+55 age(A,B) != zero | greater(age(A,C),sigma) | -dissimilar(A,B,C).  [factor(48,c,d)].
+56 -greater(sigma,A) | greater(age(c1,c5),A).  [resolve(41,a,37,a)].
+57 is_aligned(c1,c2).  [resolve(42,a,33,a)].
+58 age(c1,A) != zero | dissimilar(c1,A,c5).  [resolve(47,b,37,a)].
+59 -has_immunity(c1,c4).  [resolve(50,a,35,a)].
+60 has_immunity(c1,c3).  [resolve(51,a,34,a)].
+61 -smaller_or_equal(zero,eta) | has_immunity(c1,c2).  [para(33(a,1),51(a,1))].
+62 smaller_or_equal(zero,eta).  [resolve(52,a,32,a)].
+63 has_immunity(c1,c2).  [resolve(62,a,61,a)].
+64 sigma = age(c1,c4) | greater(sigma,age(c1,c4)).  [resolve(53,a,36,a)].
+65 age(c1,c4) = sigma | greater(sigma,age(c1,c4)).  [copy(64),flip(a)].
+66 dissimilar(c1,c2,A) | is_aligned(c1,A).  [resolve(57,a,43,b)].
+67 has_immunity(c1,A) | greater(hazard_of_mortality(c1,A),hazard_of_mortality(c1,c3)).  [resolve(60,a,45,a)].
+68 -has_immunity(c1,A) | hazard_of_mortality(c1,A) = hazard_of_mortality(c1,c3).  [resolve(60,a,44,b)].
+69 -has_immunity(c1,A) | hazard_of_mortality(c1,c3) = hazard_of_mortality(c1,A).  [copy(68),flip(b)].
+70 greater(age(c1,c5),eta).  [resolve(56,a,31,a)].
+71 -has_immunity(c1,c5).  [resolve(50,a,70,a)].
+72 is_aligned(c1,A) | age(c1,c2) != zero | greater(age(c1,A),sigma).  [resolve(66,a,55,c)].
+73 is_aligned(c1,A) | zero != zero | greater(age(c1,A),sigma).  [para(33(a,1),72(b,1))].
+74 is_aligned(c1,A) | greater(age(c1,A),sigma).  [copy(73),xx(b)].
+75 dissimilar(c1,c2,c5).  [resolve(58,a,33,a)].
+76 -is_aligned(c1,c2) | -is_aligned(c1,c5).  [resolve(75,a,39,a)].
+77 -is_aligned(c1,c5).  [resolve(57,a,76,a)].
+78 age(c1,c4) = sigma | -greater(age(c1,c4),sigma).  [resolve(65,b,38,b)].
+79 greater(hazard_of_mortality(c1,c4),hazard_of_mortality(c1,c3)).  [resolve(67,a,59,a)].
+80 -greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)) | hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [resolve(79,a,40,b)].
+81 hazard_of_mortality(c1,c3) = hazard_of_mortality(c1,c2).  [resolve(69,a,63,a)].
+82 -greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)) | hazard_of_mortality(c1,c2) != hazard_of_mortality(c1,c2).  [para(81(a,1),80(b,1))].
+83 -greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)).  [copy(82),xx(b)].
+84 has_immunity(c1,A) | -greater(capability(c1,A),capability(c1,c5)) | greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,A)) | -dissimilar(c1,B,C).  [resolve(49,a,71,a)].
+85 -greater(capability(c1,c4),capability(c1,c5)) | greater(hazard_of_mortality(c1,c5),hazard_of_mortality(c1,c4)) | -dissimilar(c1,A,B).  [resolve(84,a,59,a)].
+86 -greater(capability(c1,c4),capability(c1,c5)) | -dissimilar(c1,A,B).  [resolve(85,b,83,a)].
+87 -greater(capability(c1,c4),capability(c1,c5)).  [resolve(86,b,75,a)].
+88 -is_aligned(c1,A) | greater(capability(c1,A),capability(c1,c5)) | -dissimilar(c1,B,C).  [resolve(46,b,77,a)].
+89 -is_aligned(c1,c4) | -dissimilar(c1,A,B).  [resolve(88,b,87,a)].
+90 -is_aligned(c1,c4).  [resolve(89,b,75,a)].
+91 greater(age(c1,c4),sigma).  [resolve(90,a,74,a)].
+92 age(c1,c4) = sigma.  [resolve(91,a,78,b)].
+93 greater(sigma,sigma).  [para(92(a,1),91(a,1))].
+94 $F.  [resolve(54,a,93,a)].
+
+============================== end of proof ==========================

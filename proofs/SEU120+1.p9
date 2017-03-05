@@ -1,0 +1,55 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n039.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:16:08 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 869 was started by sandbox on n039.star.cs.uiowa.edu,
+Thu Jun  5 17:16:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_837_n039.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 16.
+% Level of proof is 5.
+% Maximum clause weight is 8.000.
+% Given clauses 21.
+
+
+1 (all A (A = empty_set <-> (all B -in(B,A)))).  [assumption].
+2 (all A all B (disjoint(A,B) <-> set_intersection2(A,B) = empty_set)).  [assumption].
+3 (all A all B set_intersection2(A,A) = A).  [assumption].
+4 -(all A all B (-(-disjoint(A,B) & (all C -in(C,set_intersection2(A,B)))) & -((exists C in(C,set_intersection2(A,B))) & disjoint(A,B)))).  [assumption].
+5 set_intersection2(A,A) = A.  [clausify(3)].
+6 empty_set = A | in(f1(A),A).  [clausify(1)].
+7 empty_set != A | -in(B,A).  [clausify(1)].
+8 -disjoint(A,B) | set_intersection2(A,B) = empty_set.  [clausify(2)].
+9 disjoint(A,B) | set_intersection2(A,B) != empty_set.  [clausify(2)].
+10 -disjoint(c3,c4) | in(c5,set_intersection2(c3,c4)).  [clausify(4)].
+11 -in(A,set_intersection2(c3,c4)) | disjoint(c3,c4).  [clausify(4)].
+12 -in(A,set_intersection2(empty_set,empty_set)).  [resolve(7,a,5,a(flip))].
+13 -in(A,empty_set).  [para(5(a,1),12(a,2))].
+14 disjoint(c3,c4) | empty_set = set_intersection2(c3,c4).  [resolve(11,a,6,b)].
+15 disjoint(c3,c4) | set_intersection2(c3,c4) = empty_set.  [copy(14),flip(b)].
+16 set_intersection2(c3,c4) = empty_set | set_intersection2(c3,c4) = empty_set.  [resolve(15,a,8,a)].
+17 set_intersection2(c3,c4) = empty_set.  [copy(16),merge(b)].
+18 -disjoint(c3,c4) | in(c5,empty_set).  [para(17(a,1),10(b,2))].
+19 -disjoint(c3,c4).  [resolve(13,a,18,b)].
+20 disjoint(c3,c4).  [resolve(17,a,9,b)].
+21 $F.  [resolve(19,a,20,a)].
+
+============================== end of proof ==========================

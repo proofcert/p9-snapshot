@@ -1,0 +1,42 @@
+
+
+
+
+
+
+
+
+9 reflexive_rewrite(a,b).  [assumption].
+10 reflexive_rewrite(a,c).  [assumption].
+11 equalish(A,A).  [clausify(2)].
+12 -goal.  [assumption].
+13 -equalish(A,B) | equalish(B,A).  [clausify(3)].
+14 -equalish(A,B) | reflexive_rewrite(A,B).  [clausify(5)].
+15 -rewrite(A,B) | reflexive_rewrite(A,B).  [clausify(6)].
+16 -reflexive_rewrite(b,A) | -reflexive_rewrite(c,A) | goal.  [clausify(1)].
+17 -reflexive_rewrite(b,A) | -reflexive_rewrite(c,A).  [resolve(12,a,16,c)].
+18 -equalish(A,B) | -reflexive_rewrite(B,C) | reflexive_rewrite(A,C).  [clausify(4)].
+19 -reflexive_rewrite(A,B) | equalish(A,B) | rewrite(A,B).  [clausify(7)].
+20 -rewrite(A,B) | -rewrite(A,C) | rewrite(B,f1(A,B,C)).  [clausify(8)].
+21 -rewrite(A,B) | -rewrite(A,C) | rewrite(C,f1(A,B,C)).  [clausify(8)].
+22 reflexive_rewrite(A,A).  [resolve(14,a,11,a)].
+23 equalish(a,c) | rewrite(a,c).  [resolve(19,a,10,a)].
+24 equalish(a,b) | rewrite(a,b).  [resolve(19,a,9,a)].
+25 -reflexive_rewrite(b,c).  [resolve(22,a,17,b)].
+26 -reflexive_rewrite(c,b).  [resolve(17,a,22,a)].
+27 -equalish(A,a) | reflexive_rewrite(A,c).  [resolve(18,b,10,a)].
+28 -equalish(b,a).  [resolve(27,b,25,a)].
+29 -equalish(A,a) | reflexive_rewrite(A,b).  [resolve(18,b,9,a)].
+30 -equalish(c,a).  [resolve(29,b,26,a)].
+31 -equalish(a,b).  [resolve(13,b,28,a)].
+32 rewrite(a,b).  [resolve(31,a,24,a)].
+33 -rewrite(a,A) | rewrite(b,f1(a,A,b)).  [resolve(32,a,21,b)].
+34 -rewrite(a,A) | rewrite(A,f1(a,A,b)).  [resolve(32,a,20,b)].
+35 rewrite(a,c) | equalish(c,a).  [resolve(23,a,13,a)].
+36 rewrite(a,c).  [resolve(30,a,35,b)].
+37 rewrite(b,f1(a,c,b)).  [resolve(33,a,36,a)].
+38 reflexive_rewrite(b,f1(a,c,b)).  [resolve(37,a,15,a)].
+39 -reflexive_rewrite(c,f1(a,c,b)).  [resolve(17,a,38,a)].
+40 rewrite(c,f1(a,c,b)).  [resolve(34,a,36,a)].
+41 reflexive_rewrite(c,f1(a,c,b)).  [resolve(40,a,15,a)].
+42 $F.  [resolve(39,a,41,a)].

@@ -1,0 +1,21 @@
+
+
+3 path(c2,c3,c1).  [clausify(2)].
+4 number_of_in(triangles,c1) != number_of_in(sequential_pairs,c1).  [clausify(2)].
+5 -on_path(A,c1) | -on_path(B,c1) | -sequential(A,B) | triangle(A,B,f10(A,B)).  [clausify(2)].
+6 -path(A,B,C) | on_path(f7(C,A,B),C) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(1)].
+7 -path(A,B,C) | on_path(f8(C,A,B),C) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(1)].
+8 -path(A,B,C) | sequential(f7(C,A,B),f8(C,A,B)) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(1)].
+9 -path(A,B,C) | -triangle(f7(C,A,B),f8(C,A,B),D) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(1)].
+10 on_path(f7(c1,c2,c3),c1) | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(6,a,3,a)].
+11 on_path(f7(c1,c2,c3),c1).  [resolve(4,a,10,b)].
+12 on_path(f8(c1,c2,c3),c1) | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(7,a,3,a)].
+13 on_path(f8(c1,c2,c3),c1).  [resolve(4,a,12,b)].
+14 sequential(f7(c1,c2,c3),f8(c1,c2,c3)) | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(8,a,3,a)].
+15 sequential(f7(c1,c2,c3),f8(c1,c2,c3)).  [resolve(4,a,14,b)].
+16 -triangle(f7(c1,c2,c3),f8(c1,c2,c3),A) | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(9,a,3,a)].
+17 -triangle(f7(c1,c2,c3),f8(c1,c2,c3),A).  [resolve(16,b,4,a)].
+18 -on_path(A,c1) | -sequential(f7(c1,c2,c3),A) | triangle(f7(c1,c2,c3),A,f10(f7(c1,c2,c3),A)).  [resolve(5,a,11,a)].
+19 -sequential(f7(c1,c2,c3),f8(c1,c2,c3)) | triangle(f7(c1,c2,c3),f8(c1,c2,c3),f10(f7(c1,c2,c3),f8(c1,c2,c3))).  [resolve(18,a,13,a)].
+20 -sequential(f7(c1,c2,c3),f8(c1,c2,c3)).  [resolve(19,b,17,a)].
+21 $F.  [resolve(15,a,20,a)].

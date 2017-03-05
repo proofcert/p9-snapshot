@@ -1,0 +1,25 @@
+
+
+
+
+
+6 -dive(A) | -outcome(A,B) | -bad(B) | B = dci.  [clausify(3)].
+7 bad(c2).  [clausify(5)].
+8 -dive(A) | -greater(depth(A),depth_limit).  [clausify(4)].
+9 dive(c1).  [clausify(5)].
+10 -dive(A) | -greater(time(A),time_limit).  [clausify(4)].
+11 -dive(A) | greater(nitrogen(A),nitrogen_limit) | -outcome(A,dci).  [clausify(2)].
+12 -dive(A) | greater(depth(A),depth_limit) | greater(time(A),time_limit) | -greater(nitrogen(A),nitrogen_limit).  [clausify(1)].
+13 -dive(A) | -outcome(A,c2) | c2 = dci.  [resolve(6,c,7,a)].
+14 outcome(c1,c2).  [clausify(5)].
+15 -greater(depth(c1),depth_limit).  [resolve(8,a,9,a)].
+16 -greater(time(c1),time_limit).  [resolve(10,a,9,a)].
+17 greater(nitrogen(c1),nitrogen_limit) | -outcome(c1,dci).  [resolve(11,a,9,a)].
+18 greater(depth(c1),depth_limit) | greater(time(c1),time_limit) | -greater(nitrogen(c1),nitrogen_limit).  [resolve(12,a,9,a)].
+19 greater(time(c1),time_limit) | -greater(nitrogen(c1),nitrogen_limit).  [resolve(15,a,18,a)].
+20 -greater(nitrogen(c1),nitrogen_limit).  [resolve(16,a,19,a)].
+21 -outcome(c1,c2) | c2 = dci.  [resolve(13,a,9,a)].
+22 c2 = dci.  [resolve(14,a,21,a)].
+23 -outcome(c1,dci).  [resolve(20,a,17,a)].
+24 outcome(c1,dci).  [para(22(a,1),14(a,2))].
+25 $F.  [resolve(23,a,24,a)].

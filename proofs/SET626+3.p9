@@ -1,0 +1,52 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n039.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 16:43:53 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 57439 was started by sandbox on n039.star.cs.uiowa.edu,
+Fri Jun  6 16:43:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_57407_n039.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 16.
+% Level of proof is 4.
+% Maximum clause weight is 9.000.
+% Given clauses 48.
+
+
+1 (all A all B all C (member(C,intersection(A,B)) <-> member(C,A) & member(C,B))).  [assumption].
+2 (all A all B (intersect(A,B) <-> (exists C (member(C,A) & member(C,B))))).  [assumption].
+3 (all A all B (intersect(A,B) -> intersect(B,A))).  [assumption].
+4 -(all A all B all C (intersect(A,intersection(B,C)) -> intersect(A,B))).  [assumption].
+5 intersect(c1,intersection(c2,c3)).  [clausify(4)].
+6 -intersect(c1,c2).  [clausify(4)].
+7 -intersect(A,B) | intersect(B,A).  [clausify(3)].
+8 -member(A,intersection(B,C)) | member(A,B).  [clausify(1)].
+9 -intersect(A,B) | member(f1(A,B),A).  [clausify(2)].
+10 -intersect(A,B) | member(f1(A,B),B).  [clausify(2)].
+11 intersect(A,B) | -member(C,A) | -member(C,B).  [clausify(2)].
+12 -intersect(c2,c1).  [resolve(7,b,6,a)].
+13 member(f1(c1,intersection(c2,c3)),c1).  [resolve(9,a,5,a)].
+14 member(f1(c1,intersection(c2,c3)),intersection(c2,c3)).  [resolve(10,a,5,a)].
+15 -member(A,c2) | -member(A,c1).  [resolve(11,a,12,a)].
+16 -member(f1(c1,intersection(c2,c3)),c2).  [resolve(15,b,13,a)].
+17 member(f1(c1,intersection(c2,c3)),c2).  [resolve(14,a,8,a)].
+18 $F.  [resolve(16,a,17,a)].
+
+============================== end of proof ==========================

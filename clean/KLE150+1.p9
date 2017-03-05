@@ -1,0 +1,25 @@
+
+
+
+
+
+
+7 multiplication(zero,A) = zero.  [clausify(3)].
+8 addition(A,B) = addition(B,A).  [clausify(1)].
+9 star(A) = addition(one,multiplication(A,star(A))).  [clausify(4)].
+10 addition(one,multiplication(A,star(A))) = star(A).  [copy(9),flip(a)].
+11 strong_iteration(A) = addition(multiplication(A,strong_iteration(A)),one).  [clausify(5)].
+12 strong_iteration(A) = addition(one,multiplication(A,strong_iteration(A))).  [para(8(a,1),11(a,2))].
+13 addition(one,multiplication(A,strong_iteration(A))) = strong_iteration(A).  [copy(12),flip(a)].
+14 multiplication(multiplication(A,B),C) = multiplication(A,multiplication(B,C)).  [clausify(2)].
+15 strong_iteration(multiplication(c1,zero)) != addition(one,multiplication(c1,zero)).  [clausify(6)].
+16 addition(one,multiplication(c1,zero)) != strong_iteration(multiplication(c1,zero)).  [copy(15),flip(a)].
+17 addition(one,multiplication(A,multiplication(B,star(multiplication(A,B))))) = star(multiplication(A,B)).  [para(14(a,1),10(a,1,2))].
+18 addition(one,multiplication(A,multiplication(B,strong_iteration(multiplication(A,B))))) = strong_iteration(multiplication(A,B)).  [para(14(a,1),13(a,1,2))].
+19 addition(one,multiplication(A,zero)) = star(multiplication(A,zero)).  [para(7(a,1),17(a,1,2,2))].
+20 star(multiplication(c1,zero)) != strong_iteration(multiplication(c1,zero)).  [para(19(a,1),16(a,1))].
+21 strong_iteration(multiplication(c1,zero)) != star(multiplication(c1,zero)).  [copy(20),flip(a)].
+22 addition(one,multiplication(A,zero)) = strong_iteration(multiplication(A,zero)).  [para(7(a,1),18(a,1,2,2))].
+23 star(multiplication(A,zero)) = strong_iteration(multiplication(A,zero)).  [para(19(a,1),22(a,1))].
+24 strong_iteration(multiplication(A,zero)) = star(multiplication(A,zero)).  [copy(23),flip(a)].
+25 $F.  [resolve(24,a,21,a)].

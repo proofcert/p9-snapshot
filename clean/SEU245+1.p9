@@ -1,0 +1,30 @@
+
+
+
+
+5 relation(c8).  [clausify(4)].
+6 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+7 in(c6,relation_restriction(c8,c7)) | in(c6,c8).  [clausify(4)].
+8 in(c6,relation_restriction(c8,c7)) | in(c6,cartesian_product2(c7,c7)).  [clausify(4)].
+9 -in(c6,relation_restriction(c8,c7)) | -in(c6,c8) | -in(c6,cartesian_product2(c7,c7)).  [clausify(4)].
+10 -relation(A) | relation_restriction(A,B) = set_intersection2(A,cartesian_product2(B,B)).  [clausify(2)].
+11 -relation(A) | set_intersection2(A,cartesian_product2(B,B)) = relation_restriction(A,B).  [copy(10),flip(b)].
+12 set_intersection2(A,B) != C | -in(D,C) | in(D,A).  [clausify(3)].
+13 set_intersection2(A,B) != C | -in(D,C) | in(D,B).  [clausify(3)].
+14 set_intersection2(A,B) != C | in(D,C) | -in(D,A) | -in(D,B).  [clausify(3)].
+15 set_intersection2(c8,cartesian_product2(A,A)) = relation_restriction(c8,A).  [resolve(11,a,5,a)].
+16 set_intersection2(A,B) != relation_restriction(c8,c7) | in(c6,A) | in(c6,c8).  [resolve(12,b,7,a)].
+17 relation_restriction(c8,c7) != set_intersection2(A,B) | in(c6,A) | in(c6,c8).  [copy(16),flip(a)].
+18 in(c6,c8) | in(c6,c8).  [resolve(17,a,15,a(flip))].
+19 in(c6,c8).  [copy(18),merge(b)].
+20 -in(c6,relation_restriction(c8,c7)) | -in(c6,cartesian_product2(c7,c7)).  [resolve(19,a,9,b)].
+21 set_intersection2(A,c8) != B | in(c6,B) | -in(c6,A).  [resolve(19,a,14,d)].
+22 set_intersection2(cartesian_product2(c7,c7),c8) != A | in(c6,A) | in(c6,relation_restriction(c8,c7)).  [resolve(21,c,8,b)].
+23 set_intersection2(c8,cartesian_product2(c7,c7)) != A | in(c6,A) | in(c6,relation_restriction(c8,c7)).  [para(6(a,1),22(a,1))].
+24 relation_restriction(c8,c7) != A | in(c6,A) | in(c6,relation_restriction(c8,c7)).  [para(15(a,1),23(a,1))].
+25 relation_restriction(c8,c7) != relation_restriction(c8,c7) | in(c6,relation_restriction(c8,c7)).  [factor(24,b,c)].
+26 in(c6,relation_restriction(c8,c7)).  [copy(25),xx(a)].
+27 -in(c6,cartesian_product2(c7,c7)).  [resolve(26,a,20,a)].
+28 -in(A,relation_restriction(c8,B)) | in(A,cartesian_product2(B,B)).  [resolve(13,a,15,a)].
+29 -in(c6,relation_restriction(c8,c7)).  [resolve(28,b,27,a)].
+30 $F.  [resolve(26,a,29,a)].

@@ -1,0 +1,72 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n092.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:25:03 CDT 2014
+% CPUTime    : 0.19 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 42497 was started by sandbox on n092.star.cs.uiowa.edu,
+Fri Jun  6 11:25:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_42465_n092.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 31.
+% Level of proof is 7.
+% Maximum clause weight is 13.000.
+% Given clauses 146.
+
+
+1 (all A (aSet0(A) -> (all B (aElementOf0(B,A) -> aElement0(B))))).  [assumption].
+2 (all A all B (aElement0(A) & aElement0(B) -> (sdtlseqdt0(A,B) & sdtlseqdt0(B,A) -> A = B))).  [assumption].
+3 (all A (aSet0(A) -> (all B (aSubsetOf0(B,A) -> (all C (aInfimumOfIn0(C,B,A) <-> aElementOf0(C,A) & aLowerBoundOfIn0(C,B,A) & (all D (aLowerBoundOfIn0(D,B,A) -> sdtlseqdt0(D,C))))))))).  [assumption].
+4 aSubsetOf0(xS,xT).  [assumption].
+5 -aSet0(A) | -aSubsetOf0(B,A) | -aInfimumOfIn0(C,B,A) | aElementOf0(C,A).  [clausify(3)].
+6 -aSet0(A) | -aSubsetOf0(B,A) | -aInfimumOfIn0(C,B,A) | aLowerBoundOfIn0(C,B,A).  [clausify(3)].
+7 -aSet0(A) | -aSubsetOf0(B,A) | -aInfimumOfIn0(C,B,A) | -aLowerBoundOfIn0(D,B,A) | sdtlseqdt0(D,C).  [clausify(3)].
+8 aSet0(xT).  [assumption].
+9 aInfimumOfIn0(xu,xS,xT).  [assumption].
+10 aInfimumOfIn0(xv,xS,xT).  [assumption].
+11 xu != xv.  [assumption].
+12 xv != xu.  [copy(11),flip(a)].
+13 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(1)].
+14 -aElement0(A) | -aElement0(B) | -sdtlseqdt0(A,B) | -sdtlseqdt0(B,A) | B = A.  [clausify(2)].
+15 -aSet0(xT) | -aInfimumOfIn0(A,xS,xT) | aElementOf0(A,xT).  [resolve(5,b,4,a)].
+16 -aInfimumOfIn0(A,xS,xT) | aElementOf0(A,xT).  [resolve(8,a,15,a)].
+17 -aSet0(xT) | -aInfimumOfIn0(A,xS,xT) | aLowerBoundOfIn0(A,xS,xT).  [resolve(6,b,4,a)].
+18 -aInfimumOfIn0(A,xS,xT) | aLowerBoundOfIn0(A,xS,xT).  [resolve(8,a,17,a)].
+19 -aSet0(xT) | -aInfimumOfIn0(A,xS,xT) | -aLowerBoundOfIn0(B,xS,xT) | sdtlseqdt0(B,A).  [resolve(7,b,4,a)].
+20 -aInfimumOfIn0(A,xS,xT) | -aLowerBoundOfIn0(B,xS,xT) | sdtlseqdt0(B,A).  [resolve(8,a,19,a)].
+21 aElementOf0(xv,xT).  [resolve(16,a,10,a)].
+22 aElementOf0(xu,xT).  [resolve(16,a,9,a)].
+23 aLowerBoundOfIn0(xv,xS,xT).  [resolve(18,a,10,a)].
+24 aLowerBoundOfIn0(xu,xS,xT).  [resolve(18,a,9,a)].
+25 -aLowerBoundOfIn0(A,xS,xT) | sdtlseqdt0(A,xv).  [resolve(20,a,10,a)].
+26 -aLowerBoundOfIn0(A,xS,xT) | sdtlseqdt0(A,xu).  [resolve(20,a,9,a)].
+27 -aSet0(xT) | aElement0(xv).  [resolve(21,a,13,b)].
+28 aElement0(xv).  [resolve(8,a,27,a)].
+29 -aSet0(xT) | aElement0(xu).  [resolve(22,a,13,b)].
+30 aElement0(xu).  [resolve(8,a,29,a)].
+31 sdtlseqdt0(xu,xv).  [resolve(25,a,24,a)].
+32 -aElement0(xv) | -aElement0(xu) | -sdtlseqdt0(xv,xu) | xu = xv.  [resolve(31,a,14,d)].
+33 -aElement0(xv) | -aElement0(xu) | -sdtlseqdt0(xv,xu) | xv = xu.  [copy(32),flip(d)].
+34 -aElement0(xu) | -sdtlseqdt0(xv,xu) | xv = xu.  [resolve(28,a,33,a)].
+35 -sdtlseqdt0(xv,xu) | xv = xu.  [resolve(30,a,34,a)].
+36 -sdtlseqdt0(xv,xu).  [resolve(12,a,35,b)].
+37 sdtlseqdt0(xv,xu).  [resolve(26,a,23,a)].
+38 $F.  [resolve(36,a,37,a)].
+
+============================== end of proof ==========================

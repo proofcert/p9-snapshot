@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+8 strictly_less_than(A,B) | -less_than(A,B) | less_than(B,A).  [clausify(2)].
+9 -strictly_less_than(A,B) | update_slb(insert_slb(C,pair(D,A)),B) = insert_slb(update_slb(C,B),pair(D,B)).  [clausify(5)].
+10 less_than(c4,c3).  [clausify(7)].
+11 less_than(A,B) | less_than(B,A).  [clausify(1)].
+12 pair_in_list(insert_slb(c1,pair(c5,c6)),c2,c3).  [clausify(7)].
+13 lookup_slb(insert_slb(A,pair(B,C)),B) = C.  [clausify(4)].
+14 -pair_in_list(update_slb(insert_slb(c1,pair(c5,c6)),c4),c2,c3).  [clausify(7)].
+15 pair_in_list(insert_slb(A,pair(B,C)),D,E) | -pair_in_list(A,D,E).  [clausify(3)].
+16 -pair_in_list(c1,A,B) | -less_than(C,B) | pair_in_list(update_slb(c1,C),A,B).  [clausify(7)].
+17 pair_in_list(insert_slb(A,pair(B,C)),D,E) | D != B | E != C.  [clausify(3)].
+18 -pair_in_list(insert_slb(A,pair(B,C)),D,E) | pair_in_list(A,D,E) | D = B.  [clausify(3)].
+19 -pair_in_list(insert_slb(A,pair(B,C)),D,E) | pair_in_list(A,D,E) | E = C.  [clausify(3)].
+20 -less_than(A,B) | update_slb(insert_slb(C,pair(D,B)),A) = insert_slb(update_slb(C,A),pair(D,B)).  [clausify(6)].
+21 update_slb(insert_slb(A,pair(B,C)),D) = insert_slb(update_slb(A,D),pair(B,D)) | -less_than(C,D) | less_than(D,C).  [resolve(9,a,8,a)].
+22 pair_in_list(insert_slb(A,pair(B,C)),D,lookup_slb(insert_slb(E,pair(F,C)),F)) | D != B.  [resolve(17,c,13,a)].
+23 pair_in_list(insert_slb(A,pair(B,C)),D,C) | D != B.  [para(13(a,1),22(a,3))].
+24 pair_in_list(c1,c2,c3) | c2 = c5.  [resolve(18,a,12,a)].
+25 pair_in_list(c1,c2,c3) | c5 = c2.  [copy(24),flip(b)].
+26 pair_in_list(c1,c2,c3) | c3 = c6.  [resolve(19,a,12,a)].
+27 pair_in_list(c1,c2,c3) | c6 = c3.  [copy(26),flip(b)].
+28 update_slb(insert_slb(A,pair(B,c3)),c4) = insert_slb(update_slb(A,c4),pair(B,c3)).  [resolve(20,a,10,a)].
+29 update_slb(insert_slb(A,pair(B,C)),D) = insert_slb(update_slb(A,D),pair(B,D)) | less_than(D,C) | less_than(D,C).  [resolve(21,b,11,b)].
+30 update_slb(insert_slb(A,pair(B,C)),D) = insert_slb(update_slb(A,D),pair(B,D)) | less_than(D,C).  [copy(29),merge(c)].
+31 c5 = c2 | -less_than(A,c3) | pair_in_list(update_slb(c1,A),c2,c3).  [resolve(25,a,16,a)].
+32 c6 = c3 | -less_than(A,c3) | pair_in_list(update_slb(c1,A),c2,c3).  [resolve(27,a,16,a)].
+33 c5 = c2 | pair_in_list(update_slb(c1,c4),c2,c3).  [resolve(31,b,10,a)].
+34 c5 = c2 | pair_in_list(insert_slb(update_slb(c1,c4),pair(A,B)),c2,c3).  [resolve(33,b,15,b)].
+35 c6 = c3 | pair_in_list(update_slb(c1,c4),c2,c3).  [resolve(32,b,10,a)].
+36 c6 = c3 | pair_in_list(insert_slb(update_slb(c1,c4),pair(A,B)),c2,c3).  [resolve(35,b,15,b)].
+37 update_slb(insert_slb(A,pair(B,C)),D) = insert_slb(update_slb(A,D),pair(B,D)) | update_slb(insert_slb(E,pair(F,C)),D) = insert_slb(update_slb(E,D),pair(F,C)).  [resolve(30,b,20,a)].
+38 update_slb(insert_slb(A,pair(B,c6)),c4) = insert_slb(update_slb(A,c4),pair(B,c6)) | -pair_in_list(insert_slb(update_slb(c1,c4),pair(c5,c4)),c2,c3).  [para(37(a,1),14(a,1))].
+39 update_slb(insert_slb(A,pair(B,c6)),c4) = insert_slb(update_slb(A,c4),pair(B,c6)) | c6 = c3.  [resolve(38,b,36,b)].
+40 c6 = c3 | -pair_in_list(insert_slb(update_slb(c1,c4),pair(c5,c6)),c2,c3).  [para(39(a,1),14(a,1))].
+41 c6 = c3 | c6 = c3.  [resolve(40,b,36,b)].
+42 c6 = c3.  [copy(41),merge(b)].
+43 -pair_in_list(update_slb(insert_slb(c1,pair(c5,c3)),c4),c2,c3).  [para(42(a,1),14(a,1,1,2,2))].
+44 -pair_in_list(insert_slb(update_slb(c1,c4),pair(c5,c3)),c2,c3).  [para(28(a,1),43(a,1))].
+45 c5 = c2.  [resolve(44,a,34,b)].
+46 c2 != c5.  [resolve(23,a,44,a)].
+47 c2 != c2.  [para(45(a,1),46(a,2))].
+48 $F.  [copy(47),xx(a)].

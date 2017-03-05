@@ -1,0 +1,94 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n086.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:47:58 CDT 2014
+% CPUTime    : 0.86 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 13672 was started by sandbox on n086.star.cs.uiowa.edu,
+Fri Jun  6 07:47:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_13640_n086.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.70 (+ 0.02) seconds.
+% Length of proof is 50.
+% Level of proof is 10.
+% Maximum clause weight is 18.000.
+% Given clauses 752.
+
+
+1 (all A all B all C (-empty_carrier(A) & meet_commutative(A) & meet_semilatt_str(A) & element(B,the_carrier(A)) & element(C,the_carrier(A)) -> meet_commut(A,B,C) = meet_commut(A,C,B))).  [assumption].
+2 (all A (-empty_carrier(A) & join_semilatt_str(A) -> (all B (element(B,the_carrier(A)) -> (all C (element(C,the_carrier(A)) -> (below(A,B,C) <-> join(A,B,C) = C))))))).  [assumption].
+3 (all A (-empty_carrier(A) & latt_str(A) -> (meet_absorbing(A) <-> (all B (element(B,the_carrier(A)) -> (all C (element(C,the_carrier(A)) -> join(A,meet(A,B,C),C) = C))))))).  [assumption].
+4 (all A all B all C (-empty_carrier(A) & meet_semilatt_str(A) & element(B,the_carrier(A)) & element(C,the_carrier(A)) -> element(meet(A,B,C),the_carrier(A)))).  [assumption].
+5 (all A (latt_str(A) -> meet_semilatt_str(A) & join_semilatt_str(A))).  [assumption].
+6 (all A all B all C (-empty_carrier(A) & meet_commutative(A) & meet_semilatt_str(A) & element(B,the_carrier(A)) & element(C,the_carrier(A)) -> meet_commut(A,B,C) = meet(A,B,C))).  [assumption].
+7 -(all A (-empty_carrier(A) & meet_commutative(A) & meet_absorbing(A) & latt_str(A) -> (all B (element(B,the_carrier(A)) -> (all C (element(C,the_carrier(A)) -> below(A,meet_commut(A,B,C),B))))))).  [assumption].
+8 -latt_str(A) | meet_semilatt_str(A).  [clausify(5)].
+9 empty_carrier(A) | -meet_semilatt_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | element(meet(A,B,C),the_carrier(A)).  [clausify(4)].
+10 empty_carrier(A) | -meet_commutative(A) | -meet_semilatt_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | meet_commut(A,C,B) = meet_commut(A,B,C).  [clausify(1)].
+11 empty_carrier(A) | -meet_commutative(A) | -meet_semilatt_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | meet(A,B,C) = meet_commut(A,B,C).  [clausify(6)].
+12 -latt_str(A) | join_semilatt_str(A).  [clausify(5)].
+13 empty_carrier(A) | -join_semilatt_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | below(A,B,C) | join(A,B,C) != C.  [clausify(2)].
+14 latt_str(c6).  [clausify(7)].
+15 empty_carrier(A) | -latt_str(A) | -meet_absorbing(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | join(A,meet(A,B,C),C) = C.  [clausify(3)].
+16 empty_carrier(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | element(meet(A,B,C),the_carrier(A)) | -latt_str(A).  [resolve(9,b,8,b)].
+17 empty_carrier(A) | -meet_commutative(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | meet_commut(A,C,B) = meet_commut(A,B,C) | -latt_str(A).  [resolve(10,c,8,b)].
+18 empty_carrier(A) | -meet_commutative(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | meet(A,B,C) = meet_commut(A,B,C) | -latt_str(A).  [resolve(11,c,8,b)].
+19 empty_carrier(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | below(A,B,C) | join(A,B,C) != C | -latt_str(A).  [resolve(13,b,12,b)].
+20 meet_commutative(c6).  [clausify(7)].
+21 meet_absorbing(c6).  [clausify(7)].
+22 element(c7,the_carrier(c6)).  [clausify(7)].
+23 element(c8,the_carrier(c6)).  [clausify(7)].
+24 -empty_carrier(c6).  [clausify(7)].
+25 -below(c6,meet_commut(c6,c7,c8),c7).  [clausify(7)].
+26 empty_carrier(c6) | -meet_absorbing(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | join(c6,meet(c6,A,B),B) = B.  [resolve(15,b,14,a)].
+27 -meet_absorbing(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | join(c6,meet(c6,A,B),B) = B.  [resolve(24,a,26,a)].
+28 -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | join(c6,meet(c6,A,B),B) = B.  [resolve(21,a,27,a)].
+29 empty_carrier(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | element(meet(c6,A,B),the_carrier(c6)).  [resolve(16,e,14,a)].
+30 -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | element(meet(c6,A,B),the_carrier(c6)).  [resolve(24,a,29,a)].
+31 empty_carrier(c6) | -meet_commutative(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | meet_commut(c6,B,A) = meet_commut(c6,A,B).  [resolve(17,f,14,a)].
+32 -meet_commutative(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | meet_commut(c6,B,A) = meet_commut(c6,A,B).  [resolve(24,a,31,a)].
+33 -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | meet_commut(c6,B,A) = meet_commut(c6,A,B).  [resolve(20,a,32,a)].
+34 empty_carrier(c6) | -meet_commutative(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | meet(c6,A,B) = meet_commut(c6,A,B).  [resolve(18,f,14,a)].
+35 empty_carrier(c6) | -meet_commutative(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | meet_commut(c6,A,B) = meet(c6,A,B).  [copy(34),flip(e)].
+36 -meet_commutative(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | meet_commut(c6,A,B) = meet(c6,A,B).  [resolve(24,a,35,a)].
+37 -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | meet_commut(c6,A,B) = meet(c6,A,B).  [resolve(20,a,36,a)].
+38 empty_carrier(c6) | -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | below(c6,A,B) | join(c6,A,B) != B.  [resolve(19,f,14,a)].
+39 -element(A,the_carrier(c6)) | -element(B,the_carrier(c6)) | below(c6,A,B) | join(c6,A,B) != B.  [resolve(24,a,38,a)].
+40 -element(A,the_carrier(c6)) | join(c6,meet(c6,c8,A),A) = A.  [resolve(28,a,23,a)].
+41 -element(A,the_carrier(c6)) | element(meet(c6,c7,A),the_carrier(c6)).  [resolve(30,a,22,a)].
+42 -element(A,the_carrier(c6)) | meet_commut(c6,A,c8) = meet_commut(c6,c8,A).  [resolve(33,a,23,a)].
+43 -element(A,the_carrier(c6)) | meet_commut(c6,c8,A) = meet_commut(c6,A,c8).  [copy(42),flip(b)].
+44 -element(A,the_carrier(c6)) | meet_commut(c6,c8,A) = meet(c6,c8,A).  [resolve(37,a,23,a)].
+45 -element(A,the_carrier(c6)) | meet_commut(c6,c7,A) = meet(c6,c7,A).  [resolve(37,a,22,a)].
+46 -element(A,the_carrier(c6)) | below(c6,A,c7) | join(c6,A,c7) != c7.  [resolve(39,b,22,a)].
+47 element(meet(c6,c7,c8),the_carrier(c6)).  [resolve(41,a,23,a)].
+48 join(c6,meet(c6,c8,c7),c7) = c7.  [resolve(40,a,22,a)].
+49 meet_commut(c6,c8,c7) = meet_commut(c6,c7,c8).  [resolve(43,a,22,a)].
+50 meet_commut(c6,c8,c7) = meet(c6,c8,c7).  [resolve(44,a,22,a)].
+51 meet_commut(c6,c7,c8) = meet(c6,c8,c7).  [para(49(a,1),50(a,1))].
+52 -below(c6,meet(c6,c8,c7),c7).  [para(51(a,1),25(a,2))].
+53 meet_commut(c6,c7,c8) = meet(c6,c7,c8).  [resolve(45,a,23,a)].
+54 meet(c6,c8,c7) = meet(c6,c7,c8).  [para(51(a,1),53(a,1))].
+55 -below(c6,meet(c6,c7,c8),c7).  [para(54(a,1),52(a,2))].
+56 join(c6,meet(c6,c7,c8),c7) = c7.  [para(54(a,1),48(a,1,2))].
+57 below(c6,meet(c6,c7,c8),c7) | join(c6,meet(c6,c7,c8),c7) != c7.  [resolve(46,a,47,a)].
+58 below(c6,meet(c6,c7,c8),c7) | c7 != c7.  [para(56(a,1),57(b,1))].
+59 below(c6,meet(c6,c7,c8),c7).  [copy(58),xx(b)].
+60 $F.  [resolve(55,a,59,a)].
+
+============================== end of proof ==========================

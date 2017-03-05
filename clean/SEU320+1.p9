@@ -1,0 +1,25 @@
+
+
+
+
+5 top_str(c3).  [clausify(4)].
+6 -top_str(A) | -element(B,powerset(the_carrier(A))) | -closed_subset(B,A) | open_subset(subset_complement(the_carrier(A),B),A).  [clausify(3)].
+7 -top_str(A) | -element(B,powerset(the_carrier(A))) | closed_subset(B,A) | -open_subset(subset_complement(the_carrier(A),B),A).  [clausify(3)].
+8 element(c4,powerset(the_carrier(c3))).  [clausify(4)].
+9 open_subset(c4,c3) | closed_subset(subset_complement(the_carrier(c3),c4),c3).  [clausify(4)].
+10 -open_subset(c4,c3) | -closed_subset(subset_complement(the_carrier(c3),c4),c3).  [clausify(4)].
+11 -element(A,powerset(B)) | element(subset_complement(B,A),powerset(B)).  [clausify(1)].
+12 -element(A,powerset(B)) | subset_complement(B,subset_complement(B,A)) = A.  [clausify(2)].
+13 -element(A,powerset(the_carrier(c3))) | -closed_subset(A,c3) | open_subset(subset_complement(the_carrier(c3),A),c3).  [resolve(6,a,5,a)].
+14 -element(A,powerset(the_carrier(c3))) | closed_subset(A,c3) | -open_subset(subset_complement(the_carrier(c3),A),c3).  [resolve(7,a,5,a)].
+15 element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))).  [resolve(11,a,8,a)].
+16 subset_complement(the_carrier(c3),subset_complement(the_carrier(c3),c4)) = c4.  [resolve(12,a,8,a)].
+17 -element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))) | closed_subset(subset_complement(the_carrier(c3),c4),c3) | -open_subset(c4,c3).  [para(16(a,1),14(c,1))].
+18 closed_subset(subset_complement(the_carrier(c3),c4),c3) | -open_subset(c4,c3).  [resolve(15,a,17,a)].
+19 closed_subset(subset_complement(the_carrier(c3),c4),c3) | closed_subset(subset_complement(the_carrier(c3),c4),c3).  [resolve(18,b,9,a)].
+20 closed_subset(subset_complement(the_carrier(c3),c4),c3).  [copy(19),merge(b)].
+21 -open_subset(c4,c3).  [resolve(20,a,10,b)].
+22 -element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))) | open_subset(subset_complement(the_carrier(c3),subset_complement(the_carrier(c3),c4)),c3).  [resolve(20,a,13,b)].
+23 -element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))) | open_subset(c4,c3).  [para(16(a,1),22(b,1))].
+24 open_subset(c4,c3).  [resolve(15,a,23,a)].
+25 $F.  [resolve(21,a,24,a)].

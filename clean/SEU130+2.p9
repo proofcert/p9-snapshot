@@ -1,0 +1,16 @@
+
+
+
+
+
+6 subset(A,A).  [clausify(2)].
+7 subset(c3,c4).  [clausify(5)].
+8 subset(set_intersection2(A,B),A).  [clausify(3)].
+9 set_intersection2(c3,c4) != c3.  [clausify(5)].
+10 A = B | -subset(B,A) | -subset(A,B).  [clausify(1)].
+11 -subset(A,B) | -subset(A,C) | subset(A,set_intersection2(B,C)).  [clausify(4)].
+12 -subset(c3,set_intersection2(c3,c4)) | -subset(set_intersection2(c3,c4),c3).  [resolve(10,a,9,a)].
+13 -subset(c3,set_intersection2(c3,c4)).  [resolve(12,b,8,a)].
+14 -subset(c3,A) | subset(c3,set_intersection2(A,c4)).  [resolve(11,b,7,a)].
+15 -subset(c3,c3).  [resolve(14,b,13,a)].
+16 $F.  [resolve(6,a,15,a)].

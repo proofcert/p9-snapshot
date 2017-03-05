@@ -1,0 +1,98 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n164.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:28:08 CDT 2014
+% CPUTime    : 0.33 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 43530 was started by sandbox on n164.star.cs.uiowa.edu,
+Thu Jun  5 15:28:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_43498_n164.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.13 (+ 0.00) seconds.
+% Length of proof is 49.
+% Level of proof is 11.
+% Maximum clause weight is 17.000.
+% Given clauses 330.
+
+
+1 (all A (relation(A) & function(A) -> (all B (B = relation_rng(A) <-> (all C (in(C,B) <-> (exists D (in(D,relation_dom(A)) & C = apply(A,D))))))))).  [assumption].
+2 (all A (relation(A) & function(A) -> (one_to_one(A) <-> (all B all C (in(B,relation_dom(A)) & in(C,relation_dom(A)) & apply(A,B) = apply(A,C) -> B = C))))).  [assumption].
+3 (all A all B (relation(B) & function(B) -> (in(A,relation_dom(B)) -> relation_image(B,singleton(A)) = singleton(apply(B,A))))).  [assumption].
+4 (all A all B (relation(B) -> (in(A,relation_rng(B)) <-> relation_inverse_image(B,singleton(A)) != empty_set))).  [assumption].
+5 (all A all B (subset(A,singleton(B)) <-> A = empty_set | A = singleton(B))).  [assumption].
+6 (all A all B (subset(singleton(A),singleton(B)) -> A = B)).  [assumption].
+7 -(all A (relation(A) & function(A) -> ((all B subset(relation_inverse_image(A,relation_image(A,B)),B)) -> one_to_one(A)))).  [assumption].
+8 -relation(A) | -in(B,relation_rng(A)) | relation_inverse_image(A,singleton(B)) != empty_set.  [clausify(4)].
+9 relation(c9).  [clausify(7)].
+10 -relation(A) | -function(A) | one_to_one(A) | in(f4(A),relation_dom(A)).  [clausify(2)].
+11 -relation(A) | -function(A) | one_to_one(A) | in(f5(A),relation_dom(A)).  [clausify(2)].
+12 -relation(A) | -function(A) | one_to_one(A) | f5(A) != f4(A).  [clausify(2)].
+13 -relation(A) | -function(A) | one_to_one(A) | apply(A,f5(A)) = apply(A,f4(A)).  [clausify(2)].
+14 -relation(A) | -function(A) | -in(B,relation_dom(A)) | relation_image(A,singleton(B)) = singleton(apply(A,B)).  [clausify(3)].
+15 -relation(A) | -function(A) | relation_rng(A) != B | in(C,B) | -in(D,relation_dom(A)) | apply(A,D) != C.  [clausify(1)].
+16 function(c9).  [clausify(7)].
+17 subset(relation_inverse_image(c9,relation_image(c9,A)),A).  [clausify(7)].
+18 -one_to_one(c9).  [clausify(7)].
+19 -subset(singleton(A),singleton(B)) | B = A.  [clausify(6)].
+20 -subset(A,singleton(B)) | empty_set = A | singleton(B) = A.  [clausify(5)].
+21 -in(A,relation_rng(c9)) | relation_inverse_image(c9,singleton(A)) != empty_set.  [resolve(8,a,9,a)].
+22 -function(c9) | one_to_one(c9) | in(f4(c9),relation_dom(c9)).  [resolve(10,a,9,a)].
+23 one_to_one(c9) | in(f4(c9),relation_dom(c9)).  [resolve(16,a,22,a)].
+24 in(f4(c9),relation_dom(c9)).  [resolve(18,a,23,a)].
+25 -function(c9) | one_to_one(c9) | in(f5(c9),relation_dom(c9)).  [resolve(11,a,9,a)].
+26 one_to_one(c9) | in(f5(c9),relation_dom(c9)).  [resolve(16,a,25,a)].
+27 in(f5(c9),relation_dom(c9)).  [resolve(18,a,26,a)].
+28 -function(c9) | one_to_one(c9) | f5(c9) != f4(c9).  [resolve(12,a,9,a)].
+29 one_to_one(c9) | f5(c9) != f4(c9).  [resolve(16,a,28,a)].
+30 f5(c9) != f4(c9).  [resolve(18,a,29,a)].
+31 -function(c9) | one_to_one(c9) | apply(c9,f5(c9)) = apply(c9,f4(c9)).  [resolve(13,a,9,a)].
+32 one_to_one(c9) | apply(c9,f5(c9)) = apply(c9,f4(c9)).  [resolve(16,a,31,a)].
+33 apply(c9,f5(c9)) = apply(c9,f4(c9)).  [resolve(18,a,32,a)].
+34 -function(c9) | -in(A,relation_dom(c9)) | relation_image(c9,singleton(A)) = singleton(apply(c9,A)).  [resolve(14,a,9,a)].
+35 -function(c9) | -in(A,relation_dom(c9)) | singleton(apply(c9,A)) = relation_image(c9,singleton(A)).  [copy(34),flip(c)].
+36 -in(A,relation_dom(c9)) | singleton(apply(c9,A)) = relation_image(c9,singleton(A)).  [resolve(16,a,35,a)].
+37 -function(c9) | relation_rng(c9) != A | in(B,A) | -in(C,relation_dom(c9)) | apply(c9,C) != B.  [resolve(15,a,9,a)].
+38 relation_rng(c9) != A | in(B,A) | -in(C,relation_dom(c9)) | apply(c9,C) != B.  [resolve(16,a,37,a)].
+39 f5(c9) = c_0.  [new_symbol(30)].
+40 apply(c9,c_0) = apply(c9,f4(c9)).  [para(39(a,1),33(a,1,2))].
+41 apply(c9,f4(c9)) = apply(c9,c_0).  [copy(40),flip(a)].
+42 c_0 != f4(c9).  [para(39(a,1),30(a,1))].
+43 f4(c9) != c_0.  [copy(42),flip(a)].
+44 in(c_0,relation_dom(c9)).  [para(39(a,1),27(a,1))].
+45 empty_set = relation_inverse_image(c9,relation_image(c9,singleton(A))) | singleton(A) = relation_inverse_image(c9,relation_image(c9,singleton(A))).  [resolve(20,a,17,a)].
+46 relation_inverse_image(c9,relation_image(c9,singleton(A))) = empty_set | singleton(A) = relation_inverse_image(c9,relation_image(c9,singleton(A))).  [copy(45),flip(a)].
+47 relation_inverse_image(c9,relation_image(c9,singleton(A))) = empty_set | relation_inverse_image(c9,relation_image(c9,singleton(A))) = singleton(A).  [copy(46),flip(b)].
+48 singleton(apply(c9,f4(c9))) = relation_image(c9,singleton(f4(c9))).  [resolve(36,a,24,a)].
+49 singleton(apply(c9,c_0)) = relation_image(c9,singleton(f4(c9))).  [para(41(a,1),48(a,1,1))].
+50 relation_image(c9,singleton(f4(c9))) = singleton(apply(c9,c_0)).  [copy(49),flip(a)].
+51 relation_rng(c9) != A | in(B,A) | apply(c9,f4(c9)) != B.  [resolve(38,c,24,a)].
+52 relation_rng(c9) != A | in(B,A) | apply(c9,c_0) != B.  [para(41(a,1),51(c,1))].
+53 singleton(apply(c9,c_0)) = relation_image(c9,singleton(c_0)).  [resolve(44,a,36,a)].
+54 relation_image(c9,singleton(f4(c9))) = relation_image(c9,singleton(c_0)).  [para(53(a,1),50(a,2))].
+55 subset(relation_inverse_image(c9,relation_image(c9,singleton(c_0))),singleton(f4(c9))).  [para(54(a,1),17(a,1,2))].
+56 relation_inverse_image(c9,relation_image(c9,singleton(c_0))) = empty_set | subset(singleton(c_0),singleton(f4(c9))).  [para(47(b,1),55(a,1))].
+57 in(A,relation_rng(c9)) | apply(c9,c_0) != A.  [xx_res(52,a)].
+58 in(apply(c9,f4(c9)),relation_rng(c9)).  [resolve(57,b,41,a(flip))].
+59 in(apply(c9,c_0),relation_rng(c9)).  [para(41(a,1),58(a,1))].
+60 relation_inverse_image(c9,singleton(apply(c9,c_0))) != empty_set.  [resolve(59,a,21,a)].
+61 relation_inverse_image(c9,relation_image(c9,singleton(c_0))) != empty_set.  [para(53(a,1),60(a,1,2))].
+62 subset(singleton(c_0),singleton(f4(c9))).  [resolve(61,a,56,a)].
+63 f4(c9) = c_0.  [resolve(62,a,19,a)].
+64 $F.  [resolve(43,a,63,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,91 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n096.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:59:38 CDT 2014
+% CPUTime    : 0.41 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 29015 was started by sandbox on n096.star.cs.uiowa.edu,
+Fri Jun  6 07:59:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_28983_n096.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.12 (+ 0.00) seconds.
+% Length of proof is 46.
+% Level of proof is 8.
+% Maximum clause weight is 18.000.
+% Given clauses 466.
+
+
+1 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+2 (all A all B all C (element(B,powerset(A)) & element(C,powerset(A)) -> subset_intersection2(A,B,C) = subset_intersection2(A,C,B))).  [assumption].
+3 (all A (one_sorted_str(A) -> cast_as_carrier_subset(A) = the_carrier(A))).  [assumption].
+4 (all A all B all C (element(B,powerset(A)) & element(C,powerset(A)) -> element(subset_difference(A,B,C),powerset(A)))).  [assumption].
+5 (all A all B all C (element(B,powerset(A)) & element(C,powerset(A)) -> subset_intersection2(A,B,C) = set_intersection2(B,C))).  [assumption].
+6 (all A all B all C (element(B,powerset(A)) & element(C,powerset(A)) -> subset_difference(A,B,C) = set_difference(B,C))).  [assumption].
+7 (all A all B subset(A,A)).  [assumption].
+8 (all A (one_sorted_str(A) -> (all B (element(B,powerset(the_carrier(A))) -> subset_intersection2(the_carrier(A),B,cast_as_carrier_subset(A)) = B)))).  [assumption].
+9 (all A all B (element(A,powerset(B)) <-> subset(A,B))).  [assumption].
+10 (all A all B set_difference(A,set_difference(A,B)) = set_intersection2(A,B)).  [assumption].
+11 -(all A (one_sorted_str(A) -> (all B (element(B,powerset(the_carrier(A))) -> subset_difference(the_carrier(A),cast_as_carrier_subset(A),subset_difference(the_carrier(A),cast_as_carrier_subset(A),B)) = B)))).  [assumption].
+12 -one_sorted_str(A) | the_carrier(A) = cast_as_carrier_subset(A).  [clausify(3)].
+13 -one_sorted_str(A) | -element(B,powerset(the_carrier(A))) | subset_intersection2(the_carrier(A),B,cast_as_carrier_subset(A)) = B.  [clausify(8)].
+14 one_sorted_str(c3).  [clausify(11)].
+15 element(A,powerset(B)) | -subset(A,B).  [clausify(9)].
+16 subset(A,A).  [clausify(7)].
+17 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+18 -element(A,powerset(B)) | -element(C,powerset(B)) | subset_intersection2(B,C,A) = subset_intersection2(B,A,C).  [clausify(2)].
+19 -element(A,powerset(B)) | -element(C,powerset(B)) | element(subset_difference(B,A,C),powerset(B)).  [clausify(4)].
+20 -element(A,powerset(B)) | -element(C,powerset(B)) | subset_intersection2(B,A,C) = set_intersection2(A,C).  [clausify(5)].
+21 -element(A,powerset(B)) | -element(C,powerset(B)) | set_difference(A,C) = subset_difference(B,A,C).  [clausify(6)].
+22 -element(A,powerset(B)) | -element(C,powerset(B)) | subset_difference(B,A,C) = set_difference(A,C).  [copy(21),flip(c)].
+23 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(10)].
+24 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(23),flip(a)].
+25 element(c4,powerset(the_carrier(c3))).  [clausify(11)].
+26 subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),c4)) != c4.  [clausify(11)].
+27 the_carrier(c3) = cast_as_carrier_subset(c3).  [resolve(14,a,12,a)].
+28 cast_as_carrier_subset(c3) = the_carrier(c3).  [copy(27),flip(a)].
+29 -element(A,powerset(the_carrier(c3))) | subset_intersection2(the_carrier(c3),A,cast_as_carrier_subset(c3)) = A.  [resolve(14,a,13,a)].
+30 -element(A,powerset(the_carrier(c3))) | subset_intersection2(the_carrier(c3),A,the_carrier(c3)) = A.  [para(28(a,1),29(b,1,3))].
+31 element(A,powerset(A)).  [resolve(15,b,16,a)].
+32 -element(A,powerset(B)) | -element(C,powerset(B)) | subset_intersection2(B,A,C) = set_difference(A,set_difference(A,C)).  [para(24(a,1),20(c,2))].
+33 -element(A,powerset(B)) | -element(C,powerset(B)) | set_difference(A,set_difference(A,C)) = subset_intersection2(B,A,C).  [copy(32),flip(c)].
+34 set_difference(A,set_difference(A,B)) = set_intersection2(B,A).  [para(24(a,1),17(a,1))].
+35 set_difference(A,set_difference(A,B)) = set_difference(B,set_difference(B,A)).  [para(24(a,1),34(a,2))].
+36 subset_difference(the_carrier(c3),the_carrier(c3),subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),c4)) != c4.  [para(28(a,1),26(a,1,2))].
+37 subset_difference(the_carrier(c3),the_carrier(c3),subset_difference(the_carrier(c3),the_carrier(c3),c4)) != c4.  [para(28(a,1),36(a,1,3,2))].
+38 -element(A,powerset(the_carrier(c3))) | subset_difference(the_carrier(c3),A,c4) = set_difference(A,c4).  [resolve(25,a,22,b)].
+39 -element(A,powerset(the_carrier(c3))) | element(subset_difference(the_carrier(c3),A,c4),powerset(the_carrier(c3))).  [resolve(25,a,19,b)].
+40 -element(A,powerset(the_carrier(c3))) | subset_intersection2(the_carrier(c3),c4,A) = subset_intersection2(the_carrier(c3),A,c4).  [resolve(25,a,18,b)].
+41 subset_intersection2(the_carrier(c3),c4,the_carrier(c3)) = c4.  [resolve(30,a,25,a)].
+42 -element(A,powerset(B)) | subset_difference(B,B,A) = set_difference(B,A).  [resolve(31,a,22,a)].
+43 -element(A,powerset(B)) | set_difference(B,set_difference(B,A)) = subset_intersection2(B,B,A).  [resolve(33,a,31,a)].
+44 subset_difference(the_carrier(c3),the_carrier(c3),c4) = set_difference(the_carrier(c3),c4).  [resolve(38,a,31,a)].
+45 subset_difference(the_carrier(c3),the_carrier(c3),set_difference(the_carrier(c3),c4)) != c4.  [para(44(a,1),37(a,1,3))].
+46 element(subset_difference(the_carrier(c3),the_carrier(c3),c4),powerset(the_carrier(c3))).  [resolve(39,a,31,a)].
+47 element(set_difference(the_carrier(c3),c4),powerset(the_carrier(c3))).  [para(44(a,1),46(a,1))].
+48 subset_intersection2(the_carrier(c3),c4,the_carrier(c3)) = subset_intersection2(the_carrier(c3),the_carrier(c3),c4).  [resolve(40,a,31,a)].
+49 c4 = subset_intersection2(the_carrier(c3),the_carrier(c3),c4).  [para(41(a,1),48(a,1))].
+50 subset_intersection2(the_carrier(c3),the_carrier(c3),c4) = c4.  [copy(49),flip(a)].
+51 set_difference(the_carrier(c3),set_difference(the_carrier(c3),c4)) = subset_intersection2(the_carrier(c3),the_carrier(c3),c4).  [resolve(43,a,25,a)].
+52 set_difference(c4,set_difference(c4,the_carrier(c3))) = subset_intersection2(the_carrier(c3),the_carrier(c3),c4).  [para(35(a,1),51(a,1))].
+53 set_difference(c4,set_difference(c4,the_carrier(c3))) = c4.  [para(50(a,1),52(a,2))].
+54 subset_difference(the_carrier(c3),the_carrier(c3),set_difference(the_carrier(c3),c4)) = set_difference(the_carrier(c3),set_difference(the_carrier(c3),c4)).  [resolve(47,a,42,a)].
+55 subset_difference(the_carrier(c3),the_carrier(c3),set_difference(the_carrier(c3),c4)) = set_difference(c4,set_difference(c4,the_carrier(c3))).  [para(35(a,1),54(a,2))].
+56 subset_difference(the_carrier(c3),the_carrier(c3),set_difference(the_carrier(c3),c4)) = c4.  [para(53(a,1),55(a,2))].
+57 $F.  [resolve(45,a,56,a)].
+
+============================== end of proof ==========================

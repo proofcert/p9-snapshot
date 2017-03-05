@@ -1,0 +1,32 @@
+
+
+
+
+
+6 relation(c11).  [clausify(5)].
+7 function(c11).  [clausify(5)].
+8 in(c10,set_intersection2(relation_dom(c11),c9)).  [clausify(5)].
+9 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+10 apply(relation_dom_restriction(c11,c9),c10) != apply(c11,c10).  [clausify(5)].
+11 -relation(A) | relation(relation_dom_restriction(A,B)).  [clausify(2)].
+12 -relation(A) | -function(A) | function(relation_dom_restriction(A,B)).  [clausify(3)].
+13 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != A | relation_dom(A) = set_intersection2(relation_dom(B),C).  [clausify(4)].
+14 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != A | relation_dom(A) = set_intersection2(C,relation_dom(B)).  [para(9(a,1),13(f,2))].
+15 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != A | -in(D,relation_dom(A)) | apply(B,D) = apply(A,D).  [clausify(4)].
+16 in(c10,set_intersection2(c9,relation_dom(c11))).  [para(9(a,1),8(a,2))].
+17 relation(relation_dom_restriction(c11,A)).  [resolve(11,a,6,a)].
+18 -relation(c11) | function(relation_dom_restriction(c11,A)).  [resolve(12,b,7,a)].
+19 function(relation_dom_restriction(c11,A)).  [resolve(6,a,18,a)].
+20 -relation(A) | -function(A) | -relation(c11) | relation_dom_restriction(c11,B) != A | relation_dom(A) = set_intersection2(B,relation_dom(c11)).  [resolve(14,d,7,a)].
+21 -relation(A) | -function(A) | relation_dom_restriction(c11,B) != A | relation_dom(A) = set_intersection2(B,relation_dom(c11)).  [resolve(6,a,20,c)].
+22 -function(relation_dom_restriction(c11,A)) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != relation_dom_restriction(c11,A) | -in(D,relation_dom(relation_dom_restriction(c11,A))) | apply(B,D) = apply(relation_dom_restriction(c11,A),D).  [resolve(15,a,17,a)].
+23 -relation(A) | -function(A) | relation_dom_restriction(A,B) != relation_dom_restriction(c11,C) | -in(D,relation_dom(relation_dom_restriction(c11,C))) | apply(A,D) = apply(relation_dom_restriction(c11,C),D).  [resolve(22,a,19,a)].
+24 -function(c11) | relation_dom_restriction(c11,A) != relation_dom_restriction(c11,B) | -in(C,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,C) = apply(relation_dom_restriction(c11,B),C).  [resolve(23,a,6,a)].
+25 relation_dom_restriction(c11,A) != relation_dom_restriction(c11,B) | -in(C,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,C) = apply(relation_dom_restriction(c11,B),C).  [resolve(24,a,7,a)].
+26 -in(A,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,A) = apply(relation_dom_restriction(c11,B),A).  [xx_res(25,a)].
+27 -in(c10,relation_dom(relation_dom_restriction(c11,c9))).  [resolve(26,b,10,a(flip))].
+28 -relation(relation_dom_restriction(c11,A)) | relation_dom_restriction(c11,B) != relation_dom_restriction(c11,A) | relation_dom(relation_dom_restriction(c11,A)) = set_intersection2(B,relation_dom(c11)).  [resolve(21,b,19,a)].
+29 relation_dom_restriction(c11,A) != relation_dom_restriction(c11,B) | relation_dom(relation_dom_restriction(c11,B)) = set_intersection2(A,relation_dom(c11)).  [resolve(17,a,28,a)].
+30 relation_dom(relation_dom_restriction(c11,A)) = set_intersection2(A,relation_dom(c11)).  [xx_res(29,a)].
+31 -in(c10,set_intersection2(c9,relation_dom(c11))).  [para(30(a,1),27(a,2))].
+32 $F.  [resolve(16,a,31,a)].

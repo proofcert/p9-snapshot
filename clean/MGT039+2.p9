@@ -1,0 +1,320 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+17 -observational_period(A) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | environment(f1(A)) | selection_favors(efficient_producers,first_movers,A).  [clausify(3)].
+18 observational_period(c1).  [clausify(16)].
+19 -observational_period(A) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | in_environment(A,f1(A)) | selection_favors(efficient_producers,first_movers,A).  [clausify(3)].
+20 -observational_period(A) | -slow_change(A) | -environment(B) | -in_environment(A,B) | in_environment(B,f2(A,B)).  [clausify(4)].
+21 -observational_period(A) | -slow_change(A) | -environment(B) | -in_environment(A,B) | greater(f2(A,B),critical_point(B)).  [clausify(4)].
+22 -observational_period(A) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | -selection_favors(efficient_producers,first_movers,end_time(f1(A))) | selection_favors(efficient_producers,first_movers,A).  [clausify(3)].
+23 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | environment(f1(c1)) | selection_favors(efficient_producers,first_movers,c1).  [resolve(17,a,18,a)].
+24 -environment(A) | greater_or_equal(critical_point(A),start_time(A)).  [clausify(11)].
+25 -environment(A) | greater_or_equal(critical_point(A),appear(efficient_producers,A)).  [clausify(10)].
+26 -environment(A) | -in_environment(A,B) | greater_or_equal(end_time(A),B).  [clausify(6)].
+27 -environment(A) | -in_environment(A,B) | subpopulation(first_movers,A,B).  [clausify(9)].
+28 -environment(A) | -in_environment(A,B) | subpopulation(efficient_producers,A,B).  [clausify(9)].
+29 -environment(A) | -in_environment(A,B) | greater_or_equal(cardinality_at_time(first_movers,B),zero).  [clausify(8)].
+30 -environment(A) | -greater_or_equal(B,start_time(A)) | -greater_or_equal(end_time(A),B) | in_environment(A,B).  [clausify(5)].
+31 -environment(A) | -in_environment(A,B) | -greater_or_equal(B,appear(efficient_producers,A)) | greater(cardinality_at_time(efficient_producers,B),zero).  [clausify(15)].
+32 -environment(A) | -subpopulations(B,C,A,D) | -greater(growth_rate(C,D),growth_rate(B,D)) | selection_favors(C,B,D).  [clausify(1)].
+33 -environment(A) | -in_environment(A,B) | -greater(cardinality_at_time(first_movers,B),zero) | -greater(cardinality_at_time(efficient_producers,B),zero) | subpopulations(first_movers,efficient_producers,A,B).  [clausify(7)].
+34 -environment(A) | critical_point(A) != B | -subpopulations(first_movers,efficient_producers,A,C) | -greater(C,B) | greater(growth_rate(efficient_producers,C),growth_rate(first_movers,C)).  [clausify(14)].
+35 -environment(A) | -subpopulation(B,A,C) | -subpopulation(D,A,C) | -greater(cardinality_at_time(B,C),zero) | cardinality_at_time(D,C) != zero | selection_favors(B,D,C).  [clausify(2)].
+36 -slow_change(c1) | -environment(A) | -in_environment(c1,A) | in_environment(A,f2(c1,A)).  [resolve(20,a,18,a)].
+37 -slow_change(c1) | -environment(A) | -in_environment(c1,A) | greater(f2(c1,A),critical_point(A)).  [resolve(21,a,18,a)].
+38 propagation_strategy(first_movers).  [assumption].
+39 propagation_strategy(efficient_producers).  [assumption].
+40 slow_change(c1).  [clausify(16)].
+41 -selection_favors(efficient_producers,first_movers,c1).  [clausify(16)].
+42 greater_or_equal(A,B) | -greater(A,B).  [clausify(13)].
+43 greater_or_equal(A,B) | B != A.  [clausify(13)].
+44 -greater(A,B) | -greater(B,C) | greater(A,C).  [clausify(12)].
+45 -greater_or_equal(A,B) | greater(A,B) | B = A.  [clausify(13)].
+46 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | in_environment(c1,f1(c1)) | selection_favors(efficient_producers,first_movers,c1).  [resolve(19,a,18,a)].
+47 -propagation_strategy(efficient_producers) | in_environment(c1,f1(c1)) | selection_favors(efficient_producers,first_movers,c1).  [resolve(38,a,46,a)].
+48 in_environment(c1,f1(c1)) | selection_favors(efficient_producers,first_movers,c1).  [resolve(39,a,47,a)].
+49 in_environment(c1,f1(c1)).  [resolve(41,a,48,b)].
+50 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | -selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(22,a,18,a)].
+51 -propagation_strategy(efficient_producers) | -selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(38,a,50,a)].
+52 -selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(39,a,51,a)].
+53 -selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [resolve(41,a,52,b)].
+54 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),start_time(f1(c1))).  [resolve(23,c,24,a)].
+55 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),start_time(f1(c1))).  [resolve(38,a,54,a)].
+56 selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),start_time(f1(c1))).  [resolve(39,a,55,a)].
+57 greater_or_equal(critical_point(f1(c1)),start_time(f1(c1))).  [resolve(41,a,56,a)].
+58 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),appear(efficient_producers,f1(c1))).  [resolve(23,c,25,a)].
+59 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),appear(efficient_producers,f1(c1))).  [resolve(38,a,58,a)].
+60 selection_favors(efficient_producers,first_movers,c1) | greater_or_equal(critical_point(f1(c1)),appear(efficient_producers,f1(c1))).  [resolve(39,a,59,a)].
+61 greater_or_equal(critical_point(f1(c1)),appear(efficient_producers,f1(c1))).  [resolve(41,a,60,a)].
+62 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(end_time(f1(c1)),A).  [resolve(23,c,26,a)].
+63 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(end_time(f1(c1)),A).  [resolve(38,a,62,a)].
+64 selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(end_time(f1(c1)),A).  [resolve(39,a,63,a)].
+65 -in_environment(f1(c1),A) | greater_or_equal(end_time(f1(c1)),A).  [resolve(41,a,64,a)].
+66 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | subpopulation(first_movers,f1(c1),A).  [resolve(23,c,27,a)].
+67 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | subpopulation(first_movers,f1(c1),A).  [resolve(38,a,66,a)].
+68 selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | subpopulation(first_movers,f1(c1),A).  [resolve(39,a,67,a)].
+69 -in_environment(f1(c1),A) | subpopulation(first_movers,f1(c1),A).  [resolve(41,a,68,a)].
+70 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | subpopulation(efficient_producers,f1(c1),A).  [resolve(23,c,28,a)].
+71 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | subpopulation(efficient_producers,f1(c1),A).  [resolve(38,a,70,a)].
+72 selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | subpopulation(efficient_producers,f1(c1),A).  [resolve(39,a,71,a)].
+73 -in_environment(f1(c1),A) | subpopulation(efficient_producers,f1(c1),A).  [resolve(41,a,72,a)].
+74 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(cardinality_at_time(first_movers,A),zero).  [resolve(23,c,29,a)].
+75 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(cardinality_at_time(first_movers,A),zero).  [resolve(38,a,74,a)].
+76 selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | greater_or_equal(cardinality_at_time(first_movers,A),zero).  [resolve(39,a,75,a)].
+77 -in_environment(f1(c1),A) | greater_or_equal(cardinality_at_time(first_movers,A),zero).  [resolve(41,a,76,a)].
+78 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -greater_or_equal(A,start_time(f1(c1))) | -greater_or_equal(end_time(f1(c1)),A) | in_environment(f1(c1),A).  [resolve(23,c,30,a)].
+79 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -greater_or_equal(A,start_time(f1(c1))) | -greater_or_equal(end_time(f1(c1)),A) | in_environment(f1(c1),A).  [resolve(38,a,78,a)].
+80 selection_favors(efficient_producers,first_movers,c1) | -greater_or_equal(A,start_time(f1(c1))) | -greater_or_equal(end_time(f1(c1)),A) | in_environment(f1(c1),A).  [resolve(39,a,79,a)].
+81 -greater_or_equal(A,start_time(f1(c1))) | -greater_or_equal(end_time(f1(c1)),A) | in_environment(f1(c1),A).  [resolve(41,a,80,a)].
+82 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater_or_equal(A,appear(efficient_producers,f1(c1))) | greater(cardinality_at_time(efficient_producers,A),zero).  [resolve(23,c,31,a)].
+83 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater_or_equal(A,appear(efficient_producers,f1(c1))) | greater(cardinality_at_time(efficient_producers,A),zero).  [resolve(38,a,82,a)].
+84 selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater_or_equal(A,appear(efficient_producers,f1(c1))) | greater(cardinality_at_time(efficient_producers,A),zero).  [resolve(39,a,83,a)].
+85 -in_environment(f1(c1),A) | -greater_or_equal(A,appear(efficient_producers,f1(c1))) | greater(cardinality_at_time(efficient_producers,A),zero).  [resolve(41,a,84,a)].
+86 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -subpopulations(A,B,f1(c1),C) | -greater(growth_rate(B,C),growth_rate(A,C)) | selection_favors(B,A,C).  [resolve(23,c,32,a)].
+87 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -subpopulations(A,B,f1(c1),C) | -greater(growth_rate(B,C),growth_rate(A,C)) | selection_favors(B,A,C).  [resolve(38,a,86,a)].
+88 selection_favors(efficient_producers,first_movers,c1) | -subpopulations(A,B,f1(c1),C) | -greater(growth_rate(B,C),growth_rate(A,C)) | selection_favors(B,A,C).  [resolve(39,a,87,a)].
+89 -subpopulations(A,B,f1(c1),C) | -greater(growth_rate(B,C),growth_rate(A,C)) | selection_favors(B,A,C).  [resolve(41,a,88,a)].
+90 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater(cardinality_at_time(first_movers,A),zero) | -greater(cardinality_at_time(efficient_producers,A),zero) | subpopulations(first_movers,efficient_producers,f1(c1),A).  [resolve(23,c,33,a)].
+91 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater(cardinality_at_time(first_movers,A),zero) | -greater(cardinality_at_time(efficient_producers,A),zero) | subpopulations(first_movers,efficient_producers,f1(c1),A).  [resolve(38,a,90,a)].
+92 selection_favors(efficient_producers,first_movers,c1) | -in_environment(f1(c1),A) | -greater(cardinality_at_time(first_movers,A),zero) | -greater(cardinality_at_time(efficient_producers,A),zero) | subpopulations(first_movers,efficient_producers,f1(c1),A).  [resolve(39,a,91,a)].
+93 -in_environment(f1(c1),A) | -greater(cardinality_at_time(first_movers,A),zero) | -greater(cardinality_at_time(efficient_producers,A),zero) | subpopulations(first_movers,efficient_producers,f1(c1),A).  [resolve(41,a,92,a)].
+94 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | critical_point(f1(c1)) != A | -subpopulations(first_movers,efficient_producers,f1(c1),B) | -greater(B,A) | greater(growth_rate(efficient_producers,B),growth_rate(first_movers,B)).  [resolve(23,c,34,a)].
+95 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | critical_point(f1(c1)) != A | -subpopulations(first_movers,efficient_producers,f1(c1),B) | -greater(B,A) | greater(growth_rate(efficient_producers,B),growth_rate(first_movers,B)).  [resolve(38,a,94,a)].
+96 selection_favors(efficient_producers,first_movers,c1) | critical_point(f1(c1)) != A | -subpopulations(first_movers,efficient_producers,f1(c1),B) | -greater(B,A) | greater(growth_rate(efficient_producers,B),growth_rate(first_movers,B)).  [resolve(39,a,95,a)].
+97 critical_point(f1(c1)) != A | -subpopulations(first_movers,efficient_producers,f1(c1),B) | -greater(B,A) | greater(growth_rate(efficient_producers,B),growth_rate(first_movers,B)).  [resolve(41,a,96,a)].
+98 -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -subpopulation(A,f1(c1),B) | -subpopulation(C,f1(c1),B) | -greater(cardinality_at_time(A,B),zero) | cardinality_at_time(C,B) != zero | selection_favors(A,C,B).  [resolve(23,c,35,a)].
+99 -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1) | -subpopulation(A,f1(c1),B) | -subpopulation(C,f1(c1),B) | -greater(cardinality_at_time(A,B),zero) | cardinality_at_time(C,B) != zero | selection_favors(A,C,B).  [resolve(38,a,98,a)].
+100 selection_favors(efficient_producers,first_movers,c1) | -subpopulation(A,f1(c1),B) | -subpopulation(C,f1(c1),B) | -greater(cardinality_at_time(A,B),zero) | cardinality_at_time(C,B) != zero | selection_favors(A,C,B).  [resolve(39,a,99,a)].
+101 -subpopulation(A,f1(c1),B) | -subpopulation(C,f1(c1),B) | -greater(cardinality_at_time(A,B),zero) | cardinality_at_time(C,B) != zero | selection_favors(A,C,B).  [resolve(41,a,100,a)].
+102 -slow_change(c1) | -in_environment(c1,f1(c1)) | in_environment(f1(c1),f2(c1,f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(36,b,23,c)].
+103 -in_environment(c1,f1(c1)) | in_environment(f1(c1),f2(c1,f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(40,a,102,a)].
+104 in_environment(f1(c1),f2(c1,f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(49,a,103,a)].
+105 in_environment(f1(c1),f2(c1,f1(c1))) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(38,a,104,b)].
+106 in_environment(f1(c1),f2(c1,f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(39,a,105,b)].
+107 in_environment(f1(c1),f2(c1,f1(c1))).  [resolve(41,a,106,b)].
+108 -slow_change(c1) | -in_environment(c1,f1(c1)) | greater(f2(c1,f1(c1)),critical_point(f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(37,b,23,c)].
+109 -in_environment(c1,f1(c1)) | greater(f2(c1,f1(c1)),critical_point(f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(40,a,108,a)].
+110 greater(f2(c1,f1(c1)),critical_point(f1(c1))) | -propagation_strategy(first_movers) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(49,a,109,a)].
+111 greater(f2(c1,f1(c1)),critical_point(f1(c1))) | -propagation_strategy(efficient_producers) | selection_favors(efficient_producers,first_movers,c1).  [resolve(38,a,110,b)].
+112 greater(f2(c1,f1(c1)),critical_point(f1(c1))) | selection_favors(efficient_producers,first_movers,c1).  [resolve(39,a,111,b)].
+113 greater(f2(c1,f1(c1)),critical_point(f1(c1))).  [resolve(41,a,112,b)].
+114 greater_or_equal(A,A).  [xx_res(43,b)].
+115 greater(critical_point(f1(c1)),start_time(f1(c1))) | start_time(f1(c1)) = critical_point(f1(c1)).  [resolve(57,a,45,a)].
+116 greater(critical_point(f1(c1)),appear(efficient_producers,f1(c1))) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(61,a,45,a)].
+117 -greater(cardinality_at_time(first_movers,f2(c1,f1(c1))),zero) | -greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),f2(c1,f1(c1))).  [resolve(107,a,93,a)].
+118 -greater_or_equal(f2(c1,f1(c1)),appear(efficient_producers,f1(c1))) | greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero).  [resolve(107,a,85,a)].
+119 greater_or_equal(cardinality_at_time(first_movers,f2(c1,f1(c1))),zero).  [resolve(107,a,77,a)].
+120 subpopulation(efficient_producers,f1(c1),f2(c1,f1(c1))).  [resolve(107,a,73,a)].
+121 subpopulation(first_movers,f1(c1),f2(c1,f1(c1))).  [resolve(107,a,69,a)].
+122 greater_or_equal(end_time(f1(c1)),f2(c1,f1(c1))).  [resolve(107,a,65,a)].
+123 -greater(A,f2(c1,f1(c1))) | greater(A,critical_point(f1(c1))).  [resolve(113,a,44,b)].
+124 -greater(critical_point(f1(c1)),A) | greater(f2(c1,f1(c1)),A).  [resolve(113,a,44,a)].
+125 greater_or_equal(f2(c1,f1(c1)),critical_point(f1(c1))).  [resolve(113,a,42,b)].
+126 -greater_or_equal(end_time(f1(c1)),start_time(f1(c1))) | in_environment(f1(c1),end_time(f1(c1))).  [resolve(114,a,81,b)].
+127 greater(cardinality_at_time(first_movers,f2(c1,f1(c1))),zero) | zero = cardinality_at_time(first_movers,f2(c1,f1(c1))).  [resolve(119,a,45,a)].
+128 greater(cardinality_at_time(first_movers,f2(c1,f1(c1))),zero) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero.  [copy(127),flip(b)].
+129 -subpopulation(A,f1(c1),f2(c1,f1(c1))) | -greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero) | cardinality_at_time(A,f2(c1,f1(c1))) != zero | selection_favors(efficient_producers,A,f2(c1,f1(c1))).  [resolve(120,a,101,a)].
+130 greater(end_time(f1(c1)),f2(c1,f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(122,a,45,a)].
+131 start_time(f1(c1)) = critical_point(f1(c1)) | -greater(A,critical_point(f1(c1))) | greater(A,start_time(f1(c1))).  [resolve(115,a,44,b)].
+132 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater(f2(c1,f1(c1)),appear(efficient_producers,f1(c1))).  [resolve(116,a,124,a)].
+133 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | -greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),f2(c1,f1(c1))).  [resolve(128,a,117,a)].
+134 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(end_time(f1(c1)),critical_point(f1(c1))).  [resolve(130,a,123,a)].
+135 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(critical_point(f1(c1)),A) | greater(end_time(f1(c1)),A).  [resolve(134,b,44,a)].
+136 f2(c1,f1(c1)) = end_time(f1(c1)) | greater_or_equal(end_time(f1(c1)),critical_point(f1(c1))).  [resolve(134,b,42,b)].
+137 start_time(f1(c1)) = critical_point(f1(c1)) | greater(end_time(f1(c1)),start_time(f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(131,b,134,b)].
+138 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater_or_equal(f2(c1,f1(c1)),appear(efficient_producers,f1(c1))).  [resolve(132,b,42,b)].
+139 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero).  [resolve(138,b,118,a)].
+140 -greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero) | cardinality_at_time(first_movers,f2(c1,f1(c1))) != zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(129,a,121,a)].
+141 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(end_time(f1(c1)),appear(efficient_producers,f1(c1))) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(135,b,116,a)].
+142 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | subpopulations(first_movers,efficient_producers,f1(c1),f2(c1,f1(c1))) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(133,b,139,b)].
+143 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater_or_equal(end_time(f1(c1)),start_time(f1(c1))).  [resolve(137,b,42,b)].
+144 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | in_environment(f1(c1),end_time(f1(c1))).  [resolve(143,c,126,a)].
+145 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(first_movers,end_time(f1(c1))),zero) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))).  [resolve(144,c,93,a)].
+146 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater_or_equal(end_time(f1(c1)),appear(efficient_producers,f1(c1))) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero).  [resolve(144,c,85,a)].
+147 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater_or_equal(cardinality_at_time(first_movers,end_time(f1(c1))),zero).  [resolve(144,c,77,a)].
+148 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulation(efficient_producers,f1(c1),end_time(f1(c1))).  [resolve(144,c,73,a)].
+149 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulation(first_movers,f1(c1),end_time(f1(c1))).  [resolve(144,c,69,a)].
+150 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(first_movers,end_time(f1(c1))),zero) | zero = cardinality_at_time(first_movers,end_time(f1(c1))).  [resolve(147,c,45,a)].
+151 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(first_movers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(150),flip(d)].
+152 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -subpopulation(A,f1(c1),end_time(f1(c1))) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(A,end_time(f1(c1))) != zero | selection_favors(efficient_producers,A,end_time(f1(c1))).  [resolve(148,c,101,a)].
+153 cardinality_at_time(first_movers,f2(c1,f1(c1))) != zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(140,a,139,b)].
+154 f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater_or_equal(end_time(f1(c1)),appear(efficient_producers,f1(c1))).  [resolve(141,b,42,b)].
+155 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | critical_point(f1(c1)) != A | -greater(f2(c1,f1(c1)),A) | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [resolve(142,b,97,b)].
+156 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | -greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(142,b,89,a)].
+157 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(146,c,154,c)].
+158 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(157),merge(d)].
+159 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [resolve(145,c,151,c)].
+160 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(159),merge(e)].
+161 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(160),merge(e)].
+162 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(152,c,149,c)].
+163 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(162),merge(f)].
+164 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(163),merge(f)].
+165 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero.  [resolve(53,a,164,e)].
+166 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(165,c,158,c)].
+167 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(166),merge(d)].
+168 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(167),merge(d)].
+169 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(161,c,158,c)].
+170 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(169),merge(e)].
+171 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(170),merge(e)].
+172 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | critical_point(f1(c1)) != A | -greater(end_time(f1(c1)),A) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [resolve(171,c,97,b)].
+173 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | -greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [resolve(171,c,89,a)].
+174 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | -greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [resolve(53,a,173,f)].
+175 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | critical_point(f1(c1)) != critical_point(f1(c1)) | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [resolve(155,d,113,a)].
+176 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [copy(175),xx(c)].
+177 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(176,c,156,c)].
+178 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [copy(177),merge(c)].
+179 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [copy(178),merge(c)].
+180 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | critical_point(f1(c1)) != critical_point(f1(c1)) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(172,f,134,b)].
+181 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(180),xx(e)].
+182 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [copy(181),merge(f)].
+183 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(182,e,174,e)].
+184 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(183),merge(e)].
+185 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(184),merge(e)].
+186 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(185),merge(e)].
+187 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(186),merge(e)].
+188 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(187,c,168,c)].
+189 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(188),merge(d)].
+190 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(189),merge(d)].
+191 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(190),merge(d)].
+192 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(191(b,1),179(c,3))].
+193 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(192),merge(d)].
+194 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero.  [resolve(53,a,193,d)].
+195 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(194,c,153,a)].
+196 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [copy(195),merge(d)].
+197 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(191(b,1),196(c,3))].
+198 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(197),merge(c)].
+199 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(198),merge(c)].
+200 start_time(f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(53,a,199,c)].
+201 start_time(f1(c1)) = critical_point(f1(c1)) | -greater_or_equal(f2(c1,f1(c1)),critical_point(f1(c1))) | greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero).  [para(200(b,1),118(a,2))].
+202 start_time(f1(c1)) = critical_point(f1(c1)) | greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero).  [resolve(125,a,201,b)].
+203 start_time(f1(c1)) = critical_point(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater_or_equal(end_time(f1(c1)),critical_point(f1(c1))) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero).  [para(200(b,1),146(c,2))].
+204 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater_or_equal(end_time(f1(c1)),critical_point(f1(c1))) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero).  [copy(203),merge(b)].
+205 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) != zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(202,b,140,a)].
+206 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | subpopulations(first_movers,efficient_producers,f1(c1),f2(c1,f1(c1))).  [resolve(202,b,133,b)].
+207 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | critical_point(f1(c1)) != A | -greater(f2(c1,f1(c1)),A) | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [resolve(206,c,97,b)].
+208 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | -greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(206,c,89,a)].
+209 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(204,c,136,b)].
+210 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero).  [copy(209),merge(d)].
+211 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero.  [resolve(210,c,165,c)].
+212 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero.  [copy(211),merge(c)].
+213 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero.  [copy(212),merge(c)].
+214 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [resolve(210,c,161,c)].
+215 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(214),merge(c)].
+216 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(215),merge(c)].
+217 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | critical_point(f1(c1)) != critical_point(f1(c1)) | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [resolve(207,d,113,a)].
+218 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [copy(217),xx(c)].
+219 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | critical_point(f1(c1)) != A | -greater(end_time(f1(c1)),A) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [resolve(216,c,97,b)].
+220 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | -greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [resolve(216,c,89,a)].
+221 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | -greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [resolve(53,a,220,e)].
+222 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))) | start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero.  [resolve(208,c,218,c)].
+223 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero.  [copy(222),merge(d)].
+224 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [copy(223),merge(d)].
+225 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | critical_point(f1(c1)) != critical_point(f1(c1)) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(219,e,134,b)].
+226 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(225),xx(d)].
+227 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [copy(226),merge(e)].
+228 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [resolve(227,d,221,d)].
+229 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(228),merge(d)].
+230 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(229),merge(d)].
+231 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(230),merge(d)].
+232 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(231,c,213,c)].
+233 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(232),merge(c)].
+234 start_time(f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(233),merge(c)].
+235 start_time(f1(c1)) = critical_point(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(234(b,1),224(c,3))].
+236 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(235),merge(b)].
+237 start_time(f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero.  [resolve(53,a,236,c)].
+238 start_time(f1(c1)) = critical_point(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(237,b,205,b)].
+239 start_time(f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [copy(238),merge(b)].
+240 start_time(f1(c1)) = critical_point(f1(c1)) | start_time(f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(234(b,1),239(b,3))].
+241 start_time(f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(240),merge(b)].
+242 start_time(f1(c1)) = critical_point(f1(c1)).  [resolve(53,a,241,b)].
+243 -greater_or_equal(end_time(f1(c1)),critical_point(f1(c1))) | in_environment(f1(c1),end_time(f1(c1))).  [para(242(a,1),126(a,2))].
+244 in_environment(f1(c1),end_time(f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(243,a,136,b)].
+245 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(first_movers,end_time(f1(c1))),zero) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))).  [resolve(244,a,93,a)].
+246 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater_or_equal(end_time(f1(c1)),appear(efficient_producers,f1(c1))) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero).  [resolve(244,a,85,a)].
+247 f2(c1,f1(c1)) = end_time(f1(c1)) | greater_or_equal(cardinality_at_time(first_movers,end_time(f1(c1))),zero).  [resolve(244,a,77,a)].
+248 f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulation(efficient_producers,f1(c1),end_time(f1(c1))).  [resolve(244,a,73,a)].
+249 f2(c1,f1(c1)) = end_time(f1(c1)) | subpopulation(first_movers,f1(c1),end_time(f1(c1))).  [resolve(244,a,69,a)].
+250 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(first_movers,end_time(f1(c1))),zero) | zero = cardinality_at_time(first_movers,end_time(f1(c1))).  [resolve(247,b,45,a)].
+251 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(first_movers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(250),flip(c)].
+252 f2(c1,f1(c1)) = end_time(f1(c1)) | -subpopulation(A,f1(c1),end_time(f1(c1))) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(A,end_time(f1(c1))) != zero | selection_favors(efficient_producers,A,end_time(f1(c1))).  [resolve(248,b,101,a)].
+253 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))).  [resolve(251,b,245,b)].
+254 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))).  [copy(253),merge(c)].
+255 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(246,b,154,c)].
+256 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(255),merge(c)].
+257 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(252,b,249,b)].
+258 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(257),merge(e)].
+259 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero.  [resolve(53,a,258,d)].
+260 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(259,b,256,b)].
+261 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(260),merge(c)].
+262 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(254,c,256,b)].
+263 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(262),merge(d)].
+264 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | critical_point(f1(c1)) != A | -greater(end_time(f1(c1)),A) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [resolve(263,c,97,b)].
+265 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | -greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [resolve(263,c,89,a)].
+266 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | -greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [resolve(53,a,265,e)].
+267 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | critical_point(f1(c1)) != critical_point(f1(c1)) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(264,e,134,b)].
+268 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(267),xx(d)].
+269 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [copy(268),merge(e)].
+270 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(269,d,266,d)].
+271 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(270),merge(d)].
+272 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(271),merge(d)].
+273 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(272),merge(d)].
+274 f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(273,b,261,b)].
+275 f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(274),merge(c)].
+276 f2(c1,f1(c1)) = end_time(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [copy(275),merge(c)].
+277 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(276(a,1),179(c,3))].
+278 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(277),merge(c)].
+279 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero.  [resolve(53,a,278,c)].
+280 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(279,b,153,a)].
+281 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [copy(280),merge(c)].
+282 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(276(a,1),281(b,3))].
+283 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(282),merge(b)].
+284 appear(efficient_producers,f1(c1)) = critical_point(f1(c1)).  [resolve(53,a,283,b)].
+285 f2(c1,f1(c1)) = end_time(f1(c1)) | -greater_or_equal(end_time(f1(c1)),critical_point(f1(c1))) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero).  [para(284(a,1),246(b,2))].
+286 -greater_or_equal(f2(c1,f1(c1)),critical_point(f1(c1))) | greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero).  [para(284(a,1),118(a,2))].
+287 greater(cardinality_at_time(efficient_producers,f2(c1,f1(c1))),zero).  [resolve(125,a,286,a)].
+288 cardinality_at_time(first_movers,f2(c1,f1(c1))) != zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(287,a,140,a)].
+289 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | subpopulations(first_movers,efficient_producers,f1(c1),f2(c1,f1(c1))).  [resolve(287,a,133,b)].
+290 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(285,b,136,b)].
+291 f2(c1,f1(c1)) = end_time(f1(c1)) | greater(cardinality_at_time(efficient_producers,end_time(f1(c1))),zero).  [copy(290),merge(c)].
+292 f2(c1,f1(c1)) = end_time(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero.  [resolve(291,b,259,b)].
+293 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) != zero.  [copy(292),merge(b)].
+294 f2(c1,f1(c1)) = end_time(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))).  [resolve(291,b,254,c)].
+295 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | subpopulations(first_movers,efficient_producers,f1(c1),end_time(f1(c1))).  [copy(294),merge(b)].
+296 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | critical_point(f1(c1)) != A | -greater(f2(c1,f1(c1)),A) | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [resolve(289,b,97,b)].
+297 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | -greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))) | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [resolve(289,b,89,a)].
+298 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | critical_point(f1(c1)) != A | -greater(end_time(f1(c1)),A) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [resolve(295,c,97,b)].
+299 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | -greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [resolve(295,c,89,a)].
+300 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | -greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [resolve(53,a,299,d)].
+301 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | critical_point(f1(c1)) != critical_point(f1(c1)) | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [resolve(296,c,113,a)].
+302 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | greater(growth_rate(efficient_producers,f2(c1,f1(c1))),growth_rate(first_movers,f2(c1,f1(c1)))).  [copy(301),xx(b)].
+303 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))) | cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero.  [resolve(297,b,302,b)].
+304 cardinality_at_time(first_movers,f2(c1,f1(c1))) = zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [copy(303),merge(c)].
+305 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | critical_point(f1(c1)) != critical_point(f1(c1)) | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(298,d,134,b)].
+306 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))) | f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(305),xx(c)].
+307 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | greater(growth_rate(efficient_producers,end_time(f1(c1))),growth_rate(first_movers,end_time(f1(c1)))).  [copy(306),merge(d)].
+308 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [resolve(307,c,300,c)].
+309 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(308),merge(c)].
+310 f2(c1,f1(c1)) = end_time(f1(c1)) | cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [copy(309),merge(c)].
+311 f2(c1,f1(c1)) = end_time(f1(c1)) | f2(c1,f1(c1)) = end_time(f1(c1)).  [resolve(310,b,293,b)].
+312 f2(c1,f1(c1)) = end_time(f1(c1)).  [copy(311),merge(b)].
+313 cardinality_at_time(first_movers,end_time(f1(c1))) = zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [para(312(a,1),304(a,1,2))].
+314 cardinality_at_time(first_movers,end_time(f1(c1))) = zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(312(a,1),313(b,3))].
+315 cardinality_at_time(first_movers,end_time(f1(c1))) = zero.  [resolve(53,a,314,b)].
+316 cardinality_at_time(first_movers,end_time(f1(c1))) != zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [para(312(a,1),288(a,1,2))].
+317 zero != zero | selection_favors(efficient_producers,first_movers,f2(c1,f1(c1))).  [para(315(a,1),316(a,1))].
+318 zero != zero | selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [para(312(a,1),317(b,3))].
+319 selection_favors(efficient_producers,first_movers,end_time(f1(c1))).  [copy(318),xx(a)].
+320 $F.  [resolve(53,a,319,a)].

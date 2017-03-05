@@ -1,0 +1,258 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n094.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 21:42:28 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 53167 was started by sandbox on n094.star.cs.uiowa.edu,
+Thu Jun  5 21:42:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_53135_n094.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 142.
+% Level of proof is 57.
+% Maximum clause weight is 16.000.
+% Given clauses 268.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A (cc1(A) <-> (exists B rp(A,B)) & (all B all C (rp(A,B) & rp(A,C) -> B = C)))).  [assumption].
+4 (all A (cc2(A) <-> (exists B rp(A,B)) & (all B all C (rp(A,B) & rp(A,C) -> B = C)))).  [assumption].
+5 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & (all A (cc1(A) <-> cc2(A)))).  [assumption].
+6 cowlThing(A).  [clausify(1)].
+7 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+8 -cowlNothing(A).  [clausify(1)].
+9 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+10 -cc1(A) | rp(A,f1(A)).  [clausify(3)].
+11 -cc2(A) | rp(A,f4(A)).  [clausify(4)].
+12 cc1(A) | -rp(A,B) | rp(A,f2(A)).  [clausify(3)].
+13 cc1(A) | -rp(A,B) | rp(A,f3(A)).  [clausify(3)].
+14 cc2(A) | -rp(A,B) | rp(A,f5(A)).  [clausify(4)].
+15 cc2(A) | -rp(A,B) | rp(A,f6(A)).  [clausify(4)].
+16 cc1(A) | -rp(A,B) | f3(A) != f2(A).  [clausify(3)].
+17 cc2(A) | -rp(A,B) | f6(A) != f5(A).  [clausify(4)].
+18 -cc1(A) | -rp(A,B) | -rp(A,C) | C = B.  [clausify(3)].
+19 -cc2(A) | -rp(A,B) | -rp(A,C) | C = B.  [clausify(4)].
+20 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cc1(c3) | cc2(c3).  [clausify(5)].
+21 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cc1(c3) | cc2(c3).  [resolve(6,a,20,a)].
+22 xsd_string(c2) | -xsd_integer(c2) | cc1(c3) | cc2(c3).  [resolve(8,a,21,a)].
+23 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cc1(c3) | -cc2(c3).  [clausify(5)].
+24 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cc1(c3) | -cc2(c3).  [resolve(6,a,23,a)].
+25 xsd_string(c2) | -xsd_integer(c2) | -cc1(c3) | -cc2(c3).  [resolve(8,a,24,a)].
+26 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cc1(c3) | cc2(c3).  [clausify(5)].
+27 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cc1(c3) | cc2(c3).  [resolve(6,a,26,a)].
+28 -xsd_string(c2) | xsd_integer(c2) | cc1(c3) | cc2(c3).  [resolve(8,a,27,a)].
+29 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cc1(c3) | -cc2(c3).  [clausify(5)].
+30 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cc1(c3) | -cc2(c3).  [resolve(6,a,29,a)].
+31 -xsd_string(c2) | xsd_integer(c2) | -cc1(c3) | -cc2(c3).  [resolve(8,a,30,a)].
+32 xsd_integer(c2) | cc1(c3) | cc2(c3) | xsd_integer(c2).  [resolve(28,a,7,a)].
+33 xsd_integer(c2) | cc1(c3) | cc2(c3).  [copy(32),merge(d)].
+34 xsd_integer(c2) | -cc1(c3) | -cc2(c3) | xsd_integer(c2).  [resolve(31,a,7,a)].
+35 xsd_integer(c2) | -cc1(c3) | -cc2(c3).  [copy(34),merge(d)].
+36 cc1(c3) | cc2(c3) | xsd_string(c2) | cc1(c3) | cc2(c3).  [resolve(33,a,22,b)].
+37 cc1(c3) | cc2(c3) | xsd_string(c2) | cc2(c3).  [copy(36),merge(d)].
+38 cc1(c3) | cc2(c3) | xsd_string(c2).  [copy(37),merge(d)].
+39 cc1(c3) | cc2(c3) | -xsd_integer(c2).  [resolve(38,c,9,a)].
+40 cc1(c3) | cc2(c3) | cc1(c3) | cc2(c3).  [resolve(39,c,33,a)].
+41 cc1(c3) | cc2(c3) | cc2(c3).  [copy(40),merge(c)].
+42 cc1(c3) | cc2(c3).  [copy(41),merge(c)].
+43 cc1(c3) | rp(c3,f4(c3)).  [resolve(42,b,11,a)].
+44 cc1(c3) | -cc2(c3) | -rp(c3,A) | f4(c3) = A.  [resolve(43,b,19,c)].
+45 cc1(c3) | cc1(c3) | f3(c3) != f2(c3).  [resolve(43,b,16,b)].
+46 cc1(c3) | f3(c3) != f2(c3).  [copy(45),merge(b)].
+47 cc1(c3) | cc1(c3) | rp(c3,f3(c3)).  [resolve(43,b,13,b)].
+48 cc1(c3) | rp(c3,f3(c3)).  [copy(47),merge(b)].
+49 cc1(c3) | cc1(c3) | rp(c3,f2(c3)).  [resolve(43,b,12,b)].
+50 cc1(c3) | rp(c3,f2(c3)).  [copy(49),merge(b)].
+51 cc1(c3) | -cc2(c3) | -rp(c3,A) | f3(c3) = A.  [resolve(48,b,19,c)].
+52 cc1(c3) | -cc2(c3) | f4(c3) = f2(c3) | cc1(c3).  [resolve(44,c,50,b)].
+53 cc1(c3) | -cc2(c3) | f4(c3) = f2(c3).  [copy(52),merge(d)].
+54 cc1(c3) | -cc2(c3) | f4(c3) = f3(c3) | cc1(c3).  [resolve(44,c,48,b)].
+55 cc1(c3) | -cc2(c3) | f4(c3) = f3(c3).  [copy(54),merge(d)].
+56 cc1(c3) | -cc2(c3) | f3(c3) = f2(c3) | cc1(c3).  [resolve(51,c,50,b)].
+57 cc1(c3) | -cc2(c3) | f3(c3) = f2(c3).  [copy(56),merge(d)].
+58 cc1(c3) | f4(c3) = f2(c3) | cc1(c3).  [resolve(53,b,42,b)].
+59 cc1(c3) | f4(c3) = f2(c3).  [copy(58),merge(c)].
+60 f4(c3) = f2(c3) | rp(c3,f1(c3)).  [resolve(59,a,10,a)].
+61 cc1(c3) | f4(c3) = f3(c3) | cc1(c3).  [resolve(55,b,42,b)].
+62 cc1(c3) | f4(c3) = f3(c3).  [copy(61),merge(c)].
+63 f4(c3) = f3(c3) | rp(c3,f1(c3)).  [resolve(62,a,10,a)].
+64 cc1(c3) | f3(c3) = f2(c3) | cc1(c3).  [resolve(57,b,42,b)].
+65 cc1(c3) | f3(c3) = f2(c3).  [copy(64),merge(c)].
+66 f3(c3) = f2(c3) | rp(c3,f1(c3)).  [resolve(65,a,10,a)].
+67 f4(c3) = f2(c3) | -cc1(c3) | -rp(c3,A) | f1(c3) = A.  [resolve(60,b,18,c)].
+68 f4(c3) = f2(c3) | cc2(c3) | f6(c3) != f5(c3).  [resolve(60,b,17,b)].
+69 f4(c3) = f2(c3) | cc2(c3) | rp(c3,f6(c3)).  [resolve(60,b,15,b)].
+70 f4(c3) = f2(c3) | cc2(c3) | rp(c3,f5(c3)).  [resolve(60,b,14,b)].
+71 f4(c3) = f3(c3) | -cc1(c3) | -rp(c3,A) | f1(c3) = A.  [resolve(63,b,18,c)].
+72 f4(c3) = f3(c3) | cc2(c3) | rp(c3,f5(c3)).  [resolve(63,b,14,b)].
+73 f3(c3) = f2(c3) | -cc1(c3) | -rp(c3,A) | f1(c3) = A.  [resolve(66,b,18,c)].
+74 f3(c3) = f2(c3) | cc2(c3) | f6(c3) != f5(c3).  [resolve(66,b,17,b)].
+75 f3(c3) = f2(c3) | cc2(c3) | rp(c3,f6(c3)).  [resolve(66,b,15,b)].
+76 f3(c3) = f2(c3) | cc2(c3) | rp(c3,f5(c3)).  [resolve(66,b,14,b)].
+77 f4(c3) = f2(c3) | -cc1(c3) | f1(c3) = f5(c3) | f4(c3) = f2(c3) | cc2(c3).  [resolve(67,c,70,c)].
+78 f4(c3) = f2(c3) | -cc1(c3) | f5(c3) = f1(c3) | f4(c3) = f2(c3) | cc2(c3).  [copy(77),flip(c)].
+79 f4(c3) = f2(c3) | -cc1(c3) | f5(c3) = f1(c3) | cc2(c3).  [copy(78),merge(d)].
+80 f4(c3) = f2(c3) | -cc1(c3) | f1(c3) = f6(c3) | f4(c3) = f2(c3) | cc2(c3).  [resolve(67,c,69,c)].
+81 f4(c3) = f2(c3) | -cc1(c3) | f6(c3) = f1(c3) | f4(c3) = f2(c3) | cc2(c3).  [copy(80),flip(c)].
+82 f4(c3) = f2(c3) | -cc1(c3) | f6(c3) = f1(c3) | cc2(c3).  [copy(81),merge(d)].
+83 f4(c3) = f3(c3) | -cc1(c3) | f1(c3) = f5(c3) | f4(c3) = f3(c3) | cc2(c3).  [resolve(71,c,72,c)].
+84 f4(c3) = f3(c3) | -cc1(c3) | f5(c3) = f1(c3) | f4(c3) = f3(c3) | cc2(c3).  [copy(83),flip(c)].
+85 f4(c3) = f3(c3) | -cc1(c3) | f5(c3) = f1(c3) | cc2(c3).  [copy(84),merge(d)].
+86 f3(c3) = f2(c3) | -cc1(c3) | f1(c3) = f5(c3) | f3(c3) = f2(c3) | cc2(c3).  [resolve(73,c,76,c)].
+87 f3(c3) = f2(c3) | -cc1(c3) | f5(c3) = f1(c3) | f3(c3) = f2(c3) | cc2(c3).  [copy(86),flip(c)].
+88 f3(c3) = f2(c3) | -cc1(c3) | f5(c3) = f1(c3) | cc2(c3).  [copy(87),merge(d)].
+89 f3(c3) = f2(c3) | -cc1(c3) | f1(c3) = f6(c3) | f3(c3) = f2(c3) | cc2(c3).  [resolve(73,c,75,c)].
+90 f3(c3) = f2(c3) | -cc1(c3) | f6(c3) = f1(c3) | f3(c3) = f2(c3) | cc2(c3).  [copy(89),flip(c)].
+91 f3(c3) = f2(c3) | -cc1(c3) | f6(c3) = f1(c3) | cc2(c3).  [copy(90),merge(d)].
+92 f4(c3) = f2(c3) | f5(c3) = f1(c3) | cc2(c3) | f4(c3) = f2(c3).  [resolve(79,b,59,a)].
+93 f4(c3) = f2(c3) | f5(c3) = f1(c3) | cc2(c3).  [copy(92),merge(d)].
+94 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_integer(c2) | -cc1(c3).  [resolve(93,c,35,c)].
+95 f4(c3) = f2(c3) | f6(c3) = f1(c3) | cc2(c3) | f4(c3) = f2(c3).  [resolve(82,b,59,a)].
+96 f4(c3) = f2(c3) | f6(c3) = f1(c3) | cc2(c3).  [copy(95),merge(d)].
+97 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_integer(c2) | -cc1(c3).  [resolve(96,c,35,c)].
+98 f4(c3) = f3(c3) | f5(c3) = f1(c3) | cc2(c3) | f4(c3) = f3(c3).  [resolve(85,b,62,a)].
+99 f4(c3) = f3(c3) | f5(c3) = f1(c3) | cc2(c3).  [copy(98),merge(d)].
+100 f4(c3) = f3(c3) | f5(c3) = f1(c3) | xsd_integer(c2) | -cc1(c3).  [resolve(99,c,35,c)].
+101 f3(c3) = f2(c3) | f5(c3) = f1(c3) | cc2(c3) | f3(c3) = f2(c3).  [resolve(88,b,65,a)].
+102 f3(c3) = f2(c3) | f5(c3) = f1(c3) | cc2(c3).  [copy(101),merge(d)].
+103 f3(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_integer(c2) | -cc1(c3).  [resolve(102,c,35,c)].
+104 f3(c3) = f2(c3) | f6(c3) = f1(c3) | cc2(c3) | f3(c3) = f2(c3).  [resolve(91,b,65,a)].
+105 f3(c3) = f2(c3) | f6(c3) = f1(c3) | cc2(c3).  [copy(104),merge(d)].
+106 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_integer(c2) | -cc1(c3).  [resolve(105,c,35,c)].
+107 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_integer(c2) | f4(c3) = f2(c3).  [resolve(94,d,59,a)].
+108 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_integer(c2).  [copy(107),merge(d)].
+109 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | -cc2(c3).  [resolve(108,c,25,b)].
+110 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_integer(c2) | f4(c3) = f2(c3).  [resolve(97,d,59,a)].
+111 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_integer(c2).  [copy(110),merge(d)].
+112 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | -cc2(c3).  [resolve(111,c,25,b)].
+113 f4(c3) = f3(c3) | f5(c3) = f1(c3) | xsd_integer(c2) | f4(c3) = f3(c3).  [resolve(100,d,62,a)].
+114 f4(c3) = f3(c3) | f5(c3) = f1(c3) | xsd_integer(c2).  [copy(113),merge(d)].
+115 f4(c3) = f3(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | -cc2(c3).  [resolve(114,c,25,b)].
+116 f3(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_integer(c2) | f3(c3) = f2(c3).  [resolve(103,d,65,a)].
+117 f3(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_integer(c2).  [copy(116),merge(d)].
+118 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_integer(c2) | f3(c3) = f2(c3).  [resolve(106,d,65,a)].
+119 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_integer(c2).  [copy(118),merge(d)].
+120 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | -cc2(c3).  [resolve(119,c,25,b)].
+121 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | f4(c3) = f2(c3) | f5(c3) = f1(c3).  [resolve(109,e,93,c)].
+122 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | f5(c3) = f1(c3).  [copy(121),merge(e)].
+123 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3).  [copy(122),merge(e)].
+124 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2) | f4(c3) = f2(c3).  [resolve(123,d,59,a)].
+125 f4(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2).  [copy(124),merge(d)].
+126 f4(c3) = f2(c3) | f5(c3) = f1(c3) | -xsd_integer(c2).  [resolve(125,c,9,a)].
+127 f4(c3) = f2(c3) | f5(c3) = f1(c3) | f4(c3) = f2(c3) | f5(c3) = f1(c3).  [resolve(126,c,108,c)].
+128 f4(c3) = f2(c3) | f5(c3) = f1(c3) | f5(c3) = f1(c3).  [copy(127),merge(c)].
+129 f4(c3) = f2(c3) | f5(c3) = f1(c3).  [copy(128),merge(c)].
+130 f4(c3) = f2(c3) | f4(c3) = f2(c3) | cc2(c3) | f6(c3) != f1(c3).  [para(129(b,1),68(c,2))].
+131 f4(c3) = f2(c3) | cc2(c3) | f6(c3) != f1(c3).  [copy(130),merge(b)].
+132 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | f4(c3) = f2(c3) | f6(c3) = f1(c3).  [resolve(112,e,96,c)].
+133 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | f6(c3) = f1(c3).  [copy(132),merge(e)].
+134 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | -cc1(c3).  [copy(133),merge(e)].
+135 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | f4(c3) = f2(c3).  [resolve(134,d,59,a)].
+136 f4(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2).  [copy(135),merge(d)].
+137 f4(c3) = f2(c3) | f6(c3) = f1(c3) | -xsd_integer(c2).  [resolve(136,c,9,a)].
+138 f4(c3) = f2(c3) | f6(c3) = f1(c3) | f4(c3) = f2(c3) | f6(c3) = f1(c3).  [resolve(137,c,111,c)].
+139 f4(c3) = f2(c3) | f6(c3) = f1(c3) | f6(c3) = f1(c3).  [copy(138),merge(c)].
+140 f4(c3) = f2(c3) | f6(c3) = f1(c3).  [copy(139),merge(c)].
+141 f4(c3) = f2(c3) | f4(c3) = f2(c3) | cc2(c3).  [resolve(140,b,131,c)].
+142 f4(c3) = f2(c3) | cc2(c3).  [copy(141),merge(b)].
+143 f4(c3) = f3(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | f4(c3) = f3(c3) | f5(c3) = f1(c3).  [resolve(115,e,99,c)].
+144 f4(c3) = f3(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | f5(c3) = f1(c3).  [copy(143),merge(e)].
+145 f4(c3) = f3(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3).  [copy(144),merge(e)].
+146 f4(c3) = f2(c3) | xsd_integer(c2) | -cc1(c3).  [resolve(142,b,35,c)].
+147 f4(c3) = f2(c3) | xsd_integer(c2) | f4(c3) = f2(c3).  [resolve(146,c,59,a)].
+148 f4(c3) = f2(c3) | xsd_integer(c2).  [copy(147),merge(c)].
+149 f4(c3) = f2(c3) | xsd_string(c2) | -cc1(c3) | -cc2(c3).  [resolve(148,b,25,b)].
+150 f4(c3) = f2(c3) | xsd_string(c2) | -cc1(c3) | f4(c3) = f2(c3).  [resolve(149,d,142,b)].
+151 f4(c3) = f2(c3) | xsd_string(c2) | -cc1(c3).  [copy(150),merge(d)].
+152 f4(c3) = f2(c3) | xsd_string(c2) | f4(c3) = f2(c3).  [resolve(151,c,59,a)].
+153 f4(c3) = f2(c3) | xsd_string(c2).  [copy(152),merge(c)].
+154 f4(c3) = f2(c3) | -xsd_integer(c2).  [resolve(153,b,9,a)].
+155 f4(c3) = f2(c3) | f4(c3) = f2(c3).  [resolve(154,b,148,b)].
+156 f4(c3) = f2(c3).  [copy(155),merge(b)].
+157 f2(c3) = f3(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3).  [para(156(a,1),145(a,1))].
+158 f3(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2) | -cc1(c3).  [copy(157),flip(a)].
+159 f3(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2) | f3(c3) = f2(c3).  [resolve(158,d,65,a)].
+160 f3(c3) = f2(c3) | f5(c3) = f1(c3) | xsd_string(c2).  [copy(159),merge(d)].
+161 f3(c3) = f2(c3) | f5(c3) = f1(c3) | -xsd_integer(c2).  [resolve(160,c,9,a)].
+162 f3(c3) = f2(c3) | f5(c3) = f1(c3) | f3(c3) = f2(c3) | f5(c3) = f1(c3).  [resolve(161,c,117,c)].
+163 f3(c3) = f2(c3) | f5(c3) = f1(c3) | f5(c3) = f1(c3).  [copy(162),merge(c)].
+164 f3(c3) = f2(c3) | f5(c3) = f1(c3).  [copy(163),merge(c)].
+165 f3(c3) = f2(c3) | f3(c3) = f2(c3) | cc2(c3) | f6(c3) != f1(c3).  [para(164(b,1),74(c,2))].
+166 f3(c3) = f2(c3) | cc2(c3) | f6(c3) != f1(c3).  [copy(165),merge(b)].
+167 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | f3(c3) = f2(c3) | f6(c3) = f1(c3).  [resolve(120,e,105,c)].
+168 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | -cc1(c3) | f6(c3) = f1(c3).  [copy(167),merge(e)].
+169 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | -cc1(c3).  [copy(168),merge(e)].
+170 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2) | f3(c3) = f2(c3).  [resolve(169,d,65,a)].
+171 f3(c3) = f2(c3) | f6(c3) = f1(c3) | xsd_string(c2).  [copy(170),merge(d)].
+172 f3(c3) = f2(c3) | f6(c3) = f1(c3) | -xsd_integer(c2).  [resolve(171,c,9,a)].
+173 f3(c3) = f2(c3) | f6(c3) = f1(c3) | f3(c3) = f2(c3) | f6(c3) = f1(c3).  [resolve(172,c,119,c)].
+174 f3(c3) = f2(c3) | f6(c3) = f1(c3) | f6(c3) = f1(c3).  [copy(173),merge(c)].
+175 f3(c3) = f2(c3) | f6(c3) = f1(c3).  [copy(174),merge(c)].
+176 f3(c3) = f2(c3) | f3(c3) = f2(c3) | cc2(c3).  [resolve(175,b,166,c)].
+177 f3(c3) = f2(c3) | cc2(c3).  [copy(176),merge(b)].
+178 f3(c3) = f2(c3) | xsd_integer(c2) | -cc1(c3).  [resolve(177,b,35,c)].
+179 f3(c3) = f2(c3) | xsd_integer(c2) | f3(c3) = f2(c3).  [resolve(178,c,65,a)].
+180 f3(c3) = f2(c3) | xsd_integer(c2).  [copy(179),merge(c)].
+181 f3(c3) = f2(c3) | xsd_string(c2) | -cc1(c3) | -cc2(c3).  [resolve(180,b,25,b)].
+182 f3(c3) = f2(c3) | xsd_string(c2) | -cc1(c3) | f3(c3) = f2(c3).  [resolve(181,d,177,b)].
+183 f3(c3) = f2(c3) | xsd_string(c2) | -cc1(c3).  [copy(182),merge(d)].
+184 f3(c3) = f2(c3) | xsd_string(c2) | f3(c3) = f2(c3).  [resolve(183,c,65,a)].
+185 f3(c3) = f2(c3) | xsd_string(c2).  [copy(184),merge(c)].
+186 f3(c3) = f2(c3) | -xsd_integer(c2).  [resolve(185,b,9,a)].
+187 f3(c3) = f2(c3) | f3(c3) = f2(c3).  [resolve(186,b,180,b)].
+188 f3(c3) = f2(c3).  [copy(187),merge(b)].
+189 cc1(c3) | f2(c3) != f2(c3).  [para(188(a,1),46(b,1))].
+190 cc1(c3).  [copy(189),xx(b)].
+191 xsd_integer(c2) | -cc2(c3).  [resolve(190,a,35,b)].
+192 xsd_string(c2) | -xsd_integer(c2) | -cc2(c3).  [resolve(190,a,25,c)].
+193 rp(c3,f1(c3)).  [resolve(190,a,10,a)].
+194 -cc1(c3) | -rp(c3,A) | f1(c3) = A.  [resolve(193,a,18,c)].
+195 -rp(c3,A) | f1(c3) = A.  [resolve(190,a,194,a)].
+196 cc2(c3) | f6(c3) != f5(c3).  [resolve(193,a,17,b)].
+197 cc2(c3) | rp(c3,f6(c3)).  [resolve(193,a,15,b)].
+198 cc2(c3) | rp(c3,f5(c3)).  [resolve(193,a,14,b)].
+199 f1(c3) = f5(c3) | cc2(c3).  [resolve(195,a,198,b)].
+200 f5(c3) = f1(c3) | cc2(c3).  [copy(199),flip(a)].
+201 f1(c3) = f6(c3) | cc2(c3).  [resolve(195,a,197,b)].
+202 f6(c3) = f1(c3) | cc2(c3).  [copy(201),flip(a)].
+203 f5(c3) = f1(c3) | xsd_integer(c2).  [resolve(200,b,191,b)].
+204 f6(c3) = f1(c3) | xsd_integer(c2).  [resolve(202,b,191,b)].
+205 f5(c3) = f1(c3) | xsd_string(c2) | -cc2(c3).  [resolve(203,b,192,b)].
+206 f6(c3) = f1(c3) | xsd_string(c2) | -cc2(c3).  [resolve(204,b,192,b)].
+207 f5(c3) = f1(c3) | xsd_string(c2) | f5(c3) = f1(c3).  [resolve(205,c,200,b)].
+208 f5(c3) = f1(c3) | xsd_string(c2).  [copy(207),merge(c)].
+209 f5(c3) = f1(c3) | -xsd_integer(c2).  [resolve(208,b,9,a)].
+210 f5(c3) = f1(c3) | f5(c3) = f1(c3).  [resolve(209,b,203,b)].
+211 f5(c3) = f1(c3).  [copy(210),merge(b)].
+212 cc2(c3) | f6(c3) != f1(c3).  [para(211(a,1),196(b,2))].
+213 f6(c3) = f1(c3) | xsd_string(c2) | f6(c3) = f1(c3).  [resolve(206,c,202,b)].
+214 f6(c3) = f1(c3) | xsd_string(c2).  [copy(213),merge(c)].
+215 f6(c3) = f1(c3) | -xsd_integer(c2).  [resolve(214,b,9,a)].
+216 f6(c3) = f1(c3) | f6(c3) = f1(c3).  [resolve(215,b,204,b)].
+217 f6(c3) = f1(c3).  [copy(216),merge(b)].
+218 cc2(c3) | f1(c3) != f1(c3).  [para(217(a,1),212(b,1))].
+219 cc2(c3).  [copy(218),xx(b)].
+220 xsd_string(c2) | -xsd_integer(c2).  [resolve(219,a,192,c)].
+221 xsd_integer(c2).  [resolve(219,a,191,b)].
+222 xsd_string(c2).  [resolve(221,a,220,b)].
+223 -xsd_string(c2).  [resolve(9,b,221,a)].
+224 $F.  [resolve(222,a,223,a)].
+
+============================== end of proof ==========================

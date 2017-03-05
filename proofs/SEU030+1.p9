@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n098.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:56:18 CDT 2014
+% CPUTime    : 0.30 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 37022 was started by sandbox on n098.star.cs.uiowa.edu,
+Thu Jun  5 13:56:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_36990_n098.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.08 (+ 0.00) seconds.
+% Length of proof is 25.
+% Level of proof is 4.
+% Maximum clause weight is 32.000.
+% Given clauses 92.
+
+
+1 (all A (relation(A) & function(A) -> relation(function_inverse(A)) & function(function_inverse(A)))).  [assumption].
+2 (all A all B (relation(B) & function(B) -> (all C (relation(C) & function(C) -> (all D (relation(D) & function(D) -> (relation_rng(B) = A & relation_composition(B,C) = identity_relation(relation_dom(D)) & relation_composition(C,D) = identity_relation(A) -> D = B))))))).  [assumption].
+3 (all A (relation(A) & function(A) -> (one_to_one(A) -> relation_rng(A) = relation_dom(function_inverse(A)) & relation_dom(A) = relation_rng(function_inverse(A))))).  [assumption].
+4 (all A (relation(A) & function(A) -> (one_to_one(A) -> relation_composition(A,function_inverse(A)) = identity_relation(relation_dom(A)) & relation_composition(function_inverse(A),A) = identity_relation(relation_rng(A))))).  [assumption].
+5 -(all A (relation(A) & function(A) -> (all B (relation(B) & function(B) -> (one_to_one(A) & relation_rng(A) = relation_dom(B) & relation_composition(A,B) = identity_relation(relation_dom(A)) -> B = function_inverse(A)))))).  [assumption].
+6 one_to_one(c9).  [clausify(5)].
+7 -relation(A) | -function(A) | -one_to_one(A) | relation_rng(function_inverse(A)) = relation_dom(A).  [clausify(3)].
+8 -relation(A) | -function(A) | -one_to_one(A) | identity_relation(relation_rng(A)) = relation_composition(function_inverse(A),A).  [clausify(4)].
+9 relation(c9).  [clausify(5)].
+10 function(c9).  [clausify(5)].
+11 relation(c10).  [clausify(5)].
+12 function(c10).  [clausify(5)].
+13 relation_rng(c9) = relation_dom(c10).  [clausify(5)].
+14 identity_relation(relation_dom(c9)) = relation_composition(c9,c10).  [clausify(5)].
+15 function_inverse(c9) != c10.  [clausify(5)].
+16 -relation(A) | -function(A) | relation(function_inverse(A)).  [clausify(1)].
+17 -relation(A) | -function(A) | function(function_inverse(A)).  [clausify(1)].
+18 -relation(A) | -function(A) | -relation(B) | -function(B) | -relation(C) | -function(C) | relation_rng(A) != D | identity_relation(relation_dom(C)) != relation_composition(A,B) | identity_relation(D) != relation_composition(B,C) | C = A.  [clausify(2)].
+19 -relation(c9) | -function(c9) | relation_rng(function_inverse(c9)) = relation_dom(c9).  [resolve(7,c,6,a)].
+20 -function(c9) | relation_rng(function_inverse(c9)) = relation_dom(c9).  [resolve(9,a,19,a)].
+21 relation_rng(function_inverse(c9)) = relation_dom(c9).  [resolve(10,a,20,a)].
+22 -relation(c9) | -function(c9) | identity_relation(relation_rng(c9)) = relation_composition(function_inverse(c9),c9).  [resolve(8,c,6,a)].
+23 -relation(c9) | -function(c9) | identity_relation(relation_dom(c10)) = relation_composition(function_inverse(c9),c9).  [para(13(a,1),22(c,1,1))].
+24 -relation(c9) | -function(c9) | relation_composition(function_inverse(c9),c9) = identity_relation(relation_dom(c10)).  [copy(23),flip(c)].
+25 -function(c9) | relation_composition(function_inverse(c9),c9) = identity_relation(relation_dom(c10)).  [resolve(9,a,24,a)].
+26 relation_composition(function_inverse(c9),c9) = identity_relation(relation_dom(c10)).  [resolve(10,a,25,a)].
+27 -relation(c9) | relation(function_inverse(c9)).  [resolve(16,b,10,a)].
+28 relation(function_inverse(c9)).  [resolve(9,a,27,a)].
+29 -relation(c9) | function(function_inverse(c9)).  [resolve(17,b,10,a)].
+30 function(function_inverse(c9)).  [resolve(9,a,29,a)].
+31 -function(function_inverse(c9)) | -relation(A) | -function(A) | -relation(B) | -function(B) | relation_rng(function_inverse(c9)) != C | identity_relation(relation_dom(B)) != relation_composition(function_inverse(c9),A) | identity_relation(C) != relation_composition(A,B) | B = function_inverse(c9).  [resolve(18,a,28,a)].
+32 -function(function_inverse(c9)) | -function(c9) | -relation(A) | -function(A) | relation_rng(function_inverse(c9)) != B | identity_relation(relation_dom(A)) != relation_composition(function_inverse(c9),c9) | identity_relation(B) != relation_composition(c9,A) | A = function_inverse(c9).  [resolve(31,b,9,a)].
+33 -function(function_inverse(c9)) | -relation(A) | -function(A) | relation_rng(function_inverse(c9)) != B | identity_relation(relation_dom(A)) != relation_composition(function_inverse(c9),c9) | identity_relation(B) != relation_composition(c9,A) | A = function_inverse(c9).  [resolve(32,b,10,a)].
+34 -function(function_inverse(c9)) | -function(c10) | relation_rng(function_inverse(c9)) != A | identity_relation(relation_dom(c10)) != relation_composition(function_inverse(c9),c9) | identity_relation(A) != relation_composition(c9,c10) | c10 = function_inverse(c9).  [resolve(33,b,11,a)].
+35 -function(function_inverse(c9)) | relation_rng(function_inverse(c9)) != A | identity_relation(relation_dom(c10)) != relation_composition(function_inverse(c9),c9) | identity_relation(A) != relation_composition(c9,c10) | c10 = function_inverse(c9).  [resolve(34,b,12,a)].
+36 -function(function_inverse(c9)) | identity_relation(relation_dom(c10)) != relation_composition(function_inverse(c9),c9) | identity_relation(relation_dom(c9)) != relation_composition(c9,c10) | c10 = function_inverse(c9).  [resolve(35,b,21,a)].
+37 -function(function_inverse(c9)) | identity_relation(relation_dom(c9)) != relation_composition(c9,c10) | c10 = function_inverse(c9).  [resolve(36,b,26,a(flip))].
+38 -function(function_inverse(c9)) | c10 = function_inverse(c9).  [resolve(37,b,14,a)].
+39 -function(function_inverse(c9)).  [resolve(38,b,15,a(flip))].
+40 $F.  [resolve(30,a,39,a)].
+
+============================== end of proof ==========================

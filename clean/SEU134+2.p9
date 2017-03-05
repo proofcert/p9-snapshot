@@ -1,0 +1,13 @@
+
+
+3 set_difference(c3,c4) = empty_set | subset(c3,c4).  [clausify(2)].
+4 set_difference(c3,c4) != empty_set | -subset(c3,c4).  [clausify(2)].
+5 set_difference(A,B) != empty_set | subset(A,B).  [clausify(1)].
+6 set_difference(A,B) = empty_set | -subset(A,B).  [clausify(1)].
+7 set_difference(c3,c4) = empty_set | set_difference(c3,c4) = empty_set.  [resolve(6,b,3,b)].
+8 set_difference(c3,c4) = empty_set.  [copy(7),merge(b)].
+9 empty_set != empty_set | -subset(c3,c4).  [para(8(a,1),4(a,1))].
+10 -subset(c3,c4).  [copy(9),xx(a)].
+11 set_difference(c3,c4) != empty_set.  [resolve(5,b,10,a)].
+12 empty_set != empty_set.  [para(8(a,1),11(a,1))].
+13 $F.  [copy(12),xx(a)].

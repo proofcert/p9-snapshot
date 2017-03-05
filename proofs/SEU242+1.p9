@@ -1,0 +1,137 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n041.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:04:38 CDT 2014
+% CPUTime    : 8.32 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5088 was started by sandbox on n041.star.cs.uiowa.edu,
+Fri Jun  6 05:04:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5056_n041.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 8.18 (+ 0.01) seconds.
+% Length of proof is 72.
+% Level of proof is 29.
+% Maximum clause weight is 45.000.
+% Given clauses 450.
+
+
+1 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+2 (all A (relation(A) -> (connected(A) <-> is_connected_in(A,relation_field(A))))).  [assumption].
+3 (all A all B ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A))).  [assumption].
+4 (all A (relation(A) -> (all B (is_connected_in(A,B) <-> (all C all D -(in(C,B) & in(D,B) & C != D & -in(ordered_pair(C,D),A) & -in(ordered_pair(D,C),A))))))).  [assumption].
+5 -(all A (relation(A) -> (connected(A) <-> (all B all C -(in(B,relation_field(A)) & in(C,relation_field(A)) & B != C & -in(ordered_pair(B,C),A) & -in(ordered_pair(C,B),A)))))).  [assumption].
+6 relation(c6).  [clausify(5)].
+7 -relation(A) | -connected(A) | is_connected_in(A,relation_field(A)).  [clausify(2)].
+8 -relation(A) | connected(A) | -is_connected_in(A,relation_field(A)).  [clausify(2)].
+9 -relation(A) | is_connected_in(A,B) | in(f1(A,B),B).  [clausify(4)].
+10 -relation(A) | is_connected_in(A,B) | in(f2(A,B),B).  [clausify(4)].
+11 -relation(A) | is_connected_in(A,B) | f2(A,B) != f1(A,B).  [clausify(4)].
+12 -relation(A) | is_connected_in(A,B) | -in(ordered_pair(f1(A,B),f2(A,B)),A).  [clausify(4)].
+13 -relation(A) | is_connected_in(A,B) | -in(ordered_pair(f2(A,B),f1(A,B)),A).  [clausify(4)].
+14 -relation(A) | -is_connected_in(A,B) | -in(C,B) | -in(D,B) | D = C | in(ordered_pair(C,D),A) | in(ordered_pair(D,C),A).  [clausify(4)].
+15 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+16 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(3)].
+17 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(15(a,1),16(a,2))].
+18 -connected(c6) | c8 != c7.  [clausify(5)].
+19 -connected(c6) | -in(ordered_pair(c7,c8),c6).  [clausify(5)].
+20 -connected(c6) | -in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6).  [para(17(a,1),19(b,1))].
+21 -connected(c6) | -in(ordered_pair(c8,c7),c6).  [clausify(5)].
+22 -connected(c6) | -in(unordered_pair(singleton(c8),unordered_pair(c8,c7)),c6).  [para(17(a,1),21(b,1))].
+23 -connected(c6) | -in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6).  [para(15(a,1),22(b,1,2))].
+24 -connected(c6) | in(c7,relation_field(c6)).  [clausify(5)].
+25 -connected(c6) | in(c8,relation_field(c6)).  [clausify(5)].
+26 connected(c6) | -in(A,relation_field(c6)) | -in(B,relation_field(c6)) | B = A | in(ordered_pair(A,B),c6) | in(ordered_pair(B,A),c6).  [clausify(5)].
+27 connected(c6) | -in(A,relation_field(c6)) | -in(B,relation_field(c6)) | B = A | in(unordered_pair(singleton(A),unordered_pair(A,B)),c6) | in(ordered_pair(B,A),c6).  [para(17(a,1),26(e,1))].
+28 connected(c6) | -in(A,relation_field(c6)) | -in(B,relation_field(c6)) | B = A | in(unordered_pair(singleton(A),unordered_pair(A,B)),c6) | in(unordered_pair(singleton(B),unordered_pair(B,A)),c6).  [para(17(a,1),27(f,1))].
+29 connected(c6) | -in(A,relation_field(c6)) | -in(B,relation_field(c6)) | B = A | in(unordered_pair(singleton(A),unordered_pair(A,B)),c6) | in(unordered_pair(singleton(B),unordered_pair(A,B)),c6).  [para(15(a,1),28(f,1,2))].
+30 -connected(c6) | is_connected_in(c6,relation_field(c6)).  [resolve(7,a,6,a)].
+31 connected(c6) | -is_connected_in(c6,relation_field(c6)).  [resolve(8,a,6,a)].
+32 is_connected_in(c6,A) | in(f1(c6,A),A).  [resolve(9,a,6,a)].
+33 is_connected_in(c6,A) | in(f2(c6,A),A).  [resolve(10,a,6,a)].
+34 is_connected_in(c6,A) | f2(c6,A) != f1(c6,A).  [resolve(11,a,6,a)].
+35 is_connected_in(c6,A) | -in(ordered_pair(f1(c6,A),f2(c6,A)),c6).  [resolve(12,a,6,a)].
+36 is_connected_in(c6,A) | -in(unordered_pair(singleton(f1(c6,A)),unordered_pair(f1(c6,A),f2(c6,A))),c6).  [para(17(a,1),35(b,1))].
+37 is_connected_in(c6,A) | -in(ordered_pair(f2(c6,A),f1(c6,A)),c6).  [resolve(13,a,6,a)].
+38 is_connected_in(c6,A) | -in(unordered_pair(singleton(f2(c6,A)),unordered_pair(f2(c6,A),f1(c6,A))),c6).  [para(17(a,1),37(b,1))].
+39 is_connected_in(c6,A) | -in(unordered_pair(singleton(f2(c6,A)),unordered_pair(f1(c6,A),f2(c6,A))),c6).  [para(15(a,1),38(b,1,2))].
+40 -is_connected_in(c6,A) | -in(B,A) | -in(C,A) | C = B | in(ordered_pair(B,C),c6) | in(ordered_pair(C,B),c6).  [resolve(14,a,6,a)].
+41 -is_connected_in(c6,A) | -in(B,A) | -in(C,A) | C = B | in(unordered_pair(singleton(B),unordered_pair(B,C)),c6) | in(ordered_pair(C,B),c6).  [para(17(a,1),40(e,1))].
+42 -is_connected_in(c6,A) | -in(B,A) | -in(C,A) | C = B | in(unordered_pair(singleton(B),unordered_pair(B,C)),c6) | in(unordered_pair(singleton(C),unordered_pair(C,B)),c6).  [para(17(a,1),41(f,1))].
+43 -is_connected_in(c6,A) | -in(B,A) | -in(C,A) | C = B | in(unordered_pair(singleton(B),unordered_pair(B,C)),c6) | in(unordered_pair(singleton(C),unordered_pair(B,C)),c6).  [para(15(a,1),42(f,1,2))].
+44 in(f1(c6,relation_field(c6)),relation_field(c6)) | connected(c6).  [resolve(32,a,31,b)].
+45 in(f2(c6,relation_field(c6)),relation_field(c6)) | connected(c6).  [resolve(33,a,31,b)].
+46 connected(c6) | connected(c6) | -in(A,relation_field(c6)) | f1(c6,relation_field(c6)) = A | in(unordered_pair(singleton(A),unordered_pair(A,f1(c6,relation_field(c6)))),c6) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(A,f1(c6,relation_field(c6)))),c6).  [resolve(44,a,29,c)].
+47 connected(c6) | -in(A,relation_field(c6)) | f1(c6,relation_field(c6)) = A | in(unordered_pair(singleton(A),unordered_pair(A,f1(c6,relation_field(c6)))),c6) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(A,f1(c6,relation_field(c6)))),c6).  [copy(46),merge(b)].
+48 connected(c6) | f1(c6,relation_field(c6)) = f2(c6,relation_field(c6)) | in(unordered_pair(singleton(f2(c6,relation_field(c6))),unordered_pair(f2(c6,relation_field(c6)),f1(c6,relation_field(c6)))),c6) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(f2(c6,relation_field(c6)),f1(c6,relation_field(c6)))),c6) | connected(c6).  [resolve(47,b,45,a)].
+49 connected(c6) | f1(c6,relation_field(c6)) = f2(c6,relation_field(c6)) | in(unordered_pair(singleton(f2(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(f2(c6,relation_field(c6)),f1(c6,relation_field(c6)))),c6) | connected(c6).  [para(15(a,1),48(c,1,2))].
+50 connected(c6) | f1(c6,relation_field(c6)) = f2(c6,relation_field(c6)) | in(unordered_pair(singleton(f2(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6) | connected(c6).  [para(15(a,1),49(d,1,2))].
+51 connected(c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | in(unordered_pair(singleton(f2(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6) | connected(c6).  [copy(50),flip(b)].
+52 connected(c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | in(unordered_pair(singleton(f2(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6).  [copy(51),merge(e)].
+53 connected(c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6) | is_connected_in(c6,relation_field(c6)).  [resolve(52,c,39,b)].
+54 connected(c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6) | connected(c6).  [resolve(53,d,31,b)].
+55 connected(c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | in(unordered_pair(singleton(f1(c6,relation_field(c6))),unordered_pair(f1(c6,relation_field(c6)),f2(c6,relation_field(c6)))),c6).  [copy(54),merge(d)].
+56 connected(c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | is_connected_in(c6,relation_field(c6)).  [resolve(55,c,36,b)].
+57 connected(c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | connected(c6).  [resolve(56,c,31,b)].
+58 connected(c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [copy(57),merge(c)].
+59 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | is_connected_in(c6,relation_field(c6)).  [resolve(58,a,30,a)].
+60 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | in(c8,relation_field(c6)).  [resolve(58,a,25,a)].
+61 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | in(c7,relation_field(c6)).  [resolve(58,a,24,a)].
+62 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 != c7.  [resolve(58,a,18,a)].
+63 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | -in(A,relation_field(c6)) | -in(B,relation_field(c6)) | B = A | in(unordered_pair(singleton(A),unordered_pair(A,B)),c6) | in(unordered_pair(singleton(B),unordered_pair(A,B)),c6).  [resolve(59,b,43,a)].
+64 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | -in(A,relation_field(c6)) | A = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,A)),c6) | in(unordered_pair(singleton(A),unordered_pair(c7,A)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [resolve(63,b,61,b)].
+65 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | -in(A,relation_field(c6)) | A = c7 | in(unordered_pair(singleton(c7),unordered_pair(A,c7)),c6) | in(unordered_pair(singleton(A),unordered_pair(c7,A)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [para(15(a,1),64(d,1,2))].
+66 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | -in(A,relation_field(c6)) | A = c7 | in(unordered_pair(singleton(c7),unordered_pair(A,c7)),c6) | in(unordered_pair(singleton(A),unordered_pair(A,c7)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [para(15(a,1),65(e,1,2))].
+67 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | -in(A,relation_field(c6)) | c7 = A | in(unordered_pair(singleton(c7),unordered_pair(A,c7)),c6) | in(unordered_pair(singleton(A),unordered_pair(A,c7)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [copy(66),flip(c)].
+68 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | -in(A,relation_field(c6)) | c7 = A | in(unordered_pair(singleton(c7),unordered_pair(A,c7)),c6) | in(unordered_pair(singleton(A),unordered_pair(A,c7)),c6).  [copy(67),merge(f)].
+69 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c7 = c8 | in(unordered_pair(singleton(c7),unordered_pair(c8,c7)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c8,c7)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [resolve(68,b,60,b)].
+70 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c7 = c8 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c8,c7)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [para(15(a,1),69(c,1,2))].
+71 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c7 = c8 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [para(15(a,1),70(d,1,2))].
+72 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [copy(71),flip(b)].
+73 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6).  [copy(72),merge(e)].
+74 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | -connected(c6).  [resolve(73,d,23,b)].
+75 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [resolve(74,d,58,a)].
+76 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6).  [copy(75),merge(d)].
+77 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 = c7 | -connected(c6).  [resolve(76,c,20,b)].
+78 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 = c7 | f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [resolve(77,c,58,a)].
+79 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c8 = c7.  [copy(78),merge(c)].
+80 c8 = c7 | is_connected_in(c6,relation_field(c6)).  [resolve(79,a,34,b)].
+81 c8 = c7 | -in(A,relation_field(c6)) | -in(B,relation_field(c6)) | B = A | in(unordered_pair(singleton(A),unordered_pair(A,B)),c6) | in(unordered_pair(singleton(B),unordered_pair(A,B)),c6).  [resolve(80,b,43,a)].
+82 c8 = c7 | connected(c6).  [resolve(80,b,31,b)].
+83 c8 = c7 | -in(c7,relation_field(c6)) | -in(c8,relation_field(c6)) | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6).  [factor(81,a,d)].
+84 c8 = c7 | in(c8,relation_field(c6)).  [resolve(82,b,25,a)].
+85 c8 = c7 | in(c7,relation_field(c6)).  [resolve(82,b,24,a)].
+86 c8 = c7 | -in(c7,relation_field(c6)) | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6) | c8 = c7.  [resolve(83,c,84,b)].
+87 c8 = c7 | -in(c7,relation_field(c6)) | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6).  [copy(86),merge(e)].
+88 c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6) | c8 = c7.  [resolve(87,b,85,b)].
+89 c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | in(unordered_pair(singleton(c8),unordered_pair(c7,c8)),c6).  [copy(88),merge(d)].
+90 c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | -connected(c6).  [resolve(89,c,23,b)].
+91 c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6) | c8 = c7.  [resolve(90,c,82,b)].
+92 c8 = c7 | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c6).  [copy(91),merge(c)].
+93 c8 = c7 | -connected(c6).  [resolve(92,b,20,b)].
+94 c8 = c7 | c8 = c7.  [resolve(93,b,82,b)].
+95 c8 = c7.  [copy(94),merge(b)].
+96 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)) | c7 != c7.  [para(95(a,1),62(b,1))].
+97 f2(c6,relation_field(c6)) = f1(c6,relation_field(c6)).  [copy(96),xx(b)].
+98 -connected(c6) | c7 != c7.  [para(95(a,1),18(b,1))].
+99 -connected(c6).  [copy(98),xx(b)].
+100 -is_connected_in(c6,relation_field(c6)).  [resolve(99,a,31,a)].
+101 f2(c6,relation_field(c6)) != f1(c6,relation_field(c6)).  [resolve(34,a,100,a)].
+102 f1(c6,relation_field(c6)) != f1(c6,relation_field(c6)).  [para(97(a,1),101(a,1))].
+103 $F.  [copy(102),xx(a)].
+
+============================== end of proof ==========================

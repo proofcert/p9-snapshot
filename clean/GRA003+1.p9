@@ -1,0 +1,40 @@
+
+
+
+
+
+
+7 -shortest_path(A,B,C) | B != A.  [clausify(4)].
+8 shortest_path(c1,c2,c5).  [clausify(6)].
+9 -shortest_path(A,B,C) | -precedes(D,E,C) | tail_of(F) != tail_of(D) | head_of(F) != head_of(E).  [clausify(5)].
+10 -shortest_path(A,B,C) | path(A,B,C).  [clausify(4)].
+11 precedes(c3,c4,c5).  [clausify(6)].
+12 -path(A,B,C) | vertex(A).  [clausify(1)].
+13 -path(A,B,C) | vertex(B).  [clausify(1)].
+14 -path(A,B,C) | -on_path(D,C) | edge(D).  [clausify(2)].
+15 -path(A,B,C) | -precedes(D,E,C) | on_path(D,C).  [clausify(3)].
+16 -path(A,B,C) | -precedes(D,E,C) | on_path(E,C).  [clausify(3)].
+17 -vertex(c1) | -vertex(c2) | c2 = c1 | -edge(c3) | -edge(c4) | c4 = c3 | -path(c1,c2,c5).  [clausify(6)].
+18 c2 != c1.  [resolve(7,a,8,a)].
+19 -precedes(A,B,c5) | tail_of(C) != tail_of(A) | head_of(C) != head_of(B).  [resolve(9,a,8,a)].
+20 path(c1,c2,c5).  [resolve(10,a,8,a)].
+21 -vertex(c1) | -vertex(c2) | -edge(c3) | -edge(c4) | c4 = c3 | -path(c1,c2,c5).  [resolve(18,a,17,c)].
+22 -vertex(c1) | -vertex(c2) | -edge(c3) | -edge(c4) | c4 = c3.  [resolve(20,a,21,f)].
+23 -path(A,B,c5) | on_path(c3,c5).  [resolve(15,b,11,a)].
+24 -path(A,B,c5) | on_path(c4,c5).  [resolve(16,b,11,a)].
+25 tail_of(A) != tail_of(c3) | head_of(A) != head_of(c4).  [resolve(19,a,11,a)].
+26 head_of(c3) != head_of(c4).  [xx_res(25,a)].
+27 head_of(c4) != head_of(c3).  [copy(26),flip(a)].
+28 -on_path(A,c5) | edge(A).  [resolve(20,a,14,a)].
+29 vertex(c2).  [resolve(20,a,13,a)].
+30 vertex(c1).  [resolve(20,a,12,a)].
+31 -vertex(c2) | -edge(c3) | -edge(c4) | c4 = c3.  [resolve(30,a,22,a)].
+32 -edge(c3) | -edge(c4) | c4 = c3.  [resolve(29,a,31,a)].
+33 on_path(c3,c5).  [resolve(23,a,20,a)].
+34 edge(c3).  [resolve(33,a,28,a)].
+35 -edge(c4) | c4 = c3.  [resolve(34,a,32,a)].
+36 on_path(c4,c5).  [resolve(24,a,20,a)].
+37 edge(c4).  [resolve(36,a,28,a)].
+38 c4 = c3.  [resolve(37,a,35,a)].
+39 head_of(c3) != head_of(c3).  [para(38(a,1),27(a,1,1))].
+40 $F.  [copy(39),xx(a)].

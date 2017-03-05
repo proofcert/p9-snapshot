@@ -1,0 +1,37 @@
+
+
+
+
+5 union(A,B) = union(B,A).  [clausify(2)].
+6 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(3)].
+7 union(c2,c3) != c1.  [clausify(4)].
+8 member(A,c1) | -member(A,c2).  [clausify(4)].
+9 member(A,c1) | -member(A,c3).  [clausify(4)].
+10 member(A,union(B,C)) | -member(A,B).  [clausify(1)].
+11 member(A,union(B,C)) | -member(A,C).  [clausify(1)].
+12 -member(A,c1) | member(A,c2) | member(A,c3).  [clausify(4)].
+13 -member(A,union(B,C)) | member(A,B) | member(A,C).  [clausify(1)].
+14 A = B | -member(f2(B,A),B) | -member(f2(B,A),A).  [clausify(3)].
+15 member(f2(A,c1),c2) | member(f2(A,c1),c3) | c1 = A | member(f2(A,c1),A).  [resolve(12,a,6,c)].
+16 member(f2(union(A,B),c1),c2) | member(f2(union(A,B),c1),c3) | c1 = union(A,B) | member(f2(union(A,B),c1),A) | member(f2(union(A,B),c1),B).  [resolve(15,d,13,a)].
+17 member(f2(union(A,B),c1),c2) | member(f2(union(A,B),c1),c3) | union(A,B) = c1 | member(f2(union(A,B),c1),A) | member(f2(union(A,B),c1),B).  [copy(16),flip(c)].
+18 member(f2(union(c2,A),c1),c2) | member(f2(union(c2,A),c1),c3) | union(c2,A) = c1 | member(f2(union(c2,A),c1),A).  [factor(17,a,d)].
+19 member(f2(union(A,c2),c1),c2) | member(f2(union(c2,A),c1),c3) | union(c2,A) = c1 | member(f2(union(c2,A),c1),A).  [para(5(a,1),18(a,1,1))].
+20 member(f2(union(A,c2),c1),c2) | member(f2(union(A,c2),c1),c3) | union(c2,A) = c1 | member(f2(union(c2,A),c1),A).  [para(5(a,1),19(b,1,1))].
+21 member(f2(union(A,c2),c1),c2) | member(f2(union(A,c2),c1),c3) | union(A,c2) = c1 | member(f2(union(c2,A),c1),A).  [para(5(a,1),20(c,1))].
+22 member(f2(union(A,c2),c1),c2) | member(f2(union(A,c2),c1),c3) | union(A,c2) = c1 | member(f2(union(A,c2),c1),A).  [para(5(a,1),21(d,1,1))].
+23 member(f2(union(c3,c2),c1),c2) | member(f2(union(c3,c2),c1),c3) | union(c3,c2) = c1.  [factor(22,b,d)].
+24 member(f2(union(c2,c3),c1),c2) | member(f2(union(c3,c2),c1),c3) | union(c3,c2) = c1.  [para(5(a,1),23(a,1,1))].
+25 member(f2(union(c2,c3),c1),c2) | member(f2(union(c2,c3),c1),c3) | union(c3,c2) = c1.  [para(5(a,1),24(b,1,1))].
+26 member(f2(union(c2,c3),c1),c2) | member(f2(union(c2,c3),c1),c3) | union(c2,c3) = c1.  [para(5(a,1),25(c,1))].
+27 member(f2(union(c2,c3),c1),c2) | member(f2(union(c2,c3),c1),c3).  [resolve(7,a,26,c)].
+28 member(f2(union(c2,c3),c1),c2) | member(f2(union(c2,c3),c1),c1).  [resolve(27,b,9,b)].
+29 member(f2(union(c2,c3),c1),c1) | member(f2(union(c2,c3),c1),c1).  [resolve(28,a,8,b)].
+30 member(f2(union(c2,c3),c1),c1).  [copy(29),merge(b)].
+31 c1 = union(c2,c3) | -member(f2(union(c2,c3),c1),union(c2,c3)).  [resolve(30,a,14,c)].
+32 union(c2,c3) = c1 | -member(f2(union(c2,c3),c1),union(c2,c3)).  [copy(31),flip(a)].
+33 -member(f2(union(c2,c3),c1),union(c2,c3)).  [resolve(7,a,32,a)].
+34 -member(f2(union(c2,c3),c1),c3).  [resolve(11,a,33,a)].
+35 -member(f2(union(c2,c3),c1),c2).  [resolve(10,a,33,a)].
+36 member(f2(union(c2,c3),c1),c3).  [resolve(35,a,27,a)].
+37 $F.  [resolve(34,a,36,a)].

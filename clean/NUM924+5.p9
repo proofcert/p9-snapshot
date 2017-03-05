@@ -1,0 +1,89 @@
+
+
+
+
+
+
+
+
+
+
+
+12 semiring_1(int).  [assumption].
+13 -semiring_1(A) | power_power(A,one_one(A),number_number_of(nat,bit0(bit1(pls)))) = one_one(A).  [clausify(4)].
+14 -semiring_1(A) | power_power(A,zero_zero(A),number_number_of(nat,bit0(bit1(pls)))) = zero_zero(A).  [clausify(5)].
+15 number(int).  [assumption].
+16 -number(A) | number_number_of(A,ti(int,B)) = number_number_of(A,B).  [clausify(1)].
+17 linordered_idom(int).  [assumption].
+18 -linordered_idom(A) | -ord_less(A,plus_plus(A,power_power(A,B,number_number_of(nat,bit0(bit1(pls)))),power_power(A,C,number_number_of(nat,bit0(bit1(pls))))),zero_zero(A)).  [clausify(2)].
+19 -linordered_idom(A) | zero_zero(A) = plus_plus(A,power_power(A,B,number_number_of(nat,bit0(bit1(pls)))),power_power(A,C,number_number_of(nat,bit0(bit1(pls))))) | zero_zero(A) != ti(A,B) | zero_zero(A) != ti(A,C).  [clausify(3)].
+20 ord_less(int,times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),t),times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),zero_zero(int))).  [assumption].
+21 plus_plus(int,power_power(int,s,number_number_of(nat,bit0(bit1(pls)))),one_one(int)) = times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),t).  [assumption].
+22 times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),t) = plus_plus(int,power_power(int,s,number_number_of(nat,bit0(bit1(pls)))),one_one(int)).  [copy(21),flip(a)].
+23 number_number_of(int,A) = A.  [clausify(6)].
+24 times_times(int,A,B) = times_times(int,B,A).  [clausify(7)].
+25 times_times(int,pls,A) = pls.  [clausify(8)].
+26 times_times(int,A,pls) = pls.  [para(24(a,1),25(a,1))].
+27 bit0(times_times(int,A,B)) = times_times(int,bit0(A),B).  [clausify(9)].
+28 bit0(times_times(int,A,B)) = times_times(int,B,bit0(A)).  [para(24(a,1),27(a,2))].
+29 times_times(int,B,bit0(A)) = bit0(times_times(int,A,B)).  [copy(28),flip(a)].
+30 times_times(int,A,bit0(B)) = bit0(times_times(int,A,B)).  [para(24(a,1),29(a,2,1))].
+31 times_times(int,plus_plus(int,A,B),C) = plus_plus(int,times_times(int,A,C),times_times(int,B,C)).  [clausify(10)].
+32 times_times(int,C,plus_plus(int,A,B)) = plus_plus(int,times_times(int,A,C),times_times(int,B,C)).  [para(24(a,1),31(a,1))].
+33 plus_plus(int,times_times(int,A,C),times_times(int,B,C)) = times_times(int,C,plus_plus(int,A,B)).  [copy(32),flip(a)].
+34 plus_plus(int,times_times(int,A,B),times_times(int,B,C)) = times_times(int,B,plus_plus(int,A,C)).  [para(24(a,1),33(a,1,3))].
+35 plus_plus(int,A,B) = plus_plus(int,B,A).  [clausify(11)].
+36 zero_zero(int) = number_number_of(int,pls).  [assumption].
+37 zero_zero(int) = pls.  [para(23(a,1),36(a,2))].
+38 power_power(int,one_one(int),number_number_of(nat,bit0(bit1(pls)))) = one_one(int).  [resolve(12,a,13,a)].
+39 power_power(int,zero_zero(int),number_number_of(nat,bit0(bit1(pls)))) = zero_zero(int).  [resolve(12,a,14,a)].
+40 power_power(int,pls,number_number_of(nat,bit0(bit1(pls)))) = zero_zero(int).  [para(37(a,1),39(a,1,2))].
+41 power_power(int,pls,number_number_of(nat,bit0(bit1(pls)))) = pls.  [para(37(a,1),40(a,2))].
+42 number_number_of(int,ti(int,A)) = number_number_of(int,A).  [resolve(15,a,16,a)].
+43 ti(int,A) = number_number_of(int,A).  [para(23(a,1),42(a,1))].
+44 ti(int,A) = A.  [para(23(a,1),43(a,2))].
+45 -ord_less(int,plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))),zero_zero(int)).  [resolve(17,a,18,a)].
+46 -ord_less(int,plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))),pls).  [para(37(a,1),45(a,3))].
+47 zero_zero(int) = plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))) | zero_zero(int) != ti(int,A) | zero_zero(int) != ti(int,B).  [resolve(17,a,19,a)].
+48 pls = plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))) | zero_zero(int) != ti(int,A) | zero_zero(int) != ti(int,B).  [para(37(a,1),47(a,1))].
+49 pls = plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))) | pls != ti(int,A) | zero_zero(int) != ti(int,B).  [para(37(a,1),48(b,1))].
+50 pls = plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))) | pls != A | zero_zero(int) != ti(int,B).  [para(44(a,1),49(b,2))].
+51 pls = plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))) | pls != A | pls != ti(int,B).  [para(37(a,1),50(c,1))].
+52 pls = plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))) | pls != A | pls != B.  [para(44(a,1),51(c,2))].
+53 plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,B,number_number_of(nat,bit0(bit1(pls))))) = pls | pls != A | pls != B.  [copy(52),flip(a)].
+54 ord_less(int,times_times(int,plus_plus(int,times_times(int,bit0(bit0(bit1(pls))),m),one_one(int)),t),times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),zero_zero(int))).  [para(23(a,1),20(a,2,2,2,2))].
+55 ord_less(int,times_times(int,plus_plus(int,times_times(int,m,bit0(bit0(bit1(pls)))),one_one(int)),t),times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),zero_zero(int))).  [para(24(a,1),54(a,2,2,2))].
+56 ord_less(int,times_times(int,plus_plus(int,bit0(times_times(int,m,bit0(bit1(pls)))),one_one(int)),t),times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),zero_zero(int))).  [para(30(a,1),55(a,2,2,2))].
+57 ord_less(int,times_times(int,plus_plus(int,bit0(bit0(times_times(int,m,bit1(pls)))),one_one(int)),t),times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),zero_zero(int))).  [para(30(a,1),56(a,2,2,2,1))].
+58 ord_less(int,times_times(int,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls))))),t),times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),zero_zero(int))).  [para(35(a,1),57(a,2,2))].
+59 ord_less(int,times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))),times_times(int,plus_plus(int,times_times(int,number_number_of(int,bit0(bit0(bit1(pls)))),m),one_one(int)),zero_zero(int))).  [para(24(a,1),58(a,2))].
+60 ord_less(int,times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))),times_times(int,plus_plus(int,times_times(int,bit0(bit0(bit1(pls))),m),one_one(int)),zero_zero(int))).  [para(23(a,1),59(a,3,2,2,2))].
+61 ord_less(int,times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))),times_times(int,plus_plus(int,times_times(int,m,bit0(bit0(bit1(pls)))),one_one(int)),zero_zero(int))).  [para(24(a,1),60(a,3,2,2))].
+62 ord_less(int,times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))),times_times(int,plus_plus(int,bit0(times_times(int,m,bit0(bit1(pls)))),one_one(int)),zero_zero(int))).  [para(30(a,1),61(a,3,2,2))].
+63 ord_less(int,times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))),times_times(int,plus_plus(int,bit0(bit0(times_times(int,m,bit1(pls)))),one_one(int)),zero_zero(int))).  [para(30(a,1),62(a,3,2,2,1))].
+64 ord_less(int,times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))),times_times(int,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls))))),zero_zero(int))).  [para(35(a,1),63(a,3,2))].
+65 ord_less(int,times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))),times_times(int,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls))))),pls)).  [para(37(a,1),64(a,3,3))].
+66 ord_less(int,times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))),times_times(int,pls,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls))))))).  [para(24(a,1),65(a,3))].
+67 times_times(int,plus_plus(int,times_times(int,bit0(bit0(bit1(pls))),m),one_one(int)),t) = plus_plus(int,power_power(int,s,number_number_of(nat,bit0(bit1(pls)))),one_one(int)).  [para(23(a,1),22(a,1,2,2,2))].
+68 times_times(int,plus_plus(int,times_times(int,m,bit0(bit0(bit1(pls)))),one_one(int)),t) = plus_plus(int,power_power(int,s,number_number_of(nat,bit0(bit1(pls)))),one_one(int)).  [para(24(a,1),67(a,1,2,2))].
+69 times_times(int,plus_plus(int,bit0(times_times(int,m,bit0(bit1(pls)))),one_one(int)),t) = plus_plus(int,power_power(int,s,number_number_of(nat,bit0(bit1(pls)))),one_one(int)).  [para(30(a,1),68(a,1,2,2))].
+70 times_times(int,plus_plus(int,bit0(bit0(times_times(int,m,bit1(pls)))),one_one(int)),t) = plus_plus(int,power_power(int,s,number_number_of(nat,bit0(bit1(pls)))),one_one(int)).  [para(30(a,1),69(a,1,2,2,1))].
+71 times_times(int,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls))))),t) = plus_plus(int,power_power(int,s,number_number_of(nat,bit0(bit1(pls)))),one_one(int)).  [para(35(a,1),70(a,1,2))].
+72 times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))) = plus_plus(int,power_power(int,s,number_number_of(nat,bit0(bit1(pls)))),one_one(int)).  [para(24(a,1),71(a,1))].
+73 times_times(int,t,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls)))))) = plus_plus(int,one_one(int),power_power(int,s,number_number_of(nat,bit0(bit1(pls))))).  [para(35(a,1),72(a,2))].
+74 plus_plus(int,power_power(int,A,number_number_of(nat,bit0(bit1(pls)))),power_power(int,A,number_number_of(nat,bit0(bit1(pls))))) = pls | pls != A.  [factor(53,b,c)].
+75 ord_less(int,plus_plus(int,one_one(int),power_power(int,s,number_number_of(nat,bit0(bit1(pls))))),times_times(int,pls,plus_plus(int,one_one(int),bit0(bit0(times_times(int,m,bit1(pls))))))).  [para(73(a,1),66(a,2))].
+76 plus_plus(int,pls,times_times(int,pls,A)) = times_times(int,pls,plus_plus(int,B,A)).  [para(26(a,1),34(a,1,2))].
+77 plus_plus(int,pls,times_times(int,A,pls)) = times_times(int,pls,plus_plus(int,B,A)).  [para(24(a,1),76(a,1,3))].
+78 plus_plus(int,pls,pls) = times_times(int,pls,plus_plus(int,B,A)).  [para(26(a,1),77(a,1,3))].
+79 plus_plus(int,pls,pls) = times_times(int,pls,plus_plus(int,A,B)).  [para(35(a,1),78(a,2,3))].
+80 times_times(int,pls,plus_plus(int,A,B)) = plus_plus(int,pls,pls).  [copy(79),flip(a)].
+81 ord_less(int,plus_plus(int,one_one(int),power_power(int,s,number_number_of(nat,bit0(bit1(pls))))),plus_plus(int,pls,pls)).  [para(80(a,1),75(a,3))].
+82 -ord_less(int,plus_plus(int,one_one(int),power_power(int,A,number_number_of(nat,bit0(bit1(pls))))),pls).  [para(38(a,1),46(a,2,2))].
+83 plus_plus(int,power_power(int,ti(int,pls),number_number_of(nat,bit0(bit1(pls)))),power_power(int,ti(int,pls),number_number_of(nat,bit0(bit1(pls))))) = pls.  [resolve(74,b,44,a(flip))].
+84 plus_plus(int,power_power(int,pls,number_number_of(nat,bit0(bit1(pls)))),power_power(int,ti(int,pls),number_number_of(nat,bit0(bit1(pls))))) = pls.  [para(44(a,1),83(a,1,2,2))].
+85 plus_plus(int,pls,power_power(int,ti(int,pls),number_number_of(nat,bit0(bit1(pls))))) = pls.  [para(41(a,1),84(a,1,2))].
+86 plus_plus(int,pls,power_power(int,pls,number_number_of(nat,bit0(bit1(pls))))) = pls.  [para(44(a,1),85(a,1,3,2))].
+87 plus_plus(int,pls,pls) = pls.  [para(41(a,1),86(a,1,3))].
+88 ord_less(int,plus_plus(int,one_one(int),power_power(int,s,number_number_of(nat,bit0(bit1(pls))))),pls).  [para(87(a,1),81(a,3))].
+89 $F.  [resolve(82,a,88,a)].

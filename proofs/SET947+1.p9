@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n036.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:57:03 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 45439 was started by sandbox on n036.star.cs.uiowa.edu,
+Sat Jun  7 00:57:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_45407_n036.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 13.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 24.
+
+
+1 (all A all B (B = powerset(A) <-> (all C (in(C,B) <-> subset(C,A))))).  [assumption].
+2 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+3 (all A all B (in(A,B) -> subset(A,union(B)))).  [assumption].
+4 -(all A subset(A,powerset(union(A)))).  [assumption].
+5 subset(A,B) | in(f2(A,B),A).  [clausify(2)].
+6 -subset(c3,powerset(union(c3))).  [clausify(4)].
+7 -in(A,B) | subset(A,union(B)).  [clausify(3)].
+8 subset(A,B) | -in(f2(A,B),B).  [clausify(2)].
+9 powerset(A) != B | in(C,B) | -subset(C,A).  [clausify(1)].
+10 in(f2(c3,powerset(union(c3))),c3).  [resolve(6,a,5,a)].
+11 -in(f2(c3,powerset(union(c3))),powerset(union(c3))).  [resolve(8,a,6,a)].
+12 subset(f2(c3,powerset(union(c3))),union(c3)).  [resolve(10,a,7,a)].
+13 in(A,powerset(B)) | -subset(A,B).  [xx_res(9,a)].
+14 -subset(f2(c3,powerset(union(c3))),union(c3)).  [resolve(13,a,11,a)].
+15 $F.  [resolve(12,a,14,a)].
+
+============================== end of proof ==========================

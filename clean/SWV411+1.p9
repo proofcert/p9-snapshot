@@ -1,0 +1,20 @@
+
+
+
+
+5 contains_slb(insert_slb(c1,pair(c3,c4)),c2).  [clausify(4)].
+6 lookup_slb(insert_slb(A,pair(B,C)),B) = C.  [clausify(3)].
+7 -pair_in_list(insert_slb(c1,pair(c3,c4)),c2,A).  [clausify(4)].
+8 -contains_slb(c1,A) | pair_in_list(c1,A,f1(A)).  [clausify(4)].
+9 pair_in_list(insert_slb(A,pair(B,C)),D,E) | -pair_in_list(A,D,E).  [clausify(2)].
+10 -contains_slb(insert_slb(A,pair(B,C)),D) | contains_slb(A,D) | D = B.  [clausify(1)].
+11 pair_in_list(insert_slb(A,pair(B,C)),D,E) | D != B | E != C.  [clausify(2)].
+12 -pair_in_list(c1,c2,A).  [resolve(9,a,7,a)].
+13 contains_slb(c1,c2) | c2 = c3.  [resolve(10,a,5,a)].
+14 contains_slb(c1,c2) | c3 = c2.  [copy(13),flip(b)].
+15 c2 != c3 | A != c4.  [resolve(11,a,7,a)].
+16 c2 != c3.  [resolve(15,b,6,a)].
+17 c3 != c2.  [copy(16),flip(a)].
+18 contains_slb(c1,c2).  [resolve(17,a,14,b)].
+19 -contains_slb(c1,c2).  [resolve(8,b,12,a)].
+20 $F.  [resolve(18,a,19,a)].

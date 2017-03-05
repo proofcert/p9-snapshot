@@ -1,0 +1,22 @@
+
+
+
+
+
+6 in(A,B) | disjoint(singleton(A),B).  [clausify(2)].
+7 -disjoint(singleton(A),B) | -in(A,B).  [clausify(1)].
+8 -disjoint(A,B) | disjoint(B,A).  [clausify(3)].
+9 -disjoint(A,B) | set_difference(A,B) = A.  [clausify(4)].
+10 disjoint(A,B) | set_difference(A,B) != A.  [clausify(4)].
+11 set_difference(c1,singleton(c2)) = c1 | -in(c2,c1).  [clausify(5)].
+12 set_difference(c1,singleton(c2)) != c1 | in(c2,c1).  [clausify(5)].
+13 set_difference(c1,singleton(c2)) = c1 | disjoint(singleton(c2),c1).  [resolve(11,b,6,a)].
+14 set_difference(c1,singleton(c2)) = c1 | disjoint(c1,singleton(c2)).  [resolve(13,b,8,a)].
+15 set_difference(c1,singleton(c2)) = c1 | set_difference(c1,singleton(c2)) = c1.  [resolve(14,b,9,a)].
+16 set_difference(c1,singleton(c2)) = c1.  [copy(15),merge(b)].
+17 c1 != c1 | in(c2,c1).  [para(16(a,1),12(a,1))].
+18 in(c2,c1).  [copy(17),xx(a)].
+19 -disjoint(singleton(c2),c1).  [resolve(18,a,7,b)].
+20 disjoint(c1,singleton(c2)).  [resolve(16,a,10,b)].
+21 -disjoint(c1,singleton(c2)).  [resolve(8,b,19,a)].
+22 $F.  [resolve(20,a,21,a)].

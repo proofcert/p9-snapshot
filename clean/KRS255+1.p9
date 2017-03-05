@@ -1,0 +1,14 @@
+
+
+
+
+5 -status(A,B,C) | -status(A,B,D) | mighta(C,D).  [clausify(3)].
+6 -mighta(sap,thm).  [assumption].
+7 -model(A,B) | status(C,B,sap).  [clausify(1)].
+8 -model(f10(A,B),B) | status(A,B,thm).  [clausify(2)].
+9 model(A,c1).  [clausify(4)].
+10 -status(A,B,sap) | -status(A,B,thm).  [resolve(6,a,5,c)].
+11 status(A,c1,thm).  [resolve(9,a,8,a)].
+12 status(A,c1,sap).  [resolve(9,a,7,a)].
+13 -status(A,c1,sap).  [resolve(11,a,10,b)].
+14 $F.  [resolve(12,a,13,a)].

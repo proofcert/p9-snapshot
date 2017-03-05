@@ -1,0 +1,26 @@
+
+2 -f(A) | -g(A) | h(A).  [clausify(1)].
+3 -h(c1) | -g(c2).  [clausify(1)].
+4 -h(c1) | f(c2).  [clausify(1)].
+5 -f(A) | -h(A) | g(A).  [clausify(1)].
+6 -f(A) | g(A) | -f(B) | h(B).  [clausify(1)].
+7 f(c1) | f(c2).  [clausify(1)].
+8 g(c1) | f(c2).  [clausify(1)].
+9 f(c1) | -g(c2).  [clausify(1)].
+10 -f(c1) | -g(c1) | -g(c2).  [resolve(2,c,3,a)].
+11 -f(c1) | -g(c1) | f(c2).  [resolve(2,c,4,a)].
+12 -f(A) | g(A) | -f(B) | -f(B) | g(B).  [resolve(6,d,5,b)].
+13 -f(A) | g(A) | -f(B) | g(B).  [copy(12),merge(d)].
+14 -f(A) | g(A) | g(A).  [factor(13,a,c)].
+15 -f(A) | g(A).  [copy(14),merge(c)].
+16 -f(c1) | f(c2) | f(c2).  [resolve(11,b,8,a)].
+17 -f(c1) | f(c2).  [copy(16),merge(c)].
+18 g(c2) | f(c1).  [resolve(15,a,7,b)].
+19 f(c1) | f(c1).  [resolve(18,a,9,b)].
+20 f(c1).  [copy(19),merge(b)].
+21 f(c2).  [resolve(20,a,17,a)].
+22 -g(c1) | -g(c2).  [resolve(20,a,10,a)].
+23 g(c1).  [resolve(20,a,15,a)].
+24 -g(c2).  [resolve(23,a,22,a)].
+25 g(c2).  [resolve(21,a,15,a)].
+26 $F.  [resolve(24,a,25,a)].

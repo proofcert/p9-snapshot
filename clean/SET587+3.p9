@@ -1,0 +1,43 @@
+
+
+
+
+
+
+7 -empty(A) | -member(B,A).  [clausify(5)].
+8 empty(A) | member(f4(A),A).  [clausify(5)].
+9 subset(A,B) | member(f2(A,B),A).  [clausify(3)].
+10 difference(c1,c2) = empty_set | subset(c1,c2).  [clausify(6)].
+11 A = B | member(f3(B,A),B) | member(f3(B,A),A).  [clausify(4)].
+12 -member(A,empty_set).  [clausify(2)].
+13 -member(A,difference(B,C)) | -member(A,C).  [clausify(1)].
+14 difference(c1,c2) != empty_set | -subset(c1,c2).  [clausify(6)].
+15 -member(A,difference(B,C)) | member(A,B).  [clausify(1)].
+16 subset(A,B) | -member(f2(A,B),B).  [clausify(3)].
+17 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(3)].
+18 member(A,difference(B,C)) | -member(A,B) | member(A,C).  [clausify(1)].
+19 -member(A,B) | member(f4(B),B).  [resolve(7,a,8,a)].
+20 empty_set = A | member(f3(A,empty_set),A).  [resolve(12,a,11,c)].
+21 difference(c1,c2) != empty_set | member(f2(c1,c2),c1).  [resolve(14,b,9,a)].
+22 -member(A,c1) | member(A,c2) | difference(c1,c2) = empty_set.  [resolve(17,a,10,b)].
+23 -member(A,B) | member(A,C) | member(f2(B,C),B).  [resolve(17,a,9,a)].
+24 empty_set = A | member(f4(A),A).  [resolve(20,b,19,a)].
+25 empty_set = difference(A,B) | member(f4(difference(A,B)),A).  [resolve(24,b,15,a)].
+26 difference(A,B) = empty_set | member(f4(difference(A,B)),A).  [copy(25),flip(a)].
+27 empty_set = difference(A,B) | -member(f4(difference(A,B)),B).  [resolve(24,b,13,a)].
+28 difference(A,B) = empty_set | -member(f4(difference(A,B)),B).  [copy(27),flip(a)].
+29 difference(c1,A) = empty_set | member(f4(difference(c1,A)),c2) | difference(c1,c2) = empty_set.  [resolve(26,b,22,a)].
+30 difference(c1,c2) = empty_set | member(f4(difference(c1,c2)),c2).  [factor(29,a,c)].
+31 difference(c1,c2) = empty_set | difference(c1,c2) = empty_set.  [resolve(30,b,28,b)].
+32 difference(c1,c2) = empty_set.  [copy(31),merge(b)].
+33 empty_set != empty_set | member(f2(c1,c2),c1).  [para(32(a,1),21(a,1))].
+34 member(f2(c1,c2),c1).  [copy(33),xx(a)].
+35 empty_set != empty_set | -subset(c1,c2).  [para(32(a,1),14(a,1))].
+36 -subset(c1,c2).  [copy(35),xx(a)].
+37 -member(f2(c1,c2),c2).  [resolve(16,a,36,a)].
+38 member(f2(c1,c2),A) | member(f2(c1,A),c1).  [resolve(34,a,23,a)].
+39 member(f2(c1,c2),A) | member(f2(c1,A),difference(c1,B)) | member(f2(c1,A),B).  [resolve(38,b,18,b)].
+40 member(f2(c1,c2),c2) | member(f2(c1,c2),difference(c1,c2)).  [factor(39,a,c)].
+41 member(f2(c1,c2),c2) | member(f2(c1,c2),empty_set).  [para(32(a,1),40(b,2))].
+42 member(f2(c1,c2),empty_set).  [resolve(37,a,41,a)].
+43 $F.  [resolve(12,a,42,a)].

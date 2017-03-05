@@ -1,0 +1,345 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n059.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:49:48 CDT 2014
+% CPUTime    : 0.22 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 45082 was started by sandbox on n059.star.cs.uiowa.edu,
+Thu Jun  5 13:49:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_45050_n059.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.09 (+ 0.00) seconds.
+% Length of proof is 208.
+% Level of proof is 49.
+% Maximum clause weight is 15.000.
+% Given clauses 754.
+
+
+1 (all A all B all C (red(A,B) & red(B,C) & red(A,C) -> goal)).  [assumption].
+2 (all A all B all C (green(A,B) & green(B,C) & green(A,C) -> goal)).  [assumption].
+3 (all A all B all C (less_than(A,B) & less_than(B,C) -> less_than(A,C))).  [assumption].
+4 (all A all B (less_than(A,B) -> red(A,B) | green(A,B))).  [assumption].
+5 less_than(n1,n2).  [assumption].
+6 less_than(n2,n3).  [assumption].
+7 less_than(n3,n4).  [assumption].
+8 less_than(n4,n5).  [assumption].
+9 less_than(n5,n6).  [assumption].
+10 -goal.  [assumption].
+11 -less_than(A,B) | -less_than(B,C) | less_than(A,C).  [clausify(3)].
+12 -less_than(A,B) | red(A,B) | green(A,B).  [clausify(4)].
+13 -red(A,B) | -red(B,C) | -red(A,C) | goal.  [clausify(1)].
+14 -red(A,B) | -red(B,C) | -red(A,C).  [resolve(10,a,13,d)].
+15 -green(A,B) | -green(B,C) | -green(A,C) | goal.  [clausify(2)].
+16 -green(A,B) | -green(B,C) | -green(A,C).  [resolve(10,a,15,d)].
+17 -less_than(n5,A) | less_than(n4,A).  [resolve(11,a,8,a)].
+18 -less_than(n4,A) | less_than(n3,A).  [resolve(11,a,7,a)].
+19 -less_than(n3,A) | less_than(n2,A).  [resolve(11,a,6,a)].
+20 -less_than(n2,A) | less_than(n1,A).  [resolve(11,a,5,a)].
+21 red(n5,n6) | green(n5,n6).  [resolve(12,a,9,a)].
+22 red(n4,n5) | green(n4,n5).  [resolve(12,a,8,a)].
+23 red(n3,n4) | green(n3,n4).  [resolve(12,a,7,a)].
+24 red(n2,n3) | green(n2,n3).  [resolve(12,a,6,a)].
+25 red(n1,n2) | green(n1,n2).  [resolve(12,a,5,a)].
+26 less_than(n4,n6).  [resolve(17,a,9,a)].
+27 red(n4,n6) | green(n4,n6).  [resolve(26,a,12,a)].
+28 less_than(n3,n6).  [resolve(18,a,26,a)].
+29 less_than(n3,n5).  [resolve(18,a,8,a)].
+30 red(n3,n6) | green(n3,n6).  [resolve(28,a,12,a)].
+31 less_than(n2,n6).  [resolve(19,a,28,a)].
+32 less_than(n2,n4).  [resolve(19,a,7,a)].
+33 less_than(n2,n5).  [resolve(29,a,19,a)].
+34 red(n3,n5) | green(n3,n5).  [resolve(29,a,12,a)].
+35 red(n2,n6) | green(n2,n6).  [resolve(31,a,12,a)].
+36 red(n2,n4) | green(n2,n4).  [resolve(32,a,12,a)].
+37 red(n2,n5) | green(n2,n5).  [resolve(33,a,12,a)].
+38 less_than(n1,n5).  [resolve(20,a,33,a)].
+39 less_than(n1,n4).  [resolve(20,a,32,a)].
+40 less_than(n1,n6).  [resolve(20,a,31,a)].
+41 less_than(n1,n3).  [resolve(20,a,6,a)].
+42 red(n1,n5) | green(n1,n5).  [resolve(38,a,12,a)].
+43 red(n1,n4) | green(n1,n4).  [resolve(39,a,12,a)].
+44 red(n1,n6) | green(n1,n6).  [resolve(40,a,12,a)].
+45 red(n1,n3) | green(n1,n3).  [resolve(41,a,12,a)].
+46 green(n5,n6) | -red(A,n5) | -red(A,n6).  [resolve(21,a,14,b)].
+47 green(n4,n5) | -red(A,n4) | -red(A,n5).  [resolve(22,a,14,b)].
+48 green(n3,n4) | -red(A,n3) | -red(A,n4).  [resolve(23,a,14,b)].
+49 green(n3,n4) | -red(n4,A) | -red(n3,A).  [resolve(23,a,14,a)].
+50 green(n2,n3) | -red(A,n2) | -red(A,n3).  [resolve(24,a,14,b)].
+51 green(n2,n3) | -red(n3,A) | -red(n2,A).  [resolve(24,a,14,a)].
+52 green(n1,n2) | -red(n2,A) | -red(n1,A).  [resolve(25,a,14,a)].
+53 green(n4,n6) | -red(A,n4) | -red(A,n6).  [resolve(27,a,14,b)].
+54 green(n3,n6) | -red(A,n3) | -red(A,n6).  [resolve(30,a,14,b)].
+55 green(n3,n5) | -red(A,n3) | -red(A,n5).  [resolve(34,a,14,b)].
+56 green(n5,n6) | -red(n2,n5) | green(n2,n6).  [resolve(46,c,35,a)].
+57 green(n5,n6) | -red(n3,n5) | green(n3,n6).  [resolve(46,c,30,a)].
+58 green(n5,n6) | -red(n4,n5) | green(n4,n6).  [resolve(46,c,27,a)].
+59 green(n4,n5) | -red(n1,n4) | green(n1,n5).  [resolve(47,c,42,a)].
+60 green(n4,n5) | -red(n2,n4) | green(n2,n5).  [resolve(47,c,37,a)].
+61 green(n4,n5) | -red(n3,n4) | green(n3,n5).  [resolve(47,c,34,a)].
+62 green(n3,n4) | -red(n1,n3) | green(n1,n4).  [resolve(48,c,43,a)].
+63 green(n3,n4) | -red(n2,n3) | green(n2,n4).  [resolve(48,c,36,a)].
+64 green(n3,n4) | -red(n3,n6) | green(n4,n6).  [resolve(49,b,27,a)].
+65 green(n2,n3) | -red(n1,n2) | green(n1,n3).  [resolve(50,c,45,a)].
+66 green(n2,n3) | -red(n2,n5) | green(n3,n5).  [resolve(51,b,34,a)].
+67 green(n2,n3) | -red(n2,n6) | green(n3,n6).  [resolve(51,b,30,a)].
+68 green(n1,n2) | -red(n2,n6) | green(n1,n6).  [resolve(52,c,44,a)].
+69 green(n1,n2) | -red(n2,n4) | green(n1,n4).  [resolve(52,c,43,a)].
+70 green(n1,n2) | -red(n2,n5) | green(n1,n5).  [resolve(52,c,42,a)].
+71 green(n4,n6) | -red(n1,n4) | green(n1,n6).  [resolve(53,c,44,a)].
+72 green(n4,n6) | -red(n2,n4) | green(n2,n6).  [resolve(53,c,35,a)].
+73 green(n3,n6) | -red(n1,n3) | green(n1,n6).  [resolve(54,c,44,a)].
+74 green(n3,n5) | -red(n1,n3) | green(n1,n5).  [resolve(55,c,42,a)].
+75 green(n5,n6) | green(n2,n6) | green(n2,n5).  [resolve(56,b,37,a)].
+76 green(n5,n6) | green(n3,n6) | green(n3,n5).  [resolve(57,b,34,a)].
+77 green(n5,n6) | green(n4,n6) | green(n4,n5).  [resolve(58,b,22,a)].
+78 green(n4,n5) | green(n1,n5) | green(n1,n4).  [resolve(59,b,43,a)].
+79 green(n4,n5) | green(n2,n5) | green(n2,n4).  [resolve(60,b,36,a)].
+80 green(n4,n5) | green(n3,n5) | green(n3,n4).  [resolve(61,b,23,a)].
+81 green(n3,n4) | green(n1,n4) | green(n1,n3).  [resolve(62,b,45,a)].
+82 green(n3,n4) | green(n2,n4) | green(n2,n3).  [resolve(63,b,24,a)].
+83 green(n3,n4) | green(n4,n6) | green(n3,n6).  [resolve(64,b,30,a)].
+84 green(n2,n3) | green(n1,n3) | green(n1,n2).  [resolve(65,b,25,a)].
+85 green(n2,n3) | green(n3,n5) | green(n2,n5).  [resolve(66,b,37,a)].
+86 green(n2,n3) | green(n3,n6) | green(n2,n6).  [resolve(67,b,35,a)].
+87 green(n1,n2) | green(n1,n6) | green(n2,n6).  [resolve(68,b,35,a)].
+88 green(n1,n2) | green(n1,n4) | green(n2,n4).  [resolve(69,b,36,a)].
+89 green(n1,n2) | green(n1,n5) | green(n2,n5).  [resolve(70,b,37,a)].
+90 green(n4,n6) | green(n1,n6) | green(n1,n4).  [resolve(71,b,43,a)].
+91 green(n4,n6) | green(n2,n6) | green(n2,n4).  [resolve(72,b,36,a)].
+92 green(n3,n6) | green(n1,n6) | green(n1,n3).  [resolve(73,b,45,a)].
+93 green(n3,n5) | green(n1,n5) | green(n1,n3).  [resolve(74,b,45,a)].
+94 green(n2,n6) | green(n2,n5) | -green(A,n5) | -green(A,n6).  [resolve(75,a,16,b)].
+95 green(n4,n5) | green(n1,n4) | -green(n1,A) | -green(A,n5).  [resolve(78,b,16,c)].
+96 green(n2,n5) | green(n2,n4) | -green(A,n4) | -green(A,n5).  [resolve(79,a,16,b)].
+97 green(n3,n4) | green(n1,n3) | -green(n1,A) | -green(A,n4).  [resolve(81,b,16,c)].
+98 green(n2,n4) | green(n2,n3) | -green(A,n3) | -green(A,n4).  [resolve(82,a,16,b)].
+99 green(n2,n4) | green(n2,n3) | -green(n4,A) | -green(n3,A).  [resolve(82,a,16,a)].
+100 green(n2,n3) | green(n1,n2) | -green(n3,A) | -green(n1,A).  [resolve(84,b,16,a)].
+101 green(n1,n2) | green(n2,n6) | -green(n1,A) | -green(A,n6).  [resolve(87,b,16,c)].
+102 green(n4,n6) | green(n1,n4) | -green(n1,A) | -green(A,n6).  [resolve(90,b,16,c)].
+103 green(n3,n6) | green(n1,n3) | -green(n1,A) | -green(A,n6).  [resolve(92,b,16,c)].
+104 green(n3,n5) | green(n1,n3) | -green(n1,A) | -green(A,n5).  [resolve(93,b,16,c)].
+105 green(n2,n6) | green(n2,n5) | -green(n4,n5) | green(n2,n6) | green(n2,n4).  [resolve(94,d,91,a)].
+106 green(n2,n6) | green(n2,n5) | -green(n4,n5) | green(n2,n4).  [copy(105),merge(d)].
+107 green(n2,n6) | green(n2,n5) | -green(n1,n5) | green(n1,n2) | green(n2,n6).  [resolve(94,d,87,b)].
+108 green(n2,n6) | green(n2,n5) | -green(n1,n5) | green(n1,n2).  [copy(107),merge(e)].
+109 green(n2,n6) | green(n2,n5) | -green(n3,n5) | green(n2,n3) | green(n2,n6).  [resolve(94,d,86,b)].
+110 green(n2,n6) | green(n2,n5) | -green(n3,n5) | green(n2,n3).  [copy(109),merge(e)].
+111 green(n2,n5) | green(n2,n4) | -green(n1,n4) | green(n1,n2) | green(n2,n5).  [resolve(96,d,89,b)].
+112 green(n2,n5) | green(n2,n4) | -green(n1,n4) | green(n1,n2).  [copy(111),merge(e)].
+113 green(n2,n5) | green(n2,n4) | -green(n3,n4) | green(n2,n3) | green(n2,n5).  [resolve(96,d,85,b)].
+114 green(n2,n5) | green(n2,n4) | -green(n3,n4) | green(n2,n3).  [copy(113),merge(e)].
+115 green(n2,n4) | green(n2,n3) | -green(n1,n3) | green(n1,n2) | green(n2,n4).  [resolve(98,d,88,b)].
+116 green(n2,n4) | green(n2,n3) | -green(n1,n3) | green(n1,n2).  [copy(115),merge(e)].
+117 green(n2,n4) | green(n2,n3) | -green(n3,n6) | green(n2,n6) | green(n2,n4).  [resolve(99,c,91,a)].
+118 green(n2,n4) | green(n2,n3) | -green(n3,n6) | green(n2,n6).  [copy(117),merge(e)].
+119 green(n2,n3) | green(n1,n2) | -green(n3,n5) | green(n1,n2) | green(n2,n5).  [resolve(100,d,89,b)].
+120 green(n2,n3) | green(n1,n2) | -green(n3,n5) | green(n2,n5).  [copy(119),merge(d)].
+121 green(n2,n3) | green(n1,n2) | -green(n3,n6) | green(n1,n2) | green(n2,n6).  [resolve(100,d,87,b)].
+122 green(n2,n3) | green(n1,n2) | -green(n3,n6) | green(n2,n6).  [copy(121),merge(d)].
+123 green(n1,n2) | green(n2,n6) | -green(n4,n6) | green(n1,n2) | green(n2,n4).  [resolve(101,c,88,b)].
+124 green(n1,n2) | green(n2,n6) | -green(n4,n6) | green(n2,n4).  [copy(123),merge(d)].
+125 green(n2,n6) | green(n2,n5) | green(n2,n4) | green(n2,n5) | green(n2,n4).  [resolve(106,c,79,a)].
+126 green(n2,n6) | green(n2,n5) | green(n2,n4) | green(n2,n4).  [copy(125),merge(d)].
+127 green(n2,n6) | green(n2,n5) | green(n2,n4).  [copy(126),merge(d)].
+128 green(n2,n5) | green(n2,n4) | green(n3,n6) | green(n1,n3) | -green(n1,n2).  [resolve(127,a,103,d)].
+129 green(n2,n5) | green(n2,n4) | -green(n2,A) | -green(A,n6).  [resolve(127,a,16,c)].
+130 green(n2,n6) | green(n2,n5) | green(n1,n2) | green(n1,n2) | green(n2,n5).  [resolve(108,c,89,b)].
+131 green(n2,n6) | green(n2,n5) | green(n1,n2) | green(n2,n5).  [copy(130),merge(d)].
+132 green(n2,n6) | green(n2,n5) | green(n1,n2).  [copy(131),merge(d)].
+133 green(n2,n6) | green(n2,n5) | green(n3,n4) | green(n1,n3) | -green(n2,n4).  [resolve(132,c,97,c)].
+134 green(n2,n6) | green(n2,n5) | -green(n2,A) | -green(n1,A).  [resolve(132,c,16,a)].
+135 green(n2,n6) | green(n2,n5) | green(n2,n3) | green(n2,n3) | green(n2,n5).  [resolve(110,c,85,b)].
+136 green(n2,n6) | green(n2,n5) | green(n2,n3) | green(n2,n5).  [copy(135),merge(d)].
+137 green(n2,n6) | green(n2,n5) | green(n2,n3).  [copy(136),merge(d)].
+138 green(n2,n5) | green(n2,n3) | green(n4,n6) | green(n1,n4) | -green(n1,n2).  [resolve(137,a,102,d)].
+139 green(n2,n5) | green(n2,n3) | -green(n2,A) | -green(A,n6).  [resolve(137,a,16,c)].
+140 green(n2,n5) | green(n2,n4) | green(n1,n2) | green(n1,n2) | green(n2,n4).  [resolve(112,c,88,b)].
+141 green(n2,n5) | green(n2,n4) | green(n1,n2) | green(n2,n4).  [copy(140),merge(d)].
+142 green(n2,n5) | green(n2,n4) | green(n1,n2).  [copy(141),merge(d)].
+143 green(n2,n5) | green(n2,n4) | -green(n2,A) | -green(n1,A).  [resolve(142,c,16,a)].
+144 green(n2,n5) | green(n2,n4) | green(n2,n3) | green(n2,n4) | green(n2,n3).  [resolve(114,c,82,a)].
+145 green(n2,n5) | green(n2,n4) | green(n2,n3) | green(n2,n3).  [copy(144),merge(d)].
+146 green(n2,n5) | green(n2,n4) | green(n2,n3).  [copy(145),merge(d)].
+147 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n1,n3) | -green(n1,n2).  [resolve(146,a,104,d)].
+148 green(n2,n4) | green(n2,n3) | green(n4,n5) | green(n1,n4) | -green(n1,n2).  [resolve(146,a,95,d)].
+149 green(n2,n4) | green(n2,n3) | green(n1,n2) | green(n2,n3) | green(n1,n2).  [resolve(116,c,84,b)].
+150 green(n2,n4) | green(n2,n3) | green(n1,n2) | green(n1,n2).  [copy(149),merge(d)].
+151 green(n2,n4) | green(n2,n3) | green(n1,n2).  [copy(150),merge(d)].
+152 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n1,n3) | -green(n2,n6).  [resolve(151,c,103,c)].
+153 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n1,n4) | -green(n2,n6).  [resolve(151,c,102,c)].
+154 green(n2,n4) | green(n2,n3) | green(n2,n6) | green(n2,n3) | green(n2,n6).  [resolve(118,c,86,b)].
+155 green(n2,n4) | green(n2,n3) | green(n2,n6) | green(n2,n6).  [copy(154),merge(d)].
+156 green(n2,n4) | green(n2,n3) | green(n2,n6).  [copy(155),merge(d)].
+157 green(n2,n4) | green(n2,n3) | -green(n2,A) | -green(A,n6).  [resolve(156,c,16,c)].
+158 green(n2,n3) | green(n1,n2) | green(n2,n5) | green(n2,n3) | green(n2,n5).  [resolve(120,c,85,b)].
+159 green(n2,n3) | green(n1,n2) | green(n2,n5) | green(n2,n5).  [copy(158),merge(d)].
+160 green(n2,n3) | green(n1,n2) | green(n2,n5).  [copy(159),merge(d)].
+161 green(n2,n3) | green(n2,n5) | -green(n2,A) | -green(n1,A).  [resolve(160,b,16,a)].
+162 green(n2,n3) | green(n1,n2) | green(n2,n6) | green(n2,n3) | green(n2,n6).  [resolve(122,c,86,b)].
+163 green(n2,n3) | green(n1,n2) | green(n2,n6) | green(n2,n6).  [copy(162),merge(d)].
+164 green(n2,n3) | green(n1,n2) | green(n2,n6).  [copy(163),merge(d)].
+165 green(n1,n2) | green(n2,n6) | green(n2,n4) | green(n2,n6) | green(n2,n4).  [resolve(124,c,91,a)].
+166 green(n1,n2) | green(n2,n6) | green(n2,n4) | green(n2,n4).  [copy(165),merge(d)].
+167 green(n1,n2) | green(n2,n6) | green(n2,n4).  [copy(166),merge(d)].
+168 green(n2,n6) | green(n2,n4) | green(n3,n5) | green(n1,n3) | -green(n2,n5).  [resolve(167,a,104,c)].
+169 green(n2,n6) | green(n2,n4) | -green(n2,A) | -green(n1,A).  [resolve(167,a,16,a)].
+170 green(n2,n4) | green(n2,n3) | -green(n5,n6) | green(n2,n4) | green(n2,n3).  [resolve(157,c,146,a)].
+171 green(n2,n4) | green(n2,n3) | -green(n5,n6) | green(n2,n3).  [copy(170),merge(d)].
+172 green(n2,n4) | green(n2,n3) | -green(n5,n6).  [copy(171),merge(d)].
+173 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n4,n5).  [resolve(172,c,77,a)].
+174 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n3,n5).  [resolve(172,c,76,a)].
+175 green(n2,n4) | green(n2,n3) | green(n4,n5) | green(n2,n4) | green(n2,n3) | -green(n3,n6).  [resolve(173,c,99,c)].
+176 green(n2,n4) | green(n2,n3) | green(n4,n5) | green(n2,n3) | -green(n3,n6).  [copy(175),merge(d)].
+177 green(n2,n4) | green(n2,n3) | green(n4,n5) | -green(n3,n6).  [copy(176),merge(d)].
+178 green(n2,n5) | green(n2,n4) | green(n3,n6) | green(n1,n3) | green(n2,n5) | green(n2,n4).  [resolve(128,e,142,c)].
+179 green(n2,n5) | green(n2,n4) | green(n3,n6) | green(n1,n3) | green(n2,n4).  [copy(178),merge(e)].
+180 green(n2,n5) | green(n2,n4) | green(n3,n6) | green(n1,n3).  [copy(179),merge(e)].
+181 green(n2,n5) | green(n2,n4) | green(n3,n6) | green(n2,n5) | green(n2,n4) | -green(n2,n3).  [resolve(180,d,143,d)].
+182 green(n2,n5) | green(n2,n4) | green(n3,n6) | green(n2,n4) | -green(n2,n3).  [copy(181),merge(d)].
+183 green(n2,n5) | green(n2,n4) | green(n3,n6) | -green(n2,n3).  [copy(182),merge(d)].
+184 green(n2,n5) | green(n2,n3) | green(n4,n6) | green(n1,n4) | green(n2,n3) | green(n2,n5).  [resolve(138,e,160,b)].
+185 green(n2,n5) | green(n2,n3) | green(n4,n6) | green(n1,n4) | green(n2,n5).  [copy(184),merge(e)].
+186 green(n2,n5) | green(n2,n3) | green(n4,n6) | green(n1,n4).  [copy(185),merge(e)].
+187 green(n2,n5) | green(n2,n3) | green(n4,n6) | green(n2,n3) | green(n2,n5) | -green(n2,n4).  [resolve(186,d,161,d)].
+188 green(n2,n5) | green(n2,n3) | green(n4,n6) | green(n2,n5) | -green(n2,n4).  [copy(187),merge(d)].
+189 green(n2,n5) | green(n2,n3) | green(n4,n6) | -green(n2,n4).  [copy(188),merge(d)].
+190 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n1,n3) | green(n2,n4) | green(n2,n3).  [resolve(147,e,151,c)].
+191 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n1,n3) | green(n2,n3).  [copy(190),merge(e)].
+192 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n1,n3).  [copy(191),merge(e)].
+193 green(n2,n4) | green(n2,n3) | green(n4,n5) | green(n1,n4) | green(n2,n4) | green(n2,n3).  [resolve(148,e,151,c)].
+194 green(n2,n4) | green(n2,n3) | green(n4,n5) | green(n1,n4) | green(n2,n3).  [copy(193),merge(e)].
+195 green(n2,n4) | green(n2,n3) | green(n4,n5) | green(n1,n4).  [copy(194),merge(e)].
+196 green(n2,n4) | green(n2,n3) | green(n4,n5) | green(n2,n4) | green(n2,n3) | -green(n1,n3).  [resolve(195,d,98,d)].
+197 green(n2,n4) | green(n2,n3) | green(n4,n5) | green(n2,n3) | -green(n1,n3).  [copy(196),merge(d)].
+198 green(n2,n4) | green(n2,n3) | green(n4,n5) | -green(n1,n3).  [copy(197),merge(d)].
+199 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n1,n3) | green(n2,n4) | green(n2,n3).  [resolve(152,e,156,c)].
+200 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n1,n3) | green(n2,n3).  [copy(199),merge(e)].
+201 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n1,n3).  [copy(200),merge(e)].
+202 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n2,n4) | green(n2,n3) | green(n4,n5).  [resolve(201,d,198,d)].
+203 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n2,n3) | green(n4,n5).  [copy(202),merge(d)].
+204 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n4,n5).  [copy(203),merge(d)].
+205 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n2,n4) | green(n2,n3) | -green(n3,n5).  [resolve(204,d,99,c)].
+206 green(n2,n4) | green(n2,n3) | green(n3,n6) | green(n2,n3) | -green(n3,n5).  [copy(205),merge(d)].
+207 green(n2,n4) | green(n2,n3) | green(n3,n6) | -green(n3,n5).  [copy(206),merge(d)].
+208 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n1,n4) | green(n2,n4) | green(n2,n3).  [resolve(153,e,156,c)].
+209 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n1,n4) | green(n2,n3).  [copy(208),merge(e)].
+210 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n1,n4).  [copy(209),merge(e)].
+211 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n2,n4) | green(n2,n3) | -green(n1,n3).  [resolve(210,d,98,d)].
+212 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n2,n3) | -green(n1,n3).  [copy(211),merge(d)].
+213 green(n2,n4) | green(n2,n3) | green(n4,n6) | -green(n1,n3).  [copy(212),merge(d)].
+214 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n2,n4) | green(n2,n3) | green(n3,n5).  [resolve(213,d,192,d)].
+215 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n2,n3) | green(n3,n5).  [copy(214),merge(d)].
+216 green(n2,n4) | green(n2,n3) | green(n4,n6) | green(n3,n5).  [copy(215),merge(d)].
+217 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n2,n4) | green(n2,n3) | -green(n3,n6).  [resolve(216,c,99,c)].
+218 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n2,n3) | -green(n3,n6).  [copy(217),merge(d)].
+219 green(n2,n4) | green(n2,n3) | green(n3,n5) | -green(n3,n6).  [copy(218),merge(d)].
+220 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n2,n4) | green(n2,n3) | green(n3,n5).  [resolve(219,d,174,c)].
+221 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n2,n3) | green(n3,n5).  [copy(220),merge(d)].
+222 green(n2,n4) | green(n2,n3) | green(n3,n5) | green(n3,n5).  [copy(221),merge(d)].
+223 green(n2,n4) | green(n2,n3) | green(n3,n5).  [copy(222),merge(d)].
+224 green(n2,n4) | green(n2,n3) | green(n2,n4) | green(n2,n3) | green(n3,n6).  [resolve(223,c,207,d)].
+225 green(n2,n4) | green(n2,n3) | green(n2,n3) | green(n3,n6).  [copy(224),merge(c)].
+226 green(n2,n4) | green(n2,n3) | green(n3,n6).  [copy(225),merge(c)].
+227 green(n2,n4) | green(n2,n3) | green(n2,n4) | green(n2,n3) | green(n4,n5).  [resolve(226,c,177,d)].
+228 green(n2,n4) | green(n2,n3) | green(n2,n3) | green(n4,n5).  [copy(227),merge(c)].
+229 green(n2,n4) | green(n2,n3) | green(n4,n5).  [copy(228),merge(c)].
+230 green(n2,n4) | green(n2,n3) | green(n2,n4) | green(n2,n3) | -green(n3,n5).  [resolve(229,c,99,c)].
+231 green(n2,n4) | green(n2,n3) | green(n2,n3) | -green(n3,n5).  [copy(230),merge(c)].
+232 green(n2,n4) | green(n2,n3) | -green(n3,n5).  [copy(231),merge(c)].
+233 green(n2,n4) | green(n2,n3) | green(n2,n4) | green(n2,n3).  [resolve(232,c,223,c)].
+234 green(n2,n4) | green(n2,n3) | green(n2,n3).  [copy(233),merge(c)].
+235 green(n2,n4) | green(n2,n3).  [copy(234),merge(c)].
+236 green(n2,n3) | green(n2,n5) | green(n2,n3) | green(n4,n6).  [resolve(235,a,189,d)].
+237 green(n2,n3) | green(n2,n5) | green(n4,n6).  [copy(236),merge(c)].
+238 green(n2,n3) | green(n2,n5) | green(n2,n3) | -green(n4,n6).  [resolve(235,a,139,c)].
+239 green(n2,n3) | green(n2,n5) | -green(n4,n6).  [copy(238),merge(c)].
+240 green(n2,n3) | -green(A,n2) | -green(A,n4).  [resolve(235,a,16,b)].
+241 green(n2,n3) | green(n2,n5) | green(n2,n3) | green(n2,n5).  [resolve(239,c,237,c)].
+242 green(n2,n3) | green(n2,n5) | green(n2,n5).  [copy(241),merge(c)].
+243 green(n2,n3) | green(n2,n5).  [copy(242),merge(c)].
+244 green(n2,n3) | green(n4,n5) | green(n1,n4) | -green(n1,n2).  [resolve(243,b,95,d)].
+245 green(n2,n3) | -green(n2,A) | -green(A,n5).  [resolve(243,b,16,c)].
+246 green(n2,n3) | -green(n5,A) | -green(n2,A).  [resolve(243,b,16,a)].
+247 green(n2,n3) | -green(n4,n5) | green(n2,n3).  [resolve(245,b,235,a)].
+248 green(n2,n3) | -green(n4,n5).  [copy(247),merge(c)].
+249 green(n2,n3) | -green(n2,n6) | green(n4,n6) | green(n4,n5).  [resolve(246,b,77,a)].
+250 green(n2,n3) | green(n4,n5) | green(n1,n4) | green(n2,n3) | green(n2,n6).  [resolve(244,d,164,b)].
+251 green(n2,n3) | green(n4,n5) | green(n1,n4) | green(n2,n6).  [copy(250),merge(d)].
+252 green(n2,n3) | green(n4,n5) | green(n2,n6) | green(n2,n3) | -green(n1,n2).  [resolve(251,c,240,c)].
+253 green(n2,n3) | green(n4,n5) | green(n2,n6) | -green(n1,n2).  [copy(252),merge(d)].
+254 green(n2,n3) | green(n4,n5) | green(n2,n6) | green(n2,n3) | green(n2,n6).  [resolve(253,d,164,b)].
+255 green(n2,n3) | green(n4,n5) | green(n2,n6) | green(n2,n6).  [copy(254),merge(d)].
+256 green(n2,n3) | green(n4,n5) | green(n2,n6).  [copy(255),merge(d)].
+257 green(n2,n3) | green(n2,n6) | green(n2,n3).  [resolve(256,b,248,b)].
+258 green(n2,n3) | green(n2,n6).  [copy(257),merge(c)].
+259 green(n2,n3) | green(n2,n3) | green(n4,n6) | green(n4,n5).  [resolve(258,b,249,b)].
+260 green(n2,n3) | green(n4,n6) | green(n4,n5).  [copy(259),merge(b)].
+261 green(n2,n3) | -green(n2,A) | -green(A,n6).  [resolve(258,b,16,c)].
+262 green(n2,n3) | -green(n4,n6) | green(n2,n3).  [resolve(261,b,235,a)].
+263 green(n2,n3) | -green(n4,n6).  [copy(262),merge(c)].
+264 green(n2,n3) | green(n2,n3) | green(n4,n5).  [resolve(263,b,260,b)].
+265 green(n2,n3) | green(n4,n5).  [copy(264),merge(b)].
+266 green(n2,n3) | green(n2,n3).  [resolve(265,b,248,b)].
+267 green(n2,n3).  [copy(266),merge(b)].
+268 green(n2,n5) | green(n2,n4) | green(n3,n6).  [resolve(267,a,183,d)].
+269 -green(n3,A) | -green(n2,A).  [resolve(267,a,16,a)].
+270 green(n2,n5) | green(n2,n4) | green(n2,n5) | green(n2,n4) | -green(n2,n3).  [resolve(268,c,129,d)].
+271 green(n2,n5) | green(n2,n4) | green(n2,n4) | -green(n2,n3).  [copy(270),merge(c)].
+272 green(n2,n5) | green(n2,n4) | -green(n2,n3).  [copy(271),merge(c)].
+273 green(n2,n5) | green(n2,n4).  [resolve(267,a,272,c)].
+274 green(n2,n4) | green(n2,n6) | green(n2,n4) | green(n3,n5) | green(n1,n3).  [resolve(273,a,168,e)].
+275 green(n2,n4) | green(n2,n6) | green(n3,n5) | green(n1,n3).  [copy(274),merge(c)].
+276 green(n2,n4) | -green(n2,A) | -green(A,n5).  [resolve(273,a,16,c)].
+277 green(n2,n4) | -green(n3,n5).  [resolve(276,b,267,a)].
+278 green(n2,n4) | green(n2,n6) | green(n3,n5) | green(n2,n6) | green(n2,n4) | -green(n2,n3).  [resolve(275,d,169,d)].
+279 green(n2,n4) | green(n2,n6) | green(n3,n5) | green(n2,n4) | -green(n2,n3).  [copy(278),merge(d)].
+280 green(n2,n4) | green(n2,n6) | green(n3,n5) | -green(n2,n3).  [copy(279),merge(d)].
+281 green(n2,n4) | green(n2,n6) | green(n3,n5).  [resolve(267,a,280,d)].
+282 green(n2,n4) | green(n2,n6) | green(n2,n4).  [resolve(281,c,277,b)].
+283 green(n2,n4) | green(n2,n6).  [copy(282),merge(c)].
+284 green(n2,n4) | -green(n2,A) | -green(A,n6).  [resolve(283,b,16,c)].
+285 green(n2,n4) | -green(n5,n6) | green(n2,n4).  [resolve(284,b,273,a)].
+286 green(n2,n4) | -green(n5,n6).  [copy(285),merge(c)].
+287 green(n2,n4) | -green(n3,n6).  [resolve(284,b,267,a)].
+288 green(n2,n4) | green(n3,n6) | green(n3,n5).  [resolve(286,b,76,a)].
+289 green(n2,n4) | green(n3,n5) | green(n2,n4).  [resolve(288,b,287,b)].
+290 green(n2,n4) | green(n3,n5).  [copy(289),merge(c)].
+291 green(n2,n4) | green(n2,n4).  [resolve(290,b,277,b)].
+292 green(n2,n4).  [copy(291),merge(b)].
+293 green(n2,n6) | green(n2,n5) | green(n3,n4) | green(n1,n3).  [resolve(292,a,133,e)].
+294 -green(n4,A) | -green(n2,A).  [resolve(292,a,16,a)].
+295 -green(n3,n4).  [resolve(269,b,292,a)].
+296 green(n2,n6) | green(n2,n5) | green(n1,n3).  [resolve(295,a,293,c)].
+297 green(n4,n6) | green(n3,n6).  [resolve(295,a,83,a)].
+298 green(n4,n5) | green(n3,n5).  [resolve(295,a,80,c)].
+299 green(n3,n6) | -green(n2,n6).  [resolve(297,a,294,a)].
+300 green(n2,n6) | green(n2,n5) | green(n2,n6) | green(n2,n5) | -green(n2,n3).  [resolve(296,c,134,d)].
+301 green(n2,n6) | green(n2,n5) | green(n2,n5) | -green(n2,n3).  [copy(300),merge(c)].
+302 green(n2,n6) | green(n2,n5) | -green(n2,n3).  [copy(301),merge(c)].
+303 green(n2,n6) | green(n2,n5).  [resolve(267,a,302,c)].
+304 green(n3,n5) | -green(n2,n5).  [resolve(298,a,294,a)].
+305 green(n2,n5) | green(n3,n6).  [resolve(303,a,299,b)].
+306 green(n2,n5) | -green(n2,n6).  [resolve(305,b,269,a)].
+307 green(n2,n5) | green(n2,n5).  [resolve(306,b,303,a)].
+308 green(n2,n5).  [copy(307),merge(b)].
+309 green(n3,n5).  [resolve(308,a,304,b)].
+310 -green(n3,n5).  [resolve(269,b,308,a)].
+311 $F.  [resolve(309,a,310,a)].
+
+============================== end of proof ==========================

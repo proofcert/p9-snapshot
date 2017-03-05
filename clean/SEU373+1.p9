@@ -1,0 +1,27 @@
+
+
+
+
+
+6 one_sorted_str(c11).  [clausify(5)].
+7 -one_sorted_str(A) | -net_str(B,A) | rel_str(B).  [clausify(3)].
+8 -one_sorted_str(A) | -net_str(B,A) | -subnetstr(C,A,B) | net_str(C,A).  [clausify(4)].
+9 -one_sorted_str(A) | -net_str(B,A) | -net_str(C,A) | -subnetstr(C,A,B) | subrelstr(C,B).  [clausify(2)].
+10 -rel_str(A) | -rel_str(B) | -subrelstr(B,A) | subset(the_carrier(B),the_carrier(A)).  [clausify(1)].
+11 -net_str(A,c11) | -net_str(B,c11) | -subnetstr(B,c11,A) | subrelstr(B,A).  [resolve(9,a,6,a)].
+12 net_str(c12,c11).  [clausify(5)].
+13 subnetstr(c13,c11,c12).  [clausify(5)].
+14 -subset(the_carrier(c13),the_carrier(c12)).  [clausify(5)].
+15 -net_str(A,c11) | rel_str(A).  [resolve(7,a,6,a)].
+16 -net_str(A,c11) | -subnetstr(B,c11,A) | net_str(B,c11).  [resolve(8,a,6,a)].
+17 -net_str(A,c11) | -net_str(B,c11) | -subnetstr(B,c11,A) | -rel_str(A) | -rel_str(B) | subset(the_carrier(B),the_carrier(A)).  [resolve(11,d,10,c)].
+18 rel_str(c12).  [resolve(15,a,12,a)].
+19 -net_str(c12,c11) | net_str(c13,c11).  [resolve(16,b,13,a)].
+20 net_str(c13,c11).  [resolve(12,a,19,a)].
+21 -net_str(c12,c11) | -net_str(c13,c11) | -rel_str(c12) | -rel_str(c13) | subset(the_carrier(c13),the_carrier(c12)).  [resolve(17,c,13,a)].
+22 -net_str(c13,c11) | -rel_str(c12) | -rel_str(c13) | subset(the_carrier(c13),the_carrier(c12)).  [resolve(12,a,21,a)].
+23 -rel_str(c12) | -rel_str(c13) | subset(the_carrier(c13),the_carrier(c12)).  [resolve(20,a,22,a)].
+24 -rel_str(c13) | subset(the_carrier(c13),the_carrier(c12)).  [resolve(18,a,23,a)].
+25 -rel_str(c13).  [resolve(14,a,24,b)].
+26 rel_str(c13).  [resolve(20,a,15,a)].
+27 $F.  [resolve(25,a,26,a)].

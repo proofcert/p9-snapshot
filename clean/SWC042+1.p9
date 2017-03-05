@@ -1,0 +1,21 @@
+
+
+3 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = A.  [clausify(1)].
+4 ssList(c3).  [clausify(2)].
+5 nil = c4.  [clausify(2)].
+6 c4 = nil.  [copy(5),flip(a)].
+7 c6 = c4.  [clausify(2)].
+8 c6 = nil.  [para(6(a,1),7(a,2))].
+9 c5 = c3.  [clausify(2)].
+10 nil != c3.  [clausify(2)].
+11 c3 != nil.  [copy(10),flip(a)].
+12 ssList(c7).  [clausify(2)].
+13 app(c5,c7) = c6.  [clausify(2)].
+14 app(c3,c7) = c6.  [para(9(a,1),13(a,1,1))].
+15 app(c3,c7) = nil.  [para(8(a,1),14(a,2))].
+16 -ssList(A) | app(c3,A) != nil | nil = c3.  [resolve(4,a,3,a)].
+17 -ssList(A) | app(c3,A) != nil | c3 = nil.  [copy(16),flip(c)].
+18 -ssList(A) | app(c3,A) != nil.  [resolve(11,a,17,c)].
+19 app(c3,c7) != nil.  [resolve(18,a,12,a)].
+20 nil != nil.  [para(15(a,1),19(a,1))].
+21 $F.  [copy(20),xx(a)].

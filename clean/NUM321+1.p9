@@ -1,0 +1,28 @@
+
+
+
+
+5 rdn_translate(n3,rdn_pos(rdnn(n3))).  [assumption].
+6 rdn_translate(n5,rdn_pos(rdnn(n5))).  [assumption].
+7 rdn_translate(nn2,rdn_neg(rdnn(n2))).  [assumption].
+8 rdn_positive_less(rdnn(n2),rdnn(n3)).  [assumption].
+9 rdn_positive_less(rdnn(n3),rdnn(n4)).  [assumption].
+10 rdn_positive_less(rdnn(n4),rdnn(n5)).  [assumption].
+11 -rdn_positive_less(rdnn(A),rdnn(B)) | -rdn_positive_less(rdnn(B),rdnn(C)) | rdn_positive_less(rdnn(A),rdnn(C)).  [clausify(1)].
+12 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_neg(D)) | -rdn_positive_less(D,B) | -rdn_add_with_carry(rdnn(n0),D,E,B) | -rdn_translate(F,rdn_pos(E)) | sum(A,C,F).  [clausify(2)].
+13 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(C),rdnn(n0)) | -rdn_digit_add(rdnn(C),rdnn(D),rdnn(E),rdnn(n0)) | rdn_add_with_carry(rdnn(D),rdnn(A),rdnn(B),rdnn(E)).  [clausify(3)].
+14 rdn_digit_add(rdnn(n2),rdnn(n3),rdnn(n5),rdnn(n0)).  [assumption].
+15 rdn_digit_add(rdnn(n5),rdnn(n0),rdnn(n5),rdnn(n0)).  [assumption].
+16 -sum(n5,nn2,A).  [clausify(4)].
+17 -rdn_positive_less(rdnn(n4),rdnn(A)) | rdn_positive_less(rdnn(n3),rdnn(A)).  [resolve(11,a,9,a)].
+18 -rdn_positive_less(rdnn(n3),rdnn(A)) | rdn_positive_less(rdnn(n2),rdnn(A)).  [resolve(11,a,8,a)].
+19 -rdn_digit_add(rdnn(n5),rdnn(A),rdnn(B),rdnn(n0)) | rdn_add_with_carry(rdnn(A),rdnn(n2),rdnn(n3),rdnn(B)).  [resolve(14,a,13,a)].
+20 rdn_positive_less(rdnn(n3),rdnn(n5)).  [resolve(17,a,10,a)].
+21 rdn_positive_less(rdnn(n2),rdnn(n5)).  [resolve(20,a,18,a)].
+22 rdn_add_with_carry(rdnn(n0),rdnn(n2),rdnn(n3),rdnn(n5)).  [resolve(19,a,15,a)].
+23 -rdn_translate(A,rdn_pos(rdnn(n5))) | -rdn_translate(B,rdn_neg(rdnn(n2))) | -rdn_positive_less(rdnn(n2),rdnn(n5)) | -rdn_translate(C,rdn_pos(rdnn(n3))) | sum(A,B,C).  [resolve(22,a,12,d)].
+24 -rdn_translate(A,rdn_pos(rdnn(n5))) | -rdn_translate(B,rdn_neg(rdnn(n2))) | -rdn_translate(C,rdn_pos(rdnn(n3))) | sum(A,B,C).  [resolve(21,a,23,c)].
+25 -rdn_translate(A,rdn_neg(rdnn(n2))) | -rdn_translate(B,rdn_pos(rdnn(n3))) | sum(n5,A,B).  [resolve(24,a,6,a)].
+26 -rdn_translate(A,rdn_pos(rdnn(n3))) | sum(n5,nn2,A).  [resolve(25,a,7,a)].
+27 -rdn_translate(A,rdn_pos(rdnn(n3))).  [resolve(16,a,26,b)].
+28 $F.  [resolve(27,a,5,a)].

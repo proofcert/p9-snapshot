@@ -1,0 +1,34 @@
+
+
+
+4 aNaturalNumber0(xn).  [assumption].
+5 aNaturalNumber0(xm).  [assumption].
+6 aNaturalNumber0(xp).  [assumption].
+7 sdtlseqdt0(xp,xn).  [assumption].
+8 doDivides0(xp,sdtasdt0(xn,xm)).  [assumption].
+9 xr = sdtmndt0(xn,xp).  [assumption].
+10 sdtmndt0(xn,xp) = xr.  [copy(9),flip(a)].
+11 doDivides0(xp,sdtasdt0(xp,xm)).  [assumption].
+12 sdtasdt0(xn,xm) = sdtpldt0(sdtasdt0(xp,xm),sdtasdt0(xr,xm)).  [assumption].
+13 sdtpldt0(sdtasdt0(xp,xm),sdtasdt0(xr,xm)) = sdtasdt0(xn,xm).  [copy(12),flip(a)].
+14 -doDivides0(xp,sdtasdt0(xr,xm)).  [assumption].
+15 -aNaturalNumber0(A) | -aNaturalNumber0(B) | aNaturalNumber0(sdtasdt0(A,B)).  [clausify(1)].
+16 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -sdtlseqdt0(A,B) | sdtmndt0(B,A) != C | aNaturalNumber0(C).  [clausify(2)].
+17 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -aNaturalNumber0(C) | -doDivides0(A,B) | -doDivides0(A,sdtpldt0(B,C)) | doDivides0(A,C).  [clausify(3)].
+18 -aNaturalNumber0(A) | aNaturalNumber0(sdtasdt0(xp,A)).  [resolve(15,a,6,a)].
+19 -aNaturalNumber0(A) | aNaturalNumber0(sdtasdt0(A,xm)).  [resolve(15,b,5,a)].
+20 -aNaturalNumber0(xp) | -aNaturalNumber0(xn) | sdtmndt0(xn,xp) != A | aNaturalNumber0(A).  [resolve(16,c,7,a)].
+21 -aNaturalNumber0(xp) | -aNaturalNumber0(xn) | xr != A | aNaturalNumber0(A).  [para(10(a,1),20(c,1))].
+22 -aNaturalNumber0(xn) | xr != A | aNaturalNumber0(A).  [resolve(6,a,21,a)].
+23 xr != A | aNaturalNumber0(A).  [resolve(4,a,22,a)].
+24 aNaturalNumber0(sdtmndt0(xn,xp)).  [resolve(23,a,10,a(flip))].
+25 aNaturalNumber0(xr).  [para(10(a,1),24(a,1))].
+26 aNaturalNumber0(sdtasdt0(xp,xm)).  [resolve(18,a,5,a)].
+27 aNaturalNumber0(sdtasdt0(xr,xm)).  [resolve(19,a,25,a)].
+28 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -doDivides0(xp,A) | -doDivides0(xp,sdtpldt0(A,B)) | doDivides0(xp,B).  [resolve(17,a,6,a)].
+29 -aNaturalNumber0(A) | -doDivides0(xp,sdtasdt0(xp,xm)) | -doDivides0(xp,sdtpldt0(sdtasdt0(xp,xm),A)) | doDivides0(xp,A).  [resolve(28,a,26,a)].
+30 -doDivides0(xp,sdtasdt0(xp,xm)) | -doDivides0(xp,sdtpldt0(sdtasdt0(xp,xm),sdtasdt0(xr,xm))) | doDivides0(xp,sdtasdt0(xr,xm)).  [resolve(29,a,27,a)].
+31 -doDivides0(xp,sdtpldt0(sdtasdt0(xp,xm),sdtasdt0(xr,xm))) | doDivides0(xp,sdtasdt0(xr,xm)).  [resolve(30,a,11,a)].
+32 -doDivides0(xp,sdtpldt0(sdtasdt0(xp,xm),sdtasdt0(xr,xm))).  [resolve(31,b,14,a)].
+33 -doDivides0(xp,sdtasdt0(xn,xm)).  [para(13(a,1),32(a,2))].
+34 $F.  [resolve(8,a,33,a)].

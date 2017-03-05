@@ -1,0 +1,20 @@
+
+
+
+
+
+6 set_intersection2(A,A) = A.  [clausify(3)].
+7 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+8 singleton(c3) = set_intersection2(singleton(c3),singleton(c4)).  [clausify(5)].
+9 set_intersection2(singleton(c3),singleton(c4)) = singleton(c3).  [copy(8),flip(a)].
+10 c4 != c3.  [clausify(5)].
+11 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+12 singleton(A) != set_intersection2(B,singleton(A)) | in(A,B).  [clausify(4)].
+13 set_intersection2(A,singleton(B)) != singleton(B) | in(B,A).  [copy(12),flip(a)].
+14 -in(A,set_intersection2(singleton(B),singleton(B))) | A = B.  [resolve(11,a,6,a(flip))].
+15 -in(c3,set_intersection2(singleton(c4),singleton(c4))).  [resolve(14,b,10,a(flip))].
+16 -in(c3,singleton(c4)).  [para(6(a,1),15(a,2))].
+17 set_intersection2(singleton(c4),singleton(c3)) != singleton(c3).  [resolve(13,b,16,a)].
+18 set_intersection2(singleton(c3),singleton(c4)) != singleton(c3).  [para(7(a,1),17(a,1))].
+19 singleton(c3) != singleton(c3).  [para(9(a,1),18(a,1))].
+20 $F.  [copy(19),xx(a)].

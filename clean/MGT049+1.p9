@@ -1,0 +1,11 @@
+
+
+
+4 -organization(A) | external_ties(A,B) = external_ties(A,C).  [clausify(2)].
+5 organization(c1).  [clausify(3)].
+6 -organization(A) | external_ties(A,B) != external_ties(A,C) | position(A,B) = position(A,C).  [clausify(1)].
+7 position(c1,c3) != position(c1,c2).  [clausify(3)].
+8 external_ties(c1,A) = external_ties(c1,B).  [resolve(4,a,5,a)].
+9 external_ties(c1,A) != external_ties(c1,B) | position(c1,A) = position(c1,B).  [resolve(6,a,5,a)].
+10 position(c1,A) = position(c1,B).  [resolve(8,a,9,a)].
+11 $F.  [resolve(10,a,7,a)].

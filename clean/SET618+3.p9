@@ -1,0 +1,14 @@
+
+
+
+
+5 union(A,A) = A.  [clausify(2)].
+6 difference(A,A) = empty_set.  [clausify(3)].
+7 union(difference(A,B),difference(B,A)) = symmetric_difference(A,B).  [clausify(1)].
+8 symmetric_difference(A,B) = union(difference(A,B),difference(B,A)).  [copy(7),flip(a)].
+9 symmetric_difference(c1,c1) != empty_set.  [clausify(4)].
+10 union(difference(c1,c1),difference(c1,c1)) != empty_set.  [para(8(a,1),9(a,1))].
+11 union(empty_set,difference(c1,c1)) != empty_set.  [para(6(a,1),10(a,1,1))].
+12 union(empty_set,empty_set) != empty_set.  [para(6(a,1),11(a,1,2))].
+13 empty_set != empty_set.  [para(5(a,1),12(a,1))].
+14 $F.  [copy(13),xx(a)].

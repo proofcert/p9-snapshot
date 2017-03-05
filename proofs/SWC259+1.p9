@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n155.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:47:08 CDT 2014
+% CPUTime    : 8.63 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 2975 was started by sandbox on n155.star.cs.uiowa.edu,
+Fri Jun  6 07:47:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_2943_n155.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 8.34 (+ 0.08) seconds.
+% Length of proof is 13.
+% Level of proof is 5.
+% Maximum clause weight is 8.000.
+% Given clauses 2854.
+
+
+1 (all A (ssItem(A) -> totalorderedP(cons(A,nil)))).  [assumption].
+2 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (-ssList(D) | B != D | A != C | totalorderedP(A) | (all E (ssItem(E) -> (all F (ssList(F) -> (all V6 (-ssList(V6) | cons(E,nil) != C | app(app(F,C),V6) != D | (exists V7 (ssItem(V7) & memberP(F,V7) & lt(E,V7))) | (exists V8 (ssItem(V8) & memberP(V6,V8) & lt(V8,E))))))))) & (nil != D | nil != C))))))))).  [assumption].
+3 -ssItem(A) | totalorderedP(cons(A,nil)).  [clausify(1)].
+4 totalorderedP(nil).  [assumption].
+5 c5 = c3.  [clausify(2)].
+6 -totalorderedP(c3).  [clausify(2)].
+7 ssItem(c7) | nil = c5.  [clausify(2)].
+8 ssItem(c7) | nil = c3.  [para(5(a,1),7(b,2))].
+9 ssItem(c7) | c3 = nil.  [copy(8),flip(b)].
+10 cons(c7,nil) = c5 | nil = c5.  [clausify(2)].
+11 cons(c7,nil) = c3 | nil = c5.  [para(5(a,1),10(a,2))].
+12 cons(c7,nil) = c3 | nil = c3.  [para(5(a,1),11(b,2))].
+13 cons(c7,nil) = c3 | c3 = nil.  [copy(12),flip(b)].
+14 c3 = nil | totalorderedP(cons(c7,nil)).  [resolve(9,a,3,a)].
+15 c3 = nil | c3 = nil | totalorderedP(c3).  [para(13(a,1),14(b,1))].
+16 c3 = nil | totalorderedP(c3).  [copy(15),merge(b)].
+17 c3 = nil.  [resolve(6,a,16,b)].
+18 -totalorderedP(nil).  [para(17(a,1),6(a,1))].
+19 $F.  [resolve(4,a,18,a)].
+
+============================== end of proof ==========================

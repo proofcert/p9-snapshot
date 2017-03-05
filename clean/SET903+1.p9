@@ -1,0 +1,22 @@
+
+
+3 singleton(c3) = set_union2(c4,c5).  [clausify(2)].
+4 set_union2(c4,c5) = singleton(c3).  [copy(3),flip(a)].
+5 c5 != c4.  [clausify(2)].
+6 empty_set != c4.  [clausify(2)].
+7 c4 != empty_set.  [copy(6),flip(a)].
+8 c5 != empty_set.  [clausify(2)].
+9 singleton(A) != set_union2(B,C) | singleton(A) = B | empty_set = B.  [clausify(1)].
+10 singleton(A) != set_union2(B,C) | singleton(A) = C | C = empty_set.  [clausify(1)].
+11 singleton(A) != set_union2(B,C) | singleton(A) = C | empty_set = C.  [copy(10),flip(c)].
+12 singleton(c3) = c4 | empty_set = c4.  [resolve(9,a,4,a(flip))].
+13 singleton(c3) = c4 | c4 = empty_set.  [copy(12),flip(b)].
+14 singleton(c3) = c4.  [resolve(7,a,13,b)].
+15 set_union2(c4,c5) = c4.  [para(14(a,1),4(a,2))].
+16 singleton(A) != c4 | singleton(A) = c5 | empty_set = c5.  [para(15(a,1),11(a,2))].
+17 singleton(A) != c4 | singleton(A) = c5 | c5 = empty_set.  [copy(16),flip(c)].
+18 singleton(A) != c4 | singleton(A) = c5.  [resolve(8,a,17,c)].
+19 singleton(c3) = c5.  [resolve(18,a,14,a)].
+20 c4 = c5.  [para(14(a,1),19(a,1))].
+21 c5 = c4.  [copy(20),flip(a)].
+22 $F.  [resolve(5,a,21,a)].

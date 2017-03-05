@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n128.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:28:08 CDT 2014
+% CPUTime    : 0.21 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 6492 was started by sandbox on n128.star.cs.uiowa.edu,
+Fri Jun  6 05:28:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_6460_n128.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 17.
+% Level of proof is 7.
+% Maximum clause weight is 7.000.
+% Given clauses 13.
+
+
+1 (all A ti(A,undefined(A)) = undefined(A)).  [assumption].
+2 hBOOL(hoare_1883395792gleton) <-> (exists A exists B ti(state,A) != ti(state,B)).  [assumption].
+3 -(all A -(all B ti(state,B) = ti(state,A))).  [assumption].
+4 hBOOL(hoare_1883395792gleton).  [assumption].
+5 undefined(A) = ti(A,undefined(A)).  [clausify(1)].
+6 ti(A,undefined(A)) = undefined(A).  [copy(5),flip(a)].
+7 ti(state,c3) = ti(state,A).  [clausify(3)].
+8 -hBOOL(hoare_1883395792gleton) | ti(state,c2) != ti(state,c1).  [clausify(2)].
+9 ti(state,c2) != ti(state,c1).  [resolve(4,a,8,a)].
+10 ti(state,c2) = c_0.  [new_symbol(9)].
+11 c_0 != ti(state,c1).  [para(10(a,1),9(a,1))].
+12 ti(state,c1) != c_0.  [copy(11),flip(a)].
+13 ti(state,c3) = undefined(state).  [para(7(a,2),6(a,1))].
+14 ti(state,A) = ti(state,B).  [para(7(a,1),7(a,1))].
+15 ti(state,c3) = ti(state,A).  [para(7(a,1),7(a,2))].
+16 undefined(state) = ti(state,A).  [para(13(a,1),15(a,1))].
+17 ti(state,A) = undefined(state).  [copy(16),flip(a)].
+18 ti(state,A) = c_1.  [new_symbol(14)].
+19 undefined(state) = c_1.  [para(17(a,1),18(a,1))].
+20 undefined(state) != c_0.  [para(17(a,1),12(a,1))].
+21 c_1 != c_0.  [para(19(a,1),20(a,1))].
+22 undefined(state) = c_0.  [para(17(a,1),10(a,1))].
+23 c_1 = c_0.  [para(19(a,1),22(a,1))].
+24 $F.  [resolve(21,a,23,a)].
+
+============================== end of proof ==========================

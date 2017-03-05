@@ -1,0 +1,14 @@
+
+2 big_f(c1,c2).  [clausify(1)].
+3 -big_f(c1,A) | -big_f(c2,A) | -big_f(A,B).  [clausify(1)].
+4 big_g(c2,f1(A,B)) | big_g(B,f1(A,B)) | -big_f(A,B) | big_f(c2,B).  [clausify(1)].
+5 -big_g(c2,f1(A,B)) | -big_g(B,f1(A,B)) | -big_f(A,B) | big_f(c2,B).  [clausify(1)].
+6 -big_f(c1,c2) | -big_f(c2,c2).  [factor(3,b,c)].
+7 -big_f(c2,c2).  [resolve(2,a,6,a)].
+8 big_g(c2,f1(c1,c2)) | big_g(c2,f1(c1,c2)) | big_f(c2,c2).  [resolve(4,c,2,a)].
+9 big_g(c2,f1(c1,c2)) | big_f(c2,c2).  [copy(8),merge(b)].
+10 big_g(c2,f1(c1,c2)).  [resolve(7,a,9,b)].
+11 -big_g(c2,f1(c1,c2)) | -big_g(c2,f1(c1,c2)) | big_f(c2,c2).  [resolve(5,c,2,a)].
+12 -big_g(c2,f1(c1,c2)) | big_f(c2,c2).  [copy(11),merge(b)].
+13 big_f(c2,c2).  [resolve(10,a,12,a)].
+14 $F.  [resolve(7,a,13,a)].

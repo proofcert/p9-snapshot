@@ -1,0 +1,60 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n050.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:28:38 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 6993 was started by sandbox on n050.star.cs.uiowa.edu,
+Fri Jun  6 06:28:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_6961_n050.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 26.
+% Level of proof is 8.
+% Maximum clause weight is 0.000.
+% Given clauses 0.
+
+
+1 (all A (relation(A) -> (well_ordering(A) <-> reflexive(A) & transitive(A) & antisymmetric(A) & connected(A) & well_founded_relation(A)))).  [assumption].
+2 (all A relation(inclusion_relation(A))).  [assumption].
+3 (all A reflexive(inclusion_relation(A))).  [assumption].
+4 (all A transitive(inclusion_relation(A))).  [assumption].
+5 (all A (ordinal(A) -> connected(inclusion_relation(A)))).  [assumption].
+6 (all A antisymmetric(inclusion_relation(A))).  [assumption].
+7 (all A (ordinal(A) -> well_founded_relation(inclusion_relation(A)))).  [assumption].
+8 -(all A (ordinal(A) -> well_ordering(inclusion_relation(A)))).  [assumption].
+9 -ordinal(A) | connected(inclusion_relation(A)).  [clausify(5)].
+10 ordinal(c2).  [clausify(8)].
+11 -ordinal(A) | well_founded_relation(inclusion_relation(A)).  [clausify(7)].
+12 relation(inclusion_relation(A)).  [clausify(2)].
+13 -relation(A) | well_ordering(A) | -reflexive(A) | -transitive(A) | -antisymmetric(A) | -connected(A) | -well_founded_relation(A).  [clausify(1)].
+14 well_ordering(inclusion_relation(A)) | -reflexive(inclusion_relation(A)) | -transitive(inclusion_relation(A)) | -antisymmetric(inclusion_relation(A)) | -connected(inclusion_relation(A)) | -well_founded_relation(inclusion_relation(A)).  [resolve(13,a,12,a)].
+15 reflexive(inclusion_relation(A)).  [clausify(3)].
+16 well_ordering(inclusion_relation(A)) | -transitive(inclusion_relation(A)) | -antisymmetric(inclusion_relation(A)) | -connected(inclusion_relation(A)) | -well_founded_relation(inclusion_relation(A)).  [resolve(14,b,15,a)].
+17 transitive(inclusion_relation(A)).  [clausify(4)].
+18 well_ordering(inclusion_relation(A)) | -antisymmetric(inclusion_relation(A)) | -connected(inclusion_relation(A)) | -well_founded_relation(inclusion_relation(A)).  [resolve(16,b,17,a)].
+19 antisymmetric(inclusion_relation(A)).  [clausify(6)].
+20 well_ordering(inclusion_relation(A)) | -connected(inclusion_relation(A)) | -well_founded_relation(inclusion_relation(A)).  [resolve(18,b,19,a)].
+21 -well_ordering(inclusion_relation(c2)).  [clausify(8)].
+22 -connected(inclusion_relation(c2)) | -well_founded_relation(inclusion_relation(c2)).  [resolve(20,a,21,a)].
+23 connected(inclusion_relation(c2)).  [resolve(9,a,10,a)].
+24 -well_founded_relation(inclusion_relation(c2)).  [resolve(22,a,23,a)].
+25 well_founded_relation(inclusion_relation(c2)).  [resolve(11,a,10,a)].
+26 $F.  [resolve(24,a,25,a)].
+
+============================== end of proof ==========================

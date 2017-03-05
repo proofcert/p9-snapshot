@@ -1,0 +1,116 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n049.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:35:13 CDT 2014
+% CPUTime    : 5.24 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 55817 was started by sandbox on n049.star.cs.uiowa.edu,
+Fri Jun  6 01:35:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_55785_n049.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 4.95 (+ 0.06) seconds.
+% Length of proof is 70.
+% Level of proof is 10.
+% Maximum clause weight is 15.000.
+% Given clauses 4065.
+
+
+1 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+2 (all A all B set_union2(A,B) = set_union2(B,A)).  [assumption].
+3 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+4 (all A (A = empty_set <-> (all B -in(B,A)))).  [assumption].
+5 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+6 (all A all B ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A))).  [assumption].
+7 (all A (relation(A) -> relation_field(A) = set_union2(relation_dom(A),relation_rng(A)))).  [assumption].
+8 (all A all B subset(A,A)).  [assumption].
+9 (all A all B all C (subset(A,B) & subset(B,C) -> subset(A,C))).  [assumption].
+10 (all A all B all C (relation(C) -> (in(ordered_pair(A,B),C) -> in(A,relation_dom(C)) & in(B,relation_rng(C))))).  [assumption].
+11 (all A all B (subset(A,B) -> set_intersection2(A,B) = A)).  [assumption].
+12 (all A set_intersection2(A,empty_set) = empty_set).  [assumption].
+13 (all A all B all C (subset(unordered_pair(A,B),C) <-> in(A,C) & in(B,C))).  [assumption].
+14 (all A set_difference(A,empty_set) = A).  [assumption].
+15 (all A all B set_difference(A,set_difference(A,B)) = set_intersection2(A,B)).  [assumption].
+16 (all A all B (set_difference(A,singleton(B)) = A <-> -in(B,A))).  [assumption].
+17 (all A unordered_pair(A,A) = singleton(A)).  [assumption].
+18 (all A all B subset(A,set_union2(A,B))).  [assumption].
+19 -(all A all B all C (relation(C) -> (in(ordered_pair(A,B),C) -> in(A,relation_field(C)) & in(B,relation_field(C))))).  [assumption].
+20 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+21 set_union2(A,B) = set_union2(B,A).  [clausify(2)].
+22 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(3)].
+23 empty_set != A | -in(B,A).  [clausify(4)].
+24 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(5)].
+25 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(6)].
+26 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(20(a,1),25(a,2))].
+27 -relation(A) | relation_field(A) = set_union2(relation_dom(A),relation_rng(A)).  [clausify(7)].
+28 -relation(A) | set_union2(relation_dom(A),relation_rng(A)) = relation_field(A).  [copy(27),flip(b)].
+29 subset(A,A).  [clausify(8)].
+30 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(9)].
+31 -relation(A) | -in(ordered_pair(B,C),A) | in(B,relation_dom(A)).  [clausify(10)].
+32 -relation(A) | -in(unordered_pair(singleton(B),unordered_pair(B,C)),A) | in(B,relation_dom(A)).  [para(26(a,1),31(b,1))].
+33 -relation(A) | -in(ordered_pair(B,C),A) | in(C,relation_rng(A)).  [clausify(10)].
+34 -relation(A) | -in(unordered_pair(singleton(B),unordered_pair(B,C)),A) | in(C,relation_rng(A)).  [para(26(a,1),33(b,1))].
+35 -subset(A,B) | set_intersection2(A,B) = A.  [clausify(11)].
+36 set_intersection2(A,empty_set) = empty_set.  [clausify(12)].
+37 -subset(unordered_pair(A,B),C) | in(A,C).  [clausify(13)].
+38 subset(unordered_pair(A,B),C) | -in(A,C) | -in(B,C).  [clausify(13)].
+39 set_difference(A,empty_set) = A.  [clausify(14)].
+40 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(15)].
+41 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(40),flip(a)].
+42 set_difference(A,singleton(B)) = A | in(B,A).  [clausify(16)].
+43 singleton(A) = unordered_pair(A,A).  [clausify(17)].
+44 subset(A,set_union2(A,B)).  [clausify(18)].
+45 relation(c6).  [clausify(19)].
+46 in(ordered_pair(c4,c5),c6).  [clausify(19)].
+47 in(unordered_pair(singleton(c4),unordered_pair(c4,c5)),c6).  [para(26(a,1),46(a,1))].
+48 in(unordered_pair(unordered_pair(c4,c4),unordered_pair(c4,c5)),c6).  [para(43(a,1),47(a,1,1))].
+49 -in(c4,relation_field(c6)) | -in(c5,relation_field(c6)).  [clausify(19)].
+50 subset(unordered_pair(A,A),B) | -in(A,B).  [factor(38,b,c)].
+51 set_difference(A,set_difference(A,empty_set)) = empty_set.  [para(41(a,1),36(a,1))].
+52 set_difference(A,A) = empty_set.  [para(39(a,1),51(a,1,2))].
+53 -subset(A,B) | set_difference(A,set_difference(A,B)) = A.  [para(41(a,1),35(b,1))].
+54 set_difference(A,set_difference(A,B)) = set_intersection2(B,A).  [para(41(a,1),22(a,1))].
+55 set_difference(A,set_difference(A,B)) = set_difference(B,set_difference(B,A)).  [para(41(a,1),54(a,2))].
+56 set_difference(A,unordered_pair(B,B)) = A | in(B,A).  [para(43(a,1),42(a,1,2))].
+57 -relation(A) | -in(unordered_pair(unordered_pair(B,B),unordered_pair(B,C)),A) | in(C,relation_rng(A)).  [para(43(a,1),34(b,1,1))].
+58 -relation(A) | -in(unordered_pair(unordered_pair(B,B),unordered_pair(B,C)),A) | in(B,relation_dom(A)).  [para(43(a,1),32(b,1,1))].
+59 in(A,unordered_pair(A,B)).  [resolve(37,a,29,a)].
+60 -in(A,B) | in(A,set_union2(B,C)).  [resolve(44,a,24,a)].
+61 set_union2(relation_dom(c6),relation_rng(c6)) = relation_field(c6).  [resolve(45,a,28,a)].
+62 -relation(c6) | in(c5,relation_rng(c6)).  [resolve(57,b,48,a)].
+63 in(c5,relation_rng(c6)).  [resolve(45,a,62,a)].
+64 -relation(c6) | in(c4,relation_dom(c6)).  [resolve(58,b,48,a)].
+65 in(c4,relation_dom(c6)).  [resolve(45,a,64,a)].
+66 subset(unordered_pair(c4,c4),relation_dom(c6)).  [resolve(65,a,50,b)].
+67 empty_set != unordered_pair(A,B).  [resolve(59,a,23,b)].
+68 unordered_pair(A,B) != empty_set.  [copy(67),flip(a)].
+69 in(c5,set_union2(relation_rng(c6),A)).  [resolve(60,a,63,a)].
+70 in(c5,set_union2(A,relation_rng(c6))).  [para(21(a,1),69(a,2))].
+71 subset(relation_dom(c6),relation_field(c6)).  [para(61(a,1),44(a,2))].
+72 in(c5,relation_field(c6)).  [para(61(a,1),70(a,2))].
+73 -in(c4,relation_field(c6)).  [resolve(72,a,49,b)].
+74 set_difference(relation_field(c6),unordered_pair(c4,c4)) = relation_field(c6).  [resolve(73,a,56,b)].
+75 -subset(A,relation_dom(c6)) | subset(A,relation_field(c6)).  [resolve(71,a,30,b)].
+76 subset(unordered_pair(c4,c4),relation_field(c6)).  [resolve(75,a,66,a)].
+77 set_difference(unordered_pair(c4,c4),set_difference(unordered_pair(c4,c4),relation_field(c6))) = unordered_pair(c4,c4).  [resolve(76,a,53,a)].
+78 set_difference(relation_field(c6),set_difference(relation_field(c6),unordered_pair(c4,c4))) = unordered_pair(c4,c4).  [para(55(a,1),77(a,1))].
+79 set_difference(relation_field(c6),relation_field(c6)) = unordered_pair(c4,c4).  [para(74(a,1),78(a,1,2))].
+80 empty_set = unordered_pair(c4,c4).  [para(52(a,1),79(a,1))].
+81 unordered_pair(c4,c4) = empty_set.  [copy(80),flip(a)].
+82 $F.  [resolve(68,a,81,a)].
+
+============================== end of proof ==========================

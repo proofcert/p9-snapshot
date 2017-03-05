@@ -1,0 +1,128 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n170.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:08:13 CDT 2014
+% CPUTime    : 0.33 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 36393 was started by sandbox on n170.star.cs.uiowa.edu,
+Thu Jun  5 22:08:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_36361_n170.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.17 (+ 0.00) seconds: goals.
+% Length of proof is 46.
+% Level of proof is 8.
+% Maximum clause weight is 51.000.
+% Given clauses 165.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A addition(A,zero) = A).  [assumption].
+3 (all A multiplication(A,one) = A).  [assumption].
+4 (all A multiplication(one,A) = A).  [assumption].
+5 (all A all B all C multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C))).  [assumption].
+6 (all A multiplication(A,zero) = zero).  [assumption].
+7 (all A multiplication(antidomain(A),A) = zero).  [assumption].
+8 (all A addition(antidomain(antidomain(A)),antidomain(A)) = one).  [assumption].
+9 (all A domain(A) = antidomain(antidomain(A))).  [assumption].
+10 (all A all B domain_difference(A,B) = multiplication(domain(A),antidomain(B))).  [assumption].
+11 (all A all B forward_diamond(A,B) = domain(multiplication(A,domain(B)))).  [assumption].
+12 (all A forward_diamond(A,divergence(A)) = divergence(A)).  [assumption].
+13 -(all A ((all B addition(domain(B),forward_diamond(star(A),domain_difference(domain(B),forward_diamond(A,domain(B))))) = forward_diamond(star(A),domain_difference(domain(B),forward_diamond(A,domain(B))))) -> divergence(A) = zero)).  [assumption].
+14 addition(A,zero) = A.  [clausify(2)].
+15 multiplication(A,one) = A.  [clausify(3)].
+16 multiplication(one,A) = A.  [clausify(4)].
+17 multiplication(A,zero) = zero.  [clausify(6)].
+18 multiplication(antidomain(A),A) = zero.  [clausify(7)].
+19 domain(A) = antidomain(antidomain(A)).  [clausify(9)].
+20 addition(A,B) = addition(B,A).  [clausify(1)].
+21 divergence(A) = forward_diamond(A,divergence(A)).  [clausify(12)].
+22 forward_diamond(A,divergence(A)) = divergence(A).  [copy(21),flip(a)].
+23 addition(antidomain(antidomain(A)),antidomain(A)) = one.  [clausify(8)].
+24 addition(antidomain(A),antidomain(antidomain(A))) = one.  [para(20(a,1),23(a,1))].
+25 domain_difference(A,B) = multiplication(domain(A),antidomain(B)).  [clausify(10)].
+26 domain_difference(A,B) = multiplication(antidomain(antidomain(A)),antidomain(B)).  [para(19(a,1),25(a,2,1))].
+27 forward_diamond(A,B) = domain(multiplication(A,domain(B))).  [clausify(11)].
+28 forward_diamond(A,B) = domain(multiplication(A,antidomain(antidomain(B)))).  [para(19(a,1),27(a,2,1,2))].
+29 forward_diamond(A,B) = antidomain(antidomain(multiplication(A,antidomain(antidomain(B))))).  [para(19(a,1),28(a,2))].
+30 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(5)].
+31 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(30),flip(a)].
+32 forward_diamond(star(c1),domain_difference(domain(A),forward_diamond(c1,domain(A)))) = addition(domain(A),forward_diamond(star(c1),domain_difference(domain(A),forward_diamond(c1,domain(A))))).  [clausify(13)].
+33 forward_diamond(star(c1),domain_difference(antidomain(antidomain(A)),forward_diamond(c1,domain(A)))) = addition(domain(A),forward_diamond(star(c1),domain_difference(domain(A),forward_diamond(c1,domain(A))))).  [para(19(a,1),32(a,1,2,1))].
+34 forward_diamond(star(c1),domain_difference(antidomain(antidomain(A)),forward_diamond(c1,antidomain(antidomain(A))))) = addition(domain(A),forward_diamond(star(c1),domain_difference(domain(A),forward_diamond(c1,domain(A))))).  [para(19(a,1),33(a,1,2,2,2))].
+35 forward_diamond(star(c1),domain_difference(antidomain(antidomain(A)),antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A))))))))) = addition(domain(A),forward_diamond(star(c1),domain_difference(domain(A),forward_diamond(c1,domain(A))))).  [para(29(a,1),34(a,1,2,2))].
+36 forward_diamond(star(c1),multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))) = addition(domain(A),forward_diamond(star(c1),domain_difference(domain(A),forward_diamond(c1,domain(A))))).  [para(26(a,1),35(a,1,2))].
+37 antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))))))) = addition(domain(A),forward_diamond(star(c1),domain_difference(domain(A),forward_diamond(c1,domain(A))))).  [para(29(a,1),36(a,1))].
+38 antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))))))) = addition(antidomain(antidomain(A)),forward_diamond(star(c1),domain_difference(domain(A),forward_diamond(c1,domain(A))))).  [para(19(a,1),37(a,2,1))].
+39 antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))))))) = addition(antidomain(antidomain(A)),forward_diamond(star(c1),domain_difference(antidomain(antidomain(A)),forward_diamond(c1,domain(A))))).  [para(19(a,1),38(a,2,2,2,1))].
+40 antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))))))) = addition(antidomain(antidomain(A)),forward_diamond(star(c1),domain_difference(antidomain(antidomain(A)),forward_diamond(c1,antidomain(antidomain(A)))))).  [para(19(a,1),39(a,2,2,2,2,2))].
+41 antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))))))) = addition(antidomain(antidomain(A)),forward_diamond(star(c1),domain_difference(antidomain(antidomain(A)),antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))).  [para(29(a,1),40(a,2,2,2,2))].
+42 antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))))))) = addition(antidomain(antidomain(A)),forward_diamond(star(c1),multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A))))))))))).  [para(26(a,1),41(a,2,2,2))].
+43 antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))))))) = addition(antidomain(antidomain(A)),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A))))))))))))))).  [para(29(a,1),42(a,2,2))].
+44 addition(antidomain(antidomain(A)),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A))))))))))))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(A)))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(A)))))))))))))).  [copy(43),flip(a)].
+45 divergence(c1) != zero.  [clausify(13)].
+46 antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))) = divergence(A).  [para(29(a,1),22(a,1))].
+47 zero = antidomain(one).  [para(18(a,1),15(a,1))].
+48 antidomain(one) = zero.  [copy(47),flip(a)].
+49 addition(multiplication(A,B),multiplication(A,zero)) = multiplication(A,B).  [para(14(a,1),31(a,2,2))].
+50 addition(multiplication(A,B),zero) = multiplication(A,B).  [para(17(a,1),49(a,1,2))].
+51 addition(zero,multiplication(A,B)) = multiplication(A,B).  [para(20(a,1),50(a,1))].
+52 addition(A,multiplication(A,B)) = multiplication(A,addition(one,B)).  [para(15(a,1),31(a,1,1))].
+53 addition(A,multiplication(A,B)) = multiplication(A,addition(B,one)).  [para(20(a,1),52(a,2,2))].
+54 multiplication(A,addition(B,one)) = addition(A,multiplication(A,B)).  [copy(53),flip(a)].
+55 addition(zero,multiplication(antidomain(A),B)) = multiplication(antidomain(A),addition(A,B)).  [para(18(a,1),31(a,1,1))].
+56 multiplication(antidomain(A),B) = multiplication(antidomain(A),addition(A,B)).  [para(51(a,1),55(a,1))].
+57 multiplication(antidomain(A),addition(A,B)) = multiplication(antidomain(A),B).  [copy(56),flip(a)].
+58 addition(divergence(A),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A))))))))))))))))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))))))))))))))).  [para(46(a,1),44(a,1,1))].
+59 addition(divergence(A),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(A))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A))))))))))))))))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))))))))))))))).  [para(46(a,1),58(a,1,2,1,1,2,1,1,1,1,1))].
+60 addition(divergence(A),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(A))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(A)))))))))))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))))))))))))))).  [para(46(a,1),59(a,1,2,1,1,2,1,1,2,1,1,1,2,1,1))].
+61 addition(divergence(A),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(A))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(A)))))))))))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(A))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))))))))))))))).  [para(46(a,1),60(a,2,1,1,2,1,1,1,1,1))].
+62 addition(divergence(A),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(A))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(A)))))))))))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(A))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(A))))))))))))).  [para(46(a,1),61(a,2,1,1,2,1,1,2,1,1,1,2,1,1))].
+63 addition(zero,antidomain(antidomain(one))) = one.  [para(48(a,1),24(a,1,1))].
+64 addition(zero,antidomain(zero)) = one.  [para(48(a,1),63(a,1,2,1))].
+65 addition(multiplication(A,zero),multiplication(A,antidomain(zero))) = multiplication(A,one).  [para(64(a,1),31(a,2,2))].
+66 addition(zero,multiplication(A,antidomain(zero))) = multiplication(A,one).  [para(17(a,1),65(a,1,1))].
+67 multiplication(A,antidomain(zero)) = multiplication(A,one).  [para(51(a,1),66(a,1))].
+68 multiplication(A,antidomain(zero)) = A.  [para(15(a,1),67(a,2))].
+69 one = antidomain(zero).  [para(68(a,1),16(a,1))].
+70 antidomain(zero) = one.  [copy(69),flip(a)].
+71 multiplication(antidomain(A),addition(A,one)) = addition(antidomain(A),zero).  [para(18(a,1),54(a,2,2))].
+72 multiplication(antidomain(A),one) = addition(antidomain(A),zero).  [para(57(a,1),71(a,1))].
+73 antidomain(A) = addition(antidomain(A),zero).  [para(15(a,1),72(a,1))].
+74 antidomain(A) = addition(zero,antidomain(A)).  [para(20(a,1),73(a,2))].
+75 addition(zero,antidomain(A)) = antidomain(A).  [copy(74),flip(a)].
+76 addition(zero,divergence(A)) = antidomain(antidomain(multiplication(A,antidomain(antidomain(divergence(A)))))).  [para(46(a,1),75(a,1,2))].
+77 addition(zero,divergence(A)) = divergence(A).  [para(46(a,1),76(a,2))].
+78 addition(divergence(c1),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(divergence(c1))))))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(46(a,1),62(a,1,2,1,1,2,1,1,2,1))].
+79 addition(divergence(c1),antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(zero)))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(18(a,1),78(a,1,2,1,1,2,1,1))].
+80 addition(divergence(c1),antidomain(antidomain(multiplication(star(c1),antidomain(one))))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(70(a,1),79(a,1,2,1,1,2,1))].
+81 addition(divergence(c1),antidomain(antidomain(multiplication(star(c1),zero)))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(48(a,1),80(a,1,2,1,1,2))].
+82 addition(divergence(c1),antidomain(antidomain(zero))) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(17(a,1),81(a,1,2,1,1))].
+83 addition(divergence(c1),antidomain(one)) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(70(a,1),82(a,1,2,1))].
+84 addition(divergence(c1),zero) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(48(a,1),83(a,1,2))].
+85 addition(zero,divergence(c1)) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(20(a,1),84(a,1))].
+86 divergence(c1) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(antidomain(antidomain(multiplication(c1,antidomain(antidomain(divergence(c1))))))))))))).  [para(77(a,1),85(a,1))].
+87 divergence(c1) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(multiplication(antidomain(antidomain(divergence(c1))),antidomain(divergence(c1)))))))).  [para(46(a,1),86(a,2,1,1,2,1,1,2,1))].
+88 divergence(c1) = antidomain(antidomain(multiplication(star(c1),antidomain(antidomain(zero))))).  [para(18(a,1),87(a,2,1,1,2,1,1))].
+89 divergence(c1) = antidomain(antidomain(multiplication(star(c1),antidomain(one)))).  [para(70(a,1),88(a,2,1,1,2,1))].
+90 divergence(c1) = antidomain(antidomain(multiplication(star(c1),zero))).  [para(48(a,1),89(a,2,1,1,2))].
+91 divergence(c1) = antidomain(antidomain(zero)).  [para(17(a,1),90(a,2,1,1))].
+92 divergence(c1) = antidomain(one).  [para(70(a,1),91(a,2,1))].
+93 divergence(c1) = zero.  [para(48(a,1),92(a,2))].
+94 $F.  [resolve(93,a,45,a)].
+
+============================== end of proof ==========================

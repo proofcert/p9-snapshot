@@ -1,0 +1,37 @@
+
+
+
+
+
+
+
+8 empty(c1).  [clausify(3)].
+9 empty(f5(A)).  [clausify(4)].
+10 element(f5(A),powerset(A)).  [clausify(4)].
+11 element(c4,powerset(powerset(c3))).  [clausify(7)].
+12 complements_of_subsets(c3,c4) = empty_set.  [clausify(7)].
+13 empty_set = complements_of_subsets(c3,c4).  [copy(12),flip(a)].
+14 empty_set != c4.  [clausify(7)].
+15 complements_of_subsets(c3,c4) != c4.  [para(13(a,1),14(a,1))].
+16 -in(A,B) | -empty(B).  [clausify(6)].
+17 -empty(A) | empty_set = A.  [clausify(5)].
+18 -empty(A) | complements_of_subsets(c3,c4) = A.  [para(13(a,1),17(b,1))].
+19 -element(A,powerset(powerset(B))) | complements_of_subsets(B,complements_of_subsets(B,A)) = A.  [clausify(2)].
+20 -element(A,powerset(powerset(B))) | -element(C,powerset(powerset(B))) | complements_of_subsets(B,A) = C | in(f2(B,A,C),C) | in(subset_complement(B,f2(B,A,C)),A).  [clausify(1)].
+21 -element(A,powerset(powerset(B))) | complements_of_subsets(B,A) = A | in(f2(B,A,A),A) | in(subset_complement(B,f2(B,A,A)),A).  [factor(20,a,b)].
+22 -in(A,c1).  [resolve(16,b,8,a)].
+23 complements_of_subsets(c3,c4) = f5(A).  [resolve(18,a,9,a)].
+24 f5(A) = complements_of_subsets(c3,c4).  [copy(23),flip(a)].
+25 complements_of_subsets(c3,c4) = c1.  [resolve(18,a,8,a)].
+26 f5(A) = c1.  [para(25(a,1),24(a,2))].
+27 c1 != c4.  [para(25(a,1),15(a,1))].
+28 c4 != c1.  [copy(27),flip(a)].
+29 element(c1,powerset(A)).  [para(26(a,1),10(a,1))].
+30 complements_of_subsets(c3,complements_of_subsets(c3,c4)) = c4.  [resolve(19,a,11,a)].
+31 complements_of_subsets(c3,c1) = c4.  [para(25(a,1),30(a,1,2))].
+32 complements_of_subsets(A,c1) = c1 | in(f2(A,c1,c1),c1) | in(subset_complement(A,f2(A,c1,c1)),c1).  [resolve(29,a,21,a)].
+33 complements_of_subsets(A,c1) = c1 | in(subset_complement(A,f2(A,c1,c1)),c1).  [resolve(22,a,32,b)].
+34 complements_of_subsets(A,c1) = c1.  [resolve(22,a,33,b)].
+35 c1 = c4.  [para(34(a,1),31(a,1))].
+36 c4 = c1.  [copy(35),flip(a)].
+37 $F.  [resolve(28,a,36,a)].

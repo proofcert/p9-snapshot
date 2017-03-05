@@ -1,0 +1,18 @@
+
+2 op(op(e2,e3),op(e3,e2)) = e3.  [assumption].
+3 e1 != e3.  [assumption].
+4 e1 = op(e3,op(e3,op(e3,e3))).  [assumption].
+5 op(e3,op(e3,op(e3,e3))) = e1.  [copy(4),flip(a)].
+6 e2 = op(e3,e3).  [assumption].
+7 op(e3,e3) = e2.  [copy(6),flip(a)].
+8 e4 = op(e3,op(e3,e3)).  [assumption].
+9 e4 = op(e3,e2).  [para(7(a,1),8(a,2,2))].
+10 op(e3,e2) = e4.  [copy(9),flip(a)].
+11 op(op(e3,e3),e3) = e3.  [clausify(1)].
+12 op(e2,e3) = e3.  [para(7(a,1),11(a,1,1))].
+13 op(e3,op(e3,e2)) = e1.  [para(7(a,1),5(a,1,2,2))].
+14 op(e3,e4) = e1.  [para(10(a,1),13(a,1,2))].
+15 op(e3,op(e3,e2)) = e3.  [para(12(a,1),2(a,1,1))].
+16 op(e3,e4) = e3.  [para(10(a,1),15(a,1,2))].
+17 e1 = e3.  [para(14(a,1),16(a,1))].
+18 $F.  [resolve(3,a,17,a)].

@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n061.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:40:23 CDT 2014
+% CPUTime    : 0.19 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 56330 was started by sandbox on n061.star.cs.uiowa.edu,
+Thu Jun  5 14:40:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_56298_n061.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 20.
+% Level of proof is 6.
+% Maximum clause weight is 15.000.
+% Given clauses 207.
+
+
+1 (all A all B all C (occurrence_of(A,B) & occurrence_of(A,C) -> B = C)).  [assumption].
+2 (all A all B (leaf(A,B) <-> (root(A,B) | (exists C min_precedes(C,A,B))) & -(exists D min_precedes(A,D,B)))).  [assumption].
+3 (all A all B (leaf_occ(A,B) <-> (exists C (occurrence_of(B,C) & subactivity_occurrence(A,B) & leaf(A,C))))).  [assumption].
+4 (all A (occurrence_of(A,tptp0) -> (exists B exists C exists D (occurrence_of(B,tptp3) & root_occ(B,A) & occurrence_of(C,tptp4) & next_subocc(B,C,tptp0) & (occurrence_of(D,tptp1) | occurrence_of(D,tptp2)) & next_subocc(C,D,tptp0) & leaf_occ(D,A))))).  [assumption].
+5 -(all A (occurrence_of(A,tptp0) -> (exists B exists C (leaf_occ(C,A) & (occurrence_of(C,tptp1) -> -(exists D (occurrence_of(D,tptp2) & min_precedes(B,D,tptp0)))) & (occurrence_of(C,tptp2) -> -(exists E (occurrence_of(E,tptp1) & min_precedes(B,E,tptp0)))))))).  [assumption].
+6 -leaf_occ(A,B) | leaf(A,f9(A,B)).  [clausify(3)].
+7 -leaf(A,B) | -min_precedes(A,C,B).  [clausify(2)].
+8 occurrence_of(c1,tptp0).  [clausify(5)].
+9 -occurrence_of(A,tptp0) | leaf_occ(f15(A),A).  [clausify(4)].
+10 -leaf_occ(A,B) | occurrence_of(B,f9(A,B)).  [clausify(3)].
+11 -occurrence_of(A,B) | -occurrence_of(A,C) | C = B.  [clausify(1)].
+12 -leaf_occ(A,c1) | min_precedes(B,f16(B,A),tptp0) | min_precedes(B,f17(B,A),tptp0).  [clausify(5)].
+13 -leaf_occ(A,B) | -min_precedes(A,C,f9(A,B)).  [resolve(6,b,7,a)].
+14 leaf_occ(f15(c1),c1).  [resolve(9,a,8,a)].
+15 -occurrence_of(c1,A) | A = tptp0.  [resolve(11,a,8,a)].
+16 -occurrence_of(c1,A) | tptp0 = A.  [copy(15),flip(b)].
+17 min_precedes(A,f16(A,f15(c1)),tptp0) | min_precedes(A,f17(A,f15(c1)),tptp0).  [resolve(14,a,12,a)].
+18 occurrence_of(c1,f9(f15(c1),c1)).  [resolve(14,a,10,a)].
+19 tptp0 = f9(f15(c1),c1).  [resolve(18,a,16,a)].
+20 f9(f15(c1),c1) = tptp0.  [copy(19),flip(a)].
+21 -leaf_occ(f15(c1),c1) | -min_precedes(f15(c1),A,tptp0).  [para(20(a,1),13(b,3))].
+22 -min_precedes(f15(c1),A,tptp0).  [resolve(14,a,21,a)].
+23 min_precedes(f15(c1),f16(f15(c1),f15(c1)),tptp0).  [resolve(17,b,22,a)].
+24 $F.  [resolve(22,a,23,a)].
+
+============================== end of proof ==========================

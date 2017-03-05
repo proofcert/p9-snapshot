@@ -1,0 +1,50 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n091.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:44:48 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 60819 was started by sandbox on n091.star.cs.uiowa.edu,
+Fri Jun  6 07:44:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_60787_n091.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds: t26_finset_1.
+% Length of proof is 14.
+% Level of proof is 5.
+% Maximum clause weight is 8.000.
+% Given clauses 8.
+
+
+1 (all A all B (relation(A) & function(A) & finite(B) -> finite(relation_image(A,B)))).  [assumption].
+2 (all A (relation(A) -> relation_image(A,relation_dom(A)) = relation_rng(A))).  [assumption].
+3 -(all A (relation(A) & function(A) -> (finite(relation_dom(A)) -> finite(relation_rng(A))))).  [assumption].
+4 -relation(A) | relation_rng(A) = relation_image(A,relation_dom(A)).  [clausify(2)].
+5 relation(c2).  [clausify(3)].
+6 -relation(A) | -function(A) | -finite(B) | finite(relation_image(A,B)).  [clausify(1)].
+7 function(c2).  [clausify(3)].
+8 finite(relation_dom(c2)).  [clausify(3)].
+9 -finite(relation_rng(c2)).  [clausify(3)].
+10 relation_rng(c2) = relation_image(c2,relation_dom(c2)).  [resolve(4,a,5,a)].
+11 relation_image(c2,relation_dom(c2)) = relation_rng(c2).  [copy(10),flip(a)].
+12 -function(c2) | -finite(A) | finite(relation_image(c2,A)).  [resolve(6,a,5,a)].
+13 -finite(A) | finite(relation_image(c2,A)).  [resolve(12,a,7,a)].
+14 finite(relation_image(c2,relation_dom(c2))).  [resolve(13,a,8,a)].
+15 finite(relation_rng(c2)).  [para(11(a,1),14(a,1))].
+16 $F.  [resolve(15,a,9,a)].
+
+============================== end of proof ==========================

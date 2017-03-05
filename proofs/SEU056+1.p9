@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n106.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:57:18 CDT 2014
+% CPUTime    : 0.19 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 23833 was started by sandbox on n106.star.cs.uiowa.edu,
+Thu Jun  5 14:57:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_23801_n106.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 4.
+% Maximum clause weight is 13.000.
+% Given clauses 38.
+
+
+1 (all A all B (disjoint(A,B) <-> set_intersection2(A,B) = empty_set)).  [assumption].
+2 (all A all B all C (relation(C) & function(C) -> (one_to_one(C) -> relation_image(C,set_intersection2(A,B)) = set_intersection2(relation_image(C,A),relation_image(C,B))))).  [assumption].
+3 (all A (relation(A) -> relation_image(A,empty_set) = empty_set)).  [assumption].
+4 -(all A all B all C (relation(C) & function(C) -> (disjoint(A,B) & one_to_one(C) -> disjoint(relation_image(C,A),relation_image(C,B))))).  [assumption].
+5 function(c11).  [clausify(4)].
+6 -relation(A) | -function(A) | -one_to_one(A) | relation_image(A,set_intersection2(B,C)) = set_intersection2(relation_image(A,B),relation_image(A,C)).  [clausify(2)].
+7 relation(c11).  [clausify(4)].
+8 one_to_one(c11).  [clausify(4)].
+9 disjoint(c9,c10).  [clausify(4)].
+10 -disjoint(relation_image(c11,c9),relation_image(c11,c10)).  [clausify(4)].
+11 -relation(A) | relation_image(A,empty_set) = empty_set.  [clausify(3)].
+12 -disjoint(A,B) | set_intersection2(A,B) = empty_set.  [clausify(1)].
+13 disjoint(A,B) | set_intersection2(A,B) != empty_set.  [clausify(1)].
+14 -relation(c11) | -one_to_one(c11) | relation_image(c11,set_intersection2(A,B)) = set_intersection2(relation_image(c11,A),relation_image(c11,B)).  [resolve(6,b,5,a)].
+15 -relation(c11) | -one_to_one(c11) | set_intersection2(relation_image(c11,A),relation_image(c11,B)) = relation_image(c11,set_intersection2(A,B)).  [copy(14),flip(c)].
+16 -one_to_one(c11) | set_intersection2(relation_image(c11,A),relation_image(c11,B)) = relation_image(c11,set_intersection2(A,B)).  [resolve(7,a,15,a)].
+17 set_intersection2(relation_image(c11,A),relation_image(c11,B)) = relation_image(c11,set_intersection2(A,B)).  [resolve(8,a,16,a)].
+18 relation_image(c11,empty_set) = empty_set.  [resolve(11,a,7,a)].
+19 set_intersection2(c9,c10) = empty_set.  [resolve(12,a,9,a)].
+20 set_intersection2(relation_image(c11,c9),relation_image(c11,c10)) != empty_set.  [resolve(13,a,10,a)].
+21 relation_image(c11,set_intersection2(c9,c10)) != empty_set.  [para(17(a,1),20(a,1))].
+22 relation_image(c11,empty_set) != empty_set.  [para(19(a,1),21(a,1,2))].
+23 empty_set != empty_set.  [para(18(a,1),22(a,1))].
+24 $F.  [copy(23),xx(a)].
+
+============================== end of proof ==========================

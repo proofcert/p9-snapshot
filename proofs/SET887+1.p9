@@ -1,0 +1,112 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n149.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:31:23 CDT 2014
+% CPUTime    : 0.68 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 911 was started by sandbox on n149.star.cs.uiowa.edu,
+Sat Jun  7 00:31:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_879_n149.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.55 (+ 0.01) seconds.
+% Length of proof is 43.
+% Level of proof is 12.
+% Maximum clause weight is 24.000.
+% Given clauses 198.
+
+
+1 (all A all B (in(A,B) -> -in(B,A))).  [assumption].
+2 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+3 (all A (A = empty_set <-> (all B -in(B,A)))).  [assumption].
+4 (all A all B all C (C = unordered_pair(A,B) <-> (all D (in(D,C) <-> D = A | D = B)))).  [assumption].
+5 (all A all B all C (subset(A,unordered_pair(B,C)) <-> -(A != empty_set & A != singleton(B) & A != singleton(C) & A != unordered_pair(B,C)))).  [assumption].
+6 (all A all B all C all D -(unordered_pair(A,B) = unordered_pair(C,D) & A != C & A != D)).  [assumption].
+7 (all A all B all C (singleton(A) = unordered_pair(B,C) -> A = B)).  [assumption].
+8 -(all A all B all C all D -(subset(unordered_pair(A,B),unordered_pair(C,D)) & A != C & A != D)).  [assumption].
+9 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(2)].
+10 subset(unordered_pair(c3,c4),unordered_pair(c5,c6)).  [clausify(8)].
+11 unordered_pair(A,B) = C | in(f2(A,B,C),C) | f2(A,B,C) = A | f2(A,B,C) = B.  [clausify(4)].
+12 c5 != c3.  [clausify(8)].
+13 c6 != c3.  [clausify(8)].
+14 -in(A,B) | -in(B,A).  [clausify(1)].
+15 empty_set != A | -in(B,A).  [clausify(3)].
+16 singleton(A) != unordered_pair(B,C) | B = A.  [clausify(7)].
+17 unordered_pair(A,B) != C | in(D,C) | D != A.  [clausify(4)].
+18 unordered_pair(A,B) != C | in(D,C) | D != B.  [clausify(4)].
+19 unordered_pair(A,B) != unordered_pair(C,D) | A = C | B = C.  [clausify(6)].
+20 unordered_pair(A,B) != C | -in(D,C) | D = A | D = B.  [clausify(4)].
+21 -subset(A,unordered_pair(B,C)) | empty_set = A | singleton(B) = A | singleton(C) = A | unordered_pair(B,C) = A.  [clausify(5)].
+22 -in(A,A).  [factor(14,a,b)].
+23 unordered_pair(A,A) != unordered_pair(B,C) | A = B.  [factor(19,b,c)].
+24 unordered_pair(A,B) != unordered_pair(C,C) | C = A.  [copy(23),flip(a)].
+25 -in(A,empty_set).  [xx_res(15,a)].
+26 singleton(c3) != unordered_pair(c5,A).  [resolve(16,b,12,a)].
+27 singleton(c3) != unordered_pair(A,c5).  [para(9(a,1),26(a,2))].
+28 unordered_pair(A,c5) != singleton(c3).  [copy(27),flip(a)].
+29 singleton(A) != unordered_pair(B,C) | C = A.  [para(9(a,1),16(a,2))].
+30 in(A,unordered_pair(B,C)) | A != C.  [resolve(17,a,9,a)].
+31 empty_set = unordered_pair(c3,c4) | singleton(c5) = unordered_pair(c3,c4) | singleton(c6) = unordered_pair(c3,c4) | unordered_pair(c5,c6) = unordered_pair(c3,c4).  [resolve(21,a,10,a)].
+32 unordered_pair(c3,c4) = empty_set | singleton(c5) = unordered_pair(c3,c4) | singleton(c6) = unordered_pair(c3,c4) | unordered_pair(c5,c6) = unordered_pair(c3,c4).  [copy(31),flip(a)].
+33 unordered_pair(c3,c4) = empty_set | unordered_pair(c3,c4) = singleton(c5) | singleton(c6) = unordered_pair(c3,c4) | unordered_pair(c5,c6) = unordered_pair(c3,c4).  [copy(32),flip(b)].
+34 unordered_pair(c3,c4) = empty_set | unordered_pair(c3,c4) = singleton(c5) | unordered_pair(c3,c4) = singleton(c6) | unordered_pair(c5,c6) = unordered_pair(c3,c4).  [copy(33),flip(c)].
+35 unordered_pair(A,B) != C | C != B.  [resolve(18,b,22,a)].
+36 unordered_pair(A,B) != B.  [xx_res(35,b)].
+37 unordered_pair(A,B) = empty_set | f2(A,B,empty_set) = A | f2(A,B,empty_set) = B.  [resolve(25,a,11,b)].
+38 unordered_pair(A,B) != empty_set | C != B.  [resolve(18,b,25,a)].
+39 unordered_pair(A,B) != empty_set.  [xx_res(38,b)].
+40 unordered_pair(A,A) = empty_set | f2(A,A,empty_set) = A.  [factor(37,b,c)].
+41 f2(A,A,empty_set) = A.  [resolve(39,a,40,a)].
+42 unordered_pair(c3,c4) = singleton(c5) | unordered_pair(c3,c4) = singleton(c6) | unordered_pair(c5,c6) = unordered_pair(c3,c4).  [resolve(39,a,34,a)].
+43 unordered_pair(unordered_pair(A,B),C) != unordered_pair(B,B).  [resolve(24,b,36,a(flip))].
+44 unordered_pair(A,unordered_pair(B,C)) != unordered_pair(C,C).  [para(9(a,1),43(a,1))].
+45 in(f2(A,A,empty_set),unordered_pair(B,A)).  [resolve(30,b,41,a)].
+46 in(A,unordered_pair(B,A)).  [para(41(a,1),45(a,1))].
+47 in(A,unordered_pair(A,B)).  [para(9(a,1),46(a,2))].
+48 unordered_pair(A,B) != unordered_pair(C,D) | C = A | C = B.  [resolve(47,a,20,b)].
+49 unordered_pair(c3,c4) = singleton(c5) | unordered_pair(c3,c4) = singleton(c6) | c3 = c5 | c3 = c6.  [resolve(42,c,48,a)].
+50 unordered_pair(c3,c4) = singleton(c5) | unordered_pair(c3,c4) = singleton(c6) | c5 = c3 | c3 = c6.  [copy(49),flip(c)].
+51 unordered_pair(c3,c4) = singleton(c5) | unordered_pair(c3,c4) = singleton(c6) | c5 = c3 | c6 = c3.  [copy(50),flip(d)].
+52 unordered_pair(c3,c4) = singleton(c5) | unordered_pair(c3,c4) = singleton(c6) | c6 = c3.  [resolve(12,a,51,c)].
+53 unordered_pair(c3,c4) = singleton(c5) | unordered_pair(c3,c4) = singleton(c6).  [resolve(13,a,52,c)].
+54 -in(A,unordered_pair(B,C)) | A = C | A = B.  [resolve(20,a,9,a)].
+55 -in(unordered_pair(A,c5),unordered_pair(B,singleton(c3))) | unordered_pair(A,c5) = B.  [resolve(54,b,28,a)].
+56 -in(unordered_pair(c5,c5),unordered_pair(unordered_pair(A,unordered_pair(B,c5)),singleton(c3))).  [resolve(55,b,44,a(flip))].
+57 -in(unordered_pair(c5,c5),unordered_pair(singleton(c3),unordered_pair(A,unordered_pair(B,c5)))).  [para(9(a,1),56(a,2))].
+58 unordered_pair(c3,c4) = singleton(c5) | c3 = c6.  [resolve(53,b,16,a(flip))].
+59 unordered_pair(c3,c4) = singleton(c5) | c6 = c3.  [copy(58),flip(b)].
+60 unordered_pair(c3,c4) = singleton(c5).  [resolve(13,a,59,b)].
+61 c4 = c5.  [resolve(60,a,29,a(flip))].
+62 c5 = c4.  [copy(61),flip(a)].
+63 c3 = c5.  [resolve(60,a,16,a(flip))].
+64 c3 = c4.  [para(62(a,1),63(a,2))].
+65 c4 = c3.  [copy(64),flip(a)].
+66 singleton(c5) = unordered_pair(c4,c3).  [para(60(a,1),9(a,1))].
+67 singleton(c4) = unordered_pair(c4,c3).  [para(62(a,1),66(a,1,1))].
+68 singleton(c3) = unordered_pair(c4,c3).  [para(65(a,1),67(a,1,1))].
+69 singleton(c3) = unordered_pair(c3,c3).  [para(65(a,1),68(a,2,1))].
+70 unordered_pair(c3,c3) = singleton(c3).  [copy(69),flip(a)].
+71 -in(unordered_pair(c4,c5),unordered_pair(singleton(c3),unordered_pair(A,unordered_pair(B,c5)))).  [para(62(a,1),57(a,1,1))].
+72 -in(unordered_pair(c3,c5),unordered_pair(singleton(c3),unordered_pair(A,unordered_pair(B,c5)))).  [para(65(a,1),71(a,1,1))].
+73 -in(unordered_pair(c3,c4),unordered_pair(singleton(c3),unordered_pair(A,unordered_pair(B,c5)))).  [para(62(a,1),72(a,1,2))].
+74 -in(unordered_pair(c3,c3),unordered_pair(singleton(c3),unordered_pair(A,unordered_pair(B,c5)))).  [para(65(a,1),73(a,1,2))].
+75 -in(singleton(c3),unordered_pair(singleton(c3),unordered_pair(A,unordered_pair(B,c5)))).  [para(70(a,1),74(a,1))].
+76 -in(singleton(c3),unordered_pair(singleton(c3),unordered_pair(A,unordered_pair(B,c4)))).  [para(62(a,1),75(a,2,2,2,2))].
+77 -in(singleton(c3),unordered_pair(singleton(c3),unordered_pair(A,unordered_pair(B,c3)))).  [para(65(a,1),76(a,2,2,2,2))].
+78 $F.  [resolve(47,a,77,a)].
+
+============================== end of proof ==========================

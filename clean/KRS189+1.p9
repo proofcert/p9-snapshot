@@ -1,0 +1,16 @@
+
+
+
+4 status(f44(A,B),f45(A,B),A) | isa(A,B).  [clausify(3)].
+5 -status(f44(A,B),f45(A,B),B) | isa(A,B).  [clausify(3)].
+6 -isa(eth,thm).  [assumption].
+7 model(f10(A,B),A) | status(A,B,thm).  [clausify(1)].
+8 -model(f10(A,B),B) | status(A,B,thm).  [clausify(1)].
+9 -model(A,B) | model(A,C) | -status(B,C,eth).  [clausify(2)].
+10 status(f44(eth,thm),f45(eth,thm),eth).  [resolve(6,a,4,b)].
+11 -status(f44(eth,thm),f45(eth,thm),thm).  [resolve(6,a,5,b)].
+12 -model(A,f44(eth,thm)) | model(A,f45(eth,thm)).  [resolve(10,a,9,c)].
+13 model(f10(f44(eth,thm),f45(eth,thm)),f44(eth,thm)).  [resolve(11,a,7,b)].
+14 model(f10(f44(eth,thm),f45(eth,thm)),f45(eth,thm)).  [resolve(13,a,12,a)].
+15 status(f44(eth,thm),f45(eth,thm),thm).  [resolve(14,a,8,a)].
+16 $F.  [resolve(11,a,15,a)].

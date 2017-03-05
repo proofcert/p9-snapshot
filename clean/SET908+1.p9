@@ -1,0 +1,25 @@
+
+
+
+
+
+
+7 set_union2(A,A) = A.  [clausify(5)].
+8 set_union2(singleton(c3),c4) = empty_set.  [clausify(6)].
+9 empty_set = set_union2(singleton(c3),c4).  [copy(8),flip(a)].
+10 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+11 empty_set != A | -in(B,A).  [clausify(3)].
+12 set_union2(singleton(c3),c4) != A | -in(B,A).  [para(9(a,1),11(a,1))].
+13 set_union2(c4,singleton(c3)) != A | -in(B,A).  [para(10(a,1),12(a,1))].
+14 singleton(A) != B | in(C,B) | C != A.  [clausify(2)].
+15 set_union2(A,B) != C | in(D,C) | -in(D,B).  [clausify(4)].
+16 -in(A,set_union2(singleton(c3),c4)).  [resolve(13,a,10,a)].
+17 -in(A,set_union2(c4,singleton(c3))).  [para(10(a,1),16(a,2))].
+18 in(A,set_union2(singleton(B),singleton(B))) | A != B.  [resolve(14,a,7,a(flip))].
+19 in(A,singleton(B)) | A != B.  [para(7(a,1),18(a,2))].
+20 in(set_union2(A,A),singleton(A)).  [resolve(19,b,7,a)].
+21 in(A,singleton(A)).  [para(7(a,1),20(a,1))].
+22 set_union2(A,B) != set_union2(c4,singleton(c3)) | -in(C,B).  [resolve(15,b,17,a)].
+23 set_union2(A,singleton(B)) != set_union2(c4,singleton(c3)).  [resolve(22,b,21,a)].
+24 set_union2(c4,singleton(c3)) != set_union2(A,singleton(B)).  [copy(23),flip(a)].
+25 $F.  [copy(24),xx(a)].

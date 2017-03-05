@@ -1,0 +1,24 @@
+
+
+3 aSet0(xA).  [assumption].
+4 aSet0(xB).  [assumption].
+5 aSet0(xC).  [assumption].
+6 aSubsetOf0(xA,xB).  [clausify(2)].
+7 aSubsetOf0(xB,xC).  [clausify(2)].
+8 -aSubsetOf0(xA,xC).  [clausify(2)].
+9 -aSet0(A) | -aSubsetOf0(B,A) | -aElementOf0(C,B) | aElementOf0(C,A).  [clausify(1)].
+10 -aSet0(A) | aSubsetOf0(B,A) | -aSet0(B) | aElementOf0(f2(A,B),B).  [clausify(1)].
+11 -aSet0(A) | aSubsetOf0(B,A) | -aSet0(B) | -aElementOf0(f2(A,B),A).  [clausify(1)].
+12 aSubsetOf0(A,xC) | -aSet0(A) | -aElementOf0(f2(xC,A),xC).  [resolve(11,a,5,a)].
+13 -aSet0(xA) | -aElementOf0(f2(xC,xA),xC).  [resolve(12,a,8,a)].
+14 -aElementOf0(f2(xC,xA),xC).  [resolve(13,a,3,a)].
+15 -aSubsetOf0(A,xC) | -aElementOf0(B,A) | aElementOf0(B,xC).  [resolve(9,a,5,a)].
+16 -aElementOf0(A,xB) | aElementOf0(A,xC).  [resolve(15,a,7,a)].
+17 -aElementOf0(f2(xC,xA),xB).  [resolve(16,b,14,a)].
+18 -aSubsetOf0(A,xB) | -aElementOf0(B,A) | aElementOf0(B,xB).  [resolve(9,a,4,a)].
+19 -aElementOf0(A,xA) | aElementOf0(A,xB).  [resolve(18,a,6,a)].
+20 -aElementOf0(f2(xC,xA),xA).  [resolve(19,b,17,a)].
+21 -aSet0(xC) | -aSet0(xA) | aElementOf0(f2(xC,xA),xA).  [resolve(10,b,8,a)].
+22 -aSet0(xC) | aElementOf0(f2(xC,xA),xA).  [resolve(21,b,3,a)].
+23 -aSet0(xC).  [resolve(22,b,20,a)].
+24 $F.  [resolve(5,a,23,a)].

@@ -1,0 +1,45 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n059.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:25:08 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 39939 was started by sandbox on n059.star.cs.uiowa.edu,
+Sat Jun  7 00:25:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_39907_n059.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 9.
+% Level of proof is 3.
+% Maximum clause weight is 10.000.
+% Given clauses 9.
+
+
+1 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+2 (all A all B (-in(A,B) -> disjoint(singleton(A),B))).  [assumption].
+3 -(all A all B (A != B -> disjoint(singleton(A),singleton(B)))).  [assumption].
+4 in(A,B) | disjoint(singleton(A),B).  [clausify(2)].
+5 c4 != c3.  [clausify(3)].
+6 -disjoint(singleton(c3),singleton(c4)).  [clausify(3)].
+7 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+8 in(c3,singleton(c4)).  [resolve(6,a,4,b)].
+9 -in(A,singleton(B)) | A = B.  [xx_res(7,a)].
+10 -in(c3,singleton(c4)).  [resolve(9,b,5,a(flip))].
+11 $F.  [resolve(8,a,10,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,40 @@
+
+
+
+4 -ssList(A) | -ssList(B) | ssList(app(A,B)).  [clausify(1)].
+5 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = B.  [clausify(2)].
+6 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = A.  [clausify(2)].
+7 ssList(c3).  [clausify(3)].
+8 nil = c4.  [clausify(3)].
+9 c4 = nil.  [copy(8),flip(a)].
+10 c6 = c4.  [clausify(3)].
+11 c6 = nil.  [para(9(a,1),10(a,2))].
+12 c5 = c3.  [clausify(3)].
+13 nil != c3.  [clausify(3)].
+14 c3 != nil.  [copy(13),flip(a)].
+15 ssList(c8) | nil = c5.  [clausify(3)].
+16 ssList(c8) | nil = c3.  [para(12(a,1),15(b,2))].
+17 ssList(c8) | c3 = nil.  [copy(16),flip(b)].
+18 ssList(c8).  [resolve(14,a,17,b)].
+19 ssList(c9) | nil = c5.  [clausify(3)].
+20 ssList(c9) | nil = c3.  [para(12(a,1),19(b,2))].
+21 ssList(c9) | c3 = nil.  [copy(20),flip(b)].
+22 ssList(c9).  [resolve(14,a,21,b)].
+23 app(app(c8,c5),c9) = c6 | nil = c5.  [clausify(3)].
+24 app(app(c8,c3),c9) = c6 | nil = c5.  [para(12(a,1),23(a,1,1,2))].
+25 app(app(c8,c3),c9) = nil | nil = c5.  [para(11(a,1),24(a,2))].
+26 app(app(c8,c3),c9) = nil | nil = c3.  [para(12(a,1),25(b,2))].
+27 app(app(c8,c3),c9) = nil | c3 = nil.  [copy(26),flip(b)].
+28 app(app(c8,c3),c9) = nil.  [resolve(14,a,27,b)].
+29 -ssList(A) | app(A,c3) != nil | nil = c3.  [resolve(7,a,5,b)].
+30 -ssList(A) | app(A,c3) != nil | c3 = nil.  [copy(29),flip(c)].
+31 -ssList(A) | app(A,c3) != nil.  [resolve(14,a,30,c)].
+32 -ssList(A) | ssList(app(A,c3)).  [resolve(7,a,4,b)].
+33 -ssList(A) | app(A,c9) != nil | nil = A.  [resolve(22,a,6,b)].
+34 app(c8,c3) != nil.  [resolve(31,a,18,a)].
+35 ssList(app(c8,c3)).  [resolve(32,a,18,a)].
+36 app(app(c8,c3),c9) != nil | nil = app(c8,c3).  [resolve(33,a,35,a)].
+37 nil != nil | nil = app(c8,c3).  [para(28(a,1),36(a,1))].
+38 nil != nil | app(c8,c3) = nil.  [copy(37),flip(b)].
+39 app(c8,c3) = nil.  [copy(38),xx(a)].
+40 $F.  [resolve(34,a,39,a)].

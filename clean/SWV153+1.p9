@@ -1,0 +1,21 @@
+
+
+
+4 -leq(A,B) | B = A | gt(B,A).  [clausify(1)].
+5 leq(A,pred(B)) | -gt(B,A).  [clausify(2)].
+6 sum(n0,n4,sqrt(times(minus(a_select3(center,tptp_sum_index,n0),a_select2(x,pv10)),minus(a_select3(center,tptp_sum_index,n0),a_select2(x,pv10))))) = pv70.  [clausify(3)].
+7 -leq(n0,A) | -leq(A,pred(pv12)) | divide(sqrt(times(minus(a_select3(center,A,n0),a_select2(x,pv10)),minus(a_select3(center,A,n0),a_select2(x,pv10)))),sum(n0,n4,sqrt(times(minus(a_select3(center,tptp_sum_index,n0),a_select2(x,pv10)),minus(a_select3(center,tptp_sum_index,n0),a_select2(x,pv10)))))) = a_select3(q,pv10,A).  [clausify(3)].
+8 -leq(n0,A) | -leq(A,pred(pv12)) | divide(sqrt(times(minus(a_select3(center,A,n0),a_select2(x,pv10)),minus(a_select3(center,A,n0),a_select2(x,pv10)))),pv70) = a_select3(q,pv10,A).  [para(6(a,1),7(c,1,2))].
+9 leq(n0,c1).  [clausify(3)].
+10 leq(c1,pv12).  [clausify(3)].
+11 pv12 != c1.  [clausify(3)].
+12 c1 != pv12.  [copy(11),flip(a)].
+13 divide(sqrt(times(minus(a_select3(center,c1,n0),a_select2(x,pv10)),minus(a_select3(center,c1,n0),a_select2(x,pv10)))),sum(n0,n4,sqrt(times(minus(a_select3(center,tptp_sum_index,n0),a_select2(x,pv10)),minus(a_select3(center,tptp_sum_index,n0),a_select2(x,pv10)))))) != a_select3(q,pv10,c1).  [clausify(3)].
+14 divide(sqrt(times(minus(a_select3(center,c1,n0),a_select2(x,pv10)),minus(a_select3(center,c1,n0),a_select2(x,pv10)))),pv70) != a_select3(q,pv10,c1).  [para(6(a,1),13(a,1,2))].
+15 pv12 = c1 | gt(pv12,c1).  [resolve(10,a,4,a)].
+16 c1 = pv12 | gt(pv12,c1).  [copy(15),flip(a)].
+17 gt(pv12,c1).  [resolve(12,a,16,a)].
+18 leq(c1,pred(pv12)).  [resolve(17,a,5,b)].
+19 -leq(n0,c1) | divide(sqrt(times(minus(a_select3(center,c1,n0),a_select2(x,pv10)),minus(a_select3(center,c1,n0),a_select2(x,pv10)))),pv70) = a_select3(q,pv10,c1).  [resolve(18,a,8,b)].
+20 divide(sqrt(times(minus(a_select3(center,c1,n0),a_select2(x,pv10)),minus(a_select3(center,c1,n0),a_select2(x,pv10)))),pv70) = a_select3(q,pv10,c1).  [resolve(9,a,19,a)].
+21 $F.  [resolve(14,a,20,a)].

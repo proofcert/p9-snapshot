@@ -1,0 +1,111 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n116.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 21:03:33 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 50464 was started by sandbox on n116.star.cs.uiowa.edu,
+Thu Jun  5 21:03:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_50432_n116.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: goals.
+% Length of proof is 49.
+% Level of proof is 7.
+% Maximum clause weight is 13.000.
+% Given clauses 42.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A all B all C addition(C,addition(B,A)) = addition(addition(C,B),A)).  [assumption].
+3 (all A addition(A,zero) = A).  [assumption].
+4 (all A addition(A,A) = A).  [assumption].
+5 (all A multiplication(A,one) = A).  [assumption].
+6 (all A multiplication(one,A) = A).  [assumption].
+7 (all A all B all C multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C))).  [assumption].
+8 (all A multiplication(A,zero) = zero).  [assumption].
+9 (all A multiplication(antidomain(A),A) = zero).  [assumption].
+10 (all A addition(antidomain(antidomain(A)),antidomain(A)) = one).  [assumption].
+11 (all A domain(A) = antidomain(antidomain(A))).  [assumption].
+12 (all A multiplication(A,coantidomain(A)) = zero).  [assumption].
+13 (all A addition(coantidomain(coantidomain(A)),coantidomain(A)) = one).  [assumption].
+14 (all A codomain(A) = coantidomain(coantidomain(A))).  [assumption].
+15 (all A all B backward_diamond(A,B) = codomain(multiplication(codomain(B),A))).  [assumption].
+16 -(all A all B addition(backward_diamond(zero,domain(A)),domain(B)) = domain(B)).  [assumption].
+17 addition(A,zero) = A.  [clausify(3)].
+18 addition(A,A) = A.  [clausify(4)].
+19 multiplication(A,one) = A.  [clausify(5)].
+20 multiplication(one,A) = A.  [clausify(6)].
+21 multiplication(A,zero) = zero.  [clausify(8)].
+22 multiplication(antidomain(A),A) = zero.  [clausify(9)].
+23 domain(A) = antidomain(antidomain(A)).  [clausify(11)].
+24 multiplication(A,coantidomain(A)) = zero.  [clausify(12)].
+25 codomain(A) = coantidomain(coantidomain(A)).  [clausify(14)].
+26 addition(A,B) = addition(B,A).  [clausify(1)].
+27 addition(antidomain(antidomain(A)),antidomain(A)) = one.  [clausify(10)].
+28 addition(antidomain(A),antidomain(antidomain(A))) = one.  [para(26(a,1),27(a,1))].
+29 addition(coantidomain(coantidomain(A)),coantidomain(A)) = one.  [clausify(13)].
+30 addition(coantidomain(A),coantidomain(coantidomain(A))) = one.  [para(26(a,1),29(a,1))].
+31 backward_diamond(A,B) = codomain(multiplication(codomain(B),A)).  [clausify(15)].
+32 backward_diamond(A,B) = codomain(multiplication(coantidomain(coantidomain(B)),A)).  [para(25(a,1),31(a,2,1,1))].
+33 backward_diamond(A,B) = coantidomain(coantidomain(multiplication(coantidomain(coantidomain(B)),A))).  [para(25(a,1),32(a,2))].
+34 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+35 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(26(a,1),34(a,1))].
+36 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(35),flip(a)].
+37 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(7)].
+38 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(37),flip(a)].
+39 domain(c2) != addition(backward_diamond(zero,domain(c1)),domain(c2)).  [clausify(16)].
+40 antidomain(antidomain(c2)) != addition(backward_diamond(zero,domain(c1)),domain(c2)).  [para(23(a,1),39(a,1))].
+41 antidomain(antidomain(c2)) != addition(backward_diamond(zero,antidomain(antidomain(c1))),domain(c2)).  [para(23(a,1),40(a,2,1,2))].
+42 antidomain(antidomain(c2)) != addition(coantidomain(coantidomain(multiplication(coantidomain(coantidomain(antidomain(antidomain(c1)))),zero))),domain(c2)).  [para(33(a,1),41(a,2,1))].
+43 antidomain(antidomain(c2)) != addition(coantidomain(coantidomain(zero)),domain(c2)).  [para(21(a,1),42(a,2,1,1,1))].
+44 antidomain(antidomain(c2)) != addition(coantidomain(coantidomain(zero)),antidomain(antidomain(c2))).  [para(23(a,1),43(a,2,2))].
+45 antidomain(antidomain(c2)) != addition(antidomain(antidomain(c2)),coantidomain(coantidomain(zero))).  [para(26(a,1),44(a,2))].
+46 addition(antidomain(antidomain(c2)),coantidomain(coantidomain(zero))) != antidomain(antidomain(c2)).  [copy(45),flip(a)].
+47 zero = coantidomain(one).  [para(24(a,1),20(a,1))].
+48 coantidomain(one) = zero.  [copy(47),flip(a)].
+49 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(36(a,1),18(a,1))].
+50 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(26(a,1),49(a,1,2,1))].
+51 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(26(a,1),50(a,1,2))].
+52 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(36(a,2),51(a,1,2))].
+53 addition(A,addition(A,B)) = addition(B,A).  [para(18(a,1),52(a,1,2,2))].
+54 addition(A,addition(A,B)) = addition(A,B).  [para(26(a,1),53(a,2))].
+55 addition(multiplication(A,B),multiplication(A,zero)) = multiplication(A,B).  [para(17(a,1),38(a,2,2))].
+56 addition(multiplication(A,B),zero) = multiplication(A,B).  [para(21(a,1),55(a,1,2))].
+57 addition(zero,multiplication(A,B)) = multiplication(A,B).  [para(26(a,1),56(a,1))].
+58 addition(zero,coantidomain(coantidomain(one))) = one.  [para(48(a,1),30(a,1,1))].
+59 addition(zero,coantidomain(zero)) = one.  [para(48(a,1),58(a,1,2,1))].
+60 addition(multiplication(A,zero),multiplication(A,coantidomain(zero))) = multiplication(A,one).  [para(59(a,1),38(a,2,2))].
+61 addition(zero,multiplication(A,coantidomain(zero))) = multiplication(A,one).  [para(21(a,1),60(a,1,1))].
+62 multiplication(A,coantidomain(zero)) = multiplication(A,one).  [para(57(a,1),61(a,1))].
+63 multiplication(A,coantidomain(zero)) = A.  [para(19(a,1),62(a,2))].
+64 addition(antidomain(A),one) = addition(antidomain(A),antidomain(antidomain(A))).  [para(28(a,1),54(a,1,2))].
+65 addition(one,antidomain(A)) = addition(antidomain(A),antidomain(antidomain(A))).  [para(26(a,1),64(a,1))].
+66 addition(one,antidomain(A)) = one.  [para(28(a,1),65(a,2))].
+67 one = coantidomain(zero).  [para(63(a,1),20(a,1))].
+68 coantidomain(zero) = one.  [copy(67),flip(a)].
+69 addition(antidomain(antidomain(c2)),coantidomain(one)) != antidomain(antidomain(c2)).  [para(68(a,1),46(a,1,2,1))].
+70 addition(antidomain(antidomain(c2)),zero) != antidomain(antidomain(c2)).  [para(48(a,1),69(a,1,2))].
+71 addition(zero,antidomain(antidomain(c2))) != antidomain(antidomain(c2)).  [para(26(a,1),70(a,1))].
+72 addition(multiplication(A,one),multiplication(A,antidomain(B))) = multiplication(A,one).  [para(66(a,1),38(a,2,2))].
+73 addition(A,multiplication(A,antidomain(B))) = multiplication(A,one).  [para(19(a,1),72(a,1,1))].
+74 addition(A,multiplication(A,antidomain(B))) = A.  [para(19(a,1),73(a,2))].
+75 addition(antidomain(antidomain(A)),zero) = antidomain(antidomain(A)).  [para(22(a,1),74(a,1,2))].
+76 addition(zero,antidomain(antidomain(A))) = antidomain(antidomain(A)).  [para(26(a,1),75(a,1))].
+77 $F.  [resolve(76,a,71,a)].
+
+============================== end of proof ==========================

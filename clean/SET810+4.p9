@@ -1,0 +1,28 @@
+
+
+
+
+
+
+7 -strict_order(A,B) | -member(C,B) | -member(D,B) | -apply(A,C,D) | -apply(A,D,C).  [clausify(5)].
+8 -strict_well_order(A,B) | strict_order(A,B).  [clausify(3)].
+9 member(c1,on).  [clausify(6)].
+10 member(c1,c2).  [clausify(6)].
+11 member(c2,c1).  [clausify(6)].
+12 -member(A,on) | strict_well_order(member_predicate,A).  [clausify(2)].
+13 apply(member_predicate,A,B) | -member(A,B).  [clausify(4)].
+14 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+15 -member(A,on) | -member(B,A) | subset(B,A).  [clausify(2)].
+16 -strict_well_order(A,B) | -member(C,B) | -member(D,B) | -apply(A,C,D) | -apply(A,D,C).  [resolve(8,b,7,a)].
+17 strict_well_order(member_predicate,c1).  [resolve(12,a,9,a)].
+18 apply(member_predicate,c2,c1).  [resolve(13,b,11,a)].
+19 apply(member_predicate,c1,c2).  [resolve(13,b,10,a)].
+20 -member(c1,on) | subset(c2,c1).  [resolve(15,b,11,a)].
+21 subset(c2,c1).  [resolve(9,a,20,a)].
+22 -member(A,c2) | member(A,c1).  [resolve(21,a,14,a)].
+23 -strict_well_order(member_predicate,A) | -member(c1,A) | -member(c2,A) | -apply(member_predicate,c1,c2).  [resolve(18,a,16,e)].
+24 -strict_well_order(member_predicate,A) | -member(c1,A) | -member(c2,A).  [resolve(19,a,23,d)].
+25 -member(c1,c1) | -member(c2,c1).  [resolve(24,a,17,a)].
+26 -member(c1,c1).  [resolve(11,a,25,b)].
+27 member(c1,c1).  [resolve(22,a,10,a)].
+28 $F.  [resolve(26,a,27,a)].

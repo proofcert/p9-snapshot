@@ -1,0 +1,38 @@
+
+
+
+
+
+
+7 relation(c11).  [clausify(6)].
+8 function(c11).  [clausify(6)].
+9 in(c10,c9).  [clausify(6)].
+10 apply(relation_dom_restriction(c11,c9),c10) != apply(c11,c10).  [clausify(6)].
+11 -relation(A) | relation(relation_dom_restriction(A,B)).  [clausify(2)].
+12 -relation(A) | -function(A) | function(relation_dom_restriction(A,B)).  [clausify(3)].
+13 -relation(A) | -function(A) | in(B,relation_dom(A)) | apply(A,B) = C | empty_set != C.  [clausify(1)].
+14 -relation(A) | -function(A) | in(B,relation_dom(relation_dom_restriction(A,C))) | -in(B,relation_dom(A)) | -in(B,C).  [clausify(4)].
+15 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != A | -in(D,relation_dom(A)) | apply(B,D) = apply(A,D).  [clausify(5)].
+16 relation(relation_dom_restriction(c11,A)).  [resolve(11,a,7,a)].
+17 -relation(c11) | function(relation_dom_restriction(c11,A)).  [resolve(12,b,8,a)].
+18 function(relation_dom_restriction(c11,A)).  [resolve(7,a,17,a)].
+19 -relation(c11) | in(A,relation_dom(c11)) | apply(c11,A) = B | empty_set != B.  [resolve(13,b,8,a)].
+20 in(A,relation_dom(c11)) | apply(c11,A) = B | empty_set != B.  [resolve(7,a,19,a)].
+21 -function(relation_dom_restriction(c11,A)) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != relation_dom_restriction(c11,A) | -in(D,relation_dom(relation_dom_restriction(c11,A))) | apply(B,D) = apply(relation_dom_restriction(c11,A),D).  [resolve(15,a,16,a)].
+22 -relation(A) | -function(A) | relation_dom_restriction(A,B) != relation_dom_restriction(c11,C) | -in(D,relation_dom(relation_dom_restriction(c11,C))) | apply(A,D) = apply(relation_dom_restriction(c11,C),D).  [resolve(21,a,18,a)].
+23 -function(c11) | relation_dom_restriction(c11,A) != relation_dom_restriction(c11,B) | -in(C,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,C) = apply(relation_dom_restriction(c11,B),C).  [resolve(22,a,7,a)].
+24 relation_dom_restriction(c11,A) != relation_dom_restriction(c11,B) | -in(C,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,C) = apply(relation_dom_restriction(c11,B),C).  [resolve(23,a,8,a)].
+25 -in(A,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,A) = apply(relation_dom_restriction(c11,B),A).  [xx_res(24,a)].
+26 -in(c10,relation_dom(relation_dom_restriction(c11,c9))).  [resolve(25,b,10,a(flip))].
+27 -function(c11) | in(A,relation_dom(relation_dom_restriction(c11,B))) | -in(A,relation_dom(c11)) | -in(A,B).  [resolve(14,a,7,a)].
+28 in(A,relation_dom(relation_dom_restriction(c11,B))) | -in(A,relation_dom(c11)) | -in(A,B).  [resolve(27,a,8,a)].
+29 -in(c10,relation_dom(c11)) | -in(c10,c9).  [resolve(28,a,26,a)].
+30 -in(c10,relation_dom(c11)).  [resolve(29,b,9,a)].
+31 -function(relation_dom_restriction(c11,A)) | in(B,relation_dom(relation_dom_restriction(c11,A))) | apply(relation_dom_restriction(c11,A),B) = C | empty_set != C.  [resolve(13,a,16,a)].
+32 in(A,relation_dom(relation_dom_restriction(c11,B))) | apply(relation_dom_restriction(c11,B),A) = C | empty_set != C.  [resolve(31,a,18,a)].
+33 apply(relation_dom_restriction(c11,c9),c10) = A | empty_set != A.  [resolve(32,a,26,a)].
+34 empty_set != apply(c11,c10).  [resolve(33,a,10,a)].
+35 apply(c11,c10) != empty_set.  [copy(34),flip(a)].
+36 apply(c11,c10) = A | empty_set != A.  [resolve(20,a,30,a)].
+37 empty_set != empty_set.  [resolve(36,a,35,a)].
+38 $F.  [copy(37),xx(a)].

@@ -1,0 +1,48 @@
+
+
+
+4 -ssList(A) | -ssList(B) | -neq(A,B) | B != A.  [clausify(1)].
+5 nil != c3 | neq(c4,nil).  [clausify(3)].
+6 ssList(nil).  [assumption].
+7 -ssItem(A) | -memberP(nil,A).  [clausify(2)].
+8 ssList(c4).  [clausify(3)].
+9 c6 = c4.  [clausify(3)].
+10 c5 = c3.  [clausify(3)].
+11 ssItem(c7) | nil = c6.  [clausify(3)].
+12 ssItem(c7) | nil = c4.  [para(9(a,1),11(b,2))].
+13 ssItem(c7) | c4 = nil.  [copy(12),flip(b)].
+14 ssItem(c7) | nil = c5.  [clausify(3)].
+15 ssItem(c7) | nil = c3.  [para(10(a,1),14(b,2))].
+16 ssItem(c7) | c3 = nil.  [copy(15),flip(b)].
+17 cons(c7,nil) = c5 | nil = c6.  [clausify(3)].
+18 cons(c7,nil) = c3 | nil = c6.  [para(10(a,1),17(a,2))].
+19 cons(c7,nil) = c3 | nil = c4.  [para(9(a,1),18(b,2))].
+20 cons(c7,nil) = c3 | c4 = nil.  [copy(19),flip(b)].
+21 memberP(c6,c7) | nil = c6.  [clausify(3)].
+22 memberP(c4,c7) | nil = c6.  [para(9(a,1),21(a,1))].
+23 memberP(c4,c7) | nil = c4.  [para(9(a,1),22(b,2))].
+24 memberP(c4,c7) | c4 = nil.  [copy(23),flip(b)].
+25 memberP(c6,c7) | nil = c5.  [clausify(3)].
+26 memberP(c4,c7) | nil = c5.  [para(9(a,1),25(a,1))].
+27 memberP(c4,c7) | nil = c3.  [para(10(a,1),26(b,2))].
+28 memberP(c4,c7) | c3 = nil.  [copy(27),flip(b)].
+29 nil = c4 | -ssItem(A) | cons(A,nil) != c3 | -memberP(c4,A).  [clausify(3)].
+30 c4 = nil | -ssItem(A) | cons(A,nil) != c3 | -memberP(c4,A).  [copy(29),flip(a)].
+31 nil != c3 | -ssList(c4) | -ssList(nil) | nil != c4.  [resolve(5,b,4,c)].
+32 c3 != nil | -ssList(c4) | -ssList(nil) | nil != c4.  [copy(31),flip(a)].
+33 c3 != nil | -ssList(c4) | -ssList(nil) | c4 != nil.  [copy(32),flip(d)].
+34 c3 != nil | -ssList(nil) | c4 != nil.  [resolve(8,a,33,b)].
+35 c3 != nil | c4 != nil.  [resolve(6,a,34,b)].
+36 c4 = nil | -ssItem(c7) | cons(c7,nil) != c3 | c4 = nil.  [resolve(30,d,24,a)].
+37 c4 = nil | -ssItem(c7) | cons(c7,nil) != c3.  [copy(36),merge(d)].
+38 c4 = nil | cons(c7,nil) != c3 | c4 = nil.  [resolve(37,b,13,a)].
+39 c4 = nil | cons(c7,nil) != c3.  [copy(38),merge(c)].
+40 c4 = nil | c4 = nil.  [resolve(39,b,20,a)].
+41 c4 = nil.  [copy(40),merge(b)].
+42 c3 != nil | nil != nil.  [para(41(a,1),35(b,1))].
+43 c3 != nil.  [copy(42),xx(b)].
+44 memberP(nil,c7) | c3 = nil.  [para(41(a,1),28(a,1))].
+45 memberP(nil,c7).  [resolve(43,a,44,b)].
+46 ssItem(c7).  [resolve(43,a,16,b)].
+47 -ssItem(c7).  [resolve(45,a,7,b)].
+48 $F.  [resolve(46,a,47,a)].

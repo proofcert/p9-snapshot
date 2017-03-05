@@ -1,0 +1,20 @@
+
+
+
+
+
+6 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(4)].
+7 subset(singleton(c3),unordered_pair(c4,c5)).  [clausify(5)].
+8 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+9 c4 != c3.  [clausify(5)].
+10 c5 != c3.  [clausify(5)].
+11 singleton(A) != B | in(C,B) | C != A.  [clausify(2)].
+12 unordered_pair(A,B) != C | -in(D,C) | D = A | D = B.  [clausify(3)].
+13 -in(A,singleton(c3)) | in(A,unordered_pair(c4,c5)).  [resolve(6,a,7,a)].
+14 in(A,singleton(B)) | A != B.  [xx_res(11,a)].
+15 -in(A,unordered_pair(B,C)) | A = C | A = B.  [resolve(12,a,8,a)].
+16 -in(c3,unordered_pair(A,c5)) | c3 = A.  [resolve(15,b,10,a(flip))].
+17 -in(c3,unordered_pair(c4,c5)).  [resolve(16,b,9,a(flip))].
+18 in(A,singleton(A)).  [xx_res(14,b)].
+19 in(c3,unordered_pair(c4,c5)).  [resolve(18,a,13,a)].
+20 $F.  [resolve(17,a,19,a)].

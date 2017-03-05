@@ -1,0 +1,22 @@
+
+
+
+
+
+6 -status(A,B,C) | status(A,B,D) | -isa(C,D).  [clausify(1)].
+7 isa(c19,c20).  [clausify(5)].
+8 -status(f5(A,B),f6(A,B),B) | -nota(A,B).  [clausify(2)].
+9 nota(c19,c20) | nevera(c19,c20) | xora(c19,c20).  [clausify(5)].
+10 -status(A,B,C) | -status(A,B,D) | -nevera(C,D).  [clausify(3)].
+11 -status(f5(c19,c20),f6(c19,c20),c20) | nevera(c19,c20) | xora(c19,c20).  [resolve(8,b,9,a)].
+12 -status(A,B,C) | -status(A,B,D) | -xora(C,D).  [clausify(4)].
+13 -status(f5(c19,c20),f6(c19,c20),c20) | xora(c19,c20) | -status(A,B,c19) | -status(A,B,c20).  [resolve(11,b,10,c)].
+14 status(A,B,c19).  [clausify(5)].
+15 -status(A,B,c19) | status(A,B,c20).  [resolve(6,c,7,a)].
+16 status(A,B,c20).  [resolve(14,a,15,a)].
+17 -status(f5(c19,c20),f6(c19,c20),c20) | -status(A,B,c19) | -status(A,B,c20) | -status(C,D,c19) | -status(C,D,c20).  [resolve(13,b,12,c)].
+18 -status(A,B,c19) | -status(A,B,c20) | -status(C,D,c19) | -status(C,D,c20).  [resolve(16,a,17,a)].
+19 -status(A,B,c20) | -status(C,D,c19) | -status(C,D,c20).  [resolve(14,a,18,a)].
+20 -status(A,B,c19) | -status(A,B,c20).  [resolve(16,a,19,a)].
+21 -status(A,B,c20).  [resolve(14,a,20,a)].
+22 $F.  [resolve(16,a,21,a)].

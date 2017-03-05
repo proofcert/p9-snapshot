@@ -1,0 +1,501 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n138.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:27:53 CDT 2014
+% CPUTime    : 33.97 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 15787 was started by sandbox on n138.star.cs.uiowa.edu,
+Thu Jun  5 17:27:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_15755_n138.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 33.49 (+ 0.36) seconds: goals.
+% Length of proof is 152.
+% Level of proof is 37.
+% Maximum clause weight is 49.000.
+% Given clauses 2078.
+
+
+1 (all A all B join(A,B) = join(B,A)).  [assumption].
+2 (all A all B all C join(A,join(B,C)) = join(join(A,B),C)).  [assumption].
+3 (all A all B A = join(complement(join(complement(A),complement(B))),complement(join(complement(A),B)))).  [assumption].
+4 (all A all B meet(A,B) = complement(join(complement(A),complement(B)))).  [assumption].
+5 (all A all B all C composition(A,composition(B,C)) = composition(composition(A,B),C)).  [assumption].
+6 (all A composition(A,one) = A).  [assumption].
+7 (all A all B all C composition(join(A,B),C) = join(composition(A,C),composition(B,C))).  [assumption].
+8 (all A converse(converse(A)) = A).  [assumption].
+9 (all A all B converse(join(A,B)) = join(converse(A),converse(B))).  [assumption].
+10 (all A all B converse(composition(A,B)) = composition(converse(B),converse(A))).  [assumption].
+11 (all A all B join(composition(converse(A),complement(composition(A,B))),complement(B)) = complement(B)).  [assumption].
+12 (all A top = join(A,complement(A))).  [assumption].
+13 (all A zero = meet(A,complement(A))).  [assumption].
+14 (all A all B all C join(meet(composition(A,B),C),composition(meet(A,composition(C,converse(B))),meet(B,composition(converse(A),C)))) = composition(meet(A,composition(C,converse(B))),meet(B,composition(converse(A),C)))).  [assumption].
+15 (all A all B all C join(meet(composition(A,B),C),meet(composition(A,meet(B,composition(converse(A),C))),C)) = meet(composition(A,meet(B,composition(converse(A),C))),C)).  [assumption].
+16 (all A all B all C join(meet(composition(A,B),C),meet(composition(meet(A,composition(C,converse(B))),B),C)) = meet(composition(meet(A,composition(C,converse(B))),B),C)).  [assumption].
+17 -(all A all B (join(A,one) = one -> join(meet(composition(A,top),B),composition(A,B)) = composition(A,B) & join(composition(A,B),meet(composition(A,top),B)) = meet(composition(A,top),B))).  [assumption].
+18 composition(A,one) = A.  [clausify(6)].
+19 converse(converse(A)) = A.  [clausify(8)].
+20 join(c1,one) = one.  [clausify(17)].
+21 join(A,complement(A)) = top.  [clausify(12)].
+22 meet(A,complement(A)) = zero.  [clausify(13)].
+23 join(A,B) = join(B,A).  [clausify(1)].
+24 meet(A,B) = complement(join(complement(A),complement(B))).  [clausify(4)].
+25 converse(join(A,B)) = join(converse(A),converse(B)).  [clausify(9)].
+26 join(converse(A),converse(B)) = converse(join(A,B)).  [copy(25),flip(a)].
+27 converse(composition(A,B)) = composition(converse(B),converse(A)).  [clausify(10)].
+28 composition(converse(A),converse(B)) = converse(composition(B,A)).  [copy(27),flip(a)].
+29 join(join(A,B),C) = join(A,join(B,C)).  [clausify(2)].
+30 join(C,join(A,B)) = join(A,join(B,C)).  [para(23(a,1),29(a,1))].
+31 join(A,join(B,C)) = join(C,join(A,B)).  [copy(30),flip(a)].
+32 composition(composition(A,B),C) = composition(A,composition(B,C)).  [clausify(5)].
+33 composition(join(A,B),C) = join(composition(A,C),composition(B,C)).  [clausify(7)].
+34 join(composition(A,B),composition(C,B)) = composition(join(A,C),B).  [copy(33),flip(a)].
+35 complement(A) = join(composition(converse(B),complement(composition(B,A))),complement(A)).  [clausify(11)].
+36 complement(A) = join(complement(A),composition(converse(B),complement(composition(B,A)))).  [para(23(a,1),35(a,2))].
+37 join(complement(A),composition(converse(B),complement(composition(B,A)))) = complement(A).  [copy(36),flip(a)].
+38 join(complement(join(complement(A),complement(B))),complement(join(complement(A),B))) = A.  [clausify(3)].
+39 join(complement(join(complement(A),complement(B))),complement(join(B,complement(A)))) = A.  [para(23(a,1),38(a,1,2,1))].
+40 join(complement(join(B,complement(A))),complement(join(complement(A),complement(B)))) = A.  [para(23(a,1),39(a,1))].
+41 join(complement(join(A,complement(B))),complement(join(complement(A),complement(B)))) = B.  [para(23(a,1),40(a,1,2,1))].
+42 meet(composition(A,meet(B,composition(converse(A),C))),C) = join(meet(composition(A,B),C),meet(composition(A,meet(B,composition(converse(A),C))),C)).  [clausify(15)].
+43 meet(composition(A,complement(join(complement(B),complement(composition(converse(A),C))))),C) = join(meet(composition(A,B),C),meet(composition(A,meet(B,composition(converse(A),C))),C)).  [para(24(a,1),42(a,1,1,2))].
+44 complement(join(complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C)))))),complement(C))) = join(meet(composition(A,B),C),meet(composition(A,meet(B,composition(converse(A),C))),C)).  [para(24(a,1),43(a,1))].
+45 complement(join(complement(C),complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C)))))))) = join(meet(composition(A,B),C),meet(composition(A,meet(B,composition(converse(A),C))),C)).  [para(23(a,1),44(a,1,1))].
+46 complement(join(complement(C),complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C)))))))) = join(complement(join(complement(composition(A,B)),complement(C))),meet(composition(A,meet(B,composition(converse(A),C))),C)).  [para(24(a,1),45(a,2,1))].
+47 complement(join(complement(C),complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C)))))))) = join(complement(join(complement(C),complement(composition(A,B)))),meet(composition(A,meet(B,composition(converse(A),C))),C)).  [para(23(a,1),46(a,2,1,1))].
+48 complement(join(complement(C),complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C)))))))) = join(complement(join(complement(C),complement(composition(A,B)))),meet(composition(A,complement(join(complement(B),complement(composition(converse(A),C))))),C)).  [para(24(a,1),47(a,2,2,1,2))].
+49 complement(join(complement(C),complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C)))))))) = join(complement(join(complement(C),complement(composition(A,B)))),complement(join(complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C)))))),complement(C)))).  [para(24(a,1),48(a,2,2))].
+50 complement(join(complement(C),complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C)))))))) = join(complement(join(complement(C),complement(composition(A,B)))),complement(join(complement(C),complement(composition(A,complement(join(complement(B),complement(composition(converse(A),C))))))))).  [para(23(a,1),49(a,2,2,1))].
+51 join(complement(join(complement(A),complement(composition(B,C)))),complement(join(complement(A),complement(composition(B,complement(join(complement(C),complement(composition(converse(B),A))))))))) = complement(join(complement(A),complement(composition(B,complement(join(complement(C),complement(composition(converse(B),A)))))))).  [copy(50),flip(a)].
+52 meet(composition(meet(A,composition(B,converse(C))),C),B) = join(meet(composition(A,C),B),meet(composition(meet(A,composition(B,converse(C))),C),B)).  [clausify(16)].
+53 meet(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C),B) = join(meet(composition(A,C),B),meet(composition(meet(A,composition(B,converse(C))),C),B)).  [para(24(a,1),52(a,1,1,1))].
+54 complement(join(complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C)),complement(B))) = join(meet(composition(A,C),B),meet(composition(meet(A,composition(B,converse(C))),C),B)).  [para(24(a,1),53(a,1))].
+55 complement(join(complement(B),complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C)))) = join(meet(composition(A,C),B),meet(composition(meet(A,composition(B,converse(C))),C),B)).  [para(23(a,1),54(a,1,1))].
+56 complement(join(complement(B),complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C)))) = join(complement(join(complement(composition(A,C)),complement(B))),meet(composition(meet(A,composition(B,converse(C))),C),B)).  [para(24(a,1),55(a,2,1))].
+57 complement(join(complement(B),complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C)))) = join(complement(join(complement(B),complement(composition(A,C)))),meet(composition(meet(A,composition(B,converse(C))),C),B)).  [para(23(a,1),56(a,2,1,1))].
+58 complement(join(complement(B),complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C)))) = join(complement(join(complement(B),complement(composition(A,C)))),meet(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C),B)).  [para(24(a,1),57(a,2,2,1,1))].
+59 complement(join(complement(B),complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C)))) = join(complement(join(complement(B),complement(composition(A,C)))),complement(join(complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C)),complement(B)))).  [para(24(a,1),58(a,2,2))].
+60 complement(join(complement(B),complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C)))) = join(complement(join(complement(B),complement(composition(A,C)))),complement(join(complement(B),complement(composition(complement(join(complement(A),complement(composition(B,converse(C))))),C))))).  [para(23(a,1),59(a,2,2,1))].
+61 join(complement(join(complement(A),complement(composition(B,C)))),complement(join(complement(A),complement(composition(complement(join(complement(B),complement(composition(A,converse(C))))),C))))) = complement(join(complement(A),complement(composition(complement(join(complement(B),complement(composition(A,converse(C))))),C)))).  [copy(60),flip(a)].
+62 composition(meet(A,composition(B,converse(C))),meet(C,composition(converse(A),B))) = join(meet(composition(A,C),B),composition(meet(A,composition(B,converse(C))),meet(C,composition(converse(A),B)))).  [clausify(14)].
+63 composition(complement(join(complement(A),complement(composition(B,converse(C))))),meet(C,composition(converse(A),B))) = join(meet(composition(A,C),B),composition(meet(A,composition(B,converse(C))),meet(C,composition(converse(A),B)))).  [para(24(a,1),62(a,1,1))].
+64 composition(complement(join(complement(A),complement(composition(B,converse(C))))),complement(join(complement(C),complement(composition(converse(A),B))))) = join(meet(composition(A,C),B),composition(meet(A,composition(B,converse(C))),meet(C,composition(converse(A),B)))).  [para(24(a,1),63(a,1,2))].
+65 composition(complement(join(complement(A),complement(composition(B,converse(C))))),complement(join(complement(C),complement(composition(converse(A),B))))) = join(complement(join(complement(composition(A,C)),complement(B))),composition(meet(A,composition(B,converse(C))),meet(C,composition(converse(A),B)))).  [para(24(a,1),64(a,2,1))].
+66 composition(complement(join(complement(A),complement(composition(B,converse(C))))),complement(join(complement(C),complement(composition(converse(A),B))))) = join(complement(join(complement(B),complement(composition(A,C)))),composition(meet(A,composition(B,converse(C))),meet(C,composition(converse(A),B)))).  [para(23(a,1),65(a,2,1,1))].
+67 composition(complement(join(complement(A),complement(composition(B,converse(C))))),complement(join(complement(C),complement(composition(converse(A),B))))) = join(complement(join(complement(B),complement(composition(A,C)))),composition(complement(join(complement(A),complement(composition(B,converse(C))))),meet(C,composition(converse(A),B)))).  [para(24(a,1),66(a,2,2,1))].
+68 composition(complement(join(complement(A),complement(composition(B,converse(C))))),complement(join(complement(C),complement(composition(converse(A),B))))) = join(complement(join(complement(B),complement(composition(A,C)))),composition(complement(join(complement(A),complement(composition(B,converse(C))))),complement(join(complement(C),complement(composition(converse(A),B)))))).  [para(24(a,1),67(a,2,2,2))].
+69 join(complement(join(complement(A),complement(composition(B,C)))),composition(complement(join(complement(B),complement(composition(A,converse(C))))),complement(join(complement(C),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(composition(A,converse(C))))),complement(join(complement(C),complement(composition(converse(B),A))))).  [copy(68),flip(a)].
+70 composition(c1,c2) != join(meet(composition(c1,top),c2),composition(c1,c2)) | meet(composition(c1,top),c2) != join(composition(c1,c2),meet(composition(c1,top),c2)).  [clausify(17)].
+71 composition(c1,c2) != join(complement(join(complement(composition(c1,top)),complement(c2))),composition(c1,c2)) | meet(composition(c1,top),c2) != join(composition(c1,c2),meet(composition(c1,top),c2)).  [para(24(a,1),70(a,2,1))].
+72 composition(c1,c2) != join(complement(join(complement(c2),complement(composition(c1,top)))),composition(c1,c2)) | meet(composition(c1,top),c2) != join(composition(c1,c2),meet(composition(c1,top),c2)).  [para(23(a,1),71(a,2,1,1))].
+73 composition(c1,c2) != join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) | meet(composition(c1,top),c2) != join(composition(c1,c2),meet(composition(c1,top),c2)).  [para(23(a,1),72(a,2))].
+74 composition(c1,c2) != join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) | complement(join(complement(composition(c1,top)),complement(c2))) != join(composition(c1,c2),meet(composition(c1,top),c2)).  [para(24(a,1),73(b,1))].
+75 composition(c1,c2) != join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) | complement(join(complement(c2),complement(composition(c1,top)))) != join(composition(c1,c2),meet(composition(c1,top),c2)).  [para(23(a,1),74(b,1,1))].
+76 composition(c1,c2) != join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) | complement(join(complement(c2),complement(composition(c1,top)))) != join(composition(c1,c2),complement(join(complement(composition(c1,top)),complement(c2)))).  [para(24(a,1),75(b,2,2))].
+77 composition(c1,c2) != join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) | complement(join(complement(c2),complement(composition(c1,top)))) != join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))).  [para(23(a,1),76(b,2,2,1))].
+78 join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) != composition(c1,c2) | complement(join(complement(c2),complement(composition(c1,top)))) != join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))).  [copy(77),flip(a)].
+79 join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) != composition(c1,c2) | join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) != complement(join(complement(c2),complement(composition(c1,top)))).  [copy(78),flip(b)].
+80 join(one,c1) = one.  [para(23(a,1),20(a,1))].
+81 complement(join(complement(A),complement(complement(A)))) = zero.  [para(24(a,1),22(a,1))].
+82 complement(top) = zero.  [para(21(a,1),81(a,1,1))].
+83 join(A,converse(B)) = converse(join(converse(A),B)).  [para(19(a,1),26(a,1,1))].
+84 join(A,converse(B)) = converse(join(B,converse(A))).  [para(23(a,1),83(a,2,1))].
+85 converse(join(A,converse(B))) = join(B,converse(A)).  [copy(84),flip(a)].
+86 composition(A,converse(B)) = converse(composition(B,converse(A))).  [para(19(a,1),28(a,1,1))].
+87 converse(composition(A,converse(B))) = composition(B,converse(A)).  [copy(86),flip(a)].
+88 composition(converse(A),B) = converse(composition(converse(B),A)).  [para(19(a,1),28(a,1,2))].
+89 converse(composition(converse(A),B)) = composition(converse(B),A).  [copy(88),flip(a)].
+90 join(A,join(complement(A),B)) = join(B,top).  [para(21(a,1),31(a,2,2))].
+91 join(A,join(B,complement(A))) = join(B,top).  [para(23(a,1),90(a,1,2))].
+92 composition(A,B) = composition(A,composition(one,B)).  [para(18(a,1),32(a,1,1))].
+93 composition(A,composition(one,B)) = composition(A,B).  [copy(92),flip(a)].
+94 composition(converse(composition(A,B)),C) = composition(converse(B),composition(converse(A),C)).  [para(28(a,1),32(a,1,1))].
+95 composition(converse(A),composition(converse(B),C)) = composition(converse(composition(B,A)),C).  [copy(94),flip(a)].
+96 join(converse(composition(A,B)),composition(C,converse(A))) = composition(join(converse(B),C),converse(A)).  [para(28(a,1),34(a,1,1))].
+97 join(converse(composition(A,B)),composition(C,converse(A))) = composition(join(C,converse(B)),converse(A)).  [para(23(a,1),96(a,2,1))].
+98 join(composition(A,composition(B,C)),composition(D,C)) = composition(join(composition(A,B),D),C).  [para(32(a,1),34(a,1,1))].
+99 join(composition(A,composition(B,C)),composition(D,C)) = composition(join(D,composition(A,B)),C).  [para(23(a,1),98(a,2,1))].
+100 join(composition(A,B),composition(C,composition(D,B))) = composition(join(A,composition(C,D)),B).  [para(32(a,1),34(a,1,2))].
+101 join(complement(one),composition(converse(A),complement(A))) = complement(one).  [para(18(a,1),37(a,1,2,2,1))].
+102 join(complement(A),composition(converse(composition(B,C)),complement(composition(B,composition(C,A))))) = complement(A).  [para(32(a,1),37(a,1,2,2,1))].
+103 join(complement(top),complement(join(complement(A),complement(A)))) = A.  [para(21(a,1),41(a,1,1,1))].
+104 join(zero,complement(join(complement(A),complement(A)))) = A.  [para(82(a,1),103(a,1,1))].
+105 join(complement(join(A,complement(complement(A)))),complement(top)) = complement(A).  [para(21(a,1),41(a,1,2,1))].
+106 join(complement(join(A,complement(complement(A)))),zero) = complement(A).  [para(82(a,1),105(a,1,2))].
+107 join(zero,complement(join(A,complement(complement(A))))) = complement(A).  [para(23(a,1),106(a,1))].
+108 join(complement(join(join(A,complement(B)),complement(join(complement(A),complement(B))))),complement(B)) = join(complement(A),complement(B)).  [para(41(a,1),41(a,1,2,1))].
+109 join(complement(A),complement(join(join(B,complement(A)),complement(join(complement(B),complement(A)))))) = join(complement(B),complement(A)).  [para(23(a,1),108(a,1))].
+110 join(complement(join(complement(A),complement(B))),composition(complement(join(complement(B),complement(composition(A,converse(one))))),complement(join(complement(one),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(composition(A,converse(one))))),complement(join(complement(one),complement(composition(converse(B),A))))).  [para(18(a,1),69(a,1,1,1,2,1))].
+111 join(complement(join(complement(A),complement(composition(B,converse(C))))),composition(complement(join(complement(B),complement(composition(A,C)))),complement(join(complement(converse(C)),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(composition(A,converse(converse(C)))))),complement(join(complement(converse(C)),complement(composition(converse(B),A))))).  [para(19(a,1),69(a,1,2,1,1,2,1,2))].
+112 join(complement(join(complement(A),complement(composition(B,converse(C))))),composition(complement(join(complement(B),complement(composition(A,C)))),complement(join(complement(converse(C)),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(composition(A,C)))),complement(join(complement(converse(C)),complement(composition(converse(B),A))))).  [para(19(a,1),111(a,2,1,1,2,1,2))].
+113 join(zero,composition(converse(A),complement(composition(A,top)))) = complement(top).  [para(82(a,1),37(a,1,1))].
+114 join(zero,composition(converse(A),complement(composition(A,top)))) = zero.  [para(82(a,1),113(a,2))].
+115 join(complement(join(top,complement(A))),complement(join(zero,complement(A)))) = A.  [para(82(a,1),41(a,1,2,1,1))].
+116 join(join(A,converse(B)),converse(C)) = converse(join(join(B,converse(A)),C)).  [para(85(a,1),26(a,1,1))].
+117 join(join(A,converse(B)),converse(C)) = converse(join(C,join(B,converse(A)))).  [para(23(a,1),116(a,2,1))].
+118 join(join(A,converse(B)),converse(C)) = converse(join(B,join(converse(A),C))).  [para(31(a,2),117(a,2,1))].
+119 join(join(A,converse(B)),converse(C)) = converse(join(B,join(C,converse(A)))).  [para(23(a,1),118(a,2,1,2))].
+120 converse(join(A,join(B,converse(C)))) = join(join(C,converse(A)),converse(B)).  [copy(119),flip(a)].
+121 join(converse(A),join(B,converse(C))) = converse(join(A,join(C,converse(B)))).  [para(85(a,1),26(a,1,2))].
+122 join(B,join(converse(C),converse(A))) = converse(join(A,join(C,converse(B)))).  [para(31(a,2),121(a,1))].
+123 join(B,join(converse(A),converse(C))) = converse(join(A,join(C,converse(B)))).  [para(23(a,1),122(a,1,2))].
+124 join(B,converse(join(A,C))) = converse(join(A,join(C,converse(B)))).  [para(26(a,1),123(a,1,2))].
+125 join(B,converse(join(A,C))) = join(join(B,converse(A)),converse(C)).  [para(120(a,1),124(a,2))].
+126 join(join(A,converse(B)),converse(C)) = join(A,converse(join(B,C))).  [copy(125),flip(a)].
+127 converse(join(join(A,converse(B)),converse(C))) = join(C,join(B,converse(A))).  [para(85(a,1),85(a,2,2))].
+128 converse(join(A,converse(join(B,C)))) = join(C,join(B,converse(A))).  [para(126(a,1),127(a,1,1))].
+129 join(join(B,C),converse(A)) = join(C,join(B,converse(A))).  [para(85(a,1),128(a,1))].
+130 join(join(B,C),converse(A)) = join(B,join(converse(A),C)).  [para(31(a,2),129(a,2))].
+131 join(join(A,B),converse(C)) = join(A,join(B,converse(C))).  [para(23(a,1),130(a,2,2))].
+132 join(composition(A,converse(B)),converse(C)) = converse(join(composition(B,converse(A)),C)).  [para(87(a,1),26(a,1,1))].
+133 join(composition(A,converse(B)),converse(C)) = converse(join(C,composition(B,converse(A)))).  [para(23(a,1),132(a,2,1))].
+134 converse(join(A,composition(B,converse(C)))) = join(composition(C,converse(B)),converse(A)).  [copy(133),flip(a)].
+135 converse(converse(A)) = composition(converse(one),A).  [para(18(a,1),89(a,1,1))].
+136 A = composition(converse(one),A).  [para(19(a,1),135(a,1))].
+137 composition(converse(one),A) = A.  [copy(136),flip(a)].
+138 join(composition(converse(A),B),converse(C)) = converse(join(composition(converse(B),A),C)).  [para(89(a,1),26(a,1,1))].
+139 join(composition(converse(A),B),converse(C)) = converse(join(C,composition(converse(B),A))).  [para(23(a,1),138(a,2,1))].
+140 converse(join(A,composition(converse(B),C))) = join(composition(converse(C),B),converse(A)).  [copy(139),flip(a)].
+141 join(join(complement(A),complement(B)),B) = join(complement(join(A,complement(B))),top).  [para(41(a,1),91(a,1,2))].
+142 join(B,join(complement(A),complement(B))) = join(complement(join(A,complement(B))),top).  [para(23(a,1),141(a,1))].
+143 join(complement(A),top) = join(complement(join(A,complement(B))),top).  [para(91(a,1),142(a,1))].
+144 join(top,complement(A)) = join(complement(join(A,complement(B))),top).  [para(23(a,1),143(a,1))].
+145 join(top,complement(A)) = join(top,complement(join(A,complement(B)))).  [para(23(a,1),144(a,2))].
+146 join(top,complement(join(A,complement(B)))) = join(top,complement(A)).  [copy(145),flip(a)].
+147 join(join(complement(A),complement(composition(B,complement(join(complement(C),complement(composition(converse(B),A))))))),complement(join(complement(A),complement(composition(B,complement(join(complement(C),complement(composition(converse(B),A))))))))) = join(complement(join(complement(A),complement(composition(B,C)))),top).  [para(51(a,1),91(a,1,2))].
+148 top = join(complement(join(complement(A),complement(composition(B,C)))),top).  [para(21(a,1),147(a,1))].
+149 top = join(top,complement(join(complement(A),complement(composition(B,C))))).  [para(23(a,1),148(a,2))].
+150 top = join(top,complement(complement(A))).  [para(146(a,1),149(a,2))].
+151 join(top,complement(complement(A))) = top.  [copy(150),flip(a)].
+152 one = converse(one).  [para(137(a,1),18(a,1))].
+153 converse(one) = one.  [copy(152),flip(a)].
+154 join(A,composition(B,A)) = composition(join(converse(one),B),A).  [para(137(a,1),34(a,1,1))].
+155 join(A,composition(B,A)) = composition(join(one,B),A).  [para(153(a,1),154(a,2,1,1))].
+156 join(A,composition(B,A)) = composition(join(B,one),A).  [para(23(a,1),155(a,2,1))].
+157 composition(join(A,one),B) = join(B,composition(A,B)).  [copy(156),flip(a)].
+158 join(complement(A),complement(composition(one,A))) = complement(A).  [para(137(a,1),37(a,1,2))].
+159 join(complement(join(complement(A),complement(B))),complement(join(complement(A),complement(composition(complement(join(complement(converse(one)),complement(composition(A,converse(B))))),B))))) = complement(join(complement(A),complement(composition(complement(join(complement(converse(one)),complement(composition(A,converse(B))))),B)))).  [para(137(a,1),61(a,1,1,1,2,1))].
+160 join(complement(join(complement(A),complement(B))),complement(join(complement(A),complement(composition(complement(join(complement(one),complement(composition(A,converse(B))))),B))))) = complement(join(complement(A),complement(composition(complement(join(complement(converse(one)),complement(composition(A,converse(B))))),B)))).  [para(153(a,1),159(a,1,2,1,2,1,1,1,1,1))].
+161 join(complement(join(complement(A),complement(B))),complement(join(complement(A),complement(composition(complement(join(complement(one),complement(composition(A,converse(B))))),B))))) = complement(join(complement(A),complement(composition(complement(join(complement(one),complement(composition(A,converse(B))))),B)))).  [para(153(a,1),160(a,2,1,2,1,1,1,1,1))].
+162 composition(converse(one),composition(one,A)) = A.  [para(137(a,1),93(a,2))].
+163 composition(one,composition(one,A)) = A.  [para(153(a,1),162(a,1,1))].
+164 composition(one,A) = A.  [para(93(a,1),163(a,1))].
+165 join(complement(join(complement(A),complement(B))),composition(complement(join(complement(B),complement(composition(A,one)))),complement(join(complement(one),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(composition(A,converse(one))))),complement(join(complement(one),complement(composition(converse(B),A))))).  [para(153(a,1),110(a,1,2,1,1,2,1,2))].
+166 join(complement(join(complement(A),complement(B))),composition(complement(join(complement(B),complement(A))),complement(join(complement(one),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(composition(A,converse(one))))),complement(join(complement(one),complement(composition(converse(B),A))))).  [para(18(a,1),165(a,1,2,1,1,2,1))].
+167 join(complement(join(complement(A),complement(B))),composition(complement(join(complement(A),complement(B))),complement(join(complement(one),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(composition(A,converse(one))))),complement(join(complement(one),complement(composition(converse(B),A))))).  [para(23(a,1),166(a,1,2,1,1))].
+168 join(complement(join(complement(A),complement(B))),composition(complement(join(complement(A),complement(B))),complement(join(complement(one),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(composition(A,one)))),complement(join(complement(one),complement(composition(converse(B),A))))).  [para(153(a,1),167(a,2,1,1,2,1,2))].
+169 join(complement(join(complement(A),complement(B))),composition(complement(join(complement(A),complement(B))),complement(join(complement(one),complement(composition(converse(B),A)))))) = composition(complement(join(complement(B),complement(A))),complement(join(complement(one),complement(composition(converse(B),A))))).  [para(18(a,1),168(a,2,1,1,2,1))].
+170 join(complement(join(complement(A),complement(B))),composition(complement(join(complement(A),complement(B))),complement(join(complement(one),complement(composition(converse(B),A)))))) = composition(complement(join(complement(A),complement(B))),complement(join(complement(one),complement(composition(converse(B),A))))).  [para(23(a,1),169(a,2,1,1))].
+171 join(complement(A),complement(A)) = complement(A).  [para(164(a,1),158(a,1,2,1))].
+172 join(zero,complement(complement(A))) = A.  [para(171(a,1),104(a,1,2,1))].
+173 join(one,converse(A)) = converse(join(one,A)).  [para(153(a,1),26(a,1,1))].
+174 join(one,converse(A)) = converse(join(A,one)).  [para(23(a,1),173(a,2,1))].
+175 converse(join(A,one)) = join(one,converse(A)).  [copy(174),flip(a)].
+176 join(complement(top),complement(join(complement(top),complement(complement(A))))) = complement(A).  [para(151(a,1),41(a,1,1,1))].
+177 join(zero,complement(join(complement(top),complement(complement(A))))) = complement(A).  [para(82(a,1),176(a,1,1))].
+178 join(zero,complement(join(zero,complement(complement(A))))) = complement(A).  [para(82(a,1),177(a,1,2,1,1))].
+179 join(zero,complement(A)) = complement(A).  [para(172(a,1),178(a,1,2,1))].
+180 join(complement(A),top) = join(top,top).  [para(151(a,1),91(a,1,2))].
+181 join(top,complement(A)) = join(top,top).  [para(23(a,1),180(a,1))].
+182 complement(complement(A)) = A.  [para(179(a,1),172(a,1))].
+183 join(complement(join(top,top)),complement(join(zero,complement(A)))) = A.  [para(181(a,1),115(a,1,1,1))].
+184 join(complement(join(top,top)),complement(complement(A))) = A.  [para(179(a,1),183(a,1,2,1))].
+185 join(complement(join(top,top)),A) = A.  [para(182(a,1),184(a,1,2))].
+186 join(A,complement(join(top,top))) = A.  [para(23(a,1),185(a,1))].
+187 join(zero,complement(join(A,A))) = complement(A).  [para(182(a,1),107(a,1,2,1,2))].
+188 complement(join(A,A)) = complement(A).  [para(179(a,1),187(a,1))].
+189 join(top,A) = top.  [para(182(a,1),151(a,1,2))].
+190 join(A,top) = top.  [para(23(a,1),189(a,1))].
+191 join(A,complement(top)) = A.  [para(190(a,1),186(a,1,2,1))].
+192 join(A,zero) = A.  [para(82(a,1),191(a,1,2))].
+193 join(top,complement(A)) = top.  [para(190(a,1),181(a,2))].
+194 join(complement(join(A,B)),complement(join(complement(A),complement(complement(B))))) = complement(B).  [para(182(a,1),41(a,1,1,1,2))].
+195 join(complement(join(A,B)),complement(join(complement(A),B))) = complement(B).  [para(182(a,1),194(a,1,2,1,2))].
+196 join(complement(join(A,B)),complement(join(B,complement(A)))) = complement(B).  [para(23(a,1),195(a,1,2,1))].
+197 complement(zero) = top.  [para(82(a,1),182(a,1,1))].
+198 join(complement(join(A,complement(B))),complement(join(complement(A),complement(join(B,B))))) = join(B,B).  [para(188(a,1),41(a,1,1,1,2))].
+199 join(complement(join(A,complement(B))),complement(join(complement(A),complement(B)))) = join(B,B).  [para(188(a,1),198(a,1,2,1,2))].
+200 B = join(B,B).  [para(41(a,1),199(a,1))].
+201 join(A,A) = A.  [copy(200),flip(a)].
+202 join(A,B) = join(B,join(join(A,B),A)).  [para(201(a,1),31(a,1))].
+203 join(A,B) = join(B,join(A,join(A,B))).  [para(23(a,1),202(a,2,2))].
+204 join(A,B) = join(A,join(join(A,B),B)).  [para(31(a,2),203(a,2))].
+205 join(A,B) = join(A,join(B,join(A,B))).  [para(23(a,1),204(a,2,2))].
+206 join(A,B) = join(A,join(A,join(B,B))).  [para(31(a,2),205(a,2,2))].
+207 join(A,B) = join(A,join(A,B)).  [para(201(a,1),206(a,2,2,2))].
+208 join(A,join(A,B)) = join(A,B).  [copy(207),flip(a)].
+209 join(complement(join(A,complement(B))),B) = join(complement(join(A,complement(B))),complement(join(complement(A),complement(B)))).  [para(41(a,1),208(a,1,2))].
+210 join(B,complement(join(A,complement(B)))) = join(complement(join(A,complement(B))),complement(join(complement(A),complement(B)))).  [para(23(a,1),209(a,1))].
+211 join(A,complement(join(B,complement(A)))) = A.  [para(41(a,1),210(a,2))].
+212 join(A,join(complement(join(B,complement(A))),C)) = join(C,A).  [para(211(a,1),31(a,2,2))].
+213 join(A,join(C,complement(join(B,complement(A))))) = join(C,A).  [para(23(a,1),212(a,1,2))].
+214 join(A,join(B,complement(join(C,complement(A))))) = join(A,B).  [para(23(a,1),213(a,2))].
+215 join(complement(one),composition(converse(complement(A)),A)) = complement(one).  [para(182(a,1),101(a,1,2,2))].
+216 join(converse(zero),converse(composition(converse(A),complement(composition(A,top))))) = converse(zero).  [para(114(a,1),26(a,2,1))].
+217 join(converse(zero),composition(converse(complement(composition(A,top))),A)) = converse(zero).  [para(89(a,1),216(a,1,2))].
+218 join(zero,composition(join(one,converse(A)),complement(composition(join(A,one),top)))) = zero.  [para(175(a,1),114(a,1,2,1))].
+219 join(complement(one),converse(complement(one))) = complement(one).  [para(18(a,1),215(a,1,2))].
+220 join(converse(complement(one)),converse(converse(complement(one)))) = converse(complement(one)).  [para(219(a,1),26(a,2,1))].
+221 join(converse(complement(one)),complement(one)) = converse(complement(one)).  [para(19(a,1),220(a,1,2))].
+222 join(complement(one),converse(complement(one))) = converse(complement(one)).  [para(23(a,1),221(a,1))].
+223 complement(one) = converse(complement(one)).  [para(219(a,1),222(a,1))].
+224 converse(complement(one)) = complement(one).  [copy(223),flip(a)].
+225 converse(join(complement(one),one)) = join(one,complement(one)).  [para(224(a,1),175(a,2,2))].
+226 converse(join(one,complement(one))) = join(one,complement(one)).  [para(23(a,1),225(a,1,1))].
+227 converse(top) = join(one,complement(one)).  [para(21(a,1),226(a,1,1))].
+228 converse(top) = top.  [para(21(a,1),227(a,2))].
+229 join(top,converse(A)) = converse(join(top,A)).  [para(228(a,1),26(a,1,1))].
+230 join(top,converse(A)) = converse(join(A,top)).  [para(23(a,1),229(a,2,1))].
+231 join(top,converse(A)) = converse(top).  [para(190(a,1),230(a,2,1))].
+232 join(top,converse(A)) = top.  [para(228(a,1),231(a,2))].
+233 join(top,composition(A,converse(B))) = top.  [para(87(a,1),232(a,1,2))].
+234 join(top,composition(A,B)) = top.  [para(19(a,1),233(a,1,2,2))].
+235 join(top,composition(A,top)) = top.  [para(228(a,1),233(a,1,2,2))].
+236 composition(join(A,one),top) = top.  [para(157(a,2),235(a,1))].
+237 join(zero,composition(join(one,converse(A)),complement(top))) = zero.  [para(236(a,1),218(a,1,2,2,1))].
+238 join(zero,composition(join(one,converse(A)),zero)) = zero.  [para(82(a,1),237(a,1,2,2))].
+239 composition(join(join(one,converse(A)),one),zero) = zero.  [para(157(a,2),238(a,1))].
+240 composition(join(one,join(one,converse(A))),zero) = zero.  [para(23(a,1),239(a,1,1))].
+241 composition(join(one,converse(A)),zero) = zero.  [para(208(a,1),240(a,1,1))].
+242 composition(join(one,complement(one)),zero) = zero.  [para(224(a,1),241(a,1,1,2))].
+243 composition(top,zero) = zero.  [para(21(a,1),242(a,1,1))].
+244 join(complement(zero),composition(converse(top),complement(zero))) = complement(zero).  [para(243(a,1),37(a,1,2,2,1))].
+245 join(top,composition(converse(top),complement(zero))) = complement(zero).  [para(197(a,1),244(a,1,1))].
+246 join(top,composition(top,complement(zero))) = complement(zero).  [para(228(a,1),245(a,1,2,1))].
+247 join(top,composition(top,top)) = complement(zero).  [para(197(a,1),246(a,1,2,2))].
+248 composition(join(top,one),top) = complement(zero).  [para(157(a,2),247(a,1))].
+249 composition(join(one,top),top) = complement(zero).  [para(23(a,1),248(a,1,1))].
+250 composition(top,top) = complement(zero).  [para(190(a,1),249(a,1,1))].
+251 composition(top,top) = top.  [para(197(a,1),250(a,2))].
+252 join(complement(join(complement(A),complement(zero))),composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(243(a,1),69(a,1,1,1,2,1))].
+253 join(complement(join(complement(A),top)),composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(197(a,1),252(a,1,1,1,2))].
+254 join(complement(join(top,complement(A))),composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(23(a,1),253(a,1,1,1))].
+255 join(complement(top),composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(193(a,1),254(a,1,1,1))].
+256 join(zero,composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(82(a,1),255(a,1,1))].
+257 join(zero,composition(complement(join(zero,complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(82(a,1),256(a,1,2,1,1,1))].
+258 join(zero,composition(complement(complement(composition(A,converse(zero)))),complement(join(complement(zero),complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(179(a,1),257(a,1,2,1,1))].
+259 join(zero,composition(composition(A,converse(zero)),complement(join(complement(zero),complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(182(a,1),258(a,1,2,1))].
+260 join(zero,composition(composition(A,converse(zero)),complement(join(top,complement(composition(converse(top),A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(197(a,1),259(a,1,2,2,1,1))].
+261 join(zero,composition(composition(A,converse(zero)),complement(join(top,complement(composition(top,A)))))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(228(a,1),260(a,1,2,2,1,2,1,1))].
+262 join(zero,composition(composition(A,converse(zero)),complement(top))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(193(a,1),261(a,1,2,2,1))].
+263 join(zero,composition(composition(A,converse(zero)),zero)) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(82(a,1),262(a,1,2,2))].
+264 join(zero,composition(A,composition(converse(zero),zero))) = composition(complement(join(complement(top),complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(32(a,1),263(a,1,2))].
+265 join(zero,composition(A,composition(converse(zero),zero))) = composition(complement(join(zero,complement(composition(A,converse(zero))))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(82(a,1),264(a,2,1,1,1))].
+266 join(zero,composition(A,composition(converse(zero),zero))) = composition(complement(complement(composition(A,converse(zero)))),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(179(a,1),265(a,2,1,1))].
+267 join(zero,composition(A,composition(converse(zero),zero))) = composition(composition(A,converse(zero)),complement(join(complement(zero),complement(composition(converse(top),A))))).  [para(182(a,1),266(a,2,1))].
+268 join(zero,composition(A,composition(converse(zero),zero))) = composition(composition(A,converse(zero)),complement(join(top,complement(composition(converse(top),A))))).  [para(197(a,1),267(a,2,2,1,1))].
+269 join(zero,composition(A,composition(converse(zero),zero))) = composition(composition(A,converse(zero)),complement(join(top,complement(composition(top,A))))).  [para(228(a,1),268(a,2,2,1,2,1,1))].
+270 join(zero,composition(A,composition(converse(zero),zero))) = composition(composition(A,converse(zero)),complement(top)).  [para(193(a,1),269(a,2,2,1))].
+271 join(zero,composition(A,composition(converse(zero),zero))) = composition(composition(A,converse(zero)),zero).  [para(82(a,1),270(a,2,2))].
+272 join(zero,composition(A,composition(converse(zero),zero))) = composition(A,composition(converse(zero),zero)).  [para(32(a,1),271(a,2))].
+273 join(composition(A,composition(B,zero)),zero) = composition(join(top,composition(A,B)),zero).  [para(243(a,1),99(a,1,2))].
+274 join(zero,composition(A,composition(B,zero))) = composition(join(top,composition(A,B)),zero).  [para(23(a,1),273(a,1))].
+275 join(zero,composition(A,composition(B,zero))) = composition(top,zero).  [para(234(a,1),274(a,2,1))].
+276 join(zero,composition(A,composition(B,zero))) = zero.  [para(243(a,1),275(a,2))].
+277 zero = composition(A,composition(converse(zero),zero)).  [para(276(a,1),272(a,1))].
+278 composition(A,composition(converse(zero),zero)) = zero.  [copy(277),flip(a)].
+279 join(complement(join(A,complement(complement(B)))),complement(join(join(B,complement(join(A,complement(complement(B))))),complement(join(complement(B),complement(join(A,complement(complement(B))))))))) = complement(B).  [para(211(a,1),109(a,2))].
+280 join(complement(join(A,B)),complement(join(join(B,complement(join(A,complement(complement(B))))),complement(join(complement(B),complement(join(A,complement(complement(B))))))))) = complement(B).  [para(182(a,1),279(a,1,1,1,2))].
+281 join(complement(join(A,B)),complement(join(join(B,complement(join(A,B))),complement(join(complement(B),complement(join(A,complement(complement(B))))))))) = complement(B).  [para(182(a,1),280(a,1,2,1,1,2,1,2))].
+282 join(complement(join(A,B)),complement(join(join(B,complement(join(A,B))),complement(join(complement(B),complement(join(A,B))))))) = complement(B).  [para(182(a,1),281(a,1,2,1,2,1,2,1,2))].
+283 join(complement(A),complement(join(B,A))) = complement(A).  [para(109(a,1),282(a,1))].
+284 composition(zero,A) = composition(B,composition(composition(converse(zero),zero),A)).  [para(278(a,1),32(a,1,1))].
+285 composition(zero,A) = composition(B,composition(converse(zero),composition(zero,A))).  [para(32(a,1),284(a,2,2))].
+286 composition(A,composition(converse(zero),composition(zero,B))) = composition(zero,B).  [copy(285),flip(a)].
+287 zero = composition(A,composition(B,composition(converse(zero),zero))).  [para(278(a,1),32(a,1))].
+288 zero = composition(A,zero).  [para(278(a,1),287(a,2,2))].
+289 composition(A,zero) = zero.  [copy(288),flip(a)].
+290 converse(zero) = composition(converse(composition(converse(zero),zero)),A).  [para(278(a,1),89(a,1,1))].
+291 converse(zero) = composition(converse(zero),A).  [para(289(a,1),290(a,2,1,1))].
+292 composition(converse(zero),A) = converse(zero).  [copy(291),flip(a)].
+293 composition(A,converse(zero)) = composition(zero,B).  [para(292(a,1),286(a,1,2))].
+294 composition(zero,A) = composition(B,converse(zero)).  [copy(293),flip(a)].
+295 composition(zero,A) = c_0.  [new_symbol(294)].
+296 c_0 = composition(B,converse(zero)).  [para(295(a,1),294(a,1))].
+297 composition(A,converse(zero)) = c_0.  [copy(296),flip(a)].
+298 c_0 = zero.  [para(295(a,1),18(a,1))].
+299 composition(converse(A),converse(zero)) = converse(c_0).  [para(295(a,1),28(a,2,1))].
+300 c_0 = converse(c_0).  [para(297(a,1),299(a,1))].
+301 zero = converse(c_0).  [para(298(a,1),300(a,1))].
+302 zero = converse(zero).  [para(298(a,1),301(a,2,1))].
+303 converse(zero) = zero.  [copy(302),flip(a)].
+304 join(c_0,composition(A,B)) = composition(join(zero,A),B).  [para(295(a,1),34(a,1,1))].
+305 join(zero,composition(A,B)) = composition(join(zero,A),B).  [para(298(a,1),304(a,1,1))].
+306 join(zero,composition(A,B)) = composition(join(A,zero),B).  [para(23(a,1),305(a,2,1))].
+307 join(zero,composition(A,B)) = composition(A,B).  [para(192(a,1),306(a,2,1))].
+308 join(zero,composition(converse(complement(composition(A,top))),A)) = converse(zero).  [para(303(a,1),217(a,1,1))].
+309 composition(converse(complement(composition(A,top))),A) = converse(zero).  [para(307(a,1),308(a,1))].
+310 composition(converse(complement(composition(A,top))),A) = zero.  [para(303(a,1),309(a,2))].
+311 composition(converse(A),converse(converse(complement(composition(A,top))))) = converse(zero).  [para(310(a,1),28(a,2,1))].
+312 composition(converse(A),complement(composition(A,top))) = converse(zero).  [para(19(a,1),311(a,1,2))].
+313 composition(converse(A),complement(composition(A,top))) = zero.  [para(303(a,1),312(a,2))].
+314 join(complement(complement(composition(A,top))),composition(converse(composition(B,converse(A))),complement(composition(B,zero)))) = complement(complement(composition(A,top))).  [para(313(a,1),102(a,1,2,2,1,2))].
+315 join(composition(A,top),composition(converse(composition(B,converse(A))),complement(composition(B,zero)))) = complement(complement(composition(A,top))).  [para(182(a,1),314(a,1,1))].
+316 join(composition(A,top),composition(composition(A,converse(B)),complement(composition(B,zero)))) = complement(complement(composition(A,top))).  [para(87(a,1),315(a,1,2,1))].
+317 join(composition(A,top),composition(composition(A,converse(B)),complement(zero))) = complement(complement(composition(A,top))).  [para(289(a,1),316(a,1,2,2,1))].
+318 join(composition(A,top),composition(composition(A,converse(B)),top)) = complement(complement(composition(A,top))).  [para(197(a,1),317(a,1,2,2))].
+319 join(composition(A,top),composition(A,composition(converse(B),top))) = complement(complement(composition(A,top))).  [para(32(a,1),318(a,1,2))].
+320 composition(join(A,composition(A,converse(B))),top) = complement(complement(composition(A,top))).  [para(100(a,1),319(a,1))].
+321 composition(join(A,composition(A,converse(B))),top) = composition(A,top).  [para(182(a,1),320(a,2))].
+322 join(complement(c1),complement(one)) = complement(c1).  [para(80(a,1),283(a,1,2,1))].
+323 join(complement(one),complement(c1)) = complement(c1).  [para(23(a,1),322(a,1))].
+324 join(complement(join(complement(top),complement(composition(A,converse(top))))),composition(complement(join(complement(A),complement(top))),complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(251(a,1),112(a,1,2,1,1,2,1))].
+325 join(complement(join(zero,complement(composition(A,converse(top))))),composition(complement(join(complement(A),complement(top))),complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(82(a,1),324(a,1,1,1,1))].
+326 join(complement(join(zero,complement(composition(A,top)))),composition(complement(join(complement(A),complement(top))),complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(228(a,1),325(a,1,1,1,2,1,2))].
+327 join(complement(complement(composition(A,top))),composition(complement(join(complement(A),complement(top))),complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(179(a,1),326(a,1,1,1))].
+328 join(composition(A,top),composition(complement(join(complement(A),complement(top))),complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(182(a,1),327(a,1,1))].
+329 join(composition(A,top),composition(complement(join(complement(A),zero)),complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(82(a,1),328(a,1,2,1,1,2))].
+330 join(composition(A,top),composition(complement(join(zero,complement(A))),complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(23(a,1),329(a,1,2,1,1))].
+331 join(composition(A,top),composition(complement(complement(A)),complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(179(a,1),330(a,1,2,1,1))].
+332 join(composition(A,top),composition(A,complement(join(complement(converse(top)),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(182(a,1),331(a,1,2,1))].
+333 join(composition(A,top),composition(A,complement(join(complement(top),complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(228(a,1),332(a,1,2,2,1,1,1))].
+334 join(composition(A,top),composition(A,complement(join(zero,complement(composition(converse(A),top)))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(82(a,1),333(a,1,2,2,1,1))].
+335 join(composition(A,top),composition(A,complement(complement(composition(converse(A),top))))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(179(a,1),334(a,1,2,2,1))].
+336 join(composition(A,top),composition(A,composition(converse(A),top))) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(182(a,1),335(a,1,2,2))].
+337 composition(join(A,composition(A,converse(A))),top) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(100(a,1),336(a,1))].
+338 composition(A,top) = composition(complement(join(complement(A),complement(composition(top,top)))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(321(a,1),337(a,1))].
+339 composition(A,top) = composition(complement(join(complement(A),complement(top))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(251(a,1),338(a,2,1,1,2,1))].
+340 composition(A,top) = composition(complement(join(complement(A),zero)),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(82(a,1),339(a,2,1,1,2))].
+341 composition(A,top) = composition(complement(join(zero,complement(A))),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(23(a,1),340(a,2,1,1))].
+342 composition(A,top) = composition(complement(complement(A)),complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(179(a,1),341(a,2,1,1))].
+343 composition(A,top) = composition(A,complement(join(complement(converse(top)),complement(composition(converse(A),top))))).  [para(182(a,1),342(a,2,1))].
+344 composition(A,top) = composition(A,complement(join(complement(top),complement(composition(converse(A),top))))).  [para(228(a,1),343(a,2,2,1,1,1))].
+345 composition(A,top) = composition(A,complement(join(zero,complement(composition(converse(A),top))))).  [para(82(a,1),344(a,2,2,1,1))].
+346 composition(A,top) = composition(A,complement(complement(composition(converse(A),top)))).  [para(179(a,1),345(a,2,2,1))].
+347 composition(A,top) = composition(A,composition(converse(A),top)).  [para(182(a,1),346(a,2,2))].
+348 composition(A,composition(converse(A),top)) = composition(A,top).  [copy(347),flip(a)].
+349 join(one,converse(A)) = join(one,join(c1,converse(A))).  [para(80(a,1),131(a,1,1))].
+350 join(one,join(c1,converse(A))) = join(one,converse(A)).  [copy(349),flip(a)].
+351 converse(composition(join(converse(A),converse(B)),converse(C))) = join(composition(converse(converse(C)),A),converse(converse(composition(C,B)))).  [para(97(a,1),140(a,1,1))].
+352 converse(composition(converse(join(A,B)),converse(C))) = join(composition(converse(converse(C)),A),converse(converse(composition(C,B)))).  [para(26(a,1),351(a,1,1,1))].
+353 converse(converse(composition(C,join(A,B)))) = join(composition(converse(converse(C)),A),converse(converse(composition(C,B)))).  [para(28(a,1),352(a,1,1))].
+354 composition(C,join(A,B)) = join(composition(converse(converse(C)),A),converse(converse(composition(C,B)))).  [para(19(a,1),353(a,1))].
+355 composition(C,join(A,B)) = join(composition(C,A),converse(converse(composition(C,B)))).  [para(19(a,1),354(a,2,1,1))].
+356 composition(C,join(A,B)) = join(composition(C,A),composition(C,B)).  [para(19(a,1),355(a,2,2))].
+357 join(composition(A,B),composition(A,C)) = composition(A,join(B,C)).  [copy(356),flip(a)].
+358 join(converse(one),converse(join(c1,converse(A)))) = converse(join(one,converse(A))).  [para(350(a,1),26(a,2,1))].
+359 join(one,converse(join(c1,converse(A)))) = converse(join(one,converse(A))).  [para(153(a,1),358(a,1,1))].
+360 join(one,join(A,converse(c1))) = converse(join(one,converse(A))).  [para(85(a,1),359(a,1,2))].
+361 join(A,join(converse(c1),one)) = converse(join(one,converse(A))).  [para(31(a,2),360(a,1))].
+362 join(A,join(one,converse(c1))) = converse(join(one,converse(A))).  [para(23(a,1),361(a,1,2))].
+363 join(A,join(one,converse(c1))) = join(A,converse(one)).  [para(85(a,1),362(a,2))].
+364 join(A,join(one,converse(c1))) = join(A,one).  [para(153(a,1),363(a,2,2))].
+365 join(one,join(one,converse(c1))) = one.  [para(201(a,1),364(a,2))].
+366 join(one,converse(c1)) = one.  [para(208(a,1),365(a,1))].
+367 join(composition(one,A),composition(converse(c1),A)) = composition(one,A).  [para(366(a,1),34(a,2,1))].
+368 join(A,composition(converse(c1),A)) = composition(one,A).  [para(164(a,1),367(a,1,1))].
+369 join(A,composition(converse(c1),A)) = A.  [para(164(a,1),368(a,2))].
+370 join(complement(converse(c1)),complement(one)) = complement(converse(c1)).  [para(366(a,1),283(a,1,2,1))].
+371 join(complement(one),complement(converse(c1))) = complement(converse(c1)).  [para(23(a,1),370(a,1))].
+372 join(A,join(composition(converse(c1),A),B)) = join(B,A).  [para(369(a,1),31(a,2,2))].
+373 join(A,join(B,composition(converse(c1),A))) = join(B,A).  [para(23(a,1),372(a,1,2))].
+374 join(A,join(B,composition(converse(c1),A))) = join(A,B).  [para(23(a,1),373(a,2))].
+375 join(complement(composition(converse(c1),A)),complement(A)) = complement(composition(converse(c1),A)).  [para(369(a,1),283(a,1,2,1))].
+376 join(complement(A),complement(composition(converse(c1),A))) = complement(composition(converse(c1),A)).  [para(23(a,1),375(a,1))].
+377 join(composition(converse(converse(c1)),top),composition(converse(c1),top)) = composition(converse(converse(c1)),top).  [para(348(a,1),369(a,1,2))].
+378 join(composition(c1,top),composition(converse(c1),top)) = composition(converse(converse(c1)),top).  [para(19(a,1),377(a,1,1,1))].
+379 composition(join(c1,converse(c1)),top) = composition(converse(converse(c1)),top).  [para(34(a,1),378(a,1))].
+380 composition(join(c1,converse(c1)),top) = composition(c1,top).  [para(19(a,1),379(a,2,1))].
+381 converse(converse(A)) = join(composition(A,converse(converse(c1))),converse(converse(A))).  [para(369(a,1),134(a,1,1))].
+382 A = join(composition(A,converse(converse(c1))),converse(converse(A))).  [para(19(a,1),381(a,1))].
+383 A = join(composition(A,c1),converse(converse(A))).  [para(19(a,1),382(a,2,1,2))].
+384 A = join(composition(A,c1),A).  [para(19(a,1),383(a,2,2))].
+385 A = join(A,composition(A,c1)).  [para(23(a,1),384(a,2))].
+386 join(A,composition(A,c1)) = A.  [copy(385),flip(a)].
+387 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(complement(top),complement(composition(converse(join(c1,converse(c1))),A))))))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(complement(top),complement(composition(converse(join(c1,converse(c1))),A)))))))).  [para(380(a,1),51(a,1,1,1,2,1))].
+388 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(zero,complement(composition(converse(join(c1,converse(c1))),A))))))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(complement(top),complement(composition(converse(join(c1,converse(c1))),A)))))))).  [para(82(a,1),387(a,1,2,1,2,1,2,1,1))].
+389 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(zero,complement(composition(join(c1,converse(c1)),A))))))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(complement(top),complement(composition(converse(join(c1,converse(c1))),A)))))))).  [para(85(a,1),388(a,1,2,1,2,1,2,1,2,1,1))].
+390 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(complement(composition(join(c1,converse(c1)),A)))))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(complement(top),complement(composition(converse(join(c1,converse(c1))),A)))))))).  [para(179(a,1),389(a,1,2,1,2,1,2,1))].
+391 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A)))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(complement(top),complement(composition(converse(join(c1,converse(c1))),A)))))))).  [para(182(a,1),390(a,1,2,1,2,1,2))].
+392 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A)))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(zero,complement(composition(converse(join(c1,converse(c1))),A)))))))).  [para(82(a,1),391(a,2,1,2,1,2,1,1))].
+393 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A)))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(join(zero,complement(composition(join(c1,converse(c1)),A)))))))).  [para(85(a,1),392(a,2,1,2,1,2,1,2,1,1))].
+394 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A)))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),complement(complement(composition(join(c1,converse(c1)),A))))))).  [para(179(a,1),393(a,2,1,2,1,2,1))].
+395 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A)))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A))))).  [para(182(a,1),394(a,2,1,2,1,2))].
+396 join(complement(complement(c1)),complement(join(complement(one),complement(composition(complement(join(complement(one),complement(composition(one,converse(c1))))),c1))))) = complement(join(complement(one),complement(composition(complement(join(complement(one),complement(composition(one,converse(c1))))),c1)))).  [para(323(a,1),161(a,1,1,1))].
+397 join(c1,complement(join(complement(one),complement(composition(complement(join(complement(one),complement(composition(one,converse(c1))))),c1))))) = complement(join(complement(one),complement(composition(complement(join(complement(one),complement(composition(one,converse(c1))))),c1)))).  [para(182(a,1),396(a,1,1))].
+398 join(c1,complement(join(complement(one),complement(composition(complement(join(complement(one),complement(converse(c1)))),c1))))) = complement(join(complement(one),complement(composition(complement(join(complement(one),complement(composition(one,converse(c1))))),c1)))).  [para(164(a,1),397(a,1,2,1,2,1,1,1,2,1))].
+399 join(c1,complement(join(complement(one),complement(composition(complement(complement(converse(c1))),c1))))) = complement(join(complement(one),complement(composition(complement(join(complement(one),complement(composition(one,converse(c1))))),c1)))).  [para(371(a,1),398(a,1,2,1,2,1,1,1))].
+400 join(c1,complement(join(complement(one),complement(composition(converse(c1),c1))))) = complement(join(complement(one),complement(composition(complement(join(complement(one),complement(composition(one,converse(c1))))),c1)))).  [para(182(a,1),399(a,1,2,1,2,1,1))].
+401 join(c1,complement(join(complement(one),complement(composition(converse(c1),c1))))) = complement(join(complement(one),complement(composition(complement(join(complement(one),complement(converse(c1)))),c1)))).  [para(164(a,1),400(a,2,1,2,1,1,1,2,1))].
+402 join(c1,complement(join(complement(one),complement(composition(converse(c1),c1))))) = complement(join(complement(one),complement(composition(complement(complement(converse(c1))),c1)))).  [para(371(a,1),401(a,2,1,2,1,1,1))].
+403 join(c1,complement(join(complement(one),complement(composition(converse(c1),c1))))) = complement(join(complement(one),complement(composition(converse(c1),c1)))).  [para(182(a,1),402(a,2,1,2,1,1))].
+404 join(complement(complement(converse(c1))),composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one)))))) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(371(a,1),170(a,1,1,1))].
+405 join(converse(c1),composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one)))))) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(182(a,1),404(a,1,1))].
+406 join(converse(c1),composition(complement(complement(converse(c1))),complement(join(complement(one),complement(composition(converse(converse(c1)),one)))))) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(371(a,1),405(a,1,2,1,1))].
+407 join(converse(c1),composition(converse(c1),complement(join(complement(one),complement(composition(converse(converse(c1)),one)))))) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(182(a,1),406(a,1,2,1))].
+408 join(converse(c1),composition(converse(c1),complement(join(complement(one),complement(composition(c1,one)))))) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(19(a,1),407(a,1,2,2,1,2,1,1))].
+409 join(converse(c1),composition(converse(c1),complement(join(complement(one),complement(c1))))) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(18(a,1),408(a,1,2,2,1,2,1))].
+410 join(converse(c1),composition(converse(c1),complement(complement(c1)))) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(323(a,1),409(a,1,2,2,1))].
+411 join(converse(c1),composition(converse(c1),c1)) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(182(a,1),410(a,1,2,2))].
+412 converse(c1) = composition(complement(join(complement(one),complement(converse(c1)))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(386(a,1),411(a,1))].
+413 converse(c1) = composition(complement(complement(converse(c1))),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(371(a,1),412(a,2,1,1))].
+414 converse(c1) = composition(converse(c1),complement(join(complement(one),complement(composition(converse(converse(c1)),one))))).  [para(182(a,1),413(a,2,1))].
+415 converse(c1) = composition(converse(c1),complement(join(complement(one),complement(composition(c1,one))))).  [para(19(a,1),414(a,2,2,1,2,1,1))].
+416 converse(c1) = composition(converse(c1),complement(join(complement(one),complement(c1)))).  [para(18(a,1),415(a,2,2,1,2,1))].
+417 converse(c1) = composition(converse(c1),complement(complement(c1))).  [para(323(a,1),416(a,2,2,1))].
+418 converse(c1) = composition(converse(c1),c1).  [para(182(a,1),417(a,2,2))].
+419 composition(converse(c1),c1) = converse(c1).  [copy(418),flip(a)].
+420 join(c1,complement(join(complement(one),complement(converse(c1))))) = complement(join(complement(one),complement(composition(converse(c1),c1)))).  [para(419(a,1),403(a,1,2,1,2,1))].
+421 join(c1,complement(complement(converse(c1)))) = complement(join(complement(one),complement(composition(converse(c1),c1)))).  [para(371(a,1),420(a,1,2,1))].
+422 join(c1,converse(c1)) = complement(join(complement(one),complement(composition(converse(c1),c1)))).  [para(182(a,1),421(a,1,2))].
+423 join(c1,converse(c1)) = complement(join(complement(one),complement(converse(c1)))).  [para(419(a,1),422(a,2,1,2,1))].
+424 join(c1,converse(c1)) = complement(complement(converse(c1))).  [para(371(a,1),423(a,2,1))].
+425 join(c1,converse(c1)) = converse(c1).  [para(182(a,1),424(a,2))].
+426 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(converse(c1),composition(join(c1,converse(c1)),A)))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A))))).  [para(425(a,1),395(a,1,2,1,2,1,1))].
+427 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(converse(c1),composition(converse(c1),A)))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A))))).  [para(425(a,1),426(a,1,2,1,2,1,2,1))].
+428 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A))))) = complement(join(complement(A),complement(composition(join(c1,converse(c1)),composition(join(c1,converse(c1)),A))))).  [para(95(a,1),427(a,1,2,1,2,1))].
+429 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A))))) = complement(join(complement(A),complement(composition(converse(c1),composition(join(c1,converse(c1)),A))))).  [para(425(a,1),428(a,2,1,2,1,1))].
+430 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A))))) = complement(join(complement(A),complement(composition(converse(c1),composition(converse(c1),A))))).  [para(425(a,1),429(a,2,1,2,1,2,1))].
+431 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A))))) = complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A)))).  [para(95(a,1),430(a,2,1,2,1))].
+432 composition(converse(c1),converse(converse(c1))) = converse(converse(c1)).  [para(419(a,1),28(a,2,1))].
+433 composition(converse(c1),c1) = converse(converse(c1)).  [para(19(a,1),432(a,1,2))].
+434 converse(c1) = converse(converse(c1)).  [para(419(a,1),433(a,1))].
+435 converse(c1) = c1.  [para(19(a,1),434(a,2))].
+436 converse(converse(c1)) = composition(converse(c1),c1).  [para(419(a,1),89(a,1,1))].
+437 converse(c1) = composition(converse(c1),c1).  [para(435(a,1),436(a,1,1))].
+438 c1 = composition(converse(c1),c1).  [para(435(a,1),437(a,1))].
+439 c1 = composition(c1,c1).  [para(435(a,1),438(a,2,1))].
+440 composition(c1,c1) = c1.  [copy(439),flip(a)].
+441 join(complement(A),complement(composition(c1,A))) = complement(composition(converse(c1),A)).  [para(435(a,1),376(a,1,2,1,1))].
+442 join(complement(A),complement(composition(c1,A))) = complement(composition(c1,A)).  [para(435(a,1),441(a,2,1,1))].
+443 join(A,join(B,composition(c1,A))) = join(A,B).  [para(435(a,1),374(a,1,2,2,1))].
+444 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(converse(c1),A))))) = complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A)))).  [para(440(a,1),431(a,1,2,1,2,1,1,1))].
+445 join(complement(join(complement(A),complement(composition(c1,top)))),complement(join(complement(A),complement(composition(c1,A))))) = complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A)))).  [para(435(a,1),444(a,1,2,1,2,1,1))].
+446 join(complement(join(complement(A),complement(composition(c1,top)))),complement(complement(composition(c1,A)))) = complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A)))).  [para(442(a,1),445(a,1,2,1))].
+447 join(complement(join(complement(A),complement(composition(c1,top)))),composition(c1,A)) = complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A)))).  [para(182(a,1),446(a,1,2))].
+448 join(composition(c1,A),complement(join(complement(A),complement(composition(c1,top))))) = complement(join(complement(A),complement(composition(converse(composition(c1,c1)),A)))).  [para(23(a,1),447(a,1))].
+449 join(composition(c1,A),complement(join(complement(A),complement(composition(c1,top))))) = complement(join(complement(A),complement(composition(converse(c1),A)))).  [para(440(a,1),448(a,2,1,2,1,1,1))].
+450 join(composition(c1,A),complement(join(complement(A),complement(composition(c1,top))))) = complement(join(complement(A),complement(composition(c1,A)))).  [para(435(a,1),449(a,2,1,2,1,1))].
+451 join(composition(c1,A),complement(join(complement(A),complement(composition(c1,top))))) = complement(complement(composition(c1,A))).  [para(442(a,1),450(a,2,1))].
+452 join(composition(c1,A),complement(join(complement(A),complement(composition(c1,top))))) = composition(c1,A).  [para(182(a,1),451(a,2))].
+453 composition(c1,c2) != composition(c1,c2) | join(composition(c1,c2),complement(join(complement(c2),complement(composition(c1,top))))) != complement(join(complement(c2),complement(composition(c1,top)))).  [para(452(a,1),79(a,1))].
+454 composition(c1,c2) != composition(c1,c2) | composition(c1,c2) != complement(join(complement(c2),complement(composition(c1,top)))).  [para(452(a,1),453(b,1))].
+455 composition(c1,c2) != composition(c1,c2) | complement(join(complement(c2),complement(composition(c1,top)))) != composition(c1,c2).  [copy(454),flip(b)].
+456 complement(join(complement(c2),complement(composition(c1,top)))) != composition(c1,c2).  [copy(455),xx(a)].
+457 join(A,complement(B)) = join(A,complement(join(A,B))).  [para(196(a,1),214(a,1,2))].
+458 join(A,complement(join(A,B))) = join(A,complement(B)).  [copy(457),flip(a)].
+459 join(A,complement(join(A,B))) = join(A,complement(join(B,composition(c1,A)))).  [para(443(a,1),458(a,1,2,1))].
+460 join(A,complement(B)) = join(A,complement(join(B,composition(c1,A)))).  [para(458(a,1),459(a,1))].
+461 join(A,complement(join(B,composition(c1,A)))) = join(A,complement(B)).  [copy(460),flip(a)].
+462 join(complement(A),complement(join(composition(c1,A),composition(c1,complement(A))))) = complement(composition(c1,A)).  [para(442(a,1),461(a,2))].
+463 join(complement(A),complement(composition(c1,join(A,complement(A))))) = complement(composition(c1,A)).  [para(357(a,1),462(a,1,2,1))].
+464 join(complement(A),complement(composition(c1,top))) = complement(composition(c1,A)).  [para(21(a,1),463(a,1,2,1,2))].
+465 complement(complement(composition(c1,c2))) != composition(c1,c2).  [para(464(a,1),456(a,1,1))].
+466 composition(c1,c2) != composition(c1,c2).  [para(182(a,1),465(a,1))].
+467 $F.  [copy(466),xx(a)].
+
+============================== end of proof ==========================

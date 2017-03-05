@@ -1,0 +1,72 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n053.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 04:04:58 CDT 2014
+% CPUTime    : 0.24 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 27526 was started by sandbox on n053.star.cs.uiowa.edu,
+Fri Jun  6 04:04:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_27494_n053.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 5.
+% Maximum clause weight is 24.000.
+% Given clauses 89.
+
+
+1 (all A (relation(A) & function(A) -> (all B all C ((in(B,relation_dom(A)) -> (C = apply(A,B) <-> in(ordered_pair(B,C),A))) & (-in(B,relation_dom(A)) -> (C = apply(A,B) <-> C = empty_set)))))).  [assumption].
+2 (all A all B (relation(A) -> relation(relation_dom_restriction(A,B)))).  [assumption].
+3 (all A all B (relation(A) & function(A) -> relation(relation_dom_restriction(A,B)) & function(relation_dom_restriction(A,B)))).  [assumption].
+4 (all A all B all C (relation(C) & function(C) -> (in(B,relation_dom(relation_dom_restriction(C,A))) <-> in(B,relation_dom(C)) & in(B,A)))).  [assumption].
+5 (all A all B (relation(B) & function(B) -> (all C (relation(C) & function(C) -> (B = relation_dom_restriction(C,A) <-> relation_dom(B) = set_intersection2(relation_dom(C),A) & (all D (in(D,relation_dom(B)) -> apply(B,D) = apply(C,D)))))))).  [assumption].
+6 -(all A all B all C (relation(C) & function(C) -> (in(B,A) -> apply(relation_dom_restriction(C,A),B) = apply(C,B)))).  [assumption].
+7 relation(c11).  [clausify(6)].
+8 function(c11).  [clausify(6)].
+9 in(c10,c9).  [clausify(6)].
+10 apply(relation_dom_restriction(c11,c9),c10) != apply(c11,c10).  [clausify(6)].
+11 -relation(A) | relation(relation_dom_restriction(A,B)).  [clausify(2)].
+12 -relation(A) | -function(A) | function(relation_dom_restriction(A,B)).  [clausify(3)].
+13 -relation(A) | -function(A) | in(B,relation_dom(A)) | apply(A,B) = C | empty_set != C.  [clausify(1)].
+14 -relation(A) | -function(A) | in(B,relation_dom(relation_dom_restriction(A,C))) | -in(B,relation_dom(A)) | -in(B,C).  [clausify(4)].
+15 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != A | -in(D,relation_dom(A)) | apply(B,D) = apply(A,D).  [clausify(5)].
+16 relation(relation_dom_restriction(c11,A)).  [resolve(11,a,7,a)].
+17 -relation(c11) | function(relation_dom_restriction(c11,A)).  [resolve(12,b,8,a)].
+18 function(relation_dom_restriction(c11,A)).  [resolve(7,a,17,a)].
+19 -function(relation_dom_restriction(c11,A)) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != relation_dom_restriction(c11,A) | -in(D,relation_dom(relation_dom_restriction(c11,A))) | apply(B,D) = apply(relation_dom_restriction(c11,A),D).  [resolve(15,a,16,a)].
+20 -relation(A) | -function(A) | relation_dom_restriction(A,B) != relation_dom_restriction(c11,C) | -in(D,relation_dom(relation_dom_restriction(c11,C))) | apply(A,D) = apply(relation_dom_restriction(c11,C),D).  [resolve(19,a,18,a)].
+21 -function(c11) | relation_dom_restriction(c11,A) != relation_dom_restriction(c11,B) | -in(C,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,C) = apply(relation_dom_restriction(c11,B),C).  [resolve(20,a,7,a)].
+22 relation_dom_restriction(c11,A) != relation_dom_restriction(c11,B) | -in(C,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,C) = apply(relation_dom_restriction(c11,B),C).  [resolve(21,a,8,a)].
+23 -in(A,relation_dom(relation_dom_restriction(c11,B))) | apply(c11,A) = apply(relation_dom_restriction(c11,B),A).  [xx_res(22,a)].
+24 -in(c10,relation_dom(relation_dom_restriction(c11,c9))).  [resolve(23,b,10,a(flip))].
+25 -function(c11) | in(A,relation_dom(relation_dom_restriction(c11,B))) | -in(A,relation_dom(c11)) | -in(A,B).  [resolve(14,a,7,a)].
+26 in(A,relation_dom(relation_dom_restriction(c11,B))) | -in(A,relation_dom(c11)) | -in(A,B).  [resolve(25,a,8,a)].
+27 -in(c10,relation_dom(c11)) | -in(c10,c9).  [resolve(26,a,24,a)].
+28 -in(c10,relation_dom(c11)).  [resolve(27,b,9,a)].
+29 -function(relation_dom_restriction(c11,A)) | in(B,relation_dom(relation_dom_restriction(c11,A))) | apply(relation_dom_restriction(c11,A),B) = C | empty_set != C.  [resolve(13,a,16,a)].
+30 in(A,relation_dom(relation_dom_restriction(c11,B))) | apply(relation_dom_restriction(c11,B),A) = C | empty_set != C.  [resolve(29,a,18,a)].
+31 apply(relation_dom_restriction(c11,c9),c10) = A | empty_set != A.  [resolve(30,a,24,a)].
+32 empty_set != apply(c11,c10).  [resolve(31,a,10,a)].
+33 apply(c11,c10) != empty_set.  [copy(32),flip(a)].
+34 -relation(c11) | in(A,relation_dom(c11)) | apply(c11,A) = B | empty_set != B.  [resolve(13,b,8,a)].
+35 -relation(c11) | apply(c11,c10) = A | empty_set != A.  [resolve(34,b,28,a)].
+36 -relation(c11) | empty_set != empty_set.  [resolve(35,b,33,a)].
+37 -relation(c11).  [xx_res(36,b)].
+38 $F.  [resolve(7,a,37,a)].
+
+============================== end of proof ==========================

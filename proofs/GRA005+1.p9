@@ -1,0 +1,45 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n098.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:17:03 CDT 2014
+% CPUTime    : 0.21 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 23137 was started by sandbox on n098.star.cs.uiowa.edu,
+Thu Jun  5 13:17:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_23105_n098.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 9.
+% Level of proof is 3.
+% Maximum clause weight is 14.000.
+% Given clauses 54.
+
+
+1 (all A all B all C all D all E (shortest_path(A,B,E) & precedes(C,D,E) -> -(exists F (tail_of(F) = tail_of(C) & head_of(F) = head_of(D))) & -precedes(D,C,E))).  [assumption].
+2 -(all A all B all C all D all E (shortest_path(A,B,E) & precedes(C,D,E) -> -(exists F (edge(F) & tail_of(F) = tail_of(C) & head_of(F) = head_of(D))))).  [assumption].
+3 shortest_path(c1,c2,c5).  [clausify(2)].
+4 -shortest_path(A,B,C) | -precedes(D,E,C) | tail_of(F) != tail_of(D) | head_of(F) != head_of(E).  [clausify(1)].
+5 precedes(c3,c4,c5).  [clausify(2)].
+6 tail_of(c6) = tail_of(c3).  [clausify(2)].
+7 head_of(c6) = head_of(c4).  [clausify(2)].
+8 -precedes(A,B,c5) | tail_of(C) != tail_of(A) | head_of(C) != head_of(B).  [resolve(4,a,3,a)].
+9 -precedes(c3,A,c5) | head_of(c6) != head_of(A).  [resolve(8,b,6,a)].
+10 -precedes(c3,c4,c5).  [resolve(9,b,7,a)].
+11 $F.  [resolve(5,a,10,a)].
+
+============================== end of proof ==========================

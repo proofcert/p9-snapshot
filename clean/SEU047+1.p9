@@ -1,0 +1,15 @@
+
+
+
+4 subset(c9,c10).  [clausify(3)].
+5 -relation(A) | -subset(B,C) | relation_rng_restriction(C,relation_rng_restriction(B,A)) = relation_rng_restriction(B,A).  [clausify(1)].
+6 -relation(A) | -subset(B,C) | relation_rng_restriction(B,relation_rng_restriction(C,A)) = relation_rng_restriction(B,A).  [clausify(2)].
+7 relation(c11).  [clausify(3)].
+8 relation_rng_restriction(c10,relation_rng_restriction(c9,c11)) != relation_rng_restriction(c9,c11) | relation_rng_restriction(c9,relation_rng_restriction(c10,c11)) != relation_rng_restriction(c9,c11).  [clausify(3)].
+9 -relation(A) | relation_rng_restriction(c10,relation_rng_restriction(c9,A)) = relation_rng_restriction(c9,A).  [resolve(5,b,4,a)].
+10 -relation(A) | relation_rng_restriction(c9,relation_rng_restriction(c10,A)) = relation_rng_restriction(c9,A).  [resolve(6,b,4,a)].
+11 relation_rng_restriction(c10,relation_rng_restriction(c9,c11)) = relation_rng_restriction(c9,c11).  [resolve(9,a,7,a)].
+12 relation_rng_restriction(c9,c11) != relation_rng_restriction(c9,c11) | relation_rng_restriction(c9,relation_rng_restriction(c10,c11)) != relation_rng_restriction(c9,c11).  [para(11(a,1),8(a,1))].
+13 relation_rng_restriction(c9,relation_rng_restriction(c10,c11)) != relation_rng_restriction(c9,c11).  [copy(12),xx(a)].
+14 relation_rng_restriction(c9,relation_rng_restriction(c10,c11)) = relation_rng_restriction(c9,c11).  [resolve(10,a,7,a)].
+15 $F.  [resolve(13,a,14,a)].

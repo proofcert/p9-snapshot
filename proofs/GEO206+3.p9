@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n107.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:19:43 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 53788 was started by sandbox on n107.star.cs.uiowa.edu,
+Fri Jun  6 06:19:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_53756_n107.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 17.
+% Level of proof is 4.
+% Maximum clause weight is 9.000.
+% Given clauses 35.
+
+
+1 (all A all B all C (convergent_lines(A,B) -> convergent_lines(A,C) | convergent_lines(B,C))).  [assumption].
+2 (all A all B (distinct_lines(A,B) -> convergent_lines(A,B))).  [assumption].
+3 (all A all B -convergent_lines(parallel_through_point(B,A),B)).  [assumption].
+4 (all A all B (equal_lines(A,B) <-> -distinct_lines(A,B))).  [assumption].
+5 (all A all B (parallel_lines(A,B) <-> -convergent_lines(A,B))).  [assumption].
+6 -(all A all B all C (incident_point_and_line(A,B) & parallel_lines(B,C) -> equal_lines(B,parallel_through_point(C,A)))).  [assumption].
+7 -parallel_lines(A,B) | -convergent_lines(A,B).  [clausify(5)].
+8 parallel_lines(c2,c3).  [clausify(6)].
+9 -equal_lines(c2,parallel_through_point(c3,c1)).  [clausify(6)].
+10 equal_lines(A,B) | distinct_lines(A,B).  [clausify(4)].
+11 -convergent_lines(parallel_through_point(A,B),A).  [clausify(3)].
+12 -distinct_lines(A,B) | convergent_lines(A,B).  [clausify(2)].
+13 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(1)].
+14 -convergent_lines(c2,c3).  [resolve(7,a,8,a)].
+15 distinct_lines(c2,parallel_through_point(c3,c1)).  [resolve(9,a,10,a)].
+16 -convergent_lines(c2,A) | convergent_lines(A,c3).  [resolve(13,b,14,a)].
+17 -convergent_lines(c2,parallel_through_point(c3,A)).  [resolve(16,b,11,a)].
+18 convergent_lines(c2,parallel_through_point(c3,c1)).  [resolve(15,a,12,a)].
+19 $F.  [resolve(17,a,18,a)].
+
+============================== end of proof ==========================

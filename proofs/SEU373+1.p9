@@ -1,0 +1,61 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n167.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 10:24:28 CDT 2014
+% CPUTime    : 0.26 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 13563 was started by sandbox on n167.star.cs.uiowa.edu,
+Fri Jun  6 10:24:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_13531_n167.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 5.
+% Maximum clause weight is 19.000.
+% Given clauses 133.
+
+
+1 (all A (rel_str(A) -> (all B (rel_str(B) -> (subrelstr(B,A) <-> subset(the_carrier(B),the_carrier(A)) & subset(the_InternalRel(B),the_InternalRel(A))))))).  [assumption].
+2 (all A (one_sorted_str(A) -> (all B (net_str(B,A) -> (all C (net_str(C,A) -> (subnetstr(C,A,B) <-> subrelstr(C,B) & the_mapping(A,C) = relation_dom_restr_as_relation_of(the_carrier(B),the_carrier(A),the_mapping(A,B),the_carrier(C))))))))).  [assumption].
+3 (all A (one_sorted_str(A) -> (all B (net_str(B,A) -> rel_str(B))))).  [assumption].
+4 (all A all B (one_sorted_str(A) & net_str(B,A) -> (all C (subnetstr(C,A,B) -> net_str(C,A))))).  [assumption].
+5 -(all A (one_sorted_str(A) -> (all B (net_str(B,A) -> (all C (subnetstr(C,A,B) -> subset(the_carrier(C),the_carrier(B)))))))).  [assumption].
+6 one_sorted_str(c11).  [clausify(5)].
+7 -one_sorted_str(A) | -net_str(B,A) | rel_str(B).  [clausify(3)].
+8 -one_sorted_str(A) | -net_str(B,A) | -subnetstr(C,A,B) | net_str(C,A).  [clausify(4)].
+9 -one_sorted_str(A) | -net_str(B,A) | -net_str(C,A) | -subnetstr(C,A,B) | subrelstr(C,B).  [clausify(2)].
+10 -rel_str(A) | -rel_str(B) | -subrelstr(B,A) | subset(the_carrier(B),the_carrier(A)).  [clausify(1)].
+11 -net_str(A,c11) | -net_str(B,c11) | -subnetstr(B,c11,A) | subrelstr(B,A).  [resolve(9,a,6,a)].
+12 net_str(c12,c11).  [clausify(5)].
+13 subnetstr(c13,c11,c12).  [clausify(5)].
+14 -subset(the_carrier(c13),the_carrier(c12)).  [clausify(5)].
+15 -net_str(A,c11) | rel_str(A).  [resolve(7,a,6,a)].
+16 -net_str(A,c11) | -subnetstr(B,c11,A) | net_str(B,c11).  [resolve(8,a,6,a)].
+17 -net_str(A,c11) | -net_str(B,c11) | -subnetstr(B,c11,A) | -rel_str(A) | -rel_str(B) | subset(the_carrier(B),the_carrier(A)).  [resolve(11,d,10,c)].
+18 rel_str(c12).  [resolve(15,a,12,a)].
+19 -net_str(c12,c11) | net_str(c13,c11).  [resolve(16,b,13,a)].
+20 net_str(c13,c11).  [resolve(12,a,19,a)].
+21 -net_str(c12,c11) | -net_str(c13,c11) | -rel_str(c12) | -rel_str(c13) | subset(the_carrier(c13),the_carrier(c12)).  [resolve(17,c,13,a)].
+22 -net_str(c13,c11) | -rel_str(c12) | -rel_str(c13) | subset(the_carrier(c13),the_carrier(c12)).  [resolve(12,a,21,a)].
+23 -rel_str(c12) | -rel_str(c13) | subset(the_carrier(c13),the_carrier(c12)).  [resolve(20,a,22,a)].
+24 -rel_str(c13) | subset(the_carrier(c13),the_carrier(c12)).  [resolve(18,a,23,a)].
+25 -rel_str(c13).  [resolve(14,a,24,b)].
+26 rel_str(c13).  [resolve(20,a,15,a)].
+27 $F.  [resolve(25,a,26,a)].
+
+============================== end of proof ==========================

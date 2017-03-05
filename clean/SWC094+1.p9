@@ -1,0 +1,21 @@
+
+
+3 ssList(nil).  [assumption].
+4 -ssList(A) | app(nil,A) = A.  [clausify(1)].
+5 ssList(c3).  [clausify(2)].
+6 c6 = c4.  [clausify(2)].
+7 c5 = c3.  [clausify(2)].
+8 c6 = c5.  [clausify(2)].
+9 c4 = c5.  [para(6(a,1),8(a,1))].
+10 c4 = c3.  [para(7(a,1),9(a,2))].
+11 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) != c3 | app(A,C) != c4.  [clausify(2)].
+12 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) != c3 | app(A,C) != c3.  [para(10(a,1),11(e,2))].
+13 -ssList(A) | -ssList(B) | app(app(A,A),B) != c3 | app(A,B) != c3.  [factor(12,a,b)].
+14 app(nil,nil) = nil.  [resolve(4,a,3,a)].
+15 app(nil,c3) = c3.  [resolve(5,a,4,a)].
+16 -ssList(A) | app(app(nil,nil),A) != c3 | app(nil,A) != c3.  [resolve(13,a,3,a)].
+17 -ssList(A) | app(nil,A) != c3 | app(nil,A) != c3.  [para(14(a,1),16(b,1,1))].
+18 -ssList(A) | app(nil,A) != c3.  [copy(17),merge(c)].
+19 app(nil,c3) != c3.  [resolve(18,a,5,a)].
+20 c3 != c3.  [para(15(a,1),19(a,1))].
+21 $F.  [copy(20),xx(a)].

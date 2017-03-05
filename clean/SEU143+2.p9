@@ -1,0 +1,22 @@
+
+
+
+
+
+
+
+8 empty(c1).  [clausify(3)].
+9 singleton(c3) = empty_set.  [clausify(7)].
+10 empty_set = singleton(c3).  [copy(9),flip(a)].
+11 set_union2(A,A) = A.  [clausify(2)].
+12 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+13 -in(A,B) | -empty(B).  [clausify(6)].
+14 -empty(A) | empty_set = A.  [clausify(5)].
+15 -empty(A) | singleton(c3) = A.  [para(10(a,1),14(b,1))].
+16 -empty(A) | unordered_pair(c3,c3) = A.  [para(12(a,1),15(b,1))].
+17 unordered_pair(A,B) != C | in(D,C) | D != B.  [clausify(1)].
+18 -in(A,c1).  [resolve(13,b,8,a)].
+19 unordered_pair(c3,c3) = c1.  [resolve(16,a,8,a)].
+20 unordered_pair(A,B) != c1 | C != B.  [resolve(17,b,18,a)].
+21 unordered_pair(A,B) != c1.  [resolve(20,b,11,a)].
+22 $F.  [resolve(21,a,19,a)].

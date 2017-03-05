@@ -1,0 +1,28 @@
+
+
+
+
+
+
+
+8 -relation(A) | -in(B,A) | ordered_pair(f1(A,B),f2(A,B)) = B.  [clausify(2)].
+9 relation(c5).  [clausify(7)].
+10 -element(A,B) | empty(B) | in(A,B).  [clausify(5)].
+11 element(f4(A),A).  [clausify(4)].
+12 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+13 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(3)].
+14 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(12(a,1),13(a,2))].
+15 empty_set != c5.  [clausify(7)].
+16 c5 != empty_set.  [copy(15),flip(a)].
+17 -in(ordered_pair(A,B),c5).  [clausify(7)].
+18 -in(unordered_pair(singleton(A),unordered_pair(A,B)),c5).  [para(14(a,1),17(a,1))].
+19 -empty(A) | empty_set = A.  [clausify(6)].
+20 -in(A,c5) | ordered_pair(f1(c5,A),f2(c5,A)) = A.  [resolve(8,a,9,a)].
+21 -in(A,c5) | unordered_pair(singleton(f1(c5,A)),unordered_pair(f1(c5,A),f2(c5,A))) = A.  [para(14(a,1),20(b,1))].
+22 empty(A) | in(f4(A),A).  [resolve(10,a,11,a)].
+23 -empty(c5).  [resolve(19,b,16,a(flip))].
+24 empty(c5) | unordered_pair(singleton(f1(c5,f4(c5))),unordered_pair(f1(c5,f4(c5)),f2(c5,f4(c5)))) = f4(c5).  [resolve(22,b,21,a)].
+25 unordered_pair(singleton(f1(c5,f4(c5))),unordered_pair(f1(c5,f4(c5)),f2(c5,f4(c5)))) = f4(c5).  [resolve(23,a,24,a)].
+26 -in(f4(c5),c5).  [para(25(a,1),18(a,1))].
+27 empty(c5).  [resolve(26,a,22,b)].
+28 $F.  [resolve(23,a,27,a)].

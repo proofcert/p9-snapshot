@@ -1,0 +1,90 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n049.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:22:18 CDT 2014
+% CPUTime    : 4.26 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 3173 was started by sandbox on n049.star.cs.uiowa.edu,
+Fri Jun  6 08:22:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_3141_n049.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 4.12 (+ 0.01) seconds.
+% Length of proof is 43.
+% Level of proof is 11.
+% Maximum clause weight is 30.000.
+% Given clauses 338.
+
+
+1 (all A all B (less_than(A,B) | less_than(B,A))).  [assumption].
+2 (all A all B (strictly_less_than(A,B) <-> less_than(A,B) & -less_than(B,A))).  [assumption].
+3 (all A all B all C all D all E (pair_in_list(insert_slb(A,pair(B,D)),C,E) <-> pair_in_list(A,C,E) | B = C & D = E)).  [assumption].
+4 (all A all B all C lookup_slb(insert_slb(A,pair(B,C)),B) = C).  [assumption].
+5 (all A all B all C all D (strictly_less_than(D,C) -> update_slb(insert_slb(A,pair(B,D)),C) = insert_slb(update_slb(A,C),pair(B,C)))).  [assumption].
+6 (all A all B all C all D (less_than(C,D) -> update_slb(insert_slb(A,pair(B,D)),C) = insert_slb(update_slb(A,C),pair(B,D)))).  [assumption].
+7 -(all A ((all B all C all D (pair_in_list(A,B,C) & strictly_less_than(C,D) -> pair_in_list(update_slb(A,D),B,D))) -> (all E all F all V6 all V7 all V8 (pair_in_list(insert_slb(A,pair(V7,V8)),E,F) & strictly_less_than(F,V6) -> pair_in_list(update_slb(insert_slb(A,pair(V7,V8)),V6),E,V6))))).  [assumption].
+8 -strictly_less_than(A,B) | -less_than(B,A).  [clausify(2)].
+9 strictly_less_than(c3,c4).  [clausify(7)].
+10 strictly_less_than(A,B) | -less_than(A,B) | less_than(B,A).  [clausify(2)].
+11 -pair_in_list(c1,A,B) | -strictly_less_than(B,C) | pair_in_list(update_slb(c1,C),A,C).  [clausify(7)].
+12 -strictly_less_than(A,B) | update_slb(insert_slb(C,pair(D,A)),B) = insert_slb(update_slb(C,B),pair(D,B)).  [clausify(5)].
+13 less_than(A,B) | less_than(B,A).  [clausify(1)].
+14 pair_in_list(insert_slb(c1,pair(c5,c6)),c2,c3).  [clausify(7)].
+15 lookup_slb(insert_slb(A,pair(B,C)),B) = C.  [clausify(4)].
+16 -pair_in_list(update_slb(insert_slb(c1,pair(c5,c6)),c4),c2,c4).  [clausify(7)].
+17 pair_in_list(insert_slb(A,pair(B,C)),D,E) | -pair_in_list(A,D,E).  [clausify(3)].
+18 pair_in_list(insert_slb(A,pair(B,C)),D,E) | D != B | E != C.  [clausify(3)].
+19 -pair_in_list(insert_slb(A,pair(B,C)),D,E) | pair_in_list(A,D,E) | D = B.  [clausify(3)].
+20 -pair_in_list(insert_slb(A,pair(B,C)),D,E) | pair_in_list(A,D,E) | E = C.  [clausify(3)].
+21 -less_than(A,B) | update_slb(insert_slb(C,pair(D,B)),A) = insert_slb(update_slb(C,A),pair(D,B)).  [clausify(6)].
+22 -less_than(c4,c3).  [resolve(8,a,9,a)].
+23 -pair_in_list(c1,A,B) | pair_in_list(update_slb(c1,C),A,C) | -less_than(B,C) | less_than(C,B).  [resolve(11,b,10,a)].
+24 update_slb(insert_slb(A,pair(B,c3)),c4) = insert_slb(update_slb(A,c4),pair(B,c4)).  [resolve(12,a,9,a)].
+25 update_slb(insert_slb(A,pair(B,C)),D) = insert_slb(update_slb(A,D),pair(B,D)) | -less_than(C,D) | less_than(D,C).  [resolve(12,a,10,a)].
+26 pair_in_list(insert_slb(A,pair(B,C)),D,lookup_slb(insert_slb(E,pair(F,C)),F)) | D != B.  [resolve(18,c,15,a)].
+27 pair_in_list(insert_slb(A,pair(B,C)),D,C) | D != B.  [para(15(a,1),26(a,3))].
+28 pair_in_list(c1,c2,c3) | c2 = c5.  [resolve(19,a,14,a)].
+29 pair_in_list(c1,c2,c3) | c5 = c2.  [copy(28),flip(b)].
+30 pair_in_list(c1,c2,c3) | c3 = c6.  [resolve(20,a,14,a)].
+31 pair_in_list(c1,c2,c3) | c6 = c3.  [copy(30),flip(b)].
+32 update_slb(insert_slb(A,pair(B,C)),D) = insert_slb(update_slb(A,D),pair(B,D)) | less_than(D,C) | less_than(D,C).  [resolve(25,b,13,b)].
+33 update_slb(insert_slb(A,pair(B,C)),D) = insert_slb(update_slb(A,D),pair(B,D)) | less_than(D,C).  [copy(32),merge(c)].
+34 c5 = c2 | pair_in_list(update_slb(c1,A),c2,A) | -less_than(c3,A) | less_than(A,c3).  [resolve(29,a,23,a)].
+35 c6 = c3 | pair_in_list(update_slb(c1,A),c2,A) | -less_than(c3,A) | less_than(A,c3).  [resolve(31,a,23,a)].
+36 c5 = c2 | pair_in_list(update_slb(c1,A),c2,A) | less_than(A,c3) | less_than(A,c3).  [resolve(34,c,13,b)].
+37 c5 = c2 | pair_in_list(update_slb(c1,A),c2,A) | less_than(A,c3).  [copy(36),merge(d)].
+38 c5 = c2 | less_than(A,c3) | pair_in_list(insert_slb(update_slb(c1,A),pair(B,C)),c2,A).  [resolve(37,b,17,b)].
+39 c6 = c3 | pair_in_list(update_slb(c1,A),c2,A) | less_than(A,c3) | less_than(A,c3).  [resolve(35,c,13,b)].
+40 c6 = c3 | pair_in_list(update_slb(c1,A),c2,A) | less_than(A,c3).  [copy(39),merge(d)].
+41 update_slb(insert_slb(A,pair(B,C)),D) = insert_slb(update_slb(A,D),pair(B,D)) | update_slb(insert_slb(E,pair(F,C)),D) = insert_slb(update_slb(E,D),pair(F,C)).  [resolve(33,b,21,a)].
+42 c6 = c3 | less_than(A,c3) | pair_in_list(insert_slb(update_slb(c1,A),pair(B,C)),c2,A).  [resolve(40,b,17,b)].
+43 update_slb(insert_slb(A,pair(B,c6)),c4) = insert_slb(update_slb(A,c4),pair(B,c6)) | -pair_in_list(insert_slb(update_slb(c1,c4),pair(c5,c4)),c2,c4).  [para(41(a,1),16(a,1))].
+44 update_slb(insert_slb(A,pair(B,c6)),c4) = insert_slb(update_slb(A,c4),pair(B,c6)) | c6 = c3 | less_than(c4,c3).  [resolve(43,b,42,c)].
+45 update_slb(insert_slb(A,pair(B,c6)),c4) = insert_slb(update_slb(A,c4),pair(B,c6)) | c6 = c3.  [resolve(22,a,44,c)].
+46 c6 = c3 | -pair_in_list(insert_slb(update_slb(c1,c4),pair(c5,c6)),c2,c4).  [para(45(a,1),16(a,1))].
+47 c6 = c3 | c6 = c3 | less_than(c4,c3).  [resolve(46,b,42,c)].
+48 c6 = c3 | less_than(c4,c3).  [copy(47),merge(b)].
+49 c6 = c3.  [resolve(22,a,48,b)].
+50 -pair_in_list(update_slb(insert_slb(c1,pair(c5,c3)),c4),c2,c4).  [para(49(a,1),16(a,1,1,2,2))].
+51 -pair_in_list(insert_slb(update_slb(c1,c4),pair(c5,c4)),c2,c4).  [para(24(a,1),50(a,1))].
+52 c5 = c2 | less_than(c4,c3).  [resolve(51,a,38,c)].
+53 c5 = c2.  [resolve(22,a,52,b)].
+54 c2 != c5.  [resolve(27,a,51,a)].
+55 c2 != c2.  [para(53(a,1),54(a,2))].
+56 $F.  [copy(55),xx(a)].
+
+============================== end of proof ==========================

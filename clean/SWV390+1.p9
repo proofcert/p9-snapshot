@@ -1,0 +1,21 @@
+
+
+
+
+
+6 less_than(bottom,A).  [clausify(1)].
+7 check_cpq(insert_cpq(triple(c1,c2,c3),c4)).  [clausify(5)].
+8 check_cpq(triple(A,B,C)) | pair_in_list(B,f1(A,B,C),f2(A,B,C)).  [clausify(4)].
+9 triple(insert_pqp(A,B),insert_slb(C,pair(B,bottom)),D) = insert_cpq(triple(A,C,D),B).  [clausify(3)].
+10 -check_cpq(triple(c1,c2,c3)).  [clausify(5)].
+11 -check_cpq(triple(A,B,C)) | -pair_in_list(B,D,E) | less_than(E,D).  [clausify(4)].
+12 check_cpq(triple(A,B,C)) | -less_than(f2(A,B,C),f1(A,B,C)).  [clausify(4)].
+13 -less_than(A,B) | -check_cpq(triple(C,insert_slb(D,pair(B,A)),E)) | check_cpq(triple(C,D,E)).  [clausify(2)].
+14 -check_cpq(triple(A,B,C)) | less_than(f2(D,B,E),f1(D,B,E)) | check_cpq(triple(D,B,E)).  [resolve(11,b,8,b)].
+15 -check_cpq(triple(A,insert_slb(B,pair(C,bottom)),D)) | check_cpq(triple(A,B,D)).  [resolve(13,a,6,a)].
+16 -check_cpq(triple(c1,insert_slb(c2,pair(A,bottom)),c3)).  [resolve(15,b,10,a)].
+17 -less_than(f2(c1,insert_slb(c2,pair(A,bottom)),c3),f1(c1,insert_slb(c2,pair(A,bottom)),c3)).  [resolve(12,a,16,a)].
+18 -check_cpq(triple(A,insert_slb(c2,pair(B,bottom)),C)) | check_cpq(triple(c1,insert_slb(c2,pair(B,bottom)),c3)).  [resolve(14,b,17,a)].
+19 -check_cpq(triple(A,insert_slb(c2,pair(B,bottom)),C)).  [resolve(18,b,16,a)].
+20 -check_cpq(insert_cpq(triple(A,c2,B),C)).  [para(9(a,1),19(a,1))].
+21 $F.  [resolve(20,a,7,a)].

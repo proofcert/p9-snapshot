@@ -1,0 +1,103 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+19 relation_of2(A,B,C) | -subset(A,cartesian_product2(B,C)).  [clausify(3)].
+20 -relation_of2(A,B,C) | relation_dom_as_subset(B,C,A) = relation_dom(A).  [clausify(10)].
+21 -relation_of2_as_subset(A,B,C) | relation_of2(A,B,C).  [clausify(11)].
+22 relation_of2_as_subset(A,B,C) | -relation_of2(A,B,C).  [clausify(11)].
+23 -element(A,powerset(cartesian_product2(B,C))) | relation(A).  [clausify(1)].
+24 -relation_of2_as_subset(A,B,C) | empty_set = C | -quasi_total(A,B,C) | relation_dom_as_subset(B,C,A) = B.  [clausify(2)].
+25 -relation_of2_as_subset(A,B,C) | empty_set = C | quasi_total(A,B,C) | relation_dom_as_subset(B,C,A) != B.  [clausify(2)].
+26 -relation_of2_as_subset(A,B,C) | empty_set != B | quasi_total(A,B,C) | relation_dom_as_subset(B,C,A) != B.  [clausify(2)].
+27 empty_set != A | -in(B,A).  [clausify(4)].
+28 empty_set = A | in(f34(A),A).  [clausify(4)].
+29 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(5)].
+30 cast_to_subset(A) = A.  [clausify(6)].
+31 element(cast_to_subset(A),powerset(A)).  [clausify(7)].
+32 element(A,powerset(A)).  [para(30(a,1),31(a,1))].
+33 -relation_of2_as_subset(A,B,C) | element(A,powerset(cartesian_product2(B,C))).  [clausify(8)].
+34 empty(empty_set).  [assumption].
+35 empty(A) | -relation(A) | -empty(relation_rng(A)).  [clausify(9)].
+36 subset(A,A).  [clausify(12)].
+37 -relation_of2_as_subset(A,B,C) | subset(relation_rng(A),C).  [clausify(13)].
+38 -relation_of2_as_subset(A,B,C) | -subset(C,D) | relation_of2_as_subset(A,B,D).  [clausify(14)].
+39 -subset(A,empty_set) | empty_set = A.  [clausify(15)].
+40 -in(A,B) | -element(B,powerset(C)) | -empty(C).  [clausify(16)].
+41 relation_dom(empty_set) = empty_set.  [assumption].
+42 -empty(A) | empty_set = A.  [clausify(17)].
+43 function(c17).  [clausify(18)].
+44 quasi_total(c17,c14,c15).  [clausify(18)].
+45 relation_of2_as_subset(c17,c14,c15).  [clausify(18)].
+46 subset(c15,c16).  [clausify(18)].
+47 empty_set != c15 | empty_set = c14.  [clausify(18)].
+48 c15 != empty_set | empty_set = c14.  [copy(47),flip(a)].
+49 c15 != empty_set | c14 = empty_set.  [copy(48),flip(b)].
+50 -function(c17) | -quasi_total(c17,c14,c16) | -relation_of2_as_subset(c17,c14,c16).  [clausify(18)].
+51 -quasi_total(c17,c14,c16) | -relation_of2_as_subset(c17,c14,c16).  [resolve(43,a,50,a)].
+52 -relation_of2_as_subset(A,B,C) | relation_dom_as_subset(B,C,A) = relation_dom(A).  [resolve(21,b,20,a)].
+53 relation_of2_as_subset(A,B,C) | -subset(A,cartesian_product2(B,C)).  [resolve(22,b,19,a)].
+54 relation(cartesian_product2(A,B)).  [resolve(32,a,23,a)].
+55 -relation_of2_as_subset(c17,c14,c15) | empty_set = c15 | relation_dom_as_subset(c14,c15,c17) = c14.  [resolve(44,a,24,c)].
+56 -relation_of2_as_subset(c17,c14,c15) | c15 = empty_set | relation_dom_as_subset(c14,c15,c17) = c14.  [copy(55),flip(b)].
+57 c15 = empty_set | relation_dom_as_subset(c14,c15,c17) = c14.  [resolve(45,a,56,a)].
+58 -subset(c15,A) | relation_of2_as_subset(c17,c14,A).  [resolve(45,a,38,a)].
+59 element(c17,powerset(cartesian_product2(c14,c15))).  [resolve(45,a,33,a)].
+60 -in(A,c15) | in(A,c16).  [resolve(46,a,29,a)].
+61 relation_dom_as_subset(c14,c15,c17) = relation_dom(c17).  [resolve(52,a,45,a)].
+62 c15 = empty_set | relation_dom(c17) = c14.  [para(61(a,1),57(b,1))].
+63 relation_of2_as_subset(cartesian_product2(A,B),A,B).  [resolve(53,b,36,a)].
+64 -in(A,c17) | -empty(cartesian_product2(c14,c15)).  [resolve(59,a,40,b)].
+65 -empty(cartesian_product2(c14,c15)) | empty_set = c17.  [resolve(64,a,28,b)].
+66 -empty(cartesian_product2(c14,c15)) | c17 = empty_set.  [copy(65),flip(b)].
+67 in(f34(c15),c16) | empty_set = c15.  [resolve(60,a,28,b)].
+68 in(f34(c15),c16) | c15 = empty_set.  [copy(67),flip(b)].
+69 subset(relation_rng(cartesian_product2(A,B)),B).  [resolve(63,a,37,a)].
+70 empty_set = relation_rng(cartesian_product2(A,empty_set)).  [resolve(69,a,39,a)].
+71 relation_rng(cartesian_product2(A,empty_set)) = empty_set.  [copy(70),flip(a)].
+72 empty(cartesian_product2(A,empty_set)) | -relation(cartesian_product2(A,empty_set)) | -empty(empty_set).  [para(71(a,1),35(c,1))].
+73 empty(cartesian_product2(A,empty_set)) | -empty(empty_set).  [resolve(54,a,72,b)].
+74 empty(cartesian_product2(A,empty_set)).  [resolve(34,a,73,b)].
+75 empty_set = cartesian_product2(A,empty_set).  [resolve(74,a,42,a)].
+76 cartesian_product2(A,empty_set) = empty_set.  [copy(75),flip(a)].
+77 relation_of2_as_subset(c17,c14,c16).  [resolve(58,a,46,a)].
+78 -quasi_total(c17,c14,c16).  [resolve(77,a,51,b)].
+79 relation_dom_as_subset(c14,c16,c17) = relation_dom(c17).  [resolve(77,a,52,a)].
+80 empty_set != c14 | quasi_total(c17,c14,c16) | relation_dom_as_subset(c14,c16,c17) != c14.  [resolve(77,a,26,a)].
+81 empty_set != c14 | quasi_total(c17,c14,c16) | relation_dom(c17) != c14.  [para(79(a,1),80(c,1))].
+82 c14 != empty_set | quasi_total(c17,c14,c16) | relation_dom(c17) != c14.  [copy(81),flip(a)].
+83 c14 != empty_set | relation_dom(c17) != c14.  [resolve(78,a,82,b)].
+84 empty_set = c16 | quasi_total(c17,c14,c16) | relation_dom_as_subset(c14,c16,c17) != c14.  [resolve(77,a,25,a)].
+85 empty_set = c16 | quasi_total(c17,c14,c16) | relation_dom(c17) != c14.  [para(79(a,1),84(c,1))].
+86 c16 = empty_set | quasi_total(c17,c14,c16) | relation_dom(c17) != c14.  [copy(85),flip(a)].
+87 c16 = empty_set | relation_dom(c17) != c14.  [resolve(78,a,86,b)].
+88 c15 = empty_set | empty_set != c16.  [resolve(68,a,27,b)].
+89 c15 = empty_set | c16 != empty_set.  [copy(88),flip(b)].
+90 c16 = empty_set | c15 = empty_set.  [resolve(87,b,62,b)].
+91 c15 = empty_set | c15 = empty_set.  [resolve(90,a,89,b)].
+92 c15 = empty_set.  [copy(91),merge(b)].
+93 -empty(cartesian_product2(c14,empty_set)) | c17 = empty_set.  [para(92(a,1),66(a,1,2))].
+94 -empty(empty_set) | c17 = empty_set.  [para(76(a,1),93(a,1))].
+95 c17 = empty_set.  [resolve(34,a,94,a)].
+96 empty_set != empty_set | c14 = empty_set.  [para(92(a,1),49(a,1))].
+97 c14 = empty_set.  [copy(96),xx(a)].
+98 empty_set != empty_set | relation_dom(c17) != c14.  [para(97(a,1),83(a,1))].
+99 empty_set != empty_set | relation_dom(empty_set) != c14.  [para(95(a,1),98(b,1,1))].
+100 empty_set != empty_set | empty_set != c14.  [para(41(a,1),99(b,1))].
+101 empty_set != empty_set | empty_set != empty_set.  [para(97(a,1),100(b,2))].
+102 empty_set != empty_set.  [copy(101),xx(a)].
+103 $F.  [copy(102),xx(a)].

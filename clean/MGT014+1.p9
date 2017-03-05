@@ -1,0 +1,51 @@
+
+
+
+
+
+
+
+
+9 organization(c1,c6).  [clausify(8)].
+10 organization(c1,c7).  [clausify(8)].
+11 greater(c5,c4).  [clausify(8)].
+12 greater(c2,c3).  [clausify(8)].
+13 reorganization_free(c1,c6,c7).  [clausify(8)].
+14 complexity(c1,c2,c6).  [clausify(8)].
+15 complexity(c1,c3,c7).  [clausify(8)].
+16 size(c1,c4,c6).  [clausify(8)].
+17 size(c1,c5,c7).  [clausify(8)].
+18 -greater(A,B) | B != A.  [clausify(1)].
+19 -organization(A,B) | -organization(A,C) | -reorganization_free(A,B,C) | -size(A,D,B) | -size(A,E,C) | -greater(C,B) | -greater(D,E).  [clausify(6)].
+20 -organization(A,B) | -organization(A,C) | -reorganization_free(A,B,C) | -complexity(A,D,B) | -complexity(A,E,C) | -greater(C,B) | -greater(D,E).  [clausify(7)].
+21 -organization(A,B) | time(B).  [clausify(2)].
+22 -reorganization_free(A,B,C) | reorganization_free(A,C,B).  [clausify(4)].
+23 -time(A) | -time(B) | greater(A,B) | B = A | greater(B,A).  [clausify(3)].
+24 -organization(A,B) | -organization(A,C) | -size(A,D,B) | -size(A,E,C) | C != B | E = D.  [clausify(5)].
+25 c4 != c5.  [resolve(18,a,11,a)].
+26 c5 != c4.  [copy(25),flip(a)].
+27 -organization(c1,A) | -reorganization_free(c1,c6,A) | -complexity(c1,B,c6) | -complexity(c1,C,A) | -greater(A,c6) | -greater(B,C).  [resolve(20,a,9,a)].
+28 -reorganization_free(c1,c6,c7) | -complexity(c1,A,c6) | -complexity(c1,B,c7) | -greater(c7,c6) | -greater(A,B).  [resolve(27,a,10,a)].
+29 -complexity(c1,A,c6) | -complexity(c1,B,c7) | -greater(c7,c6) | -greater(A,B).  [resolve(28,a,13,a)].
+30 -complexity(c1,A,c7) | -greater(c7,c6) | -greater(c2,A).  [resolve(29,a,14,a)].
+31 -greater(c7,c6) | -greater(c2,c3).  [resolve(30,a,15,a)].
+32 -greater(c7,c6).  [resolve(31,b,12,a)].
+33 time(c7).  [resolve(21,a,10,a)].
+34 time(c6).  [resolve(21,a,9,a)].
+35 reorganization_free(c1,c7,c6).  [resolve(22,a,13,a)].
+36 -organization(c1,A) | -size(c1,B,c6) | -size(c1,C,A) | A != c6 | C = B.  [resolve(24,a,9,a)].
+37 -size(c1,A,c6) | -size(c1,B,c7) | c7 != c6 | B = A.  [resolve(36,a,10,a)].
+38 -size(c1,A,c7) | c7 != c6 | A = c4.  [resolve(37,a,16,a)].
+39 c7 != c6 | c5 = c4.  [resolve(38,a,17,a)].
+40 c7 != c6.  [resolve(39,b,26,a)].
+41 -organization(c1,A) | -reorganization_free(c1,c7,A) | -size(c1,B,c7) | -size(c1,C,A) | -greater(A,c7) | -greater(B,C).  [resolve(19,a,10,a)].
+42 -reorganization_free(c1,c7,c6) | -size(c1,A,c7) | -size(c1,B,c6) | -greater(c6,c7) | -greater(A,B).  [resolve(41,a,9,a)].
+43 -size(c1,A,c7) | -size(c1,B,c6) | -greater(c6,c7) | -greater(A,B).  [resolve(42,a,35,a)].
+44 -size(c1,A,c6) | -greater(c6,c7) | -greater(c5,A).  [resolve(43,a,17,a)].
+45 -greater(c6,c7) | -greater(c5,c4).  [resolve(44,a,16,a)].
+46 -greater(c6,c7).  [resolve(45,b,11,a)].
+47 -time(A) | greater(A,c6) | c6 = A | greater(c6,A).  [resolve(23,b,34,a)].
+48 -time(c7) | c6 = c7 | greater(c6,c7).  [resolve(47,b,32,a)].
+49 -time(c7) | greater(c6,c7).  [resolve(48,b,40,a(flip))].
+50 -time(c7).  [resolve(49,b,46,a)].
+51 $F.  [resolve(33,a,50,a)].

@@ -1,0 +1,110 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n040.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:21:28 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 48067 was started by sandbox on n040.star.cs.uiowa.edu,
+Thu Jun  5 17:21:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_48035_n040.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 59.
+% Level of proof is 26.
+% Maximum clause weight is 10.000.
+% Given clauses 54.
+
+
+1 (exists A big_f(A)).  [assumption].
+2 (exists A big_g(A)).  [assumption].
+3 -((all A (big_f(A) -> big_h(A))) & (all B (big_g(B) -> big_j(B))) <-> (all C all D (big_f(C) & big_g(D) -> big_h(C) & big_j(D)))).  [assumption].
+4 big_f(c1).  [clausify(1)].
+5 big_g(c2).  [clausify(2)].
+6 big_f(c3) | big_g(c4) | big_f(c5).  [clausify(3)].
+7 big_f(c3) | big_g(c4) | big_g(c6).  [clausify(3)].
+8 -big_h(c3) | -big_j(c4) | -big_h(c5) | -big_j(c6).  [clausify(3)].
+9 big_f(c3) | -big_j(c4) | big_f(c5).  [clausify(3)].
+10 big_f(c3) | -big_j(c4) | big_g(c6).  [clausify(3)].
+11 -big_h(c3) | big_g(c4) | big_f(c5).  [clausify(3)].
+12 -big_h(c3) | big_g(c4) | big_g(c6).  [clausify(3)].
+13 -big_h(c3) | -big_j(c4) | big_f(c5).  [clausify(3)].
+14 -big_h(c3) | -big_j(c4) | big_g(c6).  [clausify(3)].
+15 big_f(c3) | big_g(c4) | -big_h(c5) | -big_j(c6).  [clausify(3)].
+16 big_f(c3) | -big_j(c4) | -big_h(c5) | -big_j(c6).  [clausify(3)].
+17 -big_h(c3) | big_g(c4) | -big_h(c5) | -big_j(c6).  [clausify(3)].
+18 -big_f(A) | big_h(A) | -big_f(B) | -big_g(C) | big_h(B).  [clausify(3)].
+19 -big_g(A) | big_j(A) | -big_f(B) | -big_g(C) | big_j(C).  [clausify(3)].
+20 -big_f(A) | big_h(A) | -big_g(B) | big_h(A).  [factor(18,a,c)].
+21 -big_f(A) | big_h(A) | -big_g(B).  [copy(20),merge(d)].
+22 -big_g(A) | big_j(A) | -big_f(B) | big_j(A).  [factor(19,a,d)].
+23 -big_g(A) | big_j(A) | -big_f(B).  [copy(22),merge(d)].
+24 -big_f(A) | big_h(A).  [resolve(21,c,5,a)].
+25 big_j(c6) | -big_f(A) | big_f(c3) | big_g(c4).  [resolve(23,a,7,c)].
+26 big_j(c4) | -big_f(A) | big_f(c3) | big_f(c5).  [resolve(23,a,6,b)].
+27 big_j(c6) | big_f(c3) | big_g(c4).  [resolve(25,b,4,a)].
+28 big_j(c4) | big_f(c3) | big_f(c5).  [resolve(26,b,4,a)].
+29 big_f(c3) | big_g(c4) | big_f(c3) | big_g(c4) | -big_h(c5).  [resolve(27,a,15,d)].
+30 big_f(c3) | big_g(c4) | big_g(c4) | -big_h(c5).  [copy(29),merge(c)].
+31 big_f(c3) | big_g(c4) | -big_h(c5).  [copy(30),merge(c)].
+32 big_f(c3) | big_f(c5) | big_f(c3) | big_f(c5).  [resolve(28,a,9,b)].
+33 big_f(c3) | big_f(c5) | big_f(c5).  [copy(32),merge(c)].
+34 big_f(c3) | big_f(c5).  [copy(33),merge(c)].
+35 big_f(c3) | big_h(c5).  [resolve(34,b,24,a)].
+36 big_f(c3) | big_g(c4) | big_f(c3).  [resolve(31,c,35,b)].
+37 big_f(c3) | big_g(c4).  [copy(36),merge(c)].
+38 big_f(c3) | big_j(c4) | -big_f(A).  [resolve(37,b,23,a)].
+39 big_f(c3) | big_j(c4) | big_f(c3).  [resolve(38,c,34,b)].
+40 big_f(c3) | big_j(c4).  [copy(39),merge(c)].
+41 big_f(c3) | big_f(c3) | big_g(c6).  [resolve(40,b,10,b)].
+42 big_f(c3) | big_g(c6).  [copy(41),merge(b)].
+43 big_f(c3) | big_j(c6) | -big_f(A).  [resolve(42,b,23,a)].
+44 big_f(c3) | big_j(c6) | big_f(c3).  [resolve(43,c,34,b)].
+45 big_f(c3) | big_j(c6).  [copy(44),merge(c)].
+46 big_f(c3) | big_f(c3) | -big_j(c4) | -big_h(c5).  [resolve(45,b,16,d)].
+47 big_f(c3) | -big_j(c4) | -big_h(c5).  [copy(46),merge(b)].
+48 big_f(c3) | -big_h(c5) | big_f(c3).  [resolve(47,b,40,b)].
+49 big_f(c3) | -big_h(c5).  [copy(48),merge(c)].
+50 big_f(c3) | big_f(c3).  [resolve(49,b,35,b)].
+51 big_f(c3).  [copy(50),merge(b)].
+52 big_h(c3).  [resolve(51,a,24,a)].
+53 big_g(c4) | -big_h(c5) | -big_j(c6).  [resolve(52,a,17,a)].
+54 -big_j(c4) | big_g(c6).  [resolve(52,a,14,a)].
+55 -big_j(c4) | big_f(c5).  [resolve(52,a,13,a)].
+56 big_g(c4) | big_g(c6).  [resolve(52,a,12,a)].
+57 big_g(c4) | big_f(c5).  [resolve(52,a,11,a)].
+58 -big_j(c4) | -big_h(c5) | -big_j(c6).  [resolve(52,a,8,a)].
+59 big_g(c4) | big_j(c6) | -big_f(A).  [resolve(56,b,23,a)].
+60 big_f(c5) | big_j(c4) | -big_f(A).  [resolve(57,a,23,a)].
+61 big_g(c4) | big_j(c6).  [resolve(59,c,51,a)].
+62 big_g(c4) | big_g(c4) | -big_h(c5).  [resolve(61,b,53,c)].
+63 big_g(c4) | -big_h(c5).  [copy(62),merge(b)].
+64 big_f(c5) | big_j(c4).  [resolve(60,c,51,a)].
+65 big_f(c5) | big_f(c5).  [resolve(64,b,55,a)].
+66 big_f(c5).  [copy(65),merge(b)].
+67 big_h(c5).  [resolve(66,a,24,a)].
+68 big_g(c4).  [resolve(67,a,63,b)].
+69 -big_j(c4) | -big_j(c6).  [resolve(67,a,58,b)].
+70 big_j(c4) | -big_f(A).  [resolve(68,a,23,a)].
+71 big_j(c4).  [resolve(70,b,66,a)].
+72 -big_j(c6).  [resolve(71,a,69,a)].
+73 big_g(c6).  [resolve(71,a,54,a)].
+74 -big_g(c6) | -big_f(A).  [resolve(23,b,72,a)].
+75 -big_g(c6).  [resolve(74,b,66,a)].
+76 $F.  [resolve(73,a,75,a)].
+
+============================== end of proof ==========================

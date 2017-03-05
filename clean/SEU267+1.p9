@@ -1,0 +1,17 @@
+
+
+
+4 pair_first(ordered_pair(c3,c4)) != c3 | pair_second(ordered_pair(c3,c4)) != c4.  [clausify(3)].
+5 ordered_pair(A,B) != C | pair_first(C) != D | ordered_pair(E,F) != C | E = D.  [clausify(1)].
+6 ordered_pair(A,B) != C | pair_second(C) != D | ordered_pair(E,F) != C | F = D.  [clausify(2)].
+7 ordered_pair(A,B) != C | pair_first(C) != D | A = D.  [factor(5,a,c)].
+8 ordered_pair(A,B) != C | pair_second(C) != D | B = D.  [factor(6,a,c)].
+9 pair_first(ordered_pair(A,B)) != C | A = C.  [xx_res(7,a)].
+10 A = pair_first(ordered_pair(A,B)).  [xx_res(9,a)].
+11 pair_first(ordered_pair(A,B)) = A.  [copy(10),flip(a)].
+12 c3 != c3 | pair_second(ordered_pair(c3,c4)) != c4.  [para(11(a,1),4(a,1))].
+13 pair_second(ordered_pair(c3,c4)) != c4.  [copy(12),xx(a)].
+14 ordered_pair(A,B) != C | B = pair_second(C).  [xx_res(8,b)].
+15 ordered_pair(A,c4) != ordered_pair(c3,c4).  [resolve(14,b,13,a(flip))].
+16 ordered_pair(c3,c4) != ordered_pair(A,c4).  [copy(15),flip(a)].
+17 $F.  [copy(16),xx(a)].

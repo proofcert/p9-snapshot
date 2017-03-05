@@ -1,0 +1,17 @@
+
+2 -p(A) | -r(c2) | -r(c1) | -q(A).  [clausify(1)].
+3 q(f(A)).  [clausify(1)].
+4 -p(A) | r(B) | -q(A).  [clausify(1)].
+5 p(f(A)) | r(A) | -q(B).  [clausify(1)].
+6 p(f(A)) | -r(c2) | -r(c1) | -q(B).  [clausify(1)].
+7 p(f(A)) | r(A).  [resolve(5,c,3,a)].
+8 -p(f(A)) | -r(c2) | -r(c1).  [resolve(2,d,3,a)].
+9 -p(f(A)) | r(B).  [resolve(4,c,3,a)].
+10 p(f(A)) | -r(c2) | -r(c1).  [resolve(6,d,3,a)].
+11 r(A) | r(B).  [resolve(7,a,9,a)].
+12 -r(c2) | -r(c1) | -r(c2) | -r(c1).  [resolve(10,a,8,a)].
+13 -r(c2) | -r(c1) | -r(c1).  [copy(12),merge(c)].
+14 -r(c2) | -r(c1).  [copy(13),merge(c)].
+15 r(A).  [factor(11,a,b)].
+16 -r(c1).  [resolve(15,a,14,a)].
+17 $F.  [resolve(15,a,16,a)].

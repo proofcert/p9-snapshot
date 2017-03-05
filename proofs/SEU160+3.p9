@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n088.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:01:43 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 8369 was started by sandbox on n088.star.cs.uiowa.edu,
+Fri Jun  6 00:01:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_8337_n088.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 16.
+% Level of proof is 6.
+% Maximum clause weight is 11.000.
+% Given clauses 15.
+
+
+1 (all A all B subset(A,A)).  [assumption].
+2 (all A all B (subset(A,singleton(B)) <-> A = empty_set | A = singleton(B))).  [assumption].
+3 -(all A all B (subset(A,singleton(B)) <-> A = empty_set | A = singleton(B))).  [assumption].
+4 subset(A,A).  [clausify(1)].
+5 subset(c3,singleton(c4)) | empty_set = c3 | singleton(c4) = c3.  [clausify(3)].
+6 subset(c3,singleton(c4)) | c3 = empty_set | singleton(c4) = c3.  [copy(5),flip(b)].
+7 -subset(c3,singleton(c4)) | empty_set != c3.  [clausify(3)].
+8 -subset(c3,singleton(c4)) | c3 != empty_set.  [copy(7),flip(b)].
+9 -subset(c3,singleton(c4)) | singleton(c4) != c3.  [clausify(3)].
+10 subset(A,singleton(B)) | empty_set != A.  [clausify(2)].
+11 -subset(A,singleton(B)) | empty_set = A | singleton(B) = A.  [clausify(2)].
+12 subset(empty_set,singleton(A)).  [xx_res(10,b)].
+13 empty_set = c3 | singleton(c4) = c3 | c3 = empty_set | singleton(c4) = c3.  [resolve(11,a,6,a)].
+14 c3 = empty_set | singleton(c4) = c3 | c3 = empty_set | singleton(c4) = c3.  [copy(13),flip(a)].
+15 c3 = empty_set | singleton(c4) = c3 | singleton(c4) = c3.  [copy(14),merge(c)].
+16 c3 = empty_set | singleton(c4) = c3.  [copy(15),merge(c)].
+17 c3 = empty_set | -subset(c3,c3) | singleton(c4) != c3.  [para(16(b,1),9(a,2))].
+18 c3 = empty_set | singleton(c4) != c3.  [resolve(4,a,17,b)].
+19 c3 = empty_set | c3 = empty_set.  [resolve(18,b,16,b)].
+20 c3 = empty_set.  [copy(19),merge(b)].
+21 -subset(empty_set,singleton(c4)) | c3 != empty_set.  [para(20(a,1),8(a,1))].
+22 -subset(empty_set,singleton(c4)) | empty_set != empty_set.  [para(20(a,1),21(b,1))].
+23 -subset(empty_set,singleton(c4)).  [copy(22),xx(b)].
+24 $F.  [resolve(12,a,23,a)].
+
+============================== end of proof ==========================

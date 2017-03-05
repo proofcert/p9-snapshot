@@ -1,0 +1,16 @@
+
+
+
+
+5 symmetric_difference(A,B) = set_union2(set_difference(A,B),set_difference(B,A)).  [clausify(1)].
+6 -finite(A) | finite(set_difference(A,B)).  [clausify(2)].
+7 -finite(A) | -finite(B) | finite(set_union2(A,B)).  [clausify(3)].
+8 finite(c22).  [clausify(4)].
+9 finite(c23).  [clausify(4)].
+10 -finite(symmetric_difference(c22,c23)).  [clausify(4)].
+11 -finite(set_union2(set_difference(c22,c23),set_difference(c23,c22))).  [para(5(a,1),10(a,1))].
+12 finite(set_difference(c22,A)).  [resolve(8,a,6,a)].
+13 finite(set_difference(c23,A)).  [resolve(9,a,6,a)].
+14 -finite(A) | finite(set_union2(set_difference(c22,B),A)).  [resolve(7,a,12,a)].
+15 -finite(set_difference(c23,c22)).  [resolve(14,b,11,a)].
+16 $F.  [resolve(13,a,15,a)].

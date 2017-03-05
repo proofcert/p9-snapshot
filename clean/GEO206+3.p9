@@ -1,0 +1,19 @@
+
+
+
+
+
+
+7 -parallel_lines(A,B) | -convergent_lines(A,B).  [clausify(5)].
+8 parallel_lines(c2,c3).  [clausify(6)].
+9 -equal_lines(c2,parallel_through_point(c3,c1)).  [clausify(6)].
+10 equal_lines(A,B) | distinct_lines(A,B).  [clausify(4)].
+11 -convergent_lines(parallel_through_point(A,B),A).  [clausify(3)].
+12 -distinct_lines(A,B) | convergent_lines(A,B).  [clausify(2)].
+13 -convergent_lines(A,B) | convergent_lines(A,C) | convergent_lines(B,C).  [clausify(1)].
+14 -convergent_lines(c2,c3).  [resolve(7,a,8,a)].
+15 distinct_lines(c2,parallel_through_point(c3,c1)).  [resolve(9,a,10,a)].
+16 -convergent_lines(c2,A) | convergent_lines(A,c3).  [resolve(13,b,14,a)].
+17 -convergent_lines(c2,parallel_through_point(c3,A)).  [resolve(16,b,11,a)].
+18 convergent_lines(c2,parallel_through_point(c3,c1)).  [resolve(15,a,12,a)].
+19 $F.  [resolve(17,a,18,a)].

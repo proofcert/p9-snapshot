@@ -1,0 +1,40 @@
+
+
+
+
+
+6 relation(c9).  [clausify(5)].
+7 -relation(A) | relation_dom(A) != B | in(C,B) | -in(ordered_pair(C,D),A).  [clausify(3)].
+8 -relation(A) | -function(A) | -in(B,relation_dom(A)) | apply(A,B) != C | in(ordered_pair(B,C),A).  [clausify(2)].
+9 -relation(A) | -function(A) | -in(B,relation_dom(A)) | apply(A,B) = C | -in(ordered_pair(B,C),A).  [clausify(2)].
+10 function(c9).  [clausify(5)].
+11 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+12 in(ordered_pair(c7,c8),c9) | in(c7,relation_dom(c9)).  [clausify(5)].
+13 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(4)].
+14 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(11(a,1),13(a,2))].
+15 in(ordered_pair(c7,c8),c9) | apply(c9,c7) = c8.  [clausify(5)].
+16 in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c9) | apply(c9,c7) = c8.  [para(14(a,1),15(a,1))].
+17 -in(ordered_pair(c7,c8),c9) | -in(c7,relation_dom(c9)) | apply(c9,c7) != c8.  [clausify(5)].
+18 -in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c9) | -in(c7,relation_dom(c9)) | apply(c9,c7) != c8.  [para(14(a,1),17(a,1))].
+19 relation_dom(c9) != A | in(B,A) | -in(ordered_pair(B,C),c9).  [resolve(7,a,6,a)].
+20 relation_dom(c9) != A | in(B,A) | -in(unordered_pair(singleton(B),unordered_pair(B,C)),c9).  [para(14(a,1),19(c,1))].
+21 -function(c9) | -in(A,relation_dom(c9)) | apply(c9,A) != B | in(ordered_pair(A,B),c9).  [resolve(8,a,6,a)].
+22 -function(c9) | -in(A,relation_dom(c9)) | apply(c9,A) != B | in(unordered_pair(singleton(A),unordered_pair(A,B)),c9).  [para(14(a,1),21(d,1))].
+23 -in(A,relation_dom(c9)) | apply(c9,A) != B | in(unordered_pair(singleton(A),unordered_pair(A,B)),c9).  [resolve(10,a,22,a)].
+24 -function(c9) | -in(A,relation_dom(c9)) | apply(c9,A) = B | -in(ordered_pair(A,B),c9).  [resolve(9,a,6,a)].
+25 -function(c9) | -in(A,relation_dom(c9)) | apply(c9,A) = B | -in(unordered_pair(singleton(A),unordered_pair(A,B)),c9).  [para(14(a,1),24(d,1))].
+26 -in(A,relation_dom(c9)) | apply(c9,A) = B | -in(unordered_pair(singleton(A),unordered_pair(A,B)),c9).  [resolve(10,a,25,a)].
+27 in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c9) | in(c7,relation_dom(c9)).  [para(14(a,1),12(a,1))].
+28 -in(c7,relation_dom(c9)) | apply(c9,c7) = c8 | apply(c9,c7) = c8.  [resolve(26,c,16,a)].
+29 -in(c7,relation_dom(c9)) | apply(c9,c7) = c8.  [copy(28),merge(c)].
+30 in(c7,relation_dom(c9)) | relation_dom(c9) != A | in(c7,A).  [resolve(27,a,20,c)].
+31 in(c7,relation_dom(c9)) | relation_dom(c9) != relation_dom(c9).  [factor(30,a,c)].
+32 in(c7,relation_dom(c9)).  [copy(31),xx(b)].
+33 apply(c9,c7) = c8.  [resolve(32,a,29,a)].
+34 -in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c9) | -in(c7,relation_dom(c9)) | c8 != c8.  [para(33(a,1),18(c,1))].
+35 -in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c9) | -in(c7,relation_dom(c9)).  [copy(34),xx(c)].
+36 -in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),c9).  [resolve(32,a,35,b)].
+37 apply(c9,c7) != A | in(unordered_pair(singleton(c7),unordered_pair(c7,A)),c9).  [resolve(23,a,32,a)].
+38 apply(c9,c7) != c8.  [resolve(37,b,36,a)].
+39 c8 != c8.  [para(33(a,1),38(a,1))].
+40 $F.  [copy(39),xx(a)].

@@ -1,0 +1,46 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n114.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:53:48 CDT 2014
+% CPUTime    : 0.11 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 24824 was started by sandbox on n114.star.cs.uiowa.edu,
+Sat Jun  7 00:53:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_24792_n114.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 10.
+% Level of proof is 3.
+% Maximum clause weight is 10.000.
+% Given clauses 14.
+
+
+1 (all A all B (B = powerset(A) <-> (all C (in(C,B) <-> subset(C,A))))).  [assumption].
+2 (all A all B (subset(singleton(A),B) <-> in(A,B))).  [assumption].
+3 (all A all B subset(A,A)).  [assumption].
+4 -(all A subset(singleton(A),powerset(A))).  [assumption].
+5 subset(A,A).  [clausify(3)].
+6 -subset(singleton(c3),powerset(c3)).  [clausify(4)].
+7 subset(singleton(A),B) | -in(A,B).  [clausify(2)].
+8 powerset(A) != B | in(C,B) | -subset(C,A).  [clausify(1)].
+9 -in(c3,powerset(c3)).  [resolve(7,a,6,a)].
+10 powerset(A) != powerset(c3) | -subset(c3,A).  [resolve(8,b,9,a)].
+11 powerset(c3) != powerset(c3).  [resolve(10,b,5,a)].
+12 $F.  [copy(11),xx(a)].
+
+============================== end of proof ==========================

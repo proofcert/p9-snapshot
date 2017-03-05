@@ -1,0 +1,96 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+19 cast_to_subset(A) = A.  [clausify(2)].
+20 -element(A,powerset(B)) | subset_complement(B,A) = set_difference(B,A).  [clausify(3)].
+21 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(4)].
+22 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(18(a,1),21(a,2))].
+23 -relation(A) | -relation(B) | relation_inverse(A) = B | in(ordered_pair(f29(A,B),f30(A,B)),B) | in(ordered_pair(f30(A,B),f29(A,B)),A).  [clausify(5)].
+24 -relation(A) | -relation(B) | relation_inverse(A) = B | in(unordered_pair(singleton(f29(A,B)),unordered_pair(f29(A,B),f30(A,B))),B) | in(ordered_pair(f30(A,B),f29(A,B)),A).  [para(22(a,1),23(d,1))].
+25 -relation(A) | -relation(B) | relation_inverse(A) = B | in(unordered_pair(singleton(f29(A,B)),unordered_pair(f29(A,B),f30(A,B))),B) | in(unordered_pair(singleton(f30(A,B)),unordered_pair(f30(A,B),f29(A,B))),A).  [para(22(a,1),24(e,1))].
+26 -relation(A) | -relation(B) | relation_inverse(A) = B | in(unordered_pair(singleton(f29(A,B)),unordered_pair(f29(A,B),f30(A,B))),B) | in(unordered_pair(singleton(f30(A,B)),unordered_pair(f29(A,B),f30(A,B))),A).  [para(18(a,1),25(e,1,2))].
+27 element(cast_to_subset(A),powerset(A)).  [clausify(6)].
+28 element(A,powerset(A)).  [para(19(a,1),27(a,1))].
+29 -relation(A) | relation(relation_inverse(A)).  [clausify(7)].
+30 empty(empty_set).  [assumption].
+31 empty(A) | -relation(A) | -empty(relation_rng(A)).  [clausify(8)].
+32 -relation(A) | relation_inverse(relation_inverse(A)) = A.  [clausify(9)].
+33 set_intersection2(A,empty_set) = empty_set.  [clausify(10)].
+34 -relation(A) | relation_rng(relation_inverse(A)) = relation_dom(A).  [clausify(11)].
+35 set_difference(A,empty_set) = A.  [clausify(12)].
+36 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(13)].
+37 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(36),flip(a)].
+38 -element(A,powerset(B)) | -in(C,subset_complement(B,A)) | -in(C,A).  [clausify(14)].
+39 singleton(A) = unordered_pair(A,A).  [clausify(15)].
+40 -empty(A) | empty_set = A.  [clausify(16)].
+41 relation(c5).  [clausify(17)].
+42 relation_dom(c5) = empty_set | relation_rng(c5) = empty_set.  [clausify(17)].
+43 empty_set != c5.  [clausify(17)].
+44 c5 != empty_set.  [copy(43),flip(a)].
+45 -relation(A) | relation_inverse(A) = A | in(unordered_pair(singleton(f29(A,A)),unordered_pair(f29(A,A),f30(A,A))),A) | in(unordered_pair(singleton(f30(A,A)),unordered_pair(f29(A,A),f30(A,A))),A).  [factor(26,a,b)].
+46 -relation(A) | relation_inverse(A) = A | in(unordered_pair(unordered_pair(f29(A,A),f29(A,A)),unordered_pair(f29(A,A),f30(A,A))),A) | in(unordered_pair(singleton(f30(A,A)),unordered_pair(f29(A,A),f30(A,A))),A).  [para(39(a,1),45(c,1,1))].
+47 -relation(A) | relation_inverse(A) = A | in(unordered_pair(unordered_pair(f29(A,A),f29(A,A)),unordered_pair(f29(A,A),f30(A,A))),A) | in(unordered_pair(unordered_pair(f30(A,A),f30(A,A)),unordered_pair(f29(A,A),f30(A,A))),A).  [para(39(a,1),46(d,1,1))].
+48 -relation(A) | relation_inverse(A) = A | in(unordered_pair(unordered_pair(f29(A,A),f29(A,A)),unordered_pair(f29(A,A),f30(A,A))),A) | in(unordered_pair(unordered_pair(f29(A,A),f30(A,A)),unordered_pair(f30(A,A),f30(A,A))),A).  [para(18(a,1),47(d,1))].
+49 set_difference(A,set_difference(A,empty_set)) = empty_set.  [para(37(a,1),33(a,1))].
+50 set_difference(A,A) = empty_set.  [para(35(a,1),49(a,1,2))].
+51 subset_complement(A,A) = set_difference(A,A).  [resolve(28,a,20,a)].
+52 subset_complement(A,A) = empty_set.  [para(50(a,1),51(a,2))].
+53 -in(A,subset_complement(B,B)) | -in(A,B).  [resolve(38,a,28,a)].
+54 -in(A,empty_set) | -in(A,B).  [para(52(a,1),53(a,2))].
+55 -in(A,empty_set).  [factor(54,a,b)].
+56 relation_rng(relation_inverse(c5)) = relation_dom(c5).  [resolve(41,a,34,a)].
+57 relation_inverse(relation_inverse(c5)) = c5.  [resolve(41,a,32,a)].
+58 relation(relation_inverse(c5)).  [resolve(41,a,29,a)].
+59 relation_dom(c5) = empty_set | empty(c5) | -relation(c5) | -empty(empty_set).  [para(42(b,1),31(c,1))].
+60 relation_dom(c5) = empty_set | empty(c5) | -empty(empty_set).  [resolve(41,a,59,c)].
+61 relation_dom(c5) = empty_set | empty(c5).  [resolve(30,a,60,c)].
+62 relation_inverse(relation_inverse(c5)) = relation_inverse(c5) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f29(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [resolve(58,a,48,a)].
+63 c5 = relation_inverse(c5) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f29(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(57(a,1),62(a,1))].
+64 relation_inverse(c5) = c5 | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f29(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [copy(63),flip(a)].
+65 empty(relation_inverse(c5)) | -relation(relation_inverse(c5)) | -empty(relation_dom(c5)).  [para(56(a,1),31(c,1))].
+66 empty(relation_inverse(c5)) | -empty(relation_dom(c5)).  [resolve(58,a,65,b)].
+67 relation_dom(c5) = empty_set | empty_set = c5.  [resolve(61,b,40,a)].
+68 relation_dom(c5) = empty_set | c5 = empty_set.  [copy(67),flip(b)].
+69 relation_dom(c5) = empty_set.  [resolve(44,a,68,b)].
+70 empty(relation_inverse(c5)) | -empty(empty_set).  [para(69(a,1),66(b,1))].
+71 empty(relation_inverse(c5)).  [resolve(30,a,70,b)].
+72 empty_set = relation_inverse(c5).  [resolve(71,a,40,a)].
+73 relation_inverse(c5) = empty_set.  [copy(72),flip(a)].
+74 empty_set = c5 | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f29(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),64(a,1))].
+75 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,relation_inverse(c5)),f29(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),74(b,1,1,1,1))].
+76 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),75(b,1,1,1,2))].
+77 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,relation_inverse(c5))),unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),76(b,1,1,2,1))].
+78 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),77(b,1,1,2,2))].
+79 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),78(b,1,2,1,1))].
+80 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),79(b,1,2,1,2))].
+81 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,relation_inverse(c5)))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),80(b,1,2,2,1))].
+82 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),relation_inverse(c5)) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),81(b,1,2,2,2))].
+83 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),82(b,2))].
+84 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),83(c,1,1,1,1))].
+85 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(relation_inverse(c5),relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),84(c,1,1,1,2))].
+86 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,relation_inverse(c5))),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),85(c,1,1,2,1))].
+87 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(relation_inverse(c5),relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),86(c,1,1,2,2))].
+88 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,relation_inverse(c5)),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),87(c,1,2,1,1))].
+89 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(relation_inverse(c5),relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),88(c,1,2,1,2))].
+90 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(empty_set,relation_inverse(c5)))),relation_inverse(c5)).  [para(73(a,1),89(c,1,2,2,1))].
+91 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(empty_set,empty_set))),relation_inverse(c5)).  [para(73(a,1),90(c,1,2,2,2))].
+92 empty_set = c5 | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(empty_set,empty_set))),empty_set).  [para(73(a,1),91(c,2))].
+93 c5 = empty_set | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(empty_set,empty_set))),empty_set).  [copy(92),flip(a)].
+94 in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f29(empty_set,empty_set)),unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(empty_set,empty_set))),empty_set).  [resolve(44,a,93,a)].
+95 in(unordered_pair(unordered_pair(f29(empty_set,empty_set),f30(empty_set,empty_set)),unordered_pair(f30(empty_set,empty_set),f30(empty_set,empty_set))),empty_set).  [resolve(55,a,94,a)].
+96 $F.  [resolve(55,a,95,a)].

@@ -1,0 +1,14 @@
+
+
+
+4 rdn_translate(nn128,rdn_neg(rdn(rdnn(n8),rdn(rdnn(n2),rdnn(n1))))).  [assumption].
+5 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_pos(D)) | less(A,C).  [clausify(1)].
+6 less(A,B) | less(B,A) | B = A.  [clausify(2)].
+7 -less(A,B).  [clausify(3)].
+8 less(A,B) | A = B.  [resolve(7,a,6,a)].
+9 A = B.  [resolve(7,a,8,a)].
+10 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_pos(D)).  [resolve(7,a,5,c)].
+11 rdn_translate(nn128,A).  [para(9(a,1),4(a,2))].
+12 -rdn_translate(A,B) | -rdn_translate(C,rdn_pos(D)).  [para(9(a,1),10(a,2))].
+13 -rdn_translate(A,rdn_pos(B)).  [factor(12,a,b)].
+14 $F.  [resolve(13,a,11,a)].

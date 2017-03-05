@@ -1,0 +1,68 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n033.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:15:03 CDT 2014
+% CPUTime    : 0.76 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 22821 was started by sandbox on n033.star.cs.uiowa.edu,
+Thu Jun  5 16:15:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_22789_n033.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.50 (+ 0.01) seconds.
+% Length of proof is 28.
+% Level of proof is 8.
+% Maximum clause weight is 9.000.
+% Given clauses 1835.
+
+
+1 (all A (finite(A) & (all B (in(B,A) -> finite(B))) -> finite(union(A)))).  [assumption].
+2 (all A subset(A,powerset(union(A)))).  [assumption].
+3 (all A all B (subset(A,B) & finite(B) -> finite(A))).  [assumption].
+4 (all A (finite(A) <-> finite(powerset(A)))).  [assumption].
+5 (all A all B (in(A,B) -> subset(A,union(B)))).  [assumption].
+6 -(all A (finite(A) & (all B (in(B,A) -> finite(B))) <-> finite(union(A)))).  [assumption].
+7 -subset(A,B) | -finite(B) | finite(A).  [clausify(3)].
+8 subset(A,powerset(union(A))).  [clausify(2)].
+9 -in(A,B) | subset(A,union(B)).  [clausify(5)].
+10 -finite(A) | in(f2(A),A) | finite(union(A)).  [clausify(1)].
+11 -finite(A) | -finite(f2(A)) | finite(union(A)).  [clausify(1)].
+12 -finite(A) | finite(powerset(A)).  [clausify(4)].
+13 finite(c22) | finite(union(c22)).  [clausify(6)].
+14 -in(A,c22) | finite(A) | finite(union(c22)).  [clausify(6)].
+15 -finite(c22) | in(c23,c22) | -finite(union(c22)).  [clausify(6)].
+16 -finite(c22) | -finite(c23) | -finite(union(c22)).  [clausify(6)].
+17 -finite(powerset(union(A))) | finite(A).  [resolve(7,a,8,a)].
+18 -in(A,B) | -finite(union(B)) | finite(A).  [resolve(9,b,7,a)].
+19 finite(c22) | finite(powerset(union(c22))).  [resolve(13,b,12,a)].
+20 finite(c22) | finite(c22).  [resolve(19,b,17,a)].
+21 finite(c22).  [copy(20),merge(b)].
+22 -finite(c23) | -finite(union(c22)).  [resolve(21,a,16,a)].
+23 in(c23,c22) | -finite(union(c22)).  [resolve(21,a,15,a)].
+24 in(f2(c22),c22) | finite(union(c22)).  [resolve(21,a,10,a)].
+25 finite(union(c22)) | finite(f2(c22)) | finite(union(c22)).  [resolve(24,a,14,a)].
+26 finite(union(c22)) | finite(f2(c22)).  [copy(25),merge(c)].
+27 finite(union(c22)) | -finite(c22) | finite(union(c22)).  [resolve(26,b,11,b)].
+28 finite(union(c22)) | -finite(c22).  [copy(27),merge(c)].
+29 finite(union(c22)).  [resolve(21,a,28,b)].
+30 in(c23,c22).  [resolve(29,a,23,b)].
+31 -finite(c23).  [resolve(29,a,22,b)].
+32 -in(A,c22) | finite(A).  [resolve(18,b,29,a)].
+33 -in(c23,c22).  [resolve(32,b,31,a)].
+34 $F.  [resolve(30,a,33,a)].
+
+============================== end of proof ==========================

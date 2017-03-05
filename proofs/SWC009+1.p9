@@ -1,0 +1,76 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n095.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:43:48 CDT 2014
+% CPUTime    : 46.90 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 11636 was started by sandbox on n095.star.cs.uiowa.edu,
+Thu Jun  5 13:43:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_11604_n095.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 46.21 (+ 0.47) seconds.
+% Length of proof is 30.
+% Level of proof is 6.
+% Maximum clause weight is 18.000.
+% Given clauses 5573.
+
+
+1 (all A (ssList(A) -> (all B (ssList(B) -> (frontsegP(A,B) <-> (exists C (ssList(C) & app(B,C) = A))))))).  [assumption].
+2 (all A (ssList(A) -> frontsegP(A,A))).  [assumption].
+3 (all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (frontsegP(A,B) -> frontsegP(app(A,C),B)))))))).  [assumption].
+4 (all A (ssList(A) -> app(A,nil) = A)).  [assumption].
+5 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | (exists E (ssList(E) & (exists F (ssList(F) & (exists V6 (ssList(V6) & app(app(E,F),V6) = B & app(E,V6) = A)))))) | (all V7 (ssList(V7) -> app(C,V7) != D | -strictorderedP(C) | (exists V8 (ssItem(V8) & (exists V9 (ssList(V9) & app(cons(V8,nil),V9) = V7 & (exists V10 (ssItem(V10) & (exists V11 (ssList(V11) & app(V11,cons(V10,nil)) = C & lt(V10,V8))))))))))) | nil != D & nil = C)))))))).  [assumption].
+6 -ssList(A) | -ssList(B) | -frontsegP(A,B) | ssList(f4(A,B)).  [clausify(1)].
+7 -ssList(A) | -ssList(B) | -frontsegP(A,B) | app(B,f4(A,B)) = A.  [clausify(1)].
+8 ssList(nil).  [assumption].
+9 -ssList(A) | frontsegP(A,A).  [clausify(2)].
+10 -ssList(A) | -ssList(B) | -ssList(C) | -frontsegP(A,B) | frontsegP(app(A,C),B).  [clausify(3)].
+11 -ssList(A) | app(A,nil) = A.  [clausify(4)].
+12 ssList(c3).  [clausify(5)].
+13 ssList(c4).  [clausify(5)].
+14 c6 = c4.  [clausify(5)].
+15 c5 = c3.  [clausify(5)].
+16 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) != c4 | app(A,C) != c3.  [clausify(5)].
+17 ssList(c7).  [clausify(5)].
+18 app(c5,c7) = c6.  [clausify(5)].
+19 app(c3,c7) = c6.  [para(15(a,1),18(a,1,1))].
+20 app(c3,c7) = c4.  [para(14(a,1),19(a,2))].
+21 -ssList(A) | -ssList(B) | -frontsegP(A,A) | frontsegP(app(A,B),A).  [factor(10,a,b)].
+22 app(c3,nil) = c3.  [resolve(12,a,11,a)].
+23 frontsegP(c3,c3).  [resolve(12,a,9,a)].
+24 app(c4,nil) = c4.  [resolve(13,a,11,a)].
+25 -ssList(A) | -ssList(B) | app(app(c3,A),B) != c4 | app(c3,B) != c3.  [resolve(16,a,12,a)].
+26 -ssList(c3) | -ssList(A) | frontsegP(app(c3,A),c3).  [resolve(23,a,21,c)].
+27 -ssList(A) | frontsegP(app(c3,A),c3).  [resolve(12,a,26,a)].
+28 -ssList(A) | app(app(c3,A),nil) != c4 | app(c3,nil) != c3.  [resolve(25,b,8,a)].
+29 -ssList(A) | app(app(c3,A),nil) != c4 | c3 != c3.  [para(22(a,1),28(c,1))].
+30 -ssList(A) | app(app(c3,A),nil) != c4.  [copy(29),xx(c)].
+31 frontsegP(app(c3,c7),c3).  [resolve(27,a,17,a)].
+32 frontsegP(c4,c3).  [para(20(a,1),31(a,1))].
+33 -ssList(c4) | -ssList(c3) | app(c3,f4(c4,c3)) = c4.  [resolve(32,a,7,c)].
+34 -ssList(c3) | app(c3,f4(c4,c3)) = c4.  [resolve(13,a,33,a)].
+35 app(c3,f4(c4,c3)) = c4.  [resolve(12,a,34,a)].
+36 -ssList(c4) | -ssList(c3) | ssList(f4(c4,c3)).  [resolve(32,a,6,c)].
+37 -ssList(c3) | ssList(f4(c4,c3)).  [resolve(13,a,36,a)].
+38 ssList(f4(c4,c3)).  [resolve(12,a,37,a)].
+39 app(app(c3,f4(c4,c3)),nil) != c4.  [resolve(30,a,38,a)].
+40 app(c4,nil) != c4.  [para(35(a,1),39(a,1,1))].
+41 c4 != c4.  [para(24(a,1),40(a,1))].
+42 $F.  [copy(41),xx(a)].
+
+============================== end of proof ==========================

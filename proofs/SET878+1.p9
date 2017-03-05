@@ -1,0 +1,55 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n076.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:26:03 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 56268 was started by sandbox on n076.star.cs.uiowa.edu,
+Sat Jun  7 00:26:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_56236_n076.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 5.
+% Maximum clause weight is 11.000.
+% Given clauses 24.
+
+
+1 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+2 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+3 (all A all B all C (C = unordered_pair(A,B) <-> (all D (in(D,C) <-> D = A | D = B)))).  [assumption].
+4 (all A all B set_intersection2(A,A) = A).  [assumption].
+5 (all A all B (in(A,B) -> set_intersection2(B,singleton(A)) = singleton(A))).  [assumption].
+6 -(all A all B set_intersection2(singleton(A),unordered_pair(A,B)) = singleton(A)).  [assumption].
+7 set_intersection2(A,A) = A.  [clausify(4)].
+8 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+9 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(2)].
+10 singleton(c3) != set_intersection2(singleton(c3),unordered_pair(c3,c4)).  [clausify(6)].
+11 set_intersection2(singleton(c3),unordered_pair(c3,c4)) != singleton(c3).  [copy(10),flip(a)].
+12 -in(A,B) | singleton(A) = set_intersection2(B,singleton(A)).  [clausify(5)].
+13 -in(A,B) | set_intersection2(B,singleton(A)) = singleton(A).  [copy(12),flip(b)].
+14 unordered_pair(A,B) != C | in(D,C) | D != A.  [clausify(3)].
+15 in(A,unordered_pair(B,C)) | A != C.  [resolve(14,a,8,a)].
+16 in(set_intersection2(A,A),unordered_pair(B,A)).  [resolve(15,b,7,a)].
+17 in(A,unordered_pair(B,A)).  [para(7(a,1),16(a,1))].
+18 in(A,unordered_pair(A,B)).  [para(8(a,1),17(a,2))].
+19 set_intersection2(unordered_pair(A,B),singleton(A)) = singleton(A).  [resolve(18,a,13,a)].
+20 set_intersection2(singleton(A),unordered_pair(A,B)) = singleton(A).  [para(9(a,1),19(a,1))].
+21 $F.  [resolve(20,a,11,a)].
+
+============================== end of proof ==========================

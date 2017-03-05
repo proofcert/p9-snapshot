@@ -1,0 +1,44 @@
+
+
+
+4 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+5 singleton(c3) = set_difference(unordered_pair(c3,c4),c5) | in(c4,c5) | c4 = c3.  [clausify(3)].
+6 set_difference(unordered_pair(c3,c4),c5) = singleton(c3) | in(c4,c5) | c4 = c3.  [copy(5),flip(a)].
+7 singleton(A) != set_difference(unordered_pair(A,B),C) | -in(A,C).  [clausify(2)].
+8 set_difference(unordered_pair(A,B),C) != singleton(A) | -in(A,C).  [copy(7),flip(a)].
+9 singleton(c3) = set_difference(unordered_pair(c3,c4),c5) | -in(c3,c5).  [clausify(3)].
+10 set_difference(unordered_pair(c3,c4),c5) = singleton(c3) | -in(c3,c5).  [copy(9),flip(a)].
+11 singleton(A) != set_difference(unordered_pair(A,B),C) | in(B,C) | B = A.  [clausify(2)].
+12 set_difference(unordered_pair(A,B),C) != singleton(A) | in(B,C) | B = A.  [copy(11),flip(a)].
+13 singleton(A) = set_difference(unordered_pair(A,B),C) | in(A,C) | -in(B,C).  [clausify(2)].
+14 set_difference(unordered_pair(A,B),C) = singleton(A) | in(A,C) | -in(B,C).  [copy(13),flip(a)].
+15 singleton(A) = set_difference(unordered_pair(A,B),C) | in(A,C) | B != A.  [clausify(2)].
+16 set_difference(unordered_pair(A,B),C) = singleton(A) | in(A,C) | B != A.  [copy(15),flip(a)].
+17 singleton(c3) != set_difference(unordered_pair(c3,c4),c5) | in(c3,c5) | -in(c4,c5).  [clausify(3)].
+18 set_difference(unordered_pair(c3,c4),c5) != singleton(c3) | in(c3,c5) | -in(c4,c5).  [copy(17),flip(a)].
+19 singleton(c3) != set_difference(unordered_pair(c3,c4),c5) | in(c3,c5) | c4 != c3.  [clausify(3)].
+20 set_difference(unordered_pair(c3,c4),c5) != singleton(c3) | in(c3,c5) | c4 != c3.  [copy(19),flip(a)].
+21 set_difference(unordered_pair(A,c4),c5) = singleton(A) | in(A,c5) | set_difference(unordered_pair(c3,c4),c5) = singleton(c3) | c4 = c3.  [resolve(14,c,6,b)].
+22 set_difference(unordered_pair(c3,c4),c5) = singleton(c3) | in(c3,c5) | c4 = c3.  [factor(21,a,c)].
+23 set_difference(unordered_pair(A,A),B) = singleton(A) | in(A,B).  [xx_res(16,c)].
+24 set_difference(unordered_pair(c3,c3),c5) = singleton(c3) | set_difference(unordered_pair(c3,c4),c5) = singleton(c3).  [resolve(23,b,10,b)].
+25 set_difference(unordered_pair(A,A),B) = singleton(A) | set_difference(unordered_pair(A,C),B) != singleton(A).  [resolve(23,b,8,b)].
+26 set_difference(unordered_pair(c3,c4),c5) = singleton(c3) | c4 = c3 | set_difference(unordered_pair(c3,c4),c5) = singleton(c3).  [resolve(22,b,10,b)].
+27 set_difference(unordered_pair(c3,c4),c5) = singleton(c3) | c4 = c3.  [copy(26),merge(c)].
+28 c4 = c3 | in(c4,c5) | c4 = c3.  [resolve(27,a,12,a)].
+29 c4 = c3 | in(c4,c5).  [copy(28),merge(c)].
+30 c4 = c3 | set_difference(unordered_pair(c3,c4),c5) != singleton(c3) | in(c3,c5).  [resolve(29,b,18,c)].
+31 c4 = c3 | in(c3,c5) | c4 = c3.  [resolve(30,b,27,a)].
+32 c4 = c3 | in(c3,c5).  [copy(31),merge(c)].
+33 c4 = c3 | set_difference(unordered_pair(c3,A),c5) != singleton(c3).  [resolve(32,b,8,b)].
+34 c4 = c3 | set_difference(unordered_pair(A,c3),c5) != singleton(c3).  [para(4(a,1),33(b,1,1))].
+35 set_difference(unordered_pair(c3,c3),c5) = singleton(c3) | set_difference(unordered_pair(c3,c3),c5) = singleton(c3).  [resolve(25,b,24,b)].
+36 set_difference(unordered_pair(c3,c3),c5) = singleton(c3).  [copy(35),merge(b)].
+37 c4 = c3.  [resolve(36,a,34,b)].
+38 -in(c3,c5).  [resolve(8,a,36,a)].
+39 set_difference(unordered_pair(c3,c3),c5) != singleton(c3) | in(c3,c5) | c4 != c3.  [para(37(a,1),20(a,1,1,2))].
+40 singleton(c3) != singleton(c3) | in(c3,c5) | c4 != c3.  [para(36(a,1),39(a,1))].
+41 singleton(c3) != singleton(c3) | in(c3,c5) | c3 != c3.  [para(37(a,1),40(c,1))].
+42 in(c3,c5) | c3 != c3.  [copy(41),xx(a)].
+43 in(c3,c5).  [copy(42),xx(b)].
+44 $F.  [resolve(38,a,43,a)].

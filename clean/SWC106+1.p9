@@ -1,0 +1,45 @@
+
+
+
+
+5 -ssList(A) | -ssList(B) | rearsegP(A,B) | -ssList(C) | app(C,B) != A.  [clausify(1)].
+6 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(2)].
+7 ssList(nil).  [assumption].
+8 -ssList(A) | -ssItem(B) | cons(B,A) != nil.  [clausify(3)].
+9 ssList(c3).  [clausify(4)].
+10 ssList(c4).  [clausify(4)].
+11 c6 = c4.  [clausify(4)].
+12 c5 = c3.  [clausify(4)].
+13 neq(c4,nil).  [clausify(4)].
+14 ssItem(c7) | -neq(c6,nil).  [clausify(4)].
+15 ssItem(c7) | -neq(c4,nil).  [para(11(a,1),14(b,1))].
+16 ssItem(c7).  [resolve(13,a,15,b)].
+17 ssList(c8) | -neq(c6,nil).  [clausify(4)].
+18 ssList(c8) | -neq(c4,nil).  [para(11(a,1),17(b,1))].
+19 ssList(c8).  [resolve(13,a,18,b)].
+20 cons(c7,nil) = c5 | -neq(c6,nil).  [clausify(4)].
+21 cons(c7,nil) = c3 | -neq(c6,nil).  [para(12(a,1),20(a,2))].
+22 cons(c7,nil) = c3 | -neq(c4,nil).  [para(11(a,1),21(b,1))].
+23 cons(c7,nil) = c3.  [resolve(13,a,22,b)].
+24 app(c8,cons(c7,nil)) = c6 | -neq(c6,nil).  [clausify(4)].
+25 app(c8,c3) = c6 | -neq(c6,nil).  [para(23(a,1),24(a,1,2))].
+26 app(c8,c3) = c4 | -neq(c6,nil).  [para(11(a,1),25(a,2))].
+27 app(c8,c3) = c4 | -neq(c4,nil).  [para(11(a,1),26(b,1))].
+28 app(c8,c3) = c4.  [resolve(13,a,27,b)].
+29 -neq(c3,nil) | -rearsegP(c4,c3) | -neq(c6,nil).  [clausify(4)].
+30 -neq(c3,nil) | -rearsegP(c4,c3) | -neq(c4,nil).  [para(11(a,1),29(c,1))].
+31 -neq(c3,nil) | -rearsegP(c4,c3).  [resolve(13,a,30,c)].
+32 -ssList(A) | neq(A,nil) | nil = A.  [resolve(7,a,6,b)].
+33 -ssList(A) | rearsegP(A,c3) | -ssList(B) | app(B,c3) != A.  [resolve(9,a,5,b)].
+34 -ssList(A) | cons(c7,A) != nil.  [resolve(16,a,8,b)].
+35 cons(c7,nil) != nil.  [resolve(34,a,7,a)].
+36 c3 != nil.  [para(23(a,1),35(a,1))].
+37 neq(c3,nil) | nil = c3.  [resolve(32,a,9,a)].
+38 neq(c3,nil) | c3 = nil.  [copy(37),flip(b)].
+39 neq(c3,nil).  [resolve(36,a,38,b)].
+40 -rearsegP(c4,c3).  [resolve(39,a,31,a)].
+41 rearsegP(c4,c3) | -ssList(A) | app(A,c3) != c4.  [resolve(33,a,10,a)].
+42 -ssList(A) | app(A,c3) != c4.  [resolve(40,a,41,a)].
+43 app(c8,c3) != c4.  [resolve(42,a,19,a)].
+44 c4 != c4.  [para(28(a,1),43(a,1))].
+45 $F.  [copy(44),xx(a)].

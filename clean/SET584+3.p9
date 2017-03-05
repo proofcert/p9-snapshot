@@ -1,0 +1,20 @@
+
+
+
+4 subset(c1,c2).  [clausify(3)].
+5 subset(A,B) | member(f1(A,B),A).  [clausify(2)].
+6 -subset(union(c1,c3),union(c2,c3)).  [clausify(3)].
+7 member(A,union(B,C)) | -member(A,B).  [clausify(1)].
+8 member(A,union(B,C)) | -member(A,C).  [clausify(1)].
+9 subset(A,B) | -member(f1(A,B),B).  [clausify(2)].
+10 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(2)].
+11 -member(A,union(B,C)) | member(A,B) | member(A,C).  [clausify(1)].
+12 member(f1(union(c1,c3),union(c2,c3)),union(c1,c3)).  [resolve(6,a,5,a)].
+13 -member(f1(union(c1,c3),union(c2,c3)),union(c2,c3)).  [resolve(9,a,6,a)].
+14 -member(A,c1) | member(A,c2).  [resolve(10,a,4,a)].
+15 member(f1(union(c1,c3),union(c2,c3)),c1) | member(f1(union(c1,c3),union(c2,c3)),c3).  [resolve(12,a,11,a)].
+16 -member(f1(union(c1,c3),union(c2,c3)),c3).  [resolve(8,a,13,a)].
+17 -member(f1(union(c1,c3),union(c2,c3)),c2).  [resolve(7,a,13,a)].
+18 member(f1(union(c1,c3),union(c2,c3)),c1).  [resolve(16,a,15,b)].
+19 -member(f1(union(c1,c3),union(c2,c3)),c1).  [resolve(14,b,17,a)].
+20 $F.  [resolve(18,a,19,a)].

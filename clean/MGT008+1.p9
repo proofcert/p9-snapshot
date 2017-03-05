@@ -1,0 +1,40 @@
+
+
+
+
+5 organization(c1,c8).  [clausify(4)].
+6 organization(c2,c9).  [clausify(4)].
+7 greater(c7,c6).  [clausify(4)].
+8 reorganization_free(c1,c8,c8).  [clausify(4)].
+9 reorganization_free(c2,c9,c9).  [clausify(4)].
+10 class(c1,c3,c8).  [clausify(4)].
+11 class(c2,c3,c9).  [clausify(4)].
+12 survival_chance(c1,c4,c8).  [clausify(4)].
+13 survival_chance(c2,c5,c9).  [clausify(4)].
+14 size(c1,c6,c8).  [clausify(4)].
+15 size(c2,c7,c9).  [clausify(4)].
+16 -greater(c5,c4).  [clausify(4)].
+17 -organization(A,B) | inertia(A,f1(A,B),B).  [clausify(1)].
+18 -organization(A,B) | -organization(C,D) | -class(A,E,B) | -class(C,E,D) | -size(A,F,B) | -size(C,V6,D) | -inertia(A,V7,B) | -inertia(C,V8,D) | -greater(V6,F) | greater(V8,V7).  [clausify(2)].
+19 -organization(A,B) | -organization(C,D) | -reorganization_free(A,B,B) | -reorganization_free(C,D,D) | -inertia(A,E,B) | -inertia(C,F,D) | -survival_chance(A,V6,B) | -survival_chance(C,V7,D) | -greater(F,E) | greater(V7,V6).  [clausify(3)].
+20 inertia(c2,f1(c2,c9),c9).  [resolve(17,a,6,a)].
+21 inertia(c1,f1(c1,c8),c8).  [resolve(17,a,5,a)].
+22 -organization(A,B) | -class(c1,C,c8) | -class(A,C,B) | -size(c1,D,c8) | -size(A,E,B) | -inertia(c1,F,c8) | -inertia(A,V6,B) | -greater(E,D) | greater(V6,F).  [resolve(18,a,5,a)].
+23 -class(c1,A,c8) | -class(c2,A,c9) | -size(c1,B,c8) | -size(c2,C,c9) | -inertia(c1,D,c8) | -inertia(c2,E,c9) | -greater(C,B) | greater(E,D).  [resolve(22,a,6,a)].
+24 -class(c2,c3,c9) | -size(c1,A,c8) | -size(c2,B,c9) | -inertia(c1,C,c8) | -inertia(c2,D,c9) | -greater(B,A) | greater(D,C).  [resolve(23,a,10,a)].
+25 -size(c1,A,c8) | -size(c2,B,c9) | -inertia(c1,C,c8) | -inertia(c2,D,c9) | -greater(B,A) | greater(D,C).  [resolve(24,a,11,a)].
+26 -size(c2,A,c9) | -inertia(c1,B,c8) | -inertia(c2,C,c9) | -greater(A,c6) | greater(C,B).  [resolve(25,a,14,a)].
+27 -inertia(c1,A,c8) | -inertia(c2,B,c9) | -greater(c7,c6) | greater(B,A).  [resolve(26,a,15,a)].
+28 -inertia(c2,A,c9) | -greater(c7,c6) | greater(A,f1(c1,c8)).  [resolve(27,a,21,a)].
+29 -greater(c7,c6) | greater(f1(c2,c9),f1(c1,c8)).  [resolve(28,a,20,a)].
+30 greater(f1(c2,c9),f1(c1,c8)).  [resolve(29,a,7,a)].
+31 -organization(A,B) | -reorganization_free(c1,c8,c8) | -reorganization_free(A,B,B) | -inertia(c1,C,c8) | -inertia(A,D,B) | -survival_chance(c1,E,c8) | -survival_chance(A,F,B) | -greater(D,C) | greater(F,E).  [resolve(19,a,5,a)].
+32 -reorganization_free(c1,c8,c8) | -reorganization_free(c2,c9,c9) | -inertia(c1,A,c8) | -inertia(c2,B,c9) | -survival_chance(c1,C,c8) | -survival_chance(c2,D,c9) | -greater(B,A) | greater(D,C).  [resolve(31,a,6,a)].
+33 -reorganization_free(c2,c9,c9) | -inertia(c1,A,c8) | -inertia(c2,B,c9) | -survival_chance(c1,C,c8) | -survival_chance(c2,D,c9) | -greater(B,A) | greater(D,C).  [resolve(32,a,8,a)].
+34 -inertia(c1,A,c8) | -inertia(c2,B,c9) | -survival_chance(c1,C,c8) | -survival_chance(c2,D,c9) | -greater(B,A) | greater(D,C).  [resolve(33,a,9,a)].
+35 -inertia(c2,A,c9) | -survival_chance(c1,B,c8) | -survival_chance(c2,C,c9) | -greater(A,f1(c1,c8)) | greater(C,B).  [resolve(34,a,21,a)].
+36 -survival_chance(c1,A,c8) | -survival_chance(c2,B,c9) | -greater(f1(c2,c9),f1(c1,c8)) | greater(B,A).  [resolve(35,a,20,a)].
+37 -survival_chance(c2,A,c9) | -greater(f1(c2,c9),f1(c1,c8)) | greater(A,c4).  [resolve(36,a,12,a)].
+38 -greater(f1(c2,c9),f1(c1,c8)) | greater(c5,c4).  [resolve(37,a,13,a)].
+39 -greater(f1(c2,c9),f1(c1,c8)).  [resolve(38,b,16,a)].
+40 $F.  [resolve(39,a,30,a)].

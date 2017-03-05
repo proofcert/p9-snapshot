@@ -1,0 +1,75 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n037.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:21:28 CDT 2014
+% CPUTime    : 19.75 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 21312 was started by sandbox on n037.star.cs.uiowa.edu,
+Fri Jun  6 00:21:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_21280_n037.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 19.38 (+ 0.19) seconds.
+% Length of proof is 36.
+% Level of proof is 8.
+% Maximum clause weight is 17.000.
+% Given clauses 2340.
+
+
+1 (all A all B (gt(A,B) | gt(B,A) | A = B)).  [assumption].
+2 (all A all B all C (gt(A,B) & gt(B,C) -> gt(A,C))).  [assumption].
+3 (all A -gt(A,A)).  [assumption].
+4 (all A all B (leq(A,pred(B)) <-> gt(B,A))).  [assumption].
+5 (all A pred(succ(A)) = A).  [assumption].
+6 (all A succ(pred(A)) = A).  [assumption].
+7 (all A all B (leq(succ(A),B) -> gt(B,A))).  [assumption].
+8 -(leq(tptp_float_0_001,pv76) & leq(n1,loopcounter) & (all A (leq(n0,A) & leq(A,n135299) -> (all B (leq(n0,B) & leq(B,n4) -> a_select3(q_init,A,B) = init)))) & (all C (leq(n0,C) & leq(C,n4) -> a_select3(center_init,C,n0) = init)) & (gt(loopcounter,n0) -> (all D (leq(n0,D) & leq(D,n4) -> a_select2(mu_init,D) = init))) & (gt(loopcounter,n0) -> (all E (leq(n0,E) & leq(E,n4) -> a_select2(rho_init,E) = init))) & (gt(loopcounter,n0) -> (all F (leq(n0,F) & leq(F,n4) -> a_select2(sigma_init,F) = init))) -> (all V6 (leq(n0,V6) & leq(V6,n4) -> a_select2(rho_init,V6) = init))).  [assumption].
+9 gt(A,B) | gt(B,A) | B = A.  [clausify(1)].
+10 -gt(A,B) | -gt(B,C) | gt(A,C).  [clausify(2)].
+11 -gt(A,A).  [clausify(3)].
+12 leq(A,pred(B)) | -gt(B,A).  [clausify(4)].
+13 succ(tptp_minus_1) = n0.  [assumption].
+14 pred(succ(A)) = A.  [clausify(5)].
+15 succ(pred(A)) = A.  [clausify(6)].
+16 -leq(succ(A),B) | gt(B,A).  [clausify(7)].
+17 succ(n0) = n1.  [assumption].
+18 leq(n1,loopcounter).  [clausify(8)].
+19 -gt(loopcounter,n0) | -leq(n0,A) | -leq(A,n4) | a_select2(rho_init,A) = init.  [clausify(8)].
+20 leq(n0,c1).  [clausify(8)].
+21 leq(c1,n4).  [clausify(8)].
+22 a_select2(rho_init,c1) != init.  [clausify(8)].
+23 pred(n0) = tptp_minus_1.  [para(13(a,1),14(a,1,1))].
+24 -leq(n0,A) | gt(A,tptp_minus_1).  [para(13(a,1),16(a,1))].
+25 -leq(A,B) | gt(B,pred(A)).  [para(15(a,1),16(a,1))].
+26 -leq(n1,A) | gt(A,n0).  [para(17(a,1),16(a,1))].
+27 -leq(n0,A) | -leq(A,n4) | a_select2(rho_init,A) = init | gt(n0,loopcounter) | loopcounter = n0.  [resolve(19,a,9,b)].
+28 gt(loopcounter,n0).  [resolve(26,a,18,a)].
+29 leq(n0,pred(loopcounter)).  [resolve(28,a,12,b)].
+30 -gt(n0,A) | gt(loopcounter,A).  [resolve(28,a,10,a)].
+31 gt(pred(loopcounter),tptp_minus_1).  [resolve(29,a,24,a)].
+32 leq(tptp_minus_1,pred(pred(loopcounter))).  [resolve(31,a,12,b)].
+33 gt(pred(pred(loopcounter)),pred(tptp_minus_1)).  [resolve(32,a,25,a)].
+34 -leq(c1,n4) | a_select2(rho_init,c1) = init | gt(n0,loopcounter) | loopcounter = n0.  [resolve(27,a,20,a)].
+35 a_select2(rho_init,c1) = init | gt(n0,loopcounter) | loopcounter = n0.  [resolve(21,a,34,a)].
+36 gt(n0,loopcounter) | loopcounter = n0.  [resolve(22,a,35,a)].
+37 loopcounter = n0 | gt(loopcounter,loopcounter).  [resolve(36,a,30,a)].
+38 loopcounter = n0.  [resolve(11,a,37,b)].
+39 gt(pred(pred(n0)),pred(tptp_minus_1)).  [para(38(a,1),33(a,1,1,1))].
+40 gt(pred(tptp_minus_1),pred(tptp_minus_1)).  [para(23(a,1),39(a,1,1))].
+41 $F.  [resolve(11,a,40,a)].
+
+============================== end of proof ==========================

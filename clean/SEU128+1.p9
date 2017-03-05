@@ -1,0 +1,23 @@
+
+
+
+
+5 subset(c3,c4).  [clausify(4)].
+6 subset(c3,c5).  [clausify(4)].
+7 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+8 subset(A,B) | in(f1(A,B),A).  [clausify(2)].
+9 -subset(c3,set_intersection2(c4,c5)).  [clausify(4)].
+10 subset(A,B) | -in(f1(A,B),B).  [clausify(2)].
+11 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(2)].
+12 set_intersection2(A,B) != C | in(D,C) | -in(D,A) | -in(D,B).  [clausify(3)].
+13 in(f1(c3,set_intersection2(c4,c5)),c3).  [resolve(9,a,8,a)].
+14 -in(f1(c3,set_intersection2(c4,c5)),set_intersection2(c4,c5)).  [resolve(10,a,9,a)].
+15 -in(A,c3) | in(A,c5).  [resolve(11,a,6,a)].
+16 -in(A,c3) | in(A,c4).  [resolve(11,a,5,a)].
+17 in(f1(c3,set_intersection2(c4,c5)),c4).  [resolve(13,a,16,a)].
+18 in(f1(c3,set_intersection2(c4,c5)),c5).  [resolve(13,a,15,a)].
+19 set_intersection2(A,B) != set_intersection2(c4,c5) | -in(f1(c3,set_intersection2(c4,c5)),A) | -in(f1(c3,set_intersection2(c4,c5)),B).  [resolve(12,b,14,a)].
+20 set_intersection2(c5,A) != set_intersection2(c4,c5) | -in(f1(c3,set_intersection2(c4,c5)),A).  [resolve(19,b,18,a)].
+21 set_intersection2(c5,c4) != set_intersection2(c4,c5).  [resolve(20,b,17,a)].
+22 set_intersection2(c4,c5) != set_intersection2(c4,c5).  [para(7(a,1),21(a,1))].
+23 $F.  [copy(22),xx(a)].

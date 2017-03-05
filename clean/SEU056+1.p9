@@ -1,0 +1,24 @@
+
+
+
+
+5 function(c11).  [clausify(4)].
+6 -relation(A) | -function(A) | -one_to_one(A) | relation_image(A,set_intersection2(B,C)) = set_intersection2(relation_image(A,B),relation_image(A,C)).  [clausify(2)].
+7 relation(c11).  [clausify(4)].
+8 one_to_one(c11).  [clausify(4)].
+9 disjoint(c9,c10).  [clausify(4)].
+10 -disjoint(relation_image(c11,c9),relation_image(c11,c10)).  [clausify(4)].
+11 -relation(A) | relation_image(A,empty_set) = empty_set.  [clausify(3)].
+12 -disjoint(A,B) | set_intersection2(A,B) = empty_set.  [clausify(1)].
+13 disjoint(A,B) | set_intersection2(A,B) != empty_set.  [clausify(1)].
+14 -relation(c11) | -one_to_one(c11) | relation_image(c11,set_intersection2(A,B)) = set_intersection2(relation_image(c11,A),relation_image(c11,B)).  [resolve(6,b,5,a)].
+15 -relation(c11) | -one_to_one(c11) | set_intersection2(relation_image(c11,A),relation_image(c11,B)) = relation_image(c11,set_intersection2(A,B)).  [copy(14),flip(c)].
+16 -one_to_one(c11) | set_intersection2(relation_image(c11,A),relation_image(c11,B)) = relation_image(c11,set_intersection2(A,B)).  [resolve(7,a,15,a)].
+17 set_intersection2(relation_image(c11,A),relation_image(c11,B)) = relation_image(c11,set_intersection2(A,B)).  [resolve(8,a,16,a)].
+18 relation_image(c11,empty_set) = empty_set.  [resolve(11,a,7,a)].
+19 set_intersection2(c9,c10) = empty_set.  [resolve(12,a,9,a)].
+20 set_intersection2(relation_image(c11,c9),relation_image(c11,c10)) != empty_set.  [resolve(13,a,10,a)].
+21 relation_image(c11,set_intersection2(c9,c10)) != empty_set.  [para(17(a,1),20(a,1))].
+22 relation_image(c11,empty_set) != empty_set.  [para(19(a,1),21(a,1,2))].
+23 empty_set != empty_set.  [para(18(a,1),22(a,1))].
+24 $F.  [copy(23),xx(a)].

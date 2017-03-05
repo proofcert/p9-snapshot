@@ -1,0 +1,25 @@
+
+
+
+
+
+
+
+8 test(A) | c(A) = zero.  [clausify(7)].
+9 -test(A) | c(A) = B | -complement(A,B).  [clausify(6)].
+10 addition(A,zero) = A.  [clausify(2)].
+11 multiplication(A,one) = A.  [clausify(3)].
+12 multiplication(A,zero) = zero.  [clausify(4)].
+13 addition(A,B) = addition(B,A).  [clausify(1)].
+14 c(one) != zero.  [assumption].
+15 complement(A,B) | multiplication(B,A) != zero | multiplication(A,B) != zero | addition(B,A) != one.  [clausify(5)].
+16 complement(A,B) | multiplication(B,A) != zero | multiplication(A,B) != zero | addition(A,B) != one.  [para(13(a,1),15(d,1))].
+17 c(A) = B | -complement(A,B) | c(A) = zero.  [resolve(9,a,8,a)].
+18 complement(one,zero) | multiplication(zero,one) != zero | multiplication(one,zero) != zero.  [resolve(16,d,10,a)].
+19 complement(one,zero) | zero != zero | multiplication(one,zero) != zero.  [para(11(a,1),18(b,1))].
+20 complement(one,zero) | zero != zero | zero != zero.  [para(12(a,1),19(c,1))].
+21 complement(one,zero) | zero != zero.  [copy(20),xx(b)].
+22 complement(one,zero).  [copy(21),xx(b)].
+23 -complement(one,zero) | c(one) = zero.  [resolve(17,a,14,a)].
+24 -complement(one,zero).  [resolve(23,b,14,a)].
+25 $F.  [resolve(22,a,24,a)].

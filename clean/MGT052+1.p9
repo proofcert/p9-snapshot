@@ -1,0 +1,10 @@
+
+
+3 -dissimilar(A,B,C) | -is_aligned(A,B) | -is_aligned(A,C).  [clausify(1)].
+4 dissimilar(c1,c2,c2).  [clausify(2)].
+5 -dissimilar(A,B,C) | is_aligned(A,B) | is_aligned(A,C).  [clausify(1)].
+6 -is_aligned(c1,c2) | -is_aligned(c1,c2).  [resolve(3,a,4,a)].
+7 -is_aligned(c1,c2).  [copy(6),merge(b)].
+8 is_aligned(c1,c2) | is_aligned(c1,c2).  [resolve(5,a,4,a)].
+9 is_aligned(c1,c2).  [copy(8),merge(b)].
+10 $F.  [resolve(7,a,9,a)].

@@ -1,0 +1,178 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+14 truthday(c1).  [clausify(5)].
+15 day1(c2).  [clausify(6)].
+16 day2(c3).  [clausify(7)].
+17 day3(c4).  [clausify(8)].
+18 consecutive(sunday) = monday.  [assumption].
+19 consecutive(monday) = tuesday.  [assumption].
+20 consecutive(wednesday) = thursday.  [assumption].
+21 consecutive(thursday) = friday.  [assumption].
+22 consecutive(friday) = saturday.  [assumption].
+23 consecutive(saturday) = sunday.  [assumption].
+24 monday = A | tuesday = A | wednesday = A | thursday = A | friday = A | saturday = A | sunday = A.  [clausify(1)].
+25 -truthday(tuesday).  [assumption].
+26 monday != wednesday.  [assumption].
+27 wednesday != monday.  [copy(26),flip(a)].
+28 monday != friday.  [assumption].
+29 monday != saturday.  [assumption].
+30 monday != sunday.  [assumption].
+31 wednesday != thursday.  [assumption].
+32 wednesday != saturday.  [assumption].
+33 wednesday != sunday.  [assumption].
+34 thursday != friday.  [assumption].
+35 friday != thursday.  [copy(34),flip(a)].
+36 friday != saturday.  [assumption].
+37 friday != sunday.  [assumption].
+38 -day1(A) | -truthday(A) | -truthday(monday).  [clausify(11)].
+39 -day3(A) | -truthday(A) | -truthday(wednesday).  [clausify(13)].
+40 -day3(A) | -truthday(A) | -truthday(friday).  [clausify(13)].
+41 -day1(A) | day2(consecutive(A)).  [clausify(9)].
+42 -day2(A) | day3(consecutive(A)).  [clausify(10)].
+43 day2(A) | -day3(consecutive(A)).  [clausify(10)].
+44 -day2(A) | truthday(A) | -day2(thursday).  [clausify(12)].
+45 -day2(A) | truthday(A) | -day2(saturday).  [clausify(12)].
+46 -day2(A) | truthday(A) | -day2(sunday).  [clausify(12)].
+47 -truthday(A) | -truthday(B) | B = A.  [clausify(2)].
+48 -day2(A) | -day2(B) | B = A.  [clausify(3)].
+49 -day3(A) | -day3(B) | B = A.  [clausify(4)].
+50 -day1(A) | truthday(A) | truthday(monday) | truthday(tuesday).  [clausify(11)].
+51 -day1(A) | truthday(A) | truthday(monday).  [resolve(25,a,50,d)].
+52 -day3(A) | truthday(A) | truthday(wednesday) | truthday(friday).  [clausify(13)].
+53 -day2(thursday) | truthday(thursday).  [factor(44,a,c)].
+54 -day2(saturday) | truthday(saturday).  [factor(45,a,c)].
+55 -day2(sunday) | truthday(sunday).  [factor(46,a,c)].
+56 monday = A | tuesday = A | thursday = A | friday = A | saturday = A | sunday = A | consecutive(A) = thursday.  [para(24(c,1),20(a,1,1))].
+57 -truthday(c2) | -truthday(monday).  [resolve(38,a,15,a)].
+58 -truthday(c4) | -truthday(wednesday).  [resolve(39,a,17,a)].
+59 -truthday(c4) | -truthday(friday).  [resolve(40,a,17,a)].
+60 day2(consecutive(c2)).  [resolve(41,a,15,a)].
+61 day3(consecutive(c3)).  [resolve(42,a,16,a)].
+62 day2(sunday) | -day3(monday).  [para(18(a,1),43(b,1))].
+63 -truthday(A) | A = c1.  [resolve(47,a,14,a)].
+64 -truthday(A) | c1 = A.  [copy(63),flip(b)].
+65 -day2(A) | A = c3.  [resolve(48,a,16,a)].
+66 -day2(A) | c3 = A.  [copy(65),flip(b)].
+67 -day3(A) | A = c4.  [resolve(49,a,17,a)].
+68 -day3(A) | c4 = A.  [copy(67),flip(b)].
+69 truthday(c2) | truthday(monday).  [resolve(51,a,15,a)].
+70 truthday(c4) | truthday(wednesday) | truthday(friday).  [resolve(52,a,17,a)].
+71 monday = c1 | thursday = c1 | friday = c1 | saturday = c1 | sunday = c1 | consecutive(c1) = thursday | truthday(tuesday).  [para(56(b,2),14(a,1))].
+72 c1 = monday | thursday = c1 | friday = c1 | saturday = c1 | sunday = c1 | consecutive(c1) = thursday | truthday(tuesday).  [copy(71),flip(a)].
+73 c1 = monday | c1 = thursday | friday = c1 | saturday = c1 | sunday = c1 | consecutive(c1) = thursday | truthday(tuesday).  [copy(72),flip(b)].
+74 c1 = monday | c1 = thursday | c1 = friday | saturday = c1 | sunday = c1 | consecutive(c1) = thursday | truthday(tuesday).  [copy(73),flip(c)].
+75 c1 = monday | c1 = thursday | c1 = friday | c1 = saturday | sunday = c1 | consecutive(c1) = thursday | truthday(tuesday).  [copy(74),flip(d)].
+76 c1 = monday | c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday | consecutive(c1) = thursday | truthday(tuesday).  [copy(75),flip(e)].
+77 c1 = monday | c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday | consecutive(c1) = thursday.  [resolve(25,a,76,g)].
+78 c1 = c2 | truthday(monday).  [resolve(64,a,69,a)].
+79 c2 = c1 | truthday(monday).  [copy(78),flip(a)].
+80 c3 = consecutive(c2).  [resolve(66,a,60,a)].
+81 consecutive(c2) = c3.  [copy(80),flip(a)].
+82 c4 = consecutive(c3).  [resolve(68,a,61,a)].
+83 consecutive(c3) = c4.  [copy(82),flip(a)].
+84 c2 = c1 | -truthday(A) | monday = A.  [resolve(79,b,47,b)].
+85 truthday(wednesday) | truthday(friday) | c1 = c4.  [resolve(70,a,64,a)].
+86 truthday(wednesday) | truthday(friday) | c4 = c1.  [copy(85),flip(c)].
+87 truthday(friday) | c4 = c1 | c1 = wednesday.  [resolve(86,a,64,a)].
+88 truthday(friday) | c4 = c1 | -truthday(A) | wednesday = A.  [resolve(86,a,47,b)].
+89 c2 = c1 | monday = wednesday | truthday(friday) | c4 = c1.  [resolve(84,b,86,a)].
+90 c2 = c1 | wednesday = monday | truthday(friday) | c4 = c1.  [copy(89),flip(b)].
+91 c2 = c1 | truthday(friday) | c4 = c1.  [resolve(27,a,90,b)].
+92 c2 = c1 | monday = c4 | truthday(wednesday) | truthday(friday).  [resolve(84,b,70,a)].
+93 c2 = c1 | c4 = monday | truthday(wednesday) | truthday(friday).  [copy(92),flip(b)].
+94 c4 = c1 | c1 = wednesday | c1 = friday.  [resolve(87,a,64,a)].
+95 c2 = c1 | c4 = c1 | c2 = c1 | monday = friday.  [resolve(91,b,84,b)].
+96 c2 = c1 | c4 = c1 | monday = friday.  [copy(95),merge(c)].
+97 c2 = c1 | c4 = c1.  [resolve(28,a,96,c)].
+98 c2 = c1 | -truthday(c1) | -truthday(wednesday).  [para(97(b,1),58(a,1))].
+99 c2 = c1 | -truthday(wednesday).  [resolve(14,a,98,b)].
+100 c2 = c1 | -truthday(c1) | -truthday(friday).  [para(97(b,1),59(a,1))].
+101 c2 = c1 | -truthday(friday).  [resolve(14,a,100,b)].
+102 c2 = c1 | c4 = monday | truthday(friday) | c2 = c1.  [resolve(93,c,99,b)].
+103 c2 = c1 | c4 = monday | truthday(friday).  [copy(102),merge(d)].
+104 c2 = c1 | c4 = monday | c2 = c1.  [resolve(103,c,101,b)].
+105 c2 = c1 | c4 = monday.  [copy(104),merge(c)].
+106 c2 = c1 | day3(monday).  [para(105(b,1),17(a,1))].
+107 c2 = c1 | day2(sunday).  [resolve(106,b,62,b)].
+108 c2 = c1 | truthday(sunday).  [resolve(107,b,55,a)].
+109 c2 = c1 | c2 = c1 | monday = sunday.  [resolve(108,b,84,b)].
+110 c2 = c1 | monday = sunday.  [copy(109),merge(b)].
+111 c2 = c1.  [resolve(30,a,110,b)].
+112 consecutive(c1) = c3.  [para(111(a,1),81(a,1,1))].
+113 -truthday(c1) | -truthday(monday).  [para(111(a,1),57(a,1))].
+114 -truthday(monday).  [resolve(14,a,113,a)].
+115 day1(c1).  [para(111(a,1),15(a,1))].
+116 c1 = monday | c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday | c3 = thursday.  [para(112(a,1),77(f,1))].
+117 c1 = monday | c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday | day2(thursday).  [para(116(f,1),16(a,1))].
+118 c1 = monday | c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday | truthday(thursday).  [resolve(117,f,53,a)].
+119 c1 = monday | c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday | c1 = thursday.  [resolve(118,f,64,a)].
+120 c1 = monday | c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday.  [copy(119),merge(f)].
+121 c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday | truthday(monday).  [para(120(a,1),14(a,1))].
+122 c1 = thursday | c1 = friday | c1 = saturday | c1 = sunday.  [resolve(114,a,121,e)].
+123 c1 = thursday | c1 = saturday | c1 = sunday | day1(friday).  [para(122(b,1),115(a,1))].
+124 c1 = thursday | c1 = saturday | c1 = sunday | day2(consecutive(friday)).  [resolve(123,d,41,a)].
+125 c1 = thursday | c1 = saturday | c1 = sunday | day2(saturday).  [para(22(a,1),124(d,1))].
+126 c1 = thursday | c1 = saturday | c1 = sunday | truthday(saturday).  [resolve(125,d,54,a)].
+127 c1 = thursday | c1 = saturday | c1 = sunday | c1 = saturday.  [resolve(126,d,64,a)].
+128 c1 = thursday | c1 = saturday | c1 = sunday.  [copy(127),merge(d)].
+129 c1 = saturday | c1 = sunday | truthday(thursday).  [para(128(a,1),14(a,1))].
+130 c1 = saturday | c1 = sunday | day1(thursday).  [para(128(a,1),115(a,1))].
+131 c1 = saturday | c1 = sunday | truthday(friday) | c4 = c1 | wednesday = thursday.  [resolve(129,c,88,c)].
+132 c1 = saturday | c1 = sunday | truthday(friday) | c4 = c1.  [resolve(31,a,131,e)].
+133 c1 = saturday | c1 = sunday | -truthday(A) | thursday = A.  [resolve(129,c,47,b)].
+134 c1 = saturday | c1 = sunday | day2(consecutive(thursday)).  [resolve(130,c,41,a)].
+135 c1 = saturday | c1 = sunday | day2(friday).  [para(21(a,1),134(c,1))].
+136 c1 = saturday | c1 = sunday | day3(consecutive(friday)).  [resolve(135,c,42,a)].
+137 c1 = saturday | c1 = sunday | day3(saturday).  [para(22(a,1),136(c,1))].
+138 c1 = saturday | c1 = sunday | c4 = saturday.  [resolve(137,c,68,a)].
+139 c1 = saturday | c1 = sunday | thursday = friday | c1 = saturday | c1 = sunday | c4 = c1.  [resolve(133,c,132,c)].
+140 c1 = saturday | c1 = sunday | friday = thursday | c1 = saturday | c1 = sunday | c4 = c1.  [copy(139),flip(c)].
+141 c1 = saturday | c1 = sunday | friday = thursday | c1 = sunday | c4 = c1.  [copy(140),merge(d)].
+142 c1 = saturday | c1 = sunday | friday = thursday | c4 = c1.  [copy(141),merge(d)].
+143 c1 = saturday | c1 = sunday | c4 = c1.  [resolve(35,a,142,c)].
+144 c1 = saturday | c1 = sunday | c1 = saturday | c1 = sunday | c1 = saturday.  [para(143(c,1),138(c,1))].
+145 c1 = saturday | c1 = sunday | c1 = sunday | c1 = saturday.  [copy(144),merge(c)].
+146 c1 = saturday | c1 = sunday | c1 = saturday.  [copy(145),merge(c)].
+147 c1 = saturday | c1 = sunday.  [copy(146),merge(c)].
+148 c1 = saturday | truthday(sunday).  [para(147(b,1),14(a,1))].
+149 c1 = saturday | day1(sunday).  [para(147(b,1),115(a,1))].
+150 c1 = saturday | -truthday(A) | sunday = A.  [resolve(148,b,47,b)].
+151 c1 = saturday | day2(consecutive(sunday)).  [resolve(149,b,41,a)].
+152 c1 = saturday | day2(monday).  [para(18(a,1),151(b,1))].
+153 c1 = saturday | day3(consecutive(monday)).  [resolve(152,b,42,a)].
+154 c1 = saturday | day3(tuesday).  [para(19(a,1),153(b,1))].
+155 c1 = saturday | truthday(tuesday) | truthday(wednesday) | truthday(friday).  [resolve(154,b,52,a)].
+156 c1 = saturday | truthday(wednesday) | truthday(friday).  [resolve(25,a,155,b)].
+157 c1 = saturday | sunday = wednesday | c1 = saturday | truthday(friday).  [resolve(150,b,156,b)].
+158 c1 = saturday | wednesday = sunday | c1 = saturday | truthday(friday).  [copy(157),flip(b)].
+159 c1 = saturday | wednesday = sunday | truthday(friday).  [copy(158),merge(c)].
+160 c1 = saturday | truthday(friday).  [resolve(33,a,159,b)].
+161 c1 = saturday | c1 = saturday | sunday = friday.  [resolve(160,b,150,b)].
+162 c1 = saturday | c1 = saturday | friday = sunday.  [copy(161),flip(c)].
+163 c1 = saturday | friday = sunday.  [copy(162),merge(b)].
+164 c1 = saturday.  [resolve(37,a,163,b)].
+165 consecutive(saturday) = c3.  [para(164(a,1),112(a,1,1))].
+166 sunday = c3.  [para(23(a,1),165(a,1))].
+167 c3 = sunday.  [copy(166),flip(a)].
+168 c4 = saturday | c1 = wednesday | c1 = friday.  [para(164(a,1),94(a,2))].
+169 c4 = saturday | saturday = wednesday | c1 = friday.  [para(164(a,1),168(b,1))].
+170 c4 = saturday | saturday = wednesday | saturday = friday.  [para(164(a,1),169(c,1))].
+171 c4 = saturday | wednesday = saturday | saturday = friday.  [copy(170),flip(b)].
+172 c4 = saturday | wednesday = saturday | friday = saturday.  [copy(171),flip(c)].
+173 c4 = saturday | friday = saturday.  [resolve(32,a,172,b)].
+174 c4 = saturday.  [resolve(36,a,173,b)].
+175 consecutive(sunday) = c4.  [para(167(a,1),83(a,1,1))].
+176 monday = c4.  [para(18(a,1),175(a,1))].
+177 monday = saturday.  [para(174(a,1),176(a,2))].
+178 $F.  [resolve(29,a,177,a)].

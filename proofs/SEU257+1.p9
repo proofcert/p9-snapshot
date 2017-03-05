@@ -1,0 +1,85 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n093.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:43:18 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5601 was started by sandbox on n093.star.cs.uiowa.edu,
+Fri Jun  6 05:43:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5569_n093.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: t32_wellord1.
+% Length of proof is 36.
+% Level of proof is 5.
+% Maximum clause weight is 14.000.
+% Given clauses 28.
+
+
+1 (all A (relation(A) -> (well_ordering(A) <-> reflexive(A) & transitive(A) & antisymmetric(A) & connected(A) & well_founded_relation(A)))).  [assumption].
+2 (all A all B (relation(A) -> relation(relation_restriction(A,B)))).  [assumption].
+3 (all A all B (relation(B) -> (reflexive(B) -> reflexive(relation_restriction(B,A))))).  [assumption].
+4 (all A all B (relation(B) -> (connected(B) -> connected(relation_restriction(B,A))))).  [assumption].
+5 (all A all B (relation(B) -> (transitive(B) -> transitive(relation_restriction(B,A))))).  [assumption].
+6 (all A all B (relation(B) -> (antisymmetric(B) -> antisymmetric(relation_restriction(B,A))))).  [assumption].
+7 (all A all B (relation(B) -> (well_founded_relation(B) -> well_founded_relation(relation_restriction(B,A))))).  [assumption].
+8 -(all A all B (relation(B) -> (well_ordering(B) -> well_ordering(relation_restriction(B,A))))).  [assumption].
+9 relation(c2).  [clausify(8)].
+10 well_ordering(c2).  [clausify(8)].
+11 -well_ordering(relation_restriction(c2,c1)).  [clausify(8)].
+12 -relation(A) | -well_ordering(A) | reflexive(A).  [clausify(1)].
+13 -relation(A) | -well_ordering(A) | transitive(A).  [clausify(1)].
+14 -relation(A) | -well_ordering(A) | antisymmetric(A).  [clausify(1)].
+15 -relation(A) | -well_ordering(A) | connected(A).  [clausify(1)].
+16 -relation(A) | -well_ordering(A) | well_founded_relation(A).  [clausify(1)].
+17 -relation(A) | relation(relation_restriction(A,B)).  [clausify(2)].
+18 -relation(A) | -reflexive(A) | reflexive(relation_restriction(A,B)).  [clausify(3)].
+19 -relation(A) | -connected(A) | connected(relation_restriction(A,B)).  [clausify(4)].
+20 -relation(A) | -transitive(A) | transitive(relation_restriction(A,B)).  [clausify(5)].
+21 -relation(A) | -antisymmetric(A) | antisymmetric(relation_restriction(A,B)).  [clausify(6)].
+22 -relation(A) | -well_founded_relation(A) | well_founded_relation(relation_restriction(A,B)).  [clausify(7)].
+23 -relation(A) | well_ordering(A) | -reflexive(A) | -transitive(A) | -antisymmetric(A) | -connected(A) | -well_founded_relation(A).  [clausify(1)].
+24 -well_ordering(c2) | reflexive(c2).  [resolve(12,a,9,a)].
+25 reflexive(c2).  [resolve(24,a,10,a)].
+26 -well_ordering(c2) | transitive(c2).  [resolve(13,a,9,a)].
+27 transitive(c2).  [resolve(26,a,10,a)].
+28 -well_ordering(c2) | antisymmetric(c2).  [resolve(14,a,9,a)].
+29 antisymmetric(c2).  [resolve(28,a,10,a)].
+30 -well_ordering(c2) | connected(c2).  [resolve(15,a,9,a)].
+31 connected(c2).  [resolve(30,a,10,a)].
+32 -well_ordering(c2) | well_founded_relation(c2).  [resolve(16,a,9,a)].
+33 well_founded_relation(c2).  [resolve(32,a,10,a)].
+34 relation(relation_restriction(c2,A)).  [resolve(17,a,9,a)].
+35 -reflexive(c2) | reflexive(relation_restriction(c2,A)).  [resolve(18,a,9,a)].
+36 reflexive(relation_restriction(c2,A)).  [resolve(35,a,25,a)].
+37 -transitive(c2) | transitive(relation_restriction(c2,A)).  [resolve(20,a,9,a)].
+38 transitive(relation_restriction(c2,A)).  [resolve(37,a,27,a)].
+39 -antisymmetric(c2) | antisymmetric(relation_restriction(c2,A)).  [resolve(21,a,9,a)].
+40 antisymmetric(relation_restriction(c2,A)).  [resolve(39,a,29,a)].
+41 -connected(c2) | connected(relation_restriction(c2,A)).  [resolve(19,a,9,a)].
+42 connected(relation_restriction(c2,A)).  [resolve(41,a,31,a)].
+43 -well_founded_relation(c2) | well_founded_relation(relation_restriction(c2,A)).  [resolve(22,a,9,a)].
+44 well_founded_relation(relation_restriction(c2,A)).  [resolve(43,a,33,a)].
+45 well_ordering(relation_restriction(c2,A)) | -reflexive(relation_restriction(c2,A)) | -transitive(relation_restriction(c2,A)) | -antisymmetric(relation_restriction(c2,A)) | -connected(relation_restriction(c2,A)) | -well_founded_relation(relation_restriction(c2,A)).  [resolve(23,a,34,a)].
+46 -reflexive(relation_restriction(c2,c1)) | -transitive(relation_restriction(c2,c1)) | -antisymmetric(relation_restriction(c2,c1)) | -connected(relation_restriction(c2,c1)) | -well_founded_relation(relation_restriction(c2,c1)).  [resolve(45,a,11,a)].
+47 -transitive(relation_restriction(c2,c1)) | -antisymmetric(relation_restriction(c2,c1)) | -connected(relation_restriction(c2,c1)) | -well_founded_relation(relation_restriction(c2,c1)).  [resolve(46,a,36,a)].
+48 -antisymmetric(relation_restriction(c2,c1)) | -connected(relation_restriction(c2,c1)) | -well_founded_relation(relation_restriction(c2,c1)).  [resolve(47,a,38,a)].
+49 -connected(relation_restriction(c2,c1)) | -well_founded_relation(relation_restriction(c2,c1)).  [resolve(48,a,40,a)].
+50 -well_founded_relation(relation_restriction(c2,c1)).  [resolve(49,a,42,a)].
+51 $F.  [resolve(50,a,44,a)].
+
+============================== end of proof ==========================

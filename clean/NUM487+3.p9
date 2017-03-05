@@ -1,0 +1,94 @@
+
+
+
+
+
+
+
+
+
+
+
+12 aNaturalNumber0(sz00).  [assumption].
+13 aNaturalNumber0(sz10).  [assumption].
+14 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtpldt0(B,A) = sdtpldt0(A,B).  [clausify(1)].
+15 -aNaturalNumber0(A) | sdtpldt0(A,sz00) = A.  [clausify(2)].
+16 -aNaturalNumber0(A) | sdtasdt0(A,sz10) = A.  [clausify(3)].
+17 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -aNaturalNumber0(C) | sdtpldt0(A,C) != sdtpldt0(A,B) | C = B.  [clausify(4)].
+18 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -sdtlseqdt0(A,B) | aNaturalNumber0(f1(A,B)).  [clausify(5)].
+19 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -sdtlseqdt0(A,B) | sdtpldt0(A,f1(A,B)) = B.  [clausify(5)].
+20 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtlseqdt0(A,B) | -aNaturalNumber0(C) | sdtpldt0(A,C) != B.  [clausify(5)].
+21 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -sdtlseqdt0(A,B) | -sdtlseqdt0(B,A) | B = A.  [clausify(6)].
+22 -aNaturalNumber0(A) | sz00 = A | sz10 = A | sdtlseqdt0(sz10,A).  [clausify(7)].
+23 -aNaturalNumber0(A) | -aNaturalNumber0(B) | doDivides0(A,B) | -aNaturalNumber0(C) | sdtasdt0(A,C) != B.  [clausify(8)].
+24 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -aNaturalNumber0(C) | -doDivides0(A,B) | -doDivides0(A,sdtpldt0(B,C)) | doDivides0(A,C).  [clausify(9)].
+25 aNaturalNumber0(xn).  [assumption].
+26 aNaturalNumber0(xp).  [assumption].
+27 xp != sz00.  [assumption].
+28 sz00 != xp.  [copy(27),flip(a)].
+29 xp != sz10.  [assumption].
+30 sz10 != xp.  [copy(29),flip(a)].
+31 -aNaturalNumber0(A) | -doDivides0(A,xp) | sz10 = A | xp = A.  [clausify(10)].
+32 sdtlseqdt0(xp,xn).  [assumption].
+33 aNaturalNumber0(xr).  [assumption].
+34 sdtpldt0(xp,xr) = xn.  [assumption].
+35 xr = xn | -aNaturalNumber0(A) | sdtpldt0(xr,A) != xn.  [clausify(11)].
+36 -aNaturalNumber0(A) | -aNaturalNumber0(B) | -doDivides0(A,A) | -doDivides0(A,sdtpldt0(A,B)) | doDivides0(A,B).  [factor(24,a,b)].
+37 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtpldt0(A,B) != sdtpldt0(A,sz00) | B = sz00.  [resolve(17,b,12,a)].
+38 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtpldt0(A,sz00) != sdtpldt0(A,B) | B = sz00.  [copy(37),flip(c)].
+39 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtpldt0(A,sz00) != sdtpldt0(A,B) | sz00 = B.  [copy(38),flip(d)].
+40 -aNaturalNumber0(A) | sdtpldt0(A,sz00) != sdtpldt0(A,A) | sz00 = A.  [factor(39,a,b)].
+41 -aNaturalNumber0(A) | sdtlseqdt0(A,sz10) | -aNaturalNumber0(B) | sdtpldt0(A,B) != sz10.  [resolve(20,b,13,a)].
+42 -aNaturalNumber0(A) | -aNaturalNumber0(B) | doDivides0(A,B) | sdtasdt0(A,sz10) != B.  [resolve(23,d,13,a)].
+43 -aNaturalNumber0(A) | doDivides0(A,A) | sdtasdt0(A,sz10) != A.  [factor(42,a,b)].
+44 sdtasdt0(xn,sz10) = xn.  [resolve(25,a,16,a)].
+45 -aNaturalNumber0(A) | sdtpldt0(xn,A) = sdtpldt0(A,xn).  [resolve(25,a,14,b)].
+46 sz00 = xp | sz10 = xp | sdtlseqdt0(sz10,xp).  [resolve(26,a,22,a)].
+47 sz10 = xp | sdtlseqdt0(sz10,xp).  [resolve(28,a,46,a)].
+48 sdtlseqdt0(sz10,xp).  [resolve(30,a,47,a)].
+49 sdtpldt0(xp,sz00) = xp.  [resolve(26,a,15,a)].
+50 -aNaturalNumber0(A) | sdtpldt0(xp,A) = sdtpldt0(A,xp).  [resolve(26,a,14,b)].
+51 -aNaturalNumber0(xp) | -aNaturalNumber0(xn) | sdtpldt0(xp,f1(xp,xn)) = xn.  [resolve(32,a,19,c)].
+52 -aNaturalNumber0(xn) | sdtpldt0(xp,f1(xp,xn)) = xn.  [resolve(26,a,51,a)].
+53 sdtpldt0(xp,f1(xp,xn)) = xn.  [resolve(25,a,52,a)].
+54 -aNaturalNumber0(xp) | -aNaturalNumber0(xn) | aNaturalNumber0(f1(xp,xn)).  [resolve(32,a,18,c)].
+55 -aNaturalNumber0(xn) | aNaturalNumber0(f1(xp,xn)).  [resolve(26,a,54,a)].
+56 aNaturalNumber0(f1(xp,xn)).  [resolve(25,a,55,a)].
+57 xr = xn | sdtpldt0(xr,xp) != xn.  [resolve(35,b,26,a)].
+58 -aNaturalNumber0(xp) | -aNaturalNumber0(sz10) | -sdtlseqdt0(xp,sz10) | sz10 = xp.  [resolve(48,a,21,d)].
+59 -aNaturalNumber0(sz10) | -sdtlseqdt0(xp,sz10) | sz10 = xp.  [resolve(26,a,58,a)].
+60 -sdtlseqdt0(xp,sz10) | sz10 = xp.  [resolve(13,a,59,a)].
+61 -sdtlseqdt0(xp,sz10).  [resolve(30,a,60,b)].
+62 sdtpldt0(xp,sz00) != sdtpldt0(xp,xp) | sz00 = xp.  [resolve(40,a,26,a)].
+63 xp != sdtpldt0(xp,xp) | sz00 = xp.  [para(49(a,1),62(a,1))].
+64 sdtpldt0(xp,xp) != xp | sz00 = xp.  [copy(63),flip(a)].
+65 sdtpldt0(xp,xp) != xp.  [resolve(28,a,64,b)].
+66 sdtlseqdt0(xp,sz10) | -aNaturalNumber0(A) | sdtpldt0(xp,A) != sz10.  [resolve(41,a,26,a)].
+67 -aNaturalNumber0(A) | sdtpldt0(xp,A) != sz10.  [resolve(61,a,66,a)].
+68 doDivides0(xn,xn) | sdtasdt0(xn,sz10) != xn.  [resolve(43,a,25,a)].
+69 doDivides0(xn,xn) | xn != xn.  [para(44(a,1),68(b,1))].
+70 doDivides0(xn,xn).  [copy(69),xx(b)].
+71 sdtpldt0(xp,f1(xp,xn)) != sz10.  [resolve(67,a,56,a)].
+72 xn != sz10.  [para(53(a,1),71(a,1))].
+73 sdtpldt0(xn,xp) = sdtpldt0(xp,xn).  [resolve(45,a,26,a)].
+74 sdtpldt0(xp,xr) = sdtpldt0(xr,xp).  [resolve(50,a,33,a)].
+75 xn = sdtpldt0(xr,xp).  [para(34(a,1),74(a,1))].
+76 sdtpldt0(xr,xp) = xn.  [copy(75),flip(a)].
+77 xr = xn | xn != xn.  [para(76(a,1),57(b,1))].
+78 xr = xn.  [copy(77),xx(b)].
+79 sdtpldt0(xn,xp) = xn.  [para(78(a,1),76(a,1,1))].
+80 sdtpldt0(xp,xn) = xn.  [para(73(a,1),79(a,1))].
+81 sdtpldt0(xn,xp) = xn.  [para(80(a,1),73(a,2))].
+82 -aNaturalNumber0(xn) | -aNaturalNumber0(xp) | -doDivides0(xn,xn) | -doDivides0(xn,xn) | doDivides0(xn,xp).  [para(81(a,1),36(d,2))].
+83 -aNaturalNumber0(xn) | -aNaturalNumber0(xp) | -doDivides0(xn,xn) | doDivides0(xn,xp).  [copy(82),merge(d)].
+84 -aNaturalNumber0(xp) | -doDivides0(xn,xn) | doDivides0(xn,xp).  [resolve(25,a,83,a)].
+85 -doDivides0(xn,xn) | doDivides0(xn,xp).  [resolve(26,a,84,a)].
+86 doDivides0(xn,xp).  [resolve(70,a,85,a)].
+87 -aNaturalNumber0(xn) | sz10 = xn | xp = xn.  [resolve(86,a,31,b)].
+88 -aNaturalNumber0(xn) | xn = sz10 | xp = xn.  [copy(87),flip(b)].
+89 -aNaturalNumber0(xn) | xn = sz10 | xn = xp.  [copy(88),flip(c)].
+90 xn = sz10 | xn = xp.  [resolve(25,a,89,a)].
+91 xn = xp.  [resolve(72,a,90,a)].
+92 sdtpldt0(xp,xp) = xn.  [para(91(a,1),81(a,1,1))].
+93 sdtpldt0(xp,xp) = xp.  [para(91(a,1),92(a,2))].
+94 $F.  [resolve(65,a,93,a)].

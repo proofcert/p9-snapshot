@@ -1,0 +1,70 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n161.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:10:13 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 41191 was started by sandbox on n161.star.cs.uiowa.edu,
+Fri Jun  6 06:10:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_41159_n161.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 25.
+% Level of proof is 7.
+% Maximum clause weight is 18.000.
+% Given clauses 30.
+
+
+1 (all A -distinct_points(A,A)).  [assumption].
+2 (all A all B all C (distinct_points(A,B) -> distinct_points(A,C) | distinct_points(B,C))).  [assumption].
+3 (all A all B all C (distinct_points(A,B) -> (apart_point_and_line(C,line_connecting(A,B)) -> distinct_points(C,A) & distinct_points(C,B)))).  [assumption].
+4 (all A all B all C all D (distinct_points(A,B) & distinct_lines(C,D) -> apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D))).  [assumption].
+5 -(all A all B all C (distinct_points(A,B) & -distinct_points(B,C) -> distinct_points(A,C) & -distinct_lines(line_connecting(A,B),line_connecting(A,C)))).  [assumption].
+6 distinct_points(c1,c2).  [clausify(5)].
+7 -distinct_points(A,A).  [clausify(1)].
+8 -distinct_points(c2,c3).  [clausify(5)].
+9 -distinct_points(A,B) | distinct_points(A,C) | distinct_points(B,C).  [clausify(2)].
+10 -distinct_points(c1,c3) | distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)).  [clausify(5)].
+11 -distinct_points(A,B) | -apart_point_and_line(C,line_connecting(A,B)) | distinct_points(C,A).  [clausify(3)].
+12 -distinct_points(A,B) | -apart_point_and_line(C,line_connecting(A,B)) | distinct_points(C,B).  [clausify(3)].
+13 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(4)].
+14 distinct_points(c1,A) | distinct_points(c2,A).  [resolve(9,a,6,a)].
+15 -distinct_points(A,B) | distinct_points(B,A).  [resolve(9,b,7,a)].
+16 -distinct_points(c3,c2).  [resolve(15,b,8,a)].
+17 -apart_point_and_line(A,line_connecting(c1,c2)) | distinct_points(A,c1).  [resolve(11,a,6,a)].
+18 -apart_point_and_line(c1,line_connecting(c1,c2)).  [resolve(17,b,7,a)].
+19 distinct_points(c1,c3).  [resolve(14,b,8,a)].
+20 distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)).  [resolve(19,a,10,a)].
+21 -apart_point_and_line(A,line_connecting(c1,c2)) | distinct_points(A,c2).  [resolve(12,a,6,a)].
+22 -apart_point_and_line(c3,line_connecting(c1,c2)).  [resolve(21,b,16,a)].
+23 distinct_points(c1,A) | distinct_points(c3,A).  [resolve(19,a,9,a)].
+24 -apart_point_and_line(A,line_connecting(c1,c3)) | distinct_points(A,c3).  [resolve(12,a,19,a)].
+25 -apart_point_and_line(c3,line_connecting(c1,c3)).  [resolve(24,b,7,a)].
+26 -apart_point_and_line(A,line_connecting(c1,c3)) | distinct_points(A,c1).  [resolve(11,a,19,a)].
+27 -apart_point_and_line(c1,line_connecting(c1,c3)).  [resolve(26,b,7,a)].
+28 distinct_points(c1,A) | distinct_points(c3,B) | distinct_points(A,B).  [resolve(23,b,9,a)].
+29 distinct_points(c1,c1) | distinct_points(c3,c1).  [factor(28,a,c)].
+30 distinct_points(c3,c1).  [resolve(7,a,29,a)].
+31 -distinct_lines(A,B) | apart_point_and_line(c3,A) | apart_point_and_line(c3,B) | apart_point_and_line(c1,A) | apart_point_and_line(c1,B).  [resolve(13,a,30,a)].
+32 -distinct_lines(line_connecting(c1,c2),A) | apart_point_and_line(c3,A) | apart_point_and_line(c1,line_connecting(c1,c2)) | apart_point_and_line(c1,A).  [resolve(31,b,22,a)].
+33 -distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)) | apart_point_and_line(c1,line_connecting(c1,c2)) | apart_point_and_line(c1,line_connecting(c1,c3)).  [resolve(32,b,25,a)].
+34 -distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)) | apart_point_and_line(c1,line_connecting(c1,c3)).  [resolve(33,b,18,a)].
+35 -distinct_lines(line_connecting(c1,c2),line_connecting(c1,c3)).  [resolve(34,b,27,a)].
+36 $F.  [resolve(20,a,35,a)].
+
+============================== end of proof ==========================

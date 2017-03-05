@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n043.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:36:48 CDT 2014
+% CPUTime    : 0.19 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 35047 was started by sandbox on n043.star.cs.uiowa.edu,
+Fri Jun  6 03:36:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_35015_n043.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.06 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 6.
+% Maximum clause weight is 27.000.
+% Given clauses 136.
+
+
+1 (all A singleton(A) = unordered_pair(A,A)).  [assumption].
+2 (all A all B ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,singleton(B)))).  [assumption].
+3 -(all A exists B exists C (member(B,universal_class) & member(C,universal_class) & A = ordered_pair(B,C) | -(exists D exists E (member(D,universal_class) & member(E,universal_class) & A = ordered_pair(D,E))) & B = A & C = A)).  [assumption].
+4 singleton(A) = unordered_pair(A,A).  [clausify(1)].
+5 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,singleton(B))).  [clausify(2)].
+6 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,singleton(B))).  [para(4(a,1),5(a,2,1))].
+7 ordered_pair(A,B) = unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))).  [para(4(a,1),6(a,2,2,2))].
+8 -member(A,universal_class) | -member(B,universal_class) | ordered_pair(A,B) != c3.  [clausify(3)].
+9 -member(A,universal_class) | -member(B,universal_class) | unordered_pair(unordered_pair(A,A),unordered_pair(A,unordered_pair(B,B))) != c3.  [para(7(a,1),8(c,1))].
+10 member(f6(A,B),universal_class) | A != c3 | B != c3.  [clausify(3)].
+11 member(f6(A,B),universal_class) | c3 != A | B != c3.  [copy(10),flip(b)].
+12 member(f6(A,B),universal_class) | c3 != A | c3 != B.  [copy(11),flip(c)].
+13 member(f7(A,B),universal_class) | A != c3 | B != c3.  [clausify(3)].
+14 member(f7(A,B),universal_class) | c3 != A | B != c3.  [copy(13),flip(b)].
+15 member(f7(A,B),universal_class) | c3 != A | c3 != B.  [copy(14),flip(c)].
+16 ordered_pair(f6(A,B),f7(A,B)) = c3 | A != c3 | B != c3.  [clausify(3)].
+17 unordered_pair(unordered_pair(f6(A,B),f6(A,B)),unordered_pair(f6(A,B),unordered_pair(f7(A,B),f7(A,B)))) = c3 | A != c3 | B != c3.  [para(7(a,1),16(a,1))].
+18 unordered_pair(unordered_pair(f6(A,B),f6(A,B)),unordered_pair(f6(A,B),unordered_pair(f7(A,B),f7(A,B)))) = c3 | c3 != A | B != c3.  [copy(17),flip(b)].
+19 unordered_pair(unordered_pair(f6(A,B),f6(A,B)),unordered_pair(f6(A,B),unordered_pair(f7(A,B),f7(A,B)))) = c3 | c3 != A | c3 != B.  [copy(18),flip(c)].
+20 member(f6(A,A),universal_class) | c3 != A.  [factor(12,b,c)].
+21 member(f7(A,A),universal_class) | c3 != A.  [factor(15,b,c)].
+22 unordered_pair(unordered_pair(f6(A,A),f6(A,A)),unordered_pair(f6(A,A),unordered_pair(f7(A,A),f7(A,A)))) = c3 | c3 != A.  [factor(19,b,c)].
+23 member(f6(c3,c3),universal_class).  [xx_res(20,b)].
+24 member(f7(c3,c3),universal_class).  [xx_res(21,b)].
+25 unordered_pair(unordered_pair(f6(c3,c3),f6(c3,c3)),unordered_pair(f6(c3,c3),unordered_pair(f7(c3,c3),f7(c3,c3)))) = c3.  [xx_res(22,b)].
+26 -member(A,universal_class) | unordered_pair(unordered_pair(f6(c3,c3),f6(c3,c3)),unordered_pair(f6(c3,c3),unordered_pair(A,A))) != c3.  [resolve(9,a,23,a)].
+27 unordered_pair(unordered_pair(f6(c3,c3),f6(c3,c3)),unordered_pair(f6(c3,c3),unordered_pair(f7(c3,c3),f7(c3,c3)))) != c3.  [resolve(26,a,24,a)].
+28 c3 != c3.  [para(25(a,1),27(a,1))].
+29 $F.  [copy(28),xx(a)].
+
+============================== end of proof ==========================

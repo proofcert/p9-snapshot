@@ -1,0 +1,32 @@
+
+
+
+
+
+
+7 preboolean(A) | in(f7(A),A).  [clausify(3)].
+8 preboolean(A) | in(f8(A),A).  [clausify(3)].
+9 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+10 symmetric_difference(A,B) = symmetric_difference(B,A).  [clausify(2)].
+11 symmetric_difference(A,set_difference(B,A)) = set_union2(A,B).  [clausify(5)].
+12 -preboolean(c5).  [clausify(6)].
+13 -in(A,B) | element(A,B).  [clausify(4)].
+14 -element(A,c5) | -element(B,c5) | in(symmetric_difference(A,B),c5).  [clausify(6)].
+15 -element(A,c5) | -element(B,c5) | in(set_difference(A,B),c5).  [clausify(6)].
+16 preboolean(A) | -in(set_union2(f7(A),f8(A)),A) | -in(set_difference(f7(A),f8(A)),A).  [clausify(3)].
+17 element(f8(A),A) | preboolean(A).  [resolve(13,a,8,b)].
+18 element(f7(A),A) | preboolean(A).  [resolve(13,a,7,b)].
+19 preboolean(c5) | -element(A,c5) | in(set_difference(A,f8(c5)),c5).  [resolve(17,a,15,b)].
+20 -element(A,c5) | in(set_difference(A,f8(c5)),c5).  [resolve(12,a,19,a)].
+21 preboolean(c5) | -element(A,c5) | in(symmetric_difference(A,f8(c5)),c5).  [resolve(17,a,14,b)].
+22 -element(A,c5) | in(symmetric_difference(A,f8(c5)),c5).  [resolve(12,a,21,a)].
+23 in(set_difference(f7(c5),f8(c5)),c5) | preboolean(c5).  [resolve(20,a,18,a)].
+24 in(set_difference(f7(c5),f8(c5)),c5).  [resolve(12,a,23,b)].
+25 preboolean(c5) | -in(set_union2(f7(c5),f8(c5)),c5).  [resolve(24,a,16,c)].
+26 -in(set_union2(f7(c5),f8(c5)),c5).  [resolve(12,a,25,a)].
+27 element(set_difference(f7(c5),f8(c5)),c5).  [resolve(24,a,13,a)].
+28 in(symmetric_difference(set_difference(f7(c5),f8(c5)),f8(c5)),c5).  [resolve(27,a,22,a)].
+29 in(symmetric_difference(f8(c5),set_difference(f7(c5),f8(c5))),c5).  [para(10(a,1),28(a,1))].
+30 in(set_union2(f8(c5),f7(c5)),c5).  [para(11(a,1),29(a,1))].
+31 in(set_union2(f7(c5),f8(c5)),c5).  [para(9(a,1),30(a,1))].
+32 $F.  [resolve(26,a,31,a)].

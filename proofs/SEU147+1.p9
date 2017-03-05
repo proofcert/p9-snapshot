@@ -1,0 +1,66 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n168.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 20:43:38 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 53378 was started by sandbox on n168.star.cs.uiowa.edu,
+Thu Jun  5 20:43:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_53346_n168.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 6.
+% Maximum clause weight is 18.000.
+% Given clauses 62.
+
+
+1 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+2 (all A all B (B = powerset(A) <-> (all C (in(C,B) <-> subset(C,A))))).  [assumption].
+3 (all A all B subset(A,A)).  [assumption].
+4 (all A (subset(A,empty_set) -> A = empty_set)).  [assumption].
+5 subset(A,A).  [clausify(3)].
+6 powerset(A) = B | in(f2(A,B),B) | subset(f2(A,B),A).  [clausify(2)].
+7 powerset(empty_set) != singleton(empty_set).  [assumption].
+8 singleton(empty_set) != powerset(empty_set).  [copy(7),flip(a)].
+9 -subset(A,empty_set) | empty_set = A.  [clausify(4)].
+10 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+11 singleton(A) != B | in(C,B) | C != A.  [clausify(1)].
+12 powerset(A) = B | -in(f2(A,B),B) | -subset(f2(A,B),A).  [clausify(2)].
+13 singleton(empty_set) = c_0.  [new_symbol(8)].
+14 c_0 != powerset(empty_set).  [para(13(a,1),8(a,1))].
+15 powerset(empty_set) != c_0.  [copy(14),flip(a)].
+16 empty_set = f2(empty_set,A) | powerset(empty_set) = A | in(f2(empty_set,A),A).  [resolve(9,a,6,c)].
+17 f2(empty_set,A) = empty_set | powerset(empty_set) = A | in(f2(empty_set,A),A).  [copy(16),flip(a)].
+18 in(A,c_0) | A != empty_set.  [resolve(13,a,11,a)].
+19 in(A,c_0) | empty_set != A.  [copy(18),flip(b)].
+20 in(empty_set,c_0).  [xx_res(19,b)].
+21 f2(empty_set,A) = empty_set | powerset(empty_set) = A | singleton(B) != A | f2(empty_set,A) = B.  [resolve(17,c,10,b)].
+22 f2(empty_set,A) = empty_set | powerset(empty_set) = A | singleton(empty_set) != A.  [factor(21,a,d)].
+23 f2(empty_set,A) = empty_set | powerset(empty_set) = A | c_0 != A.  [para(13(a,1),22(c,1))].
+24 f2(empty_set,singleton(empty_set)) = empty_set | powerset(empty_set) = singleton(empty_set).  [resolve(23,c,13,a(flip))].
+25 f2(empty_set,c_0) = empty_set | powerset(empty_set) = singleton(empty_set).  [para(13(a,1),24(a,1,2))].
+26 f2(empty_set,c_0) = empty_set | powerset(empty_set) = c_0.  [para(13(a,1),25(b,2))].
+27 f2(empty_set,c_0) = empty_set.  [resolve(15,a,26,b)].
+28 powerset(empty_set) = c_0 | -in(f2(empty_set,c_0),c_0) | -subset(empty_set,empty_set).  [para(27(a,1),12(c,1))].
+29 powerset(empty_set) = c_0 | -in(empty_set,c_0) | -subset(empty_set,empty_set).  [para(27(a,1),28(b,1))].
+30 -in(empty_set,c_0) | -subset(empty_set,empty_set).  [resolve(15,a,29,a)].
+31 -subset(empty_set,empty_set).  [resolve(20,a,30,a)].
+32 $F.  [resolve(5,a,31,a)].
+
+============================== end of proof ==========================

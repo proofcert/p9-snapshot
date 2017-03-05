@@ -1,0 +1,25 @@
+
+
+
+
+5 element(c3,powerset(c2)).  [clausify(4)].
+6 element(f4(A),powerset(A)).  [clausify(2)].
+7 union(powerset(A)) = A.  [clausify(3)].
+8 -proper_element(f4(A),powerset(A)).  [clausify(2)].
+9 proper_element(c3,powerset(c2)) | c3 != c2.  [clausify(4)].
+10 -proper_element(c3,powerset(c2)) | c3 = c2.  [clausify(4)].
+11 -element(A,B) | proper_element(A,B) | union(B) = A.  [clausify(1)].
+12 proper_element(f4(A),powerset(A)) | union(powerset(A)) = f4(A).  [resolve(11,a,6,a)].
+13 proper_element(f4(A),powerset(A)) | A = f4(A).  [para(7(a,1),12(b,1))].
+14 proper_element(f4(A),powerset(A)) | f4(A) = A.  [copy(13),flip(b)].
+15 f4(A) = A.  [resolve(8,a,14,a)].
+16 proper_element(c3,powerset(c2)) | union(powerset(c2)) = c3.  [resolve(11,a,5,a)].
+17 proper_element(c3,powerset(c2)) | c2 = c3.  [para(7(a,1),16(b,1))].
+18 proper_element(c3,powerset(c2)) | c3 = c2.  [copy(17),flip(b)].
+19 -proper_element(A,powerset(A)).  [para(15(a,1),8(a,1))].
+20 c3 = c2 | c3 = c2.  [resolve(18,a,10,a)].
+21 c3 = c2.  [copy(20),merge(b)].
+22 proper_element(c2,powerset(c2)) | c3 != c2.  [para(21(a,1),9(a,1))].
+23 proper_element(c2,powerset(c2)) | c2 != c2.  [para(21(a,1),22(b,1))].
+24 proper_element(c2,powerset(c2)).  [copy(23),xx(b)].
+25 $F.  [resolve(19,a,24,a)].

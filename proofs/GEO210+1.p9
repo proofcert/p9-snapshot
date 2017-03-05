@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n055.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:31:58 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 6672 was started by sandbox on n055.star.cs.uiowa.edu,
+Fri Jun  6 06:31:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_6640_n055.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 11.
+% Level of proof is 2.
+% Maximum clause weight is 15.000.
+% Given clauses 26.
+
+
+1 (all A all B -unorthogonal_lines(orthogonal_through_point(B,A),B)).  [assumption].
+2 (all A all B -apart_point_and_line(A,orthogonal_through_point(B,A))).  [assumption].
+3 (all A all B all C all D (distinct_lines(B,C) -> apart_point_and_line(A,B) | apart_point_and_line(A,C) | unorthogonal_lines(B,D) | unorthogonal_lines(C,D))).  [assumption].
+4 -(all A all B all C (-apart_point_and_line(A,B) & -unorthogonal_lines(B,C) -> -distinct_lines(B,orthogonal_through_point(C,A)))).  [assumption].
+5 distinct_lines(c2,orthogonal_through_point(c3,c1)).  [clausify(4)].
+6 -apart_point_and_line(c1,c2).  [clausify(4)].
+7 -unorthogonal_lines(c2,c3).  [clausify(4)].
+8 -unorthogonal_lines(orthogonal_through_point(A,B),A).  [clausify(1)].
+9 -apart_point_and_line(A,orthogonal_through_point(B,A)).  [clausify(2)].
+10 -distinct_lines(A,B) | apart_point_and_line(C,A) | apart_point_and_line(C,B) | unorthogonal_lines(A,D) | unorthogonal_lines(B,D).  [clausify(3)].
+11 -distinct_lines(c2,A) | apart_point_and_line(c1,A) | unorthogonal_lines(c2,B) | unorthogonal_lines(A,B).  [resolve(10,b,6,a)].
+12 -distinct_lines(c2,orthogonal_through_point(A,c1)) | unorthogonal_lines(c2,B) | unorthogonal_lines(orthogonal_through_point(A,c1),B).  [resolve(11,b,9,a)].
+13 -distinct_lines(c2,orthogonal_through_point(A,c1)) | unorthogonal_lines(orthogonal_through_point(A,c1),c3).  [resolve(12,b,7,a)].
+14 -distinct_lines(c2,orthogonal_through_point(c3,c1)).  [resolve(13,b,8,a)].
+15 $F.  [resolve(5,a,14,a)].
+
+============================== end of proof ==========================

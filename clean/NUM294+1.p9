@@ -1,0 +1,14 @@
+
+
+
+4 rdn_translate(n12,rdn_pos(rdn(rdnn(n2),rdnn(n1)))).  [assumption].
+5 rdn_translate(n29,rdn_pos(rdn(rdnn(n9),rdnn(n2)))).  [assumption].
+6 rdn_positive_less(rdnn(n1),rdnn(n2)).  [assumption].
+7 -rdn_positive_less(A,B) | rdn_positive_less(rdn(rdnn(C),A),rdn(rdnn(D),B)).  [clausify(1)].
+8 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_positive_less(B,D) | less(A,C).  [clausify(2)].
+9 -less(n12,A).  [clausify(3)].
+10 rdn_positive_less(rdn(rdnn(A),rdnn(n1)),rdn(rdnn(B),rdnn(n2))).  [resolve(7,a,6,a)].
+11 -rdn_translate(A,rdn_pos(rdn(rdnn(B),rdnn(n1)))) | -rdn_translate(C,rdn_pos(rdn(rdnn(D),rdnn(n2)))) | less(A,C).  [resolve(10,a,8,c)].
+12 -rdn_translate(A,rdn_pos(rdn(rdnn(B),rdnn(n2)))) | less(n12,A).  [resolve(11,a,4,a)].
+13 -rdn_translate(A,rdn_pos(rdn(rdnn(B),rdnn(n2)))).  [resolve(9,a,12,b)].
+14 $F.  [resolve(13,a,5,a)].

@@ -1,0 +1,37 @@
+
+
+
+
+
+
+
+
+9 -disjoint(A,B) | -intersect(A,B).  [clausify(4)].
+10 disjoint(c2,c3).  [clausify(8)].
+11 -empty(A) | -member(B,A).  [clausify(7)].
+12 empty(A) | member(f3(A),A).  [clausify(7)].
+13 subset(c1,c2).  [clausify(8)].
+14 subset(c1,c3).  [clausify(8)].
+15 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+16 -member(A,empty_set).  [clausify(3)].
+17 empty_set != c1.  [clausify(8)].
+18 c1 != empty_set.  [copy(17),flip(a)].
+19 -intersect(A,B) | intersect(B,A).  [clausify(6)].
+20 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+21 intersect(A,B) | -member(C,A) | -member(C,B).  [clausify(2)].
+22 A = B | -subset(B,A) | -subset(A,B).  [clausify(5)].
+23 -intersect(c2,c3).  [resolve(9,a,10,a)].
+24 -member(A,B) | member(f3(B),B).  [resolve(11,a,12,a)].
+25 -member(A,c1) | member(A,c3).  [resolve(20,a,14,a)].
+26 -member(A,c1) | member(A,c2).  [resolve(20,a,13,a)].
+27 A = B | -subset(A,B) | member(f1(B,A),B).  [resolve(22,b,15,a)].
+28 -intersect(c3,c2).  [resolve(19,b,23,a)].
+29 -subset(c1,empty_set) | member(f1(empty_set,c1),empty_set).  [resolve(27,a,18,a)].
+30 -subset(c1,empty_set).  [resolve(29,b,16,a)].
+31 member(f1(c1,empty_set),c1).  [resolve(30,a,15,a)].
+32 member(f3(c1),c1).  [resolve(31,a,24,a)].
+33 member(f3(c1),c2).  [resolve(32,a,26,a)].
+34 member(f3(c1),c3).  [resolve(32,a,25,a)].
+35 -member(A,c3) | -member(A,c2).  [resolve(21,a,28,a)].
+36 -member(f3(c1),c3).  [resolve(35,b,33,a)].
+37 $F.  [resolve(34,a,36,a)].

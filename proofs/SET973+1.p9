@@ -1,0 +1,121 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n143.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 01:07:13 CDT 2014
+% CPUTime    : 50.38 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 12474 was started by sandbox on n143.star.cs.uiowa.edu,
+Sat Jun  7 01:07:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_12442_n143.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 49.62 (+ 0.63) seconds.
+% Length of proof is 68.
+% Level of proof is 20.
+% Maximum clause weight is 23.000.
+% Given clauses 904.
+
+
+1 (all A all B set_union2(A,B) = set_union2(B,A)).  [assumption].
+2 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+3 (all A all B (A = B <-> subset(A,B) & subset(B,A))).  [assumption].
+4 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+5 (all A all B all C (C = set_difference(A,B) <-> (all D (in(D,C) <-> in(D,A) & -in(D,B))))).  [assumption].
+6 (all A all B set_intersection2(A,A) = A).  [assumption].
+7 (all A all B all C all D cartesian_product2(set_intersection2(A,B),set_intersection2(C,D)) = set_intersection2(cartesian_product2(A,C),cartesian_product2(B,D))).  [assumption].
+8 (all A all B all C (cartesian_product2(set_difference(A,B),C) = set_difference(cartesian_product2(A,C),cartesian_product2(B,C)) & cartesian_product2(C,set_difference(A,B)) = set_difference(cartesian_product2(C,A),cartesian_product2(C,B)))).  [assumption].
+9 (all A all B subset(set_intersection2(A,B),A)).  [assumption].
+10 (all A all B all C (subset(A,B) -> subset(set_difference(C,B),set_difference(C,A)))).  [assumption].
+11 (all A all B all C set_difference(A,set_intersection2(B,C)) = set_union2(set_difference(A,B),set_difference(A,C))).  [assumption].
+12 -(all A all B all C all D set_difference(cartesian_product2(A,B),cartesian_product2(C,D)) = set_union2(cartesian_product2(set_difference(A,C),B),cartesian_product2(A,set_difference(B,D)))).  [assumption].
+13 set_intersection2(A,A) = A.  [clausify(6)].
+14 subset(set_intersection2(A,B),A).  [clausify(9)].
+15 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+16 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(2)].
+17 set_difference(cartesian_product2(A,B),cartesian_product2(C,B)) = cartesian_product2(set_difference(A,C),B).  [clausify(8)].
+18 set_difference(cartesian_product2(A,B),cartesian_product2(A,C)) = cartesian_product2(A,set_difference(B,C)).  [clausify(8)].
+19 set_difference(A,set_intersection2(B,C)) = set_union2(set_difference(A,B),set_difference(A,C)).  [clausify(11)].
+20 set_union2(set_difference(A,B),set_difference(A,C)) = set_difference(A,set_intersection2(B,C)).  [copy(19),flip(a)].
+21 cartesian_product2(set_intersection2(A,B),set_intersection2(C,D)) = set_intersection2(cartesian_product2(A,C),cartesian_product2(B,D)).  [clausify(7)].
+22 set_intersection2(cartesian_product2(A,B),cartesian_product2(C,D)) = cartesian_product2(set_intersection2(A,C),set_intersection2(B,D)).  [copy(21),flip(a)].
+23 set_difference(A,B) = C | in(f8(A,B,C),C) | in(f8(A,B,C),A).  [clausify(5)].
+24 set_difference(A,B) != C | -in(D,C) | -in(D,B).  [clausify(5)].
+25 set_difference(cartesian_product2(c3,c4),cartesian_product2(c5,c6)) != set_union2(cartesian_product2(set_difference(c3,c5),c4),cartesian_product2(c3,set_difference(c4,c6))).  [clausify(12)].
+26 set_difference(cartesian_product2(c3,c4),cartesian_product2(c5,c6)) != set_union2(cartesian_product2(c3,set_difference(c4,c6)),cartesian_product2(set_difference(c3,c5),c4)).  [para(15(a,1),25(a,2))].
+27 set_union2(cartesian_product2(c3,set_difference(c4,c6)),cartesian_product2(set_difference(c3,c5),c4)) != set_difference(cartesian_product2(c3,c4),cartesian_product2(c5,c6)).  [copy(26),flip(a)].
+28 A = B | -subset(B,A) | -subset(A,B).  [clausify(3)].
+29 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(4)].
+30 -subset(A,B) | subset(set_difference(C,B),set_difference(C,A)).  [clausify(10)].
+31 set_difference(A,B) = C | in(f8(A,B,C),C) | -in(f8(A,B,C),B).  [clausify(5)].
+32 set_difference(A,B) = C | -in(f8(A,B,C),C) | -in(f8(A,B,C),A) | in(f8(A,B,C),B).  [clausify(5)].
+33 set_difference(A,B) = A | in(f8(A,B,A),A).  [factor(23,b,c)].
+34 set_difference(A,B) != B | -in(C,B).  [factor(24,b,c)].
+35 set_difference(A,B) = A | -in(f8(A,B,A),A) | in(f8(A,B,A),B).  [factor(32,b,c)].
+36 set_union2(set_difference(cartesian_product2(A,B),C),cartesian_product2(set_difference(A,D),B)) = set_difference(cartesian_product2(A,B),set_intersection2(C,cartesian_product2(D,B))).  [para(17(a,1),20(a,1,2))].
+37 -in(A,set_intersection2(B,C)) | in(A,B).  [resolve(29,a,14,a)].
+38 subset(set_difference(A,B),set_difference(A,set_intersection2(B,C))).  [resolve(30,a,14,a)].
+39 set_difference(A,A) = B | in(f8(A,A,B),B) | set_difference(A,A) = B | in(f8(A,A,B),B).  [resolve(31,c,23,c)].
+40 set_difference(A,A) = B | in(f8(A,A,B),B) | in(f8(A,A,B),B).  [copy(39),merge(c)].
+41 set_difference(A,A) = B | in(f8(A,A,B),B).  [copy(40),merge(c)].
+42 set_difference(A,B) = A | set_difference(C,A) != D | -in(f8(A,B,A),D).  [resolve(33,b,24,c)].
+43 set_difference(A,B) = A | in(f8(A,B,A),B) | set_difference(A,B) = A.  [resolve(35,b,33,b)].
+44 set_difference(A,B) = A | in(f8(A,B,A),B).  [copy(43),merge(c)].
+45 subset(set_difference(A,set_difference(B,set_intersection2(C,D))),set_difference(A,set_difference(B,C))).  [resolve(38,a,30,a)].
+46 set_union2(cartesian_product2(A,set_difference(B,C)),cartesian_product2(set_difference(A,D),B)) = set_difference(cartesian_product2(A,B),set_intersection2(cartesian_product2(A,C),cartesian_product2(D,B))).  [para(18(a,1),36(a,1,1))].
+47 set_union2(cartesian_product2(A,set_difference(B,C)),cartesian_product2(set_difference(A,D),B)) = set_difference(cartesian_product2(A,B),cartesian_product2(set_intersection2(A,D),set_intersection2(C,B))).  [para(22(a,1),46(a,2,2))].
+48 set_union2(cartesian_product2(A,set_difference(B,C)),cartesian_product2(set_difference(A,D),B)) = set_difference(cartesian_product2(A,B),cartesian_product2(set_intersection2(A,D),set_intersection2(B,C))).  [para(16(a,1),47(a,2,2,2))].
+49 set_difference(cartesian_product2(c3,c4),cartesian_product2(set_intersection2(c3,c5),set_intersection2(c4,c6))) != set_difference(cartesian_product2(c3,c4),cartesian_product2(c5,c6)).  [para(48(a,1),27(a,1))].
+50 set_difference(A,A) = B | set_difference(C,B) != B.  [resolve(41,b,34,b)].
+51 set_difference(A,set_intersection2(B,C)) = A | in(f8(A,set_intersection2(B,C),A),B).  [resolve(44,b,37,a)].
+52 set_difference(A,set_intersection2(B,C)) = A | set_difference(D,A) != B | set_difference(A,set_intersection2(B,C)) = A.  [resolve(42,c,51,b)].
+53 set_difference(A,set_intersection2(B,C)) = A | set_difference(D,A) != B.  [copy(52),merge(c)].
+54 set_difference(A,B) = A | set_difference(C,A) != B | set_difference(A,B) = A.  [resolve(42,c,44,b)].
+55 set_difference(A,B) = A | set_difference(C,A) != B.  [copy(54),merge(c)].
+56 set_difference(A,set_intersection2(set_difference(B,A),set_difference(B,A))) = A.  [resolve(55,b,13,a(flip))].
+57 set_difference(A,set_difference(B,A)) = A.  [para(13(a,1),56(a,1,2))].
+58 set_difference(set_difference(A,B),B) = set_difference(A,B).  [resolve(57,a,55,b)].
+59 set_union2(A,set_difference(A,B)) = set_difference(A,set_intersection2(set_difference(C,A),B)).  [para(57(a,1),20(a,1,1))].
+60 set_union2(A,set_difference(A,B)) = set_difference(A,set_intersection2(B,set_difference(C,A))).  [para(16(a,1),59(a,2,2))].
+61 set_difference(A,set_intersection2(B,set_difference(C,A))) = set_union2(A,set_difference(A,B)).  [copy(60),flip(a)].
+62 set_difference(A,set_intersection2(set_difference(B,A),C)) = A.  [resolve(53,b,58,a)].
+63 set_difference(A,set_intersection2(C,set_difference(B,A))) = A.  [para(16(a,1),62(a,1,2))].
+64 set_union2(A,set_difference(A,B)) = A.  [para(61(a,1),63(a,1))].
+65 set_difference(A,set_intersection2(B,set_difference(C,A))) = A.  [para(64(a,1),61(a,2))].
+66 subset(set_difference(A,B),A).  [para(65(a,1),38(a,2))].
+67 subset(set_difference(A,B),set_difference(A,set_difference(B,C))).  [para(65(a,1),45(a,1,2))].
+68 set_difference(A,B) = A | -subset(A,set_difference(A,B)).  [resolve(66,a,28,c)].
+69 subset(A,set_difference(A,set_difference(set_difference(B,A),C))).  [para(57(a,1),67(a,1))].
+70 A = set_difference(A,set_difference(set_difference(B,A),C)) | -subset(set_difference(A,set_difference(set_difference(B,A),C)),A).  [resolve(69,a,28,c)].
+71 set_difference(A,set_difference(set_difference(B,A),C)) = A | -subset(set_difference(A,set_difference(set_difference(B,A),C)),A).  [copy(70),flip(a)].
+72 set_difference(A,set_difference(set_difference(B,A),C)) = A.  [resolve(66,a,71,b)].
+73 set_difference(set_difference(A,B),set_difference(B,C)) = set_difference(A,B).  [para(57(a,1),72(a,1,2,1))].
+74 set_difference(A,A) = set_difference(B,B).  [resolve(73,a,50,b)].
+75 set_difference(A,A) = c_0.  [new_symbol(74)].
+76 set_union2(c_0,set_difference(A,B)) = set_difference(A,set_intersection2(A,B)).  [para(75(a,1),20(a,1,1))].
+77 set_difference(A,set_intersection2(A,B)) = set_union2(c_0,set_difference(A,B)).  [copy(76),flip(a)].
+78 subset(set_difference(set_difference(A,B),A),c_0).  [para(75(a,1),67(a,2))].
+79 set_difference(A,A) = A | -subset(A,c_0).  [para(75(a,1),68(b,2))].
+80 c_0 = A | -subset(A,c_0).  [para(75(a,1),79(a,1))].
+81 c_0 = set_difference(set_difference(A,B),A).  [resolve(78,a,80,b)].
+82 set_difference(set_difference(A,B),A) = c_0.  [copy(81),flip(a)].
+83 set_union2(set_difference(A,B),c_0) = set_difference(A,B).  [para(82(a,1),64(a,1,2))].
+84 set_union2(c_0,set_difference(A,B)) = set_difference(A,B).  [para(15(a,1),83(a,1))].
+85 set_difference(A,set_intersection2(A,B)) = set_difference(A,B).  [para(84(a,1),77(a,2))].
+86 set_difference(cartesian_product2(A,B),cartesian_product2(set_intersection2(A,C),set_intersection2(B,D))) = set_difference(cartesian_product2(A,B),cartesian_product2(C,D)).  [para(22(a,1),85(a,1,2))].
+87 $F.  [resolve(86,a,49,a)].
+
+============================== end of proof ==========================

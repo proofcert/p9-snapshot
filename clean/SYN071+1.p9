@@ -1,0 +1,21 @@
+
+2 a = b | c = d.  [assumption].
+3 b = a | c = d.  [copy(2),flip(a)].
+4 b = a | d = c.  [copy(3),flip(b)].
+5 a = c | b = d.  [assumption].
+6 c = a | b = d.  [copy(5),flip(a)].
+7 c = a | d = b.  [copy(6),flip(b)].
+8 d != a.  [clausify(1)].
+9 c != b.  [clausify(1)].
+10 c = a | b = a | b = c.  [para(7(b,1),4(b,1))].
+11 c = a | b = a | c = b.  [copy(10),flip(c)].
+12 c = a | b = a.  [resolve(9,a,11,c)].
+13 c = a | b != a.  [para(7(b,1),8(a,1))].
+14 b = a | b = a | d = a.  [para(12(a,1),4(b,2))].
+15 b = a | d = a.  [copy(14),merge(b)].
+16 b = a.  [resolve(8,a,15,b)].
+17 c = a | a != a.  [para(16(a,1),13(b,1))].
+18 c = a.  [copy(17),xx(b)].
+19 a != b.  [para(18(a,1),9(a,1))].
+20 a != a.  [para(16(a,1),19(a,2))].
+21 $F.  [copy(20),xx(a)].

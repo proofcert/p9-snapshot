@@ -1,0 +1,57 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n068.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:32:33 CDT 2014
+% CPUTime    : 0.26 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 55139 was started by sandbox on n068.star.cs.uiowa.edu,
+Sat Jun  7 00:32:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_55107_n068.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.14 (+ 0.00) seconds.
+% Length of proof is 17.
+% Level of proof is 8.
+% Maximum clause weight is 17.000.
+% Given clauses 130.
+
+
+1 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+2 (all A all B (B = union(A) <-> (all C (in(C,B) <-> (exists D (in(C,D) & in(D,A))))))).  [assumption].
+3 -(all A union(singleton(A)) = A).  [assumption].
+4 union(A) = B | in(f4(A,B),B) | in(f5(A,B),A).  [clausify(2)].
+5 union(A) = B | in(f4(A,B),B) | in(f4(A,B),f5(A,B)).  [clausify(2)].
+6 union(singleton(c3)) != c3.  [clausify(3)].
+7 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+8 singleton(A) != B | in(C,B) | C != A.  [clausify(1)].
+9 union(A) = B | -in(f4(A,B),B) | -in(f4(A,B),C) | -in(C,A).  [clausify(2)].
+10 union(A) = B | -in(f4(A,B),B) | -in(B,A).  [factor(9,b,c)].
+11 in(A,singleton(B)) | A != B.  [xx_res(8,a)].
+12 in(A,singleton(A)).  [xx_res(11,b)].
+13 -in(f4(singleton(c3),c3),c3) | -in(c3,singleton(c3)).  [resolve(10,a,6,a)].
+14 -in(f4(singleton(c3),c3),c3).  [resolve(13,b,12,a)].
+15 union(singleton(c3)) = c3 | in(f5(singleton(c3),c3),singleton(c3)).  [resolve(14,a,4,b)].
+16 in(f5(singleton(c3),c3),singleton(c3)).  [resolve(6,a,15,a)].
+17 singleton(A) != singleton(c3) | f5(singleton(c3),c3) = A.  [resolve(16,a,7,b)].
+18 singleton(c3) != singleton(A) | f5(singleton(c3),c3) = A.  [copy(17),flip(a)].
+19 f5(singleton(c3),c3) = c3.  [xx_res(18,a)].
+20 union(singleton(c3)) = c3 | in(f4(singleton(c3),c3),c3) | in(f4(singleton(c3),c3),c3).  [para(19(a,1),5(c,2))].
+21 union(singleton(c3)) = c3 | in(f4(singleton(c3),c3),c3).  [copy(20),merge(c)].
+22 in(f4(singleton(c3),c3),c3).  [resolve(6,a,21,a)].
+23 $F.  [resolve(14,a,22,a)].
+
+============================== end of proof ==========================

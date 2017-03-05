@@ -1,0 +1,49 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n170.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 22:58:18 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 52204 was started by sandbox on n170.star.cs.uiowa.edu,
+Thu Jun  5 22:58:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_52172_n170.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 4.
+% Maximum clause weight is 8.000.
+% Given clauses 14.
+
+
+1 (all A (open(A) <-> (exists B end_point(B,A)))).  [assumption].
+2 (all A all B (part_of(B,A) & B != A -> open(B))).  [assumption].
+3 -(all A all B (open(A) & part_of(B,A) -> open(B))).  [assumption].
+4 open(c10).  [clausify(3)].
+5 part_of(c11,c10).  [clausify(3)].
+6 -open(c11).  [clausify(3)].
+7 open(A) | -end_point(B,A).  [clausify(1)].
+8 -open(A) | end_point(f7(A),A).  [clausify(1)].
+9 -part_of(A,B) | A = B | open(A).  [clausify(2)].
+10 -end_point(A,c11).  [resolve(7,a,6,a)].
+11 end_point(f7(c10),c10).  [resolve(8,a,4,a)].
+12 c11 = c10 | open(c11).  [resolve(9,a,5,a)].
+13 c11 = c10.  [resolve(6,a,12,b)].
+14 -end_point(A,c10).  [para(13(a,1),10(a,2))].
+15 $F.  [resolve(14,a,11,a)].
+
+============================== end of proof ==========================

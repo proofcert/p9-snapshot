@@ -1,0 +1,15 @@
+
+
+
+
+5 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+6 -finite(A) | finite(set_intersection2(B,A)).  [clausify(2)].
+7 -finite(A) | finite(set_intersection2(A,B)).  [para(5(a,1),6(b,1))].
+8 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(3)].
+9 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(8),flip(a)].
+10 finite(c16).  [clausify(4)].
+11 -finite(set_intersection2(c16,c17)).  [clausify(4)].
+12 -finite(set_difference(c16,set_difference(c16,c17))).  [para(9(a,1),11(a,1))].
+13 -finite(A) | finite(set_difference(A,set_difference(A,B))).  [para(9(a,1),7(b,1))].
+14 finite(set_difference(c16,set_difference(c16,A))).  [resolve(13,a,10,a)].
+15 $F.  [resolve(14,a,12,a)].

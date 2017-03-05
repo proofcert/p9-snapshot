@@ -1,0 +1,28 @@
+
+
+
+
+
+
+7 -status(A,B,C) | -status(A,B,D) | mighta(C,D).  [clausify(4)].
+8 -mighta(wec,thm).  [assumption].
+9 -model(A,B) | -model(A,C) | status(B,C,sat).  [clausify(1)].
+10 model(f9(A,B),B) | -status(A,B,sat).  [clausify(1)].
+11 -model(f10(A,B),B) | status(A,B,thm).  [clausify(2)].
+12 -model(A,B) | -model(f15(B,C),C) | -model(D,C) | model(D,B) | status(B,C,wec).  [clausify(3)].
+13 model(A,c1).  [clausify(5)].
+14 model(c12,c10).  [clausify(6)].
+15 -model(A,c10) | model(A,c11).  [clausify(6)].
+16 -model(c14,c11).  [clausify(6)].
+17 -status(A,B,wec) | -status(A,B,thm).  [resolve(8,a,7,c)].
+18 -model(A,B) | status(B,B,sat).  [factor(9,a,b)].
+19 -model(A,B) | -model(f15(B,c1),c1) | model(C,B) | status(B,c1,wec).  [resolve(13,a,12,c)].
+20 -model(A,B) | model(C,B) | status(B,c1,wec).  [resolve(13,a,19,b)].
+21 status(A,c1,thm).  [resolve(13,a,11,a)].
+22 status(c10,c10,sat).  [resolve(18,a,14,a)].
+23 -status(A,c1,wec).  [resolve(21,a,17,b)].
+24 -model(A,B) | model(C,B).  [resolve(23,a,20,c)].
+25 model(f9(c10,c10),c10).  [resolve(22,a,10,b)].
+26 model(f9(c10,c10),c11).  [resolve(25,a,15,a)].
+27 model(A,c11).  [resolve(24,a,26,a)].
+28 $F.  [resolve(27,a,16,a)].

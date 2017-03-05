@@ -1,0 +1,103 @@
+
+
+
+
+
+
+7 leq(s(zero),host(A)).  [clausify(1)].
+8 leq(host(A),nbr_proc).  [clausify(2)].
+9 -leq(s(A),A).  [clausify(3)].
+10 -leq(A,B) | -leq(B,A) | B = A.  [clausify(4)].
+11 -leq(A,s(B)) | s(B) = A | leq(A,B).  [clausify(5)].
+12 index(status,host(A)) != elec_2 | -setIn(A,alive) | index(elid,host(A)) = A.  [clausify(6)].
+13 -setIn(A,alive) | -setIn(B,alive) | -setIn(host(B),index(down,host(A))) | index(status,host(B)) != elec_2 | leq(index(pendack,host(B)),host(A)).  [clausify(6)].
+14 -setIn(A,alive) | -setIn(B,alive) | -elem(m_Down(C),queue(host(A))) | host(C) != host(B) | index(status,host(B)) != elec_2 | leq(index(pendack,host(B)),host(A)).  [clausify(6)].
+15 setIn(c3,alive).  [clausify(6)].
+16 index(elid,host(c3)) = c2.  [clausify(6)].
+17 index(status,host(c3)) = elec_2.  [clausify(6)].
+18 elec_2 = index(status,host(c3)).  [copy(17),flip(a)].
+19 index(pendack,host(c3)) = host(c4).  [clausify(6)].
+20 leq(nbr_proc,index(pendack,host(c3))).  [clausify(6)].
+21 leq(nbr_proc,host(c4)).  [para(19(a,1),20(a,2))].
+22 host(c6) = host(c3).  [clausify(6)].
+23 host(c9) != host(c3).  [clausify(6)].
+24 leq(host(c9),A) | -leq(s(zero),A) | setIn(A,index(down,host(c9))) | host(c8) = A.  [clausify(6)].
+25 setIn(c9,alive).  [clausify(6)].
+26 leq(nbr_proc,s(host(c9))).  [clausify(6)].
+27 elem(m_Down(c7),queue(host(c9))).  [clausify(6)].
+28 elem(m_Down(c8),queue(host(c9))).  [clausify(6)].
+29 s(host(c9)) = host(c7).  [clausify(6)].
+30 setIn(c6,alive).  [clausify(6)].
+31 -setIn(A,alive) | -setIn(B,alive) | -elem(m_Down(C),queue(host(A))) | host(C) != host(B) | index(status,host(B)) != index(status,host(c3)) | leq(index(pendack,host(B)),host(A)).  [para(18(a,1),14(e,2))].
+32 -setIn(A,alive) | -setIn(B,alive) | -elem(m_Down(C),queue(host(A))) | host(C) != host(B) | index(status,host(c3)) != index(status,host(B)) | leq(index(pendack,host(B)),host(A)).  [copy(31),flip(e)].
+33 -setIn(A,alive) | -setIn(B,alive) | -setIn(host(B),index(down,host(A))) | index(status,host(B)) != index(status,host(c3)) | leq(index(pendack,host(B)),host(A)).  [para(18(a,1),13(d,2))].
+34 -setIn(A,alive) | -setIn(B,alive) | -setIn(host(B),index(down,host(A))) | index(status,host(c3)) != index(status,host(B)) | leq(index(pendack,host(B)),host(A)).  [copy(33),flip(d)].
+35 index(status,host(A)) != index(status,host(c3)) | -setIn(A,alive) | index(elid,host(A)) = A.  [para(18(a,1),12(a,2))].
+36 index(status,host(c3)) != index(status,host(A)) | -setIn(A,alive) | index(elid,host(A)) = A.  [copy(35),flip(a)].
+37 leq(nbr_proc,host(c7)).  [para(29(a,1),26(a,2))].
+38 -leq(host(c4),nbr_proc) | nbr_proc = host(c4).  [resolve(21,a,10,b)].
+39 -leq(host(c4),nbr_proc) | host(c4) = nbr_proc.  [copy(38),flip(b)].
+40 host(c4) = nbr_proc.  [resolve(8,a,39,a)].
+41 index(pendack,host(c3)) = nbr_proc.  [para(40(a,1),19(a,2))].
+42 leq(host(c9),host(A)) | setIn(host(A),index(down,host(c9))) | host(c8) = host(A).  [resolve(24,b,7,a)].
+43 -leq(host(c7),host(c9)).  [para(29(a,1),9(a,1))].
+44 -leq(A,host(c7)) | s(host(c9)) = A | leq(A,host(c9)).  [para(29(a,1),11(a,2))].
+45 -leq(A,host(c7)) | host(c7) = A | leq(A,host(c9)).  [para(29(a,1),44(b,1))].
+46 -setIn(c9,alive) | -setIn(A,alive) | host(c8) != host(A) | index(status,host(c3)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [resolve(32,c,28,a)].
+47 -setIn(A,alive) | host(c8) != host(A) | index(status,host(c3)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [resolve(25,a,46,a)].
+48 -setIn(c9,alive) | -setIn(A,alive) | host(c7) != host(A) | index(status,host(c3)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [resolve(32,c,27,a)].
+49 -setIn(A,alive) | host(c7) != host(A) | index(status,host(c3)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [resolve(25,a,48,a)].
+50 -setIn(A,alive) | -setIn(c6,alive) | -setIn(host(c3),index(down,host(A))) | index(status,host(c3)) != index(status,host(c6)) | leq(index(pendack,host(c6)),host(A)).  [para(22(a,1),34(c,1))].
+51 -setIn(A,alive) | -setIn(c6,alive) | -setIn(host(c3),index(down,host(A))) | index(status,host(c3)) != index(status,host(c3)) | leq(index(pendack,host(c6)),host(A)).  [para(22(a,1),50(d,2,2))].
+52 -setIn(A,alive) | -setIn(c6,alive) | -setIn(host(c3),index(down,host(A))) | index(status,host(c3)) != index(status,host(c3)) | leq(index(pendack,host(c3)),host(A)).  [para(22(a,1),51(e,1,2))].
+53 -setIn(A,alive) | -setIn(c6,alive) | -setIn(host(c3),index(down,host(A))) | index(status,host(c3)) != index(status,host(c3)) | leq(nbr_proc,host(A)).  [para(41(a,1),52(e,1))].
+54 -setIn(A,alive) | -setIn(c6,alive) | -setIn(host(c3),index(down,host(A))) | leq(nbr_proc,host(A)).  [copy(53),xx(d)].
+55 -setIn(A,alive) | -setIn(host(c3),index(down,host(A))) | leq(nbr_proc,host(A)).  [resolve(30,a,54,b)].
+56 index(status,host(c3)) != index(status,host(c6)) | index(elid,host(c6)) = c6.  [resolve(36,b,30,a)].
+57 index(status,host(c3)) != index(status,host(c3)) | index(elid,host(c6)) = c6.  [para(22(a,1),56(a,2,2))].
+58 index(status,host(c3)) != index(status,host(c3)) | index(elid,host(c3)) = c6.  [para(22(a,1),57(b,1,2))].
+59 index(status,host(c3)) != index(status,host(c3)) | c2 = c6.  [para(16(a,1),58(b,1))].
+60 index(status,host(c3)) != index(status,host(c3)) | c6 = c2.  [copy(59),flip(b)].
+61 c6 = c2.  [copy(60),xx(a)].
+62 index(status,host(c3)) != index(status,host(c3)) | index(elid,host(c3)) = c3.  [resolve(36,b,15,a)].
+63 index(status,host(c3)) != index(status,host(c3)) | c2 = c3.  [para(16(a,1),62(b,1))].
+64 index(status,host(c3)) != index(status,host(c3)) | c3 = c2.  [copy(63),flip(b)].
+65 c3 = c2.  [copy(64),xx(a)].
+66 setIn(c2,alive).  [para(61(a,1),30(a,1))].
+67 -setIn(A,alive) | -setIn(host(c2),index(down,host(A))) | leq(nbr_proc,host(A)).  [para(65(a,1),55(b,1,1))].
+68 -setIn(A,alive) | host(c7) != host(A) | index(status,host(c2)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [para(65(a,1),49(c,1,2,1))].
+69 -setIn(A,alive) | host(c8) != host(A) | index(status,host(c2)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [para(65(a,1),47(c,1,2,1))].
+70 index(pendack,host(c2)) = nbr_proc.  [para(65(a,1),41(a,1,2,1))].
+71 host(c9) != host(c2).  [para(65(a,1),23(a,2,1))].
+72 -leq(host(c7),nbr_proc) | nbr_proc = host(c7).  [resolve(37,a,10,b)].
+73 -leq(host(c7),nbr_proc) | host(c7) = nbr_proc.  [copy(72),flip(b)].
+74 host(c7) = nbr_proc.  [resolve(8,a,73,a)].
+75 -setIn(A,alive) | nbr_proc != host(A) | index(status,host(c2)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [para(74(a,1),68(b,1))].
+76 -setIn(A,alive) | host(A) != nbr_proc | index(status,host(c2)) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [copy(75),flip(b)].
+77 -leq(A,nbr_proc) | host(c7) = A | leq(A,host(c9)).  [para(74(a,1),45(a,2))].
+78 -leq(A,nbr_proc) | nbr_proc = A | leq(A,host(c9)).  [para(74(a,1),77(b,1))].
+79 -leq(nbr_proc,host(c9)).  [para(74(a,1),43(a,1))].
+80 nbr_proc = host(A) | leq(host(A),host(c9)).  [resolve(78,a,8,a)].
+81 host(A) = nbr_proc | leq(host(A),host(c9)).  [copy(80),flip(a)].
+82 -setIn(c9,alive) | leq(nbr_proc,host(c9)) | leq(host(c9),host(c2)) | host(c8) = host(c2).  [resolve(67,b,42,b)].
+83 leq(nbr_proc,host(c9)) | leq(host(c9),host(c2)) | host(c8) = host(c2).  [resolve(25,a,82,a)].
+84 leq(host(c9),host(c2)) | host(c8) = host(c2).  [resolve(79,a,83,a)].
+85 host(c8) != host(c2) | index(status,host(c2)) != index(status,host(c2)) | leq(index(pendack,host(c2)),host(c9)).  [resolve(69,a,66,a)].
+86 host(c8) != host(c2) | index(status,host(c2)) != index(status,host(c2)) | leq(nbr_proc,host(c9)).  [para(70(a,1),85(c,1))].
+87 host(c8) != host(c2) | leq(nbr_proc,host(c9)).  [copy(86),xx(b)].
+88 host(c8) != host(c2).  [resolve(79,a,87,b)].
+89 leq(host(c9),host(c2)).  [resolve(88,a,84,b)].
+90 -leq(host(c2),host(c9)) | host(c9) = host(c2).  [resolve(89,a,10,b)].
+91 -leq(host(c2),host(c9)).  [resolve(71,a,90,b)].
+92 host(c2) = nbr_proc.  [resolve(91,a,81,b)].
+93 -setIn(A,alive) | host(A) != nbr_proc | index(status,nbr_proc) != index(status,host(A)) | leq(index(pendack,host(A)),host(c9)).  [para(92(a,1),76(c,1,2))].
+94 -setIn(A,alive) | host(A) != nbr_proc | index(status,host(A)) != index(status,nbr_proc) | leq(index(pendack,host(A)),host(c9)).  [copy(93),flip(c)].
+95 index(pendack,nbr_proc) = nbr_proc.  [para(92(a,1),70(a,1,2))].
+96 host(c2) != nbr_proc | index(status,host(c2)) != index(status,nbr_proc) | leq(index(pendack,host(c2)),host(c9)).  [resolve(94,a,66,a)].
+97 nbr_proc != nbr_proc | index(status,host(c2)) != index(status,nbr_proc) | leq(index(pendack,host(c2)),host(c9)).  [para(92(a,1),96(a,1))].
+98 nbr_proc != nbr_proc | index(status,nbr_proc) != index(status,nbr_proc) | leq(index(pendack,host(c2)),host(c9)).  [para(92(a,1),97(b,1,2))].
+99 nbr_proc != nbr_proc | index(status,nbr_proc) != index(status,nbr_proc) | leq(index(pendack,nbr_proc),host(c9)).  [para(92(a,1),98(c,1,2))].
+100 nbr_proc != nbr_proc | index(status,nbr_proc) != index(status,nbr_proc) | leq(nbr_proc,host(c9)).  [para(95(a,1),99(c,1))].
+101 index(status,nbr_proc) != index(status,nbr_proc) | leq(nbr_proc,host(c9)).  [copy(100),xx(a)].
+102 leq(nbr_proc,host(c9)).  [copy(101),xx(a)].
+103 $F.  [resolve(79,a,102,a)].

@@ -1,0 +1,37 @@
+
+
+
+
+
+6 subset(c1,c2).  [clausify(5)].
+7 intersection(c2,c3) = empty_set.  [clausify(5)].
+8 empty_set = intersection(c2,c3).  [copy(7),flip(a)].
+9 subset(A,B) | member(f1(A,B),A).  [clausify(4)].
+10 -member(A,empty_set).  [clausify(2)].
+11 -member(A,intersection(c2,c3)).  [para(8(a,1),10(a,2))].
+12 intersection(c1,c3) != empty_set.  [clausify(5)].
+13 intersection(c1,c3) != intersection(c2,c3).  [para(8(a,1),12(a,2))].
+14 intersection(c2,c3) != intersection(c1,c3).  [copy(13),flip(a)].
+15 -subset(A,empty_set) | empty_set = A.  [clausify(1)].
+16 -subset(A,intersection(c2,c3)) | empty_set = A.  [para(8(a,1),15(a,2))].
+17 -subset(A,intersection(c2,c3)) | intersection(c2,c3) = A.  [para(8(a,1),16(b,1))].
+18 -member(A,intersection(B,C)) | member(A,B).  [clausify(3)].
+19 -member(A,intersection(B,C)) | member(A,C).  [clausify(3)].
+20 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(4)].
+21 member(A,intersection(B,C)) | -member(A,B) | -member(A,C).  [clausify(3)].
+22 intersection(c2,c3) = c_0.  [new_symbol(14)].
+23 -subset(A,c_0) | intersection(c2,c3) = A.  [para(22(a,1),17(a,2))].
+24 -subset(A,c_0) | c_0 = A.  [para(22(a,1),23(b,1))].
+25 c_0 != intersection(c1,c3).  [para(22(a,1),14(a,1))].
+26 intersection(c1,c3) != c_0.  [copy(25),flip(a)].
+27 -member(A,c_0).  [para(22(a,1),11(a,2))].
+28 -member(A,c1) | member(A,c2).  [resolve(20,a,6,a)].
+29 -subset(intersection(c1,c3),c_0).  [resolve(24,b,26,a(flip))].
+30 member(f1(intersection(c1,c3),c_0),intersection(c1,c3)).  [resolve(29,a,9,a)].
+31 member(f1(intersection(c1,c3),c_0),c3).  [resolve(30,a,19,a)].
+32 member(f1(intersection(c1,c3),c_0),c1).  [resolve(30,a,18,a)].
+33 member(f1(intersection(c1,c3),c_0),intersection(A,c3)) | -member(f1(intersection(c1,c3),c_0),A).  [resolve(31,a,21,c)].
+34 member(f1(intersection(c1,c3),c_0),c2).  [resolve(32,a,28,a)].
+35 member(f1(intersection(c1,c3),c_0),intersection(c2,c3)).  [resolve(33,b,34,a)].
+36 member(f1(intersection(c1,c3),c_0),c_0).  [para(22(a,1),35(a,2))].
+37 $F.  [resolve(27,a,36,a)].

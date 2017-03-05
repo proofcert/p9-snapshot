@@ -1,0 +1,28 @@
+
+
+
+
+5 -cr(A) | -rp(A,B) | cc(B).  [clausify(3)].
+6 cr(ii).  [assumption].
+7 -rp(ii,A) | cc(A).  [resolve(5,a,6,a)].
+8 rp(ii,io).  [assumption].
+9 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+10 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+11 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cc(io) | -cowlThing(io).  [clausify(4)].
+12 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cc(io) | -cowlThing(io).  [clausify(4)].
+13 -cowlThing(c1) | cowlNothing(c1) | -xsd_integer(c2) | -cc(io) | -cowlThing(io) | -xsd_integer(c2).  [resolve(11,c,9,a)].
+14 -cowlNothing(A).  [clausify(1)].
+15 -cowlThing(c1) | cowlNothing(c1) | xsd_integer(c2) | -cc(io) | -cowlThing(io) | xsd_integer(c2).  [resolve(12,c,10,a)].
+16 -cowlThing(c1) | -xsd_integer(c2) | -cc(io) | -cowlThing(io) | -xsd_integer(c2).  [resolve(13,b,14,a)].
+17 cc(io).  [resolve(7,a,8,a)].
+18 -cowlThing(c1) | xsd_integer(c2) | -cc(io) | -cowlThing(io) | xsd_integer(c2).  [resolve(15,b,14,a)].
+19 cowlThing(A).  [clausify(1)].
+20 -cowlThing(c1) | -xsd_integer(c2) | -cowlThing(io) | -xsd_integer(c2).  [resolve(16,c,17,a)].
+21 -cowlThing(c1) | -xsd_integer(c2) | -cowlThing(io).  [copy(20),merge(d)].
+22 -xsd_integer(c2) | -cowlThing(io).  [resolve(19,a,21,a)].
+23 -xsd_integer(c2).  [resolve(19,a,22,b)].
+24 -cowlThing(c1) | xsd_integer(c2) | -cowlThing(io) | xsd_integer(c2).  [resolve(18,c,17,a)].
+25 -cowlThing(c1) | xsd_integer(c2) | -cowlThing(io).  [copy(24),merge(d)].
+26 xsd_integer(c2) | -cowlThing(io).  [resolve(19,a,25,a)].
+27 -cowlThing(io).  [resolve(23,a,26,a)].
+28 $F.  [resolve(19,a,27,a)].

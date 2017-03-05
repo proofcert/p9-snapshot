@@ -1,0 +1,28 @@
+
+
+
+
+5 empty(empty_set).  [assumption].
+6 empty(A) | -relation(A) | -empty(relation_rng(A)).  [clausify(1)].
+7 relation_dom(empty_set) = empty_set.  [assumption].
+8 relation_rng(empty_set) = empty_set.  [assumption].
+9 -relation(A) | relation_dom(A) != empty_set | empty_set = A.  [clausify(2)].
+10 -empty(A) | empty_set = A.  [clausify(3)].
+11 relation(c5).  [clausify(4)].
+12 relation_dom(c5) = empty_set | relation_rng(c5) = empty_set.  [clausify(4)].
+13 relation_dom(c5) != empty_set | relation_rng(c5) != empty_set.  [clausify(4)].
+14 relation_dom(c5) != empty_set | empty_set = c5.  [resolve(11,a,9,a)].
+15 relation_dom(c5) != empty_set | c5 = empty_set.  [copy(14),flip(b)].
+16 relation_dom(c5) = empty_set | empty(c5) | -relation(c5) | -empty(empty_set).  [para(12(b,1),6(c,1))].
+17 relation_dom(c5) = empty_set | empty(c5) | -empty(empty_set).  [resolve(11,a,16,c)].
+18 relation_dom(c5) = empty_set | empty(c5).  [resolve(5,a,17,c)].
+19 relation_dom(c5) = empty_set | empty_set = c5.  [resolve(18,b,10,a)].
+20 relation_dom(c5) = empty_set | c5 = empty_set.  [copy(19),flip(b)].
+21 c5 = empty_set | c5 = empty_set.  [resolve(20,a,15,a)].
+22 c5 = empty_set.  [copy(21),merge(b)].
+23 relation_dom(empty_set) != empty_set | relation_rng(c5) != empty_set.  [para(22(a,1),13(a,1,1))].
+24 empty_set != empty_set | relation_rng(c5) != empty_set.  [para(7(a,1),23(a,1))].
+25 empty_set != empty_set | relation_rng(empty_set) != empty_set.  [para(22(a,1),24(b,1,1))].
+26 empty_set != empty_set | empty_set != empty_set.  [para(8(a,1),25(b,1))].
+27 empty_set != empty_set.  [copy(26),xx(a)].
+28 $F.  [copy(27),xx(a)].

@@ -1,0 +1,19 @@
+
+
+
+
+5 subset(singleton(c3),singleton(c4)).  [clausify(4)].
+6 c4 != c3.  [clausify(4)].
+7 singleton(A) != empty_set.  [clausify(2)].
+8 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+9 singleton(A) != B | in(C,B) | C != A.  [clausify(1)].
+10 -subset(A,singleton(B)) | empty_set = A | singleton(B) = A.  [clausify(3)].
+11 -in(A,singleton(B)) | A = B.  [xx_res(8,a)].
+12 -in(c4,singleton(c3)).  [resolve(11,b,6,a)].
+13 empty_set = singleton(c3) | singleton(c4) = singleton(c3).  [resolve(10,a,5,a)].
+14 singleton(c3) = empty_set | singleton(c4) = singleton(c3).  [copy(13),flip(a)].
+15 singleton(c4) = singleton(c3).  [resolve(7,a,14,a)].
+16 singleton(A) != singleton(c3) | c4 != A.  [resolve(9,b,12,a)].
+17 singleton(c4) != singleton(c3).  [xx_res(16,b)].
+18 singleton(c3) != singleton(c3).  [para(15(a,1),17(a,1))].
+19 $F.  [copy(18),xx(a)].

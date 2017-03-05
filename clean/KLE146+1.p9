@@ -1,0 +1,26 @@
+
+
+
+
+
+
+7 addition(A,A) = A.  [clausify(3)].
+8 addition(A,B) = addition(B,A).  [clausify(1)].
+9 strong_iteration(A) = addition(multiplication(A,strong_iteration(A)),one).  [clausify(4)].
+10 strong_iteration(A) = addition(one,multiplication(A,strong_iteration(A))).  [para(8(a,1),9(a,2))].
+11 addition(one,multiplication(A,strong_iteration(A))) = strong_iteration(A).  [copy(10),flip(a)].
+12 addition(addition(A,B),C) = addition(A,addition(B,C)).  [clausify(2)].
+13 addition(C,addition(A,B)) = addition(A,addition(B,C)).  [para(8(a,1),12(a,1))].
+14 addition(A,addition(B,C)) = addition(C,addition(A,B)).  [copy(13),flip(a)].
+15 -leq(one,strong_iteration(c1)).  [clausify(6)].
+16 leq(A,B) | addition(A,B) != B.  [clausify(5)].
+17 addition(A,addition(addition(B,A),B)) = addition(B,A).  [para(14(a,1),7(a,1))].
+18 addition(A,addition(addition(A,B),B)) = addition(B,A).  [para(8(a,1),17(a,1,2,1))].
+19 addition(A,addition(B,addition(A,B))) = addition(B,A).  [para(8(a,1),18(a,1,2))].
+20 addition(A,addition(A,addition(B,B))) = addition(B,A).  [para(14(a,2),19(a,1,2))].
+21 addition(A,addition(A,B)) = addition(B,A).  [para(7(a,1),20(a,1,2,2))].
+22 addition(A,addition(A,B)) = addition(A,B).  [para(8(a,1),21(a,2))].
+23 addition(one,strong_iteration(c1)) != strong_iteration(c1).  [resolve(16,a,15,a)].
+24 addition(one,strong_iteration(A)) = addition(one,multiplication(A,strong_iteration(A))).  [para(11(a,1),22(a,1,2))].
+25 addition(one,strong_iteration(A)) = strong_iteration(A).  [para(11(a,1),24(a,2))].
+26 $F.  [resolve(25,a,23,a)].

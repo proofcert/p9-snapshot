@@ -1,0 +1,28 @@
+
+
+
+
+
+6 cowlThing(A).  [clausify(1)].
+7 rhasEuroMP(iUK,iKinnock).  [assumption].
+8 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+9 -cowlNothing(A).  [clausify(1)].
+10 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+11 risEuroMPFrom(A,B) | -rhasEuroMP(B,A).  [clausify(4)].
+12 cEuroMP(A) | -risEuroMPFrom(A,B) | -cowlThing(B).  [clausify(3)].
+13 cEuroMP(A) | -risEuroMPFrom(A,B).  [resolve(6,a,12,c)].
+14 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cEuroMP(iKinnock).  [clausify(5)].
+15 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cEuroMP(iKinnock).  [resolve(6,a,14,a)].
+16 xsd_string(c2) | -xsd_integer(c2) | -cEuroMP(iKinnock).  [resolve(9,a,15,a)].
+17 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cEuroMP(iKinnock).  [clausify(5)].
+18 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cEuroMP(iKinnock).  [resolve(6,a,17,a)].
+19 -xsd_string(c2) | xsd_integer(c2) | -cEuroMP(iKinnock).  [resolve(9,a,18,a)].
+20 risEuroMPFrom(iKinnock,iUK).  [resolve(11,b,7,a)].
+21 xsd_integer(c2) | -cEuroMP(iKinnock) | xsd_integer(c2).  [resolve(19,a,8,a)].
+22 xsd_integer(c2) | -cEuroMP(iKinnock).  [copy(21),merge(c)].
+23 cEuroMP(iKinnock).  [resolve(20,a,13,b)].
+24 xsd_integer(c2).  [resolve(23,a,22,b)].
+25 xsd_string(c2) | -cEuroMP(iKinnock).  [resolve(24,a,16,b)].
+26 xsd_string(c2).  [resolve(23,a,25,b)].
+27 -xsd_string(c2).  [resolve(10,b,24,a)].
+28 $F.  [resolve(26,a,27,a)].

@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+
+9 distinct_points(c1,c2).  [clausify(8)].
+10 apart_point_and_line(c1,line_connecting(c3,c4)) | apart_point_and_line(c2,line_connecting(c3,c4)).  [clausify(8)].
+11 -distinct_lines(A,A).  [clausify(1)].
+12 -convergent_lines(parallel_through_point(A,B),A).  [clausify(6)].
+13 -apart_point_and_line(A,parallel_through_point(B,A)).  [clausify(7)].
+14 -distinct_lines(A,B) | convergent_lines(A,B).  [clausify(5)].
+15 -distinct_lines(A,B) | distinct_lines(A,C) | distinct_lines(B,C).  [clausify(2)].
+16 -apart_point_and_line(A,B) | distinct_lines(B,C) | apart_point_and_line(A,C).  [clausify(4)].
+17 -distinct_points(A,B) | -distinct_lines(C,D) | apart_point_and_line(A,C) | apart_point_and_line(A,D) | apart_point_and_line(B,C) | apart_point_and_line(B,D).  [clausify(3)].
+18 -distinct_lines(parallel_through_point(A,B),A).  [resolve(14,b,12,a)].
+19 distinct_lines(line_connecting(c3,c4),A) | apart_point_and_line(c2,A) | apart_point_and_line(c1,line_connecting(c3,c4)).  [resolve(16,a,10,b)].
+20 -distinct_lines(A,B) | apart_point_and_line(c1,A) | apart_point_and_line(c1,B) | apart_point_and_line(c2,A) | apart_point_and_line(c2,B).  [resolve(17,a,9,a)].
+21 -distinct_lines(A,B) | distinct_lines(B,A).  [resolve(15,b,11,a)].
+22 -distinct_lines(A,parallel_through_point(A,B)).  [resolve(21,b,18,a)].
+23 -apart_point_and_line(A,B) | apart_point_and_line(A,parallel_through_point(B,C)).  [resolve(16,b,22,a)].
+24 -apart_point_and_line(A,B).  [resolve(23,b,13,a)].
+25 -distinct_lines(A,B) | apart_point_and_line(c1,B) | apart_point_and_line(c2,A) | apart_point_and_line(c2,B).  [resolve(24,a,20,b)].
+26 -distinct_lines(A,B) | apart_point_and_line(c2,A) | apart_point_and_line(c2,B).  [resolve(24,a,25,b)].
+27 -distinct_lines(A,B) | apart_point_and_line(c2,B).  [resolve(24,a,26,b)].
+28 -distinct_lines(A,B).  [resolve(24,a,27,b)].
+29 apart_point_and_line(c2,A) | apart_point_and_line(c1,line_connecting(c3,c4)).  [resolve(28,a,19,a)].
+30 apart_point_and_line(c1,line_connecting(c3,c4)).  [resolve(24,a,29,a)].
+31 $F.  [resolve(24,a,30,a)].

@@ -1,0 +1,12 @@
+
+
+
+4 subset(empty_set,A).  [clausify(1)].
+5 subset(c1,empty_set).  [clausify(3)].
+6 empty_set != c1.  [clausify(3)].
+7 c1 != empty_set.  [copy(6),flip(a)].
+8 A = B | -subset(B,A) | -subset(A,B).  [clausify(2)].
+9 empty_set = c1 | -subset(empty_set,c1).  [resolve(8,b,5,a)].
+10 c1 = empty_set | -subset(empty_set,c1).  [copy(9),flip(a)].
+11 -subset(empty_set,c1).  [resolve(7,a,10,a)].
+12 $F.  [resolve(4,a,11,a)].

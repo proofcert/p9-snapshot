@@ -1,0 +1,12 @@
+
+
+3 empty_set = A | in(f1(A),A).  [clausify(1)].
+4 union(empty_set) != empty_set.  [assumption].
+5 empty_set != A | -in(B,A).  [clausify(1)].
+6 union(A) != B | -in(C,B) | in(f2(A,B,C),A).  [clausify(2)].
+7 -in(A,empty_set).  [xx_res(5,a)].
+8 -in(A,union(B)) | in(f2(B,union(B),A),B).  [xx_res(6,a)].
+9 -in(A,union(empty_set)).  [resolve(8,b,7,a)].
+10 empty_set = union(empty_set).  [resolve(9,a,3,b)].
+11 union(empty_set) = empty_set.  [copy(10),flip(a)].
+12 $F.  [resolve(4,a,11,a)].

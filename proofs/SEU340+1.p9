@@ -1,0 +1,114 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n061.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:08:48 CDT 2014
+% CPUTime    : 0.35 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 64149 was started by sandbox on n061.star.cs.uiowa.edu,
+Fri Jun  6 09:08:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_64117_n061.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.22 (+ 0.00) seconds.
+% Length of proof is 63.
+% Level of proof is 11.
+% Maximum clause weight is 42.000.
+% Given clauses 265.
+
+
+1 (all A all B all C (element(C,powerset(cartesian_product2(A,B))) -> relation(C))).  [assumption].
+2 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+3 (all A (rel_str(A) -> (transitive_relstr(A) <-> is_transitive_in(the_InternalRel(A),the_carrier(A))))).  [assumption].
+4 (all A all B ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A))).  [assumption].
+5 (all A (relation(A) -> (all B (is_transitive_in(A,B) <-> (all C all D all E (in(C,B) & in(D,B) & in(E,B) & in(ordered_pair(C,D),A) & in(ordered_pair(D,E),A) -> in(ordered_pair(C,E),A))))))).  [assumption].
+6 (all A (rel_str(A) -> (all B (element(B,the_carrier(A)) -> (all C (element(C,the_carrier(A)) -> (related(A,B,C) <-> in(ordered_pair(B,C),the_InternalRel(A))))))))).  [assumption].
+7 (all A all B all C (relation_of2_as_subset(C,A,B) -> element(C,powerset(cartesian_product2(A,B))))).  [assumption].
+8 (all A (rel_str(A) -> relation_of2_as_subset(the_InternalRel(A),the_carrier(A),the_carrier(A)))).  [assumption].
+9 (all A all B all C all D (in(ordered_pair(A,B),cartesian_product2(C,D)) <-> in(A,C) & in(B,D))).  [assumption].
+10 (all A all B (element(A,B) -> empty(B) | in(A,B))).  [assumption].
+11 (all A all B all C (in(A,B) & element(B,powerset(C)) -> element(A,C))).  [assumption].
+12 (all A all B all C -(in(A,B) & element(B,powerset(C)) & empty(C))).  [assumption].
+13 (all A all B -(in(A,B) & empty(B))).  [assumption].
+14 -(all A (transitive_relstr(A) & rel_str(A) -> (all B (element(B,the_carrier(A)) -> (all C (element(C,the_carrier(A)) -> (all D (element(D,the_carrier(A)) -> (related(A,B,C) & related(A,C,D) -> related(A,B,D)))))))))).  [assumption].
+15 rel_str(c5).  [clausify(14)].
+16 -rel_str(A) | -transitive_relstr(A) | is_transitive_in(the_InternalRel(A),the_carrier(A)).  [clausify(3)].
+17 -rel_str(A) | relation_of2_as_subset(the_InternalRel(A),the_carrier(A),the_carrier(A)).  [clausify(8)].
+18 -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | -related(A,B,C) | in(ordered_pair(B,C),the_InternalRel(A)).  [clausify(6)].
+19 -rel_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | related(A,B,C) | -in(ordered_pair(B,C),the_InternalRel(A)).  [clausify(6)].
+20 -relation_of2_as_subset(A,B,C) | element(A,powerset(cartesian_product2(B,C))).  [clausify(7)].
+21 relation_of2_as_subset(the_InternalRel(c5),the_carrier(c5),the_carrier(c5)).  [resolve(17,a,15,a)].
+22 -element(A,powerset(cartesian_product2(B,C))) | relation(A).  [clausify(1)].
+23 -relation(A) | -is_transitive_in(A,B) | -in(C,B) | -in(D,B) | -in(E,B) | -in(ordered_pair(C,D),A) | -in(ordered_pair(D,E),A) | in(ordered_pair(C,E),A).  [clausify(5)].
+24 transitive_relstr(c5).  [clausify(14)].
+25 element(c6,the_carrier(c5)).  [clausify(14)].
+26 element(c7,the_carrier(c5)).  [clausify(14)].
+27 element(c8,the_carrier(c5)).  [clausify(14)].
+28 related(c5,c6,c7).  [clausify(14)].
+29 related(c5,c7,c8).  [clausify(14)].
+30 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(2)].
+31 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(4)].
+32 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(30(a,1),31(a,2))].
+33 -related(c5,c6,c8).  [clausify(14)].
+34 -in(A,B) | -empty(B).  [clausify(13)].
+35 -in(A,B) | -element(B,powerset(C)) | -empty(C).  [clausify(12)].
+36 -element(A,B) | empty(B) | in(A,B).  [clausify(10)].
+37 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(A,C).  [clausify(9)].
+38 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(A,C).  [para(32(a,1),37(a,1))].
+39 -in(ordered_pair(A,B),cartesian_product2(C,D)) | in(B,D).  [clausify(9)].
+40 -in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,D)) | in(B,D).  [para(32(a,1),39(a,1))].
+41 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(11)].
+42 -transitive_relstr(c5) | is_transitive_in(the_InternalRel(c5),the_carrier(c5)).  [resolve(16,a,15,a)].
+43 is_transitive_in(the_InternalRel(c5),the_carrier(c5)).  [resolve(24,a,42,a)].
+44 -element(A,the_carrier(c5)) | -element(B,the_carrier(c5)) | -related(c5,A,B) | in(ordered_pair(A,B),the_InternalRel(c5)).  [resolve(18,a,15,a)].
+45 -element(A,the_carrier(c5)) | -element(B,the_carrier(c5)) | -related(c5,A,B) | in(unordered_pair(singleton(A),unordered_pair(A,B)),the_InternalRel(c5)).  [para(32(a,1),44(d,1))].
+46 -element(A,the_carrier(c5)) | -element(B,the_carrier(c5)) | related(c5,A,B) | -in(ordered_pair(A,B),the_InternalRel(c5)).  [resolve(19,a,15,a)].
+47 -element(A,the_carrier(c5)) | -element(B,the_carrier(c5)) | related(c5,A,B) | -in(unordered_pair(singleton(A),unordered_pair(A,B)),the_InternalRel(c5)).  [para(32(a,1),46(d,1))].
+48 element(the_InternalRel(c5),powerset(cartesian_product2(the_carrier(c5),the_carrier(c5)))).  [resolve(21,a,20,a)].
+49 -is_transitive_in(A,B) | -in(C,B) | -in(D,B) | -in(E,B) | -in(ordered_pair(C,D),A) | -in(ordered_pair(D,E),A) | in(ordered_pair(C,E),A) | -element(A,powerset(cartesian_product2(F,V6))).  [resolve(23,a,22,b)].
+50 -is_transitive_in(A,B) | -in(C,B) | -in(D,B) | -in(E,B) | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A) | -in(ordered_pair(D,E),A) | in(ordered_pair(C,E),A) | -element(A,powerset(cartesian_product2(F,V6))).  [para(32(a,1),49(e,1))].
+51 -is_transitive_in(A,B) | -in(C,B) | -in(D,B) | -in(E,B) | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A) | -in(unordered_pair(singleton(D),unordered_pair(D,E)),A) | in(ordered_pair(C,E),A) | -element(A,powerset(cartesian_product2(F,V6))).  [para(32(a,1),50(f,1))].
+52 -is_transitive_in(A,B) | -in(C,B) | -in(D,B) | -in(E,B) | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A) | -in(unordered_pair(singleton(D),unordered_pair(D,E)),A) | in(unordered_pair(singleton(C),unordered_pair(C,E)),A) | -element(A,powerset(cartesian_product2(F,V6))).  [para(32(a,1),51(g,1))].
+53 empty(the_carrier(c5)) | in(c6,the_carrier(c5)).  [resolve(36,a,25,a)].
+54 -element(c7,the_carrier(c5)) | -element(c8,the_carrier(c5)) | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),the_InternalRel(c5)).  [resolve(45,c,29,a)].
+55 -element(c8,the_carrier(c5)) | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),the_InternalRel(c5)).  [resolve(26,a,54,a)].
+56 in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),the_InternalRel(c5)).  [resolve(27,a,55,a)].
+57 -element(c6,the_carrier(c5)) | -element(c7,the_carrier(c5)) | in(unordered_pair(singleton(c6),unordered_pair(c6,c7)),the_InternalRel(c5)).  [resolve(45,c,28,a)].
+58 -element(c7,the_carrier(c5)) | in(unordered_pair(singleton(c6),unordered_pair(c6,c7)),the_InternalRel(c5)).  [resolve(25,a,57,a)].
+59 in(unordered_pair(singleton(c6),unordered_pair(c6,c7)),the_InternalRel(c5)).  [resolve(26,a,58,a)].
+60 -element(A,the_carrier(c5)) | related(c5,c6,A) | -in(unordered_pair(singleton(c6),unordered_pair(c6,A)),the_InternalRel(c5)).  [resolve(47,a,25,a)].
+61 related(c5,c6,c8) | -in(unordered_pair(singleton(c6),unordered_pair(c6,c8)),the_InternalRel(c5)).  [resolve(60,a,27,a)].
+62 -in(unordered_pair(singleton(c6),unordered_pair(c6,c8)),the_InternalRel(c5)).  [resolve(61,a,33,a)].
+63 -element(the_InternalRel(c5),powerset(A)) | element(unordered_pair(singleton(c7),unordered_pair(c7,c8)),A).  [resolve(56,a,41,a)].
+64 -element(the_InternalRel(c5),powerset(A)) | -empty(A).  [resolve(35,a,56,a)].
+65 -empty(cartesian_product2(the_carrier(c5),the_carrier(c5))).  [resolve(64,a,48,a)].
+66 element(unordered_pair(singleton(c7),unordered_pair(c7,c8)),cartesian_product2(the_carrier(c5),the_carrier(c5))).  [resolve(63,a,48,a)].
+67 empty(cartesian_product2(the_carrier(c5),the_carrier(c5))) | in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),cartesian_product2(the_carrier(c5),the_carrier(c5))).  [resolve(66,a,36,a)].
+68 in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),cartesian_product2(the_carrier(c5),the_carrier(c5))).  [resolve(65,a,67,a)].
+69 in(c8,the_carrier(c5)).  [resolve(68,a,40,a)].
+70 in(c7,the_carrier(c5)).  [resolve(68,a,38,a)].
+71 -empty(the_carrier(c5)).  [resolve(69,a,34,a)].
+72 in(c6,the_carrier(c5)).  [resolve(71,a,53,a)].
+73 -in(A,the_carrier(c5)) | -in(B,the_carrier(c5)) | -in(C,the_carrier(c5)) | -in(unordered_pair(singleton(A),unordered_pair(A,B)),the_InternalRel(c5)) | -in(unordered_pair(singleton(B),unordered_pair(B,C)),the_InternalRel(c5)) | in(unordered_pair(singleton(A),unordered_pair(A,C)),the_InternalRel(c5)) | -element(the_InternalRel(c5),powerset(cartesian_product2(D,E))).  [resolve(52,a,43,a)].
+74 -in(A,the_carrier(c5)) | -in(B,the_carrier(c5)) | -in(unordered_pair(singleton(A),unordered_pair(A,c7)),the_InternalRel(c5)) | -in(unordered_pair(singleton(c7),unordered_pair(c7,B)),the_InternalRel(c5)) | in(unordered_pair(singleton(A),unordered_pair(A,B)),the_InternalRel(c5)) | -element(the_InternalRel(c5),powerset(cartesian_product2(C,D))).  [resolve(73,b,70,a)].
+75 -in(A,the_carrier(c5)) | -in(unordered_pair(singleton(A),unordered_pair(A,c7)),the_InternalRel(c5)) | -in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),the_InternalRel(c5)) | in(unordered_pair(singleton(A),unordered_pair(A,c8)),the_InternalRel(c5)) | -element(the_InternalRel(c5),powerset(cartesian_product2(B,C))).  [resolve(74,b,69,a)].
+76 -in(c6,the_carrier(c5)) | -in(unordered_pair(singleton(c7),unordered_pair(c7,c8)),the_InternalRel(c5)) | in(unordered_pair(singleton(c6),unordered_pair(c6,c8)),the_InternalRel(c5)) | -element(the_InternalRel(c5),powerset(cartesian_product2(A,B))).  [resolve(75,b,59,a)].
+77 -in(c6,the_carrier(c5)) | in(unordered_pair(singleton(c6),unordered_pair(c6,c8)),the_InternalRel(c5)) | -element(the_InternalRel(c5),powerset(cartesian_product2(A,B))).  [resolve(76,b,56,a)].
+78 -in(c6,the_carrier(c5)) | -element(the_InternalRel(c5),powerset(cartesian_product2(A,B))).  [resolve(77,b,62,a)].
+79 -in(c6,the_carrier(c5)).  [resolve(78,b,48,a)].
+80 $F.  [resolve(72,a,79,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,18 @@
+
+
+
+
+5 rdn_translate(n0,rdn_pos(rdnn(n0))).  [assumption].
+6 -rdn_translate(A,rdn_pos(B)) | -rdn_translate(C,rdn_pos(D)) | -rdn_add_with_carry(rdnn(n0),B,D,E) | -rdn_translate(F,rdn_pos(E)) | sum(A,C,F).  [clausify(1)].
+7 -sum(A,B,C) | difference(C,A,B).  [clausify(2)].
+8 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(C),rdnn(n0)) | -rdn_digit_add(rdnn(C),rdnn(D),rdnn(E),rdnn(n0)) | rdn_add_with_carry(rdnn(D),rdnn(A),rdnn(B),rdnn(E)).  [clausify(3)].
+9 rdn_digit_add(rdnn(n0),rdnn(n0),rdnn(n0),rdnn(n0)).  [assumption].
+10 -difference(A,n0,A).  [clausify(4)].
+11 -rdn_translate(A,rdn_pos(B)) | -rdn_add_with_carry(rdnn(n0),B,B,C) | -rdn_translate(D,rdn_pos(C)) | sum(A,A,D).  [factor(6,a,b)].
+12 -rdn_digit_add(rdnn(A),rdnn(B),rdnn(A),rdnn(n0)) | rdn_add_with_carry(rdnn(B),rdnn(A),rdnn(B),rdnn(A)).  [factor(8,a,b)].
+13 -rdn_translate(A,rdn_pos(B)) | -rdn_add_with_carry(rdnn(n0),B,B,B) | sum(A,A,A).  [factor(11,a,c)].
+14 rdn_add_with_carry(rdnn(n0),rdnn(n0),rdnn(n0),rdnn(n0)).  [resolve(12,a,9,a)].
+15 -rdn_translate(A,rdn_pos(rdnn(n0))) | sum(A,A,A).  [resolve(14,a,13,b)].
+16 sum(n0,n0,n0).  [resolve(15,a,5,a)].
+17 difference(n0,n0,n0).  [resolve(16,a,7,a)].
+18 $F.  [resolve(10,a,17,a)].

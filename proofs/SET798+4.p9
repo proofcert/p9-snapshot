@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n137.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 23:06:23 CDT 2014
+% CPUTime    : 2.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 53380 was started by sandbox on n137.star.cs.uiowa.edu,
+Fri Jun  6 23:06:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_53348_n137.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.96 (+ 0.01) seconds.
+% Length of proof is 16.
+% Level of proof is 5.
+% Maximum clause weight is 11.000.
+% Given clauses 757.
+
+
+1 (all A all B (subset(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+2 (all A all B all C (lower_bound(C,A,B) <-> (all D (member(D,B) -> apply(A,C,D))))).  [assumption].
+3 -(all A all B (order(A,B) -> (all C all D (subset(C,B) & subset(D,B) & subset(C,D) -> (all E (lower_bound(E,A,D) -> lower_bound(E,A,C))))))).  [assumption].
+4 -subset(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+5 subset(c3,c4).  [clausify(3)].
+6 -lower_bound(A,B,C) | -member(D,C) | apply(B,A,D).  [clausify(2)].
+7 lower_bound(A,B,C) | member(f13(B,C,A),C).  [clausify(2)].
+8 lower_bound(A,B,C) | -apply(B,A,f13(B,C,A)).  [clausify(2)].
+9 lower_bound(c5,c1,c4).  [clausify(3)].
+10 -lower_bound(c5,c1,c3).  [clausify(3)].
+11 -member(A,c3) | member(A,c4).  [resolve(5,a,4,a)].
+12 -member(A,c4) | apply(c1,c5,A).  [resolve(9,a,6,a)].
+13 member(f13(c1,c3,c5),c3).  [resolve(10,a,7,a)].
+14 member(f13(c1,c3,c5),c4).  [resolve(13,a,11,a)].
+15 apply(c1,c5,f13(c1,c3,c5)).  [resolve(12,a,14,a)].
+16 lower_bound(c5,c1,c3).  [resolve(15,a,8,b)].
+17 $F.  [resolve(10,a,16,a)].
+
+============================== end of proof ==========================

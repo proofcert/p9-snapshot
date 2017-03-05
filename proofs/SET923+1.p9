@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n112.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:48:18 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 60726 was started by sandbox on n112.star.cs.uiowa.edu,
+Sat Jun  7 00:48:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_60694_n112.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 5.
+% Maximum clause weight is 14.000.
+% Given clauses 11.
+
+
+1 (all A all B (subset(A,singleton(B)) <-> A = empty_set | A = singleton(B))).  [assumption].
+2 (all A all B (set_difference(A,B) = empty_set <-> subset(A,B))).  [assumption].
+3 -(all A all B -(set_difference(A,singleton(B)) = empty_set & A != empty_set & A != singleton(B))).  [assumption].
+4 set_difference(c3,singleton(c4)) = empty_set.  [clausify(3)].
+5 empty_set = set_difference(c3,singleton(c4)).  [copy(4),flip(a)].
+6 c3 != empty_set.  [clausify(3)].
+7 c3 != set_difference(c3,singleton(c4)).  [para(5(a,1),6(a,2))].
+8 set_difference(c3,singleton(c4)) != c3.  [copy(7),flip(a)].
+9 singleton(c4) != c3.  [clausify(3)].
+10 set_difference(A,B) != empty_set | subset(A,B).  [clausify(2)].
+11 set_difference(A,B) != set_difference(c3,singleton(c4)) | subset(A,B).  [para(5(a,1),10(a,2))].
+12 set_difference(c3,singleton(c4)) != set_difference(A,B) | subset(A,B).  [copy(11),flip(a)].
+13 -subset(A,singleton(B)) | A = empty_set | singleton(B) = A.  [clausify(1)].
+14 -subset(A,singleton(B)) | A = set_difference(c3,singleton(c4)) | singleton(B) = A.  [para(5(a,1),13(b,2))].
+15 -subset(A,singleton(B)) | set_difference(c3,singleton(c4)) = A | singleton(B) = A.  [copy(14),flip(b)].
+16 subset(c3,singleton(c4)).  [xx_res(12,a)].
+17 -subset(c3,singleton(A)) | singleton(A) = c3.  [resolve(15,b,8,a)].
+18 -subset(c3,singleton(c4)).  [resolve(17,b,9,a)].
+19 $F.  [resolve(16,a,18,a)].
+
+============================== end of proof ==========================

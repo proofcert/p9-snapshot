@@ -1,0 +1,33 @@
+
+
+
+
+
+
+
+8 -ordinal(A) | epsilon_transitive(A).  [clausify(1)].
+9 -epsilon_transitive(A) | -in(B,A) | subset(B,A).  [clausify(2)].
+10 ordinal(c12).  [clausify(7)].
+11 ordinal(c13).  [clausify(7)].
+12 subset(A,A).  [clausify(4)].
+13 -ordinal_subset(c12,c13).  [clausify(7)].
+14 -in(c13,c12).  [clausify(7)].
+15 -element(A,powerset(B)) | subset(A,B).  [clausify(6)].
+16 element(A,powerset(B)) | -subset(A,B).  [clausify(6)].
+17 -ordinal(A) | -ordinal(B) | ordinal_subset(A,B) | -subset(A,B).  [clausify(3)].
+18 -ordinal(A) | -ordinal(B) | in(A,B) | B = A | in(B,A).  [clausify(5)].
+19 -in(A,B) | subset(A,B) | -ordinal(B).  [resolve(9,a,8,b)].
+20 element(A,powerset(A)).  [resolve(16,b,12,a)].
+21 -ordinal(A) | ordinal_subset(c12,A) | -subset(c12,A).  [resolve(17,a,10,a)].
+22 ordinal_subset(c12,c13) | -subset(c12,c13).  [resolve(21,a,11,a)].
+23 -subset(c12,c13).  [resolve(22,a,13,a)].
+24 -ordinal(A) | in(c13,A) | A = c13 | in(A,c13).  [resolve(18,a,11,a)].
+25 -ordinal(A) | in(c13,A) | c13 = A | in(A,c13).  [copy(24),flip(c)].
+26 -in(c12,c13) | -ordinal(c13).  [resolve(19,b,23,a)].
+27 -in(c12,c13).  [resolve(26,b,11,a)].
+28 -element(c12,powerset(c13)).  [resolve(15,b,23,a)].
+29 in(c13,c12) | c13 = c12 | in(c12,c13).  [resolve(25,a,10,a)].
+30 c13 = c12 | in(c12,c13).  [resolve(14,a,29,a)].
+31 c13 = c12.  [resolve(27,a,30,b)].
+32 -element(c12,powerset(c12)).  [para(31(a,1),28(a,2,1))].
+33 $F.  [resolve(20,a,32,a)].

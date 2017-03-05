@@ -1,0 +1,13 @@
+
+
+
+4 member(c2,c1).  [clausify(3)].
+5 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+6 -subset(c2,sum(c1)).  [clausify(3)].
+7 subset(A,B) | -member(f1(A,B),B).  [clausify(1)].
+8 member(A,sum(B)) | -member(C,B) | -member(A,C).  [clausify(2)].
+9 member(f1(c2,sum(c1)),c2).  [resolve(6,a,5,a)].
+10 -member(f1(c2,sum(c1)),sum(c1)).  [resolve(7,a,6,a)].
+11 -member(A,c1) | -member(f1(c2,sum(c1)),A).  [resolve(8,a,10,a)].
+12 -member(c2,c1).  [resolve(11,b,9,a)].
+13 $F.  [resolve(4,a,12,a)].

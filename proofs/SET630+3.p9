@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n048.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 17:12:48 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 65528 was started by sandbox on n048.star.cs.uiowa.edu,
+Fri Jun  6 17:12:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_65496_n048.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 5.
+% Maximum clause weight is 11.000.
+% Given clauses 27.
+
+
+1 (all A all B symmetric_difference(A,B) = union(difference(A,B),difference(B,A))).  [assumption].
+2 (all A all B all C (intersect(A,union(B,C)) <-> intersect(A,B) | intersect(A,C))).  [assumption].
+3 (all A all B disjoint(intersection(A,B),difference(A,B))).  [assumption].
+4 (all A all B (disjoint(A,B) <-> -intersect(A,B))).  [assumption].
+5 (all A all B intersection(A,B) = intersection(B,A)).  [assumption].
+6 -(all A all B disjoint(intersection(A,B),symmetric_difference(A,B))).  [assumption].
+7 disjoint(A,B) | intersect(A,B).  [clausify(4)].
+8 disjoint(intersection(A,B),difference(A,B)).  [clausify(3)].
+9 intersection(A,B) = intersection(B,A).  [clausify(5)].
+10 union(difference(A,B),difference(B,A)) = symmetric_difference(A,B).  [clausify(1)].
+11 symmetric_difference(A,B) = union(difference(A,B),difference(B,A)).  [copy(10),flip(a)].
+12 -disjoint(A,B) | -intersect(A,B).  [clausify(4)].
+13 -disjoint(intersection(c1,c2),symmetric_difference(c1,c2)).  [clausify(6)].
+14 -disjoint(intersection(c1,c2),union(difference(c1,c2),difference(c2,c1))).  [para(11(a,1),13(a,2))].
+15 -intersect(A,union(B,C)) | intersect(A,B) | intersect(A,C).  [clausify(2)].
+16 disjoint(intersection(A,B),difference(B,A)).  [para(9(a,1),8(a,1))].
+17 -intersect(intersection(A,B),difference(A,B)).  [resolve(12,a,8,a)].
+18 intersect(intersection(c1,c2),union(difference(c1,c2),difference(c2,c1))).  [resolve(14,a,7,a)].
+19 -intersect(intersection(A,B),difference(B,A)).  [resolve(16,a,12,a)].
+20 -intersect(intersection(A,B),union(difference(A,B),C)) | intersect(intersection(A,B),C).  [resolve(15,b,17,a)].
+21 -intersect(intersection(A,B),union(difference(A,B),difference(B,A))).  [resolve(20,b,19,a)].
+22 $F.  [resolve(21,a,18,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,57 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n060.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:54:33 CDT 2014
+% CPUTime    : 2.42 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 32386 was started by sandbox on n060.star.cs.uiowa.edu,
+Fri Jun  6 07:54:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_32354_n060.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 2.23 (+ 0.03) seconds.
+% Length of proof is 20.
+% Level of proof is 5.
+% Maximum clause weight is 19.000.
+% Given clauses 1543.
+
+
+1 (all A all B (less_than(A,B) | less_than(B,A))).  [assumption].
+2 (all A all B (strictly_less_than(A,B) <-> less_than(A,B) & -less_than(B,A))).  [assumption].
+3 (all A all B (issmallestelement_pq(A,B) <-> (all C (contains_pq(A,C) -> less_than(B,C))))).  [assumption].
+4 (all A all B all C all D (contains_cpq(triple(A,B,C),D) <-> contains_pq(i(triple(A,B,C)),D))).  [assumption].
+5 (all A all B all C ((exists D (contains_cpq(triple(A,B,C),D) & strictly_less_than(D,findmin_cpq_res(triple(A,B,C))))) -> -phi(findmin_cpq_eff(triple(A,B,C))))).  [assumption].
+6 -(all A all B all C (phi(findmin_cpq_eff(triple(A,B,C))) -> issmallestelement_pq(i(triple(A,B,C)),findmin_cpq_res(triple(A,B,C))))).  [assumption].
+7 less_than(A,B) | less_than(B,A).  [clausify(1)].
+8 phi(findmin_cpq_eff(triple(c1,c2,c3))).  [clausify(6)].
+9 issmallestelement_pq(A,B) | contains_pq(A,f1(A,B)).  [clausify(3)].
+10 -issmallestelement_pq(i(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3))).  [clausify(6)].
+11 -contains_cpq(triple(A,B,C),D) | -strictly_less_than(D,findmin_cpq_res(triple(A,B,C))) | -phi(findmin_cpq_eff(triple(A,B,C))).  [clausify(5)].
+12 issmallestelement_pq(A,B) | -less_than(B,f1(A,B)).  [clausify(3)].
+13 strictly_less_than(A,B) | -less_than(A,B) | less_than(B,A).  [clausify(2)].
+14 contains_cpq(triple(A,B,C),D) | -contains_pq(i(triple(A,B,C)),D).  [clausify(4)].
+15 contains_pq(i(triple(c1,c2,c3)),f1(i(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3)))).  [resolve(10,a,9,a)].
+16 -less_than(findmin_cpq_res(triple(c1,c2,c3)),f1(i(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3)))).  [resolve(12,a,10,a)].
+17 strictly_less_than(A,B) | less_than(B,A) | less_than(B,A).  [resolve(13,b,7,b)].
+18 strictly_less_than(A,B) | less_than(B,A).  [copy(17),merge(c)].
+19 contains_cpq(triple(c1,c2,c3),f1(i(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3)))).  [resolve(15,a,14,b)].
+20 -strictly_less_than(f1(i(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3))),findmin_cpq_res(triple(c1,c2,c3))) | -phi(findmin_cpq_eff(triple(c1,c2,c3))).  [resolve(19,a,11,a)].
+21 -strictly_less_than(f1(i(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3))),findmin_cpq_res(triple(c1,c2,c3))).  [resolve(8,a,20,b)].
+22 less_than(findmin_cpq_res(triple(c1,c2,c3)),f1(i(triple(c1,c2,c3)),findmin_cpq_res(triple(c1,c2,c3)))).  [resolve(21,a,18,a)].
+23 $F.  [resolve(16,a,22,a)].
+
+============================== end of proof ==========================

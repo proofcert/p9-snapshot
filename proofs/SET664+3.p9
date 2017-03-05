@@ -1,0 +1,69 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n126.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 20:05:18 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 17423 was started by sandbox on n126.star.cs.uiowa.edu,
+Fri Jun  6 20:05:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_17391_n126.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 29.
+% Level of proof is 7.
+% Maximum clause weight is 11.000.
+% Given clauses 63.
+
+
+1 (all A (ilf_type(A,set_type) -> (subset(A,empty_set) -> A = empty_set))).  [assumption].
+2 (all A (ilf_type(A,binary_relation_type) -> (domain_of(A) = empty_set | range_of(A) = empty_set -> A = empty_set))).  [assumption].
+3 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,relation_type(A,B)) -> subset(domain_of(C),A) & subset(range_of(C),B))))))).  [assumption].
+4 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,subset_type(cross_product(A,B))) -> ilf_type(C,relation_type(A,B)))) & (all D (ilf_type(D,relation_type(A,B)) -> ilf_type(D,subset_type(cross_product(A,B))))))))).  [assumption].
+5 (all A (ilf_type(A,set_type) -> (ilf_type(A,binary_relation_type) <-> relation_like(A) & ilf_type(A,set_type)))).  [assumption].
+6 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,subset_type(cross_product(A,B))) -> relation_like(C))))))).  [assumption].
+7 (all A ilf_type(A,set_type)).  [assumption].
+8 -(all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (all C (ilf_type(C,relation_type(B,A)) -> (ilf_type(C,relation_type(B,empty_set)) -> C = empty_set))))))).  [assumption].
+9 -ilf_type(A,set_type) | ilf_type(A,binary_relation_type) | -relation_like(A).  [clausify(5)].
+10 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | relation_like(C).  [clausify(6)].
+11 ilf_type(A,set_type).  [clausify(7)].
+12 ilf_type(c4,relation_type(c3,c2)).  [clausify(8)].
+13 ilf_type(c4,relation_type(c3,empty_set)).  [clausify(8)].
+14 c4 != empty_set.  [clausify(8)].
+15 -ilf_type(A,set_type) | -subset(A,empty_set) | empty_set = A.  [clausify(1)].
+16 -subset(A,empty_set) | empty_set = A.  [resolve(11,a,15,a)].
+17 -ilf_type(A,binary_relation_type) | range_of(A) != empty_set | empty_set = A.  [clausify(2)].
+18 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | subset(range_of(C),B).  [clausify(3)].
+19 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | subset(range_of(B),A).  [resolve(11,a,18,a)].
+20 -ilf_type(A,relation_type(B,C)) | subset(range_of(A),C).  [resolve(11,a,19,a)].
+21 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,relation_type(A,B)) | ilf_type(C,subset_type(cross_product(A,B))).  [clausify(4)].
+22 -ilf_type(A,set_type) | -ilf_type(B,relation_type(C,A)) | ilf_type(B,subset_type(cross_product(C,A))).  [resolve(11,a,21,a)].
+23 -ilf_type(A,relation_type(B,C)) | ilf_type(A,subset_type(cross_product(B,C))).  [resolve(11,a,22,a)].
+24 -ilf_type(A,set_type) | -ilf_type(B,set_type) | -ilf_type(C,subset_type(cross_product(A,B))) | -ilf_type(C,set_type) | ilf_type(C,binary_relation_type).  [resolve(10,d,9,c)].
+25 -ilf_type(A,set_type) | -ilf_type(B,subset_type(cross_product(C,A))) | -ilf_type(B,set_type) | ilf_type(B,binary_relation_type).  [resolve(11,a,24,a)].
+26 -ilf_type(A,subset_type(cross_product(B,C))) | -ilf_type(A,set_type) | ilf_type(A,binary_relation_type).  [resolve(11,a,25,a)].
+27 -ilf_type(A,subset_type(cross_product(B,C))) | ilf_type(A,binary_relation_type).  [resolve(11,a,26,b)].
+28 subset(range_of(c4),empty_set).  [resolve(20,a,13,a)].
+29 ilf_type(c4,subset_type(cross_product(c3,c2))).  [resolve(23,a,12,a)].
+30 empty_set = range_of(c4).  [resolve(28,a,16,a)].
+31 range_of(c4) = empty_set.  [copy(30),flip(a)].
+32 -ilf_type(c4,binary_relation_type) | empty_set = c4.  [resolve(17,b,31,a)].
+33 -ilf_type(c4,binary_relation_type).  [resolve(32,b,14,a(flip))].
+34 -ilf_type(c4,subset_type(cross_product(A,B))).  [resolve(27,b,33,a)].
+35 $F.  [resolve(34,a,29,a)].
+
+============================== end of proof ==========================

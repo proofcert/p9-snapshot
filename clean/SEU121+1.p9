@@ -1,0 +1,15 @@
+
+
+3 subset(c3,c4).  [clausify(2)].
+4 subset(c4,c5).  [clausify(2)].
+5 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+6 -subset(c3,c5).  [clausify(2)].
+7 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+8 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(1)].
+9 -in(f1(c3,c5),c5).  [resolve(7,a,6,a)].
+10 -subset(A,B) | in(f1(A,C),B) | subset(A,C).  [resolve(8,b,5,b)].
+11 in(f1(c3,A),c4) | subset(c3,A).  [resolve(10,a,3,a)].
+12 -in(A,c4) | in(A,c5).  [resolve(8,a,4,a)].
+13 -in(f1(c3,c5),c4).  [resolve(12,b,9,a)].
+14 subset(c3,c5).  [resolve(13,a,11,a)].
+15 $F.  [resolve(6,a,14,a)].

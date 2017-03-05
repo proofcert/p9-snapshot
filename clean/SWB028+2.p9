@@ -1,0 +1,65 @@
+
+
+
+
+
+
+
+
+
+10 ic(uri_owl_InverseFunctionalProperty).  [assumption].
+11 iext(uri_owl_equivalentClass,uri_ex_InversesOfFunctionalProperties,c1).  [clausify(9)].
+12 iext(uri_owl_onProperty,c1,uri_owl_inverseOf).  [clausify(9)].
+13 iext(uri_owl_someValuesFrom,c1,uri_owl_FunctionalProperty).  [clausify(9)].
+14 -iext(uri_rdfs_subClassOf,uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty).  [assumption].
+15 -iext(uri_owl_inverseOf,A,B) | ip(A).  [clausify(1)].
+16 -iext(uri_owl_equivalentClass,A,B) | ic(A).  [clausify(2)].
+17 -iext(uri_owl_equivalentClass,A,B) | ic(B).  [clausify(2)].
+18 icext(uri_owl_InverseFunctionalProperty,A) | -ip(A) | f5(A) != f4(A).  [clausify(4)].
+19 -iext(uri_rdfs_subClassOf,A,B) | -icext(A,C) | icext(B,C).  [clausify(5)].
+20 -iext(uri_owl_equivalentClass,A,B) | -icext(A,C) | icext(B,C).  [clausify(6)].
+21 icext(uri_owl_InverseFunctionalProperty,A) | -ip(A) | iext(A,f4(A),f6(A)).  [clausify(4)].
+22 icext(uri_owl_InverseFunctionalProperty,A) | -ip(A) | iext(A,f5(A),f6(A)).  [clausify(4)].
+23 -iext(uri_owl_inverseOf,A,B) | -iext(A,C,D) | iext(B,D,C).  [clausify(8)].
+24 iext(uri_rdfs_subClassOf,A,B) | -ic(A) | -ic(B) | icext(A,f7(A,B)).  [clausify(5)].
+25 iext(uri_rdfs_subClassOf,A,B) | -ic(A) | -ic(B) | -icext(B,f7(A,B)).  [clausify(5)].
+26 -icext(uri_owl_FunctionalProperty,A) | -iext(A,B,C) | -iext(A,B,D) | D = C.  [clausify(3)].
+27 -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | icext(B,f9(A,C,B,D)).  [clausify(7)].
+28 -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | iext(C,D,f9(A,C,B,D)).  [clausify(7)].
+29 ic(uri_ex_InversesOfFunctionalProperties).  [resolve(16,a,11,a)].
+30 ic(c1).  [resolve(17,a,11,a)].
+31 -icext(uri_ex_InversesOfFunctionalProperties,A) | icext(c1,A).  [resolve(20,a,11,a)].
+32 iext(uri_rdfs_subClassOf,A,uri_owl_InverseFunctionalProperty) | -ic(A) | icext(A,f7(A,uri_owl_InverseFunctionalProperty)).  [resolve(24,c,10,a)].
+33 -iext(uri_owl_onProperty,c1,A) | -icext(c1,B) | icext(uri_owl_FunctionalProperty,f9(c1,A,uri_owl_FunctionalProperty,B)).  [resolve(27,a,13,a)].
+34 -iext(uri_owl_onProperty,c1,A) | -icext(c1,B) | iext(A,B,f9(c1,A,uri_owl_FunctionalProperty,B)).  [resolve(28,a,13,a)].
+35 -ic(uri_ex_InversesOfFunctionalProperties) | -ic(uri_owl_InverseFunctionalProperty) | -icext(uri_owl_InverseFunctionalProperty,f7(uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty)).  [resolve(25,a,14,a)].
+36 -ic(uri_owl_InverseFunctionalProperty) | -icext(uri_owl_InverseFunctionalProperty,f7(uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty)).  [resolve(35,a,29,a)].
+37 -icext(uri_owl_InverseFunctionalProperty,f7(uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty)).  [resolve(36,a,10,a)].
+38 iext(uri_rdfs_subClassOf,c1,uri_owl_InverseFunctionalProperty) | icext(c1,f7(c1,uri_owl_InverseFunctionalProperty)).  [resolve(32,b,30,a)].
+39 iext(uri_rdfs_subClassOf,uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty) | icext(uri_ex_InversesOfFunctionalProperties,f7(uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty)).  [resolve(32,b,29,a)].
+40 icext(uri_ex_InversesOfFunctionalProperties,f7(uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty)).  [resolve(14,a,39,a)].
+41 icext(c1,f7(uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty)).  [resolve(40,a,31,a)].
+42 -iext(uri_rdfs_subClassOf,c1,A) | icext(A,f7(uri_ex_InversesOfFunctionalProperties,uri_owl_InverseFunctionalProperty)).  [resolve(19,b,41,a)].
+43 -iext(uri_rdfs_subClassOf,c1,uri_owl_InverseFunctionalProperty).  [resolve(42,b,37,a)].
+44 icext(c1,f7(c1,uri_owl_InverseFunctionalProperty)).  [resolve(43,a,38,a)].
+45 -ic(c1) | -ic(uri_owl_InverseFunctionalProperty) | -icext(uri_owl_InverseFunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)).  [resolve(25,a,43,a)].
+46 -ic(uri_owl_InverseFunctionalProperty) | -icext(uri_owl_InverseFunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)).  [resolve(45,a,30,a)].
+47 -icext(uri_owl_InverseFunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)).  [resolve(46,a,10,a)].
+48 -icext(c1,A) | icext(uri_owl_FunctionalProperty,f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,A)).  [resolve(33,a,12,a)].
+49 icext(uri_owl_FunctionalProperty,f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(48,a,44,a)].
+50 -icext(c1,A) | iext(uri_owl_inverseOf,A,f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,A)).  [resolve(34,a,12,a)].
+51 iext(uri_owl_inverseOf,f7(c1,uri_owl_InverseFunctionalProperty),f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(50,a,44,a)].
+52 -iext(f7(c1,uri_owl_InverseFunctionalProperty),A,B) | iext(f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)),B,A).  [resolve(51,a,23,a)].
+53 ip(f7(c1,uri_owl_InverseFunctionalProperty)).  [resolve(51,a,15,a)].
+54 icext(uri_owl_InverseFunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)) | iext(f7(c1,uri_owl_InverseFunctionalProperty),f5(f7(c1,uri_owl_InverseFunctionalProperty)),f6(f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(53,a,22,b)].
+55 iext(f7(c1,uri_owl_InverseFunctionalProperty),f5(f7(c1,uri_owl_InverseFunctionalProperty)),f6(f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(47,a,54,a)].
+56 icext(uri_owl_InverseFunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)) | iext(f7(c1,uri_owl_InverseFunctionalProperty),f4(f7(c1,uri_owl_InverseFunctionalProperty)),f6(f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(53,a,21,b)].
+57 iext(f7(c1,uri_owl_InverseFunctionalProperty),f4(f7(c1,uri_owl_InverseFunctionalProperty)),f6(f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(47,a,56,a)].
+58 icext(uri_owl_InverseFunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)) | f5(f7(c1,uri_owl_InverseFunctionalProperty)) != f4(f7(c1,uri_owl_InverseFunctionalProperty)).  [resolve(53,a,18,b)].
+59 f5(f7(c1,uri_owl_InverseFunctionalProperty)) != f4(f7(c1,uri_owl_InverseFunctionalProperty)).  [resolve(47,a,58,a)].
+60 iext(f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)),f6(f7(c1,uri_owl_InverseFunctionalProperty)),f4(f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(52,a,57,a)].
+61 iext(f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)),f6(f7(c1,uri_owl_InverseFunctionalProperty)),f5(f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(52,a,55,a)].
+62 -iext(f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)),A,B) | -iext(f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)),A,C) | C = B.  [resolve(26,a,49,a)].
+63 -iext(f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)),f6(f7(c1,uri_owl_InverseFunctionalProperty)),A) | f4(f7(c1,uri_owl_InverseFunctionalProperty)) = A.  [resolve(62,b,60,a)].
+64 -iext(f9(c1,uri_owl_inverseOf,uri_owl_FunctionalProperty,f7(c1,uri_owl_InverseFunctionalProperty)),f6(f7(c1,uri_owl_InverseFunctionalProperty)),f5(f7(c1,uri_owl_InverseFunctionalProperty))).  [resolve(63,b,59,a(flip))].
+65 $F.  [resolve(61,a,64,a)].

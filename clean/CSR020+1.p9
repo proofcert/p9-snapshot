@@ -1,0 +1,43 @@
+
+
+
+
+
+
+
+
+
+10 -happens(A,B) | -terminates(A,C,B) | -holdsAt(C,plus(B,n1)).  [clausify(1)].
+11 terminates(A,B,C) | pull != A | spinning != B | happens(push,C).  [clausify(2)].
+12 -happens(A,B) | n0 = B | pull = A | n2 = B.  [clausify(3)].
+13 happens(A,B) | pull != A | n1 != B.  [clausify(3)].
+14 push != pull.  [assumption].
+15 pull != push.  [copy(14),flip(a)].
+16 plus(n0,n1) = n1.  [assumption].
+17 plus(n1,n1) = n2.  [assumption].
+18 plus(A,B) = plus(B,A).  [clausify(4)].
+19 less_or_equal(A,B) | B != A.  [clausify(5)].
+20 less(A,n1) | -less_or_equal(A,n0).  [clausify(6)].
+21 less(A,n2) | -less_or_equal(A,n1).  [clausify(7)].
+22 -less(A,B) | B != A.  [clausify(8)].
+23 holdsAt(spinning,n2).  [clausify(9)].
+24 plus(n1,n0) = n1.  [para(18(a,1),16(a,1))].
+25 terminates(pull,A,B) | spinning != A | happens(push,B).  [xx_res(11,b)].
+26 happens(pull,A) | n1 != A.  [xx_res(13,b)].
+27 less_or_equal(A,A).  [xx_res(19,b)].
+28 less(n1,n2).  [resolve(27,a,21,b)].
+29 less(n0,n1).  [resolve(27,a,20,b)].
+30 n2 != n1.  [resolve(28,a,22,a)].
+31 n1 != n0.  [resolve(29,a,22,a)].
+32 n0 != n1.  [copy(31),flip(a)].
+33 terminates(pull,spinning,A) | happens(push,A).  [xx_res(25,b)].
+34 happens(pull,plus(n1,n0)).  [resolve(26,b,24,a(flip))].
+35 happens(pull,n1).  [para(24(a,1),34(a,2))].
+36 happens(push,A) | -happens(pull,A) | -holdsAt(spinning,plus(A,n1)).  [resolve(33,a,10,b)].
+37 happens(push,n1) | -happens(pull,n1) | -holdsAt(spinning,n2).  [para(17(a,1),36(c,2))].
+38 happens(push,n1) | -holdsAt(spinning,n2).  [resolve(35,a,37,b)].
+39 happens(push,n1).  [resolve(23,a,38,b)].
+40 n0 = n1 | pull = push | n2 = n1.  [resolve(39,a,12,a)].
+41 pull = push | n2 = n1.  [resolve(32,a,40,a)].
+42 n2 = n1.  [resolve(15,a,41,a)].
+43 $F.  [resolve(30,a,42,a)].

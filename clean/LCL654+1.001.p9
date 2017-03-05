@@ -1,0 +1,48 @@
+
+
+3 r1(A,A).  [clausify(1)].
+4 r1(c1,c2).  [clausify(2)].
+5 r1(c2,c3).  [clausify(2)].
+6 r1(c3,c4).  [clausify(2)].
+7 -p1(c4).  [clausify(2)].
+8 -r1(c2,A) | p1(A).  [clausify(2)].
+9 -r1(c1,A) | -r1(A,B) | r1(B,f3(A,B)) | -r1(A,C) | -p1(f4(A,C)).  [clausify(2)].
+10 -r1(c1,A) | -r1(A,B) | -r1(B,C) | -p1(f2(A,B,C)) | -r1(B,D) | p1(D).  [clausify(2)].
+11 -r1(c1,A) | -r1(A,B) | r1(B,f3(A,B)) | -r1(A,C) | r1(C,f4(A,C)).  [clausify(2)].
+12 -r1(c1,A) | -r1(A,B) | -r1(B,C) | r1(C,f2(A,B,C)) | -r1(B,D) | p1(D).  [clausify(2)].
+13 -r1(c1,A) | -r1(A,B) | -r1(f3(A,B),C) | p1(C) | -r1(A,D) | -p1(f4(A,D)).  [clausify(2)].
+14 -r1(c1,A) | -r1(A,B) | -r1(f3(A,B),C) | p1(C) | -r1(A,D) | r1(D,f4(A,D)).  [clausify(2)].
+15 -r1(c1,c2) | r1(c3,f3(c2,c3)) | -r1(c2,A) | -p1(f4(c2,A)).  [resolve(9,b,5,a)].
+16 r1(c3,f3(c2,c3)) | -r1(c2,A) | -p1(f4(c2,A)).  [resolve(4,a,15,a)].
+17 -r1(c1,A) | -r1(A,c3) | -r1(c3,B) | -p1(f2(A,c3,B)) | p1(c4).  [resolve(10,e,6,a)].
+18 -r1(c1,A) | -r1(A,c3) | -r1(c3,B) | -p1(f2(A,c3,B)).  [resolve(7,a,17,e)].
+19 -r1(c1,c2) | r1(c3,f3(c2,c3)) | -r1(c2,A) | r1(A,f4(c2,A)).  [resolve(11,b,5,a)].
+20 r1(c3,f3(c2,c3)) | -r1(c2,A) | r1(A,f4(c2,A)).  [resolve(4,a,19,a)].
+21 -r1(c2,A) | -r1(A,B) | r1(B,f2(c2,A,B)) | -r1(A,C) | p1(C).  [resolve(12,a,4,a)].
+22 -r1(c1,A) | -r1(A,B) | -r1(f3(A,B),C) | p1(C) | -p1(f4(A,A)).  [resolve(13,e,3,a)].
+23 -r1(c1,A) | -r1(A,B) | -r1(f3(A,B),C) | p1(C) | r1(A,f4(A,A)).  [resolve(14,e,3,a)].
+24 -r1(c2,c3) | -r1(c3,A) | -p1(f2(c2,c3,A)).  [resolve(18,a,4,a)].
+25 -r1(c3,A) | -p1(f2(c2,c3,A)).  [resolve(5,a,24,a)].
+26 r1(c3,f3(c2,c3)) | -p1(f4(c2,c2)).  [resolve(16,b,3,a)].
+27 r1(c3,f3(c2,c3)) | r1(c2,f4(c2,c2)).  [resolve(20,b,3,a)].
+28 r1(c2,f4(c2,c2)) | -p1(f2(c2,c3,f3(c2,c3))).  [resolve(27,a,25,a)].
+29 -r1(c2,c3) | -r1(c3,A) | r1(A,f2(c2,c3,A)) | p1(c4).  [resolve(21,d,6,a)].
+30 -r1(c3,A) | r1(A,f2(c2,c3,A)) | p1(c4).  [resolve(5,a,29,a)].
+31 -r1(c3,A) | r1(A,f2(c2,c3,A)).  [resolve(7,a,30,c)].
+32 r1(f3(c2,c3),f2(c2,c3,f3(c2,c3))) | r1(c2,f4(c2,c2)).  [resolve(31,a,27,a)].
+33 r1(c2,f4(c2,c2)) | -r1(c1,c2) | -r1(c2,c3) | p1(f2(c2,c3,f3(c2,c3))) | r1(c2,f4(c2,c2)).  [resolve(32,a,23,c)].
+34 r1(c2,f4(c2,c2)) | -r1(c1,c2) | -r1(c2,c3) | p1(f2(c2,c3,f3(c2,c3))).  [copy(33),merge(e)].
+35 r1(c2,f4(c2,c2)) | -r1(c2,c3) | p1(f2(c2,c3,f3(c2,c3))).  [resolve(4,a,34,b)].
+36 r1(c2,f4(c2,c2)) | p1(f2(c2,c3,f3(c2,c3))).  [resolve(5,a,35,b)].
+37 p1(f2(c2,c3,f3(c2,c3))) | p1(f4(c2,c2)).  [resolve(36,a,8,a)].
+38 p1(f4(c2,c2)) | r1(c2,f4(c2,c2)).  [resolve(37,a,28,b)].
+39 p1(f4(c2,c2)) | p1(f4(c2,c2)).  [resolve(38,b,8,a)].
+40 p1(f4(c2,c2)).  [copy(39),merge(b)].
+41 r1(c3,f3(c2,c3)).  [resolve(40,a,26,b)].
+42 r1(f3(c2,c3),f2(c2,c3,f3(c2,c3))).  [resolve(41,a,31,a)].
+43 -p1(f2(c2,c3,f3(c2,c3))).  [resolve(41,a,25,a)].
+44 -r1(c2,A) | -r1(f3(c2,A),B) | p1(B) | -p1(f4(c2,c2)).  [resolve(22,a,4,a)].
+45 -r1(f3(c2,c3),A) | p1(A) | -p1(f4(c2,c2)).  [resolve(44,a,5,a)].
+46 -r1(f3(c2,c3),f2(c2,c3,f3(c2,c3))) | -p1(f4(c2,c2)).  [resolve(45,b,43,a)].
+47 -r1(f3(c2,c3),f2(c2,c3,f3(c2,c3))).  [resolve(46,b,40,a)].
+48 $F.  [resolve(42,a,47,a)].

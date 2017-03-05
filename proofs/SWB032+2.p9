@@ -1,0 +1,88 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n135.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:11:53 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 62296 was started by sandbox on n135.star.cs.uiowa.edu,
+Thu Jun  5 18:11:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_62264_n135.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 50.
+% Level of proof is 16.
+% Maximum clause weight is 13.000.
+% Given clauses 116.
+
+
+1 (all A -(icext(uri_rdf_PlainLiteral,A) & icext(uri_owl_real,A))).  [assumption].
+2 (all A (icext(uri_xsd_string,A) -> icext(uri_rdf_PlainLiteral,A))).  [assumption].
+3 (all A (icext(uri_owl_rational,A) -> icext(uri_owl_real,A))).  [assumption].
+4 (all A (icext(uri_xsd_decimal,A) -> icext(uri_owl_rational,A))).  [assumption].
+5 (all A (icext(uri_xsd_integer,A) -> icext(uri_xsd_decimal,A))).  [assumption].
+6 (all A (idc(A) -> ic(A))).  [assumption].
+7 (all A all B (iext(uri_rdfs_subClassOf,A,B) <-> ic(A) & ic(B) & (all C (icext(A,C) -> icext(B,C))))).  [assumption].
+8 (all A all B (iext(uri_owl_disjointWith,A,B) <-> ic(A) & ic(B) & (all C -(icext(A,C) & icext(B,C))))).  [assumption].
+9 -(iext(uri_owl_disjointWith,uri_xsd_decimal,uri_xsd_string) & iext(uri_rdfs_subClassOf,uri_xsd_integer,uri_xsd_decimal)).  [assumption].
+10 -idc(A) | ic(A).  [clausify(6)].
+11 idc(uri_xsd_string).  [assumption].
+12 idc(uri_xsd_decimal).  [assumption].
+13 idc(uri_xsd_integer).  [assumption].
+14 -icext(uri_rdf_PlainLiteral,A) | -icext(uri_owl_real,A).  [clausify(1)].
+15 -iext(uri_owl_disjointWith,uri_xsd_decimal,uri_xsd_string) | -iext(uri_rdfs_subClassOf,uri_xsd_integer,uri_xsd_decimal).  [clausify(9)].
+16 -icext(uri_xsd_string,A) | icext(uri_rdf_PlainLiteral,A).  [clausify(2)].
+17 -icext(uri_owl_rational,A) | icext(uri_owl_real,A).  [clausify(3)].
+18 -icext(uri_xsd_decimal,A) | icext(uri_owl_rational,A).  [clausify(4)].
+19 -icext(uri_xsd_integer,A) | icext(uri_xsd_decimal,A).  [clausify(5)].
+20 iext(uri_rdfs_subClassOf,A,B) | -ic(A) | -ic(B) | icext(A,f1(A,B)).  [clausify(7)].
+21 iext(uri_rdfs_subClassOf,A,B) | -ic(A) | -ic(B) | -icext(B,f1(A,B)).  [clausify(7)].
+22 iext(uri_owl_disjointWith,A,B) | -ic(A) | -ic(B) | icext(A,f2(A,B)).  [clausify(8)].
+23 iext(uri_owl_disjointWith,A,B) | -ic(A) | -ic(B) | icext(B,f2(A,B)).  [clausify(8)].
+24 ic(uri_xsd_string).  [resolve(10,a,11,a)].
+25 ic(uri_xsd_decimal).  [resolve(10,a,12,a)].
+26 ic(uri_xsd_integer).  [resolve(10,a,13,a)].
+27 iext(uri_owl_disjointWith,A,uri_xsd_string) | -ic(A) | icext(uri_xsd_string,f2(A,uri_xsd_string)).  [resolve(24,a,23,c)].
+28 iext(uri_owl_disjointWith,A,uri_xsd_string) | -ic(A) | icext(A,f2(A,uri_xsd_string)).  [resolve(24,a,22,c)].
+29 iext(uri_rdfs_subClassOf,A,uri_xsd_decimal) | -ic(A) | icext(A,f1(A,uri_xsd_decimal)).  [resolve(25,a,20,c)].
+30 iext(uri_owl_disjointWith,uri_xsd_decimal,uri_xsd_string) | icext(uri_xsd_string,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(27,b,25,a)].
+31 iext(uri_owl_disjointWith,uri_xsd_decimal,uri_xsd_string) | icext(uri_xsd_decimal,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(28,b,25,a)].
+32 icext(uri_xsd_string,f2(uri_xsd_decimal,uri_xsd_string)) | -iext(uri_rdfs_subClassOf,uri_xsd_integer,uri_xsd_decimal).  [resolve(30,a,15,a)].
+33 icext(uri_xsd_decimal,f2(uri_xsd_decimal,uri_xsd_string)) | -iext(uri_rdfs_subClassOf,uri_xsd_integer,uri_xsd_decimal).  [resolve(31,a,15,a)].
+34 iext(uri_rdfs_subClassOf,uri_xsd_integer,uri_xsd_decimal) | icext(uri_xsd_integer,f1(uri_xsd_integer,uri_xsd_decimal)).  [resolve(29,b,26,a)].
+35 icext(uri_xsd_integer,f1(uri_xsd_integer,uri_xsd_decimal)) | icext(uri_xsd_decimal,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(34,a,33,b)].
+36 icext(uri_xsd_integer,f1(uri_xsd_integer,uri_xsd_decimal)) | icext(uri_xsd_string,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(34,a,32,b)].
+37 icext(uri_xsd_decimal,f2(uri_xsd_decimal,uri_xsd_string)) | icext(uri_xsd_decimal,f1(uri_xsd_integer,uri_xsd_decimal)).  [resolve(35,a,19,a)].
+38 icext(uri_xsd_integer,f1(uri_xsd_integer,uri_xsd_decimal)) | icext(uri_rdf_PlainLiteral,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(36,b,16,a)].
+39 icext(uri_xsd_decimal,f1(uri_xsd_integer,uri_xsd_decimal)) | icext(uri_owl_rational,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(37,a,18,a)].
+40 icext(uri_xsd_integer,f1(uri_xsd_integer,uri_xsd_decimal)) | -icext(uri_owl_real,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(38,b,14,a)].
+41 icext(uri_xsd_decimal,f1(uri_xsd_integer,uri_xsd_decimal)) | icext(uri_owl_real,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(39,b,17,a)].
+42 icext(uri_xsd_decimal,f1(uri_xsd_integer,uri_xsd_decimal)) | icext(uri_xsd_integer,f1(uri_xsd_integer,uri_xsd_decimal)).  [resolve(41,b,40,b)].
+43 icext(uri_xsd_decimal,f1(uri_xsd_integer,uri_xsd_decimal)) | icext(uri_xsd_decimal,f1(uri_xsd_integer,uri_xsd_decimal)).  [resolve(42,b,19,a)].
+44 icext(uri_xsd_decimal,f1(uri_xsd_integer,uri_xsd_decimal)).  [copy(43),merge(b)].
+45 iext(uri_rdfs_subClassOf,uri_xsd_integer,uri_xsd_decimal) | -ic(uri_xsd_integer) | -ic(uri_xsd_decimal).  [resolve(44,a,21,d)].
+46 iext(uri_rdfs_subClassOf,uri_xsd_integer,uri_xsd_decimal) | -ic(uri_xsd_decimal).  [resolve(26,a,45,b)].
+47 iext(uri_rdfs_subClassOf,uri_xsd_integer,uri_xsd_decimal).  [resolve(25,a,46,b)].
+48 icext(uri_xsd_decimal,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(47,a,33,b)].
+49 icext(uri_xsd_string,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(47,a,32,b)].
+50 icext(uri_owl_rational,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(48,a,18,a)].
+51 icext(uri_rdf_PlainLiteral,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(49,a,16,a)].
+52 icext(uri_owl_real,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(50,a,17,a)].
+53 -icext(uri_owl_real,f2(uri_xsd_decimal,uri_xsd_string)).  [resolve(51,a,14,a)].
+54 $F.  [resolve(52,a,53,a)].
+
+============================== end of proof ==========================

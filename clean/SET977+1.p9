@@ -1,0 +1,32 @@
+
+
+
+
+
+
+7 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+8 empty_set = A | in(f1(A),A).  [clausify(2)].
+9 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(3)].
+10 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(7(a,1),9(a,2))].
+11 cartesian_product2(singleton(c4),c3) = empty_set | cartesian_product2(c3,singleton(c4)) = empty_set.  [clausify(6)].
+12 empty_set != c3.  [clausify(6)].
+13 c3 != empty_set.  [copy(12),flip(a)].
+14 empty_set != A | -in(B,A).  [clausify(2)].
+15 in(ordered_pair(A,B),cartesian_product2(singleton(C),D)) | C != A | -in(B,D).  [clausify(4)].
+16 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(singleton(C),D)) | C != A | -in(B,D).  [para(10(a,1),15(a,1))].
+17 in(ordered_pair(A,B),cartesian_product2(C,singleton(D))) | -in(A,C) | D != B.  [clausify(5)].
+18 in(unordered_pair(singleton(A),unordered_pair(A,B)),cartesian_product2(C,singleton(D))) | -in(A,C) | D != B.  [para(10(a,1),17(a,1))].
+19 -in(A,empty_set).  [xx_res(14,a)].
+20 in(unordered_pair(singleton(A),unordered_pair(A,f1(B))),cartesian_product2(singleton(C),B)) | C != A | empty_set = B.  [resolve(16,c,8,b)].
+21 in(unordered_pair(singleton(f1(A)),unordered_pair(f1(A),B)),cartesian_product2(A,singleton(C))) | C != B | empty_set = A.  [resolve(18,b,8,b)].
+22 in(unordered_pair(singleton(f1(A)),unordered_pair(B,f1(A))),cartesian_product2(A,singleton(C))) | C != B | empty_set = A.  [para(7(a,1),21(a,1,2))].
+23 in(unordered_pair(singleton(A),unordered_pair(A,f1(B))),cartesian_product2(singleton(A),B)) | empty_set = B.  [xx_res(20,b)].
+24 cartesian_product2(c3,singleton(c4)) = empty_set | in(unordered_pair(singleton(c4),unordered_pair(c4,f1(c3))),empty_set) | empty_set = c3.  [para(11(a,1),23(a,2))].
+25 cartesian_product2(c3,singleton(c4)) = empty_set | in(unordered_pair(singleton(c4),unordered_pair(c4,f1(c3))),empty_set) | c3 = empty_set.  [copy(24),flip(c)].
+26 cartesian_product2(c3,singleton(c4)) = empty_set | c3 = empty_set.  [resolve(19,a,25,b)].
+27 cartesian_product2(c3,singleton(c4)) = empty_set.  [resolve(13,a,26,b)].
+28 in(unordered_pair(singleton(f1(A)),unordered_pair(B,f1(A))),cartesian_product2(A,singleton(B))) | empty_set = A.  [xx_res(22,b)].
+29 in(unordered_pair(singleton(f1(c3)),unordered_pair(c4,f1(c3))),empty_set) | empty_set = c3.  [para(27(a,1),28(a,2))].
+30 in(unordered_pair(singleton(f1(c3)),unordered_pair(c4,f1(c3))),empty_set) | c3 = empty_set.  [copy(29),flip(b)].
+31 c3 = empty_set.  [resolve(19,a,30,a)].
+32 $F.  [resolve(13,a,31,a)].

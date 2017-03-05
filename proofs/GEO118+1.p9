@@ -1,0 +1,48 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n157.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:41:53 CDT 2014
+% CPUTime    : 0.85 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 12743 was started by sandbox on n157.star.cs.uiowa.edu,
+Fri Jun  6 01:41:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_12711_n157.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.70 (+ 0.01) seconds.
+% Length of proof is 13.
+% Level of proof is 5.
+% Maximum clause weight is 17.000.
+% Given clauses 744.
+
+
+1 (all A all B all C all D (between_c(A,B,C,D) <-> B != D & (exists E (part_of(E,A) & end_point(B,E) & end_point(D,E) & inner_point(C,E))))).  [assumption].
+2 (all A all B all C all D (between_o(A,B,C,D) <-> ordered_by(A,B,C) & ordered_by(A,C,D) | ordered_by(A,D,C) & ordered_by(A,C,B))).  [assumption].
+3 (all A all B all C all D (between_o(D,A,B,C) <-> (exists E ((all A (incident_o(A,D) <-> incident_c(A,E))) & between_c(E,A,B,C))))).  [assumption].
+4 -(all A all B all C (ordered_by(A,B,C) -> -ordered_by(A,C,B))).  [assumption].
+5 between_o(A,B,C,D) | -ordered_by(A,B,C) | -ordered_by(A,C,D).  [clausify(2)].
+6 -between_o(A,B,C,D) | between_c(f18(B,C,D,A),B,C,D).  [clausify(3)].
+7 ordered_by(c10,c11,c12).  [clausify(4)].
+8 ordered_by(c10,c12,c11).  [clausify(4)].
+9 -between_c(A,B,C,D) | D != B.  [clausify(1)].
+10 between_c(f18(A,B,C,D),A,B,C) | -ordered_by(D,A,B) | -ordered_by(D,B,C).  [resolve(6,a,5,a)].
+11 between_c(f18(c12,c11,A,c10),c12,c11,A) | -ordered_by(c10,c11,A).  [resolve(10,b,8,a)].
+12 between_c(f18(c12,c11,c12,c10),c12,c11,c12).  [resolve(11,b,7,a)].
+13 c12 != c12.  [resolve(12,a,9,a)].
+14 $F.  [copy(13),xx(a)].
+
+============================== end of proof ==========================

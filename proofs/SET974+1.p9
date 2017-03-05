@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n045.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 01:07:53 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 27515 was started by sandbox on n045.star.cs.uiowa.edu,
+Sat Jun  7 01:07:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_27483_n045.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 19.
+% Level of proof is 6.
+% Maximum clause weight is 19.000.
+% Given clauses 33.
+
+
+1 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+2 (all A all B all C all D all E -(in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) & (all F all V6 -(A = ordered_pair(F,V6) & in(F,set_intersection2(B,D)) & in(V6,set_intersection2(C,E)))))).  [assumption].
+3 (all A all B (-(-disjoint(A,B) & (all C -in(C,set_intersection2(A,B)))) & -((exists C in(C,set_intersection2(A,B))) & disjoint(A,B)))).  [assumption].
+4 -(all A all B all C all D (disjoint(A,B) | disjoint(C,D) -> disjoint(cartesian_product2(A,C),cartesian_product2(B,D)))).  [assumption].
+5 disjoint(c3,c4) | disjoint(c5,c6).  [clausify(4)].
+6 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+7 disjoint(A,B) | in(f3(A,B),set_intersection2(A,B)).  [clausify(3)].
+8 -disjoint(cartesian_product2(c3,c5),cartesian_product2(c4,c6)).  [clausify(4)].
+9 -in(A,set_intersection2(B,C)) | -disjoint(B,C).  [clausify(3)].
+10 -in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) | in(f1(A,B,C,D,E),set_intersection2(B,D)).  [clausify(2)].
+11 -in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) | in(f2(A,B,C,D,E),set_intersection2(C,E)).  [clausify(2)].
+12 in(f3(cartesian_product2(c3,c5),cartesian_product2(c4,c6)),set_intersection2(cartesian_product2(c3,c5),cartesian_product2(c4,c6))).  [resolve(8,a,7,a)].
+13 -in(A,set_intersection2(c5,c6)) | disjoint(c3,c4).  [resolve(9,b,5,b)].
+14 -in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) | in(f1(A,D,E,B,C),set_intersection2(D,B)).  [para(6(a,1),10(a,2))].
+15 -in(A,set_intersection2(cartesian_product2(B,C),cartesian_product2(D,E))) | in(f1(A,D,E,B,C),set_intersection2(B,D)).  [para(6(a,1),14(b,2))].
+16 in(f2(f3(cartesian_product2(c3,c5),cartesian_product2(c4,c6)),c3,c5,c4,c6),set_intersection2(c5,c6)).  [resolve(12,a,11,a)].
+17 in(f1(f3(cartesian_product2(c3,c5),cartesian_product2(c4,c6)),c4,c6,c3,c5),set_intersection2(c3,c4)).  [resolve(15,a,12,a)].
+18 disjoint(c3,c4).  [resolve(16,a,13,a)].
+19 -in(A,set_intersection2(c3,c4)).  [resolve(18,a,9,b)].
+20 $F.  [resolve(19,a,17,a)].
+
+============================== end of proof ==========================

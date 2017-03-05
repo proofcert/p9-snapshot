@@ -1,0 +1,21 @@
+
+
+3 -between_c(A,B,C,D) | inner_point(C,f14(A,B,C,D)).  [clausify(1)].
+4 between_c(A,B,C,D) | D = B | -part_of(E,A) | -end_point(B,E) | -end_point(D,E) | -inner_point(C,E).  [clausify(1)].
+5 between_c(c10,c11,c12,c13).  [clausify(2)].
+6 -between_c(c10,c13,c12,c11).  [clausify(2)].
+7 -between_c(A,B,C,D) | D != B.  [clausify(1)].
+8 -between_c(A,B,C,D) | part_of(f14(A,B,C,D),A).  [clausify(1)].
+9 -between_c(A,B,C,D) | end_point(B,f14(A,B,C,D)).  [clausify(1)].
+10 -between_c(A,B,C,D) | end_point(D,f14(A,B,C,D)).  [clausify(1)].
+11 between_c(A,B,C,D) | D = B | -part_of(f14(E,F,C,V6),A) | -end_point(B,f14(E,F,C,V6)) | -end_point(D,f14(E,F,C,V6)) | -between_c(E,F,C,V6).  [resolve(4,f,3,b)].
+12 c13 != c11.  [resolve(7,a,5,a)].
+13 part_of(f14(c10,c11,c12,c13),c10).  [resolve(8,a,5,a)].
+14 end_point(c11,f14(c10,c11,c12,c13)).  [resolve(9,a,5,a)].
+15 end_point(c13,f14(c10,c11,c12,c13)).  [resolve(10,a,5,a)].
+16 c11 = c13 | -part_of(f14(A,B,c12,C),c10) | -end_point(c13,f14(A,B,c12,C)) | -end_point(c11,f14(A,B,c12,C)) | -between_c(A,B,c12,C).  [resolve(11,a,6,a)].
+17 -part_of(f14(A,B,c12,C),c10) | -end_point(c13,f14(A,B,c12,C)) | -end_point(c11,f14(A,B,c12,C)) | -between_c(A,B,c12,C).  [resolve(16,a,12,a(flip))].
+18 -end_point(c13,f14(c10,c11,c12,c13)) | -end_point(c11,f14(c10,c11,c12,c13)) | -between_c(c10,c11,c12,c13).  [resolve(17,a,13,a)].
+19 -end_point(c13,f14(c10,c11,c12,c13)) | -between_c(c10,c11,c12,c13).  [resolve(18,b,14,a)].
+20 -end_point(c13,f14(c10,c11,c12,c13)).  [resolve(19,b,5,a)].
+21 $F.  [resolve(15,a,20,a)].

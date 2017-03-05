@@ -1,0 +1,25 @@
+
+
+
+
+
+6 subset(c3,cartesian_product2(c4,c5)).  [clausify(5)].
+7 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+8 subset(A,B) | in(f1(A,B),A).  [clausify(2)].
+9 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(3)].
+10 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(7(a,1),9(a,2))].
+11 -subset(c3,c6).  [clausify(5)].
+12 subset(A,B) | -in(f1(A,B),B).  [clausify(2)].
+13 -in(ordered_pair(A,B),c3) | in(ordered_pair(A,B),c6).  [clausify(5)].
+14 -in(unordered_pair(singleton(A),unordered_pair(A,B)),c3) | in(ordered_pair(A,B),c6).  [para(10(a,1),13(a,1))].
+15 -in(unordered_pair(singleton(A),unordered_pair(A,B)),c3) | in(unordered_pair(singleton(A),unordered_pair(A,B)),c6).  [para(10(a,1),14(b,1))].
+16 -subset(A,cartesian_product2(B,C)) | -in(D,A) | ordered_pair(f2(A,B,C,D),f3(A,B,C,D)) = D.  [clausify(4)].
+17 -subset(A,cartesian_product2(B,C)) | -in(D,A) | unordered_pair(singleton(f2(A,B,C,D)),unordered_pair(f2(A,B,C,D),f3(A,B,C,D))) = D.  [para(10(a,1),16(c,1))].
+18 in(f1(c3,c6),c3).  [resolve(11,a,8,a)].
+19 -in(f1(c3,c6),c6).  [resolve(12,a,11,a)].
+20 -in(A,c3) | unordered_pair(singleton(f2(c3,c4,c5,A)),unordered_pair(f2(c3,c4,c5,A),f3(c3,c4,c5,A))) = A.  [resolve(17,a,6,a)].
+21 unordered_pair(singleton(f2(c3,c4,c5,f1(c3,c6))),unordered_pair(f2(c3,c4,c5,f1(c3,c6)),f3(c3,c4,c5,f1(c3,c6)))) = f1(c3,c6).  [resolve(20,a,18,a)].
+22 -in(f1(c3,c6),c3) | in(unordered_pair(singleton(f2(c3,c4,c5,f1(c3,c6))),unordered_pair(f2(c3,c4,c5,f1(c3,c6)),f3(c3,c4,c5,f1(c3,c6)))),c6).  [para(21(a,1),15(a,1))].
+23 -in(f1(c3,c6),c3) | in(f1(c3,c6),c6).  [para(21(a,1),22(b,1))].
+24 in(f1(c3,c6),c6).  [resolve(18,a,23,a)].
+25 $F.  [resolve(19,a,24,a)].

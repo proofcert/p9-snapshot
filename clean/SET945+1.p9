@@ -1,0 +1,133 @@
+
+
+
+
+
+
+
+8 set_intersection2(A,A) = A.  [clausify(5)].
+9 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(2)].
+10 disjoint(A,B) | in(f5(A,B),set_intersection2(A,B)).  [clausify(6)].
+11 union(A) = B | in(f3(A,B),B) | in(f4(A,B),A).  [clausify(4)].
+12 set_intersection2(A,B) = C | in(f1(A,B,C),C) | in(f1(A,B,C),A).  [clausify(3)].
+13 set_intersection2(A,B) = C | in(f1(A,B,C),C) | in(f1(A,B,C),B).  [clausify(3)].
+14 -disjoint(union(c3),c4).  [clausify(7)].
+15 -in(A,B) | -in(B,A).  [clausify(1)].
+16 -in(A,set_intersection2(B,C)) | -disjoint(B,C).  [clausify(6)].
+17 -in(A,c3) | disjoint(A,c4).  [clausify(7)].
+18 set_intersection2(A,B) != C | -in(D,C) | in(D,A).  [clausify(3)].
+19 set_intersection2(A,B) != C | -in(D,C) | in(D,B).  [clausify(3)].
+20 union(A) != B | -in(C,B) | in(C,f2(A,B,C)).  [clausify(4)].
+21 union(A) != B | -in(C,B) | in(f2(A,B,C),A).  [clausify(4)].
+22 set_intersection2(A,B) != C | in(D,C) | -in(D,A) | -in(D,B).  [clausify(3)].
+23 set_intersection2(A,B) = C | -in(f1(A,B,C),C) | -in(f1(A,B,C),A) | -in(f1(A,B,C),B).  [clausify(3)].
+24 set_intersection2(A,B) = A | in(f1(A,B,A),A).  [factor(12,b,c)].
+25 set_intersection2(A,B) = B | in(f1(A,B,B),B).  [factor(13,b,c)].
+26 -in(A,A).  [factor(15,a,b)].
+27 set_intersection2(A,A) != B | in(C,B) | -in(C,A).  [factor(22,c,d)].
+28 A != B | in(C,B) | -in(C,A).  [para(8(a,1),27(a,1))].
+29 set_intersection2(A,B) = A | -in(f1(A,B,A),A) | -in(f1(A,B,A),B).  [factor(23,b,c)].
+30 set_intersection2(A,A) = B | -in(f1(A,A,B),B) | -in(f1(A,A,B),A).  [factor(23,c,d)].
+31 A = B | -in(f1(A,A,B),B) | -in(f1(A,A,B),A).  [para(8(a,1),30(a,1))].
+32 in(f5(union(c3),c4),set_intersection2(union(c3),c4)).  [resolve(14,a,10,a)].
+33 in(f5(union(c3),c4),set_intersection2(c4,union(c3))).  [para(9(a,1),32(a,2))].
+34 -in(A,set_intersection2(B,C)) | in(f5(B,C),set_intersection2(B,C)).  [resolve(16,b,10,a)].
+35 set_intersection2(A,B) != C | in(f1(D,C,E),A) | set_intersection2(D,C) = E | in(f1(D,C,E),E).  [resolve(18,b,13,c)].
+36 set_intersection2(A,B) != C | in(f1(D,C,E),A) | set_intersection2(C,D) = E | in(f1(D,C,E),E).  [para(9(a,1),35(c,1))].
+37 set_intersection2(A,B) != C | in(f1(D,E,C),A) | set_intersection2(D,E) = C | in(f1(D,E,C),E).  [resolve(18,b,13,b)].
+38 -in(A,set_intersection2(B,C)) | in(A,B).  [resolve(19,a,9,a)].
+39 -in(A,set_intersection2(A,B)).  [resolve(38,b,26,a)].
+40 set_intersection2(A,B) = A | -in(f1(A,B,A),B) | set_intersection2(A,B) = A.  [resolve(29,b,24,b)].
+41 set_intersection2(A,B) = A | -in(f1(A,B,A),B).  [copy(40),merge(c)].
+42 set_intersection2(A,B) != set_intersection2(c4,union(c3)) | in(f5(union(c3),c4),B).  [resolve(33,a,19,b)].
+43 set_intersection2(c4,union(c3)) != set_intersection2(A,B) | in(f5(union(c3),c4),B).  [copy(42),flip(a)].
+44 -in(A,B) | in(f5(B,B),set_intersection2(B,B)).  [para(8(a,1),34(a,2))].
+45 -in(A,B) | in(f5(B,B),B).  [para(8(a,1),44(b,2))].
+46 -in(A,set_intersection2(B,C)) | in(f5(C,B),set_intersection2(C,B)).  [para(9(a,1),34(a,2))].
+47 -in(A,set_intersection2(B,C)) | in(f5(C,B),set_intersection2(B,C)).  [para(9(a,1),46(b,2))].
+48 in(f5(A,A),A) | set_intersection2(B,A) = A.  [resolve(45,a,25,b)].
+49 in(f5(A,A),A) | set_intersection2(A,B) = A.  [para(9(a,1),48(b,1))].
+50 in(f5(A,A),A) | union(A) = B | in(f3(A,B),B).  [resolve(45,a,11,c)].
+51 in(f5(union(c3),c4),c4).  [resolve(43,a,9,a)].
+52 in(f5(union(c3),c4),union(c3)).  [xx_res(43,a)].
+53 set_intersection2(A,c4) != B | in(f5(union(c3),c4),B) | -in(f5(union(c3),c4),A).  [resolve(51,a,22,d)].
+54 union(A) != union(c3) | in(f2(A,union(c3),f5(union(c3),c4)),A).  [resolve(52,a,21,b)].
+55 union(c3) != union(A) | in(f2(A,union(c3),f5(union(c3),c4)),A).  [copy(54),flip(a)].
+56 union(A) != union(c3) | in(f5(union(c3),c4),f2(A,union(c3),f5(union(c3),c4))).  [resolve(52,a,20,b)].
+57 union(c3) != union(A) | in(f5(union(c3),c4),f2(A,union(c3),f5(union(c3),c4))).  [copy(56),flip(a)].
+58 in(f1(A,set_intersection2(set_intersection2(B,C),set_intersection2(B,C)),D),B) | set_intersection2(set_intersection2(set_intersection2(B,C),set_intersection2(B,C)),A) = D | in(f1(A,set_intersection2(set_intersection2(B,C),set_intersection2(B,C)),D),D).  [resolve(36,a,8,a(flip))].
+59 in(f1(A,set_intersection2(B,C),D),B) | set_intersection2(set_intersection2(set_intersection2(B,C),set_intersection2(B,C)),A) = D | in(f1(A,set_intersection2(set_intersection2(B,C),set_intersection2(B,C)),D),D).  [para(8(a,1),58(a,1,2))].
+60 in(f1(A,set_intersection2(B,C),D),B) | set_intersection2(set_intersection2(B,C),A) = D | in(f1(A,set_intersection2(set_intersection2(B,C),set_intersection2(B,C)),D),D).  [para(8(a,1),59(b,1,1))].
+61 in(f1(A,set_intersection2(B,C),D),B) | set_intersection2(A,set_intersection2(B,C)) = D | in(f1(A,set_intersection2(set_intersection2(B,C),set_intersection2(B,C)),D),D).  [para(9(a,1),60(b,1))].
+62 in(f1(A,set_intersection2(B,C),D),B) | set_intersection2(A,set_intersection2(B,C)) = D | in(f1(A,set_intersection2(B,C),D),D).  [para(8(a,1),61(c,1,2))].
+63 in(f1(A,set_intersection2(B,C),B),B) | set_intersection2(A,set_intersection2(B,C)) = B.  [factor(62,a,c)].
+64 in(f1(A,B,set_intersection2(C,D)),D) | set_intersection2(A,B) = set_intersection2(C,D) | in(f1(A,B,set_intersection2(C,D)),B).  [resolve(37,a,9,a)].
+65 in(f1(A,B,set_intersection2(C,B)),B) | set_intersection2(A,B) = set_intersection2(C,B).  [factor(64,a,c)].
+66 in(f1(A,B,set_intersection2(B,C)),B) | set_intersection2(A,B) = set_intersection2(C,B).  [para(9(a,1),65(a,1,3))].
+67 in(f1(A,B,set_intersection2(B,C)),B) | set_intersection2(A,B) = set_intersection2(B,C).  [para(9(a,1),66(b,2))].
+68 in(f1(A,B,set_intersection2(B,C)),B) | set_intersection2(B,C) = set_intersection2(A,B).  [copy(67),flip(b)].
+69 in(f5(A,A),A) | union(A) = B | in(f5(B,B),B).  [resolve(50,c,45,a)].
+70 in(f5(A,A),A) | union(A) = A.  [factor(69,a,c)].
+71 in(f2(c3,union(c3),f5(union(c3),c4)),c3).  [xx_res(55,a)].
+72 in(f5(c3,c3),c3).  [resolve(71,a,45,a)].
+73 disjoint(f2(c3,union(c3),f5(union(c3),c4)),c4).  [resolve(71,a,17,a)].
+74 disjoint(f5(c3,c3),c4).  [resolve(72,a,17,a)].
+75 A != set_intersection2(B,C) | -in(B,A).  [resolve(28,b,39,a)].
+76 c3 != set_intersection2(f5(c3,c3),A).  [resolve(75,b,72,a)].
+77 c3 != set_intersection2(A,f5(c3,c3)).  [para(9(a,1),76(a,2))].
+78 set_intersection2(A,f5(c3,c3)) != c3.  [copy(77),flip(a)].
+79 -in(A,set_intersection2(f5(c3,c3),c4)).  [resolve(74,a,16,b)].
+80 -in(A,set_intersection2(c4,f5(c3,c3))).  [para(9(a,1),79(a,2))].
+81 -in(f1(c3,f5(c3,c3),c3),f5(c3,c3)).  [resolve(41,a,78,a)].
+82 -in(A,set_intersection2(f2(c3,union(c3),f5(union(c3),c4)),c4)).  [resolve(73,a,16,b)].
+83 -in(A,set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4)))).  [para(9(a,1),82(a,2))].
+84 union(set_intersection2(c4,f5(c3,c3))) = set_intersection2(c4,f5(c3,c3)).  [resolve(80,a,70,a)].
+85 union(set_intersection2(c4,f5(c3,c3))) = A | in(f5(A,A),A).  [resolve(80,a,69,a)].
+86 set_intersection2(c4,f5(c3,c3)) = A | in(f5(A,A),A).  [para(84(a,1),85(a,1))].
+87 set_intersection2(set_intersection2(c4,f5(c3,c3)),A) = set_intersection2(c4,f5(c3,c3)).  [resolve(80,a,49,a)].
+88 set_intersection2(A,set_intersection2(c4,f5(c3,c3))) = set_intersection2(c4,f5(c3,c3)).  [para(9(a,1),87(a,1))].
+89 set_intersection2(c4,f5(c3,c3)) = set_intersection2(A,B) | in(f5(B,A),set_intersection2(A,B)).  [resolve(86,b,47,a)].
+90 set_intersection2(set_intersection2(A,B),set_intersection2(A,B)) = A | set_intersection2(A,B) = A | -in(f1(set_intersection2(A,B),set_intersection2(A,B),A),set_intersection2(A,B)).  [resolve(63,a,31,b)].
+91 set_intersection2(A,B) = A | set_intersection2(A,B) = A | -in(f1(set_intersection2(A,B),set_intersection2(A,B),A),set_intersection2(A,B)).  [para(8(a,1),90(a,1))].
+92 set_intersection2(A,B) = A | -in(f1(set_intersection2(A,B),set_intersection2(A,B),A),set_intersection2(A,B)).  [copy(91),merge(b)].
+93 set_intersection2(c3,f5(c3,c3)) = c3 | in(f1(c3,f5(c3,c3),c3),c3).  [resolve(81,a,13,c)].
+94 in(f1(c3,f5(c3,c3),c3),c3).  [resolve(78,a,93,a)].
+95 disjoint(f1(c3,f5(c3,c3),c3),c4).  [resolve(94,a,17,a)].
+96 -in(A,set_intersection2(f1(c3,f5(c3,c3),c3),c4)).  [resolve(95,a,16,b)].
+97 -in(A,set_intersection2(c4,f1(c3,f5(c3,c3),c3))).  [para(9(a,1),96(a,2))].
+98 set_intersection2(A,B) = set_intersection2(C,A) | in(f5(A,A),A).  [resolve(68,a,45,a)].
+99 set_intersection2(A,B) = set_intersection2(A,C) | in(f5(A,A),A).  [para(9(a,1),98(a,2))].
+100 set_intersection2(A,B) = set_intersection2(set_intersection2(A,B),A) | set_intersection2(set_intersection2(A,B),A) = set_intersection2(A,B).  [resolve(68,a,41,b)].
+101 set_intersection2(A,B) = set_intersection2(A,set_intersection2(A,B)) | set_intersection2(set_intersection2(A,B),A) = set_intersection2(A,B).  [para(9(a,1),100(a,2))].
+102 set_intersection2(A,B) = set_intersection2(A,set_intersection2(A,B)) | set_intersection2(A,set_intersection2(A,B)) = set_intersection2(A,B).  [para(9(a,1),101(b,1))].
+103 set_intersection2(A,set_intersection2(A,B)) = set_intersection2(A,B) | set_intersection2(A,set_intersection2(A,B)) = set_intersection2(A,B).  [copy(102),flip(a)].
+104 set_intersection2(A,set_intersection2(A,B)) = set_intersection2(A,B).  [copy(103),merge(b)].
+105 set_intersection2(set_intersection2(c4,f1(c3,f5(c3,c3),c3)),A) = set_intersection2(set_intersection2(c4,f1(c3,f5(c3,c3),c3)),B).  [resolve(97,a,99,b)].
+106 set_intersection2(A,set_intersection2(c4,f1(c3,f5(c3,c3),c3))) = set_intersection2(set_intersection2(c4,f1(c3,f5(c3,c3),c3)),B).  [para(9(a,1),105(a,1))].
+107 set_intersection2(A,set_intersection2(c4,f1(c3,f5(c3,c3),c3))) = set_intersection2(B,set_intersection2(c4,f1(c3,f5(c3,c3),c3))).  [para(9(a,1),106(a,2))].
+108 set_intersection2(c4,f5(c3,c3)) = set_intersection2(c4,f1(c3,f5(c3,c3),c3)).  [resolve(97,a,86,b)].
+109 set_intersection2(c4,f1(c3,f5(c3,c3),c3)) = set_intersection2(c4,f5(c3,c3)).  [copy(108),flip(a)].
+110 set_intersection2(A,set_intersection2(c4,f1(c3,f5(c3,c3),c3))) = c_0.  [new_symbol(107)].
+111 set_intersection2(A,set_intersection2(c4,f5(c3,c3))) = c_0.  [para(109(a,1),110(a,1,2))].
+112 set_intersection2(c4,f5(c3,c3)) = c_0.  [para(88(a,1),111(a,1))].
+113 -in(A,set_intersection2(c4,f5(c3,c3))).  [para(109(a,1),97(a,2))].
+114 -in(A,c_0).  [para(112(a,1),113(a,2))].
+115 c_0 = set_intersection2(A,B) | in(f5(B,A),set_intersection2(A,B)).  [para(112(a,1),89(a,1))].
+116 set_intersection2(A,B) = c_0 | in(f5(B,A),set_intersection2(A,B)).  [copy(115),flip(a)].
+117 set_intersection2(A,B) = c_0 | set_intersection2(C,D) != set_intersection2(A,B) | in(f5(B,A),C).  [resolve(116,b,18,b)].
+118 in(f5(union(c3),c4),f2(c3,union(c3),f5(union(c3),c4))).  [xx_res(57,a)].
+119 set_intersection2(A,c4) != c_0 | -in(f5(union(c3),c4),A).  [resolve(53,b,114,a)].
+120 set_intersection2(f2(c3,union(c3),f5(union(c3),c4)),c4) != c_0.  [resolve(119,b,118,a)].
+121 set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4))) != c_0.  [para(9(a,1),120(a,1))].
+122 set_intersection2(A,B) = A | set_intersection2(set_intersection2(A,B),set_intersection2(A,B)) = A | in(f1(set_intersection2(A,B),set_intersection2(A,B),A),A).  [resolve(92,b,13,c)].
+123 set_intersection2(A,B) = A | set_intersection2(A,B) = A | in(f1(set_intersection2(A,B),set_intersection2(A,B),A),A).  [para(8(a,1),122(b,1))].
+124 set_intersection2(A,B) = A | in(f1(set_intersection2(A,B),set_intersection2(A,B),A),A).  [copy(123),merge(b)].
+125 set_intersection2(A,set_intersection2(A,B)) = c_0 | in(f5(set_intersection2(A,B),A),A).  [resolve(117,b,104,a(flip))].
+126 set_intersection2(A,B) = c_0 | in(f5(set_intersection2(A,B),A),A).  [para(104(a,1),125(a,1))].
+127 set_intersection2(set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4))),A) = c_0.  [resolve(83,a,126,b)].
+128 set_intersection2(A,set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4)))) = c_0.  [para(9(a,1),127(a,1))].
+129 set_intersection2(set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4))),A) = set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4))).  [resolve(83,a,124,b)].
+130 set_intersection2(A,set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4)))) = set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4))).  [para(9(a,1),129(a,1))].
+131 c_0 = set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4))).  [para(128(a,1),130(a,1))].
+132 set_intersection2(c4,f2(c3,union(c3),f5(union(c3),c4))) = c_0.  [copy(131),flip(a)].
+133 $F.  [resolve(121,a,132,a)].

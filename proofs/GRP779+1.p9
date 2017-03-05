@@ -1,0 +1,276 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n103.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 21:40:48 CDT 2014
+% CPUTime    : 6.77 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 16720 was started by sandbox on n103.star.cs.uiowa.edu,
+Fri Jun  6 21:40:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_16688_n103.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 6.56 (+ 0.09) seconds: goals.
+% Length of proof is 142.
+% Level of proof is 26.
+% Maximum clause weight is 21.000.
+% Given clauses 1297.
+
+
+1 (all A all B difference(B,product(B,A)) = A).  [assumption].
+2 (all A all B product(B,difference(B,A)) = A).  [assumption].
+3 (all A all B quotient(product(B,A),A) = B).  [assumption].
+4 (all A all B product(quotient(B,A),A) = B).  [assumption].
+5 (all A all B all C all D product(product(D,C),product(B,A)) = product(product(D,B),product(C,A))).  [assumption].
+6 (all A product(A,A) = A).  [assumption].
+7 (all A all B product(product(product(B,A),A),product(A,product(A,B))) = A).  [assumption].
+8 (all A all B all C (d(A,B,C) <-> product(A,B) = product(B,C))).  [assumption].
+9 (all A all B all C (m(A,B,C) <-> product(product(A,B),product(B,C)) = product(A,C))).  [assumption].
+10 -d(A,B,C) | product(B,C) = product(A,B).  [clausify(8)].
+11 d(b,bigA,c).  [assumption].
+12 d(b,a,bigC).  [assumption].
+13 d(a,b1,c1).  [assumption].
+14 d(a1,b,c1).  [assumption].
+15 d(a1,b1,c).  [assumption].
+16 product(A,A) = A.  [clausify(6)].
+17 difference(A,product(A,B)) = B.  [clausify(1)].
+18 product(A,difference(A,B)) = B.  [clausify(2)].
+19 quotient(product(A,B),B) = A.  [clausify(3)].
+20 product(quotient(A,B),B) = A.  [clausify(4)].
+21 product(product(product(A,B),B),product(B,product(B,A))) = B.  [clausify(7)].
+22 product(product(A,B),product(C,D)) = product(product(A,C),product(B,D)).  [clausify(5)].
+23 -m(bigA,b1,bigC).  [assumption].
+24 m(A,B,C) | product(product(A,B),product(B,C)) != product(A,C).  [clausify(9)].
+25 product(bigA,c) = product(b,bigA).  [resolve(10,a,11,a)].
+26 product(a,bigC) = product(b,a).  [resolve(10,a,12,a)].
+27 product(b,a) = product(a,bigC).  [copy(26),flip(a)].
+28 product(b1,c1) = product(a,b1).  [resolve(10,a,13,a)].
+29 product(b,c1) = product(a1,b).  [resolve(10,a,14,a)].
+30 product(a1,b) = product(b,c1).  [copy(29),flip(a)].
+31 product(b1,c) = product(a1,b1).  [resolve(10,a,15,a)].
+32 product(a1,b1) = product(b1,c).  [copy(31),flip(a)].
+33 difference(A,A) = A.  [para(16(a,1),17(a,1,2))].
+34 quotient(A,A) = A.  [para(16(a,1),19(a,1,1))].
+35 quotient(A,difference(B,A)) = B.  [para(18(a,1),19(a,1,1))].
+36 difference(quotient(A,B),A) = B.  [para(20(a,1),17(a,1,2))].
+37 difference(product(product(A,B),B),B) = product(B,product(B,A)).  [para(21(a,1),17(a,1,2))].
+38 product(product(A,difference(B,A)),product(difference(B,A),product(difference(B,A),B))) = difference(B,A).  [para(18(a,1),21(a,1,1,1))].
+39 product(A,product(B,C)) = product(product(A,B),product(A,C)).  [para(16(a,1),22(a,1,1))].
+40 product(product(A,B),product(A,C)) = product(A,product(B,C)).  [copy(39),flip(a)].
+41 product(product(A,B),C) = product(product(A,C),product(B,C)).  [para(16(a,1),22(a,1,2))].
+42 product(product(A,B),product(C,B)) = product(product(A,C),B).  [copy(41),flip(a)].
+43 difference(product(A,B),product(product(A,C),product(B,D))) = product(C,D).  [para(22(a,1),17(a,1,2))].
+44 product(A,product(B,C)) = product(product(D,B),product(difference(D,A),C)).  [para(18(a,1),22(a,1,1))].
+45 product(product(A,B),product(difference(A,C),D)) = product(C,product(B,D)).  [copy(44),flip(a)].
+46 quotient(product(product(A,B),product(C,D)),product(B,D)) = product(A,C).  [para(22(a,1),19(a,1,1))].
+47 product(product(A,B),C) = product(product(A,quotient(C,D)),product(B,D)).  [para(20(a,1),22(a,1,2))].
+48 product(product(A,quotient(B,C)),product(D,C)) = product(product(A,D),B).  [copy(47),flip(a)].
+49 product(product(bigA,b1),product(b1,bigC)) != product(bigA,bigC).  [resolve(24,a,23,a)].
+50 product(product(A,B),product(b,bigA)) = product(product(A,bigA),product(B,c)).  [para(25(a,1),22(a,1,2))].
+51 product(product(A,bigA),product(B,c)) = product(product(A,B),product(b,bigA)).  [copy(50),flip(a)].
+52 quotient(product(a,bigC),a) = b.  [para(27(a,1),19(a,1,1))].
+53 quotient(product(b,c1),b) = a1.  [para(30(a,1),19(a,1,1))].
+54 quotient(product(b1,c),b1) = a1.  [para(32(a,1),19(a,1,1))].
+55 difference(product(A,B),B) = product(B,product(B,quotient(A,B))).  [para(20(a,1),37(a,1,1,1))].
+56 product(A,product(A,quotient(B,A))) = difference(product(B,A),A).  [copy(55),flip(a)].
+57 product(product(A,B),A) = product(A,product(B,A)).  [para(16(a,1),40(a,1,2))].
+58 product(A,product(quotient(A,B),C)) = product(quotient(A,B),product(B,C)).  [para(20(a,1),40(a,1,1))].
+59 product(quotient(A,B),product(B,C)) = product(A,product(quotient(A,B),C)).  [copy(58),flip(a)].
+60 product(product(A,product(B,C)),product(D,E)) = product(product(product(A,B),D),product(product(A,C),E)).  [para(40(a,1),22(a,1,1))].
+61 product(product(product(A,B),C),product(product(A,D),E)) = product(product(A,product(B,D)),product(C,E)).  [copy(60),flip(a)].
+62 quotient(product(A,product(B,A)),A) = product(A,B).  [para(57(a,1),19(a,1,1))].
+63 product(product(product(A,B),C),product(product(A,D),B)) = product(product(A,B),product(C,product(D,B))).  [para(42(a,1),40(a,1,2))].
+64 product(product(A,product(B,C)),product(D,B)) = product(product(A,B),product(D,product(C,B))).  [para(61(a,1),63(a,1))].
+65 difference(product(A,B),product(C,product(B,D))) = product(difference(A,C),D).  [para(18(a,1),43(a,1,2,1))].
+66 quotient(product(A,B),A) = product(A,quotient(B,A)).  [para(20(a,1),62(a,1,1,2))].
+67 quotient(product(product(A,difference(B,A)),product(product(difference(B,A),product(difference(B,A),B)),product(A,difference(B,A)))),product(A,difference(B,A))) = difference(B,A).  [para(38(a,1),62(a,2))].
+68 quotient(product(product(A,difference(B,A)),product(product(difference(B,A),difference(B,A)),product(A,product(B,difference(B,A))))),product(A,difference(B,A))) = difference(B,A).  [para(64(a,1),67(a,1,1,2))].
+69 quotient(product(product(A,difference(B,A)),product(difference(B,A),product(A,product(B,difference(B,A))))),product(A,difference(B,A))) = difference(B,A).  [para(16(a,1),68(a,1,1,2,1))].
+70 quotient(product(product(A,difference(B,A)),product(difference(B,A),product(A,A))),product(A,difference(B,A))) = difference(B,A).  [para(18(a,1),69(a,1,1,2,2,2))].
+71 quotient(product(product(A,difference(B,A)),product(difference(B,A),A)),product(A,difference(B,A))) = difference(B,A).  [para(16(a,1),70(a,1,1,2,2))].
+72 product(product(A,difference(B,A)),quotient(product(difference(B,A),A),product(A,difference(B,A)))) = difference(B,A).  [para(66(a,1),71(a,1))].
+73 product(b1,quotient(c,b1)) = a1.  [para(66(a,1),54(a,1))].
+74 product(b,quotient(c1,b)) = a1.  [para(66(a,1),53(a,1))].
+75 product(a,quotient(bigC,a)) = b.  [para(66(a,1),52(a,1))].
+76 difference(b1,a1) = quotient(c,b1).  [para(73(a,1),17(a,1,2))].
+77 quotient(c,b1) = difference(b1,a1).  [copy(76),flip(a)].
+78 quotient(product(A,product(B,C)),product(D,C)) = product(quotient(A,D),B).  [para(20(a,1),46(a,1,1,1))].
+79 difference(b,a1) = quotient(c1,b).  [para(74(a,1),17(a,1,2))].
+80 quotient(c1,b) = difference(b,a1).  [copy(79),flip(a)].
+81 difference(a,b) = quotient(bigC,a).  [para(75(a,1),17(a,1,2))].
+82 quotient(bigC,a) = difference(a,b).  [copy(81),flip(a)].
+83 product(difference(b1,a1),b1) = c.  [para(77(a,1),20(a,1,1))].
+84 product(difference(b,a1),b) = c1.  [para(80(a,1),20(a,1,1))].
+85 product(difference(a,b),a) = bigC.  [para(82(a,1),20(a,1,1))].
+86 product(product(b1,A),c) = product(a1,product(A,b1)).  [para(83(a,1),45(a,1,2))].
+87 product(product(b,A),c1) = product(a1,product(A,b)).  [para(84(a,1),45(a,1,2))].
+88 product(product(a,A),bigC) = product(b,product(A,a)).  [para(85(a,1),45(a,1,2))].
+89 quotient(A,B) = product(B,quotient(difference(B,A),B)).  [para(18(a,1),66(a,1,1))].
+90 product(A,quotient(difference(A,B),A)) = quotient(B,A).  [copy(89),flip(a)].
+91 quotient(product(b,bigA),bigA) = product(bigA,quotient(c,bigA)).  [para(25(a,1),66(a,1,1))].
+92 b = product(bigA,quotient(c,bigA)).  [para(19(a,1),91(a,1))].
+93 product(bigA,quotient(c,bigA)) = b.  [copy(92),flip(a)].
+94 quotient(product(a,bigC),b) = product(b,quotient(a,b)).  [para(27(a,1),66(a,1,1))].
+95 quotient(product(a,b1),b1) = product(b1,quotient(c1,b1)).  [para(28(a,1),66(a,1,1))].
+96 a = product(b1,quotient(c1,b1)).  [para(19(a,1),95(a,1))].
+97 product(b1,quotient(c1,b1)) = a.  [copy(96),flip(a)].
+98 difference(product(A,quotient(B,A)),product(A,B)) = A.  [para(66(a,1),36(a,1,1))].
+99 product(b,product(A,bigA)) = product(product(bigA,A),c).  [para(93(a,1),48(a,1,1))].
+100 product(product(bigA,A),c) = product(b,product(A,bigA)).  [copy(99),flip(a)].
+101 difference(b1,a) = quotient(c1,b1).  [para(97(a,1),17(a,1,2))].
+102 quotient(c1,b1) = difference(b1,a).  [copy(101),flip(a)].
+103 product(a,product(A,b1)) = product(product(b1,A),c1).  [para(97(a,1),48(a,1,1))].
+104 product(product(b1,A),c1) = product(a,product(A,b1)).  [copy(103),flip(a)].
+105 product(difference(b1,a),b1) = c1.  [para(102(a,1),20(a,1,1))].
+106 difference(difference(b1,a),c1) = b1.  [para(102(a,1),36(a,1,1))].
+107 product(A,c) = product(a1,product(difference(b1,A),b1)).  [para(18(a,1),86(a,1,1))].
+108 product(a1,product(difference(b1,A),b1)) = product(A,c).  [copy(107),flip(a)].
+109 quotient(product(a1,product(A,b1)),c) = product(b1,A).  [para(86(a,1),19(a,1,1))].
+110 product(product(b1,difference(b1,a)),c) = product(a1,c1).  [para(105(a,1),86(a,2,2))].
+111 product(a,c) = product(a1,c1).  [para(18(a,1),110(a,1,1))].
+112 product(a1,c1) = product(a,c).  [copy(111),flip(a)].
+113 product(product(a1,product(c1,b)),product(c1,product(c1,b))) = c1.  [para(87(a,1),21(a,1,1))].
+114 product(product(a1,c1),product(c1,b)) = c1.  [para(42(a,1),113(a,1))].
+115 product(product(a,c),product(c1,b)) = c1.  [para(112(a,1),114(a,1,1))].
+116 c1 = product(product(a,c1),product(c,b)).  [para(115(a,1),22(a,1))].
+117 product(product(a,c1),product(c,b)) = c1.  [copy(116),flip(a)].
+118 difference(product(a,c1),c1) = product(c,b).  [para(117(a,1),17(a,1,2))].
+119 difference(A,quotient(B,A)) = quotient(difference(A,B),A).  [para(90(a,1),17(a,1,2))].
+120 quotient(difference(A,B),A) = difference(A,quotient(B,A)).  [copy(119),flip(a)].
+121 difference(product(A,product(A,quotient(B,A))),product(A,product(A,B))) = A.  [para(66(a,1),98(a,1,1,2))].
+122 difference(difference(product(A,B),B),product(B,product(B,A))) = B.  [para(56(a,1),121(a,1,1))].
+123 quotient(product(b,product(A,bigA)),c) = product(bigA,A).  [para(100(a,1),19(a,1,1))].
+124 product(product(b,product(c,bigA)),product(c,product(c,bigA))) = c.  [para(100(a,1),21(a,1,1))].
+125 product(product(b,c),product(c,bigA)) = c.  [para(42(a,1),124(a,1))].
+126 quotient(c,product(c,bigA)) = product(b,c).  [para(125(a,1),19(a,1,1))].
+127 quotient(product(product(c,bigA),c),product(c,bigA)) = product(product(c,bigA),product(b,c)).  [para(126(a,1),66(a,2,2))].
+128 quotient(product(c,product(bigA,c)),product(c,bigA)) = product(product(c,bigA),product(b,c)).  [para(57(a,1),127(a,1,1))].
+129 quotient(product(c,product(b,bigA)),product(c,bigA)) = product(product(c,bigA),product(b,c)).  [para(25(a,1),128(a,1,1,2))].
+130 product(quotient(c,c),b) = product(product(c,bigA),product(b,c)).  [para(78(a,1),129(a,1))].
+131 product(c,b) = product(product(c,bigA),product(b,c)).  [para(34(a,1),130(a,1,1))].
+132 product(product(c,bigA),product(b,c)) = product(c,b).  [copy(131),flip(a)].
+133 product(product(a,product(c1,b1)),product(c1,product(c1,b1))) = c1.  [para(104(a,1),21(a,1,1))].
+134 product(product(a,c1),product(c1,b1)) = c1.  [para(42(a,1),133(a,1))].
+135 difference(product(a,c1),c1) = product(c1,b1).  [para(134(a,1),17(a,1,2))].
+136 product(c,b) = product(c1,b1).  [para(118(a,1),135(a,1))].
+137 product(c1,b1) = product(c,b).  [copy(136),flip(a)].
+138 product(product(A,bigA),product(B,c)) = product(product(A,b),product(B,bigA)).  [para(51(a,2),22(a,1))].
+139 product(product(c,b),product(b,bigA)) = product(c,b).  [para(138(a,1),132(a,1))].
+140 difference(a1,product(A,c)) = product(difference(b1,A),b1).  [para(108(a,1),17(a,1,2))].
+141 quotient(product(a1,A),c) = product(b1,quotient(A,b1)).  [para(20(a,1),109(a,1,1,2))].
+142 product(difference(A,quotient(B,A)),A) = difference(A,B).  [para(120(a,1),20(a,1,1))].
+143 quotient(product(b,A),c) = product(bigA,quotient(A,bigA)).  [para(20(a,1),123(a,1,1,2))].
+144 difference(product(c,b),product(c,b)) = product(b,bigA).  [para(139(a,1),17(a,1,2))].
+145 product(c,b) = product(b,bigA).  [para(33(a,1),144(a,1))].
+146 product(c1,b1) = product(b,bigA).  [para(145(a,1),137(a,2))].
+147 product(a,product(a,quotient(difference(a,b),a))) = difference(bigC,a).  [para(85(a,1),56(a,2,1))].
+148 product(a,product(a,difference(a,quotient(b,a)))) = difference(bigC,a).  [para(120(a,1),147(a,1,2,2))].
+149 product(a,quotient(b,a)) = difference(bigC,a).  [para(18(a,1),148(a,1,2))].
+150 quotient(difference(product(A,B),B),B) = product(B,quotient(product(B,quotient(A,B)),B)).  [para(56(a,1),66(a,1,1))].
+151 quotient(difference(product(A,B),B),B) = product(B,product(B,quotient(quotient(A,B),B))).  [para(66(a,1),150(a,2,2))].
+152 quotient(difference(product(A,B),B),B) = difference(product(quotient(A,B),B),B).  [para(56(a,1),151(a,2))].
+153 quotient(difference(product(A,B),B),B) = difference(A,B).  [para(20(a,1),152(a,2,1))].
+154 product(difference(bigC,a),bigC) = product(b,product(quotient(b,a),a)).  [para(149(a,1),88(a,1,1))].
+155 product(difference(bigC,a),bigC) = product(b,b).  [para(20(a,1),154(a,2,2))].
+156 product(difference(bigC,a),bigC) = b.  [para(16(a,1),155(a,2))].
+157 product(product(bigC,difference(bigC,a)),bigC) = product(bigC,b).  [para(156(a,1),57(a,2,2))].
+158 product(a,bigC) = product(bigC,b).  [para(18(a,1),157(a,1,1))].
+159 product(bigC,b) = product(a,bigC).  [copy(158),flip(a)].
+160 quotient(product(a,bigC),b) = bigC.  [para(159(a,1),19(a,1,1))].
+161 product(b,quotient(a,b)) = bigC.  [para(94(a,1),160(a,1))].
+162 difference(b,bigC) = quotient(a,b).  [para(161(a,1),17(a,1,2))].
+163 quotient(a,b) = difference(b,bigC).  [copy(162),flip(a)].
+164 difference(A,product(B,product(C,D))) = product(difference(quotient(A,C),B),D).  [para(20(a,1),65(a,1,1))].
+165 product(difference(quotient(difference(product(A,B),B),B),B),A) = B.  [para(164(a,1),122(a,1))].
+166 product(difference(difference(A,B),B),A) = B.  [para(153(a,1),165(a,1,1,1))].
+167 quotient(A,B) = difference(difference(B,A),A).  [para(166(a,1),19(a,1,1))].
+168 difference(difference(A,B),B) = quotient(B,A).  [copy(167),flip(a)].
+169 difference(A,product(B,A)) = quotient(product(B,A),B).  [para(17(a,1),168(a,1,1))].
+170 difference(A,product(B,A)) = product(B,quotient(A,B)).  [para(66(a,1),169(a,2))].
+171 quotient(quotient(A,B),difference(B,A)) = difference(difference(B,A),quotient(A,difference(B,A))).  [para(168(a,1),120(a,1,1))].
+172 quotient(quotient(A,B),difference(B,A)) = difference(difference(B,A),B).  [para(35(a,1),171(a,2,2))].
+173 difference(a1,product(b,bigA)) = product(difference(b1,bigA),b1).  [para(25(a,1),140(a,1,2))].
+174 product(difference(A,B),A) = difference(A,product(B,A)).  [para(19(a,1),142(a,1,1,2))].
+175 difference(A,product(B,A)) = product(difference(A,B),A).  [copy(174),flip(a)].
+176 product(difference(A,B),A) = product(B,quotient(A,B)).  [para(175(a,1),170(a,1))].
+177 difference(a1,product(b,bigA)) = product(bigA,quotient(b1,bigA)).  [para(176(a,1),173(a,2))].
+178 product(product(c1,b1),quotient(product(difference(difference(b1,a),c1),c1),product(c1,difference(difference(b1,a),c1)))) = difference(difference(b1,a),c1).  [para(106(a,1),72(a,1,1,2))].
+179 product(product(b,bigA),quotient(product(difference(difference(b1,a),c1),c1),product(c1,difference(difference(b1,a),c1)))) = difference(difference(b1,a),c1).  [para(146(a,1),178(a,1,1))].
+180 product(product(b,bigA),quotient(product(b1,c1),product(c1,difference(difference(b1,a),c1)))) = difference(difference(b1,a),c1).  [para(106(a,1),179(a,1,2,1,1))].
+181 product(product(b,bigA),quotient(product(a,b1),product(c1,difference(difference(b1,a),c1)))) = difference(difference(b1,a),c1).  [para(28(a,1),180(a,1,2,1))].
+182 product(product(b,bigA),quotient(product(a,b1),product(c1,b1))) = difference(difference(b1,a),c1).  [para(106(a,1),181(a,1,2,2,2))].
+183 product(product(b,bigA),quotient(product(a,b1),product(b,bigA))) = difference(difference(b1,a),c1).  [para(146(a,1),182(a,1,2,2))].
+184 product(product(b,bigA),quotient(product(a,b1),product(b,bigA))) = b1.  [para(106(a,1),183(a,2))].
+185 quotient(product(A,B),product(C,D)) = product(quotient(A,C),quotient(B,D)).  [para(20(a,1),78(a,1,1,2))].
+186 quotient(product(A,product(B,C)),D) = product(quotient(A,quotient(D,C)),B).  [para(20(a,1),78(a,1,2))].
+187 product(product(b,bigA),product(quotient(a,b),quotient(b1,bigA))) = b1.  [para(185(a,1),184(a,1,2))].
+188 product(product(b,bigA),product(difference(b,bigC),quotient(b1,bigA))) = b1.  [para(163(a,1),187(a,1,2,1))].
+189 product(bigC,product(bigA,quotient(b1,bigA))) = b1.  [para(45(a,1),188(a,1))].
+190 difference(bigC,b1) = product(bigA,quotient(b1,bigA)).  [para(189(a,1),17(a,1,2))].
+191 product(bigA,quotient(b1,bigA)) = difference(bigC,b1).  [copy(190),flip(a)].
+192 product(product(product(bigA,quotient(b1,bigA)),bigC),product(bigA,quotient(b1,bigA))) = product(product(bigA,quotient(b1,bigA)),b1).  [para(189(a,1),57(a,2,2))].
+193 product(product(difference(bigC,b1),bigC),product(bigA,quotient(b1,bigA))) = product(product(bigA,quotient(b1,bigA)),b1).  [para(191(a,1),192(a,1,1,1))].
+194 product(product(b1,quotient(bigC,b1)),product(bigA,quotient(b1,bigA))) = product(product(bigA,quotient(b1,bigA)),b1).  [para(176(a,1),193(a,1,1))].
+195 product(product(b1,quotient(bigC,b1)),difference(bigC,b1)) = product(product(bigA,quotient(b1,bigA)),b1).  [para(191(a,1),194(a,1,2))].
+196 product(product(b1,quotient(bigC,b1)),difference(bigC,b1)) = product(difference(bigC,b1),b1).  [para(191(a,1),195(a,2,1))].
+197 difference(a1,product(b,bigA)) = difference(bigC,b1).  [para(191(a,1),177(a,2))].
+198 difference(bigA,difference(bigC,b1)) = quotient(b1,bigA).  [para(191(a,1),17(a,1,2))].
+199 product(difference(bigC,b1),product(bigA,A)) = product(bigA,product(quotient(b1,bigA),A)).  [para(191(a,1),40(a,1,1))].
+200 product(difference(bigC,b1),bigA) = product(bigA,product(quotient(b1,bigA),bigA)).  [para(191(a,1),57(a,1,1))].
+201 product(difference(bigC,b1),bigA) = product(bigA,b1).  [para(20(a,1),200(a,2,2))].
+202 product(a1,difference(bigC,b1)) = product(b,bigA).  [para(197(a,1),18(a,1,2))].
+203 difference(difference(bigC,b1),product(bigA,b1)) = bigA.  [para(201(a,1),17(a,1,2))].
+204 quotient(product(b,bigA),c) = product(b1,quotient(difference(bigC,b1),b1)).  [para(202(a,1),141(a,1,1))].
+205 product(bigA,quotient(bigA,bigA)) = product(b1,quotient(difference(bigC,b1),b1)).  [para(143(a,1),204(a,1))].
+206 product(bigA,bigA) = product(b1,quotient(difference(bigC,b1),b1)).  [para(34(a,1),205(a,1,2))].
+207 bigA = product(b1,quotient(difference(bigC,b1),b1)).  [para(16(a,1),206(a,1))].
+208 product(b1,quotient(difference(bigC,b1),b1)) = bigA.  [copy(207),flip(a)].
+209 difference(bigA,product(bigA,b1)) = quotient(product(bigA,b1),difference(bigC,b1)).  [para(203(a,1),168(a,1,1))].
+210 b1 = quotient(product(bigA,b1),difference(bigC,b1)).  [para(17(a,1),209(a,1))].
+211 quotient(product(bigA,b1),difference(bigC,b1)) = b1.  [copy(210),flip(a)].
+212 product(difference(difference(bigC,b1),quotient(product(bigA,b1),difference(bigC,b1))),difference(bigC,b1)) = bigA.  [para(203(a,1),142(a,2))].
+213 product(difference(difference(bigC,b1),b1),difference(bigC,b1)) = bigA.  [para(211(a,1),212(a,1,1,2))].
+214 product(quotient(b1,bigC),difference(bigC,b1)) = bigA.  [para(168(a,1),213(a,1,1))].
+215 difference(b1,bigA) = quotient(difference(bigC,b1),b1).  [para(208(a,1),17(a,1,2))].
+216 quotient(difference(bigC,b1),b1) = difference(b1,bigA).  [copy(215),flip(a)].
+217 product(bigA,product(A,b1)) = product(product(b1,A),difference(bigC,b1)).  [para(208(a,1),48(a,1,1))].
+218 product(product(b1,A),difference(bigC,b1)) = product(bigA,product(A,b1)).  [copy(217),flip(a)].
+219 product(bigA,product(quotient(bigC,b1),b1)) = product(difference(bigC,b1),b1).  [para(218(a,1),196(a,1))].
+220 product(bigA,bigC) = product(difference(bigC,b1),b1).  [para(20(a,1),219(a,1,2))].
+221 product(difference(bigC,b1),b1) = product(bigA,bigC).  [copy(220),flip(a)].
+222 quotient(product(difference(bigC,b1),product(bigA,b1)),difference(bigC,b1)) = product(difference(bigC,b1),b1).  [para(211(a,1),66(a,2,2))].
+223 quotient(product(bigA,product(quotient(b1,bigA),b1)),difference(bigC,b1)) = product(difference(bigC,b1),b1).  [para(199(a,1),222(a,1,1))].
+224 product(quotient(bigA,quotient(difference(bigC,b1),b1)),quotient(b1,bigA)) = product(difference(bigC,b1),b1).  [para(186(a,1),223(a,1))].
+225 product(quotient(bigA,difference(b1,bigA)),quotient(b1,bigA)) = product(difference(bigC,b1),b1).  [para(216(a,1),224(a,1,1,2))].
+226 product(b1,quotient(b1,bigA)) = product(difference(bigC,b1),b1).  [para(35(a,1),225(a,1,1))].
+227 product(b1,quotient(b1,bigA)) = product(bigA,bigC).  [para(221(a,1),226(a,2))].
+228 product(b1,product(difference(bigC,b1),A)) = product(product(bigA,b1),product(quotient(product(bigA,b1),difference(bigC,b1)),A)).  [para(211(a,1),59(a,1,1))].
+229 product(b1,product(difference(bigC,b1),A)) = product(product(bigA,b1),product(b1,A)).  [para(211(a,1),228(a,2,2,1))].
+230 product(product(bigA,b1),product(b1,A)) = product(b1,product(difference(bigC,b1),A)).  [copy(229),flip(a)].
+231 product(b1,product(difference(bigC,b1),bigC)) != product(bigA,bigC).  [para(230(a,1),49(a,1))].
+232 product(b1,product(b1,quotient(bigC,b1))) != product(bigA,bigC).  [para(176(a,1),231(a,1,2))].
+233 difference(product(bigC,b1),b1) != product(bigA,bigC).  [para(56(a,1),232(a,1))].
+234 product(difference(bigC,b1),product(difference(bigC,b1),quotient(quotient(b1,bigC),difference(bigC,b1)))) = difference(bigA,difference(bigC,b1)).  [para(214(a,1),56(a,2,1))].
+235 product(difference(bigC,b1),product(difference(bigC,b1),difference(difference(bigC,b1),bigC))) = difference(bigA,difference(bigC,b1)).  [para(172(a,1),234(a,1,2,2))].
+236 product(difference(bigC,b1),bigC) = difference(bigA,difference(bigC,b1)).  [para(18(a,1),235(a,1,2))].
+237 product(b1,quotient(bigC,b1)) = difference(bigA,difference(bigC,b1)).  [para(176(a,1),236(a,1))].
+238 product(b1,quotient(bigC,b1)) = quotient(b1,bigA).  [para(198(a,1),237(a,2))].
+239 product(b1,quotient(b1,bigA)) = difference(product(bigC,b1),b1).  [para(238(a,1),56(a,1,2))].
+240 product(bigA,bigC) = difference(product(bigC,b1),b1).  [para(227(a,1),239(a,1))].
+241 difference(product(bigC,b1),b1) = product(bigA,bigC).  [copy(240),flip(a)].
+242 $F.  [resolve(241,a,233,a)].
+
+============================== end of proof ==========================

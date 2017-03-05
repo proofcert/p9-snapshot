@@ -1,0 +1,48 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n106.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:32:53 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 44831 was started by sandbox on n106.star.cs.uiowa.edu,
+Fri Jun  6 03:32:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_44799_n106.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 14.000.
+% Given clauses 29.
+
+
+1 (all A relation(identity_relation(A))).  [assumption].
+2 (all A (relation(identity_relation(A)) & function(identity_relation(A)))).  [assumption].
+3 (all A all B (relation(B) & function(B) -> (B = identity_relation(A) <-> relation_dom(B) = A & (all C (in(C,A) -> apply(B,C) = C))))).  [assumption].
+4 -(all A all B (in(B,A) -> apply(identity_relation(A),B) = B)).  [assumption].
+5 relation(identity_relation(A)).  [clausify(1)].
+6 -relation(A) | -function(A) | identity_relation(B) != A | -in(C,B) | apply(A,C) = C.  [clausify(3)].
+7 function(identity_relation(A)).  [clausify(2)].
+8 in(c8,c7).  [clausify(4)].
+9 apply(identity_relation(c7),c8) != c8.  [clausify(4)].
+10 -function(identity_relation(A)) | identity_relation(B) != identity_relation(A) | -in(C,B) | apply(identity_relation(A),C) = C.  [resolve(6,a,5,a)].
+11 identity_relation(A) != identity_relation(B) | -in(C,A) | apply(identity_relation(B),C) = C.  [resolve(7,a,10,a)].
+12 identity_relation(c7) != identity_relation(A) | apply(identity_relation(A),c8) = c8.  [resolve(11,b,8,a)].
+13 identity_relation(c7) != identity_relation(c7).  [resolve(12,b,9,a)].
+14 $F.  [copy(13),xx(a)].
+
+============================== end of proof ==========================

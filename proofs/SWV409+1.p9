@@ -1,0 +1,65 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n060.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:31:53 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 42667 was started by sandbox on n060.star.cs.uiowa.edu,
+Fri Jun  6 08:31:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_42635_n060.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 25.
+% Level of proof is 7.
+% Maximum clause weight is 20.000.
+% Given clauses 116.
+
+
+1 (all A all B (less_than(A,B) | less_than(B,A))).  [assumption].
+2 (all A all B (strictly_less_than(A,B) <-> less_than(A,B) & -less_than(B,A))).  [assumption].
+3 (all A all B (contains_slb(A,B) -> (exists C pair_in_list(A,B,C)))).  [assumption].
+4 (all A all B all C all D (pair_in_list(A,B,C) & strictly_less_than(B,D) & strictly_less_than(C,D) -> pair_in_list(update_slb(A,D),B,D))).  [assumption].
+5 (all A all B all C all D (pair_in_list(A,B,C) & strictly_less_than(B,D) & less_than(D,C) -> (exists E (pair_in_list(update_slb(A,D),B,E) & less_than(D,E))))).  [assumption].
+6 -(all A all B all C (contains_slb(A,B) & strictly_less_than(B,C) -> pair_in_list(update_slb(A,C),B,C) | (exists D (pair_in_list(update_slb(A,C),B,D) & less_than(C,D))))).  [assumption].
+7 contains_slb(c1,c2).  [clausify(6)].
+8 strictly_less_than(c2,c3).  [clausify(6)].
+9 less_than(A,B) | less_than(B,A).  [clausify(1)].
+10 -pair_in_list(update_slb(c1,c3),c2,c3).  [clausify(6)].
+11 -pair_in_list(update_slb(c1,c3),c2,A) | -less_than(c3,A).  [clausify(6)].
+12 strictly_less_than(A,B) | -less_than(A,B) | less_than(B,A).  [clausify(2)].
+13 -contains_slb(A,B) | pair_in_list(A,B,f1(A,B)).  [clausify(3)].
+14 -pair_in_list(A,B,C) | -strictly_less_than(B,D) | -strictly_less_than(C,D) | pair_in_list(update_slb(A,D),B,D).  [clausify(4)].
+15 -pair_in_list(A,B,C) | -strictly_less_than(B,D) | -less_than(D,C) | less_than(D,f2(A,B,C,D)).  [clausify(5)].
+16 -pair_in_list(A,B,C) | -strictly_less_than(B,D) | -less_than(D,C) | pair_in_list(update_slb(A,D),B,f2(A,B,C,D)).  [clausify(5)].
+17 strictly_less_than(A,B) | less_than(B,A) | less_than(B,A).  [resolve(12,b,9,b)].
+18 strictly_less_than(A,B) | less_than(B,A).  [copy(17),merge(c)].
+19 pair_in_list(c1,c2,f1(c1,c2)).  [resolve(13,a,7,a)].
+20 -strictly_less_than(c2,A) | -less_than(A,f1(c1,c2)) | pair_in_list(update_slb(c1,A),c2,f2(c1,c2,f1(c1,c2),A)).  [resolve(19,a,16,a)].
+21 -strictly_less_than(c2,A) | -less_than(A,f1(c1,c2)) | less_than(A,f2(c1,c2,f1(c1,c2),A)).  [resolve(19,a,15,a)].
+22 -strictly_less_than(c2,A) | -strictly_less_than(f1(c1,c2),A) | pair_in_list(update_slb(c1,A),c2,A).  [resolve(14,a,19,a)].
+23 -strictly_less_than(f1(c1,c2),c3) | pair_in_list(update_slb(c1,c3),c2,c3).  [resolve(22,a,8,a)].
+24 -strictly_less_than(f1(c1,c2),c3).  [resolve(23,b,10,a)].
+25 less_than(c3,f1(c1,c2)).  [resolve(24,a,18,a)].
+26 -less_than(c3,f1(c1,c2)) | pair_in_list(update_slb(c1,c3),c2,f2(c1,c2,f1(c1,c2),c3)).  [resolve(20,a,8,a)].
+27 pair_in_list(update_slb(c1,c3),c2,f2(c1,c2,f1(c1,c2),c3)).  [resolve(25,a,26,a)].
+28 -less_than(c3,f2(c1,c2,f1(c1,c2),c3)).  [resolve(27,a,11,a)].
+29 -less_than(c3,f1(c1,c2)) | less_than(c3,f2(c1,c2,f1(c1,c2),c3)).  [resolve(21,a,8,a)].
+30 less_than(c3,f2(c1,c2,f1(c1,c2),c3)).  [resolve(25,a,29,a)].
+31 $F.  [resolve(28,a,30,a)].
+
+============================== end of proof ==========================

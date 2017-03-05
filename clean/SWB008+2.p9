@@ -1,0 +1,17 @@
+
+
+
+4 iext(uri_rdf_type,uri_foaf_mbox_sha1sum,uri_owl_InverseFunctionalProperty).  [assumption].
+5 iext(uri_foaf_mbox_sha1sum,uri_ex_bob,literal_plain(dat_str_xyz)).  [assumption].
+6 iext(uri_foaf_mbox_sha1sum,uri_ex_robert,literal_plain(dat_str_xyz)).  [assumption].
+7 -iext(uri_owl_sameAs,uri_ex_bob,uri_ex_robert).  [assumption].
+8 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(1)].
+9 iext(uri_owl_sameAs,A,B) | B != A.  [clausify(2)].
+10 -icext(uri_owl_InverseFunctionalProperty,A) | -iext(A,B,C) | -iext(A,D,C) | D = B.  [clausify(3)].
+11 icext(uri_owl_InverseFunctionalProperty,uri_foaf_mbox_sha1sum).  [resolve(8,a,4,a)].
+12 uri_ex_robert != uri_ex_bob.  [resolve(9,a,7,a)].
+13 -iext(uri_foaf_mbox_sha1sum,A,B) | -iext(uri_foaf_mbox_sha1sum,C,B) | C = A.  [resolve(10,a,11,a)].
+14 -iext(uri_foaf_mbox_sha1sum,A,literal_plain(dat_str_xyz)) | A = uri_ex_robert.  [resolve(13,a,6,a)].
+15 uri_ex_bob = uri_ex_robert.  [resolve(14,a,5,a)].
+16 uri_ex_robert = uri_ex_bob.  [copy(15),flip(a)].
+17 $F.  [resolve(16,a,12,a)].

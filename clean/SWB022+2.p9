@@ -1,0 +1,49 @@
+
+
+
+
+5 iext(uri_rdfs_subPropertyOf,uri_skos_memberList,c1).  [clausify(3)].
+6 iext(uri_owl_propertyChainAxiom,uri_skos_member,c2).  [clausify(3)].
+7 iext(uri_rdf_first,c2,c1).  [clausify(3)].
+8 iext(uri_rdf_rest,c2,c3).  [clausify(3)].
+9 iext(uri_rdf_first,c3,uri_rdf_first).  [clausify(3)].
+10 iext(uri_rdf_rest,c3,uri_rdf_nil).  [clausify(3)].
+11 iext(uri_owl_propertyChainAxiom,c1,c4).  [clausify(3)].
+12 iext(uri_rdf_first,c4,c1).  [clausify(3)].
+13 iext(uri_rdf_rest,c4,c5).  [clausify(3)].
+14 iext(uri_rdf_first,c5,uri_rdf_rest).  [clausify(3)].
+15 iext(uri_rdf_rest,c5,uri_rdf_nil).  [clausify(3)].
+16 iext(uri_skos_memberList,uri_ex_MyOrderedCollection,c6).  [clausify(3)].
+17 iext(uri_rdf_first,c6,uri_ex_X).  [clausify(3)].
+18 iext(uri_rdf_rest,c6,c7).  [clausify(3)].
+19 iext(uri_rdf_first,c7,uri_ex_Y).  [clausify(3)].
+20 iext(uri_rdf_rest,c7,c8).  [clausify(3)].
+21 iext(uri_rdf_first,c8,uri_ex_Z).  [clausify(3)].
+22 -iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_X) | -iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_Y) | -iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_Z).  [clausify(4)].
+23 -iext(uri_rdfs_subPropertyOf,A,B) | -iext(A,C,D) | iext(B,C,D).  [clausify(1)].
+24 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,E,A) | -iext(B,F,V6) | -iext(D,V6,V7) | iext(E,F,V7).  [clausify(2)].
+25 -iext(uri_skos_memberList,A,B) | iext(c1,A,B).  [resolve(23,a,5,a)].
+26 -iext(uri_rdf_rest,c4,A) | -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,C,c4) | -iext(c1,D,E) | -iext(B,E,F) | iext(C,D,F).  [resolve(24,a,12,a)].
+27 -iext(uri_rdf_rest,c2,A) | -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,C,c2) | -iext(c1,D,E) | -iext(B,E,F) | iext(C,D,F).  [resolve(24,a,7,a)].
+28 iext(c1,uri_ex_MyOrderedCollection,c6).  [resolve(25,a,16,a)].
+29 -iext(uri_rdf_rest,c4,c5) | -iext(uri_rdf_rest,c5,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,A,c4) | -iext(c1,B,C) | -iext(uri_rdf_rest,C,D) | iext(A,B,D).  [resolve(26,b,14,a)].
+30 -iext(uri_rdf_rest,c5,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,A,c4) | -iext(c1,B,C) | -iext(uri_rdf_rest,C,D) | iext(A,B,D).  [resolve(13,a,29,a)].
+31 -iext(uri_owl_propertyChainAxiom,A,c4) | -iext(c1,B,C) | -iext(uri_rdf_rest,C,D) | iext(A,B,D).  [resolve(15,a,30,a)].
+32 -iext(uri_rdf_rest,c2,c3) | -iext(uri_rdf_rest,c3,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,A,c2) | -iext(c1,B,C) | -iext(uri_rdf_first,C,D) | iext(A,B,D).  [resolve(27,b,9,a)].
+33 -iext(uri_rdf_rest,c3,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,A,c2) | -iext(c1,B,C) | -iext(uri_rdf_first,C,D) | iext(A,B,D).  [resolve(8,a,32,a)].
+34 -iext(uri_owl_propertyChainAxiom,A,c2) | -iext(c1,B,C) | -iext(uri_rdf_first,C,D) | iext(A,B,D).  [resolve(10,a,33,a)].
+35 -iext(c1,A,B) | -iext(uri_rdf_rest,B,C) | iext(c1,A,C).  [resolve(31,a,11,a)].
+36 -iext(uri_rdf_rest,c6,A) | iext(c1,uri_ex_MyOrderedCollection,A).  [resolve(35,a,28,a)].
+37 -iext(c1,A,c7) | iext(c1,A,c8).  [resolve(35,b,20,a)].
+38 iext(c1,uri_ex_MyOrderedCollection,c7).  [resolve(36,a,18,a)].
+39 iext(c1,uri_ex_MyOrderedCollection,c8).  [resolve(37,a,38,a)].
+40 -iext(c1,A,B) | -iext(uri_rdf_first,B,C) | iext(uri_skos_member,A,C).  [resolve(34,a,6,a)].
+41 -iext(uri_rdf_first,c8,A) | iext(uri_skos_member,uri_ex_MyOrderedCollection,A).  [resolve(40,a,39,a)].
+42 -iext(uri_rdf_first,c7,A) | iext(uri_skos_member,uri_ex_MyOrderedCollection,A).  [resolve(40,a,38,a)].
+43 -iext(uri_rdf_first,c6,A) | iext(uri_skos_member,uri_ex_MyOrderedCollection,A).  [resolve(40,a,28,a)].
+44 iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_Z).  [resolve(41,a,21,a)].
+45 -iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_X) | -iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_Y).  [resolve(44,a,22,c)].
+46 iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_Y).  [resolve(42,a,19,a)].
+47 -iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_X).  [resolve(46,a,45,b)].
+48 iext(uri_skos_member,uri_ex_MyOrderedCollection,uri_ex_X).  [resolve(43,a,17,a)].
+49 $F.  [resolve(47,a,48,a)].

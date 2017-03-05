@@ -1,0 +1,32 @@
+
+
+
+
+
+6 topological_space(c4).  [clausify(5)].
+7 empty_carrier(A) | -topological_space(A) | -top_str(A) | -element(B,the_carrier(A)) | -element(C,powerset(the_carrier(A))) | point_neighbourhood(C,A,B) | -in(B,interior(A,C)).  [clausify(1)].
+8 -topological_space(A) | -top_str(A) | -top_str(B) | -element(C,powerset(the_carrier(A))) | -element(D,powerset(the_carrier(B))) | -open_subset(D,B) | interior(B,D) = D.  [clausify(4)].
+9 element(A,powerset(B)) | -subset(A,B).  [clausify(3)].
+10 subset(A,A).  [clausify(2)].
+11 -top_str(c4) | -top_str(A) | -element(B,powerset(the_carrier(c4))) | -element(C,powerset(the_carrier(A))) | -open_subset(C,A) | interior(A,C) = C.  [resolve(8,a,6,a)].
+12 open_subset(c5,c4).  [clausify(5)].
+13 top_str(c4).  [clausify(5)].
+14 in(c6,c5).  [clausify(5)].
+15 element(c6,the_carrier(c4)).  [clausify(5)].
+16 element(c5,powerset(the_carrier(c4))).  [clausify(5)].
+17 -empty_carrier(c4).  [clausify(5)].
+18 -point_neighbourhood(c5,c4,c6).  [clausify(5)].
+19 empty_carrier(c4) | -top_str(c4) | -element(A,the_carrier(c4)) | -element(B,powerset(the_carrier(c4))) | point_neighbourhood(B,c4,A) | -in(A,interior(c4,B)).  [resolve(7,b,6,a)].
+20 -top_str(c4) | -element(A,the_carrier(c4)) | -element(B,powerset(the_carrier(c4))) | point_neighbourhood(B,c4,A) | -in(A,interior(c4,B)).  [resolve(17,a,19,a)].
+21 -element(A,the_carrier(c4)) | -element(B,powerset(the_carrier(c4))) | point_neighbourhood(B,c4,A) | -in(A,interior(c4,B)).  [resolve(13,a,20,a)].
+22 element(A,powerset(A)).  [resolve(9,b,10,a)].
+23 -top_str(c4) | -top_str(c4) | -element(A,powerset(the_carrier(c4))) | -element(c5,powerset(the_carrier(c4))) | interior(c4,c5) = c5.  [resolve(11,e,12,a)].
+24 -top_str(c4) | -element(A,powerset(the_carrier(c4))) | -element(c5,powerset(the_carrier(c4))) | interior(c4,c5) = c5.  [copy(23),merge(b)].
+25 -element(A,powerset(the_carrier(c4))) | -element(c5,powerset(the_carrier(c4))) | interior(c4,c5) = c5.  [resolve(13,a,24,a)].
+26 -element(A,powerset(the_carrier(c4))) | interior(c4,c5) = c5.  [resolve(16,a,25,b)].
+27 -element(A,powerset(the_carrier(c4))) | point_neighbourhood(A,c4,c6) | -in(c6,interior(c4,A)).  [resolve(21,a,15,a)].
+28 point_neighbourhood(c5,c4,c6) | -in(c6,interior(c4,c5)).  [resolve(27,a,16,a)].
+29 -in(c6,interior(c4,c5)).  [resolve(28,a,18,a)].
+30 interior(c4,c5) = c5.  [resolve(26,a,22,a)].
+31 -in(c6,c5).  [para(30(a,1),29(a,2))].
+32 $F.  [resolve(14,a,31,a)].

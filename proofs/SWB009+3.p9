@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n139.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:28:23 CDT 2014
+% CPUTime    : 10.49 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 2254 was started by sandbox on n139.star.cs.uiowa.edu,
+Thu Jun  5 14:28:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_2216_n139.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 10.13 (+ 0.18) seconds.
+% Length of proof is 21.
+% Level of proof is 6.
+% Maximum clause weight is 19.000.
+% Given clauses 15880.
+
+
+1 (all A all B all C (iext(uri_owl_someValuesFrom,A,C) & iext(uri_owl_onProperty,A,B) -> (all D (icext(A,D) <-> (exists E (iext(B,D,E) & icext(C,E))))))).  [assumption].
+2 (all A all B (iext(uri_rdf_type,A,B) <-> icext(B,A))).  [assumption].
+3 (exists A (iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty) & iext(uri_rdf_type,uri_ex_c,uri_owl_Class) & iext(uri_rdf_type,uri_ex_s,A) & iext(uri_rdf_type,A,uri_owl_Restriction) & iext(uri_owl_onProperty,A,uri_ex_p) & iext(uri_owl_someValuesFrom,A,uri_ex_c))).  [assumption].
+4 -(exists A (iext(uri_ex_p,uri_ex_s,A) & iext(uri_rdf_type,A,uri_ex_c))).  [assumption].
+5 -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | iext(C,D,f17(A,C,B,D)).  [clausify(1)].
+6 -iext(uri_owl_someValuesFrom,A,B) | -iext(uri_owl_onProperty,A,C) | -icext(A,D) | icext(B,f17(A,C,B,D)).  [clausify(1)].
+7 -iext(uri_rdf_type,A,B) | icext(B,A).  [clausify(2)].
+8 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(2)].
+9 iext(uri_rdf_type,uri_ex_s,c2).  [clausify(3)].
+10 iext(uri_owl_onProperty,c2,uri_ex_p).  [clausify(3)].
+11 iext(uri_owl_someValuesFrom,c2,uri_ex_c).  [clausify(3)].
+12 -iext(uri_ex_p,uri_ex_s,A) | -iext(uri_rdf_type,A,uri_ex_c).  [clausify(4)].
+13 icext(c2,uri_ex_s).  [resolve(9,a,7,a)].
+14 -iext(uri_owl_someValuesFrom,c2,A) | -icext(c2,B) | icext(A,f17(c2,uri_ex_p,A,B)).  [resolve(10,a,6,b)].
+15 -iext(uri_owl_someValuesFrom,c2,A) | -icext(c2,B) | iext(uri_ex_p,B,f17(c2,uri_ex_p,A,B)).  [resolve(10,a,5,b)].
+16 -icext(c2,A) | icext(uri_ex_c,f17(c2,uri_ex_p,uri_ex_c,A)).  [resolve(14,a,11,a)].
+17 -icext(c2,A) | iext(uri_ex_p,A,f17(c2,uri_ex_p,uri_ex_c,A)).  [resolve(15,a,11,a)].
+18 icext(uri_ex_c,f17(c2,uri_ex_p,uri_ex_c,uri_ex_s)).  [resolve(16,a,13,a)].
+19 iext(uri_rdf_type,f17(c2,uri_ex_p,uri_ex_c,uri_ex_s),uri_ex_c).  [resolve(18,a,8,b)].
+20 iext(uri_ex_p,uri_ex_s,f17(c2,uri_ex_p,uri_ex_c,uri_ex_s)).  [resolve(17,a,13,a)].
+21 -iext(uri_rdf_type,f17(c2,uri_ex_p,uri_ex_c,uri_ex_s),uri_ex_c).  [resolve(20,a,12,a)].
+22 $F.  [resolve(19,a,21,a)].
+
+============================== end of proof ==========================

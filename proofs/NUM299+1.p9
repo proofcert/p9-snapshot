@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n117.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:44:28 CDT 2014
+% CPUTime    : 6.34 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 17249 was started by sandbox on n117.star.cs.uiowa.edu,
+Fri Jun  6 03:44:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_17217_n117.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 6.06 (+ 0.03) seconds.
+% Length of proof is 18.
+% Level of proof is 6.
+% Maximum clause weight is 15.000.
+% Given clauses 11230.
+
+
+1 (all A all B all C (rdn_positive_less(rdnn(A),rdnn(B)) & rdn_positive_less(rdnn(B),rdnn(C)) -> rdn_positive_less(rdnn(A),rdnn(C)))).  [assumption].
+2 (all A all B all C all D (rdn_translate(A,rdn_neg(C)) & rdn_translate(B,rdn_neg(D)) & rdn_positive_less(D,C) -> less(A,B))).  [assumption].
+3 (all A all B (less(A,B) <-> -less(B,A) & B != A)).  [assumption].
+4 --less(nn2,nn4).  [assumption].
+5 rdn_translate(nn2,rdn_neg(rdnn(n2))).  [assumption].
+6 rdn_translate(nn4,rdn_neg(rdnn(n4))).  [assumption].
+7 rdn_positive_less(rdnn(n2),rdnn(n3)).  [assumption].
+8 rdn_positive_less(rdnn(n3),rdnn(n4)).  [assumption].
+9 -rdn_positive_less(rdnn(A),rdnn(B)) | -rdn_positive_less(rdnn(B),rdnn(C)) | rdn_positive_less(rdnn(A),rdnn(C)).  [clausify(1)].
+10 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_neg(D)) | -rdn_positive_less(D,B) | less(A,C).  [clausify(2)].
+11 -less(A,B) | -less(B,A).  [clausify(3)].
+12 less(nn2,nn4).  [clausify(4)].
+13 -rdn_positive_less(rdnn(n3),rdnn(A)) | rdn_positive_less(rdnn(n2),rdnn(A)).  [resolve(9,a,7,a)].
+14 -less(nn4,nn2).  [resolve(12,a,11,b)].
+15 rdn_positive_less(rdnn(n2),rdnn(n4)).  [resolve(13,a,8,a)].
+16 -rdn_translate(A,rdn_neg(rdnn(n4))) | -rdn_translate(B,rdn_neg(rdnn(n2))) | less(A,B).  [resolve(15,a,10,c)].
+17 -rdn_translate(A,rdn_neg(rdnn(n2))) | less(nn4,A).  [resolve(16,a,6,a)].
+18 less(nn4,nn2).  [resolve(17,a,5,a)].
+19 $F.  [resolve(14,a,18,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n049.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:05:23 CDT 2014
+% CPUTime    : 0.43 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 65267 was started by sandbox on n049.star.cs.uiowa.edu,
+Thu Jun  5 17:05:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_65235_n049.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.31 (+ 0.00) seconds.
+% Length of proof is 32.
+% Level of proof is 8.
+% Maximum clause weight is 32.000.
+% Given clauses 302.
+
+
+1 (all A all B all C all D all E (iext(uri_rdf_first,B,C) & iext(uri_rdf_rest,B,D) & iext(uri_rdf_first,D,E) & iext(uri_rdf_rest,D,uri_rdf_nil) -> (iext(uri_owl_propertyChainAxiom,A,B) <-> ip(A) & ip(C) & ip(E) & (all F all V6 all V7 (iext(C,F,V6) & iext(E,V6,V7) -> iext(A,F,V7)))))).  [assumption].
+2 (all A all B (iext(uri_owl_inverseOf,A,B) <-> ip(A) & ip(B) & (all C all D (iext(A,C,D) <-> iext(B,D,C))))).  [assumption].
+3 (exists A exists B exists C exists D exists E (iext(uri_owl_propertyChainAxiom,uri_ex_hasUncle,A) & iext(uri_rdf_first,A,uri_ex_hasCousin) & iext(uri_rdf_rest,A,B) & iext(uri_rdf_first,B,uri_ex_hasFather) & iext(uri_rdf_rest,B,uri_rdf_nil) & iext(uri_owl_propertyChainAxiom,uri_ex_hasCousin,C) & iext(uri_rdf_first,C,uri_ex_hasUncle) & iext(uri_rdf_rest,C,D) & iext(uri_rdf_first,D,E) & iext(uri_rdf_rest,D,uri_rdf_nil) & iext(uri_owl_inverseOf,E,uri_ex_hasFather) & iext(uri_ex_hasFather,uri_ex_alice,uri_ex_dave) & iext(uri_ex_hasCousin,uri_ex_alice,uri_ex_bob) & iext(uri_ex_hasFather,uri_ex_bob,uri_ex_charly) & iext(uri_ex_hasUncle,uri_ex_bob,uri_ex_dave))).  [assumption].
+4 -(iext(uri_ex_hasUncle,uri_ex_alice,uri_ex_charly) & iext(uri_ex_hasCousin,uri_ex_bob,uri_ex_alice)).  [assumption].
+5 iext(uri_owl_propertyChainAxiom,uri_ex_hasUncle,c1).  [clausify(3)].
+6 iext(uri_rdf_first,c1,uri_ex_hasCousin).  [clausify(3)].
+7 iext(uri_rdf_rest,c1,c2).  [clausify(3)].
+8 iext(uri_rdf_first,c2,uri_ex_hasFather).  [clausify(3)].
+9 iext(uri_rdf_rest,c2,uri_rdf_nil).  [clausify(3)].
+10 iext(uri_owl_propertyChainAxiom,uri_ex_hasCousin,c3).  [clausify(3)].
+11 iext(uri_rdf_first,c3,uri_ex_hasUncle).  [clausify(3)].
+12 iext(uri_rdf_rest,c3,c4).  [clausify(3)].
+13 iext(uri_rdf_first,c4,c5).  [clausify(3)].
+14 iext(uri_rdf_rest,c4,uri_rdf_nil).  [clausify(3)].
+15 iext(uri_owl_inverseOf,c5,uri_ex_hasFather).  [clausify(3)].
+16 iext(uri_ex_hasFather,uri_ex_alice,uri_ex_dave).  [clausify(3)].
+17 iext(uri_ex_hasCousin,uri_ex_alice,uri_ex_bob).  [clausify(3)].
+18 iext(uri_ex_hasFather,uri_ex_bob,uri_ex_charly).  [clausify(3)].
+19 iext(uri_ex_hasUncle,uri_ex_bob,uri_ex_dave).  [clausify(3)].
+20 -iext(uri_ex_hasUncle,uri_ex_alice,uri_ex_charly) | -iext(uri_ex_hasCousin,uri_ex_bob,uri_ex_alice).  [clausify(4)].
+21 -iext(uri_owl_inverseOf,A,B) | iext(A,C,D) | -iext(B,D,C).  [clausify(2)].
+22 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,E,A) | -iext(B,F,V6) | -iext(D,V6,V7) | iext(E,F,V7).  [clausify(1)].
+23 iext(c5,A,B) | -iext(uri_ex_hasFather,B,A).  [resolve(21,a,15,a)].
+24 -iext(uri_rdf_rest,c3,A) | -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,C,c3) | -iext(uri_ex_hasUncle,D,E) | -iext(B,E,F) | iext(C,D,F).  [resolve(22,a,11,a)].
+25 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,c2) | -iext(uri_rdf_rest,c2,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,C,A) | -iext(B,D,E) | -iext(uri_ex_hasFather,E,F) | iext(C,D,F).  [resolve(22,c,8,a)].
+26 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,c2) | -iext(uri_owl_propertyChainAxiom,C,A) | -iext(B,D,E) | -iext(uri_ex_hasFather,E,F) | iext(C,D,F).  [resolve(9,a,25,c)].
+27 iext(c5,uri_ex_dave,uri_ex_alice).  [resolve(23,b,16,a)].
+28 -iext(uri_rdf_rest,c3,c4) | -iext(uri_rdf_rest,c4,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,A,c3) | -iext(uri_ex_hasUncle,B,C) | -iext(c5,C,D) | iext(A,B,D).  [resolve(24,b,13,a)].
+29 -iext(uri_rdf_rest,c4,uri_rdf_nil) | -iext(uri_owl_propertyChainAxiom,A,c3) | -iext(uri_ex_hasUncle,B,C) | -iext(c5,C,D) | iext(A,B,D).  [resolve(12,a,28,a)].
+30 -iext(uri_owl_propertyChainAxiom,A,c3) | -iext(uri_ex_hasUncle,B,C) | -iext(c5,C,D) | iext(A,B,D).  [resolve(14,a,29,a)].
+31 -iext(uri_ex_hasUncle,A,B) | -iext(c5,B,C) | iext(uri_ex_hasCousin,A,C).  [resolve(30,a,10,a)].
+32 -iext(c5,uri_ex_dave,A) | iext(uri_ex_hasCousin,uri_ex_bob,A).  [resolve(31,a,19,a)].
+33 iext(uri_ex_hasCousin,uri_ex_bob,uri_ex_alice).  [resolve(32,a,27,a)].
+34 -iext(uri_ex_hasUncle,uri_ex_alice,uri_ex_charly).  [resolve(33,a,20,b)].
+35 -iext(uri_rdf_first,c1,A) | -iext(uri_owl_propertyChainAxiom,B,c1) | -iext(A,C,D) | -iext(uri_ex_hasFather,D,E) | iext(B,C,E).  [resolve(26,b,7,a)].
+36 -iext(uri_rdf_first,c1,A) | -iext(A,B,C) | -iext(uri_ex_hasFather,C,D) | iext(uri_ex_hasUncle,B,D).  [resolve(35,b,5,a)].
+37 -iext(uri_rdf_first,c1,uri_ex_hasCousin) | -iext(uri_ex_hasFather,uri_ex_bob,A) | iext(uri_ex_hasUncle,uri_ex_alice,A).  [resolve(36,b,17,a)].
+38 -iext(uri_rdf_first,c1,uri_ex_hasCousin) | iext(uri_ex_hasUncle,uri_ex_alice,uri_ex_charly).  [resolve(37,b,18,a)].
+39 -iext(uri_rdf_first,c1,uri_ex_hasCousin).  [resolve(38,b,34,a)].
+40 $F.  [resolve(6,a,39,a)].
+
+============================== end of proof ==========================

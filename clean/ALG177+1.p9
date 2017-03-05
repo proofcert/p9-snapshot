@@ -1,0 +1,24 @@
+
+
+
+4 sorti1(c1).  [clausify(1)].
+5 -sorti1(A) | op1(c1,A) != A.  [clausify(1)].
+6 -sorti2(A) | sorti2(f1(A)).  [clausify(2)].
+7 -sorti1(A) | sorti2(h(A)).  [clausify(3)].
+8 -sorti2(A) | sorti1(j(A)).  [clausify(3)].
+9 -sorti1(A) | j(h(A)) = A.  [clausify(3)].
+10 -sorti2(A) | op2(A,f1(A)) = f1(A).  [clausify(2)].
+11 -sorti2(A) | -sorti2(B) | j(op2(A,B)) = op1(j(A),j(B)).  [clausify(3)].
+12 -sorti2(A) | -sorti2(B) | op1(j(A),j(B)) = j(op2(A,B)).  [copy(11),flip(c)].
+13 sorti2(h(c1)).  [resolve(7,a,4,a)].
+14 j(h(c1)) = c1.  [resolve(9,a,4,a)].
+15 op2(h(c1),f1(h(c1))) = f1(h(c1)).  [resolve(10,a,13,a)].
+16 sorti2(f1(h(c1))).  [resolve(6,a,13,a)].
+17 -sorti2(A) | op1(j(h(c1)),j(A)) = j(op2(h(c1),A)).  [resolve(12,a,13,a)].
+18 op1(j(h(c1)),j(f1(h(c1)))) = j(op2(h(c1),f1(h(c1)))).  [resolve(17,a,16,a)].
+19 op1(c1,j(f1(h(c1)))) = j(op2(h(c1),f1(h(c1)))).  [para(14(a,1),18(a,1,1))].
+20 op1(c1,j(f1(h(c1)))) = j(f1(h(c1))).  [para(15(a,1),19(a,2,1))].
+21 sorti1(j(f1(h(c1)))).  [resolve(8,a,16,a)].
+22 op1(c1,j(f1(h(c1)))) != j(f1(h(c1))).  [resolve(5,a,21,a)].
+23 j(f1(h(c1))) != j(f1(h(c1))).  [para(20(a,1),22(a,1))].
+24 $F.  [copy(23),xx(a)].

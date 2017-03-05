@@ -1,0 +1,142 @@
+
+
+
+
+
+
+
+
+
+
+11 union(A,intersection(A,B)) = A.  [clausify(3)].
+12 union(A,B) = union(B,A).  [clausify(7)].
+13 intersection(A,B) = intersection(B,A).  [clausify(8)].
+14 union(intersection(A,B),difference(A,B)) = A.  [clausify(4)].
+15 union(difference(A,B),difference(B,A)) = symmetric_difference(A,B).  [clausify(1)].
+16 symmetric_difference(A,B) = union(difference(A,B),difference(B,A)).  [copy(15),flip(a)].
+17 union(union(A,B),C) = union(A,union(B,C)).  [clausify(2)].
+18 union(C,union(A,B)) = union(A,union(B,C)).  [para(12(a,1),17(a,1))].
+19 union(A,union(B,C)) = union(C,union(A,B)).  [copy(18),flip(a)].
+20 A = B | member(f1(B,A),B) | member(f1(B,A),A).  [clausify(9)].
+21 union(symmetric_difference(c1,c2),intersection(c1,c2)) != union(c1,c2).  [clausify(10)].
+22 union(union(difference(c1,c2),difference(c2,c1)),intersection(c1,c2)) != union(c1,c2).  [para(16(a,1),21(a,1,1))].
+23 union(intersection(c1,c2),union(difference(c1,c2),difference(c2,c1))) != union(c1,c2).  [para(12(a,1),22(a,1))].
+24 member(A,union(B,C)) | -member(A,B).  [clausify(5)].
+25 member(A,union(B,C)) | -member(A,C).  [clausify(5)].
+26 -member(A,intersection(B,C)) | member(A,B).  [clausify(6)].
+27 -member(A,union(B,C)) | member(A,B) | member(A,C).  [clausify(5)].
+28 member(A,intersection(B,C)) | -member(A,B) | -member(A,C).  [clausify(6)].
+29 A = B | -member(f1(B,A),B) | -member(f1(B,A),A).  [clausify(9)].
+30 member(A,intersection(B,B)) | -member(A,B).  [factor(28,b,c)].
+31 union(intersection(A,B),difference(B,A)) = B.  [para(13(a,1),14(a,1,1))].
+32 union(A,union(intersection(A,B),C)) = union(C,A).  [para(11(a,1),19(a,2,2))].
+33 union(A,union(C,intersection(A,B))) = union(C,A).  [para(12(a,1),32(a,1,2))].
+34 union(A,union(B,intersection(A,C))) = union(A,B).  [para(12(a,1),33(a,2))].
+35 union(difference(c2,c1),union(intersection(c1,c2),difference(c1,c2))) != union(c1,c2).  [para(19(a,1),23(a,1))].
+36 union(difference(c2,c1),c1) != union(c1,c2).  [para(14(a,1),35(a,1,2))].
+37 union(c1,difference(c2,c1)) != union(c1,c2).  [para(12(a,1),36(a,1))].
+38 member(f1(A,B),union(B,C)) | B = A | member(f1(A,B),A).  [resolve(24,b,20,c)].
+39 member(f1(union(A,B),A),union(A,B)) | A = union(A,B).  [factor(38,a,c)].
+40 member(f1(union(A,B),A),union(A,B)) | union(A,B) = A.  [copy(39),flip(b)].
+41 member(f1(A,intersection(B,C)),B) | intersection(B,C) = A | member(f1(A,intersection(B,C)),A).  [resolve(26,a,20,c)].
+42 member(f1(A,intersection(A,B)),A) | intersection(A,B) = A.  [factor(41,a,c)].
+43 member(f1(union(A,B),C),A) | member(f1(union(A,B),C),B) | C = union(A,B) | member(f1(union(A,B),C),C).  [resolve(27,a,20,b)].
+44 member(f1(union(A,B),C),A) | member(f1(union(A,B),C),B) | union(A,B) = C | member(f1(union(A,B),C),C).  [copy(43),flip(c)].
+45 member(f1(union(A,A),B),A) | union(A,A) = B | member(f1(union(A,A),B),B).  [factor(44,a,b)].
+46 member(f1(union(A,A),A),A) | union(A,A) = A.  [factor(45,a,c)].
+47 union(intersection(A,B),union(difference(B,A),intersection(intersection(A,B),C))) = B.  [para(31(a,1),34(a,2))].
+48 union(intersection(A,B),union(difference(B,A),intersection(C,intersection(A,B)))) = B.  [para(13(a,1),47(a,1,2,2))].
+49 intersection(A,B) = A | member(f1(A,intersection(A,B)),intersection(A,A)).  [resolve(42,a,30,b)].
+50 intersection(A,B) = A | intersection(A,B) = A | -member(f1(A,intersection(A,B)),intersection(A,B)).  [resolve(42,a,29,b)].
+51 intersection(A,B) = A | -member(f1(A,intersection(A,B)),intersection(A,B)).  [copy(50),merge(b)].
+52 intersection(A,B) = A | member(f1(A,intersection(A,B)),intersection(C,A)) | -member(f1(A,intersection(A,B)),C).  [resolve(42,a,28,c)].
+53 intersection(A,B) = A | member(f1(A,intersection(A,B)),intersection(A,C)) | -member(f1(A,intersection(A,B)),C).  [para(13(a,1),52(b,2))].
+54 intersection(A,B) = A | member(f1(A,intersection(A,B)),union(C,A)).  [resolve(42,a,25,b)].
+55 intersection(A,B) = A | member(f1(A,intersection(A,B)),union(A,C)).  [para(12(a,1),54(b,2))].
+56 union(A,B) = A | A = union(A,B) | -member(f1(union(A,B),A),A).  [resolve(40,a,29,b)].
+57 union(A,B) = A | union(A,B) = A | -member(f1(union(A,B),A),A).  [copy(56),flip(b)].
+58 union(A,B) = A | -member(f1(union(A,B),A),A).  [copy(57),merge(b)].
+59 member(f1(union(intersection(A,B),difference(B,A)),intersection(A,B)),B) | union(intersection(A,B),difference(B,A)) = intersection(A,B).  [para(31(a,1),40(a,2))].
+60 member(f1(B,intersection(A,B)),B) | union(intersection(A,B),difference(B,A)) = intersection(A,B).  [para(31(a,1),59(a,1,1))].
+61 member(f1(B,intersection(A,B)),B) | B = intersection(A,B).  [para(31(a,1),60(b,1))].
+62 member(f1(A,intersection(B,A)),A) | intersection(B,A) = A.  [copy(61),flip(b)].
+63 union(A,A) = A | union(A,A) = A.  [resolve(58,b,46,a)].
+64 union(A,A) = A.  [copy(63),merge(b)].
+65 intersection(A,A) = A | intersection(A,A) = A | -member(f1(A,intersection(A,A)),A).  [resolve(49,b,29,c)].
+66 intersection(A,A) = A | -member(f1(A,intersection(A,A)),A).  [copy(65),merge(b)].
+67 intersection(A,A) = A | intersection(A,A) = A.  [resolve(66,b,62,a)].
+68 intersection(A,A) = A.  [copy(67),merge(b)].
+69 intersection(A,B) = A | member(f1(A,intersection(A,B)),intersection(A,union(A,C))) | intersection(A,B) = A.  [resolve(53,c,55,b)].
+70 intersection(A,B) = A | member(f1(A,intersection(A,B)),intersection(A,union(A,C))).  [copy(69),merge(c)].
+71 intersection(A,union(A,B)) = A | intersection(A,union(A,B)) = A.  [resolve(70,b,51,b)].
+72 intersection(A,union(A,B)) = A.  [copy(71),merge(b)].
+73 union(A,difference(union(A,B),A)) = union(A,B).  [para(72(a,1),31(a,1,1))].
+74 intersection(intersection(A,B),B) = intersection(A,B).  [para(31(a,1),72(a,1,2))].
+75 intersection(A,intersection(B,A)) = intersection(B,A).  [para(13(a,1),74(a,1))].
+76 union(intersection(A,B),difference(B,intersection(A,B))) = B.  [para(75(a,1),14(a,1,1))].
+77 union(A,union(difference(union(A,B),A),C)) = union(C,union(A,B)).  [para(73(a,1),19(a,2,2))].
+78 union(A,union(C,difference(union(A,B),A))) = union(C,union(A,B)).  [para(12(a,1),77(a,1,2))].
+79 union(A,union(C,difference(union(A,B),A))) = union(B,union(C,A)).  [para(19(a,1),78(a,2))].
+80 union(A,union(C,difference(union(A,B),A))) = union(B,union(A,C)).  [para(12(a,1),79(a,2,2))].
+81 union(A,union(C,difference(union(A,B),A))) = union(A,union(C,B)).  [para(19(a,2),80(a,2))].
+82 union(A,union(B,difference(union(A,C),A))) = union(A,union(C,B)).  [para(12(a,1),81(a,2,2))].
+83 union(intersection(A,B),union(intersection(C,intersection(A,B)),difference(union(intersection(A,B),difference(B,A)),intersection(A,B)))) = B.  [para(48(a,1),82(a,2))].
+84 union(intersection(A,B),union(intersection(C,intersection(A,B)),difference(B,intersection(A,B)))) = B.  [para(31(a,1),83(a,1,2,2,1))].
+85 union(intersection(A,intersection(B,C)),union(difference(C,intersection(B,C)),intersection(B,C))) = C.  [para(84(a,1),19(a,2))].
+86 union(intersection(A,intersection(B,C)),union(intersection(B,C),difference(C,intersection(B,C)))) = C.  [para(12(a,1),85(a,1,2))].
+87 union(intersection(A,intersection(B,C)),C) = C.  [para(76(a,1),86(a,1,2))].
+88 union(A,intersection(B,intersection(C,A))) = A.  [para(12(a,1),87(a,1))].
+89 union(union(A,B),intersection(C,A)) = union(A,B).  [para(72(a,1),88(a,1,2,2))].
+90 union(union(A,B),intersection(A,C)) = union(A,B).  [para(13(a,1),89(a,1,2))].
+91 union(union(A,B),intersection(B,C)) = union(B,A).  [para(12(a,1),90(a,1,1))].
+92 union(union(A,B),intersection(B,C)) = union(A,B).  [para(12(a,1),91(a,2))].
+93 union(union(A,union(B,C)),intersection(union(C,A),D)) = union(B,union(C,A)).  [para(19(a,1),92(a,1,1))].
+94 union(union(A,union(B,C)),intersection(union(A,C),D)) = union(B,union(C,A)).  [para(12(a,1),93(a,1,2,1))].
+95 union(union(A,union(B,C)),intersection(D,union(A,C))) = union(B,union(C,A)).  [para(13(a,1),94(a,1,2))].
+96 union(union(A,union(B,C)),intersection(D,union(A,C))) = union(B,union(A,C)).  [para(12(a,1),95(a,2,2))].
+97 union(union(A,union(B,C)),intersection(D,union(A,C))) = union(A,union(C,B)).  [para(19(a,2),96(a,2))].
+98 union(union(A,union(B,C)),intersection(D,union(A,C))) = union(A,union(B,C)).  [para(12(a,1),97(a,2,2))].
+99 union(union(A,union(B,C)),intersection(union(A,B),D)) = union(C,union(A,B)).  [para(19(a,2),92(a,1,1))].
+100 union(union(A,union(B,C)),intersection(D,union(A,B))) = union(C,union(A,B)).  [para(13(a,1),99(a,1,2))].
+101 union(union(A,union(B,C)),intersection(D,union(A,B))) = union(B,union(C,A)).  [para(19(a,1),100(a,2))].
+102 union(union(A,union(B,C)),intersection(D,union(A,B))) = union(B,union(A,C)).  [para(12(a,1),101(a,2,2))].
+103 union(union(A,union(B,C)),intersection(D,union(A,B))) = union(A,union(C,B)).  [para(19(a,2),102(a,2))].
+104 union(union(A,union(B,C)),intersection(D,union(A,B))) = union(A,union(B,C)).  [para(12(a,1),103(a,2,2))].
+105 union(A,union(B,C)) = union(intersection(D,union(A,C)),union(A,union(B,C))).  [para(98(a,1),12(a,1))].
+106 union(A,union(B,C)) = union(A,union(union(B,C),intersection(D,union(A,C)))).  [para(19(a,2),105(a,2))].
+107 union(A,union(union(B,C),intersection(D,union(A,C)))) = union(A,union(B,C)).  [copy(106),flip(a)].
+108 union(union(A,union(intersection(B,C),difference(C,B))),intersection(D,union(A,intersection(B,C)))) = union(A,C).  [para(31(a,1),104(a,2,2))].
+109 union(union(A,B),intersection(C,union(A,intersection(D,B)))) = union(A,B).  [para(31(a,1),108(a,1,1,2))].
+110 union(intersection(A,B),union(union(C,difference(A,B)),intersection(D,A))) = union(intersection(A,B),union(C,difference(A,B))).  [para(14(a,1),107(a,1,2,2,2))].
+111 union(intersection(A,B),union(union(C,difference(A,B)),intersection(A,D))) = union(intersection(A,B),union(C,difference(A,B))).  [para(13(a,1),110(a,1,2,2))].
+112 union(intersection(A,B),union(union(C,difference(A,B)),intersection(A,D))) = union(C,union(difference(A,B),intersection(A,B))).  [para(19(a,2),111(a,2))].
+113 union(intersection(A,B),union(union(C,difference(A,B)),intersection(A,D))) = union(C,union(intersection(A,B),difference(A,B))).  [para(12(a,1),112(a,2,2))].
+114 union(intersection(A,B),union(union(C,difference(A,B)),intersection(A,D))) = union(C,A).  [para(14(a,1),113(a,2,2))].
+115 union(intersection(A,B),union(union(C,difference(A,B)),intersection(A,D))) = union(A,C).  [para(12(a,1),114(a,2))].
+116 union(A,union(B,intersection(C,union(A,B)))) = union(A,union(B,B)).  [para(64(a,1),107(a,1,2,1))].
+117 union(A,union(B,intersection(C,union(A,B)))) = union(A,B).  [para(64(a,1),116(a,2,2))].
+118 union(intersection(A,B),union(difference(A,B),intersection(C,A))) = union(intersection(A,B),difference(A,B)).  [para(14(a,1),117(a,1,2,2,2))].
+119 union(intersection(A,B),union(difference(A,B),intersection(A,C))) = union(intersection(A,B),difference(A,B)).  [para(13(a,1),118(a,1,2,2))].
+120 union(intersection(A,B),union(difference(A,B),intersection(A,C))) = A.  [para(14(a,1),119(a,2))].
+121 intersection(intersection(A,B),union(A,C)) = intersection(A,B).  [para(115(a,1),72(a,1,2))].
+122 intersection(A,B) = intersection(union(A,C),intersection(A,B)).  [para(121(a,1),13(a,1))].
+123 intersection(union(A,B),intersection(A,C)) = intersection(A,C).  [copy(122),flip(a)].
+124 intersection(union(A,B),intersection(B,C)) = intersection(B,C).  [para(12(a,1),123(a,1,1))].
+125 intersection(union(A,B),B) = intersection(B,B).  [para(68(a,1),124(a,1,2))].
+126 intersection(B,union(A,B)) = intersection(B,B).  [para(13(a,1),125(a,1))].
+127 intersection(A,union(B,A)) = A.  [para(68(a,1),126(a,2))].
+128 intersection(union(difference(A,B),intersection(A,C)),A) = union(difference(A,B),intersection(A,C)).  [para(120(a,1),127(a,1,2))].
+129 intersection(A,union(difference(A,B),intersection(A,C))) = union(difference(A,B),intersection(A,C)).  [para(13(a,1),128(a,1))].
+130 union(union(difference(A,B),C),union(difference(A,B),intersection(A,C))) = union(difference(A,B),C).  [para(129(a,1),109(a,1,2))].
+131 union(union(C,difference(A,B)),union(difference(A,B),intersection(A,C))) = union(difference(A,B),C).  [para(12(a,1),130(a,1,1))].
+132 union(intersection(A,C),union(union(C,difference(A,B)),difference(A,B))) = union(difference(A,B),C).  [para(19(a,1),131(a,1))].
+133 union(intersection(A,C),union(difference(A,B),union(C,difference(A,B)))) = union(difference(A,B),C).  [para(12(a,1),132(a,1,2))].
+134 union(intersection(A,C),union(C,union(difference(A,B),difference(A,B)))) = union(difference(A,B),C).  [para(19(a,2),133(a,1,2))].
+135 union(intersection(A,C),union(C,difference(A,B))) = union(difference(A,B),C).  [para(64(a,1),134(a,1,2,2))].
+136 union(C,union(difference(A,B),intersection(A,C))) = union(difference(A,B),C).  [para(19(a,2),135(a,1))].
+137 union(A,union(difference(B,C),intersection(B,A))) = union(A,difference(B,C)).  [para(12(a,1),136(a,2))].
+138 union(A,union(intersection(B,A),difference(B,C))) = union(A,difference(B,C)).  [para(12(a,1),137(a,1,2))].
+139 union(A,union(intersection(A,B),difference(B,C))) = union(A,difference(B,C)).  [para(13(a,1),138(a,1,2,1))].
+140 union(A,B) = union(A,difference(B,A)).  [para(31(a,1),139(a,1,2))].
+141 union(A,difference(B,A)) = union(A,B).  [copy(140),flip(a)].
+142 $F.  [resolve(141,a,37,a)].

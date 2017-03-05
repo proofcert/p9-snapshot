@@ -1,0 +1,52 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n158.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 19:09:23 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 27884 was started by sandbox on n158.star.cs.uiowa.edu,
+Thu Jun  5 19:09:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_27852_n158.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 5.
+% Maximum clause weight is 8.000.
+% Given clauses 5.
+
+
+1 (all A all B (organization(A) -> (has_immunity(A,B) -> hazard_of_mortality(A,B) = very_low) & (-has_immunity(A,B) -> (is_aligned(A,B) & positional_advantage(A,B) -> hazard_of_mortality(A,B) = low) & (-is_aligned(A,B) & positional_advantage(A,B) -> hazard_of_mortality(A,B) = mod1) & (is_aligned(A,B) & -positional_advantage(A,B) -> hazard_of_mortality(A,B) = mod2) & (-is_aligned(A,B) & -positional_advantage(A,B) -> hazard_of_mortality(A,B) = high)))).  [assumption].
+2 -(all A all B all C (organization(A) & has_immunity(A,B) & has_immunity(A,C) -> hazard_of_mortality(A,B) = hazard_of_mortality(A,C))).  [assumption].
+3 -organization(A) | -has_immunity(A,B) | hazard_of_mortality(A,B) = very_low.  [clausify(1)].
+4 organization(c1).  [clausify(2)].
+5 has_immunity(c1,c2).  [clausify(2)].
+6 has_immunity(c1,c3).  [clausify(2)].
+7 hazard_of_mortality(c1,c2) != hazard_of_mortality(c1,c3).  [clausify(2)].
+8 hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [copy(7),flip(a)].
+9 -has_immunity(c1,A) | hazard_of_mortality(c1,A) = very_low.  [resolve(3,a,4,a)].
+10 hazard_of_mortality(c1,c3) = c_0.  [new_symbol(8)].
+11 c_0 != hazard_of_mortality(c1,c2).  [para(10(a,1),8(a,1))].
+12 hazard_of_mortality(c1,c2) != c_0.  [copy(11),flip(a)].
+13 hazard_of_mortality(c1,c3) = very_low.  [resolve(9,a,6,a)].
+14 c_0 = very_low.  [para(10(a,1),13(a,1))].
+15 hazard_of_mortality(c1,c2) = very_low.  [resolve(9,a,5,a)].
+16 very_low != c_0.  [para(15(a,1),12(a,1))].
+17 very_low != very_low.  [para(14(a,1),16(a,2))].
+18 $F.  [copy(17),xx(a)].
+
+============================== end of proof ==========================

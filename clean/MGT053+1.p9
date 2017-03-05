@@ -1,0 +1,41 @@
+
+
+3 dissimilar(A,B,C) | -organization(A) | -is_aligned(A,B) | is_aligned(A,C).  [clausify(1)].
+4 -dissimilar(A,B,C) | organization(A).  [clausify(1)].
+5 dissimilar(A,B,C) | -organization(A) | is_aligned(A,B) | -is_aligned(A,C).  [clausify(1)].
+6 dissimilar(c1,c2,c3) | dissimilar(c1,c3,c2).  [clausify(2)].
+7 -dissimilar(c1,c2,c3) | -dissimilar(c1,c3,c2).  [clausify(2)].
+8 -dissimilar(A,B,C) | -is_aligned(A,B) | -is_aligned(A,C).  [clausify(1)].
+9 -dissimilar(A,B,C) | is_aligned(A,B) | is_aligned(A,C).  [clausify(1)].
+10 dissimilar(A,B,C) | -is_aligned(A,B) | is_aligned(A,C) | -dissimilar(A,D,E).  [resolve(3,b,4,b)].
+11 dissimilar(A,B,C) | is_aligned(A,B) | -is_aligned(A,C) | -dissimilar(A,D,E).  [resolve(5,b,4,b)].
+12 -is_aligned(c1,c3) | -is_aligned(c1,c2) | dissimilar(c1,c2,c3).  [resolve(8,a,6,b)].
+13 is_aligned(c1,c3) | is_aligned(c1,c2) | dissimilar(c1,c2,c3).  [resolve(9,a,6,b)].
+14 dissimilar(c1,A,B) | -is_aligned(c1,A) | is_aligned(c1,B) | dissimilar(c1,c2,c3).  [resolve(10,d,6,b)].
+15 dissimilar(c1,c2,c3) | -is_aligned(c1,c2) | is_aligned(c1,c3).  [factor(14,a,d)].
+16 dissimilar(c1,A,B) | is_aligned(c1,A) | -is_aligned(c1,B) | dissimilar(c1,c2,c3).  [resolve(11,d,6,b)].
+17 dissimilar(c1,c2,c3) | is_aligned(c1,c2) | -is_aligned(c1,c3).  [factor(16,a,d)].
+18 is_aligned(c1,c3) | is_aligned(c1,c2) | is_aligned(c1,c2) | is_aligned(c1,c3).  [resolve(13,c,9,a)].
+19 is_aligned(c1,c3) | is_aligned(c1,c2) | is_aligned(c1,c3).  [copy(18),merge(c)].
+20 is_aligned(c1,c3) | is_aligned(c1,c2).  [copy(19),merge(c)].
+21 dissimilar(c1,c2,c3) | is_aligned(c1,c2) | is_aligned(c1,c2).  [resolve(17,c,20,a)].
+22 dissimilar(c1,c2,c3) | is_aligned(c1,c2).  [copy(21),merge(c)].
+23 is_aligned(c1,c2) | dissimilar(c1,A,B) | -is_aligned(c1,A) | is_aligned(c1,B).  [resolve(22,a,10,d)].
+24 is_aligned(c1,c2) | dissimilar(c1,A,c2) | -is_aligned(c1,A).  [factor(23,a,d)].
+25 is_aligned(c1,c2) | dissimilar(c1,c3,c2) | is_aligned(c1,c2).  [resolve(24,c,20,a)].
+26 is_aligned(c1,c2) | dissimilar(c1,c3,c2).  [copy(25),merge(c)].
+27 is_aligned(c1,c2) | -dissimilar(c1,c2,c3).  [resolve(26,b,7,b)].
+28 is_aligned(c1,c2) | is_aligned(c1,c2).  [resolve(27,b,22,a)].
+29 is_aligned(c1,c2).  [copy(28),merge(b)].
+30 dissimilar(c1,c2,c3) | is_aligned(c1,c3).  [resolve(29,a,15,b)].
+31 -is_aligned(c1,c3) | dissimilar(c1,c2,c3).  [resolve(29,a,12,b)].
+32 is_aligned(c1,c3) | dissimilar(c1,A,B) | is_aligned(c1,A) | -is_aligned(c1,B).  [resolve(30,a,11,d)].
+33 is_aligned(c1,c3) | dissimilar(c1,c3,A) | -is_aligned(c1,A).  [factor(32,a,c)].
+34 is_aligned(c1,c3) | dissimilar(c1,c3,c2).  [resolve(33,c,29,a)].
+35 is_aligned(c1,c3) | -dissimilar(c1,c2,c3).  [resolve(34,b,7,b)].
+36 is_aligned(c1,c3) | is_aligned(c1,c3).  [resolve(35,b,30,a)].
+37 is_aligned(c1,c3).  [copy(36),merge(b)].
+38 dissimilar(c1,c2,c3).  [resolve(37,a,31,a)].
+39 -dissimilar(c1,c2,A) | -is_aligned(c1,A).  [resolve(8,b,29,a)].
+40 -dissimilar(c1,c2,c3).  [resolve(39,b,37,a)].
+41 $F.  [resolve(38,a,40,a)].

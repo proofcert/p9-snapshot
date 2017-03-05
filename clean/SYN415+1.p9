@@ -1,0 +1,404 @@
+
+2 f(c1) | f(c2).  [clausify(1)].
+3 -f(A) | c4 != c3 | -f(B) | f1(B) != B.  [clausify(1)].
+4 f(c1) | -f(A) | A = c2.  [clausify(1)].
+5 f(c1) | -f(A) | c2 = A.  [copy(4),flip(c)].
+6 -f(A) | f(c3) | -f(B) | f(f1(B)).  [clausify(1)].
+7 -f(A) | f(c4) | -f(B) | f(f1(B)).  [clausify(1)].
+8 -f(A) | f(c3) | -f(B) | f1(B) != B.  [clausify(1)].
+9 -f(A) | f(c4) | -f(B) | f1(B) != B.  [clausify(1)].
+10 -f(A) | c4 != c3 | -f(B) | f(f1(B)).  [clausify(1)].
+11 -f(A) | -f(B) | B = A | -f(C) | C = c2.  [clausify(1)].
+12 -f(A) | -f(B) | B = A | -f(C) | c2 = C.  [copy(11),flip(e)].
+13 -f(A) | c4 != c3 | f1(A) != A.  [factor(3,a,c)].
+14 -f(A) | f(c3) | f(f1(A)).  [factor(6,a,c)].
+15 -f(A) | f(c4) | f(f1(A)).  [factor(7,a,c)].
+16 -f(A) | f(c3) | f1(A) != A.  [factor(8,a,c)].
+17 -f(A) | f(c4) | f1(A) != A.  [factor(9,a,c)].
+18 -f(A) | c4 != c3 | f(f1(A)).  [factor(10,a,c)].
+19 -f(A) | -f(B) | B = A | c2 = A.  [factor(12,a,d)].
+20 -f(A) | -f(B) | B = A | c2 = B.  [factor(12,b,d)].
+21 c4 != c3 | f1(c2) != c2 | f(c1).  [resolve(13,a,2,b)].
+22 f(c3) | f(f1(c2)) | f(c1).  [resolve(14,a,2,b)].
+23 f(c4) | f(f1(c2)) | f(c1).  [resolve(15,a,2,b)].
+24 f(c3) | f1(c2) != c2 | f(c1).  [resolve(16,a,2,b)].
+25 f(c4) | f1(c2) != c2 | f(c1).  [resolve(17,a,2,b)].
+26 c4 != c3 | f(f1(c2)) | f(c1).  [resolve(18,a,2,b)].
+27 f(c3) | f(c1) | f(c1) | c2 = f1(c2).  [resolve(22,b,5,b)].
+28 f(c3) | f(c1) | f(c1) | f1(c2) = c2.  [copy(27),flip(d)].
+29 f(c3) | f(c1) | f1(c2) = c2.  [copy(28),merge(c)].
+30 f(c4) | f(c1) | f(c1) | c2 = f1(c2).  [resolve(23,b,5,b)].
+31 f(c4) | f(c1) | f(c1) | f1(c2) = c2.  [copy(30),flip(d)].
+32 f(c4) | f(c1) | f1(c2) = c2.  [copy(31),merge(c)].
+33 f(c1) | f1(c2) = c2 | f(c1) | c2 = c3.  [resolve(29,a,5,b)].
+34 f(c1) | f1(c2) = c2 | f(c1) | c3 = c2.  [copy(33),flip(d)].
+35 f(c1) | f1(c2) = c2 | c3 = c2.  [copy(34),merge(c)].
+36 f(c1) | f1(c2) = c2 | f(c1) | c2 = c4.  [resolve(32,a,5,b)].
+37 f(c1) | f1(c2) = c2 | f(c1) | c4 = c2.  [copy(36),flip(d)].
+38 f(c1) | f1(c2) = c2 | c4 = c2.  [copy(37),merge(c)].
+39 f1(c2) = c2 | c3 = c2 | -f(A) | c1 = A | c2 = c1.  [resolve(35,a,20,b)].
+40 f1(c2) = c2 | c3 = c2 | -f(A) | A = c1 | c2 = A.  [resolve(35,a,20,a)].
+41 f1(c2) = c2 | c3 = c2 | -f(A) | c1 = A | c2 = A.  [copy(40),flip(d)].
+42 f1(c2) = c2 | c3 = c2 | f(c3) | f1(c1) != c1.  [resolve(35,a,16,a)].
+43 f1(c2) = c2 | c3 = c2 | f(c3) | f(f1(c1)).  [resolve(35,a,14,a)].
+44 f1(c2) = c2 | c4 = c2 | -f(A) | c1 = A | c2 = c1.  [resolve(38,a,20,b)].
+45 f1(c2) = c2 | c4 = c2 | -f(A) | A = c1 | c2 = A.  [resolve(38,a,20,a)].
+46 f1(c2) = c2 | c4 = c2 | -f(A) | c1 = A | c2 = A.  [copy(45),flip(d)].
+47 f1(c2) = c2 | c4 = c2 | f(c3) | f1(c1) != c1.  [resolve(38,a,16,a)].
+48 f1(c2) = c2 | c4 = c2 | f(c4) | f(f1(c1)).  [resolve(38,a,15,a)].
+49 f1(c2) = c2 | c4 = c2 | f(c3) | f(f1(c1)).  [resolve(38,a,14,a)].
+50 f1(c2) = c2 | c3 = c2 | c1 = f1(c1) | c2 = c1 | f1(c2) = c2 | c3 = c2 | f(c3).  [resolve(39,c,43,d)].
+51 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c3 = c2 | f(c3).  [copy(50),flip(c)].
+52 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c2 | f(c3).  [copy(51),merge(e)].
+53 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | f(c3).  [copy(52),merge(e)].
+54 f1(c2) = c2 | c3 = c2 | c1 = f1(c1) | c2 = f1(c1) | f1(c2) = c2 | c3 = c2 | f(c3).  [resolve(41,c,43,d)].
+55 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = f1(c1) | f1(c2) = c2 | c3 = c2 | f(c3).  [copy(54),flip(c)].
+56 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | f1(c2) = c2 | c3 = c2 | f(c3).  [copy(55),flip(d)].
+57 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | c3 = c2 | f(c3).  [copy(56),merge(e)].
+58 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | f(c3).  [copy(57),merge(e)].
+59 f1(c2) = c2 | c4 = c2 | c1 = f1(c1) | c2 = c1 | f1(c2) = c2 | c4 = c2 | f(c3).  [resolve(44,c,49,d)].
+60 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c4 = c2 | f(c3).  [copy(59),flip(c)].
+61 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = c1 | c4 = c2 | f(c3).  [copy(60),merge(e)].
+62 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = c1 | f(c3).  [copy(61),merge(e)].
+63 f1(c2) = c2 | c4 = c2 | c1 = f1(c1) | c2 = f1(c1) | f1(c2) = c2 | c4 = c2 | f(c4).  [resolve(46,c,48,d)].
+64 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = f1(c1) | f1(c2) = c2 | c4 = c2 | f(c4).  [copy(63),flip(c)].
+65 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | f1(c2) = c2 | c4 = c2 | f(c4).  [copy(64),flip(d)].
+66 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | c4 = c2 | f(c4).  [copy(65),merge(e)].
+67 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | f(c4).  [copy(66),merge(e)].
+68 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c3 = c2 | c1 = c3 | c2 = c3.  [resolve(53,e,41,c)].
+69 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c3 = c2 | c3 = c1 | c2 = c3.  [copy(68),flip(g)].
+70 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c3 = c2 | c3 = c1 | c3 = c2.  [copy(69),flip(h)].
+71 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c2 | c3 = c1 | c3 = c2.  [copy(70),merge(e)].
+72 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c2.  [copy(71),merge(e)].
+73 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1.  [copy(72),merge(f)].
+74 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c4 = c2 | c1 = c3 | c2 = c1.  [resolve(62,e,44,c)].
+75 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c4 = c2 | c3 = c1 | c2 = c1.  [copy(74),flip(g)].
+76 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = c1 | c4 = c2 | c3 = c1 | c2 = c1.  [copy(75),merge(e)].
+77 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c2 = c1.  [copy(76),merge(e)].
+78 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1.  [copy(77),merge(f)].
+79 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | f1(c2) = c2 | c3 = c2 | c1 = c3 | c2 = c3.  [resolve(58,e,41,c)].
+80 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | f1(c2) = c2 | c3 = c2 | c3 = c1 | c2 = c3.  [copy(79),flip(g)].
+81 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | f1(c2) = c2 | c3 = c2 | c3 = c1 | c3 = c2.  [copy(80),flip(h)].
+82 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | c3 = c2 | c3 = c1 | c3 = c2.  [copy(81),merge(e)].
+83 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | c3 = c1 | c3 = c2.  [copy(82),merge(e)].
+84 f1(c2) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | c3 = c1.  [copy(83),merge(f)].
+85 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | f1(c2) = c2 | c4 = c2 | c1 = c4 | c2 = c4.  [resolve(67,e,46,c)].
+86 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | f1(c2) = c2 | c4 = c2 | c4 = c1 | c2 = c4.  [copy(85),flip(g)].
+87 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | f1(c2) = c2 | c4 = c2 | c4 = c1 | c4 = c2.  [copy(86),flip(h)].
+88 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | c4 = c2 | c4 = c1 | c4 = c2.  [copy(87),merge(e)].
+89 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | c4 = c1 | c4 = c2.  [copy(88),merge(e)].
+90 f1(c2) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | c4 = c1.  [copy(89),merge(f)].
+91 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | f(c1).  [resolve(73,a,24,b)].
+92 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c4) | f(c1).  [resolve(78,a,25,b)].
+93 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c1) | f(c1) | c2 = c3.  [resolve(91,e,5,b)].
+94 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c1) | f(c1) | c3 = c2.  [copy(93),flip(g)].
+95 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c1) | c3 = c2.  [copy(94),merge(f)].
+96 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c1).  [copy(95),merge(f)].
+97 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(96,e,20,b)].
+98 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | -f(A) | c1 = A.  [copy(97),merge(g)].
+99 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | f(f1(c1)).  [resolve(96,e,14,a)].
+100 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c1) | f(c1) | c2 = c4.  [resolve(92,e,5,b)].
+101 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c1) | f(c1) | c4 = c2.  [copy(100),flip(g)].
+102 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c1) | c4 = c2.  [copy(101),merge(f)].
+103 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c1).  [copy(102),merge(f)].
+104 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(103,e,20,b)].
+105 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | -f(A) | c1 = A.  [copy(104),merge(g)].
+106 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | f(f1(c1)).  [resolve(103,e,14,a)].
+107 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c1 = f1(c1).  [resolve(99,f,98,e)].
+108 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1.  [copy(107),flip(j)].
+109 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1.  [copy(108),merge(f)].
+110 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | c2 = c1 | c3 = c1 | f1(c1) = c1.  [copy(109),merge(f)].
+111 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | c3 = c1 | f1(c1) = c1.  [copy(110),merge(f)].
+112 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | f1(c1) = c1.  [copy(111),merge(f)].
+113 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3).  [copy(112),merge(f)].
+114 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c1 = c3.  [resolve(113,e,98,e)].
+115 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(114),flip(i)].
+116 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(115),merge(e)].
+117 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(116),merge(e)].
+118 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c1 | c3 = c1.  [copy(117),merge(e)].
+119 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(118),merge(e)].
+120 c3 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1.  [copy(119),merge(e)].
+121 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c2 | f(c3).  [resolve(120,b,42,d)].
+122 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3).  [copy(121),merge(e)].
+123 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c2) = c2 | c3 = c2 | c1 = c3 | c2 = c3.  [resolve(122,e,41,c)].
+124 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c2) = c2 | c3 = c2 | c3 = c1 | c2 = c3.  [copy(123),flip(g)].
+125 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c2) = c2 | c3 = c2 | c3 = c1 | c3 = c2.  [copy(124),flip(h)].
+126 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c2 | c3 = c1 | c3 = c2.  [copy(125),merge(e)].
+127 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c1 | c3 = c2.  [copy(126),merge(e)].
+128 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c2.  [copy(127),merge(e)].
+129 c3 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2.  [copy(128),merge(e)].
+130 c3 = c2 | c2 = c1 | c3 = c1 | f(c3) | f(c1).  [resolve(129,d,24,b)].
+131 c3 = c2 | c2 = c1 | c3 = c1 | f(c1) | f(c1) | c2 = c3.  [resolve(130,d,5,b)].
+132 c3 = c2 | c2 = c1 | c3 = c1 | f(c1) | f(c1) | c3 = c2.  [copy(131),flip(f)].
+133 c3 = c2 | c2 = c1 | c3 = c1 | f(c1) | c3 = c2.  [copy(132),merge(e)].
+134 c3 = c2 | c2 = c1 | c3 = c1 | f(c1).  [copy(133),merge(e)].
+135 c3 = c2 | c2 = c1 | c3 = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(134,d,20,b)].
+136 c3 = c2 | c2 = c1 | c3 = c1 | -f(A) | c1 = A.  [copy(135),merge(f)].
+137 c3 = c2 | c2 = c1 | c3 = c1 | f(c3) | f1(c1) != c1.  [resolve(134,d,16,a)].
+138 c3 = c2 | c2 = c1 | c3 = c1 | f(c3) | c3 = c2 | c2 = c1 | c3 = c1.  [resolve(137,e,120,b)].
+139 c3 = c2 | c2 = c1 | c3 = c1 | f(c3) | c2 = c1 | c3 = c1.  [copy(138),merge(e)].
+140 c3 = c2 | c2 = c1 | c3 = c1 | f(c3) | c3 = c1.  [copy(139),merge(e)].
+141 c3 = c2 | c2 = c1 | c3 = c1 | f(c3).  [copy(140),merge(e)].
+142 c3 = c2 | c2 = c1 | c3 = c1 | c3 = c2 | c2 = c1 | c3 = c1 | c1 = c3.  [resolve(141,d,136,d)].
+143 c3 = c2 | c2 = c1 | c3 = c1 | c3 = c2 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(142),flip(g)].
+144 c3 = c2 | c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(143),merge(d)].
+145 c3 = c2 | c2 = c1 | c3 = c1 | c3 = c1 | c3 = c1.  [copy(144),merge(d)].
+146 c3 = c2 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(145),merge(d)].
+147 c3 = c2 | c2 = c1 | c3 = c1.  [copy(146),merge(d)].
+148 c2 = c1 | c3 = c1 | c4 != c2 | f(f1(c2)) | f(c1).  [para(147(a,1),26(a,2))].
+149 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c1 = f1(c1).  [resolve(106,f,105,e)].
+150 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1.  [copy(149),flip(j)].
+151 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1.  [copy(150),merge(f)].
+152 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | c2 = c1 | c3 = c1 | f1(c1) = c1.  [copy(151),merge(f)].
+153 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | c3 = c1 | f1(c1) = c1.  [copy(152),merge(f)].
+154 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3) | f1(c1) = c1.  [copy(153),merge(f)].
+155 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f(c3).  [copy(154),merge(f)].
+156 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c1 = c3.  [resolve(155,e,105,e)].
+157 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(156),flip(i)].
+158 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(157),merge(e)].
+159 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(158),merge(e)].
+160 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c1 | c3 = c1.  [copy(159),merge(e)].
+161 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(160),merge(e)].
+162 c4 = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1.  [copy(161),merge(e)].
+163 c4 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c4 = c2 | f(c3).  [resolve(162,b,47,d)].
+164 c4 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3).  [copy(163),merge(e)].
+165 c4 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c2) = c2 | c4 = c2 | c1 = c3 | c2 = c1.  [resolve(164,e,44,c)].
+166 c4 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c2) = c2 | c4 = c2 | c3 = c1 | c2 = c1.  [copy(165),flip(g)].
+167 c4 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c4 = c2 | c3 = c1 | c2 = c1.  [copy(166),merge(e)].
+168 c4 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c1 | c2 = c1.  [copy(167),merge(e)].
+169 c4 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c2 = c1.  [copy(168),merge(e)].
+170 c4 = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2.  [copy(169),merge(e)].
+171 c4 = c2 | c2 = c1 | c3 = c1 | f(c4) | f(c1).  [resolve(170,d,25,b)].
+172 c4 = c2 | c2 = c1 | c3 = c1 | f(c1) | f(c1) | c2 = c4.  [resolve(171,d,5,b)].
+173 c4 = c2 | c2 = c1 | c3 = c1 | f(c1) | f(c1) | c4 = c2.  [copy(172),flip(f)].
+174 c4 = c2 | c2 = c1 | c3 = c1 | f(c1) | c4 = c2.  [copy(173),merge(e)].
+175 c4 = c2 | c2 = c1 | c3 = c1 | f(c1).  [copy(174),merge(e)].
+176 c4 = c2 | c2 = c1 | c3 = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(175,d,20,b)].
+177 c4 = c2 | c2 = c1 | c3 = c1 | -f(A) | c1 = A.  [copy(176),merge(f)].
+178 c4 = c2 | c2 = c1 | c3 = c1 | f(c3) | f1(c1) != c1.  [resolve(175,d,16,a)].
+179 c4 = c2 | c2 = c1 | c3 = c1 | f(c3) | c4 = c2 | c2 = c1 | c3 = c1.  [resolve(178,e,162,b)].
+180 c4 = c2 | c2 = c1 | c3 = c1 | f(c3) | c2 = c1 | c3 = c1.  [copy(179),merge(e)].
+181 c4 = c2 | c2 = c1 | c3 = c1 | f(c3) | c3 = c1.  [copy(180),merge(e)].
+182 c4 = c2 | c2 = c1 | c3 = c1 | f(c3).  [copy(181),merge(e)].
+183 c4 = c2 | c2 = c1 | c3 = c1 | c4 = c2 | c2 = c1 | c3 = c1 | c1 = c3.  [resolve(182,d,177,d)].
+184 c4 = c2 | c2 = c1 | c3 = c1 | c4 = c2 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(183),flip(g)].
+185 c4 = c2 | c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(184),merge(d)].
+186 c4 = c2 | c2 = c1 | c3 = c1 | c3 = c1 | c3 = c1.  [copy(185),merge(d)].
+187 c4 = c2 | c2 = c1 | c3 = c1 | c3 = c1.  [copy(186),merge(d)].
+188 c4 = c2 | c2 = c1 | c3 = c1.  [copy(187),merge(d)].
+189 c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | f(f1(c2)) | f(c1).  [resolve(188,a,148,c)].
+190 c2 = c1 | c3 = c1 | c3 = c1 | f(f1(c2)) | f(c1).  [copy(189),merge(c)].
+191 c2 = c1 | c3 = c1 | f(f1(c2)) | f(c1).  [copy(190),merge(c)].
+192 c2 = c1 | c3 = c1 | f(c1) | f(c1) | c2 = f1(c2).  [resolve(191,c,5,b)].
+193 c2 = c1 | c3 = c1 | f(c1) | f(c1) | f1(c2) = c2.  [copy(192),flip(e)].
+194 c2 = c1 | c3 = c1 | f(c1) | f1(c2) = c2.  [copy(193),merge(d)].
+195 c2 = c1 | c3 = c1 | f1(c2) = c2 | -f(A) | c1 = A | c2 = c1.  [resolve(194,c,20,b)].
+196 c2 = c1 | c3 = c1 | f1(c2) = c2 | -f(A) | c1 = A.  [copy(195),merge(f)].
+197 c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3) | f1(c1) != c1.  [resolve(194,c,16,a)].
+198 c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3) | f(f1(c1)).  [resolve(194,c,14,a)].
+199 c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3) | c2 = c1 | c3 = c1 | f1(c2) = c2 | c1 = f1(c1).  [resolve(198,e,196,d)].
+200 c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3) | c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c1) = c1.  [copy(199),flip(h)].
+201 c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3) | c3 = c1 | f1(c2) = c2 | f1(c1) = c1.  [copy(200),merge(e)].
+202 c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3) | f1(c2) = c2 | f1(c1) = c1.  [copy(201),merge(e)].
+203 c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3) | f1(c1) = c1.  [copy(202),merge(e)].
+204 c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c1 = c3.  [resolve(203,d,196,d)].
+205 c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c1.  [copy(204),flip(h)].
+206 c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c1) = c1 | c3 = c1 | f1(c2) = c2 | c3 = c1.  [copy(205),merge(e)].
+207 c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c1) = c1 | f1(c2) = c2 | c3 = c1.  [copy(206),merge(e)].
+208 c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c1) = c1 | c3 = c1.  [copy(207),merge(e)].
+209 c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c1) = c1.  [copy(208),merge(e)].
+210 c2 = c1 | c3 = c1 | f1(c1) = c1 | c4 != c3 | f(c1).  [resolve(209,c,21,b)].
+211 c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1 | c4 != c2 | f(c1).  [para(147(a,1),210(d,2))].
+212 c2 = c1 | c3 = c1 | c3 = c1 | f1(c1) = c1 | c4 != c2 | f(c1).  [copy(211),merge(c)].
+213 c2 = c1 | c3 = c1 | f1(c1) = c1 | c4 != c2 | f(c1).  [copy(212),merge(c)].
+214 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c1) | c2 = c1 | c3 = c1.  [resolve(213,d,188,a)].
+215 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c1) | c3 = c1.  [copy(214),merge(e)].
+216 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c1).  [copy(215),merge(e)].
+217 c2 = c1 | c3 = c1 | f1(c1) = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(216,d,20,b)].
+218 c2 = c1 | c3 = c1 | f1(c1) = c1 | -f(A) | c1 = A.  [copy(217),merge(f)].
+219 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c4) | f(f1(c1)).  [resolve(216,d,15,a)].
+220 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c4) | c2 = c1 | c3 = c1 | f1(c1) = c1 | c1 = f1(c1).  [resolve(219,e,218,d)].
+221 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c4) | c2 = c1 | c3 = c1 | f1(c1) = c1 | f1(c1) = c1.  [copy(220),flip(h)].
+222 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c4) | c3 = c1 | f1(c1) = c1 | f1(c1) = c1.  [copy(221),merge(e)].
+223 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c4) | f1(c1) = c1 | f1(c1) = c1.  [copy(222),merge(e)].
+224 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c4) | f1(c1) = c1.  [copy(223),merge(e)].
+225 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c4).  [copy(224),merge(e)].
+226 c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c2).  [para(188(a,1),225(d,1))].
+227 c2 = c1 | c3 = c1 | c3 = c1 | f1(c1) = c1 | f(c2).  [copy(226),merge(c)].
+228 c2 = c1 | c3 = c1 | f1(c1) = c1 | f(c2).  [copy(227),merge(c)].
+229 c2 = c1 | c3 = c1 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1 | c1 = c2.  [resolve(228,d,218,d)].
+230 c2 = c1 | c3 = c1 | f1(c1) = c1 | c2 = c1 | c3 = c1 | f1(c1) = c1 | c2 = c1.  [copy(229),flip(g)].
+231 c2 = c1 | c3 = c1 | f1(c1) = c1 | c3 = c1 | f1(c1) = c1 | c2 = c1.  [copy(230),merge(d)].
+232 c2 = c1 | c3 = c1 | f1(c1) = c1 | f1(c1) = c1 | c2 = c1.  [copy(231),merge(d)].
+233 c2 = c1 | c3 = c1 | f1(c1) = c1 | c2 = c1.  [copy(232),merge(d)].
+234 c2 = c1 | c3 = c1 | f1(c1) = c1.  [copy(233),merge(d)].
+235 c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3).  [resolve(234,c,197,e)].
+236 c2 = c1 | c3 = c1 | c3 = c1 | f1(c2) = c2 | f(c3).  [copy(235),merge(c)].
+237 c2 = c1 | c3 = c1 | f1(c2) = c2 | f(c3).  [copy(236),merge(c)].
+238 c2 = c1 | c3 = c1 | f1(c2) = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c1 = c3.  [resolve(237,d,196,d)].
+239 c2 = c1 | c3 = c1 | f1(c2) = c2 | c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c1.  [copy(238),flip(g)].
+240 c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c1 | f1(c2) = c2 | c3 = c1.  [copy(239),merge(d)].
+241 c2 = c1 | c3 = c1 | f1(c2) = c2 | f1(c2) = c2 | c3 = c1.  [copy(240),merge(d)].
+242 c2 = c1 | c3 = c1 | f1(c2) = c2 | c3 = c1.  [copy(241),merge(d)].
+243 c2 = c1 | c3 = c1 | f1(c2) = c2.  [copy(242),merge(d)].
+244 c2 = c1 | c3 = c1 | c4 != c3 | f(c1).  [resolve(243,c,21,b)].
+245 c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | c4 != c2 | f(c1).  [para(147(a,1),244(c,2))].
+246 c2 = c1 | c3 = c1 | c3 = c1 | c4 != c2 | f(c1).  [copy(245),merge(c)].
+247 c2 = c1 | c3 = c1 | c4 != c2 | f(c1).  [copy(246),merge(c)].
+248 c2 = c1 | c3 = c1 | f(c1) | c2 = c1 | c3 = c1.  [resolve(247,c,188,a)].
+249 c2 = c1 | c3 = c1 | f(c1) | c3 = c1.  [copy(248),merge(d)].
+250 c2 = c1 | c3 = c1 | f(c1).  [copy(249),merge(d)].
+251 c2 = c1 | c3 = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(250,c,20,b)].
+252 c2 = c1 | c3 = c1 | -f(A) | c1 = A.  [copy(251),merge(e)].
+253 c2 = c1 | c3 = c1 | f(c4) | f1(c1) != c1.  [resolve(250,c,17,a)].
+254 c2 = c1 | c3 = c1 | f(c4) | c2 = c1 | c3 = c1.  [resolve(253,d,234,c)].
+255 c2 = c1 | c3 = c1 | f(c4) | c3 = c1.  [copy(254),merge(d)].
+256 c2 = c1 | c3 = c1 | f(c4).  [copy(255),merge(d)].
+257 c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | f(c2).  [para(188(a,1),256(c,1))].
+258 c2 = c1 | c3 = c1 | c3 = c1 | f(c2).  [copy(257),merge(c)].
+259 c2 = c1 | c3 = c1 | f(c2).  [copy(258),merge(c)].
+260 c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | c1 = c2.  [resolve(259,c,252,c)].
+261 c2 = c1 | c3 = c1 | c2 = c1 | c3 = c1 | c2 = c1.  [copy(260),flip(e)].
+262 c2 = c1 | c3 = c1 | c3 = c1 | c2 = c1.  [copy(261),merge(c)].
+263 c2 = c1 | c3 = c1 | c2 = c1.  [copy(262),merge(c)].
+264 c2 = c1 | c3 = c1.  [copy(263),merge(c)].
+265 c2 = c1 | f(c1) | f(c1) | f1(c2) = c2.  [para(264(b,1),29(a,1))].
+266 c2 = c1 | f(c1) | f1(c2) = c2.  [copy(265),merge(c)].
+267 c2 = c1 | f1(c2) = c2 | -f(A) | c1 = A | c2 = c1.  [resolve(266,b,20,b)].
+268 c2 = c1 | f1(c2) = c2 | -f(A) | c1 = A.  [copy(267),merge(e)].
+269 c2 = c1 | f1(c2) = c2 | c4 != c3 | f(f1(c1)).  [resolve(266,b,18,a)].
+270 c2 = c1 | f1(c2) = c2 | f(c4) | f1(c1) != c1.  [resolve(266,b,17,a)].
+271 c2 = c1 | f1(c2) = c2 | f(c4) | f(f1(c1)).  [resolve(266,b,15,a)].
+272 c2 = c1 | f1(c2) = c2 | c4 != c3 | f1(c1) != c1.  [resolve(266,b,13,a)].
+273 c2 = c1 | f1(c2) = c2 | f(c4) | c2 = c1 | f1(c2) = c2 | c1 = f1(c1).  [resolve(271,d,268,c)].
+274 c2 = c1 | f1(c2) = c2 | f(c4) | c2 = c1 | f1(c2) = c2 | f1(c1) = c1.  [copy(273),flip(f)].
+275 c2 = c1 | f1(c2) = c2 | f(c4) | f1(c2) = c2 | f1(c1) = c1.  [copy(274),merge(d)].
+276 c2 = c1 | f1(c2) = c2 | f(c4) | f1(c1) = c1.  [copy(275),merge(d)].
+277 c2 = c1 | c2 = c1 | f1(c2) = c2 | c4 != c1 | f(f1(c1)).  [para(264(b,1),269(c,2))].
+278 c2 = c1 | f1(c2) = c2 | c4 != c1 | f(f1(c1)).  [copy(277),merge(b)].
+279 c2 = c1 | f1(c2) = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c1 = c4.  [resolve(276,c,268,c)].
+280 c2 = c1 | f1(c2) = c2 | f1(c1) = c1 | c2 = c1 | f1(c2) = c2 | c4 = c1.  [copy(279),flip(f)].
+281 c2 = c1 | f1(c2) = c2 | f1(c1) = c1 | f1(c2) = c2 | c4 = c1.  [copy(280),merge(d)].
+282 c2 = c1 | f1(c2) = c2 | f1(c1) = c1 | c4 = c1.  [copy(281),merge(d)].
+283 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c3) | f(c1).  [resolve(282,b,24,b)].
+284 c2 = c1 | c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c1) | f(c1).  [para(264(b,1),283(d,1))].
+285 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c1) | f(c1).  [copy(284),merge(b)].
+286 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c1).  [copy(285),merge(e)].
+287 c2 = c1 | f1(c1) = c1 | c4 = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(286,d,20,b)].
+288 c2 = c1 | f1(c1) = c1 | c4 = c1 | -f(A) | c1 = A.  [copy(287),merge(f)].
+289 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c4) | f(f1(c1)).  [resolve(286,d,15,a)].
+290 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c4) | c2 = c1 | f1(c1) = c1 | c4 = c1 | c1 = f1(c1).  [resolve(289,e,288,d)].
+291 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c4) | c2 = c1 | f1(c1) = c1 | c4 = c1 | f1(c1) = c1.  [copy(290),flip(h)].
+292 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c4) | f1(c1) = c1 | c4 = c1 | f1(c1) = c1.  [copy(291),merge(e)].
+293 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c4) | c4 = c1 | f1(c1) = c1.  [copy(292),merge(e)].
+294 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c4) | f1(c1) = c1.  [copy(293),merge(e)].
+295 c2 = c1 | f1(c1) = c1 | c4 = c1 | f(c4).  [copy(294),merge(e)].
+296 c2 = c1 | f1(c1) = c1 | c4 = c1 | c2 = c1 | f1(c1) = c1 | c4 = c1 | c1 = c4.  [resolve(295,d,288,d)].
+297 c2 = c1 | f1(c1) = c1 | c4 = c1 | c2 = c1 | f1(c1) = c1 | c4 = c1 | c4 = c1.  [copy(296),flip(g)].
+298 c2 = c1 | f1(c1) = c1 | c4 = c1 | f1(c1) = c1 | c4 = c1 | c4 = c1.  [copy(297),merge(d)].
+299 c2 = c1 | f1(c1) = c1 | c4 = c1 | c4 = c1 | c4 = c1.  [copy(298),merge(d)].
+300 c2 = c1 | f1(c1) = c1 | c4 = c1 | c4 = c1.  [copy(299),merge(d)].
+301 c2 = c1 | f1(c1) = c1 | c4 = c1.  [copy(300),merge(d)].
+302 c2 = c1 | c4 = c1 | c2 = c1 | f1(c2) = c2 | f(c4).  [resolve(301,b,270,d)].
+303 c2 = c1 | c4 = c1 | f1(c2) = c2 | f(c4).  [copy(302),merge(c)].
+304 c2 = c1 | c4 = c1 | f1(c2) = c2 | c2 = c1 | f1(c2) = c2 | c1 = c4.  [resolve(303,d,268,c)].
+305 c2 = c1 | c4 = c1 | f1(c2) = c2 | c2 = c1 | f1(c2) = c2 | c4 = c1.  [copy(304),flip(f)].
+306 c2 = c1 | c4 = c1 | f1(c2) = c2 | f1(c2) = c2 | c4 = c1.  [copy(305),merge(d)].
+307 c2 = c1 | c4 = c1 | f1(c2) = c2 | c4 = c1.  [copy(306),merge(d)].
+308 c2 = c1 | c4 = c1 | f1(c2) = c2.  [copy(307),merge(d)].
+309 c2 = c1 | c4 = c1 | f(c3) | f(c1).  [resolve(308,c,24,b)].
+310 c2 = c1 | c2 = c1 | c4 = c1 | f(c1) | f(c1).  [para(264(b,1),309(c,1))].
+311 c2 = c1 | c4 = c1 | f(c1) | f(c1).  [copy(310),merge(b)].
+312 c2 = c1 | c4 = c1 | f(c1).  [copy(311),merge(d)].
+313 c2 = c1 | c4 = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(312,c,20,b)].
+314 c2 = c1 | c4 = c1 | -f(A) | c1 = A.  [copy(313),merge(e)].
+315 c2 = c1 | c4 = c1 | f(c4) | f1(c1) != c1.  [resolve(312,c,17,a)].
+316 c2 = c1 | c4 = c1 | f(c4) | c2 = c1 | c4 = c1.  [resolve(315,d,301,b)].
+317 c2 = c1 | c4 = c1 | f(c4) | c4 = c1.  [copy(316),merge(d)].
+318 c2 = c1 | c4 = c1 | f(c4).  [copy(317),merge(d)].
+319 c2 = c1 | c4 = c1 | c2 = c1 | c4 = c1 | c1 = c4.  [resolve(318,c,314,c)].
+320 c2 = c1 | c4 = c1 | c2 = c1 | c4 = c1 | c4 = c1.  [copy(319),flip(e)].
+321 c2 = c1 | c4 = c1 | c4 = c1 | c4 = c1.  [copy(320),merge(c)].
+322 c2 = c1 | c4 = c1 | c4 = c1.  [copy(321),merge(c)].
+323 c2 = c1 | c4 = c1.  [copy(322),merge(c)].
+324 c2 = c1 | c2 = c1 | f1(c2) = c2 | f(f1(c1)).  [resolve(323,b,278,c)].
+325 c2 = c1 | f1(c2) = c2 | f(f1(c1)).  [copy(324),merge(b)].
+326 c2 = c1 | f1(c2) = c2 | c2 = c1 | f1(c2) = c2 | c1 = f1(c1).  [resolve(325,c,268,c)].
+327 c2 = c1 | f1(c2) = c2 | c2 = c1 | f1(c2) = c2 | f1(c1) = c1.  [copy(326),flip(e)].
+328 c2 = c1 | f1(c2) = c2 | f1(c2) = c2 | f1(c1) = c1.  [copy(327),merge(c)].
+329 c2 = c1 | f1(c2) = c2 | f1(c1) = c1.  [copy(328),merge(c)].
+330 c2 = c1 | f1(c1) = c1 | f(c4) | f(c1).  [resolve(329,b,25,b)].
+331 c2 = c1 | c2 = c1 | f1(c1) = c1 | f(c1) | f(c1).  [para(323(b,1),330(c,1))].
+332 c2 = c1 | f1(c1) = c1 | f(c1) | f(c1).  [copy(331),merge(b)].
+333 c2 = c1 | f1(c1) = c1 | f(c1).  [copy(332),merge(d)].
+334 c2 = c1 | f1(c1) = c1 | -f(A) | c1 = A | c2 = c1.  [resolve(333,c,20,b)].
+335 c2 = c1 | f1(c1) = c1 | -f(A) | c1 = A.  [copy(334),merge(e)].
+336 c2 = c1 | f1(c1) = c1 | c4 != c3 | f(f1(c1)).  [resolve(333,c,18,a)].
+337 c2 = c1 | c2 = c1 | f1(c1) = c1 | c4 != c1 | f(f1(c1)).  [para(264(b,1),336(c,2))].
+338 c2 = c1 | f1(c1) = c1 | c4 != c1 | f(f1(c1)).  [copy(337),merge(b)].
+339 c2 = c1 | f1(c1) = c1 | f(f1(c1)) | c2 = c1.  [resolve(338,c,323,b)].
+340 c2 = c1 | f1(c1) = c1 | f(f1(c1)).  [copy(339),merge(d)].
+341 c2 = c1 | f1(c1) = c1 | c2 = c1 | f1(c1) = c1 | c1 = f1(c1).  [resolve(340,c,335,c)].
+342 c2 = c1 | f1(c1) = c1 | c2 = c1 | f1(c1) = c1 | f1(c1) = c1.  [copy(341),flip(e)].
+343 c2 = c1 | f1(c1) = c1 | f1(c1) = c1 | f1(c1) = c1.  [copy(342),merge(c)].
+344 c2 = c1 | f1(c1) = c1 | f1(c1) = c1.  [copy(343),merge(c)].
+345 c2 = c1 | f1(c1) = c1.  [copy(344),merge(c)].
+346 c2 = c1 | c2 = c1 | f1(c2) = c2 | c4 != c3.  [resolve(345,b,272,d)].
+347 c2 = c1 | f1(c2) = c2 | c4 != c3.  [copy(346),merge(b)].
+348 c2 = c1 | c2 = c1 | f1(c2) = c2 | c4 != c1.  [para(264(b,1),347(c,2))].
+349 c2 = c1 | f1(c2) = c2 | c4 != c1.  [copy(348),merge(b)].
+350 c2 = c1 | f1(c2) = c2 | c2 = c1.  [resolve(349,c,323,b)].
+351 c2 = c1 | f1(c2) = c2.  [copy(350),merge(c)].
+352 c2 = c1 | f(c4) | f(c1).  [resolve(351,b,25,b)].
+353 c2 = c1 | c2 = c1 | f(c1) | f(c1).  [para(323(b,1),352(b,1))].
+354 c2 = c1 | f(c1) | f(c1).  [copy(353),merge(b)].
+355 c2 = c1 | f(c1).  [copy(354),merge(c)].
+356 c2 = c1 | c4 != c3 | f1(c1) != c1.  [resolve(355,b,13,a)].
+357 c2 = c1 | c4 != c3 | c2 = c1.  [resolve(356,c,345,b)].
+358 c2 = c1 | c4 != c3.  [copy(357),merge(c)].
+359 c2 = c1 | c2 = c1 | c4 != c1.  [para(264(b,1),358(b,2))].
+360 c2 = c1 | c4 != c1.  [copy(359),merge(b)].
+361 c2 = c1 | c2 = c1.  [resolve(360,b,323,b)].
+362 c2 = c1.  [copy(361),merge(b)].
+363 f1(c1) = c2 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | c4 = c1.  [para(362(a,1),90(a,1,1))].
+364 f1(c1) = c1 | c4 = c2 | f1(c1) = c1 | f1(c1) = c2 | c4 = c1.  [para(362(a,1),363(a,2))].
+365 f1(c1) = c1 | c4 = c1 | f1(c1) = c1 | f1(c1) = c2 | c4 = c1.  [para(362(a,1),364(b,2))].
+366 f1(c1) = c1 | c4 = c1 | f1(c1) = c1 | f1(c1) = c1 | c4 = c1.  [para(362(a,1),365(d,2))].
+367 f1(c1) = c1 | c4 = c1 | f1(c1) = c1 | c4 = c1.  [copy(366),merge(c)].
+368 f1(c1) = c1 | c4 = c1 | c4 = c1.  [copy(367),merge(c)].
+369 f1(c1) = c1 | c4 = c1.  [copy(368),merge(c)].
+370 f1(c1) = c2 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | c3 = c1.  [para(362(a,1),84(a,1,1))].
+371 f1(c1) = c1 | c3 = c2 | f1(c1) = c1 | f1(c1) = c2 | c3 = c1.  [para(362(a,1),370(a,2))].
+372 f1(c1) = c1 | c3 = c1 | f1(c1) = c1 | f1(c1) = c2 | c3 = c1.  [para(362(a,1),371(b,2))].
+373 f1(c1) = c1 | c3 = c1 | f1(c1) = c1 | f1(c1) = c1 | c3 = c1.  [para(362(a,1),372(d,2))].
+374 f1(c1) = c1 | c3 = c1 | f1(c1) = c1 | c3 = c1.  [copy(373),merge(c)].
+375 f1(c1) = c1 | c3 = c1 | c3 = c1.  [copy(374),merge(c)].
+376 f1(c1) = c1 | c3 = c1.  [copy(375),merge(c)].
+377 -f(A) | -f(B) | B = A | c1 = A.  [para(362(a,1),19(d,1))].
+378 f(c1) | f(c1).  [para(362(a,1),2(b,1))].
+379 f(c1).  [copy(378),merge(b)].
+380 -f(A) | -f(c1) | c1 = A.  [factor(377,c,d)].
+381 -f(A) | c1 = A.  [resolve(379,a,380,b)].
+382 c4 != c3 | f(f1(c1)).  [resolve(379,a,18,a)].
+383 f(c4) | f1(c1) != c1.  [resolve(379,a,17,a)].
+384 f(c3) | f1(c1) != c1.  [resolve(379,a,16,a)].
+385 c4 != c3 | f1(c1) != c1.  [resolve(379,a,13,a)].
+386 c4 = c1 | f(c4).  [resolve(369,a,383,b)].
+387 c4 = c1 | c1 = c4.  [resolve(386,b,381,a)].
+388 c4 = c1 | c4 = c1.  [copy(387),flip(b)].
+389 c4 = c1.  [copy(388),merge(b)].
+390 c1 != c3 | f1(c1) != c1.  [para(389(a,1),385(a,1))].
+391 c3 != c1 | f1(c1) != c1.  [copy(390),flip(a)].
+392 c1 != c3 | f(f1(c1)).  [para(389(a,1),382(a,1))].
+393 c3 != c1 | f(f1(c1)).  [copy(392),flip(a)].
+394 c3 = c1 | f(c3).  [resolve(376,a,384,b)].
+395 c3 = c1 | c1 = c3.  [resolve(394,b,381,a)].
+396 c3 = c1 | c3 = c1.  [copy(395),flip(b)].
+397 c3 = c1.  [copy(396),merge(b)].
+398 c1 != c1 | f(f1(c1)).  [para(397(a,1),393(a,1))].
+399 f(f1(c1)).  [copy(398),xx(a)].
+400 c1 != c1 | f1(c1) != c1.  [para(397(a,1),391(a,1))].
+401 f1(c1) != c1.  [copy(400),xx(a)].
+402 c1 = f1(c1).  [resolve(399,a,381,a)].
+403 f1(c1) = c1.  [copy(402),flip(a)].
+404 $F.  [resolve(401,a,403,a)].

@@ -1,0 +1,26 @@
+
+
+
+4 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(1)].
+5 ssList(nil).  [assumption].
+6 -ssList(A) | -ssItem(B) | cons(B,A) != nil.  [clausify(2)].
+7 ssList(c3).  [clausify(3)].
+8 c6 = c4.  [clausify(3)].
+9 c5 = c3.  [clausify(3)].
+10 neq(c4,nil).  [clausify(3)].
+11 -neq(c3,nil).  [clausify(3)].
+12 ssItem(c7) | -neq(c6,nil).  [clausify(3)].
+13 ssItem(c7) | -neq(c4,nil).  [para(8(a,1),12(b,1))].
+14 ssItem(c7).  [resolve(10,a,13,b)].
+15 cons(c7,nil) = c5 | -neq(c6,nil).  [clausify(3)].
+16 cons(c7,nil) = c3 | -neq(c6,nil).  [para(9(a,1),15(a,2))].
+17 cons(c7,nil) = c3 | -neq(c4,nil).  [para(8(a,1),16(b,1))].
+18 cons(c7,nil) = c3.  [resolve(10,a,17,b)].
+19 -ssList(A) | neq(A,nil) | nil = A.  [resolve(5,a,4,b)].
+20 -ssList(A) | cons(c7,A) != nil.  [resolve(14,a,6,b)].
+21 cons(c7,nil) != nil.  [resolve(20,a,5,a)].
+22 c3 != nil.  [para(18(a,1),21(a,1))].
+23 neq(c3,nil) | nil = c3.  [resolve(19,a,7,a)].
+24 neq(c3,nil) | c3 = nil.  [copy(23),flip(b)].
+25 c3 = nil.  [resolve(11,a,24,a)].
+26 $F.  [resolve(22,a,25,a)].

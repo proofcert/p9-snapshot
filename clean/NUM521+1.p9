@@ -1,0 +1,27 @@
+
+
+3 aNaturalNumber0(xn).  [assumption].
+4 aNaturalNumber0(xm).  [assumption].
+5 aNaturalNumber0(xp).  [assumption].
+6 -sdtlseqdt0(xp,xn).  [assumption].
+7 -sdtlseqdt0(xp,xm).  [assumption].
+8 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtlseqdt0(A,B) | B != A.  [clausify(1)].
+9 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtlseqdt0(A,B) | sdtlseqdt0(B,A).  [clausify(1)].
+10 xp = xn | -sdtlseqdt0(xn,xp) | xp = xm | -sdtlseqdt0(xm,xp).  [clausify(2)].
+11 xn = xp | -sdtlseqdt0(xn,xp) | xp = xm | -sdtlseqdt0(xm,xp).  [copy(10),flip(a)].
+12 xn = xp | -sdtlseqdt0(xn,xp) | xm = xp | -sdtlseqdt0(xm,xp).  [copy(11),flip(c)].
+13 -aNaturalNumber0(A) | sdtlseqdt0(xp,A) | A != xp.  [resolve(8,a,5,a)].
+14 sdtlseqdt0(xp,xm) | xm != xp.  [resolve(13,a,4,a)].
+15 xm != xp.  [resolve(14,a,7,a)].
+16 -aNaturalNumber0(A) | sdtlseqdt0(xp,A) | A != xp.  [resolve(8,a,5,a)].
+17 sdtlseqdt0(xp,xn) | xn != xp.  [resolve(16,a,3,a)].
+18 xn != xp.  [resolve(17,a,6,a)].
+19 -sdtlseqdt0(xn,xp) | xm = xp | -sdtlseqdt0(xm,xp).  [resolve(18,a,12,a)].
+20 -sdtlseqdt0(xn,xp) | -sdtlseqdt0(xm,xp).  [resolve(15,a,19,b)].
+21 -aNaturalNumber0(A) | sdtlseqdt0(xp,A) | sdtlseqdt0(A,xp).  [resolve(9,a,5,a)].
+22 sdtlseqdt0(xp,xm) | sdtlseqdt0(xm,xp).  [resolve(21,a,4,a)].
+23 sdtlseqdt0(xm,xp).  [resolve(7,a,22,a)].
+24 sdtlseqdt0(xp,xn) | sdtlseqdt0(xn,xp).  [resolve(21,a,3,a)].
+25 sdtlseqdt0(xn,xp).  [resolve(6,a,24,a)].
+26 -sdtlseqdt0(xm,xp).  [resolve(25,a,20,a)].
+27 $F.  [resolve(23,a,26,a)].

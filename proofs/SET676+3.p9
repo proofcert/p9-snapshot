@@ -1,0 +1,48 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n038.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 20:49:03 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 57944 was started by sandbox on n038.star.cs.uiowa.edu,
+Fri Jun  6 20:49:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_57912_n038.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 9.000.
+% Given clauses 12.
+
+
+1 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> ilf_type(cross_product(A,B),relation_type(A,B)))))).  [assumption].
+2 (all A (ilf_type(A,set_type) -> (all B (ilf_type(B,set_type) -> (ilf_type(B,identity_relation_of_type(A)) <-> ilf_type(B,relation_type(A,A))))))).  [assumption].
+3 (all A ilf_type(A,set_type)).  [assumption].
+4 -(all A (ilf_type(A,set_type) -> ilf_type(cross_product(A,A),identity_relation_of_type(A)))).  [assumption].
+5 ilf_type(A,set_type).  [clausify(3)].
+6 -ilf_type(cross_product(c1,c1),identity_relation_of_type(c1)).  [clausify(4)].
+7 -ilf_type(A,set_type) | -ilf_type(B,set_type) | ilf_type(cross_product(A,B),relation_type(A,B)).  [clausify(1)].
+8 -ilf_type(A,set_type) | ilf_type(cross_product(B,A),relation_type(B,A)).  [resolve(5,a,7,a)].
+9 ilf_type(cross_product(A,B),relation_type(A,B)).  [resolve(5,a,8,a)].
+10 -ilf_type(A,set_type) | -ilf_type(B,set_type) | ilf_type(B,identity_relation_of_type(A)) | -ilf_type(B,relation_type(A,A)).  [clausify(2)].
+11 -ilf_type(A,set_type) | ilf_type(A,identity_relation_of_type(B)) | -ilf_type(A,relation_type(B,B)).  [resolve(5,a,10,a)].
+12 ilf_type(A,identity_relation_of_type(B)) | -ilf_type(A,relation_type(B,B)).  [resolve(5,a,11,a)].
+13 ilf_type(cross_product(A,A),identity_relation_of_type(A)).  [resolve(12,b,9,a)].
+14 $F.  [resolve(13,a,6,a)].
+
+============================== end of proof ==========================

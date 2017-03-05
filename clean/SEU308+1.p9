@@ -1,0 +1,22 @@
+
+
+
+
+
+
+7 -one_sorted_str(A) | cast_as_carrier_subset(A) = the_carrier(A).  [clausify(4)].
+8 one_sorted_str(c3).  [clausify(6)].
+9 element(A,powerset(B)) | -subset(A,B).  [clausify(3)].
+10 subset(A,A).  [clausify(1)].
+11 element(c4,powerset(the_carrier(c3))).  [clausify(6)].
+12 subset_difference(the_carrier(c3),cast_as_carrier_subset(c3),c4) != subset_complement(the_carrier(c3),c4).  [clausify(6)].
+13 -element(A,powerset(B)) | subset_complement(B,A) = set_difference(B,A).  [clausify(5)].
+14 -element(A,powerset(B)) | -element(C,powerset(B)) | subset_difference(B,A,C) = set_difference(A,C).  [clausify(2)].
+15 cast_as_carrier_subset(c3) = the_carrier(c3).  [resolve(7,a,8,a)].
+16 element(A,powerset(A)).  [resolve(9,b,10,a)].
+17 subset_difference(the_carrier(c3),the_carrier(c3),c4) != subset_complement(the_carrier(c3),c4).  [para(15(a,1),12(a,1,2))].
+18 subset_complement(the_carrier(c3),c4) = set_difference(the_carrier(c3),c4).  [resolve(13,a,11,a)].
+19 subset_difference(the_carrier(c3),the_carrier(c3),c4) != set_difference(the_carrier(c3),c4).  [para(18(a,1),17(a,2))].
+20 -element(A,powerset(the_carrier(c3))) | subset_difference(the_carrier(c3),A,c4) = set_difference(A,c4).  [resolve(14,b,11,a)].
+21 -element(the_carrier(c3),powerset(the_carrier(c3))).  [resolve(20,b,19,a)].
+22 $F.  [resolve(16,a,21,a)].

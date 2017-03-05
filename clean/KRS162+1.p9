@@ -1,0 +1,450 @@
+
+
+
+
+
+
+
+
+
+10 cowlThing(A).  [clausify(2)].
+11 xsd_string(A) | xsd_integer(A).  [clausify(3)].
+12 -cowlNothing(A).  [clausify(2)].
+13 -xsd_string(A) | -xsd_integer(A).  [clausify(3)].
+14 -cB(A) | -cA(A).  [clausify(6)].
+15 -rp(A,B) | cA(B).  [clausify(4)].
+16 -rq(A,B) | cB(B).  [clausify(5)].
+17 -rq(A,B) | rr(A,B).  [clausify(7)].
+18 -rp(A,B) | rr(A,B).  [clausify(8)].
+19 A != B | -cA(B) | cA(A).  [clausify(1)].
+20 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c4).  [clausify(9)].
+21 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c4).  [resolve(10,a,20,a)].
+22 xsd_string(c2) | -xsd_integer(c2) | rp(c3,c4).  [resolve(12,a,21,a)].
+23 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c5).  [clausify(9)].
+24 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rp(c3,c5).  [resolve(10,a,23,a)].
+25 xsd_string(c2) | -xsd_integer(c2) | rp(c3,c5).  [resolve(12,a,24,a)].
+26 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | c5 != c4.  [clausify(9)].
+27 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | c5 != c4.  [resolve(10,a,26,a)].
+28 xsd_string(c2) | -xsd_integer(c2) | c5 != c4.  [resolve(12,a,27,a)].
+29 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rq(c3,c6).  [clausify(9)].
+30 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rq(c3,c6).  [resolve(10,a,29,a)].
+31 xsd_string(c2) | -xsd_integer(c2) | rq(c3,c6).  [resolve(12,a,30,a)].
+32 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rq(c3,c7).  [clausify(9)].
+33 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rq(c3,c7).  [resolve(10,a,32,a)].
+34 xsd_string(c2) | -xsd_integer(c2) | rq(c3,c7).  [resolve(12,a,33,a)].
+35 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rq(c3,c8).  [clausify(9)].
+36 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | rq(c3,c8).  [resolve(10,a,35,a)].
+37 xsd_string(c2) | -xsd_integer(c2) | rq(c3,c8).  [resolve(12,a,36,a)].
+38 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | c7 != c6.  [clausify(9)].
+39 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | c7 != c6.  [resolve(10,a,38,a)].
+40 xsd_string(c2) | -xsd_integer(c2) | c7 != c6.  [resolve(12,a,39,a)].
+41 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | c8 != c6.  [clausify(9)].
+42 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | c8 != c6.  [resolve(10,a,41,a)].
+43 xsd_string(c2) | -xsd_integer(c2) | c8 != c6.  [resolve(12,a,42,a)].
+44 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | c8 != c7.  [clausify(9)].
+45 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | c8 != c7.  [resolve(10,a,44,a)].
+46 xsd_string(c2) | -xsd_integer(c2) | c8 != c7.  [resolve(12,a,45,a)].
+47 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rp(c3,c4).  [clausify(9)].
+48 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rp(c3,c4).  [resolve(10,a,47,a)].
+49 -xsd_string(c2) | xsd_integer(c2) | rp(c3,c4).  [resolve(12,a,48,a)].
+50 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rp(c3,c5).  [clausify(9)].
+51 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rp(c3,c5).  [resolve(10,a,50,a)].
+52 -xsd_string(c2) | xsd_integer(c2) | rp(c3,c5).  [resolve(12,a,51,a)].
+53 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | c5 != c4.  [clausify(9)].
+54 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | c5 != c4.  [resolve(10,a,53,a)].
+55 -xsd_string(c2) | xsd_integer(c2) | c5 != c4.  [resolve(12,a,54,a)].
+56 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rq(c3,c6).  [clausify(9)].
+57 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rq(c3,c6).  [resolve(10,a,56,a)].
+58 -xsd_string(c2) | xsd_integer(c2) | rq(c3,c6).  [resolve(12,a,57,a)].
+59 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rq(c3,c7).  [clausify(9)].
+60 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rq(c3,c7).  [resolve(10,a,59,a)].
+61 -xsd_string(c2) | xsd_integer(c2) | rq(c3,c7).  [resolve(12,a,60,a)].
+62 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rq(c3,c8).  [clausify(9)].
+63 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | rq(c3,c8).  [resolve(10,a,62,a)].
+64 -xsd_string(c2) | xsd_integer(c2) | rq(c3,c8).  [resolve(12,a,63,a)].
+65 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | c7 != c6.  [clausify(9)].
+66 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | c7 != c6.  [resolve(10,a,65,a)].
+67 -xsd_string(c2) | xsd_integer(c2) | c7 != c6.  [resolve(12,a,66,a)].
+68 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | c8 != c6.  [clausify(9)].
+69 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | c8 != c6.  [resolve(10,a,68,a)].
+70 -xsd_string(c2) | xsd_integer(c2) | c8 != c6.  [resolve(12,a,69,a)].
+71 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | c8 != c7.  [clausify(9)].
+72 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | c8 != c7.  [resolve(10,a,71,a)].
+73 -xsd_string(c2) | xsd_integer(c2) | c8 != c7.  [resolve(12,a,72,a)].
+74 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | -rr(c3,E) | B = A | C = A | D = A | E = A | C = B | D = B | E = B | D = C | E = C | E = D.  [clausify(9)].
+75 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | -rr(c3,E) | B = A | C = A | D = A | E = A | C = B | D = B | E = B | D = C | E = C | E = D.  [resolve(10,a,74,a)].
+76 xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | -rr(c3,E) | B = A | C = A | D = A | E = A | C = B | D = B | E = B | D = C | E = C | E = D.  [resolve(12,a,75,a)].
+77 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | -rr(c3,E) | B = A | C = A | D = A | E = A | C = B | D = B | E = B | D = C | E = C | E = D.  [clausify(9)].
+78 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | -rr(c3,E) | B = A | C = A | D = A | E = A | C = B | D = B | E = B | D = C | E = C | E = D.  [resolve(10,a,77,a)].
+79 -xsd_string(c2) | xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | -rr(c3,E) | B = A | C = A | D = A | E = A | C = B | D = B | E = B | D = C | E = C | E = D.  [resolve(12,a,78,a)].
+80 xsd_integer(c2) | rp(c3,c4) | xsd_integer(c2).  [resolve(49,a,11,a)].
+81 xsd_integer(c2) | rp(c3,c4).  [copy(80),merge(c)].
+82 xsd_integer(c2) | rp(c3,c5) | xsd_integer(c2).  [resolve(52,a,11,a)].
+83 xsd_integer(c2) | rp(c3,c5).  [copy(82),merge(c)].
+84 xsd_integer(c2) | c5 != c4 | xsd_integer(c2).  [resolve(55,a,11,a)].
+85 xsd_integer(c2) | c5 != c4.  [copy(84),merge(c)].
+86 xsd_integer(c2) | rq(c3,c6) | xsd_integer(c2).  [resolve(58,a,11,a)].
+87 xsd_integer(c2) | rq(c3,c6).  [copy(86),merge(c)].
+88 xsd_integer(c2) | rq(c3,c7) | xsd_integer(c2).  [resolve(61,a,11,a)].
+89 xsd_integer(c2) | rq(c3,c7).  [copy(88),merge(c)].
+90 xsd_integer(c2) | rq(c3,c8) | xsd_integer(c2).  [resolve(64,a,11,a)].
+91 xsd_integer(c2) | rq(c3,c8).  [copy(90),merge(c)].
+92 xsd_integer(c2) | c7 != c6 | xsd_integer(c2).  [resolve(67,a,11,a)].
+93 xsd_integer(c2) | c7 != c6.  [copy(92),merge(c)].
+94 xsd_integer(c2) | c8 != c6 | xsd_integer(c2).  [resolve(70,a,11,a)].
+95 xsd_integer(c2) | c8 != c6.  [copy(94),merge(c)].
+96 xsd_integer(c2) | c8 != c7 | xsd_integer(c2).  [resolve(73,a,11,a)].
+97 xsd_integer(c2) | c8 != c7.  [copy(96),merge(c)].
+98 xsd_integer(c2) | rr(c3,c4).  [resolve(81,b,18,a)].
+99 xsd_integer(c2) | cA(c4).  [resolve(81,b,15,a)].
+100 xsd_integer(c2) | A != c4 | cA(A).  [resolve(99,b,19,b)].
+101 xsd_integer(c2) | c4 != A | cA(A).  [copy(100),flip(b)].
+102 xsd_integer(c2) | rr(c3,c5).  [resolve(83,b,18,a)].
+103 xsd_integer(c2) | cA(c5).  [resolve(83,b,15,a)].
+104 xsd_integer(c2) | A != c5 | cA(A).  [resolve(103,b,19,b)].
+105 xsd_integer(c2) | c5 != A | cA(A).  [copy(104),flip(b)].
+106 xsd_integer(c2) | rr(c3,c6).  [resolve(87,b,17,a)].
+107 xsd_integer(c2) | cB(c6).  [resolve(87,b,16,a)].
+108 xsd_integer(c2) | -cA(c6).  [resolve(107,b,14,a)].
+109 xsd_integer(c2) | rr(c3,c7).  [resolve(89,b,17,a)].
+110 xsd_integer(c2) | cB(c7).  [resolve(89,b,16,a)].
+111 xsd_integer(c2) | rr(c3,c8).  [resolve(91,b,17,a)].
+112 xsd_integer(c2) | cB(c8).  [resolve(91,b,16,a)].
+113 xsd_integer(c2) | -cA(c7).  [resolve(110,b,14,a)].
+114 xsd_integer(c2) | -cA(c8).  [resolve(112,b,14,a)].
+115 xsd_integer(c2) | -xsd_string(c2) | xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | B = A | C = A | D = A | c4 = A | C = B | D = B | c4 = B | D = C | c4 = C | c4 = D.  [resolve(98,b,79,g)].
+116 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | B = A | C = A | D = A | c4 = A | C = B | D = B | c4 = B | D = C | c4 = C | c4 = D.  [copy(115),merge(c)].
+117 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | A = c8 | B = c8 | C = c8 | c4 = c8 | B = A | C = A | c4 = A | C = B | c4 = B | c4 = C | xsd_integer(c2).  [resolve(116,c,111,b)].
+118 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c8 = A | B = c8 | C = c8 | c4 = c8 | B = A | C = A | c4 = A | C = B | c4 = B | c4 = C | xsd_integer(c2).  [copy(117),flip(f)].
+119 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c8 = A | c8 = B | C = c8 | c4 = c8 | B = A | C = A | c4 = A | C = B | c4 = B | c4 = C | xsd_integer(c2).  [copy(118),flip(g)].
+120 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c8 = A | c8 = B | c8 = C | c4 = c8 | B = A | C = A | c4 = A | C = B | c4 = B | c4 = C | xsd_integer(c2).  [copy(119),flip(h)].
+121 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c8 = A | c8 = B | c8 = C | c8 = c4 | B = A | C = A | c4 = A | C = B | c4 = B | c4 = C | xsd_integer(c2).  [copy(120),flip(i)].
+122 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c8 = A | c8 = B | c8 = C | c8 = c4 | B = A | C = A | c4 = A | C = B | c4 = B | c4 = C.  [copy(121),merge(p)].
+123 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | c8 = c7 | c8 = A | c8 = B | c8 = c4 | A = c7 | B = c7 | c4 = c7 | B = A | c4 = A | c4 = B | xsd_integer(c2).  [resolve(122,c,109,b)].
+124 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | c8 = c7 | c8 = A | c8 = B | c8 = c4 | c7 = A | B = c7 | c4 = c7 | B = A | c4 = A | c4 = B | xsd_integer(c2).  [copy(123),flip(i)].
+125 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | c8 = c7 | c8 = A | c8 = B | c8 = c4 | c7 = A | c7 = B | c4 = c7 | B = A | c4 = A | c4 = B | xsd_integer(c2).  [copy(124),flip(j)].
+126 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | c8 = c7 | c8 = A | c8 = B | c8 = c4 | c7 = A | c7 = B | c7 = c4 | B = A | c4 = A | c4 = B | xsd_integer(c2).  [copy(125),flip(k)].
+127 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | -rr(c3,B) | c8 = c7 | c8 = A | c8 = B | c8 = c4 | c7 = A | c7 = B | c7 = c4 | B = A | c4 = A | c4 = B.  [copy(126),merge(o)].
+128 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | c8 = c7 | c8 = c6 | c8 = A | c8 = c4 | c7 = c6 | c7 = A | c7 = c4 | A = c6 | c4 = c6 | c4 = A | xsd_integer(c2).  [resolve(127,c,106,b)].
+129 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | c8 = c7 | c8 = c6 | c8 = A | c8 = c4 | c7 = c6 | c7 = A | c7 = c4 | c6 = A | c4 = c6 | c4 = A | xsd_integer(c2).  [copy(128),flip(k)].
+130 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | c8 = c7 | c8 = c6 | c8 = A | c8 = c4 | c7 = c6 | c7 = A | c7 = c4 | c6 = A | c6 = c4 | c4 = A | xsd_integer(c2).  [copy(129),flip(l)].
+131 xsd_integer(c2) | -xsd_string(c2) | -rr(c3,A) | c8 = c7 | c8 = c6 | c8 = A | c8 = c4 | c7 = c6 | c7 = A | c7 = c4 | c6 = A | c6 = c4 | c4 = A.  [copy(130),merge(n)].
+132 xsd_integer(c2) | -xsd_string(c2) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c4 = c5 | xsd_integer(c2).  [resolve(131,c,102,b)].
+133 xsd_integer(c2) | -xsd_string(c2) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [copy(132),flip(l)].
+134 xsd_integer(c2) | -xsd_string(c2) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(133),merge(m)].
+135 xsd_integer(c2) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [resolve(134,b,11,a)].
+136 xsd_integer(c2) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(135),merge(l)].
+137 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rq(c3,c8).  [resolve(136,a,37,b)].
+138 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rq(c3,c7).  [resolve(136,a,34,b)].
+139 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rq(c3,c6).  [resolve(136,a,31,b)].
+140 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c5).  [resolve(136,a,25,b)].
+141 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c4).  [resolve(136,a,22,b)].
+142 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rr(c3,c8).  [resolve(137,l,17,a)].
+143 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rr(c3,c7).  [resolve(138,l,17,a)].
+144 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rr(c3,c6).  [resolve(139,l,17,a)].
+145 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rr(c3,c5).  [resolve(140,l,18,a)].
+146 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rr(c3,c4).  [resolve(141,l,18,a)].
+147 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | B = A | C = A | D = A | c8 = A | C = B | D = B | c8 = B | D = C | c8 = C | c8 = D.  [resolve(142,l,76,g)].
+148 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | -rr(c3,D) | B = A | C = A | D = A | c8 = A | C = B | D = B | c8 = B | D = C | c8 = C | c8 = D.  [copy(147),merge(l)].
+149 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | A = c4 | B = c4 | C = c4 | c8 = c4 | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(148,m,146,l)].
+150 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | B = c4 | C = c4 | c8 = c4 | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(149),flip(p)].
+151 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | C = c4 | c8 = c4 | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(150),flip(q)].
+152 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | c8 = c4 | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(151),flip(r)].
+153 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(152),merge(s)].
+154 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(153),merge(y)].
+155 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(154),merge(y)].
+156 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(155),merge(y)].
+157 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(156),merge(y)].
+158 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(157),merge(y)].
+159 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(158),merge(y)].
+160 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(159),merge(y)].
+161 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(160),merge(y)].
+162 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | c5 = c4 | xsd_string(c2).  [copy(161),merge(y)].
+163 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C | xsd_string(c2).  [copy(162),merge(y)].
+164 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,A) | -rr(c3,B) | -rr(c3,C) | c4 = A | c4 = B | c4 = C | B = A | C = A | c8 = A | C = B | c8 = B | c8 = C.  [copy(163),merge(y)].
+165 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,A) | -rr(c3,B) | c4 = c7 | c4 = A | c4 = B | A = c7 | B = c7 | B = A | c8 = A | c8 = B.  [factor(164,a,u)].
+166 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,A) | -rr(c3,B) | c7 = c4 | c4 = A | c4 = B | A = c7 | B = c7 | B = A | c8 = A | c8 = B.  [copy(165),flip(p)].
+167 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,A) | -rr(c3,B) | c7 = c4 | c4 = A | c4 = B | c7 = A | B = c7 | B = A | c8 = A | c8 = B.  [copy(166),flip(s)].
+168 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,A) | -rr(c3,B) | c7 = c4 | c4 = A | c4 = B | c7 = A | c7 = B | B = A | c8 = A | c8 = B.  [copy(167),flip(t)].
+169 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,A) | -rr(c3,B) | c4 = A | c4 = B | c7 = A | c7 = B | B = A | c8 = A | c8 = B.  [copy(168),merge(p)].
+170 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6) | c4 = c5 | c4 = c6 | c7 = c5 | c7 = c6 | c8 = c5 | c8 = c6.  [factor(169,h,t)].
+171 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6) | c5 = c4 | c4 = c6 | c7 = c5 | c7 = c6 | c8 = c5 | c8 = c6.  [copy(170),flip(p)].
+172 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6) | c5 = c4 | c6 = c4 | c7 = c5 | c7 = c6 | c8 = c5 | c8 = c6.  [copy(171),flip(q)].
+173 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6) | c6 = c4 | c7 = c5 | c7 = c6 | c8 = c5 | c8 = c6.  [copy(172),merge(p)].
+174 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6) | c7 = c5 | c7 = c6 | c8 = c5 | c8 = c6.  [copy(173),merge(p)].
+175 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6) | c7 = c6 | c8 = c5 | c8 = c6.  [copy(174),merge(p)].
+176 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6) | c8 = c5 | c8 = c6.  [copy(175),merge(p)].
+177 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6) | c8 = c6.  [copy(176),merge(p)].
+178 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c7) | -rr(c3,c5) | -rr(c3,c6).  [copy(177),merge(p)].
+179 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(178,m,143,l)].
+180 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(179),merge(o)].
+181 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(180),merge(o)].
+182 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(181),merge(o)].
+183 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(182),merge(o)].
+184 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(183),merge(o)].
+185 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(184),merge(o)].
+186 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(185),merge(o)].
+187 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(186),merge(o)].
+188 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | c5 = c4 | xsd_string(c2).  [copy(187),merge(o)].
+189 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6) | xsd_string(c2).  [copy(188),merge(o)].
+190 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | -rr(c3,c6).  [copy(189),merge(o)].
+191 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(190,n,144,l)].
+192 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(191),merge(n)].
+193 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(192),merge(n)].
+194 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(193),merge(n)].
+195 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(194),merge(n)].
+196 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(195),merge(n)].
+197 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(196),merge(n)].
+198 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(197),merge(n)].
+199 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(198),merge(n)].
+200 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | c5 = c4 | xsd_string(c2).  [copy(199),merge(n)].
+201 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5) | xsd_string(c2).  [copy(200),merge(n)].
+202 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | -rr(c3,c5).  [copy(201),merge(n)].
+203 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(202,m,145,l)].
+204 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(203),merge(m)].
+205 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(204),merge(m)].
+206 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(205),merge(m)].
+207 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(206),merge(m)].
+208 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(207),merge(m)].
+209 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(208),merge(m)].
+210 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(209),merge(m)].
+211 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(210),merge(m)].
+212 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | c5 = c4 | xsd_string(c2).  [copy(211),merge(m)].
+213 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2) | xsd_string(c2).  [copy(212),merge(m)].
+214 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -xsd_integer(c2).  [copy(213),merge(m)].
+215 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(214,l,136,a)].
+216 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(215),merge(l)].
+217 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(216),merge(l)].
+218 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(217),merge(l)].
+219 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(218),merge(l)].
+220 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(219),merge(l)].
+221 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(220),merge(l)].
+222 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c5 | c6 = c4 | c5 = c4.  [copy(221),merge(l)].
+223 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4.  [copy(222),merge(l)].
+224 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4.  [copy(223),merge(l)].
+225 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(224),merge(l)].
+226 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(225,k,13,a)].
+227 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(226,k,136,a)].
+228 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(227),merge(k)].
+229 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(228),merge(k)].
+230 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(229),merge(k)].
+231 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(230),merge(k)].
+232 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(231),merge(k)].
+233 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(232),merge(k)].
+234 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(233),merge(k)].
+235 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [copy(234),merge(k)].
+236 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(235),merge(k)].
+237 c8 = c7 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(236),merge(k)].
+238 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [resolve(237,a,97,b)].
+239 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 != c7.  [resolve(238,j,46,b)].
+240 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(239,k,237,a)].
+241 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(240),merge(k)].
+242 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(241),merge(k)].
+243 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(242),merge(k)].
+244 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(243),merge(k)].
+245 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(244),merge(k)].
+246 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c5 | c6 = c4 | c5 = c4.  [copy(245),merge(k)].
+247 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4.  [copy(246),merge(k)].
+248 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4.  [copy(247),merge(k)].
+249 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(248),merge(k)].
+250 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(249,j,13,a)].
+251 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(250,j,238,j)].
+252 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(251),merge(j)].
+253 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(252),merge(j)].
+254 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(253),merge(j)].
+255 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(254),merge(j)].
+256 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(255),merge(j)].
+257 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(256),merge(j)].
+258 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [copy(257),merge(j)].
+259 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(258),merge(j)].
+260 c8 = c6 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(259),merge(j)].
+261 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [resolve(260,a,95,b)].
+262 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 != c6.  [resolve(261,i,43,b)].
+263 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(262,j,260,a)].
+264 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(263),merge(j)].
+265 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(264),merge(j)].
+266 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(265),merge(j)].
+267 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(266),merge(j)].
+268 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c5 | c6 = c4 | c5 = c4.  [copy(267),merge(j)].
+269 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4.  [copy(268),merge(j)].
+270 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4.  [copy(269),merge(j)].
+271 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(270),merge(j)].
+272 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(271,i,13,a)].
+273 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(272,i,261,i)].
+274 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(273),merge(i)].
+275 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(274),merge(i)].
+276 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(275),merge(i)].
+277 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(276),merge(i)].
+278 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(277),merge(i)].
+279 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [copy(278),merge(i)].
+280 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(279),merge(i)].
+281 c8 = c5 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(280),merge(i)].
+282 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2) | cA(c8).  [resolve(281,a,105,b(flip))].
+283 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2) | xsd_integer(c2).  [resolve(282,i,114,b)].
+284 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [copy(283),merge(i)].
+285 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rq(c3,c8).  [resolve(284,h,37,b)].
+286 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c5).  [resolve(284,h,25,b)].
+287 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | cB(c8).  [resolve(285,i,16,a)].
+288 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c8).  [resolve(287,i,14,a)].
+289 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [para(281(a,1),288(i,1))].
+290 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(289),merge(h)].
+291 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(290),merge(h)].
+292 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(291),merge(h)].
+293 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(292),merge(h)].
+294 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(293),merge(h)].
+295 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(294),merge(h)].
+296 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(295),merge(h)].
+297 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | cA(c5).  [resolve(286,i,15,a)].
+298 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(297,i,296,i)].
+299 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(298),merge(i)].
+300 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(299),merge(i)].
+301 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(300),merge(i)].
+302 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(301),merge(i)].
+303 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(302),merge(i)].
+304 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4 | xsd_string(c2).  [copy(303),merge(i)].
+305 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | xsd_string(c2).  [copy(304),merge(i)].
+306 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(305),merge(i)].
+307 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(306,h,13,a)].
+308 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(307,h,284,h)].
+309 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(308),merge(h)].
+310 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(309),merge(h)].
+311 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(310),merge(h)].
+312 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(311),merge(h)].
+313 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [copy(312),merge(h)].
+314 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(313),merge(h)].
+315 c8 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(314),merge(h)].
+316 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2) | cA(c8).  [resolve(315,a,101,b(flip))].
+317 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2) | xsd_integer(c2).  [resolve(316,h,114,b)].
+318 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [copy(317),merge(h)].
+319 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rq(c3,c8).  [resolve(318,g,37,b)].
+320 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c4).  [resolve(318,g,22,b)].
+321 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | cB(c8).  [resolve(319,h,16,a)].
+322 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c8).  [resolve(321,h,14,a)].
+323 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [para(315(a,1),322(h,1))].
+324 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(323),merge(g)].
+325 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(324),merge(g)].
+326 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(325),merge(g)].
+327 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(326),merge(g)].
+328 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(327),merge(g)].
+329 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(328),merge(g)].
+330 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | cA(c4).  [resolve(320,h,15,a)].
+331 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(330,h,329,h)].
+332 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(331),merge(h)].
+333 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(332),merge(h)].
+334 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(333),merge(h)].
+335 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(334),merge(h)].
+336 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4 | xsd_string(c2).  [copy(335),merge(h)].
+337 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | xsd_string(c2).  [copy(336),merge(h)].
+338 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(337),merge(h)].
+339 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(338,g,13,a)].
+340 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(339,g,318,g)].
+341 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(340),merge(g)].
+342 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(341),merge(g)].
+343 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(342),merge(g)].
+344 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [copy(343),merge(g)].
+345 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(344),merge(g)].
+346 c7 = c6 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(345),merge(g)].
+347 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [resolve(346,a,93,b)].
+348 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 != c6.  [resolve(347,f,40,b)].
+349 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(348,g,346,a)].
+350 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(349),merge(g)].
+351 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c5 | c6 = c4 | c5 = c4.  [copy(350),merge(g)].
+352 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4.  [copy(351),merge(g)].
+353 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4.  [copy(352),merge(g)].
+354 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(353),merge(g)].
+355 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(354,f,13,a)].
+356 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(355,f,347,f)].
+357 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(356),merge(f)].
+358 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(357),merge(f)].
+359 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [copy(358),merge(f)].
+360 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(359),merge(f)].
+361 c7 = c5 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(360),merge(f)].
+362 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2) | cA(c7).  [resolve(361,a,105,b(flip))].
+363 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2) | xsd_integer(c2).  [resolve(362,f,113,b)].
+364 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [copy(363),merge(f)].
+365 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rq(c3,c7).  [resolve(364,e,34,b)].
+366 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c5).  [resolve(364,e,25,b)].
+367 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | cB(c7).  [resolve(365,f,16,a)].
+368 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c7).  [resolve(367,f,14,a)].
+369 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [para(361(a,1),368(f,1))].
+370 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(369),merge(e)].
+371 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(370),merge(e)].
+372 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(371),merge(e)].
+373 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(372),merge(e)].
+374 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | cA(c5).  [resolve(366,f,15,a)].
+375 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(374,f,373,f)].
+376 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(375),merge(f)].
+377 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(376),merge(f)].
+378 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4 | xsd_string(c2).  [copy(377),merge(f)].
+379 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | xsd_string(c2).  [copy(378),merge(f)].
+380 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(379),merge(f)].
+381 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(380,e,13,a)].
+382 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(381,e,364,e)].
+383 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(382),merge(e)].
+384 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [copy(383),merge(e)].
+385 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(384),merge(e)].
+386 c7 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [copy(385),merge(e)].
+387 c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2) | cA(c7).  [resolve(386,a,101,b(flip))].
+388 c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2) | xsd_integer(c2).  [resolve(387,e,113,b)].
+389 c6 = c5 | c6 = c4 | c5 = c4 | xsd_integer(c2).  [copy(388),merge(e)].
+390 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rq(c3,c7).  [resolve(389,d,34,b)].
+391 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c4).  [resolve(389,d,22,b)].
+392 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | cB(c7).  [resolve(390,e,16,a)].
+393 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c7).  [resolve(392,e,14,a)].
+394 c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [para(386(a,1),393(e,1))].
+395 c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(394),merge(d)].
+396 c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(395),merge(d)].
+397 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(396),merge(d)].
+398 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | cA(c4).  [resolve(391,e,15,a)].
+399 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(398,e,397,e)].
+400 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(399),merge(e)].
+401 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4 | xsd_string(c2).  [copy(400),merge(e)].
+402 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2) | xsd_string(c2).  [copy(401),merge(e)].
+403 c6 = c5 | c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(402),merge(e)].
+404 c6 = c5 | c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(403,d,13,a)].
+405 c6 = c5 | c6 = c4 | c5 = c4 | c6 = c5 | c6 = c4 | c5 = c4.  [resolve(404,d,389,d)].
+406 c6 = c5 | c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [copy(405),merge(d)].
+407 c6 = c5 | c6 = c4 | c5 = c4 | c5 = c4.  [copy(406),merge(d)].
+408 c6 = c5 | c6 = c4 | c5 = c4.  [copy(407),merge(d)].
+409 c6 = c4 | c5 = c4 | xsd_integer(c2) | cA(c6).  [resolve(408,a,105,b(flip))].
+410 c6 = c4 | c5 = c4 | xsd_integer(c2) | xsd_integer(c2).  [resolve(409,d,108,b)].
+411 c6 = c4 | c5 = c4 | xsd_integer(c2).  [copy(410),merge(d)].
+412 c6 = c4 | c5 = c4 | xsd_string(c2) | rq(c3,c6).  [resolve(411,c,31,b)].
+413 c6 = c4 | c5 = c4 | xsd_string(c2) | rp(c3,c5).  [resolve(411,c,25,b)].
+414 c6 = c4 | c5 = c4 | xsd_string(c2) | cB(c6).  [resolve(412,d,16,a)].
+415 c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c6).  [resolve(414,d,14,a)].
+416 c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [para(408(a,1),415(d,1))].
+417 c6 = c4 | c5 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(416),merge(c)].
+418 c6 = c4 | c5 = c4 | xsd_string(c2) | -cA(c5).  [copy(417),merge(c)].
+419 c6 = c4 | c5 = c4 | xsd_string(c2) | cA(c5).  [resolve(413,d,15,a)].
+420 c6 = c4 | c5 = c4 | xsd_string(c2) | c6 = c4 | c5 = c4 | xsd_string(c2).  [resolve(419,d,418,d)].
+421 c6 = c4 | c5 = c4 | xsd_string(c2) | c5 = c4 | xsd_string(c2).  [copy(420),merge(d)].
+422 c6 = c4 | c5 = c4 | xsd_string(c2) | xsd_string(c2).  [copy(421),merge(d)].
+423 c6 = c4 | c5 = c4 | xsd_string(c2).  [copy(422),merge(d)].
+424 c6 = c4 | c5 = c4 | -xsd_integer(c2).  [resolve(423,c,13,a)].
+425 c6 = c4 | c5 = c4 | c6 = c4 | c5 = c4.  [resolve(424,c,411,c)].
+426 c6 = c4 | c5 = c4 | c5 = c4.  [copy(425),merge(c)].
+427 c6 = c4 | c5 = c4.  [copy(426),merge(c)].
+428 c5 = c4 | xsd_integer(c2) | cA(c6).  [resolve(427,a,101,b(flip))].
+429 c5 = c4 | xsd_integer(c2) | xsd_integer(c2).  [resolve(428,c,108,b)].
+430 c5 = c4 | xsd_integer(c2).  [copy(429),merge(c)].
+431 c5 = c4 | xsd_string(c2) | rq(c3,c6).  [resolve(430,b,31,b)].
+432 c5 = c4 | xsd_string(c2) | rp(c3,c4).  [resolve(430,b,22,b)].
+433 c5 = c4 | xsd_string(c2) | cB(c6).  [resolve(431,c,16,a)].
+434 c5 = c4 | xsd_string(c2) | -cA(c6).  [resolve(433,c,14,a)].
+435 c5 = c4 | c5 = c4 | xsd_string(c2) | -cA(c4).  [para(427(a,1),434(c,1))].
+436 c5 = c4 | xsd_string(c2) | -cA(c4).  [copy(435),merge(b)].
+437 c5 = c4 | xsd_string(c2) | cA(c4).  [resolve(432,c,15,a)].
+438 c5 = c4 | xsd_string(c2) | c5 = c4 | xsd_string(c2).  [resolve(437,c,436,c)].
+439 c5 = c4 | xsd_string(c2) | xsd_string(c2).  [copy(438),merge(c)].
+440 c5 = c4 | xsd_string(c2).  [copy(439),merge(c)].
+441 c5 = c4 | -xsd_integer(c2).  [resolve(440,b,13,a)].
+442 c5 = c4 | c5 = c4.  [resolve(441,b,430,b)].
+443 c5 = c4.  [copy(442),merge(b)].
+444 xsd_integer(c2) | c4 != c4.  [para(443(a,1),85(b,1))].
+445 xsd_integer(c2).  [copy(444),xx(b)].
+446 xsd_string(c2) | -xsd_integer(c2) | c4 != c4.  [para(443(a,1),28(c,1))].
+447 xsd_string(c2) | -xsd_integer(c2).  [copy(446),xx(c)].
+448 xsd_string(c2).  [resolve(445,a,447,b)].
+449 -xsd_string(c2).  [resolve(13,b,445,a)].
+450 $F.  [resolve(448,a,449,a)].

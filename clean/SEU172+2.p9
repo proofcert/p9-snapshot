@@ -1,0 +1,14 @@
+
+
+
+4 set_difference(A,B) != C | -in(D,C) | -in(D,B).  [clausify(1)].
+5 -element(A,powerset(B)) | subset_complement(B,A) = set_difference(B,A).  [clausify(2)].
+6 element(c5,powerset(c3)).  [clausify(3)].
+7 in(c4,subset_complement(c3,c5)).  [clausify(3)].
+8 in(c4,c5).  [clausify(3)].
+9 subset_complement(c3,c5) = set_difference(c3,c5).  [resolve(6,a,5,a)].
+10 in(c4,set_difference(c3,c5)).  [para(9(a,1),7(a,2))].
+11 set_difference(A,c5) != B | -in(c4,B).  [resolve(8,a,4,c)].
+12 set_difference(A,c5) != set_difference(c3,c5).  [resolve(10,a,11,b)].
+13 set_difference(c3,c5) != set_difference(A,c5).  [copy(12),flip(a)].
+14 $F.  [copy(13),xx(a)].

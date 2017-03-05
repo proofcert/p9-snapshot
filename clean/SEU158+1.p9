@@ -1,0 +1,11 @@
+
+
+3 -subset(singleton(c1),c2) | -in(c1,c2).  [clausify(2)].
+4 subset(singleton(c1),c2) | in(c1,c2).  [clausify(2)].
+5 -subset(singleton(A),B) | in(A,B).  [clausify(1)].
+6 subset(singleton(A),B) | -in(A,B).  [clausify(1)].
+7 in(c1,c2) | in(c1,c2).  [resolve(5,a,4,a)].
+8 in(c1,c2).  [copy(7),merge(b)].
+9 -in(c1,c2) | -in(c1,c2).  [resolve(6,a,3,a)].
+10 -in(c1,c2).  [copy(9),merge(b)].
+11 $F.  [resolve(8,a,10,a)].

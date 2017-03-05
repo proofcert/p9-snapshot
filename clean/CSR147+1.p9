@@ -1,0 +1,18 @@
+
+2 -s__Human(A) | -s__age(A,B) | -s__age(s__siblingFn(A),C) | -greater(B,C) | s__more_experienced(A,s__siblingFn(A)) | s__has_seen_more(s__siblingFn(A),A).  [clausify(1)].
+3 greater(n54,n48).  [assumption].
+4 s__Human(jim).  [assumption].
+5 s__age(geoff,n48).  [assumption].
+6 s__age(jim,n54).  [assumption].
+7 geoff = s__siblingFn(jim).  [assumption].
+8 -s__has_seen_more(geoff,jim).  [assumption].
+9 -s__has_seen_more(s__siblingFn(jim),jim).  [para(7(a,1),8(a,1))].
+10 -s__more_experienced(jim,geoff).  [assumption].
+11 -s__more_experienced(jim,s__siblingFn(jim)).  [para(7(a,1),10(a,2))].
+12 -s__Human(A) | -s__age(A,n54) | -s__age(s__siblingFn(A),n48) | s__more_experienced(A,s__siblingFn(A)) | s__has_seen_more(s__siblingFn(A),A).  [resolve(2,d,3,a)].
+13 s__age(s__siblingFn(jim),n48).  [para(7(a,1),5(a,1))].
+14 -s__age(jim,n54) | -s__age(s__siblingFn(jim),n48) | s__more_experienced(jim,s__siblingFn(jim)) | s__has_seen_more(s__siblingFn(jim),jim).  [resolve(12,a,4,a)].
+15 -s__age(s__siblingFn(jim),n48) | s__more_experienced(jim,s__siblingFn(jim)) | s__has_seen_more(s__siblingFn(jim),jim).  [resolve(14,a,6,a)].
+16 -s__age(s__siblingFn(jim),n48) | s__has_seen_more(s__siblingFn(jim),jim).  [resolve(15,b,11,a)].
+17 -s__age(s__siblingFn(jim),n48).  [resolve(16,b,9,a)].
+18 $F.  [resolve(13,a,17,a)].

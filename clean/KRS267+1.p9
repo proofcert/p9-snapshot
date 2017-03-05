@@ -1,0 +1,17 @@
+
+
+
+
+
+6 -status(A,B,C) | -status(A,B,D) | mighta(C,D).  [clausify(3)].
+7 -mighta(tca,thm).  [assumption].
+8 -model(f10(A,B),B) | status(A,B,thm).  [clausify(1)].
+9 model(f32(A,B),A) | -model(f33(A,B),B) | status(A,B,tca).  [clausify(2)].
+10 model(A,c1).  [clausify(4)].
+11 -model(A,c5).  [clausify(5)].
+12 -status(A,B,tca) | -status(A,B,thm).  [resolve(7,a,6,c)].
+13 model(f32(A,c1),A) | status(A,c1,tca).  [resolve(10,a,9,b)].
+14 status(A,c1,thm).  [resolve(10,a,8,a)].
+15 model(f32(A,c1),A) | -status(A,c1,thm).  [resolve(13,b,12,a)].
+16 model(f32(A,c1),A).  [resolve(14,a,15,b)].
+17 $F.  [resolve(16,a,11,a)].

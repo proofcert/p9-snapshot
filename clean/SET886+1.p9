@@ -1,0 +1,31 @@
+
+
+
+
+
+6 subset(A,A).  [clausify(2)].
+7 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+8 subset(unordered_pair(c3,c4),singleton(c5)).  [clausify(5)].
+9 subset(unordered_pair(c3,c4),unordered_pair(c5,c5)).  [para(7(a,1),8(a,2))].
+10 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+11 singleton(c5) != unordered_pair(c3,c4).  [clausify(5)].
+12 unordered_pair(c5,c5) != unordered_pair(c3,c4).  [para(7(a,1),11(a,1))].
+13 -subset(unordered_pair(A,B),singleton(C)) | C = A.  [clausify(3)].
+14 -subset(unordered_pair(A,B),unordered_pair(C,C)) | C = A.  [para(7(a,1),13(a,2))].
+15 unordered_pair(c5,c5) = c_0.  [new_symbol(12)].
+16 c_0 != unordered_pair(c3,c4).  [para(15(a,1),12(a,1))].
+17 unordered_pair(c3,c4) != c_0.  [copy(16),flip(a)].
+18 subset(unordered_pair(c3,c4),c_0).  [para(15(a,1),9(a,2))].
+19 -subset(unordered_pair(A,B),c_0) | c5 = A.  [para(15(a,1),14(a,2))].
+20 -subset(unordered_pair(unordered_pair(c3,c4),A),unordered_pair(c_0,c_0)).  [resolve(14,b,17,a(flip))].
+21 -subset(unordered_pair(A,unordered_pair(c3,c4)),unordered_pair(c_0,c_0)).  [para(10(a,1),20(a,1))].
+22 c5 = c3.  [resolve(19,a,18,a)].
+23 -subset(unordered_pair(A,B),c_0) | c5 = B.  [para(10(a,1),19(a,1))].
+24 -subset(unordered_pair(A,B),c_0) | c3 = B.  [para(22(a,1),23(b,1))].
+25 unordered_pair(c3,c5) = c_0.  [para(22(a,1),15(a,1,1))].
+26 unordered_pair(c3,c3) = c_0.  [para(22(a,1),25(a,1,2))].
+27 c3 = c4.  [resolve(24,a,18,a)].
+28 c4 = c3.  [copy(27),flip(a)].
+29 -subset(unordered_pair(A,unordered_pair(c3,c3)),unordered_pair(c_0,c_0)).  [para(28(a,1),21(a,1,2,2))].
+30 -subset(unordered_pair(A,c_0),unordered_pair(c_0,c_0)).  [para(26(a,1),29(a,1,2))].
+31 $F.  [resolve(30,a,6,a)].

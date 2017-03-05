@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n070.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:25:38 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5562 was started by sandbox on n070.star.cs.uiowa.edu,
+Sat Jun  7 00:25:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5530_n070.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 3.
+% Maximum clause weight is 10.000.
+% Given clauses 16.
+
+
+1 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+2 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+3 (all A all B set_intersection2(A,A) = A).  [assumption].
+4 (all A all B (set_intersection2(A,singleton(B)) = singleton(B) -> in(B,A))).  [assumption].
+5 -(all A all B (set_intersection2(singleton(A),singleton(B)) = singleton(A) -> A = B)).  [assumption].
+6 set_intersection2(A,A) = A.  [clausify(3)].
+7 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+8 singleton(c3) = set_intersection2(singleton(c3),singleton(c4)).  [clausify(5)].
+9 set_intersection2(singleton(c3),singleton(c4)) = singleton(c3).  [copy(8),flip(a)].
+10 c4 != c3.  [clausify(5)].
+11 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+12 singleton(A) != set_intersection2(B,singleton(A)) | in(A,B).  [clausify(4)].
+13 set_intersection2(A,singleton(B)) != singleton(B) | in(B,A).  [copy(12),flip(a)].
+14 -in(A,set_intersection2(singleton(B),singleton(B))) | A = B.  [resolve(11,a,6,a(flip))].
+15 -in(c3,set_intersection2(singleton(c4),singleton(c4))).  [resolve(14,b,10,a(flip))].
+16 -in(c3,singleton(c4)).  [para(6(a,1),15(a,2))].
+17 set_intersection2(singleton(c4),singleton(c3)) != singleton(c3).  [resolve(13,b,16,a)].
+18 set_intersection2(singleton(c3),singleton(c4)) != singleton(c3).  [para(7(a,1),17(a,1))].
+19 singleton(c3) != singleton(c3).  [para(9(a,1),18(a,1))].
+20 $F.  [copy(19),xx(a)].
+
+============================== end of proof ==========================

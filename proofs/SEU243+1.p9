@@ -1,0 +1,113 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n156.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:07:28 CDT 2014
+% CPUTime    : 55.65 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 17617 was started by sandbox on n156.star.cs.uiowa.edu,
+Fri Jun  6 05:07:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_17585_n156.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 55.48 (+ 0.04) seconds.
+% Length of proof is 57.
+% Level of proof is 23.
+% Maximum clause weight is 25.000.
+% Given clauses 1460.
+
+
+1 (all A (relation(A) -> (well_founded_relation(A) <-> (all B -(subset(B,relation_field(A)) & B != empty_set & (all C -(in(C,B) & disjoint(fiber(A,C),B)))))))).  [assumption].
+2 (all A (relation(A) -> (all B (is_well_founded_in(A,B) <-> (all C -(subset(C,B) & C != empty_set & (all D -(in(D,C) & disjoint(fiber(A,D),C))))))))).  [assumption].
+3 -(all A (relation(A) -> (well_founded_relation(A) <-> is_well_founded_in(A,relation_field(A))))).  [assumption].
+4 relation(c6).  [clausify(3)].
+5 -relation(A) | well_founded_relation(A) | empty_set != f2(A).  [clausify(1)].
+6 -relation(A) | well_founded_relation(A) | subset(f2(A),relation_field(A)).  [clausify(1)].
+7 -relation(A) | is_well_founded_in(A,B) | subset(f4(A,B),B).  [clausify(2)].
+8 -relation(A) | is_well_founded_in(A,B) | f4(A,B) != empty_set.  [clausify(2)].
+9 -relation(A) | well_founded_relation(A) | -in(B,f2(A)) | -disjoint(fiber(A,B),f2(A)).  [clausify(1)].
+10 -relation(A) | -well_founded_relation(A) | -subset(B,relation_field(A)) | empty_set = B | in(f1(A,B),B).  [clausify(1)].
+11 -relation(A) | -is_well_founded_in(A,B) | -subset(C,B) | C = empty_set | in(f3(A,B,C),C).  [clausify(2)].
+12 -relation(A) | is_well_founded_in(A,B) | -in(C,f4(A,B)) | -disjoint(fiber(A,C),f4(A,B)).  [clausify(2)].
+13 -relation(A) | -well_founded_relation(A) | -subset(B,relation_field(A)) | empty_set = B | disjoint(fiber(A,f1(A,B)),B).  [clausify(1)].
+14 -relation(A) | -is_well_founded_in(A,B) | -subset(C,B) | C = empty_set | disjoint(fiber(A,f3(A,B,C)),C).  [clausify(2)].
+15 well_founded_relation(c6) | is_well_founded_in(c6,relation_field(c6)).  [clausify(3)].
+16 -well_founded_relation(c6) | -is_well_founded_in(c6,relation_field(c6)).  [clausify(3)].
+17 well_founded_relation(c6) | empty_set != f2(c6).  [resolve(5,a,4,a)].
+18 well_founded_relation(c6) | f2(c6) != empty_set.  [copy(17),flip(b)].
+19 well_founded_relation(c6) | subset(f2(c6),relation_field(c6)).  [resolve(6,a,4,a)].
+20 is_well_founded_in(c6,A) | subset(f4(c6,A),A).  [resolve(7,a,4,a)].
+21 is_well_founded_in(c6,A) | f4(c6,A) != empty_set.  [resolve(8,a,4,a)].
+22 well_founded_relation(c6) | -in(A,f2(c6)) | -disjoint(fiber(c6,A),f2(c6)).  [resolve(9,a,4,a)].
+23 -well_founded_relation(c6) | -subset(A,relation_field(c6)) | empty_set = A | in(f1(c6,A),A).  [resolve(10,a,4,a)].
+24 -is_well_founded_in(c6,A) | -subset(B,A) | B = empty_set | in(f3(c6,A,B),B).  [resolve(11,a,4,a)].
+25 -is_well_founded_in(c6,A) | -subset(B,A) | empty_set = B | in(f3(c6,A,B),B).  [copy(24),flip(c)].
+26 is_well_founded_in(c6,A) | -in(B,f4(c6,A)) | -disjoint(fiber(c6,B),f4(c6,A)).  [resolve(12,a,4,a)].
+27 -well_founded_relation(c6) | -subset(A,relation_field(c6)) | empty_set = A | disjoint(fiber(c6,f1(c6,A)),A).  [resolve(13,a,4,a)].
+28 -is_well_founded_in(c6,A) | -subset(B,A) | B = empty_set | disjoint(fiber(c6,f3(c6,A,B)),B).  [resolve(14,a,4,a)].
+29 -is_well_founded_in(c6,A) | -subset(B,A) | empty_set = B | disjoint(fiber(c6,f3(c6,A,B)),B).  [copy(28),flip(c)].
+30 subset(f4(c6,relation_field(c6)),relation_field(c6)) | -well_founded_relation(c6).  [resolve(20,a,16,b)].
+31 -subset(A,relation_field(c6)) | empty_set = A | in(f3(c6,relation_field(c6),A),A) | well_founded_relation(c6).  [resolve(25,a,15,b)].
+32 -subset(A,relation_field(c6)) | empty_set = A | disjoint(fiber(c6,f3(c6,relation_field(c6),A)),A) | well_founded_relation(c6).  [resolve(29,a,15,b)].
+33 empty_set = f2(c6) | in(f3(c6,relation_field(c6),f2(c6)),f2(c6)) | well_founded_relation(c6) | well_founded_relation(c6).  [resolve(31,a,19,b)].
+34 f2(c6) = empty_set | in(f3(c6,relation_field(c6),f2(c6)),f2(c6)) | well_founded_relation(c6) | well_founded_relation(c6).  [copy(33),flip(a)].
+35 f2(c6) = empty_set | in(f3(c6,relation_field(c6),f2(c6)),f2(c6)) | well_founded_relation(c6).  [copy(34),merge(d)].
+36 empty_set = f2(c6) | disjoint(fiber(c6,f3(c6,relation_field(c6),f2(c6))),f2(c6)) | well_founded_relation(c6) | well_founded_relation(c6).  [resolve(32,a,19,b)].
+37 f2(c6) = empty_set | disjoint(fiber(c6,f3(c6,relation_field(c6),f2(c6))),f2(c6)) | well_founded_relation(c6) | well_founded_relation(c6).  [copy(36),flip(a)].
+38 f2(c6) = empty_set | disjoint(fiber(c6,f3(c6,relation_field(c6),f2(c6))),f2(c6)) | well_founded_relation(c6).  [copy(37),merge(d)].
+39 f2(c6) = empty_set | well_founded_relation(c6) | well_founded_relation(c6) | -in(f3(c6,relation_field(c6),f2(c6)),f2(c6)).  [resolve(38,b,22,c)].
+40 f2(c6) = empty_set | well_founded_relation(c6) | -in(f3(c6,relation_field(c6),f2(c6)),f2(c6)).  [copy(39),merge(c)].
+41 f2(c6) = empty_set | well_founded_relation(c6) | f2(c6) = empty_set | well_founded_relation(c6).  [resolve(40,c,35,b)].
+42 f2(c6) = empty_set | well_founded_relation(c6) | well_founded_relation(c6).  [copy(41),merge(c)].
+43 f2(c6) = empty_set | well_founded_relation(c6).  [copy(42),merge(c)].
+44 f2(c6) = empty_set | subset(f4(c6,relation_field(c6)),relation_field(c6)).  [resolve(43,b,30,b)].
+45 f2(c6) = empty_set | -well_founded_relation(c6) | empty_set = f4(c6,relation_field(c6)) | disjoint(fiber(c6,f1(c6,f4(c6,relation_field(c6)))),f4(c6,relation_field(c6))).  [resolve(44,b,27,b)].
+46 f2(c6) = empty_set | -well_founded_relation(c6) | f4(c6,relation_field(c6)) = empty_set | disjoint(fiber(c6,f1(c6,f4(c6,relation_field(c6)))),f4(c6,relation_field(c6))).  [copy(45),flip(c)].
+47 f2(c6) = empty_set | -well_founded_relation(c6) | empty_set = f4(c6,relation_field(c6)) | in(f1(c6,f4(c6,relation_field(c6))),f4(c6,relation_field(c6))).  [resolve(44,b,23,b)].
+48 f2(c6) = empty_set | -well_founded_relation(c6) | f4(c6,relation_field(c6)) = empty_set | in(f1(c6,f4(c6,relation_field(c6))),f4(c6,relation_field(c6))).  [copy(47),flip(c)].
+49 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | disjoint(fiber(c6,f1(c6,f4(c6,relation_field(c6)))),f4(c6,relation_field(c6))) | f2(c6) = empty_set.  [resolve(46,b,43,b)].
+50 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | disjoint(fiber(c6,f1(c6,f4(c6,relation_field(c6)))),f4(c6,relation_field(c6))).  [copy(49),merge(d)].
+51 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | in(f1(c6,f4(c6,relation_field(c6))),f4(c6,relation_field(c6))) | f2(c6) = empty_set.  [resolve(48,b,43,b)].
+52 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | in(f1(c6,f4(c6,relation_field(c6))),f4(c6,relation_field(c6))).  [copy(51),merge(d)].
+53 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | is_well_founded_in(c6,relation_field(c6)) | -in(f1(c6,f4(c6,relation_field(c6))),f4(c6,relation_field(c6))).  [resolve(50,c,26,c)].
+54 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | is_well_founded_in(c6,relation_field(c6)) | f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set.  [resolve(53,d,52,c)].
+55 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | is_well_founded_in(c6,relation_field(c6)) | f4(c6,relation_field(c6)) = empty_set.  [copy(54),merge(d)].
+56 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | is_well_founded_in(c6,relation_field(c6)).  [copy(55),merge(d)].
+57 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | -well_founded_relation(c6).  [resolve(56,c,16,b)].
+58 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set | f2(c6) = empty_set.  [resolve(57,c,43,b)].
+59 f2(c6) = empty_set | f4(c6,relation_field(c6)) = empty_set.  [copy(58),merge(c)].
+60 f2(c6) = empty_set | is_well_founded_in(c6,relation_field(c6)).  [resolve(59,b,21,b)].
+61 f2(c6) = empty_set | -well_founded_relation(c6).  [resolve(60,b,16,b)].
+62 f2(c6) = empty_set | f2(c6) = empty_set.  [resolve(61,b,43,b)].
+63 f2(c6) = empty_set.  [copy(62),merge(b)].
+64 well_founded_relation(c6) | empty_set != empty_set.  [para(63(a,1),18(b,1))].
+65 well_founded_relation(c6).  [copy(64),xx(b)].
+66 subset(f4(c6,relation_field(c6)),relation_field(c6)).  [resolve(65,a,30,b)].
+67 -subset(A,relation_field(c6)) | empty_set = A | disjoint(fiber(c6,f1(c6,A)),A).  [resolve(65,a,27,a)].
+68 -subset(A,relation_field(c6)) | empty_set = A | in(f1(c6,A),A).  [resolve(65,a,23,a)].
+69 -is_well_founded_in(c6,relation_field(c6)).  [resolve(65,a,16,a)].
+70 f4(c6,relation_field(c6)) != empty_set.  [resolve(21,a,69,a)].
+71 empty_set = f4(c6,relation_field(c6)) | in(f1(c6,f4(c6,relation_field(c6))),f4(c6,relation_field(c6))).  [resolve(68,a,66,a)].
+72 f4(c6,relation_field(c6)) = empty_set | in(f1(c6,f4(c6,relation_field(c6))),f4(c6,relation_field(c6))).  [copy(71),flip(a)].
+73 in(f1(c6,f4(c6,relation_field(c6))),f4(c6,relation_field(c6))).  [resolve(70,a,72,a)].
+74 -in(A,f4(c6,relation_field(c6))) | -disjoint(fiber(c6,A),f4(c6,relation_field(c6))).  [resolve(26,a,69,a)].
+75 -disjoint(fiber(c6,f1(c6,f4(c6,relation_field(c6)))),f4(c6,relation_field(c6))).  [resolve(74,a,73,a)].
+76 empty_set = f4(c6,relation_field(c6)) | disjoint(fiber(c6,f1(c6,f4(c6,relation_field(c6)))),f4(c6,relation_field(c6))).  [resolve(67,a,66,a)].
+77 f4(c6,relation_field(c6)) = empty_set | disjoint(fiber(c6,f1(c6,f4(c6,relation_field(c6)))),f4(c6,relation_field(c6))).  [copy(76),flip(a)].
+78 disjoint(fiber(c6,f1(c6,f4(c6,relation_field(c6)))),f4(c6,relation_field(c6))).  [resolve(70,a,77,a)].
+79 $F.  [resolve(75,a,78,a)].
+
+============================== end of proof ==========================

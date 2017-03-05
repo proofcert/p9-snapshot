@@ -1,0 +1,20 @@
+
+
+
+
+
+
+7 -equally_directed_lines(reverse_line(reverse_line(c1)),c1).  [clausify(6)].
+8 equally_directed_lines(A,B) | unequally_directed_lines(A,B).  [clausify(1)].
+9 unequally_directed_lines(A,B) | unequally_directed_lines(A,reverse_line(B)).  [clausify(3)].
+10 -left_convergent_lines(A,B).  [clausify(5)].
+11 -unequally_directed_lines(A,B) | unequally_directed_lines(A,C) | unequally_directed_lines(B,C).  [clausify(2)].
+12 -unequally_directed_lines(A,B) | -unequally_directed_lines(A,reverse_line(B)) | left_convergent_lines(A,B) | left_convergent_lines(A,reverse_line(B)).  [clausify(4)].
+13 -unequally_directed_lines(A,B) | -unequally_directed_lines(A,reverse_line(B)) | left_convergent_lines(A,reverse_line(B)).  [resolve(10,a,12,c)].
+14 -unequally_directed_lines(A,B) | -unequally_directed_lines(A,reverse_line(B)).  [resolve(10,a,13,c)].
+15 unequally_directed_lines(reverse_line(reverse_line(c1)),c1).  [resolve(7,a,8,a)].
+16 unequally_directed_lines(A,B) | unequally_directed_lines(reverse_line(C),B) | unequally_directed_lines(A,C).  [resolve(11,a,9,b)].
+17 unequally_directed_lines(reverse_line(A),A) | unequally_directed_lines(reverse_line(A),A).  [factor(16,b,c)].
+18 unequally_directed_lines(reverse_line(A),A).  [copy(17),merge(b)].
+19 -unequally_directed_lines(reverse_line(reverse_line(c1)),reverse_line(c1)).  [resolve(14,a,15,a)].
+20 $F.  [resolve(18,a,19,a)].

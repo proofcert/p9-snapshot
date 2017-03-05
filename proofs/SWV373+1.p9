@@ -1,0 +1,52 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n118.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 07:46:08 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 38776 was started by sandbox on n118.star.cs.uiowa.edu,
+Fri Jun  6 07:46:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_38744_n118.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 11.000.
+% Given clauses 63.
+
+
+1 (all A all B all C all D (contains_cpq(triple(A,B,C),D) <-> contains_slb(B,D))).  [assumption].
+2 (all A all B all C all D (B != create_slb -> findmin_cpq_res(triple(A,B,C)) = findmin_pqp_res(A))).  [assumption].
+3 (all A all B all C (ok(findmin_cpq_eff(triple(A,B,C))) -> B != create_slb & contains_slb(B,findmin_pqp_res(A)) & less_than(lookup_slb(B,findmin_pqp_res(A)),findmin_pqp_res(A)))).  [assumption].
+4 -(all A all B all C (-contains_cpq(triple(A,B,C),findmin_cpq_res(triple(A,B,C))) -> -ok(findmin_cpq_eff(triple(A,B,C))))).  [assumption].
+5 ok(findmin_cpq_eff(triple(c1,c2,c3))).  [clausify(4)].
+6 create_slb = A | findmin_cpq_res(triple(B,A,C)) = findmin_pqp_res(B).  [clausify(2)].
+7 -ok(findmin_cpq_eff(triple(A,B,C))) | create_slb != B.  [clausify(3)].
+8 -contains_cpq(triple(c1,c2,c3),findmin_cpq_res(triple(c1,c2,c3))).  [clausify(4)].
+9 contains_cpq(triple(A,B,C),D) | -contains_slb(B,D).  [clausify(1)].
+10 -ok(findmin_cpq_eff(triple(A,B,C))) | contains_slb(B,findmin_pqp_res(A)).  [clausify(3)].
+11 create_slb != c2.  [resolve(7,a,5,a)].
+12 c2 != create_slb.  [copy(11),flip(a)].
+13 create_slb = c2 | -contains_cpq(triple(c1,c2,c3),findmin_pqp_res(c1)).  [para(6(b,1),8(a,2))].
+14 c2 = create_slb | -contains_cpq(triple(c1,c2,c3),findmin_pqp_res(c1)).  [copy(13),flip(a)].
+15 -contains_cpq(triple(c1,c2,c3),findmin_pqp_res(c1)).  [resolve(12,a,14,a)].
+16 contains_slb(c2,findmin_pqp_res(c1)).  [resolve(10,a,5,a)].
+17 contains_cpq(triple(A,c2,B),findmin_pqp_res(c1)).  [resolve(16,a,9,b)].
+18 $F.  [resolve(17,a,15,a)].
+
+============================== end of proof ==========================

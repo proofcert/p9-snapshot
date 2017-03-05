@@ -1,0 +1,55 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n092.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:37:48 CDT 2014
+% CPUTime    : 0.22 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 31736 was started by sandbox on n092.star.cs.uiowa.edu,
+Thu Jun  5 13:37:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_31704_n092.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 14.
+% Level of proof is 3.
+% Maximum clause weight is 21.000.
+% Given clauses 86.
+
+
+1 (all A all B all C (path(B,C,A) & (all D all E (on_path(D,A) & on_path(E,A) & sequential(D,E) -> (exists F triangle(D,E,F)))) -> number_of_in(sequential_pairs,A) = number_of_in(triangles,A))).  [assumption].
+2 -(complete -> (all A all B all C (path(B,C,A) & (all D all E (on_path(D,A) & on_path(E,A) & sequential(D,E) -> (exists F triangle(D,E,F)))) -> number_of_in(sequential_pairs,A) = number_of_in(triangles,A)))).  [assumption].
+3 path(c2,c3,c1).  [clausify(2)].
+4 number_of_in(triangles,c1) != number_of_in(sequential_pairs,c1).  [clausify(2)].
+5 -on_path(A,c1) | -on_path(B,c1) | -sequential(A,B) | triangle(A,B,f9(A,B)).  [clausify(2)].
+6 -path(A,B,C) | on_path(f7(C,A,B),C) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(1)].
+7 -path(A,B,C) | on_path(f8(C,A,B),C) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(1)].
+8 -path(A,B,C) | sequential(f7(C,A,B),f8(C,A,B)) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(1)].
+9 -path(A,B,C) | -triangle(f7(C,A,B),f8(C,A,B),D) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(1)].
+10 on_path(f7(c1,c2,c3),c1) | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(6,a,3,a)].
+11 on_path(f7(c1,c2,c3),c1).  [resolve(4,a,10,b)].
+12 on_path(f8(c1,c2,c3),c1) | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(7,a,3,a)].
+13 on_path(f8(c1,c2,c3),c1).  [resolve(4,a,12,b)].
+14 sequential(f7(c1,c2,c3),f8(c1,c2,c3)) | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(8,a,3,a)].
+15 sequential(f7(c1,c2,c3),f8(c1,c2,c3)).  [resolve(4,a,14,b)].
+16 -triangle(f7(c1,c2,c3),f8(c1,c2,c3),A) | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(9,a,3,a)].
+17 -triangle(f7(c1,c2,c3),f8(c1,c2,c3),A).  [resolve(16,b,4,a)].
+18 -on_path(A,c1) | -sequential(f7(c1,c2,c3),A) | triangle(f7(c1,c2,c3),A,f9(f7(c1,c2,c3),A)).  [resolve(5,a,11,a)].
+19 -sequential(f7(c1,c2,c3),f8(c1,c2,c3)) | triangle(f7(c1,c2,c3),f8(c1,c2,c3),f9(f7(c1,c2,c3),f8(c1,c2,c3))).  [resolve(18,a,13,a)].
+20 -sequential(f7(c1,c2,c3),f8(c1,c2,c3)).  [resolve(19,b,17,a)].
+21 $F.  [resolve(15,a,20,a)].
+
+============================== end of proof ==========================

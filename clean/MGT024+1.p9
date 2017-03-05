@@ -1,0 +1,87 @@
+
+
+
+
+
+
+
+8 -environment(A) | -greater_or_equal(B,equilibrium(A)) | -greater(equilibrium(A),B).  [clausify(3)].
+9 environment(c1).  [clausify(7)].
+10 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | in_environment(A,B).  [clausify(1)].
+11 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | greater(number_of_organizations(A,B),zero).  [clausify(2)].
+12 -environment(A) | -in_environment(A,B) | -constant(resources(A,B)) | constant(number_of_organizations(A,B)).  [clausify(5)].
+13 -environment(A) | -in_environment(A,B) | -greater(number_of_organizations(A,B),zero) | greater(equilibrium(A),B) | constant(resources(A,B)).  [clausify(4)].
+14 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -constant(number_of_organizations(A,B)) | growth_rate(first_movers,B) = zero | greater(growth_rate(first_movers,B),zero) | greater(zero,growth_rate(first_movers,B)).  [clausify(6)].
+15 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -constant(number_of_organizations(A,B)) | growth_rate(first_movers,B) = zero | greater(zero,growth_rate(efficient_producers,B)) | greater(growth_rate(efficient_producers,B),zero).  [clausify(6)].
+16 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -constant(number_of_organizations(A,B)) | growth_rate(first_movers,B) = zero | greater(zero,growth_rate(efficient_producers,B)) | greater(zero,growth_rate(first_movers,B)).  [clausify(6)].
+17 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -constant(number_of_organizations(A,B)) | growth_rate(efficient_producers,B) = zero | greater(growth_rate(first_movers,B),zero) | greater(growth_rate(efficient_producers,B),zero).  [clausify(6)].
+18 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -constant(number_of_organizations(A,B)) | growth_rate(efficient_producers,B) = zero | greater(growth_rate(first_movers,B),zero) | greater(zero,growth_rate(first_movers,B)).  [clausify(6)].
+19 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -constant(number_of_organizations(A,B)) | growth_rate(efficient_producers,B) = zero | greater(zero,growth_rate(efficient_producers,B)) | greater(growth_rate(efficient_producers,B),zero).  [clausify(6)].
+20 -environment(A) | -subpopulations(first_movers,efficient_producers,A,B) | -constant(number_of_organizations(A,B)) | growth_rate(efficient_producers,B) = zero | greater(zero,growth_rate(efficient_producers,B)) | greater(zero,growth_rate(first_movers,B)).  [clausify(6)].
+21 greater_or_equal(c2,equilibrium(c1)).  [clausify(7)].
+22 subpopulations(first_movers,efficient_producers,c1,c2).  [clausify(7)].
+23 growth_rate(first_movers,c2) != zero | growth_rate(efficient_producers,c2) != zero.  [clausify(7)].
+24 -greater(growth_rate(first_movers,c2),zero) | -greater(zero,growth_rate(efficient_producers,c2)).  [clausify(7)].
+25 -greater(growth_rate(efficient_producers,c2),zero) | -greater(zero,growth_rate(first_movers,c2)).  [clausify(7)].
+26 -greater_or_equal(A,equilibrium(c1)) | -greater(equilibrium(c1),A).  [resolve(8,a,9,a)].
+27 -subpopulations(first_movers,efficient_producers,c1,A) | in_environment(c1,A).  [resolve(10,a,9,a)].
+28 -subpopulations(first_movers,efficient_producers,c1,A) | greater(number_of_organizations(c1,A),zero).  [resolve(11,a,9,a)].
+29 -in_environment(c1,A) | -constant(resources(c1,A)) | constant(number_of_organizations(c1,A)).  [resolve(12,a,9,a)].
+30 -in_environment(c1,A) | -greater(number_of_organizations(c1,A),zero) | greater(equilibrium(c1),A) | constant(resources(c1,A)).  [resolve(13,a,9,a)].
+31 -subpopulations(first_movers,efficient_producers,c1,A) | -constant(number_of_organizations(c1,A)) | growth_rate(first_movers,A) = zero | greater(growth_rate(first_movers,A),zero) | greater(zero,growth_rate(first_movers,A)).  [resolve(14,a,9,a)].
+32 -subpopulations(first_movers,efficient_producers,c1,A) | -constant(number_of_organizations(c1,A)) | growth_rate(first_movers,A) = zero | greater(zero,growth_rate(efficient_producers,A)) | greater(growth_rate(efficient_producers,A),zero).  [resolve(15,a,9,a)].
+33 -subpopulations(first_movers,efficient_producers,c1,A) | -constant(number_of_organizations(c1,A)) | growth_rate(first_movers,A) = zero | greater(zero,growth_rate(efficient_producers,A)) | greater(zero,growth_rate(first_movers,A)).  [resolve(16,a,9,a)].
+34 -subpopulations(first_movers,efficient_producers,c1,A) | -constant(number_of_organizations(c1,A)) | growth_rate(efficient_producers,A) = zero | greater(growth_rate(first_movers,A),zero) | greater(growth_rate(efficient_producers,A),zero).  [resolve(17,a,9,a)].
+35 -subpopulations(first_movers,efficient_producers,c1,A) | -constant(number_of_organizations(c1,A)) | growth_rate(efficient_producers,A) = zero | greater(growth_rate(first_movers,A),zero) | greater(zero,growth_rate(first_movers,A)).  [resolve(18,a,9,a)].
+36 -subpopulations(first_movers,efficient_producers,c1,A) | -constant(number_of_organizations(c1,A)) | growth_rate(efficient_producers,A) = zero | greater(zero,growth_rate(efficient_producers,A)) | greater(growth_rate(efficient_producers,A),zero).  [resolve(19,a,9,a)].
+37 -subpopulations(first_movers,efficient_producers,c1,A) | -constant(number_of_organizations(c1,A)) | growth_rate(efficient_producers,A) = zero | greater(zero,growth_rate(efficient_producers,A)) | greater(zero,growth_rate(first_movers,A)).  [resolve(20,a,9,a)].
+38 -greater(equilibrium(c1),c2).  [resolve(26,a,21,a)].
+39 in_environment(c1,c2).  [resolve(27,a,22,a)].
+40 greater(number_of_organizations(c1,c2),zero).  [resolve(28,a,22,a)].
+41 -constant(number_of_organizations(c1,c2)) | growth_rate(first_movers,c2) = zero | greater(growth_rate(first_movers,c2),zero) | greater(zero,growth_rate(first_movers,c2)).  [resolve(31,a,22,a)].
+42 -constant(number_of_organizations(c1,c2)) | growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(32,a,22,a)].
+43 -constant(number_of_organizations(c1,c2)) | growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(33,a,22,a)].
+44 -constant(number_of_organizations(c1,c2)) | growth_rate(efficient_producers,c2) = zero | greater(growth_rate(first_movers,c2),zero) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(34,a,22,a)].
+45 -constant(number_of_organizations(c1,c2)) | growth_rate(efficient_producers,c2) = zero | greater(growth_rate(first_movers,c2),zero) | greater(zero,growth_rate(first_movers,c2)).  [resolve(35,a,22,a)].
+46 -constant(number_of_organizations(c1,c2)) | growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(36,a,22,a)].
+47 -constant(number_of_organizations(c1,c2)) | growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(37,a,22,a)].
+48 -greater(number_of_organizations(c1,c2),zero) | greater(equilibrium(c1),c2) | constant(resources(c1,c2)).  [resolve(39,a,30,a)].
+49 greater(equilibrium(c1),c2) | constant(resources(c1,c2)).  [resolve(40,a,48,a)].
+50 constant(resources(c1,c2)).  [resolve(38,a,49,a)].
+51 -constant(resources(c1,c2)) | constant(number_of_organizations(c1,c2)).  [resolve(39,a,29,a)].
+52 constant(number_of_organizations(c1,c2)).  [resolve(50,a,51,a)].
+53 growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(52,a,47,a)].
+54 growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(52,a,46,a)].
+55 growth_rate(efficient_producers,c2) = zero | greater(growth_rate(first_movers,c2),zero) | greater(zero,growth_rate(first_movers,c2)).  [resolve(52,a,45,a)].
+56 growth_rate(efficient_producers,c2) = zero | greater(growth_rate(first_movers,c2),zero) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(52,a,44,a)].
+57 growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(zero,growth_rate(first_movers,c2)).  [resolve(52,a,43,a)].
+58 growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(growth_rate(efficient_producers,c2),zero).  [resolve(52,a,42,a)].
+59 growth_rate(first_movers,c2) = zero | greater(growth_rate(first_movers,c2),zero) | greater(zero,growth_rate(first_movers,c2)).  [resolve(52,a,41,a)].
+60 growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | -greater(zero,growth_rate(first_movers,c2)).  [resolve(54,c,25,a)].
+61 growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(first_movers,c2)) | -greater(zero,growth_rate(efficient_producers,c2)).  [resolve(55,b,24,a)].
+62 growth_rate(efficient_producers,c2) = zero | greater(growth_rate(efficient_producers,c2),zero) | -greater(zero,growth_rate(efficient_producers,c2)).  [resolve(56,b,24,a)].
+63 growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | -greater(zero,growth_rate(first_movers,c2)).  [resolve(58,c,25,a)].
+64 growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(first_movers,c2)) | -greater(zero,growth_rate(efficient_producers,c2)).  [resolve(59,b,24,a)].
+65 growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)).  [resolve(60,c,53,c)].
+66 growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(zero,growth_rate(efficient_producers,c2)).  [copy(65),merge(c)].
+67 growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)).  [copy(66),merge(c)].
+68 growth_rate(efficient_producers,c2) = zero | growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(first_movers,c2)).  [resolve(67,b,61,c)].
+69 growth_rate(efficient_producers,c2) = zero | greater(zero,growth_rate(first_movers,c2)).  [copy(68),merge(b)].
+70 growth_rate(efficient_producers,c2) = zero | greater(growth_rate(efficient_producers,c2),zero) | growth_rate(efficient_producers,c2) = zero.  [resolve(62,c,67,b)].
+71 growth_rate(efficient_producers,c2) = zero | greater(growth_rate(efficient_producers,c2),zero).  [copy(70),merge(c)].
+72 growth_rate(efficient_producers,c2) = zero | -greater(zero,growth_rate(first_movers,c2)).  [resolve(71,b,25,a)].
+73 growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)).  [resolve(63,c,57,c)].
+74 growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)) | greater(zero,growth_rate(efficient_producers,c2)).  [copy(73),merge(c)].
+75 growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(efficient_producers,c2)).  [copy(74),merge(c)].
+76 growth_rate(efficient_producers,c2) = zero | growth_rate(efficient_producers,c2) = zero.  [resolve(72,b,69,b)].
+77 growth_rate(efficient_producers,c2) = zero.  [copy(76),merge(b)].
+78 growth_rate(first_movers,c2) = zero | greater(zero,zero).  [para(77(a,1),75(b,2))].
+79 growth_rate(first_movers,c2) = zero | greater(zero,growth_rate(first_movers,c2)) | -greater(zero,zero).  [para(77(a,1),64(c,2))].
+80 -greater(zero,zero) | -greater(zero,growth_rate(first_movers,c2)).  [para(77(a,1),25(a,1))].
+81 growth_rate(first_movers,c2) != zero | zero != zero.  [para(77(a,1),23(b,1))].
+82 growth_rate(first_movers,c2) != zero.  [copy(81),xx(b)].
+83 greater(zero,growth_rate(first_movers,c2)) | -greater(zero,zero).  [resolve(82,a,79,a)].
+84 greater(zero,zero).  [resolve(82,a,78,a)].
+85 greater(zero,growth_rate(first_movers,c2)).  [resolve(84,a,83,b)].
+86 -greater(zero,growth_rate(first_movers,c2)).  [resolve(84,a,80,a)].
+87 $F.  [resolve(85,a,86,a)].

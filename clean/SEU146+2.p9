@@ -1,0 +1,315 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+36 -in(A,B) | -in(B,A).  [clausify(1)].
+37 set_union2(A,B) = set_union2(B,A).  [clausify(2)].
+38 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(3)].
+39 A = B | -subset(B,A) | -subset(A,B).  [clausify(4)].
+40 empty_set = A | in(f2(A),A).  [clausify(5)].
+41 unordered_pair(A,B) != C | -in(D,C) | D = A | D = B.  [clausify(6)].
+42 set_union2(A,B) != C | -in(D,C) | in(D,A) | in(D,B).  [clausify(7)].
+43 set_union2(A,B) = C | in(f4(A,B,C),C) | in(f4(A,B,C),A) | in(f4(A,B,C),B).  [clausify(7)].
+44 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(8)].
+45 subset(A,B) | in(f5(A,B),A).  [clausify(8)].
+46 set_difference(A,B) != C | -in(D,C) | in(D,A).  [clausify(9)].
+47 set_difference(A,B) != C | -in(D,C) | -in(D,B).  [clausify(9)].
+48 set_difference(A,B) = C | in(f7(A,B,C),C) | in(f7(A,B,C),A).  [clausify(9)].
+49 set_difference(A,B) = C | -in(f7(A,B,C),C) | -in(f7(A,B,C),A) | in(f7(A,B,C),B).  [clausify(9)].
+50 set_union2(A,A) = A.  [clausify(10)].
+51 subset(singleton(A),B) | -in(A,B).  [clausify(11)].
+52 set_difference(A,B) != empty_set | subset(A,B).  [clausify(12)].
+53 set_difference(A,B) = empty_set | -subset(A,B).  [clausify(12)].
+54 -subset(A,B) | in(C,A) | subset(A,set_difference(B,singleton(C))).  [clausify(13)].
+55 subset(A,A).  [clausify(14)].
+56 -disjoint(A,B) | disjoint(B,A).  [clausify(15)].
+57 -subset(A,B) | set_union2(A,B) = B.  [clausify(16)].
+58 set_union2(A,empty_set) = A.  [clausify(17)].
+59 -subset(A,B) | -subset(B,C) | subset(A,C).  [clausify(18)].
+60 -subset(A,B) | set_intersection2(A,B) = A.  [clausify(19)].
+61 set_intersection2(A,empty_set) = empty_set.  [clausify(20)].
+62 subset(empty_set,A).  [clausify(21)].
+63 -subset(A,B) | subset(set_difference(A,C),set_difference(B,C)).  [clausify(22)].
+64 subset(set_difference(A,B),A).  [clausify(23)].
+65 set_union2(A,set_difference(B,A)) = set_union2(A,B).  [clausify(24)].
+66 set_difference(A,empty_set) = A.  [clausify(25)].
+67 disjoint(A,B) | in(f9(A,B),A).  [clausify(26)].
+68 disjoint(A,B) | in(f9(A,B),B).  [clausify(26)].
+69 -in(A,B) | -in(A,C) | -disjoint(B,C).  [clausify(26)].
+70 set_difference(set_union2(A,B),B) = set_difference(A,B).  [clausify(27)].
+71 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(28)].
+72 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(71),flip(a)].
+73 set_difference(empty_set,A) = empty_set.  [clausify(29)].
+74 -in(A,set_intersection2(B,C)) | -disjoint(B,C).  [clausify(30)].
+75 -in(A,set_difference(B,set_difference(B,C))) | -disjoint(B,C).  [para(72(a,1),74(a,2))].
+76 -subset(A,B) | -disjoint(B,C) | disjoint(A,C).  [clausify(31)].
+77 singleton(A) = unordered_pair(A,A).  [clausify(32)].
+78 subset(A,set_union2(A,B)).  [clausify(33)].
+79 -disjoint(A,B) | set_difference(A,B) = A.  [clausify(34)].
+80 disjoint(A,B) | set_difference(A,B) != A.  [clausify(34)].
+81 subset(c3,singleton(c4)) | empty_set = c3 | singleton(c4) = c3.  [clausify(35)].
+82 subset(c3,unordered_pair(c4,c4)) | empty_set = c3 | singleton(c4) = c3.  [para(77(a,1),81(a,2))].
+83 subset(c3,unordered_pair(c4,c4)) | empty_set = c3 | unordered_pair(c4,c4) = c3.  [para(77(a,1),82(c,1))].
+84 subset(c3,unordered_pair(c4,c4)) | c3 = empty_set | unordered_pair(c4,c4) = c3.  [copy(83),flip(b)].
+85 -subset(c3,singleton(c4)) | empty_set != c3.  [clausify(35)].
+86 -subset(c3,unordered_pair(c4,c4)) | empty_set != c3.  [para(77(a,1),85(a,2))].
+87 -subset(c3,unordered_pair(c4,c4)) | c3 != empty_set.  [copy(86),flip(b)].
+88 -subset(c3,singleton(c4)) | singleton(c4) != c3.  [clausify(35)].
+89 -subset(c3,unordered_pair(c4,c4)) | singleton(c4) != c3.  [para(77(a,1),88(a,2))].
+90 -subset(c3,unordered_pair(c4,c4)) | unordered_pair(c4,c4) != c3.  [para(77(a,1),89(b,1))].
+91 -in(A,A).  [factor(36,a,b)].
+92 unordered_pair(A,A) != B | -in(C,B) | C = A.  [factor(41,c,d)].
+93 set_difference(A,B) = A | in(f7(A,B,A),A).  [factor(48,b,c)].
+94 set_difference(A,B) = A | -in(f7(A,B,A),A) | in(f7(A,B,A),B).  [factor(49,b,c)].
+95 -in(A,B) | -disjoint(B,B).  [factor(69,a,b)].
+96 set_difference(A,set_difference(A,empty_set)) = empty_set.  [para(72(a,1),61(a,1))].
+97 set_difference(A,A) = empty_set.  [para(66(a,1),96(a,1,2))].
+98 -subset(A,B) | set_difference(A,set_difference(A,B)) = A.  [para(72(a,1),60(b,1))].
+99 set_difference(A,set_difference(A,B)) = set_intersection2(B,A).  [para(72(a,1),38(a,1))].
+100 set_difference(A,set_difference(A,B)) = set_difference(B,set_difference(B,A)).  [para(72(a,1),99(a,2))].
+101 -subset(A,B) | in(C,A) | subset(A,set_difference(B,unordered_pair(C,C))).  [para(77(a,1),54(c,2,2))].
+102 subset(unordered_pair(A,A),B) | -in(A,B).  [para(77(a,1),51(a,1))].
+103 set_union2(A,B) = C | in(f4(A,B,C),A) | in(f4(A,B,C),B) | set_union2(D,E) != C | in(f4(A,B,C),D) | in(f4(A,B,C),E).  [resolve(43,b,42,b)].
+104 set_union2(A,B) = C | in(f4(A,B,C),A) | in(f4(A,B,C),B) | set_union2(B,D) != C | in(f4(A,B,C),D).  [factor(103,c,e)].
+105 set_union2(A,B) = C | in(f4(A,B,C),A) | in(f4(A,B,C),B) | set_union2(B,B) != C.  [factor(104,c,e)].
+106 set_union2(A,B) = C | in(f4(A,B,C),A) | in(f4(A,B,C),B) | B != C.  [para(50(a,1),105(d,1))].
+107 set_difference(A,B) != C | in(f2(C),A) | empty_set = C.  [resolve(46,b,40,b)].
+108 -subset(A,B) | subset(C,B) | in(f5(C,A),C).  [resolve(59,a,45,a)].
+109 -subset(A,empty_set) | subset(A,B).  [resolve(62,a,59,b)].
+110 subset(set_difference(set_difference(A,B),C),set_difference(A,C)).  [resolve(64,a,63,a)].
+111 -subset(A,set_difference(B,C)) | subset(A,B).  [resolve(64,a,59,b)].
+112 set_union2(set_difference(A,B),A) = A.  [resolve(64,a,57,a)].
+113 set_union2(A,set_difference(A,B)) = A.  [para(37(a,1),112(a,1))].
+114 set_difference(A,B) = A | -subset(A,set_difference(A,B)).  [resolve(64,a,39,c)].
+115 in(f9(A,B),A) | disjoint(B,A).  [resolve(67,a,56,a)].
+116 set_difference(set_union2(A,B),A) = set_difference(B,A).  [para(37(a,1),70(a,1,1))].
+117 set_difference(set_union2(A,B),set_difference(B,A)) = set_difference(A,set_difference(B,A)).  [para(65(a,1),70(a,1,1))].
+118 -subset(A,B) | disjoint(A,C) | in(f9(B,C),C).  [resolve(76,b,68,a)].
+119 subset(set_difference(A,B),set_difference(set_union2(A,C),B)).  [resolve(78,a,63,a)].
+120 -subset(A,B) | subset(A,set_union2(B,C)).  [resolve(78,a,59,b)].
+121 -subset(set_union2(A,B),C) | subset(A,C).  [resolve(78,a,59,a)].
+122 set_difference(A,set_union2(A,B)) = empty_set.  [resolve(78,a,53,b)].
+123 -in(A,B) | in(A,set_union2(B,C)).  [resolve(78,a,44,a)].
+124 disjoint(empty_set,A).  [resolve(80,b,73,a)].
+125 c3 = empty_set | unordered_pair(c4,c4) = c3 | set_union2(c3,unordered_pair(c4,c4)) = unordered_pair(c4,c4).  [resolve(84,a,57,a)].
+126 c3 = empty_set | unordered_pair(c4,c4) = c3 | set_difference(c3,unordered_pair(c4,c4)) = empty_set.  [resolve(84,a,53,b)].
+127 c3 = empty_set | unordered_pair(c4,c4) = c3 | c3 = unordered_pair(c4,c4) | -subset(unordered_pair(c4,c4),c3).  [resolve(84,a,39,c)].
+128 c3 = empty_set | unordered_pair(c4,c4) = c3 | unordered_pair(c4,c4) = c3 | -subset(unordered_pair(c4,c4),c3).  [copy(127),flip(c)].
+129 c3 = empty_set | unordered_pair(c4,c4) = c3 | -subset(unordered_pair(c4,c4),c3).  [copy(128),merge(c)].
+130 set_difference(A,B) = A | set_difference(C,D) != A | -in(f7(A,B,A),D).  [resolve(93,b,47,b)].
+131 set_difference(A,B) = A | in(f7(A,B,A),B) | set_difference(A,B) = A.  [resolve(94,b,93,b)].
+132 set_difference(A,B) = A | in(f7(A,B,A),B).  [copy(131),merge(c)].
+133 subset(set_difference(A,set_difference(A,B)),B).  [para(100(a,1),64(a,1))].
+134 set_union2(set_difference(A,B),set_difference(B,set_difference(B,A))) = set_union2(set_difference(A,B),A).  [para(100(a,1),65(a,1,2))].
+135 set_union2(set_difference(A,B),set_difference(B,set_difference(B,A))) = set_union2(A,set_difference(A,B)).  [para(37(a,1),134(a,2))].
+136 set_union2(set_difference(A,B),set_difference(B,set_difference(B,A))) = A.  [para(113(a,1),135(a,2))].
+137 set_difference(A,set_difference(A,set_union2(B,A))) = set_difference(set_union2(B,A),set_difference(B,A)).  [para(70(a,1),100(a,2,2))].
+138 set_difference(A,set_difference(A,set_union2(A,B))) = set_difference(set_union2(B,A),set_difference(B,A)).  [para(37(a,1),137(a,1,2,2))].
+139 set_difference(A,empty_set) = set_difference(set_union2(B,A),set_difference(B,A)).  [para(122(a,1),138(a,1,2))].
+140 A = set_difference(set_union2(B,A),set_difference(B,A)).  [para(66(a,1),139(a,1))].
+141 A = set_difference(set_union2(A,B),set_difference(B,A)).  [para(37(a,1),140(a,2,1))].
+142 A = set_difference(A,set_difference(B,A)).  [para(117(a,1),141(a,2))].
+143 set_difference(A,set_difference(B,A)) = A.  [copy(142),flip(a)].
+144 set_difference(set_union2(A,B),set_difference(B,A)) = A.  [para(143(a,1),117(a,2))].
+145 in(A,B) | subset(B,set_difference(B,unordered_pair(A,A))).  [resolve(101,a,55,a)].
+146 -in(A,empty_set).  [resolve(124,a,95,b)].
+147 subset(A,B) | in(f5(A,empty_set),A).  [resolve(109,a,45,a)].
+148 subset(set_difference(set_difference(A,set_difference(A,B)),C),set_difference(B,C)).  [resolve(133,a,63,a)].
+149 disjoint(A,set_difference(B,A)).  [resolve(143,a,80,b)].
+150 set_difference(set_difference(A,B),B) = set_difference(A,B).  [para(143(a,1),143(a,1,2))].
+151 -subset(A,B) | disjoint(A,set_difference(C,B)).  [resolve(149,a,76,b)].
+152 disjoint(set_difference(A,B),B).  [resolve(149,a,56,a)].
+153 -subset(A,set_difference(B,C)) | disjoint(A,C).  [resolve(152,a,76,b)].
+154 subset(set_difference(set_difference(A,B),C),A).  [resolve(111,a,64,a)].
+155 set_union2(set_difference(set_difference(A,B),C),A) = A.  [resolve(154,a,57,a)].
+156 set_union2(A,set_difference(set_difference(A,B),C)) = A.  [para(37(a,1),155(a,1))].
+157 in(f9(A,B),A) | -subset(C,B) | disjoint(C,A).  [resolve(115,b,76,b)].
+158 subset(A,set_union2(set_union2(A,B),C)).  [resolve(120,a,78,a)].
+159 subset(A,set_union2(B,set_union2(A,C))).  [para(37(a,1),158(a,2))].
+160 set_difference(A,set_union2(B,set_union2(A,C))) = empty_set.  [resolve(159,a,53,b)].
+161 -subset(set_union2(A,B),C) | subset(B,C).  [para(37(a,1),121(a,1))].
+162 in(f2(A),set_union2(A,B)) | empty_set = A.  [resolve(123,a,40,b)].
+163 disjoint(set_difference(A,set_difference(A,B)),set_difference(C,B)).  [resolve(151,a,133,a)].
+164 disjoint(A,set_difference(B,set_union2(A,C))).  [resolve(151,a,78,a)].
+165 disjoint(set_difference(A,B),set_difference(C,A)).  [resolve(151,a,64,a)].
+166 disjoint(set_difference(A,set_union2(B,C)),B).  [resolve(164,a,56,a)].
+167 set_difference(set_difference(A,B),set_difference(C,A)) = set_difference(A,B).  [resolve(165,a,79,a)].
+168 disjoint(set_difference(A,B),set_difference(B,C)).  [resolve(165,a,56,a)].
+169 disjoint(set_difference(set_difference(A,B),C),B).  [para(143(a,1),165(a,2))].
+170 disjoint(set_difference(A,set_union2(B,C)),C).  [para(37(a,1),166(a,1,2))].
+171 set_difference(set_difference(A,B),set_difference(B,C)) = set_difference(A,B).  [resolve(168,a,79,a)].
+172 set_difference(set_difference(set_difference(A,B),C),B) = set_difference(set_difference(A,B),C).  [resolve(169,a,79,a)].
+173 -in(A,set_difference(B,set_union2(C,D))) | -in(A,D).  [resolve(170,a,69,c)].
+174 disjoint(A,B) | in(f5(A,set_difference(C,B)),A).  [resolve(153,a,45,a)].
+175 subset(set_difference(set_difference(set_difference(A,B),C),D),set_difference(set_difference(A,C),D)).  [resolve(110,a,63,a)].
+176 subset(set_difference(set_difference(set_union2(A,B),C),B),set_difference(A,B)).  [para(70(a,1),110(a,2))].
+177 set_difference(set_union2(set_difference(A,B),B),set_difference(A,B)) = B.  [para(143(a,1),116(a,2))].
+178 set_difference(set_union2(B,set_difference(A,B)),set_difference(A,B)) = B.  [para(37(a,1),177(a,1,1))].
+179 set_difference(set_union2(B,A),set_difference(A,B)) = B.  [para(65(a,1),178(a,1,1))].
+180 set_difference(set_union2(A,B),set_difference(A,B)) = B.  [para(37(a,1),179(a,1,1))].
+181 set_difference(set_difference(A,B),set_difference(set_union2(A,C),B)) = empty_set.  [resolve(119,a,53,b)].
+182 subset(set_difference(A,B),set_difference(set_union2(set_difference(A,B),C),B)).  [para(150(a,1),119(a,1))].
+183 subset(set_difference(A,B),set_difference(set_union2(C,set_difference(A,B)),B)).  [para(37(a,1),182(a,2,1))].
+184 -in(A,set_difference(B,C)) | -in(A,set_difference(set_difference(C,D),E)).  [para(156(a,1),173(a,2,2))].
+185 -in(A,set_difference(B,C)) | -in(A,set_difference(set_difference(D,set_difference(D,C)),E)).  [para(100(a,1),184(b,2,1))].
+186 empty_set = A | unordered_pair(B,B) != set_union2(A,C) | f2(A) = B.  [resolve(162,a,92,b)].
+187 empty_set = A | set_union2(A,B) != unordered_pair(C,C) | f2(A) = C.  [copy(186),flip(b)].
+188 set_union2(set_union2(A,B),B) = set_union2(A,B).  [para(180(a,1),113(a,1,2))].
+189 set_union2(A,set_union2(B,A)) = set_union2(B,A).  [para(37(a,1),188(a,1))].
+190 -in(A,set_difference(B,set_union2(C,set_union2(D,E)))) | -in(A,set_difference(set_difference(D,empty_set),F)).  [para(160(a,1),185(b,2,1,2))].
+191 -in(A,set_difference(B,set_union2(C,set_union2(D,E)))) | -in(A,set_difference(D,F)).  [para(66(a,1),190(b,2,1))].
+192 set_difference(set_union2(A,B),set_union2(A,B)) = set_difference(B,set_union2(A,B)).  [para(189(a,1),70(a,1,1))].
+193 empty_set = set_difference(B,set_union2(A,B)).  [para(97(a,1),192(a,1))].
+194 set_difference(A,set_union2(B,A)) = empty_set.  [copy(193),flip(a)].
+195 -in(A,set_difference(B,set_union2(C,set_union2(set_union2(D,E),F)))) | -in(A,E).  [para(180(a,1),191(b,2))].
+196 -in(A,set_difference(B,set_union2(C,set_union2(D,set_union2(E,F))))) | -in(A,F).  [para(37(a,1),195(a,2,2,2))].
+197 in(A,B) | set_difference(B,unordered_pair(A,A)) = B.  [resolve(145,b,114,b)].
+198 in(f5(A,set_difference(B,A)),A) | -in(C,A).  [resolve(174,a,95,b)].
+199 set_difference(A,unordered_pair(A,A)) = A.  [resolve(197,a,91,a)].
+200 set_difference(unordered_pair(A,A),A) = unordered_pair(A,A).  [para(199(a,1),143(a,1,2))].
+201 disjoint(set_difference(A,set_difference(A,unordered_pair(B,B))),B).  [para(199(a,1),163(a,2))].
+202 set_union2(A,set_difference(B,set_union2(C,B))) = empty_set | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),A) | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),set_difference(B,set_union2(C,B))).  [resolve(106,d,194,a)].
+203 set_union2(A,set_difference(B,set_union2(B,C))) = empty_set | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),A) | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),set_difference(B,set_union2(C,B))).  [para(37(a,1),202(a,1,2,2))].
+204 set_union2(A,empty_set) = empty_set | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),A) | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),set_difference(B,set_union2(C,B))).  [para(122(a,1),203(a,1,2))].
+205 A = empty_set | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),A) | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),set_difference(B,set_union2(C,B))).  [para(58(a,1),204(a,1))].
+206 A = empty_set | in(f4(A,set_difference(B,set_union2(B,C)),empty_set),A) | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),set_difference(B,set_union2(C,B))).  [para(37(a,1),205(b,1,2,2))].
+207 A = empty_set | in(f4(A,empty_set,empty_set),A) | in(f4(A,set_difference(B,set_union2(C,B)),empty_set),set_difference(B,set_union2(C,B))).  [para(122(a,1),206(b,1,2))].
+208 A = empty_set | in(f4(A,empty_set,empty_set),A) | in(f4(A,set_difference(B,set_union2(B,C)),empty_set),set_difference(B,set_union2(C,B))).  [para(37(a,1),207(c,1,2,2))].
+209 A = empty_set | in(f4(A,empty_set,empty_set),A) | in(f4(A,empty_set,empty_set),set_difference(B,set_union2(C,B))).  [para(122(a,1),208(c,1,2))].
+210 A = empty_set | in(f4(A,empty_set,empty_set),A) | in(f4(A,empty_set,empty_set),set_difference(B,set_union2(B,C))).  [para(37(a,1),209(c,2,2))].
+211 A = empty_set | in(f4(A,empty_set,empty_set),A) | in(f4(A,empty_set,empty_set),empty_set).  [para(122(a,1),210(c,2))].
+212 empty_set = A | in(f4(A,empty_set,empty_set),A) | in(f4(A,empty_set,empty_set),empty_set).  [copy(211),flip(a)].
+213 empty_set = A | in(f4(A,empty_set,empty_set),A).  [resolve(146,a,212,c)].
+214 in(f5(A,set_difference(B,A)),A) | empty_set = A.  [resolve(198,b,213,b)].
+215 in(f5(A,unordered_pair(A,A)),A) | empty_set = A.  [para(200(a,1),214(a,1,2))].
+216 subset(A,B) | in(f5(A,C),A) | in(f5(C,empty_set),C).  [resolve(108,a,147,a)].
+217 disjoint(A,B) | in(f9(set_union2(A,C),B),B).  [resolve(118,a,78,a)].
+218 in(f9(set_union2(A,B),A),A) | -in(C,A).  [resolve(217,a,95,b)].
+219 in(f9(set_union2(A,B),A),A) | empty_set = A.  [resolve(218,b,215,a)].
+220 in(f9(set_union2(A,B),B),B) | empty_set = B.  [para(37(a,1),219(a,1,1))].
+221 in(f9(A,set_union2(B,C)),A) | disjoint(B,A).  [resolve(157,b,78,a)].
+222 in(f9(A,set_union2(A,B)),A) | -in(C,A).  [resolve(221,b,95,b)].
+223 in(f9(A,set_union2(A,B)),A) | empty_set = A.  [resolve(222,b,220,a)].
+224 subset(set_difference(A,set_difference(A,B)),set_difference(B,set_difference(C,A))).  [para(167(a,1),148(a,1))].
+225 subset(set_difference(A,B),set_difference(A,set_difference(B,C))).  [para(171(a,1),110(a,1))].
+226 subset(set_difference(set_difference(set_union2(A,B),C),B),A).  [resolve(176,a,111,a)].
+227 subset(set_difference(set_union2(A,set_difference(B,C)),B),A).  [para(171(a,1),226(a,1))].
+228 set_union2(set_difference(set_union2(A,set_difference(B,C)),B),A) = A.  [resolve(227,a,57,a)].
+229 set_union2(A,set_difference(set_union2(A,set_difference(B,C)),B)) = A.  [para(37(a,1),228(a,1))].
+230 subset(set_difference(set_union2(A,B),set_union2(B,C)),A).  [para(144(a,1),227(a,1,1,2))].
+231 set_union2(set_difference(set_union2(A,B),set_union2(B,C)),A) = A.  [resolve(230,a,57,a)].
+232 set_union2(A,set_difference(set_union2(A,B),set_union2(B,C))) = A.  [para(37(a,1),231(a,1))].
+233 set_difference(set_difference(A,set_difference(A,B)),set_difference(B,set_difference(C,A))) = empty_set.  [resolve(224,a,53,b)].
+234 subset(set_difference(set_union2(A,set_difference(B,C)),B),set_difference(A,B)).  [para(229(a,1),183(a,2,1))].
+235 -in(A,set_difference(B,set_union2(C,set_union2(D,E)))) | -in(A,set_difference(set_union2(E,F),set_union2(F,V6))).  [para(232(a,1),196(a,2,2,2,2))].
+236 -in(A,set_difference(set_union2(B,C),set_union2(C,set_union2(D,B)))).  [factor(235,a,b)].
+237 -in(A,set_difference(set_union2(B,C),set_union2(C,set_union2(B,D)))).  [para(37(a,1),236(a,2,2,2))].
+238 empty_set = set_difference(set_union2(A,B),set_union2(B,set_union2(A,C))).  [resolve(237,a,223,a)].
+239 set_difference(set_union2(A,B),set_union2(B,set_union2(A,C))) = empty_set.  [copy(238),flip(a)].
+240 set_difference(set_difference(set_union2(A,set_difference(B,C)),B),set_difference(set_difference(set_union2(A,set_difference(B,C)),B),set_difference(A,B))) = set_difference(set_union2(A,set_difference(B,C)),B).  [resolve(234,a,98,a)].
+241 set_difference(set_difference(A,B),set_difference(set_difference(A,B),set_difference(set_union2(A,set_difference(B,C)),B))) = set_difference(set_union2(A,set_difference(B,C)),B).  [para(100(a,1),240(a,1))].
+242 set_difference(set_difference(A,B),empty_set) = set_difference(set_union2(A,set_difference(B,C)),B).  [para(181(a,1),241(a,1,2))].
+243 set_difference(A,B) = set_difference(set_union2(A,set_difference(B,C)),B).  [para(66(a,1),242(a,1))].
+244 set_difference(set_union2(A,set_difference(B,C)),B) = set_difference(A,B).  [copy(243),flip(a)].
+245 subset(set_union2(A,B),set_union2(B,set_union2(A,C))).  [resolve(239,a,52,a)].
+246 subset(set_union2(A,B),set_union2(set_difference(B,A),set_union2(A,C))).  [para(65(a,1),245(a,1))].
+247 c3 = empty_set | unordered_pair(c4,c4) = c3 | disjoint(set_difference(c3,empty_set),c4).  [para(126(c,1),201(a,1,2))].
+248 c3 = empty_set | unordered_pair(c4,c4) = c3 | disjoint(c3,c4).  [para(66(a,1),247(c,1))].
+249 set_union2(A,set_difference(B,A)) = set_union2(A,set_union2(B,set_difference(A,C))).  [para(244(a,1),65(a,1,2))].
+250 set_union2(A,B) = set_union2(A,set_union2(B,set_difference(A,C))).  [para(65(a,1),249(a,1))].
+251 set_union2(A,set_union2(B,set_difference(A,C))) = set_union2(A,B).  [copy(250),flip(a)].
+252 subset(A,set_union2(set_difference(A,B),set_union2(B,C))).  [resolve(246,a,161,a)].
+253 subset(A,set_union2(set_difference(A,set_difference(B,C)),B)).  [para(136(a,1),252(a,2,2))].
+254 subset(A,set_union2(B,set_difference(A,set_difference(B,C)))).  [para(37(a,1),253(a,2))].
+255 set_union2(A,set_union2(B,set_difference(A,set_difference(B,C)))) = set_union2(B,set_difference(A,set_difference(B,C))).  [resolve(254,a,57,a)].
+256 set_union2(A,B) = set_union2(B,set_difference(A,set_difference(B,C))).  [para(251(a,1),255(a,1))].
+257 set_union2(A,set_difference(B,set_difference(A,C))) = set_union2(B,A).  [copy(256),flip(a)].
+258 c3 = empty_set | unordered_pair(c4,c4) = c3 | set_difference(c3,c4) = c3.  [resolve(248,c,79,a)].
+259 set_difference(set_union2(A,B),B) = set_difference(set_difference(A,set_difference(B,C)),B).  [para(257(a,1),116(a,1,1))].
+260 set_difference(A,B) = set_difference(set_difference(A,set_difference(B,C)),B).  [para(70(a,1),259(a,1))].
+261 set_difference(set_difference(A,set_difference(B,C)),B) = set_difference(A,B).  [copy(260),flip(a)].
+262 set_difference(set_difference(A,B),set_union2(B,C)) = set_difference(A,set_union2(B,C)).  [para(144(a,1),261(a,1,1,2))].
+263 set_difference(A,B) = A | set_difference(C,B) != A | set_difference(A,B) = A.  [resolve(130,c,132,b)].
+264 set_difference(A,B) = A | set_difference(C,B) != A.  [copy(263),merge(c)].
+265 set_difference(A,B) = A | unordered_pair(B,B) != A.  [para(200(a,1),264(b,1))].
+266 subset(set_difference(set_difference(A,B),C),set_difference(set_difference(A,C),B)).  [para(172(a,1),175(a,1))].
+267 set_difference(set_difference(A,B),C) = set_difference(set_difference(A,C),B) | -subset(set_difference(set_difference(A,C),B),set_difference(set_difference(A,B),C)).  [resolve(266,a,39,c)].
+268 set_difference(set_difference(A,B),C) = set_difference(set_difference(A,C),B).  [resolve(266,a,267,b)].
+269 set_difference(set_difference(A,B),C) != empty_set | subset(set_difference(A,C),B).  [para(268(a,1),52(a,1))].
+270 set_union2(A,set_difference(set_difference(B,A),C)) = set_union2(A,set_difference(B,C)).  [para(268(a,1),65(a,1,2))].
+271 in(f5(c3,A),c3) | in(f5(A,empty_set),A) | c3 != empty_set.  [resolve(216,a,87,a)].
+272 subset(set_difference(A,set_difference(B,set_difference(C,A))),set_difference(A,B)).  [resolve(233,a,269,a)].
+273 set_difference(A,set_difference(B,set_difference(C,A))) = set_difference(A,B) | -subset(set_difference(A,B),set_difference(A,set_difference(B,set_difference(C,A)))).  [resolve(272,a,39,c)].
+274 set_difference(A,set_difference(B,set_difference(C,A))) = set_difference(A,B).  [resolve(225,a,273,b)].
+275 set_difference(A,set_difference(B,set_difference(C,A))) = set_difference(A,set_union2(B,set_difference(C,A))).  [para(70(a,1),274(a,1,2))].
+276 set_difference(A,B) = set_difference(A,set_union2(B,set_difference(C,A))).  [para(274(a,1),275(a,1))].
+277 set_difference(A,set_union2(B,set_difference(C,A))) = set_difference(A,B).  [copy(276),flip(a)].
+278 set_difference(set_difference(A,B),set_union2(C,B)) = set_difference(set_difference(A,B),C).  [para(143(a,1),277(a,1,2,2))].
+279 set_difference(set_difference(A,B),set_union2(B,C)) = set_difference(set_difference(A,B),C).  [para(37(a,1),278(a,1,2))].
+280 set_difference(A,set_union2(B,C)) = set_difference(set_difference(A,B),C).  [para(262(a,1),279(a,1))].
+281 set_difference(set_difference(A,B),C) = set_difference(A,set_union2(B,C)).  [copy(280),flip(a)].
+282 disjoint(set_difference(A,B),set_difference(set_union2(B,set_difference(C,A)),D)).  [para(277(a,1),168(a,1))].
+283 set_union2(A,set_difference(B,set_union2(A,C))) = set_union2(A,set_difference(B,C)).  [para(281(a,1),270(a,1,2))].
+284 -in(A,set_difference(set_difference(B,C),set_difference(set_difference(B,C),set_difference(set_union2(C,set_difference(D,B)),E)))).  [resolve(282,a,75,b)].
+285 -in(A,set_difference(set_difference(B,C),set_difference(B,set_union2(C,set_difference(set_union2(C,set_difference(D,B)),E))))).  [para(281(a,1),284(a,2,2))].
+286 -in(A,set_difference(B,set_union2(C,set_difference(B,set_union2(C,set_difference(set_union2(C,set_difference(D,B)),E)))))).  [para(281(a,1),285(a,2))].
+287 -in(A,set_difference(B,set_union2(C,set_difference(B,set_difference(set_union2(C,set_difference(D,B)),E))))).  [para(283(a,1),286(a,2,2))].
+288 c3 = empty_set | set_difference(c3,c4) = c3 | set_difference(c3,c4) = c3.  [resolve(258,b,265,b)].
+289 c3 = empty_set | set_difference(c3,c4) = c3.  [copy(288),merge(c)].
+290 c3 = empty_set | in(f2(c3),c3) | empty_set = c3.  [resolve(289,b,107,a)].
+291 c3 = empty_set | in(f2(c3),c3) | c3 = empty_set.  [copy(290),flip(c)].
+292 c3 = empty_set | in(f2(c3),c3).  [copy(291),merge(c)].
+293 c3 = empty_set | unordered_pair(A,A) != c3 | f2(c3) = A.  [resolve(292,b,92,b)].
+294 empty_set = c3 | f2(c3) = c4 | c3 = empty_set | unordered_pair(c4,c4) = c3.  [resolve(187,b,125,c)].
+295 c3 = empty_set | f2(c3) = c4 | c3 = empty_set | unordered_pair(c4,c4) = c3.  [copy(294),flip(a)].
+296 c3 = empty_set | f2(c3) = c4 | unordered_pair(c4,c4) = c3.  [copy(295),merge(c)].
+297 c3 = empty_set | f2(c3) = c4 | c3 = empty_set | f2(c3) = c4.  [resolve(296,c,293,b)].
+298 c3 = empty_set | f2(c3) = c4 | f2(c3) = c4.  [copy(297),merge(c)].
+299 c3 = empty_set | f2(c3) = c4.  [copy(298),merge(c)].
+300 c3 = empty_set | empty_set = c3 | in(c4,c3).  [para(299(b,1),40(b,1))].
+301 c3 = empty_set | c3 = empty_set | in(c4,c3).  [copy(300),flip(b)].
+302 c3 = empty_set | in(c4,c3).  [copy(301),merge(b)].
+303 c3 = empty_set | subset(unordered_pair(c4,c4),c3).  [resolve(302,b,102,b)].
+304 c3 = empty_set | c3 = empty_set | unordered_pair(c4,c4) = c3.  [resolve(303,b,129,c)].
+305 c3 = empty_set | unordered_pair(c4,c4) = c3.  [copy(304),merge(b)].
+306 c3 = empty_set | -subset(c3,c3) | unordered_pair(c4,c4) != c3.  [para(305(b,1),90(a,2))].
+307 c3 = empty_set | unordered_pair(c4,c4) != c3.  [resolve(55,a,306,b)].
+308 c3 = empty_set | c3 = empty_set.  [resolve(307,b,305,b)].
+309 c3 = empty_set.  [copy(308),merge(b)].
+310 in(f5(empty_set,A),c3) | in(f5(A,empty_set),A) | c3 != empty_set.  [para(309(a,1),271(a,1,1))].
+311 in(f5(empty_set,A),empty_set) | in(f5(A,empty_set),A) | c3 != empty_set.  [para(309(a,1),310(a,2))].
+312 in(f5(empty_set,A),empty_set) | in(f5(A,empty_set),A) | empty_set != empty_set.  [para(309(a,1),311(c,1))].
+313 in(f5(empty_set,A),empty_set) | in(f5(A,empty_set),A).  [copy(312),xx(c)].
+314 in(f5(A,empty_set),A).  [resolve(146,a,313,a)].
+315 $F.  [resolve(314,a,287,a)].

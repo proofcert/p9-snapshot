@@ -1,0 +1,33 @@
+
+
+
+
+
+
+
+
+
+
+11 -man(A,B) | human_person(A,B).  [clausify(2)].
+12 man(c1,c2).  [clausify(10)].
+13 -human_person(A,B) | animate(A,B).  [clausify(1)].
+14 human_person(c1,c2).  [resolve(12,a,11,a)].
+15 -artifact(A,B) | object(A,B).  [clausify(4)].
+16 -object(A,B) | nonliving(A,B).  [clausify(3)].
+17 -device(A,B) | instrumentality(A,B).  [clausify(6)].
+18 -instrumentality(A,B) | artifact(A,B).  [clausify(5)].
+19 wheel(c1,c12).  [clausify(10)].
+20 -wheel(A,B) | device(A,B).  [clausify(7)].
+21 -animate(A,B) | -nonliving(A,B).  [clausify(8)].
+22 animate(c1,c2).  [resolve(14,a,13,a)].
+23 -be(A,B,C,D) | D = C.  [clausify(9)].
+24 be(c1,c11,c2,c12).  [clausify(10)].
+25 -device(A,B) | artifact(A,B).  [resolve(17,b,18,a)].
+26 -artifact(A,B) | nonliving(A,B).  [resolve(15,b,16,a)].
+27 -device(A,B) | nonliving(A,B).  [resolve(25,b,26,a)].
+28 device(c1,c12).  [resolve(19,a,20,a)].
+29 -nonliving(c1,c2).  [resolve(22,a,21,a)].
+30 c12 = c2.  [resolve(24,a,23,a)].
+31 nonliving(c1,c12).  [resolve(27,a,28,a)].
+32 nonliving(c1,c2).  [para(30(a,1),31(a,2))].
+33 $F.  [resolve(29,a,32,a)].

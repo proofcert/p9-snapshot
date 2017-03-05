@@ -1,0 +1,76 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n101.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 04:36:53 CDT 2014
+% CPUTime    : 0.28 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 5806 was started by sandbox on n101.star.cs.uiowa.edu,
+Fri Jun  6 04:36:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_5774_n101.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.09 (+ 0.00) seconds.
+% Length of proof is 33.
+% Level of proof is 13.
+% Maximum clause weight is 17.000.
+% Given clauses 403.
+
+
+1 (all A (epsilon_transitive(A) & epsilon_connected(A) -> ordinal(A))).  [assumption].
+2 (all A (epsilon_transitive(A) <-> (all B (in(B,A) -> subset(B,A))))).  [assumption].
+3 (all A (epsilon_connected(A) <-> (all B all C -(in(B,A) & in(C,A) & -in(B,C) & B != C & -in(C,B))))).  [assumption].
+4 (all A (ordinal(A) -> (all B (ordinal(B) -> -(-in(A,B) & A != B & -in(B,A)))))).  [assumption].
+5 -(all A ((all B (in(B,A) -> ordinal(B) & subset(B,A))) -> ordinal(A))).  [assumption].
+6 -epsilon_transitive(A) | -epsilon_connected(A) | ordinal(A).  [clausify(1)].
+7 epsilon_transitive(A) | in(f1(A),A).  [clausify(2)].
+8 epsilon_transitive(A) | -subset(f1(A),A).  [clausify(2)].
+9 epsilon_connected(A) | in(f2(A),A).  [clausify(3)].
+10 epsilon_connected(A) | in(f3(A),A).  [clausify(3)].
+11 -ordinal(c13).  [clausify(5)].
+12 -in(A,c13) | ordinal(A).  [clausify(5)].
+13 -in(A,c13) | subset(A,c13).  [clausify(5)].
+14 epsilon_connected(A) | -in(f2(A),f3(A)).  [clausify(3)].
+15 epsilon_connected(A) | f3(A) != f2(A).  [clausify(3)].
+16 epsilon_connected(A) | -in(f3(A),f2(A)).  [clausify(3)].
+17 -ordinal(A) | -ordinal(B) | in(A,B) | B = A | in(B,A).  [clausify(4)].
+18 -epsilon_connected(A) | ordinal(A) | in(f1(A),A).  [resolve(6,a,7,a)].
+19 -subset(f1(A),A) | -epsilon_connected(A) | ordinal(A).  [resolve(8,a,6,a)].
+20 ordinal(f3(c13)) | epsilon_connected(c13).  [resolve(12,a,10,b)].
+21 ordinal(f2(c13)) | epsilon_connected(c13).  [resolve(12,a,9,b)].
+22 epsilon_connected(c13) | -ordinal(A) | in(A,f3(c13)) | f3(c13) = A | in(f3(c13),A).  [resolve(20,a,17,b)].
+23 epsilon_connected(c13) | in(f2(c13),f3(c13)) | f3(c13) = f2(c13) | in(f3(c13),f2(c13)) | epsilon_connected(c13).  [resolve(22,b,21,a)].
+24 epsilon_connected(c13) | in(f2(c13),f3(c13)) | f3(c13) = f2(c13) | in(f3(c13),f2(c13)).  [copy(23),merge(e)].
+25 epsilon_connected(c13) | in(f2(c13),f3(c13)) | f3(c13) = f2(c13) | epsilon_connected(c13).  [resolve(24,d,16,b)].
+26 epsilon_connected(c13) | in(f2(c13),f3(c13)) | f3(c13) = f2(c13).  [copy(25),merge(d)].
+27 epsilon_connected(c13) | f3(c13) = f2(c13) | epsilon_connected(c13).  [resolve(26,b,14,b)].
+28 epsilon_connected(c13) | f3(c13) = f2(c13).  [copy(27),merge(c)].
+29 f3(c13) = f2(c13) | ordinal(c13) | in(f1(c13),c13).  [resolve(28,a,18,a)].
+30 f3(c13) = f2(c13) | in(f1(c13),c13).  [resolve(11,a,29,b)].
+31 f3(c13) = f2(c13) | subset(f1(c13),c13).  [resolve(30,b,13,a)].
+32 f3(c13) = f2(c13) | -epsilon_connected(c13) | ordinal(c13).  [resolve(31,b,19,a)].
+33 f3(c13) = f2(c13) | -epsilon_connected(c13).  [resolve(11,a,32,c)].
+34 f3(c13) = f2(c13) | f3(c13) = f2(c13).  [resolve(33,b,28,a)].
+35 f3(c13) = f2(c13).  [copy(34),merge(b)].
+36 epsilon_connected(c13).  [resolve(35,a,15,b)].
+37 ordinal(c13) | in(f1(c13),c13).  [resolve(36,a,18,a)].
+38 in(f1(c13),c13).  [resolve(11,a,37,a)].
+39 -subset(f1(c13),c13) | ordinal(c13).  [resolve(19,b,36,a)].
+40 -subset(f1(c13),c13).  [resolve(39,b,11,a)].
+41 subset(f1(c13),c13).  [resolve(38,a,13,a)].
+42 $F.  [resolve(40,a,41,a)].
+
+============================== end of proof ==========================

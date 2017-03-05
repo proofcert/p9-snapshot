@@ -1,0 +1,43 @@
+
+
+
+
+5 join_semilatt_str(c4).  [clausify(4)].
+6 empty_carrier(A) | -join_semilatt_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | -below(A,B,C) | join(A,B,C) = C.  [clausify(2)].
+7 empty_carrier(A) | -join_commutative(A) | -join_semilatt_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | join_commut(A,C,B) = join_commut(A,B,C).  [clausify(1)].
+8 empty_carrier(A) | -join_commutative(A) | -join_semilatt_str(A) | -element(B,the_carrier(A)) | -element(C,the_carrier(A)) | join(A,B,C) = join_commut(A,B,C).  [clausify(3)].
+9 join_commutative(c4).  [clausify(4)].
+10 element(c5,the_carrier(c4)).  [clausify(4)].
+11 element(c6,the_carrier(c4)).  [clausify(4)].
+12 below(c4,c5,c6).  [clausify(4)].
+13 below(c4,c6,c5).  [clausify(4)].
+14 -empty_carrier(c4).  [clausify(4)].
+15 c6 != c5.  [clausify(4)].
+16 empty_carrier(c4) | -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | -below(c4,A,B) | join(c4,A,B) = B.  [resolve(6,b,5,a)].
+17 -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | -below(c4,A,B) | join(c4,A,B) = B.  [resolve(14,a,16,a)].
+18 empty_carrier(c4) | -join_commutative(c4) | -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | join_commut(c4,B,A) = join_commut(c4,A,B).  [resolve(7,c,5,a)].
+19 -join_commutative(c4) | -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | join_commut(c4,B,A) = join_commut(c4,A,B).  [resolve(14,a,18,a)].
+20 -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | join_commut(c4,B,A) = join_commut(c4,A,B).  [resolve(9,a,19,a)].
+21 empty_carrier(c4) | -join_commutative(c4) | -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | join(c4,A,B) = join_commut(c4,A,B).  [resolve(8,c,5,a)].
+22 empty_carrier(c4) | -join_commutative(c4) | -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | join_commut(c4,A,B) = join(c4,A,B).  [copy(21),flip(e)].
+23 -join_commutative(c4) | -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | join_commut(c4,A,B) = join(c4,A,B).  [resolve(14,a,22,a)].
+24 -element(A,the_carrier(c4)) | -element(B,the_carrier(c4)) | join_commut(c4,A,B) = join(c4,A,B).  [resolve(9,a,23,a)].
+25 -element(c6,the_carrier(c4)) | -element(c5,the_carrier(c4)) | join(c4,c6,c5) = c5.  [resolve(17,c,13,a)].
+26 -element(c5,the_carrier(c4)) | join(c4,c6,c5) = c5.  [resolve(11,a,25,a)].
+27 join(c4,c6,c5) = c5.  [resolve(10,a,26,a)].
+28 -element(c5,the_carrier(c4)) | -element(c6,the_carrier(c4)) | join(c4,c5,c6) = c6.  [resolve(17,c,12,a)].
+29 -element(c6,the_carrier(c4)) | join(c4,c5,c6) = c6.  [resolve(10,a,28,a)].
+30 join(c4,c5,c6) = c6.  [resolve(11,a,29,a)].
+31 -element(A,the_carrier(c4)) | join_commut(c4,A,c6) = join_commut(c4,c6,A).  [resolve(20,a,11,a)].
+32 -element(A,the_carrier(c4)) | join_commut(c4,c6,A) = join_commut(c4,A,c6).  [copy(31),flip(b)].
+33 -element(A,the_carrier(c4)) | join_commut(c4,c6,A) = join(c4,c6,A).  [resolve(24,a,11,a)].
+34 -element(A,the_carrier(c4)) | join_commut(c4,c5,A) = join(c4,c5,A).  [resolve(24,a,10,a)].
+35 join_commut(c4,c6,c5) = join_commut(c4,c5,c6).  [resolve(32,a,10,a)].
+36 join_commut(c4,c6,c5) = join(c4,c6,c5).  [resolve(33,a,10,a)].
+37 join_commut(c4,c5,c6) = join(c4,c6,c5).  [para(35(a,1),36(a,1))].
+38 join_commut(c4,c5,c6) = c5.  [para(27(a,1),37(a,2))].
+39 join_commut(c4,c5,c6) = join(c4,c5,c6).  [resolve(34,a,11,a)].
+40 c5 = join(c4,c5,c6).  [para(38(a,1),39(a,1))].
+41 c5 = c6.  [para(30(a,1),40(a,2))].
+42 c6 = c5.  [copy(41),flip(a)].
+43 $F.  [resolve(15,a,42,a)].

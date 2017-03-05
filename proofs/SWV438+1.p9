@@ -1,0 +1,93 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n151.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 10:39:08 CDT 2014
+% CPUTime    : 0.18 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 1401 was started by sandbox on n151.star.cs.uiowa.edu,
+Fri Jun  6 10:39:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_1369_n151.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 54.
+% Level of proof is 9.
+% Maximum clause weight is 5.000.
+% Given clauses 0.
+
+
+1 (all A all B (system_file_needs_compartments(system,A,B) -> (admin_file_has_compartments_h(admin,A,B,B) -> admin_file_has_compartments(admin,A,B)))).  [assumption].
+2 (all A all B admin_file_has_compartments_h(admin,A,B,nil)).  [assumption].
+3 (all A all B all C (system_file_needs_level(system,A,B) -> (admin_file_has_compartments(admin,A,C) -> (admin_file_has_level_h(admin,A,B,C) -> admin_file_has_level(admin,A,B))))).  [assumption].
+4 (all A all B admin_file_has_level_h(admin,A,B,nil)).  [assumption].
+5 (all A all B all C (system_file_needs_citizenship(system,A,B) -> (admin_file_has_compartments(admin,A,C) -> (admin_file_has_citizenship_h(admin,A,B,C) -> admin_file_has_citizenship(admin,A,B))))).  [assumption].
+6 (all A all B admin_file_has_citizenship_h(admin,A,B,nil)).  [assumption].
+7 (all A admin_indi_has_citizenship(admin,A,anycountry)).  [assumption].
+8 (all A admin_indi_has_level(admin,A,unclassified)).  [assumption].
+9 (all A admin_indi_has_compartments(admin,A,nil)).  [assumption].
+10 (all A all B all C (admin_file_has_compartments(admin,B,C) -> (admin_indi_has_compartments(admin,A,C) -> admin_indi_has_compartments_for_file(admin,A,B)))).  [assumption].
+11 (all A all B all C (admin_file_has_level(admin,B,C) -> (admin_indi_has_level(admin,A,C) -> admin_indi_has_level_for_file(admin,A,B)))).  [assumption].
+12 (all A all B all C (state_file_has_owner(B,C) -> (owner_indi_has_need_to_know(C,A,B) -> admin_indi_has_need_to_know_for_file(admin,A,B)))).  [assumption].
+13 (all A all B all C (admin_file_has_citizenship(admin,B,C) -> (admin_indi_has_citizenship(admin,A,C) -> admin_indi_has_citizenship_for_file(admin,A,B)))).  [assumption].
+14 (all A all B (state_file_is_not_working_paper(B) -> (admin_indi_has_citizenship_for_file(admin,A,B) -> (admin_indi_has_need_to_know_for_file(admin,A,B) -> (admin_indi_has_level_for_file(admin,A,B) -> (admin_indi_has_compartments_for_file(admin,A,B) -> admin_indi_may_file(admin,A,B,read))))))).  [assumption].
+15 -state_file_is_not_working_paper(A) | -admin_indi_has_citizenship_for_file(admin,B,A) | -admin_indi_has_need_to_know_for_file(admin,B,A) | -admin_indi_has_level_for_file(admin,B,A) | -admin_indi_has_compartments_for_file(admin,B,A) | admin_indi_may_file(admin,B,A,read).  [clausify(14)].
+16 state_file_is_not_working_paper(not_secretfile).  [assumption].
+17 -state_file_has_owner(A,B) | -owner_indi_has_need_to_know(B,C,A) | admin_indi_has_need_to_know_for_file(admin,C,A).  [clausify(12)].
+18 state_file_has_owner(not_secretfile,owner_not_secretfile).  [assumption].
+19 admin_indi_has_citizenship(admin,A,anycountry).  [clausify(7)].
+20 -admin_file_has_citizenship(admin,A,B) | -admin_indi_has_citizenship(admin,C,B) | admin_indi_has_citizenship_for_file(admin,C,A).  [clausify(13)].
+21 -admin_file_has_level(admin,A,B) | -admin_indi_has_level(admin,C,B) | admin_indi_has_level_for_file(admin,C,A).  [clausify(11)].
+22 admin_indi_has_level(admin,A,unclassified).  [clausify(8)].
+23 -system_file_needs_level(system,A,B) | -admin_file_has_compartments(admin,A,C) | -admin_file_has_level_h(admin,A,B,C) | admin_file_has_level(admin,A,B).  [clausify(3)].
+24 system_file_needs_level(system,not_secretfile,unclassified).  [assumption].
+25 -system_file_needs_citizenship(system,A,B) | -admin_file_has_compartments(admin,A,C) | -admin_file_has_citizenship_h(admin,A,B,C) | admin_file_has_citizenship(admin,A,B).  [clausify(5)].
+26 system_file_needs_citizenship(system,not_secretfile,anycountry).  [assumption].
+27 -system_file_needs_compartments(system,A,B) | -admin_file_has_compartments_h(admin,A,B,B) | admin_file_has_compartments(admin,A,B).  [clausify(1)].
+28 system_file_needs_compartments(system,not_secretfile,nil).  [assumption].
+29 owner_indi_has_need_to_know(owner_not_secretfile,babu,not_secretfile).  [assumption].
+30 -owner_indi_has_need_to_know(owner_not_secretfile,A,not_secretfile) | admin_indi_has_need_to_know_for_file(admin,A,not_secretfile).  [resolve(17,a,18,a)].
+31 -admin_indi_may_file(admin,babu,not_secretfile,read).  [assumption].
+32 -admin_indi_has_citizenship_for_file(admin,A,not_secretfile) | -admin_indi_has_need_to_know_for_file(admin,A,not_secretfile) | -admin_indi_has_level_for_file(admin,A,not_secretfile) | -admin_indi_has_compartments_for_file(admin,A,not_secretfile) | admin_indi_may_file(admin,A,not_secretfile,read).  [resolve(15,a,16,a)].
+33 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | admin_file_has_compartments(admin,not_secretfile,nil).  [resolve(27,a,28,a)].
+34 -admin_file_has_compartments(admin,A,B) | -admin_indi_has_compartments(admin,C,B) | admin_indi_has_compartments_for_file(admin,C,A).  [clausify(10)].
+35 -admin_file_has_compartments(admin,not_secretfile,A) | -admin_file_has_level_h(admin,not_secretfile,unclassified,A) | admin_file_has_level(admin,not_secretfile,unclassified).  [resolve(23,a,24,a)].
+36 -admin_file_has_compartments(admin,not_secretfile,A) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,A) | admin_file_has_citizenship(admin,not_secretfile,anycountry).  [resolve(25,a,26,a)].
+37 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | admin_file_has_citizenship(admin,not_secretfile,anycountry).  [resolve(33,b,36,a)].
+38 -admin_file_has_citizenship(admin,A,anycountry) | admin_indi_has_citizenship_for_file(admin,B,A).  [resolve(20,b,19,a)].
+39 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_level_h(admin,not_secretfile,unclassified,nil) | admin_file_has_level(admin,not_secretfile,unclassified).  [resolve(33,b,35,a)].
+40 -admin_file_has_level(admin,A,unclassified) | admin_indi_has_level_for_file(admin,B,A).  [resolve(21,b,22,a)].
+41 -admin_indi_has_citizenship_for_file(admin,babu,not_secretfile) | -admin_indi_has_need_to_know_for_file(admin,babu,not_secretfile) | -admin_indi_has_level_for_file(admin,babu,not_secretfile) | -admin_indi_has_compartments_for_file(admin,babu,not_secretfile).  [resolve(32,e,31,a)].
+42 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | admin_indi_has_citizenship_for_file(admin,A,not_secretfile).  [resolve(37,c,38,a)].
+43 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | -admin_indi_has_need_to_know_for_file(admin,babu,not_secretfile) | -admin_indi_has_level_for_file(admin,babu,not_secretfile) | -admin_indi_has_compartments_for_file(admin,babu,not_secretfile).  [resolve(42,c,41,a)].
+44 admin_indi_has_need_to_know_for_file(admin,babu,not_secretfile).  [resolve(30,a,29,a)].
+45 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | -admin_indi_has_level_for_file(admin,babu,not_secretfile) | -admin_indi_has_compartments_for_file(admin,babu,not_secretfile).  [resolve(43,c,44,a)].
+46 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_indi_has_compartments(admin,A,nil) | admin_indi_has_compartments_for_file(admin,A,not_secretfile).  [resolve(33,b,34,a)].
+47 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | -admin_indi_has_level_for_file(admin,babu,not_secretfile) | -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_indi_has_compartments(admin,babu,nil).  [resolve(45,d,46,c)].
+48 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_level_h(admin,not_secretfile,unclassified,nil) | admin_indi_has_level_for_file(admin,A,not_secretfile).  [resolve(39,c,40,a)].
+49 admin_indi_has_compartments(admin,A,nil).  [clausify(9)].
+50 admin_file_has_compartments_h(admin,A,B,nil).  [clausify(2)].
+51 admin_file_has_level_h(admin,A,B,nil).  [clausify(4)].
+52 admin_file_has_citizenship_h(admin,A,B,nil).  [clausify(6)].
+53 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_indi_has_compartments(admin,babu,nil) | -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_level_h(admin,not_secretfile,unclassified,nil).  [resolve(47,c,48,c)].
+54 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | -admin_indi_has_compartments(admin,babu,nil) | -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_level_h(admin,not_secretfile,unclassified,nil).  [copy(53),merge(c)].
+55 -admin_file_has_compartments_h(admin,not_secretfile,nil,nil) | -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | -admin_indi_has_compartments(admin,babu,nil) | -admin_file_has_level_h(admin,not_secretfile,unclassified,nil).  [copy(54),merge(d)].
+56 -admin_file_has_citizenship_h(admin,not_secretfile,anycountry,nil) | -admin_indi_has_compartments(admin,babu,nil) | -admin_file_has_level_h(admin,not_secretfile,unclassified,nil).  [resolve(50,a,55,a)].
+57 -admin_indi_has_compartments(admin,babu,nil) | -admin_file_has_level_h(admin,not_secretfile,unclassified,nil).  [resolve(52,a,56,a)].
+58 -admin_file_has_level_h(admin,not_secretfile,unclassified,nil).  [resolve(49,a,57,a)].
+59 $F.  [resolve(51,a,58,a)].
+
+============================== end of proof ==========================

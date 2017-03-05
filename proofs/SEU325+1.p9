@@ -1,0 +1,83 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n122.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:36:13 CDT 2014
+% CPUTime    : 0.25 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 31689 was started by sandbox on n122.star.cs.uiowa.edu,
+Fri Jun  6 08:36:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_31657_n122.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 45.
+% Level of proof is 9.
+% Maximum clause weight is 16.000.
+% Given clauses 105.
+
+
+1 (all A (one_sorted_str(A) -> cast_as_carrier_subset(A) = the_carrier(A))).  [assumption].
+2 (all A all B (B = union(A) <-> (all C (in(C,B) <-> (exists D (in(C,D) & in(D,A))))))).  [assumption].
+3 (all A (one_sorted_str(A) -> (all B (element(B,powerset(powerset(the_carrier(A)))) -> (is_a_cover_of_carrier(A,B) <-> cast_as_carrier_subset(A) = union_of_subsets(the_carrier(A),B)))))).  [assumption].
+4 (all A exists B element(B,A)).  [assumption].
+5 (all A (-empty_carrier(A) & one_sorted_str(A) -> -empty(the_carrier(A)))).  [assumption].
+6 (all A exists B (element(B,powerset(A)) & empty(B))).  [assumption].
+7 (all A all B (element(B,powerset(powerset(A))) -> union_of_subsets(A,B) = union(B))).  [assumption].
+8 (all A all B (element(A,B) -> empty(B) | in(A,B))).  [assumption].
+9 (all A (empty(A) -> A = empty_set)).  [assumption].
+10 (all A all B -(in(A,B) & empty(B))).  [assumption].
+11 -(all A (-empty_carrier(A) & one_sorted_str(A) -> (all B (element(B,powerset(powerset(the_carrier(A)))) -> -(is_a_cover_of_carrier(A,B) & B = empty_set))))).  [assumption].
+12 -one_sorted_str(A) | the_carrier(A) = cast_as_carrier_subset(A).  [clausify(1)].
+13 one_sorted_str(c4).  [clausify(11)].
+14 empty_carrier(A) | -one_sorted_str(A) | -empty(the_carrier(A)).  [clausify(5)].
+15 -one_sorted_str(A) | -element(B,powerset(powerset(the_carrier(A)))) | -is_a_cover_of_carrier(A,B) | union_of_subsets(the_carrier(A),B) = cast_as_carrier_subset(A).  [clausify(3)].
+16 empty(empty_set).  [assumption].
+17 empty(f6(A)).  [clausify(6)].
+18 is_a_cover_of_carrier(c4,c5).  [clausify(11)].
+19 empty_set = c5.  [clausify(11)].
+20 c5 = empty_set.  [copy(19),flip(a)].
+21 element(f4(A),A).  [clausify(4)].
+22 element(f6(A),powerset(A)).  [clausify(6)].
+23 -empty_carrier(c4).  [clausify(11)].
+24 -in(A,B) | -empty(B).  [clausify(10)].
+25 -empty(A) | empty_set = A.  [clausify(9)].
+26 -element(A,B) | empty(B) | in(A,B).  [clausify(8)].
+27 -element(A,powerset(powerset(B))) | union_of_subsets(B,A) = union(A).  [clausify(7)].
+28 union(A) != B | -in(C,B) | in(f1(A,B,C),A).  [clausify(2)].
+29 the_carrier(c4) = cast_as_carrier_subset(c4).  [resolve(12,a,13,a)].
+30 cast_as_carrier_subset(c4) = the_carrier(c4).  [copy(29),flip(a)].
+31 empty_carrier(c4) | -empty(the_carrier(c4)).  [resolve(14,b,13,a)].
+32 -empty(the_carrier(c4)).  [resolve(23,a,31,a)].
+33 -element(A,powerset(powerset(the_carrier(c4)))) | -is_a_cover_of_carrier(c4,A) | union_of_subsets(the_carrier(c4),A) = cast_as_carrier_subset(c4).  [resolve(15,a,13,a)].
+34 -element(A,powerset(powerset(the_carrier(c4)))) | -is_a_cover_of_carrier(c4,A) | union_of_subsets(the_carrier(c4),A) = the_carrier(c4).  [para(30(a,1),33(c,2))].
+35 is_a_cover_of_carrier(c4,empty_set).  [para(20(a,1),18(a,2))].
+36 -in(A,empty_set).  [resolve(24,b,16,a)].
+37 empty_set = f6(A).  [resolve(25,a,17,a)].
+38 f6(A) = empty_set.  [copy(37),flip(a)].
+39 element(empty_set,powerset(A)).  [para(38(a,1),22(a,1))].
+40 -element(empty_set,powerset(powerset(the_carrier(c4)))) | union_of_subsets(the_carrier(c4),empty_set) = the_carrier(c4).  [resolve(35,a,34,b)].
+41 union_of_subsets(the_carrier(c4),empty_set) = the_carrier(c4).  [resolve(39,a,40,a)].
+42 -in(A,union(B)) | in(f1(B,union(B),A),B).  [xx_res(28,a)].
+43 -in(A,union(empty_set)).  [resolve(42,b,36,a)].
+44 union_of_subsets(A,empty_set) = union(empty_set).  [resolve(39,a,27,a)].
+45 union(empty_set) = the_carrier(c4).  [para(44(a,1),41(a,1))].
+46 -in(A,the_carrier(c4)).  [para(45(a,1),43(a,2))].
+47 -element(A,the_carrier(c4)) | in(A,the_carrier(c4)).  [resolve(26,b,32,a)].
+48 -element(A,the_carrier(c4)).  [resolve(47,b,46,a)].
+49 $F.  [resolve(48,a,21,a)].
+
+============================== end of proof ==========================

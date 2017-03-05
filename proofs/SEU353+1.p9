@@ -1,0 +1,77 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n138.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:39:03 CDT 2014
+% CPUTime    : 0.20 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 16295 was started by sandbox on n138.star.cs.uiowa.edu,
+Fri Jun  6 09:39:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_16263_n138.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.05 (+ 0.00) seconds.
+% Length of proof is 37.
+% Level of proof is 6.
+% Maximum clause weight is 26.000.
+% Given clauses 302.
+
+
+1 (all A (one_sorted_str(A) -> identity_on_carrier(A) = identity_as_relation_of(the_carrier(A)))).  [assumption].
+2 (all A (one_sorted_str(A) -> function(identity_on_carrier(A)) & quasi_total(identity_on_carrier(A),the_carrier(A),the_carrier(A)) & relation_of2_as_subset(identity_on_carrier(A),the_carrier(A),the_carrier(A)))).  [assumption].
+3 (all A (-empty_carrier(A) & one_sorted_str(A) -> -empty(the_carrier(A)))).  [assumption].
+4 (all A identity_as_relation_of(A) = identity_relation(A)).  [assumption].
+5 (all A all B all C all D (-empty(A) & function(C) & quasi_total(C,A,B) & relation_of2(C,A,B) & element(D,A) -> apply_as_element(A,B,C,D) = apply(C,D))).  [assumption].
+6 (all A all B all C (relation_of2_as_subset(C,A,B) <-> relation_of2(C,A,B))).  [assumption].
+7 (all A all B (element(A,B) -> empty(B) | in(A,B))).  [assumption].
+8 (all A all B (in(B,A) -> apply(identity_relation(A),B) = B)).  [assumption].
+9 -(all A (-empty_carrier(A) & one_sorted_str(A) -> (all B (element(B,the_carrier(A)) -> apply_as_element(the_carrier(A),the_carrier(A),identity_on_carrier(A),B) = B)))).  [assumption].
+10 -one_sorted_str(A) | function(identity_on_carrier(A)).  [clausify(2)].
+11 one_sorted_str(c6).  [clausify(9)].
+12 empty_carrier(A) | -one_sorted_str(A) | -empty(the_carrier(A)).  [clausify(3)].
+13 -one_sorted_str(A) | identity_as_relation_of(the_carrier(A)) = identity_on_carrier(A).  [clausify(1)].
+14 -one_sorted_str(A) | quasi_total(identity_on_carrier(A),the_carrier(A),the_carrier(A)).  [clausify(2)].
+15 -one_sorted_str(A) | relation_of2_as_subset(identity_on_carrier(A),the_carrier(A),the_carrier(A)).  [clausify(2)].
+16 empty(A) | -function(B) | -quasi_total(B,A,C) | -relation_of2(B,A,C) | -element(D,A) | apply(B,D) = apply_as_element(A,C,B,D).  [clausify(5)].
+17 function(identity_on_carrier(c6)).  [resolve(10,a,11,a)].
+18 -relation_of2_as_subset(A,B,C) | relation_of2(A,B,C).  [clausify(6)].
+19 relation_of2_as_subset(identity_on_carrier(c6),the_carrier(c6),the_carrier(c6)).  [resolve(15,a,11,a)].
+20 element(c7,the_carrier(c6)).  [clausify(9)].
+21 identity_relation(A) = identity_as_relation_of(A).  [clausify(4)].
+22 -empty_carrier(c6).  [clausify(9)].
+23 apply_as_element(the_carrier(c6),the_carrier(c6),identity_on_carrier(c6),c7) != c7.  [clausify(9)].
+24 -element(A,B) | empty(B) | in(A,B).  [clausify(7)].
+25 -in(A,B) | apply(identity_relation(B),A) = A.  [clausify(8)].
+26 -in(A,B) | apply(identity_as_relation_of(B),A) = A.  [para(21(a,1),25(b,1,1))].
+27 empty_carrier(c6) | -empty(the_carrier(c6)).  [resolve(12,b,11,a)].
+28 -empty(the_carrier(c6)).  [resolve(22,a,27,a)].
+29 identity_as_relation_of(the_carrier(c6)) = identity_on_carrier(c6).  [resolve(13,a,11,a)].
+30 quasi_total(identity_on_carrier(c6),the_carrier(c6),the_carrier(c6)).  [resolve(14,a,11,a)].
+31 empty(A) | -quasi_total(identity_on_carrier(c6),A,B) | -relation_of2(identity_on_carrier(c6),A,B) | -element(C,A) | apply(identity_on_carrier(c6),C) = apply_as_element(A,B,identity_on_carrier(c6),C).  [resolve(17,a,16,b)].
+32 empty(A) | -quasi_total(identity_on_carrier(c6),A,B) | -relation_of2(identity_on_carrier(c6),A,B) | -element(C,A) | apply_as_element(A,B,identity_on_carrier(c6),C) = apply(identity_on_carrier(c6),C).  [copy(31),flip(e)].
+33 relation_of2(identity_on_carrier(c6),the_carrier(c6),the_carrier(c6)).  [resolve(19,a,18,a)].
+34 empty(the_carrier(c6)) | in(c7,the_carrier(c6)).  [resolve(24,a,20,a)].
+35 in(c7,the_carrier(c6)).  [resolve(28,a,34,a)].
+36 empty(the_carrier(c6)) | -relation_of2(identity_on_carrier(c6),the_carrier(c6),the_carrier(c6)) | -element(A,the_carrier(c6)) | apply_as_element(the_carrier(c6),the_carrier(c6),identity_on_carrier(c6),A) = apply(identity_on_carrier(c6),A).  [resolve(32,b,30,a)].
+37 -relation_of2(identity_on_carrier(c6),the_carrier(c6),the_carrier(c6)) | -element(A,the_carrier(c6)) | apply_as_element(the_carrier(c6),the_carrier(c6),identity_on_carrier(c6),A) = apply(identity_on_carrier(c6),A).  [resolve(28,a,36,a)].
+38 -element(A,the_carrier(c6)) | apply_as_element(the_carrier(c6),the_carrier(c6),identity_on_carrier(c6),A) = apply(identity_on_carrier(c6),A).  [resolve(33,a,37,a)].
+39 apply(identity_as_relation_of(the_carrier(c6)),c7) = c7.  [resolve(35,a,26,a)].
+40 apply(identity_on_carrier(c6),c7) = c7.  [para(29(a,1),39(a,1,1))].
+41 apply_as_element(the_carrier(c6),the_carrier(c6),identity_on_carrier(c6),c7) = apply(identity_on_carrier(c6),c7).  [resolve(38,a,20,a)].
+42 apply_as_element(the_carrier(c6),the_carrier(c6),identity_on_carrier(c6),c7) = c7.  [para(40(a,1),41(a,2))].
+43 $F.  [resolve(23,a,42,a)].
+
+============================== end of proof ==========================

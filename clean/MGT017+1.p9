@@ -1,0 +1,44 @@
+
+
+
+
+5 organization(c1,c7).  [clausify(4)].
+6 organization(c2,c7).  [clausify(4)].
+7 organization(c2,c9).  [clausify(4)].
+8 greater(c6,c5).  [clausify(4)].
+9 class(c1,c4,c7).  [clausify(4)].
+10 class(c2,c4,c7).  [clausify(4)].
+11 reorganization(c1,c7,c8).  [clausify(4)].
+12 reorganization(c2,c7,c9).  [clausify(4)].
+13 reorganization_type(c1,c3,c7).  [clausify(4)].
+14 reorganization_type(c2,c3,c7).  [clausify(4)].
+15 size(c1,c5,c7).  [clausify(4)].
+16 size(c2,c6,c7).  [clausify(4)].
+17 -greater(c9,c8).  [clausify(4)].
+18 -organization(A,B) | inertia(A,f1(A,B),B).  [clausify(1)].
+19 -organization(A,B) | -organization(C,D) | -class(A,E,B) | -class(C,E,D) | -size(A,F,B) | -size(C,V6,D) | -inertia(A,V7,B) | -inertia(C,V8,D) | -greater(V6,F) | greater(V8,V7).  [clausify(2)].
+20 -organization(A,B) | -organization(C,B) | -organization(C,D) | -class(A,E,B) | -class(C,E,B) | -reorganization(A,B,F) | -reorganization(C,B,D) | -reorganization_type(A,V6,B) | -reorganization_type(C,V6,B) | -inertia(A,V7,B) | -inertia(C,V8,B) | -greater(V8,V7) | greater(D,F).  [clausify(3)].
+21 inertia(c2,f1(c2,c7),c7).  [resolve(18,a,6,a)].
+22 inertia(c1,f1(c1,c7),c7).  [resolve(18,a,5,a)].
+23 -organization(A,B) | -class(c1,C,c7) | -class(A,C,B) | -size(c1,D,c7) | -size(A,E,B) | -inertia(c1,F,c7) | -inertia(A,V6,B) | -greater(E,D) | greater(V6,F).  [resolve(19,a,5,a)].
+24 -class(c1,A,c7) | -class(c2,A,c7) | -size(c1,B,c7) | -size(c2,C,c7) | -inertia(c1,D,c7) | -inertia(c2,E,c7) | -greater(C,B) | greater(E,D).  [resolve(23,a,6,a)].
+25 -class(c2,c4,c7) | -size(c1,A,c7) | -size(c2,B,c7) | -inertia(c1,C,c7) | -inertia(c2,D,c7) | -greater(B,A) | greater(D,C).  [resolve(24,a,9,a)].
+26 -size(c1,A,c7) | -size(c2,B,c7) | -inertia(c1,C,c7) | -inertia(c2,D,c7) | -greater(B,A) | greater(D,C).  [resolve(25,a,10,a)].
+27 -size(c2,A,c7) | -inertia(c1,B,c7) | -inertia(c2,C,c7) | -greater(A,c5) | greater(C,B).  [resolve(26,a,15,a)].
+28 -inertia(c1,A,c7) | -inertia(c2,B,c7) | -greater(c6,c5) | greater(B,A).  [resolve(27,a,16,a)].
+29 -inertia(c2,A,c7) | -greater(c6,c5) | greater(A,f1(c1,c7)).  [resolve(28,a,22,a)].
+30 -greater(c6,c5) | greater(f1(c2,c7),f1(c1,c7)).  [resolve(29,a,21,a)].
+31 greater(f1(c2,c7),f1(c1,c7)).  [resolve(30,a,8,a)].
+32 -organization(A,c7) | -organization(A,B) | -class(c1,C,c7) | -class(A,C,c7) | -reorganization(c1,c7,D) | -reorganization(A,c7,B) | -reorganization_type(c1,E,c7) | -reorganization_type(A,E,c7) | -inertia(c1,F,c7) | -inertia(A,V6,c7) | -greater(V6,F) | greater(B,D).  [resolve(20,a,5,a)].
+33 -organization(c2,A) | -class(c1,B,c7) | -class(c2,B,c7) | -reorganization(c1,c7,C) | -reorganization(c2,c7,A) | -reorganization_type(c1,D,c7) | -reorganization_type(c2,D,c7) | -inertia(c1,E,c7) | -inertia(c2,F,c7) | -greater(F,E) | greater(A,C).  [resolve(32,a,6,a)].
+34 -class(c1,A,c7) | -class(c2,A,c7) | -reorganization(c1,c7,B) | -reorganization(c2,c7,c9) | -reorganization_type(c1,C,c7) | -reorganization_type(c2,C,c7) | -inertia(c1,D,c7) | -inertia(c2,E,c7) | -greater(E,D) | greater(c9,B).  [resolve(33,a,7,a)].
+35 -class(c2,c4,c7) | -reorganization(c1,c7,A) | -reorganization(c2,c7,c9) | -reorganization_type(c1,B,c7) | -reorganization_type(c2,B,c7) | -inertia(c1,C,c7) | -inertia(c2,D,c7) | -greater(D,C) | greater(c9,A).  [resolve(34,a,9,a)].
+36 -reorganization(c1,c7,A) | -reorganization(c2,c7,c9) | -reorganization_type(c1,B,c7) | -reorganization_type(c2,B,c7) | -inertia(c1,C,c7) | -inertia(c2,D,c7) | -greater(D,C) | greater(c9,A).  [resolve(35,a,10,a)].
+37 -reorganization(c2,c7,c9) | -reorganization_type(c1,A,c7) | -reorganization_type(c2,A,c7) | -inertia(c1,B,c7) | -inertia(c2,C,c7) | -greater(C,B) | greater(c9,c8).  [resolve(36,a,11,a)].
+38 -reorganization_type(c1,A,c7) | -reorganization_type(c2,A,c7) | -inertia(c1,B,c7) | -inertia(c2,C,c7) | -greater(C,B) | greater(c9,c8).  [resolve(37,a,12,a)].
+39 -reorganization_type(c2,c3,c7) | -inertia(c1,A,c7) | -inertia(c2,B,c7) | -greater(B,A) | greater(c9,c8).  [resolve(38,a,13,a)].
+40 -inertia(c1,A,c7) | -inertia(c2,B,c7) | -greater(B,A) | greater(c9,c8).  [resolve(39,a,14,a)].
+41 -inertia(c2,A,c7) | -greater(A,f1(c1,c7)) | greater(c9,c8).  [resolve(40,a,22,a)].
+42 -greater(f1(c2,c7),f1(c1,c7)) | greater(c9,c8).  [resolve(41,a,21,a)].
+43 -greater(f1(c2,c7),f1(c1,c7)).  [resolve(42,b,17,a)].
+44 $F.  [resolve(43,a,31,a)].

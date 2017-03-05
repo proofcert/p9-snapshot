@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n161.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:14:58 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 37882 was started by sandbox on n161.star.cs.uiowa.edu,
+Thu Jun  5 14:14:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_37850_n161.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 23.
+% Level of proof is 5.
+% Maximum clause weight is 7.000.
+% Given clauses 0.
+
+
+1 (all A (dive(A) -> (greater(depth(A),depth_limit) | greater(time(A),time_limit) <-> greater(nitrogen(A),nitrogen_limit)))).  [assumption].
+2 (all A (dive(A) -> (greater(nitrogen(A),nitrogen_limit) <-> outcome(A,dci)))).  [assumption].
+3 (all A (dive(A) -> (all B (outcome(A,B) & bad(B) -> B = dci)))).  [assumption].
+4 (all A (dive(A) -> -greater(depth(A),depth_limit) & -greater(time(A),time_limit))).  [assumption].
+5 -(all A (dive(A) -> (all B (outcome(A,B) -> -bad(B))))).  [assumption].
+6 -dive(A) | -outcome(A,B) | -bad(B) | B = dci.  [clausify(3)].
+7 bad(c2).  [clausify(5)].
+8 -dive(A) | -greater(depth(A),depth_limit).  [clausify(4)].
+9 dive(c1).  [clausify(5)].
+10 -dive(A) | -greater(time(A),time_limit).  [clausify(4)].
+11 -dive(A) | greater(nitrogen(A),nitrogen_limit) | -outcome(A,dci).  [clausify(2)].
+12 -dive(A) | greater(depth(A),depth_limit) | greater(time(A),time_limit) | -greater(nitrogen(A),nitrogen_limit).  [clausify(1)].
+13 -dive(A) | -outcome(A,c2) | c2 = dci.  [resolve(6,c,7,a)].
+14 outcome(c1,c2).  [clausify(5)].
+15 -greater(depth(c1),depth_limit).  [resolve(8,a,9,a)].
+16 -greater(time(c1),time_limit).  [resolve(10,a,9,a)].
+17 greater(nitrogen(c1),nitrogen_limit) | -outcome(c1,dci).  [resolve(11,a,9,a)].
+18 greater(depth(c1),depth_limit) | greater(time(c1),time_limit) | -greater(nitrogen(c1),nitrogen_limit).  [resolve(12,a,9,a)].
+19 greater(time(c1),time_limit) | -greater(nitrogen(c1),nitrogen_limit).  [resolve(15,a,18,a)].
+20 -greater(nitrogen(c1),nitrogen_limit).  [resolve(16,a,19,a)].
+21 -outcome(c1,c2) | c2 = dci.  [resolve(13,a,9,a)].
+22 c2 = dci.  [resolve(14,a,21,a)].
+23 -outcome(c1,dci).  [resolve(20,a,17,a)].
+24 outcome(c1,dci).  [para(22(a,1),14(a,2))].
+25 $F.  [resolve(23,a,24,a)].
+
+============================== end of proof ==========================

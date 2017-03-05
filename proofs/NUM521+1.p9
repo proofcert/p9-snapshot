@@ -1,0 +1,61 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n168.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 10:30:58 CDT 2014
+% CPUTime    : 237.89 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 41302 was started by sandbox on n168.star.cs.uiowa.edu,
+Fri Jun  6 10:30:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_41270_n168.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 237.55 (+ 0.05) seconds.
+% Length of proof is 18.
+% Level of proof is 4.
+% Maximum clause weight is 12.000.
+% Given clauses 558.
+
+
+1 (all A all B (aNaturalNumber0(A) & aNaturalNumber0(B) -> sdtlseqdt0(A,B) | B != A & sdtlseqdt0(B,A))).  [assumption].
+2 -(xn != xp & sdtlseqdt0(xn,xp) & xm != xp & sdtlseqdt0(xm,xp)).  [assumption].
+3 aNaturalNumber0(xn).  [assumption].
+4 aNaturalNumber0(xm).  [assumption].
+5 aNaturalNumber0(xp).  [assumption].
+6 -sdtlseqdt0(xp,xn).  [assumption].
+7 -sdtlseqdt0(xp,xm).  [assumption].
+8 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtlseqdt0(A,B) | B != A.  [clausify(1)].
+9 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtlseqdt0(A,B) | sdtlseqdt0(B,A).  [clausify(1)].
+10 xp = xn | -sdtlseqdt0(xn,xp) | xp = xm | -sdtlseqdt0(xm,xp).  [clausify(2)].
+11 xn = xp | -sdtlseqdt0(xn,xp) | xp = xm | -sdtlseqdt0(xm,xp).  [copy(10),flip(a)].
+12 xn = xp | -sdtlseqdt0(xn,xp) | xm = xp | -sdtlseqdt0(xm,xp).  [copy(11),flip(c)].
+13 -aNaturalNumber0(A) | sdtlseqdt0(xp,A) | A != xp.  [resolve(8,a,5,a)].
+14 sdtlseqdt0(xp,xm) | xm != xp.  [resolve(13,a,4,a)].
+15 xm != xp.  [resolve(14,a,7,a)].
+16 -aNaturalNumber0(A) | sdtlseqdt0(xp,A) | A != xp.  [resolve(8,a,5,a)].
+17 sdtlseqdt0(xp,xn) | xn != xp.  [resolve(16,a,3,a)].
+18 xn != xp.  [resolve(17,a,6,a)].
+19 -sdtlseqdt0(xn,xp) | xm = xp | -sdtlseqdt0(xm,xp).  [resolve(18,a,12,a)].
+20 -sdtlseqdt0(xn,xp) | -sdtlseqdt0(xm,xp).  [resolve(15,a,19,b)].
+21 -aNaturalNumber0(A) | sdtlseqdt0(xp,A) | sdtlseqdt0(A,xp).  [resolve(9,a,5,a)].
+22 sdtlseqdt0(xp,xm) | sdtlseqdt0(xm,xp).  [resolve(21,a,4,a)].
+23 sdtlseqdt0(xm,xp).  [resolve(7,a,22,a)].
+24 sdtlseqdt0(xp,xn) | sdtlseqdt0(xn,xp).  [resolve(21,a,3,a)].
+25 sdtlseqdt0(xn,xp).  [resolve(6,a,24,a)].
+26 -sdtlseqdt0(xm,xp).  [resolve(25,a,20,a)].
+27 $F.  [resolve(23,a,26,a)].
+
+============================== end of proof ==========================

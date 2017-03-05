@@ -1,0 +1,26 @@
+
+
+
+
+
+6 -relation(A) | relation_dom(A) != B | in(C,B) | -in(ordered_pair(C,D),A).  [clausify(3)].
+7 relation(c6).  [clausify(5)].
+8 -relation(A) | relation_rng(A) != B | in(C,B) | -in(ordered_pair(D,C),A).  [clausify(4)].
+9 in(ordered_pair(c4,c5),c6).  [clausify(5)].
+10 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+11 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(2)].
+12 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(10(a,1),11(a,2))].
+13 -in(c4,relation_dom(c6)) | -in(c5,relation_rng(c6)).  [clausify(5)].
+14 relation_dom(c6) != A | in(B,A) | -in(ordered_pair(B,C),c6).  [resolve(6,a,7,a)].
+15 relation_dom(c6) != A | in(B,A) | -in(unordered_pair(singleton(B),unordered_pair(B,C)),c6).  [para(12(a,1),14(c,1))].
+16 relation_rng(c6) != A | in(B,A) | -in(ordered_pair(C,B),c6).  [resolve(8,a,7,a)].
+17 relation_rng(c6) != A | in(B,A) | -in(unordered_pair(singleton(C),unordered_pair(C,B)),c6).  [para(12(a,1),16(c,1))].
+18 relation_rng(c6) != A | in(B,A) | -in(unordered_pair(singleton(C),unordered_pair(B,C)),c6).  [para(10(a,1),17(c,1,2))].
+19 in(unordered_pair(singleton(c4),unordered_pair(c4,c5)),c6).  [para(12(a,1),9(a,1))].
+20 relation_dom(c6) != A | in(c4,A).  [resolve(19,a,15,c)].
+21 in(c4,relation_dom(c6)).  [xx_res(20,a)].
+22 -in(c5,relation_rng(c6)).  [resolve(21,a,13,a)].
+23 in(A,relation_rng(c6)) | -in(unordered_pair(singleton(B),unordered_pair(A,B)),c6).  [xx_res(18,a)].
+24 -in(unordered_pair(singleton(A),unordered_pair(c5,A)),c6).  [resolve(23,a,22,a)].
+25 -in(unordered_pair(singleton(A),unordered_pair(A,c5)),c6).  [para(10(a,1),24(a,1,2))].
+26 $F.  [resolve(25,a,19,a)].

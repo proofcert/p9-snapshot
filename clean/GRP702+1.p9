@@ -1,0 +1,41 @@
+
+
+
+
+
+
+
+8 mult(A,unit) = A.  [clausify(2)].
+9 mult(unit,A) = A.  [clausify(3)].
+10 mult(A,ld(A,B)) = B.  [clausify(1)].
+11 ld(A,mult(op_c,A)) = op_d.  [clausify(6)].
+12 mult(mult(op_c,A),B) = mult(op_c,mult(A,B)).  [clausify(4)].
+13 mult(mult(A,B),op_c) = mult(A,mult(B,op_c)).  [clausify(5)].
+14 mult(mult(op_d,c1),c2) != mult(op_d,mult(c1,c2)) | mult(mult(c1,c2),op_d) != mult(c1,mult(c2,op_d)) | mult(mult(c1,op_d),c2) != mult(c1,mult(op_d,c2)).  [clausify(7)].
+15 A = ld(unit,A).  [para(10(a,1),9(a,1))].
+16 ld(unit,A) = A.  [copy(15),flip(a)].
+17 ld(unit,op_c) = op_d.  [para(8(a,1),11(a,1,2))].
+18 op_c = op_d.  [para(16(a,1),17(a,1))].
+19 op_d = op_c.  [copy(18),flip(a)].
+20 mult(A,op_d) = mult(op_c,A).  [para(11(a,1),10(a,1,2))].
+21 mult(A,op_c) = mult(op_c,A).  [para(19(a,1),20(a,1,2))].
+22 mult(op_c,A) = mult(A,op_c).  [copy(21),flip(a)].
+23 mult(mult(op_c,c1),c2) != mult(op_d,mult(c1,c2)) | mult(mult(c1,c2),op_d) != mult(c1,mult(c2,op_d)) | mult(mult(c1,op_d),c2) != mult(c1,mult(op_d,c2)).  [para(19(a,1),14(a,1,1,1))].
+24 mult(op_c,mult(c1,c2)) != mult(op_d,mult(c1,c2)) | mult(mult(c1,c2),op_d) != mult(c1,mult(c2,op_d)) | mult(mult(c1,op_d),c2) != mult(c1,mult(op_d,c2)).  [para(12(a,1),23(a,1))].
+25 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(mult(c1,c2),op_d) != mult(c1,mult(c2,op_d)) | mult(mult(c1,op_d),c2) != mult(c1,mult(op_d,c2)).  [para(19(a,1),24(a,2,1))].
+26 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(mult(c1,c2),op_c) != mult(c1,mult(c2,op_d)) | mult(mult(c1,op_d),c2) != mult(c1,mult(op_d,c2)).  [para(19(a,1),25(b,1,2))].
+27 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(c2,op_d)) | mult(mult(c1,op_d),c2) != mult(c1,mult(op_d,c2)).  [para(22(a,2),26(b,1))].
+28 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(c2,op_c)) | mult(mult(c1,op_d),c2) != mult(c1,mult(op_d,c2)).  [para(19(a,1),27(b,2,2,2))].
+29 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(op_c,c2)) | mult(mult(c1,op_d),c2) != mult(c1,mult(op_d,c2)).  [para(22(a,2),28(b,2,2))].
+30 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(op_c,c2)) | mult(mult(c1,op_c),c2) != mult(c1,mult(op_d,c2)).  [para(19(a,1),29(c,1,1,2))].
+31 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(op_c,c2)) | mult(mult(op_c,c1),c2) != mult(c1,mult(op_d,c2)).  [para(22(a,2),30(c,1,1))].
+32 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(op_c,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(op_d,c2)).  [para(12(a,1),31(c,1))].
+33 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(op_c,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(op_c,c2)).  [para(19(a,1),32(c,2,2,1))].
+34 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(c1,mult(op_c,c2)) != mult(op_c,mult(c1,c2)) | mult(op_c,mult(c1,c2)) != mult(c1,mult(op_c,c2)).  [copy(33),flip(b)].
+35 mult(op_c,mult(c1,c2)) != mult(op_c,mult(c1,c2)) | mult(c1,mult(op_c,c2)) != mult(op_c,mult(c1,c2)) | mult(c1,mult(op_c,c2)) != mult(op_c,mult(c1,c2)).  [copy(34),flip(c)].
+36 mult(c1,mult(op_c,c2)) != mult(op_c,mult(c1,c2)) | mult(c1,mult(op_c,c2)) != mult(op_c,mult(c1,c2)).  [copy(35),xx(a)].
+37 mult(c1,mult(op_c,c2)) != mult(op_c,mult(c1,c2)).  [copy(36),merge(b)].
+38 mult(op_c,mult(A,B)) = mult(A,mult(B,op_c)).  [para(22(a,2),13(a,1))].
+39 mult(c1,mult(op_c,c2)) != mult(c1,mult(c2,op_c)).  [para(38(a,1),37(a,2))].
+40 mult(c1,mult(op_c,c2)) != mult(c1,mult(op_c,c2)).  [para(22(a,2),39(a,2,2))].
+41 $F.  [copy(40),xx(a)].

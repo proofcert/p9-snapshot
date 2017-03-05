@@ -1,0 +1,26 @@
+
+
+
+
+5 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+6 set_difference(unordered_pair(c3,c4),c5) = empty_set | in(c3,c5).  [clausify(4)].
+7 set_difference(unordered_pair(c3,c4),c5) = empty_set | in(c4,c5).  [clausify(4)].
+8 set_difference(unordered_pair(c3,c4),c5) != empty_set | -in(c3,c5) | -in(c4,c5).  [clausify(4)].
+9 set_difference(A,B) != empty_set | subset(A,B).  [clausify(2)].
+10 set_difference(A,B) = empty_set | -subset(A,B).  [clausify(2)].
+11 -subset(unordered_pair(A,B),C) | in(A,C).  [clausify(3)].
+12 -subset(unordered_pair(A,B),C) | in(B,C).  [clausify(3)].
+13 subset(unordered_pair(A,B),C) | -in(A,C) | -in(B,C).  [clausify(3)].
+14 subset(unordered_pair(c4,A),c5) | -in(A,c5) | set_difference(unordered_pair(c3,c4),c5) = empty_set.  [resolve(13,b,7,b)].
+15 subset(unordered_pair(A,c4),c5) | -in(A,c5) | set_difference(unordered_pair(c3,c4),c5) = empty_set.  [para(5(a,1),14(a,1))].
+16 subset(unordered_pair(c3,c4),c5) | set_difference(unordered_pair(c3,c4),c5) = empty_set | set_difference(unordered_pair(c3,c4),c5) = empty_set.  [resolve(15,b,6,b)].
+17 subset(unordered_pair(c3,c4),c5) | set_difference(unordered_pair(c3,c4),c5) = empty_set.  [copy(16),merge(c)].
+18 set_difference(unordered_pair(c3,c4),c5) = empty_set | set_difference(unordered_pair(c3,c4),c5) = empty_set.  [resolve(17,a,10,b)].
+19 set_difference(unordered_pair(c3,c4),c5) = empty_set.  [copy(18),merge(b)].
+20 empty_set != empty_set | -in(c3,c5) | -in(c4,c5).  [para(19(a,1),8(a,1))].
+21 -in(c3,c5) | -in(c4,c5).  [copy(20),xx(a)].
+22 subset(unordered_pair(c3,c4),c5).  [resolve(19,a,9,a)].
+23 in(c4,c5).  [resolve(22,a,12,a)].
+24 in(c3,c5).  [resolve(22,a,11,a)].
+25 -in(c4,c5).  [resolve(24,a,21,a)].
+26 $F.  [resolve(23,a,25,a)].

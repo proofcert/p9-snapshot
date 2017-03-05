@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n046.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:08:23 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 28182 was started by sandbox on n046.star.cs.uiowa.edu,
+Fri Jun  6 06:08:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_28150_n046.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 6.
+% Maximum clause weight is 17.000.
+% Given clauses 25.
+
+
+1 (all A ((exists B exists C A = ordered_pair(B,C)) -> (all B (B = pair_first(A) <-> (all C all D (A = ordered_pair(C,D) -> B = C)))))).  [assumption].
+2 (all A ((exists B exists C A = ordered_pair(B,C)) -> (all B (B = pair_second(A) <-> (all C all D (A = ordered_pair(C,D) -> B = D)))))).  [assumption].
+3 -(all A all B (pair_first(ordered_pair(A,B)) = A & pair_second(ordered_pair(A,B)) = B)).  [assumption].
+4 pair_first(ordered_pair(c3,c4)) != c3 | pair_second(ordered_pair(c3,c4)) != c4.  [clausify(3)].
+5 ordered_pair(A,B) != C | pair_first(C) != D | ordered_pair(E,F) != C | E = D.  [clausify(1)].
+6 ordered_pair(A,B) != C | pair_second(C) != D | ordered_pair(E,F) != C | F = D.  [clausify(2)].
+7 ordered_pair(A,B) != C | pair_first(C) != D | A = D.  [factor(5,a,c)].
+8 ordered_pair(A,B) != C | pair_second(C) != D | B = D.  [factor(6,a,c)].
+9 pair_first(ordered_pair(A,B)) != C | A = C.  [xx_res(7,a)].
+10 A = pair_first(ordered_pair(A,B)).  [xx_res(9,a)].
+11 pair_first(ordered_pair(A,B)) = A.  [copy(10),flip(a)].
+12 c3 != c3 | pair_second(ordered_pair(c3,c4)) != c4.  [para(11(a,1),4(a,1))].
+13 pair_second(ordered_pair(c3,c4)) != c4.  [copy(12),xx(a)].
+14 ordered_pair(A,B) != C | B = pair_second(C).  [xx_res(8,b)].
+15 ordered_pair(A,c4) != ordered_pair(c3,c4).  [resolve(14,b,13,a(flip))].
+16 ordered_pair(c3,c4) != ordered_pair(A,c4).  [copy(15),flip(a)].
+17 $F.  [copy(16),xx(a)].
+
+============================== end of proof ==========================

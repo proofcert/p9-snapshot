@@ -1,0 +1,65 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n168.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:15:23 CDT 2014
+% CPUTime    : 0.95 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 4097 was started by sandbox on n168.star.cs.uiowa.edu,
+Thu Jun  5 14:15:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_4065_n168.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.81 (+ 0.01) seconds: goals.
+% Length of proof is 21.
+% Level of proof is 6.
+% Maximum clause weight is 17.000.
+% Given clauses 248.
+
+
+1 (all A all B join(A,B) = join(B,A)).  [assumption].
+2 (all A all B all C composition(join(A,B),C) = join(composition(A,C),composition(B,C))).  [assumption].
+3 (all A converse(converse(A)) = A).  [assumption].
+4 (all A all B converse(join(A,B)) = join(converse(A),converse(B))).  [assumption].
+5 (all A all B converse(composition(A,B)) = composition(converse(B),converse(A))).  [assumption].
+6 -(all A all B all C composition(A,join(B,C)) = join(composition(A,B),composition(A,C))).  [assumption].
+7 converse(converse(A)) = A.  [clausify(3)].
+8 join(A,B) = join(B,A).  [clausify(1)].
+9 converse(join(A,B)) = join(converse(A),converse(B)).  [clausify(4)].
+10 join(converse(A),converse(B)) = converse(join(A,B)).  [copy(9),flip(a)].
+11 converse(composition(A,B)) = composition(converse(B),converse(A)).  [clausify(5)].
+12 composition(converse(A),converse(B)) = converse(composition(B,A)).  [copy(11),flip(a)].
+13 composition(join(A,B),C) = join(composition(A,C),composition(B,C)).  [clausify(2)].
+14 join(composition(A,B),composition(C,B)) = composition(join(A,C),B).  [copy(13),flip(a)].
+15 composition(c1,join(c2,c3)) != join(composition(c1,c2),composition(c1,c3)).  [clausify(6)].
+16 join(composition(c1,c2),composition(c1,c3)) != composition(c1,join(c2,c3)).  [copy(15),flip(a)].
+17 composition(converse(A),B) = converse(composition(converse(B),A)).  [para(7(a,1),12(a,1,2))].
+18 converse(composition(converse(A),B)) = composition(converse(B),A).  [copy(17),flip(a)].
+19 join(converse(composition(A,B)),composition(C,converse(A))) = composition(join(converse(B),C),converse(A)).  [para(12(a,1),14(a,1,1))].
+20 join(converse(composition(A,B)),composition(C,converse(A))) = composition(join(C,converse(B)),converse(A)).  [para(8(a,1),19(a,2,1))].
+21 join(composition(converse(A),B),converse(C)) = converse(join(composition(converse(B),A),C)).  [para(18(a,1),10(a,1,1))].
+22 join(composition(converse(A),B),converse(C)) = converse(join(C,composition(converse(B),A))).  [para(8(a,1),21(a,2,1))].
+23 converse(join(A,composition(converse(B),C))) = join(composition(converse(C),B),converse(A)).  [copy(22),flip(a)].
+24 converse(composition(join(converse(A),converse(B)),converse(C))) = join(composition(converse(converse(C)),A),converse(converse(composition(C,B)))).  [para(20(a,1),23(a,1,1))].
+25 converse(composition(converse(join(A,B)),converse(C))) = join(composition(converse(converse(C)),A),converse(converse(composition(C,B)))).  [para(10(a,1),24(a,1,1,1))].
+26 converse(converse(composition(C,join(A,B)))) = join(composition(converse(converse(C)),A),converse(converse(composition(C,B)))).  [para(12(a,1),25(a,1,1))].
+27 composition(C,join(A,B)) = join(composition(converse(converse(C)),A),converse(converse(composition(C,B)))).  [para(7(a,1),26(a,1))].
+28 composition(C,join(A,B)) = join(composition(C,A),converse(converse(composition(C,B)))).  [para(7(a,1),27(a,2,1,1))].
+29 composition(C,join(A,B)) = join(composition(C,A),composition(C,B)).  [para(7(a,1),28(a,2,2))].
+30 join(composition(A,B),composition(A,C)) = composition(A,join(B,C)).  [copy(29),flip(a)].
+31 $F.  [resolve(30,a,16,a)].
+
+============================== end of proof ==========================

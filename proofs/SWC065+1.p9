@@ -1,0 +1,103 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n087.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:21:53 CDT 2014
+% CPUTime    : 31.55 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 35036 was started by sandbox on n087.star.cs.uiowa.edu,
+Thu Jun  5 18:21:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_35004_n087.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 30.96 (+ 0.38) seconds.
+% Length of proof is 50.
+% Level of proof is 10.
+% Maximum clause weight is 18.000.
+% Given clauses 6852.
+
+
+1 (all A (ssList(A) -> (all B (ssList(B) -> (rearsegP(A,B) <-> (exists C (ssList(C) & app(C,B) = A))))))).  [assumption].
+2 (all A (ssList(A) -> (all B (ssList(B) -> (neq(A,B) <-> A != B))))).  [assumption].
+3 (all A (ssList(A) -> rearsegP(A,A))).  [assumption].
+4 (all A (ssList(A) -> segmentP(A,A))).  [assumption].
+5 (all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> (segmentP(A,B) -> segmentP(app(app(C,A),D),B)))))))))).  [assumption].
+6 (all A (ssList(A) -> (all B (ssList(B) -> (nil = app(A,B) <-> nil = B & nil = A))))).  [assumption].
+7 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | (all E (ssList(E) -> app(C,E) != D | -equalelemsP(C) | (exists F (ssItem(F) & (exists V6 (ssList(V6) & app(cons(F,nil),V6) = E & (exists V7 (ssList(V7) & app(V7,cons(F,nil)) = C)))))))) | nil != D & nil = C | (nil != B | nil = A) & (-neq(B,nil) | (exists V8 (ssList(V8) & neq(V8,nil) & segmentP(B,V8) & segmentP(A,V8)))))))))))).  [assumption].
+8 -ssList(A) | -ssList(B) | -rearsegP(A,B) | ssList(f5(A,B)).  [clausify(1)].
+9 -ssList(A) | -ssList(B) | -rearsegP(A,B) | app(f5(A,B),B) = A.  [clausify(1)].
+10 -ssList(A) | -ssList(B) | -neq(A,B) | B != A.  [clausify(2)].
+11 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(2)].
+12 ssList(nil).  [assumption].
+13 -ssList(A) | rearsegP(A,A).  [clausify(3)].
+14 -ssList(A) | segmentP(A,A).  [clausify(4)].
+15 -ssList(A) | -ssList(B) | -ssList(C) | -ssList(D) | -segmentP(A,B) | segmentP(app(app(C,A),D),B).  [clausify(5)].
+16 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = A.  [clausify(6)].
+17 ssList(c3).  [clausify(7)].
+18 c6 = c4.  [clausify(7)].
+19 c5 = c3.  [clausify(7)].
+20 ssList(c7).  [clausify(7)].
+21 app(c5,c7) = c6.  [clausify(7)].
+22 app(c3,c7) = c6.  [para(19(a,1),21(a,1,1))].
+23 app(c3,c7) = c4.  [para(18(a,1),22(a,2))].
+24 nil = c6 | nil != c5.  [clausify(7)].
+25 nil = c4 | nil != c5.  [para(18(a,1),24(a,2))].
+26 nil = c4 | nil != c3.  [para(19(a,1),25(b,2))].
+27 c4 = nil | nil != c3.  [copy(26),flip(a)].
+28 c4 = nil | c3 != nil.  [copy(27),flip(b)].
+29 nil = c4 | -ssList(A) | -neq(A,nil) | -segmentP(c4,A) | -segmentP(c3,A).  [clausify(7)].
+30 c4 = nil | -ssList(A) | -neq(A,nil) | -segmentP(c4,A) | -segmentP(c3,A).  [copy(29),flip(a)].
+31 nil != c3 | neq(c4,nil).  [clausify(7)].
+32 c3 != nil | neq(c4,nil).  [copy(31),flip(a)].
+33 -ssList(A) | -rearsegP(A,A) | ssList(f5(A,A)).  [factor(8,a,b)].
+34 -ssList(A) | -rearsegP(A,A) | app(f5(A,A),A) = A.  [factor(9,a,b)].
+35 -ssList(A) | -neq(A,A) | A != A.  [factor(10,a,b)].
+36 -ssList(A) | -neq(A,A).  [copy(35),xx(c)].
+37 -ssList(A) | -ssList(B) | -ssList(C) | -segmentP(A,A) | segmentP(app(app(B,A),C),A).  [factor(15,a,b)].
+38 -ssList(A) | neq(A,nil) | nil = A.  [resolve(12,a,11,b)].
+39 -ssList(A) | app(c3,A) != nil | nil = c3.  [resolve(17,a,16,a)].
+40 -ssList(A) | app(c3,A) != nil | c3 = nil.  [copy(39),flip(c)].
+41 segmentP(c3,c3).  [resolve(17,a,14,a)].
+42 rearsegP(c3,c3).  [resolve(17,a,13,a)].
+43 -ssList(c3) | -ssList(A) | -ssList(B) | segmentP(app(app(A,c3),B),c3).  [resolve(41,a,37,d)].
+44 -ssList(A) | -ssList(B) | segmentP(app(app(A,c3),B),c3).  [resolve(17,a,43,a)].
+45 -ssList(c3) | app(f5(c3,c3),c3) = c3.  [resolve(42,a,34,b)].
+46 app(f5(c3,c3),c3) = c3.  [resolve(17,a,45,a)].
+47 -ssList(c3) | ssList(f5(c3,c3)).  [resolve(42,a,33,b)].
+48 ssList(f5(c3,c3)).  [resolve(17,a,47,a)].
+49 neq(c3,nil) | nil = c3.  [resolve(38,a,17,a)].
+50 neq(c3,nil) | c3 = nil.  [copy(49),flip(b)].
+51 c3 = nil | c4 = nil | -ssList(c3) | -segmentP(c4,c3) | -segmentP(c3,c3).  [resolve(50,a,30,c)].
+52 c3 = nil | c4 = nil | -segmentP(c4,c3) | -segmentP(c3,c3).  [resolve(17,a,51,c)].
+53 c3 = nil | c4 = nil | -segmentP(c4,c3).  [resolve(41,a,52,d)].
+54 app(c3,c7) != nil | c3 = nil.  [resolve(40,a,20,a)].
+55 c4 != nil | c3 = nil.  [para(23(a,1),54(a,1))].
+56 -ssList(A) | segmentP(app(app(f5(c3,c3),c3),A),c3).  [resolve(44,a,48,a)].
+57 -ssList(A) | segmentP(app(c3,A),c3).  [para(46(a,1),56(b,1,1))].
+58 segmentP(app(c3,c7),c3).  [resolve(57,a,20,a)].
+59 segmentP(c4,c3).  [para(23(a,1),58(a,1))].
+60 c3 = nil | c4 = nil.  [resolve(59,a,53,c)].
+61 c3 = nil | c3 = nil.  [resolve(60,b,55,a)].
+62 c3 = nil.  [copy(61),merge(b)].
+63 nil != nil | neq(c4,nil).  [para(62(a,1),32(a,1))].
+64 neq(c4,nil).  [copy(63),xx(a)].
+65 c4 = nil | nil != nil.  [para(62(a,1),28(b,1))].
+66 c4 = nil.  [copy(65),xx(b)].
+67 neq(nil,nil).  [para(66(a,1),64(a,1))].
+68 -ssList(nil).  [resolve(67,a,36,b)].
+69 $F.  [resolve(12,a,68,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,24 @@
+
+
+3 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(1)].
+4 ssList(nil).  [assumption].
+5 -singletonP(nil).  [assumption].
+6 ssList(c3).  [clausify(2)].
+7 c6 = c4.  [clausify(2)].
+8 c5 = c3.  [clausify(2)].
+9 neq(c4,nil).  [clausify(2)].
+10 segmentP(c6,c5).  [clausify(2)].
+11 segmentP(c4,c5).  [para(7(a,1),10(a,1))].
+12 segmentP(c4,c3).  [para(8(a,1),11(a,2))].
+13 singletonP(c5) | -neq(c6,nil).  [clausify(2)].
+14 singletonP(c3) | -neq(c6,nil).  [para(8(a,1),13(a,1))].
+15 singletonP(c3) | -neq(c4,nil).  [para(7(a,1),14(b,1))].
+16 singletonP(c3).  [resolve(9,a,15,b)].
+17 -neq(c3,nil) | -segmentP(c4,c3).  [clausify(2)].
+18 -neq(c3,nil).  [resolve(12,a,17,b)].
+19 -ssList(A) | neq(A,nil) | nil = A.  [resolve(4,a,3,b)].
+20 neq(c3,nil) | nil = c3.  [resolve(19,a,6,a)].
+21 neq(c3,nil) | c3 = nil.  [copy(20),flip(b)].
+22 c3 = nil.  [resolve(18,a,21,a)].
+23 singletonP(nil).  [para(22(a,1),16(a,1))].
+24 $F.  [resolve(5,a,23,a)].

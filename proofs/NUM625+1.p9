@@ -1,0 +1,61 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n093.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 14:04:38 CDT 2014
+% CPUTime    : 2.57 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 57459 was started by sandbox on n093.star.cs.uiowa.edu,
+Fri Jun  6 14:04:39 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_57427_n093.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 2.05 (+ 0.02) seconds.
+% Length of proof is 21.
+% Level of proof is 4.
+% Maximum clause weight is 15.000.
+% Given clauses 3747.
+
+
+1 (all A (aSet0(A) -> (all B (aElementOf0(B,A) -> aElement0(B))))).  [assumption].
+2 (all A (aSet0(A) -> (all B (aSubsetOf0(B,A) <-> aSet0(B) & (all C (aElementOf0(C,B) -> aElementOf0(C,A))))))).  [assumption].
+3 (all A all B (aSet0(A) & aElement0(B) -> (all C (C = sdtmndt0(A,B) <-> aSet0(C) & (all D (aElementOf0(D,C) <-> aElement0(D) & aElementOf0(D,A) & D != B)))))).  [assumption].
+4 -aSet0(A) | -aElementOf0(B,A) | aElement0(B).  [clausify(1)].
+5 -aSet0(A) | -aSubsetOf0(B,A) | aSet0(B).  [clausify(2)].
+6 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) != C | -aElementOf0(D,C) | D != B.  [clausify(3)].
+7 aSet0(xO).  [assumption].
+8 aSubsetOf0(xQ,xO).  [assumption].
+9 xp = szmzizndt0(xQ).  [assumption].
+10 szmzizndt0(xQ) = xp.  [copy(9),flip(a)].
+11 aSet0(xP).  [assumption].
+12 xP = sdtmndt0(xQ,szmzizndt0(xQ)).  [assumption].
+13 xP = sdtmndt0(xQ,xp).  [para(10(a,1),12(a,2,2))].
+14 sdtmndt0(xQ,xp) = xP.  [copy(13),flip(a)].
+15 aElementOf0(xx,xP).  [assumption].
+16 xp = xx.  [assumption].
+17 sdtmndt0(xQ,xx) = xP.  [para(16(a,1),14(a,1,2))].
+18 -aSet0(xO) | aSet0(xQ).  [resolve(8,a,5,b)].
+19 aSet0(xQ).  [resolve(7,a,18,a)].
+20 -aSet0(A) | -aElement0(B) | sdtmndt0(A,B) != xP | xx != B.  [resolve(15,a,6,d)].
+21 -aSet0(xP) | aElement0(xx).  [resolve(15,a,4,b)].
+22 aElement0(xx).  [resolve(11,a,21,a)].
+23 -aSet0(A) | sdtmndt0(A,xx) != xP | xx != xx.  [resolve(20,b,22,a)].
+24 -aSet0(A) | sdtmndt0(A,xx) != xP.  [copy(23),xx(c)].
+25 sdtmndt0(xQ,xx) != xP.  [resolve(24,a,19,a)].
+26 xP != xP.  [para(17(a,1),25(a,1))].
+27 $F.  [copy(26),xx(a)].
+
+============================== end of proof ==========================

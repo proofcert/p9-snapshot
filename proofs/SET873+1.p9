@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n071.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:23:43 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 48802 was started by sandbox on n071.star.cs.uiowa.edu,
+Sat Jun  7 00:23:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_48770_n071.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 4.
+% Maximum clause weight is 10.000.
+% Given clauses 12.
+
+
+1 (all A all B set_union2(A,B) = set_union2(B,A)).  [assumption].
+2 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+3 (all A all B (subset(set_union2(singleton(A),B),B) -> in(A,B))).  [assumption].
+4 (all A all B subset(A,A)).  [assumption].
+5 -(all A all B (set_union2(singleton(A),singleton(B)) = singleton(A) -> A = B)).  [assumption].
+6 subset(A,A).  [clausify(4)].
+7 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+8 singleton(c3) = set_union2(singleton(c3),singleton(c4)).  [clausify(5)].
+9 set_union2(singleton(c3),singleton(c4)) = singleton(c3).  [copy(8),flip(a)].
+10 c4 != c3.  [clausify(5)].
+11 -subset(set_union2(singleton(A),B),B) | in(A,B).  [clausify(3)].
+12 -subset(set_union2(A,singleton(B)),A) | in(B,A).  [para(7(a,1),11(a,1))].
+13 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+14 -subset(singleton(c3),singleton(c3)) | in(c4,singleton(c3)).  [para(9(a,1),12(a,1))].
+15 in(c4,singleton(c3)).  [resolve(6,a,14,a)].
+16 -in(A,set_union2(singleton(c3),singleton(c4))) | A = c3.  [resolve(13,a,9,a(flip))].
+17 -in(c4,set_union2(singleton(c3),singleton(c4))).  [resolve(16,b,10,a)].
+18 -in(c4,singleton(c3)).  [para(9(a,1),17(a,2))].
+19 $F.  [resolve(15,a,18,a)].
+
+============================== end of proof ==========================

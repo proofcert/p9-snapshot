@@ -1,0 +1,68 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n087.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:43:18 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 39966 was started by sandbox on n087.star.cs.uiowa.edu,
+Thu Jun  5 18:43:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_39934_n087.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds.
+% Length of proof is 23.
+% Level of proof is 6.
+% Maximum clause weight is 2.000.
+% Given clauses 0.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A (cCar(A) <-> cAutomobile(A))).  [assumption].
+4 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & cCar(iauto) & cowlThing(iauto) & cowlThing(icar) & cAutomobile(icar)).  [assumption].
+5 cCar(A) | -cAutomobile(A).  [clausify(3)].
+6 cAutomobile(iauto).  [assumption].
+7 -cCar(A) | cAutomobile(A).  [clausify(3)].
+8 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cAutomobile(icar).  [clausify(4)].
+9 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cAutomobile(icar).  [clausify(4)].
+10 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+11 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+12 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [resolve(8,h,7,b)].
+13 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [resolve(9,h,7,b)].
+14 -cowlThing(c1) | cowlNothing(c1) | -xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar) | -xsd_integer(c2).  [resolve(12,c,10,a)].
+15 -cowlNothing(A).  [clausify(1)].
+16 -cowlThing(c1) | cowlNothing(c1) | xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar) | xsd_integer(c2).  [resolve(13,c,11,a)].
+17 cowlThing(A).  [clausify(1)].
+18 cCar(icar).  [assumption].
+19 cCar(iauto).  [resolve(5,b,6,a)].
+20 -cowlThing(c1) | -xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar) | -xsd_integer(c2).  [resolve(14,b,15,a)].
+21 -cowlThing(c1) | -xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [copy(20),merge(g)].
+22 -xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [resolve(17,a,21,a)].
+23 -xsd_integer(c2) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [resolve(19,a,22,b)].
+24 -xsd_integer(c2) | -cowlThing(icar) | -cCar(icar).  [resolve(17,a,23,b)].
+25 -xsd_integer(c2) | -cCar(icar).  [resolve(17,a,24,b)].
+26 -xsd_integer(c2).  [resolve(18,a,25,b)].
+27 -cowlThing(c1) | xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar) | xsd_integer(c2).  [resolve(16,b,15,a)].
+28 -cowlThing(c1) | xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [copy(27),merge(g)].
+29 xsd_integer(c2) | -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [resolve(17,a,28,a)].
+30 -cCar(iauto) | -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [resolve(26,a,29,a)].
+31 -cowlThing(iauto) | -cowlThing(icar) | -cCar(icar).  [resolve(19,a,30,a)].
+32 -cowlThing(icar) | -cCar(icar).  [resolve(17,a,31,a)].
+33 -cCar(icar).  [resolve(17,a,32,a)].
+34 $F.  [resolve(18,a,33,a)].
+
+============================== end of proof ==========================

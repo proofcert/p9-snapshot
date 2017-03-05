@@ -1,0 +1,19 @@
+
+
+
+
+
+6 shortest_path(c2,c3,c1).  [clausify(5)].
+7 -shortest_path(A,B,C) | path(A,B,C).  [clausify(1)].
+8 -complete | -shortest_path(A,B,C) | number_of_in(triangles,C) = number_of_in(sequential_pairs,C).  [clausify(4)].
+9 complete.  [clausify(5)].
+10 less_or_equal(number_of_in(A,B),number_of_in(A,graph)).  [clausify(3)].
+11 -less_or_equal(minus(length_of(c1),n1),number_of_in(triangles,graph)).  [clausify(5)].
+12 -path(A,B,C) | minus(length_of(C),n1) = number_of_in(sequential_pairs,C).  [clausify(2)].
+13 path(c2,c3,c1).  [resolve(7,a,6,a)].
+14 -complete | number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(8,b,6,a)].
+15 number_of_in(triangles,c1) = number_of_in(sequential_pairs,c1).  [resolve(9,a,14,a)].
+16 minus(length_of(c1),n1) = number_of_in(sequential_pairs,c1).  [resolve(13,a,12,a)].
+17 -less_or_equal(number_of_in(sequential_pairs,c1),number_of_in(triangles,graph)).  [para(16(a,1),11(a,1))].
+18 less_or_equal(number_of_in(sequential_pairs,c1),number_of_in(triangles,graph)).  [para(15(a,1),10(a,1))].
+19 $F.  [resolve(17,a,18,a)].

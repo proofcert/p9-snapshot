@@ -1,0 +1,33 @@
+
+
+
+
+5 aNaturalNumber0(sz00).  [assumption].
+6 aNaturalNumber0(xl).  [assumption].
+7 aNaturalNumber0(xm).  [assumption].
+8 aNaturalNumber0(xn).  [assumption].
+9 aNaturalNumber0(c2).  [clausify(3)].
+10 xl = sz00 | aNaturalNumber0(c6).  [clausify(4)].
+11 sdtasdt0(xl,c2) = sdtpldt0(xm,xn).  [clausify(3)].
+12 sdtpldt0(xm,xn) = sdtasdt0(xl,c2).  [copy(11),flip(a)].
+13 xl = sz00 | sdtasdt0(xl,c6) = xn.  [clausify(4)].
+14 -aNaturalNumber0(A) | sdtasdt0(xl,A) != xn.  [clausify(4)].
+15 -aNaturalNumber0(A) | sdtasdt0(A,sz00) = sz00.  [clausify(1)].
+16 -aNaturalNumber0(A) | sdtasdt0(sz00,A) = sz00.  [clausify(1)].
+17 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtpldt0(A,B) != sz00 | B = sz00.  [clausify(2)].
+18 -aNaturalNumber0(A) | -aNaturalNumber0(B) | sdtpldt0(A,B) != sz00 | sz00 = B.  [copy(17),flip(d)].
+19 sdtasdt0(xl,c6) != xn | xl = sz00.  [resolve(14,a,10,b)].
+20 sdtasdt0(xl,sz00) != xn.  [resolve(14,a,5,a)].
+21 sdtasdt0(xl,sz00) = sz00.  [resolve(15,a,6,a)].
+22 sz00 != xn.  [para(21(a,1),20(a,1))].
+23 xn != sz00.  [copy(22),flip(a)].
+24 sdtasdt0(sz00,c2) = sz00.  [resolve(16,a,9,a)].
+25 -aNaturalNumber0(A) | sdtpldt0(xm,A) != sz00 | sz00 = A.  [resolve(18,a,7,a)].
+26 sdtpldt0(xm,xn) != sz00 | sz00 = xn.  [resolve(25,a,8,a)].
+27 sdtpldt0(xm,xn) != sz00.  [resolve(26,b,23,a(flip))].
+28 sdtasdt0(xl,c2) != sz00.  [para(12(a,1),27(a,1))].
+29 xl = sz00 | xl = sz00.  [resolve(19,a,13,b)].
+30 xl = sz00.  [copy(29),merge(b)].
+31 sdtasdt0(sz00,c2) != sz00.  [para(30(a,1),28(a,1,1))].
+32 sz00 != sz00.  [para(24(a,1),31(a,1))].
+33 $F.  [copy(32),xx(a)].

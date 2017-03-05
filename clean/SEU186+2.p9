@@ -1,0 +1,63 @@
+
+
+
+
+
+
+
+
+
+
+
+
+13 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+14 cast_to_subset(A) = A.  [clausify(2)].
+15 -element(A,powerset(B)) | subset_complement(B,A) = set_difference(B,A).  [clausify(3)].
+16 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(4)].
+17 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(13(a,1),16(a,2))].
+18 -relation(A) | -relation(B) | -relation(C) | relation_composition(A,B) = C | in(ordered_pair(f32(A,B,C),f33(A,B,C)),C) | in(ordered_pair(f32(A,B,C),f34(A,B,C)),A).  [clausify(5)].
+19 -relation(A) | -relation(B) | -relation(C) | relation_composition(A,B) = C | in(unordered_pair(singleton(f32(A,B,C)),unordered_pair(f32(A,B,C),f33(A,B,C))),C) | in(ordered_pair(f32(A,B,C),f34(A,B,C)),A).  [para(17(a,1),18(e,1))].
+20 -relation(A) | -relation(B) | -relation(C) | relation_composition(A,B) = C | in(unordered_pair(singleton(f32(A,B,C)),unordered_pair(f32(A,B,C),f33(A,B,C))),C) | in(unordered_pair(singleton(f32(A,B,C)),unordered_pair(f32(A,B,C),f34(A,B,C))),A).  [para(17(a,1),19(f,1))].
+21 -relation(A) | -relation(B) | -relation(C) | relation_composition(A,B) = C | in(ordered_pair(f32(A,B,C),f33(A,B,C)),C) | in(ordered_pair(f34(A,B,C),f33(A,B,C)),B).  [clausify(5)].
+22 -relation(A) | -relation(B) | -relation(C) | relation_composition(A,B) = C | in(unordered_pair(singleton(f32(A,B,C)),unordered_pair(f32(A,B,C),f33(A,B,C))),C) | in(ordered_pair(f34(A,B,C),f33(A,B,C)),B).  [para(17(a,1),21(e,1))].
+23 -relation(A) | -relation(B) | -relation(C) | relation_composition(A,B) = C | in(unordered_pair(singleton(f32(A,B,C)),unordered_pair(f32(A,B,C),f33(A,B,C))),C) | in(unordered_pair(singleton(f34(A,B,C)),unordered_pair(f34(A,B,C),f33(A,B,C))),B).  [para(17(a,1),22(f,1))].
+24 -relation(A) | -relation(B) | -relation(C) | relation_composition(A,B) = C | in(unordered_pair(singleton(f32(A,B,C)),unordered_pair(f32(A,B,C),f33(A,B,C))),C) | in(unordered_pair(singleton(f34(A,B,C)),unordered_pair(f33(A,B,C),f34(A,B,C))),B).  [para(13(a,1),23(f,1,2))].
+25 element(cast_to_subset(A),powerset(A)).  [clausify(6)].
+26 element(A,powerset(A)).  [para(14(a,1),25(a,1))].
+27 relation(empty_set).  [assumption].
+28 set_intersection2(A,empty_set) = empty_set.  [clausify(7)].
+29 set_difference(A,empty_set) = A.  [clausify(8)].
+30 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(9)].
+31 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(30),flip(a)].
+32 -element(A,powerset(B)) | -in(C,subset_complement(B,A)) | -in(C,A).  [clausify(10)].
+33 singleton(A) = unordered_pair(A,A).  [clausify(11)].
+34 relation(c5).  [clausify(12)].
+35 -in(ordered_pair(A,B),c5).  [clausify(12)].
+36 -in(unordered_pair(singleton(A),unordered_pair(A,B)),c5).  [para(17(a,1),35(a,1))].
+37 -in(unordered_pair(unordered_pair(A,A),unordered_pair(A,B)),c5).  [para(33(a,1),36(a,1,1))].
+38 empty_set != c5.  [clausify(12)].
+39 c5 != empty_set.  [copy(38),flip(a)].
+40 -relation(A) | -relation(B) | relation_composition(A,B) = A | in(unordered_pair(singleton(f32(A,B,A)),unordered_pair(f32(A,B,A),f33(A,B,A))),A) | in(unordered_pair(singleton(f32(A,B,A)),unordered_pair(f32(A,B,A),f34(A,B,A))),A).  [factor(20,a,c)].
+41 -relation(A) | -relation(B) | relation_composition(A,B) = A | in(unordered_pair(unordered_pair(f32(A,B,A),f32(A,B,A)),unordered_pair(f32(A,B,A),f33(A,B,A))),A) | in(unordered_pair(singleton(f32(A,B,A)),unordered_pair(f32(A,B,A),f34(A,B,A))),A).  [para(33(a,1),40(d,1,1))].
+42 -relation(A) | -relation(B) | relation_composition(A,B) = A | in(unordered_pair(unordered_pair(f32(A,B,A),f32(A,B,A)),unordered_pair(f32(A,B,A),f33(A,B,A))),A) | in(unordered_pair(unordered_pair(f32(A,B,A),f32(A,B,A)),unordered_pair(f32(A,B,A),f34(A,B,A))),A).  [para(33(a,1),41(e,1,1))].
+43 -relation(A) | -relation(B) | relation_composition(A,B) = B | in(unordered_pair(singleton(f32(A,B,B)),unordered_pair(f32(A,B,B),f33(A,B,B))),B) | in(unordered_pair(singleton(f34(A,B,B)),unordered_pair(f33(A,B,B),f34(A,B,B))),B).  [factor(24,b,c)].
+44 -relation(A) | -relation(B) | relation_composition(A,B) = B | in(unordered_pair(unordered_pair(f32(A,B,B),f32(A,B,B)),unordered_pair(f32(A,B,B),f33(A,B,B))),B) | in(unordered_pair(singleton(f34(A,B,B)),unordered_pair(f33(A,B,B),f34(A,B,B))),B).  [para(33(a,1),43(d,1,1))].
+45 -relation(A) | -relation(B) | relation_composition(A,B) = B | in(unordered_pair(unordered_pair(f32(A,B,B),f32(A,B,B)),unordered_pair(f32(A,B,B),f33(A,B,B))),B) | in(unordered_pair(unordered_pair(f34(A,B,B),f34(A,B,B)),unordered_pair(f33(A,B,B),f34(A,B,B))),B).  [para(33(a,1),44(e,1,1))].
+46 -relation(A) | -relation(B) | relation_composition(A,B) = B | in(unordered_pair(unordered_pair(f32(A,B,B),f32(A,B,B)),unordered_pair(f32(A,B,B),f33(A,B,B))),B) | in(unordered_pair(unordered_pair(f33(A,B,B),f34(A,B,B)),unordered_pair(f34(A,B,B),f34(A,B,B))),B).  [para(13(a,1),45(e,1))].
+47 set_difference(A,set_difference(A,empty_set)) = empty_set.  [para(31(a,1),28(a,1))].
+48 set_difference(A,A) = empty_set.  [para(29(a,1),47(a,1,2))].
+49 subset_complement(A,A) = set_difference(A,A).  [resolve(26,a,15,a)].
+50 subset_complement(A,A) = empty_set.  [para(48(a,1),49(a,2))].
+51 -in(A,subset_complement(B,B)) | -in(A,B).  [resolve(32,a,26,a)].
+52 -in(A,empty_set) | -in(A,B).  [para(50(a,1),51(a,2))].
+53 -in(A,empty_set).  [factor(52,a,b)].
+54 -relation(A) | relation_composition(c5,A) = c5 | in(unordered_pair(unordered_pair(f32(c5,A,c5),f32(c5,A,c5)),unordered_pair(f32(c5,A,c5),f33(c5,A,c5))),c5) | in(unordered_pair(unordered_pair(f32(c5,A,c5),f32(c5,A,c5)),unordered_pair(f32(c5,A,c5),f34(c5,A,c5))),c5).  [resolve(42,a,34,a)].
+55 -relation(A) | relation_composition(c5,A) = c5 | in(unordered_pair(unordered_pair(f32(c5,A,c5),f32(c5,A,c5)),unordered_pair(f32(c5,A,c5),f34(c5,A,c5))),c5).  [resolve(37,a,54,c)].
+56 -relation(A) | relation_composition(c5,A) = c5.  [resolve(37,a,55,c)].
+57 -relation(A) | relation_composition(A,empty_set) = empty_set | in(unordered_pair(unordered_pair(f32(A,empty_set,empty_set),f32(A,empty_set,empty_set)),unordered_pair(f32(A,empty_set,empty_set),f33(A,empty_set,empty_set))),empty_set) | in(unordered_pair(unordered_pair(f33(A,empty_set,empty_set),f34(A,empty_set,empty_set)),unordered_pair(f34(A,empty_set,empty_set),f34(A,empty_set,empty_set))),empty_set).  [resolve(46,b,27,a)].
+58 -relation(A) | relation_composition(A,empty_set) = empty_set | in(unordered_pair(unordered_pair(f33(A,empty_set,empty_set),f34(A,empty_set,empty_set)),unordered_pair(f34(A,empty_set,empty_set),f34(A,empty_set,empty_set))),empty_set).  [resolve(53,a,57,c)].
+59 -relation(A) | relation_composition(A,empty_set) = empty_set.  [resolve(53,a,58,c)].
+60 relation_composition(c5,empty_set) = c5.  [resolve(56,a,27,a)].
+61 relation_composition(c5,empty_set) = empty_set.  [resolve(59,a,34,a)].
+62 c5 = empty_set.  [para(60(a,1),61(a,1))].
+63 $F.  [resolve(39,a,62,a)].

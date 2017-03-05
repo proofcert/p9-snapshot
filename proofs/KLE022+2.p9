@@ -1,0 +1,68 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n105.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:42:38 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 316 was started by sandbox on n105.star.cs.uiowa.edu,
+Thu Jun  5 14:42:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_65520_n105.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 27.
+% Level of proof is 5.
+% Maximum clause weight is 16.000.
+% Given clauses 34.
+
+
+1 (all A all B addition(A,B) = addition(B,A)).  [assumption].
+2 (all A addition(A,A) = A).  [assumption].
+3 (all A multiplication(A,one) = A).  [assumption].
+4 (all A multiplication(one,A) = A).  [assumption].
+5 (all A all B all C multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C))).  [assumption].
+6 (all A all B (leq(A,B) <-> addition(A,B) = B)).  [assumption].
+7 (all A all B (complement(B,A) <-> multiplication(A,B) = zero & multiplication(B,A) = zero & addition(A,B) = one)).  [assumption].
+8 (all A all B (test(A) -> (c(A) = B <-> complement(A,B)))).  [assumption].
+9 -(all A all B (test(B) -> leq(A,addition(multiplication(A,B),multiplication(A,c(B)))) & leq(addition(multiplication(A,B),multiplication(A,c(B))),A))).  [assumption].
+10 test(c2).  [clausify(9)].
+11 -test(A) | c(A) != B | complement(A,B).  [clausify(8)].
+12 addition(A,A) = A.  [clausify(2)].
+13 multiplication(A,one) = A.  [clausify(3)].
+14 multiplication(one,A) = A.  [clausify(4)].
+15 addition(A,B) = addition(B,A).  [clausify(1)].
+16 multiplication(A,addition(B,C)) = addition(multiplication(A,B),multiplication(A,C)).  [clausify(5)].
+17 addition(multiplication(A,B),multiplication(A,C)) = multiplication(A,addition(B,C)).  [copy(16),flip(a)].
+18 -leq(c1,addition(multiplication(c1,c2),multiplication(c1,c(c2)))) | -leq(addition(multiplication(c1,c2),multiplication(c1,c(c2))),c1).  [clausify(9)].
+19 -leq(c1,multiplication(c1,addition(c2,c(c2)))) | -leq(addition(multiplication(c1,c2),multiplication(c1,c(c2))),c1).  [para(17(a,1),18(a,2))].
+20 -leq(c1,multiplication(c1,addition(c2,c(c2)))) | -leq(multiplication(c1,addition(c2,c(c2))),c1).  [para(17(a,1),19(b,1))].
+21 leq(A,B) | addition(A,B) != B.  [clausify(6)].
+22 -complement(A,B) | addition(B,A) = one.  [clausify(7)].
+23 -complement(A,B) | addition(A,B) = one.  [para(15(a,1),22(b,1))].
+24 c(c2) != A | complement(c2,A).  [resolve(11,a,10,a)].
+25 leq(A,A).  [resolve(21,b,12,a)].
+26 complement(c2,multiplication(one,c(c2))).  [resolve(24,a,14,a(flip))].
+27 complement(c2,c(c2)).  [para(14(a,1),26(a,2))].
+28 addition(c2,c(c2)) = one.  [resolve(27,a,23,a)].
+29 -leq(c1,multiplication(c1,one)) | -leq(multiplication(c1,addition(c2,c(c2))),c1).  [para(28(a,1),20(a,2,2))].
+30 -leq(c1,c1) | -leq(multiplication(c1,addition(c2,c(c2))),c1).  [para(13(a,1),29(a,2))].
+31 -leq(c1,c1) | -leq(multiplication(c1,one),c1).  [para(28(a,1),30(b,1,2))].
+32 -leq(c1,c1) | -leq(c1,c1).  [para(13(a,1),31(b,1))].
+33 -leq(c1,c1).  [copy(32),merge(b)].
+34 $F.  [resolve(25,a,33,a)].
+
+============================== end of proof ==========================

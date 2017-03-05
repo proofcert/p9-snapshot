@@ -1,0 +1,62 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n110.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:20:53 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 55563 was started by sandbox on n110.star.cs.uiowa.edu,
+Thu Jun  5 18:20:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_55531_n110.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 23.
+% Level of proof is 6.
+% Maximum clause weight is 6.000.
+% Given clauses 45.
+
+
+1 (all A (cowlThing(A) & -cowlNothing(A))).  [assumption].
+2 (all A (xsd_string(A) <-> -xsd_integer(A))).  [assumption].
+3 (all A (cEuroMP(A) <-> (exists B (risEuroMPFrom(A,B) & cowlThing(B))))).  [assumption].
+4 (all A all B (risEuroMPFrom(A,B) <-> rhasEuroMP(B,A))).  [assumption].
+5 -((all A (cowlThing(A) & -cowlNothing(A))) & (all A (xsd_string(A) <-> -xsd_integer(A))) & cEuroMP(iKinnock)).  [assumption].
+6 cowlThing(A).  [clausify(1)].
+7 rhasEuroMP(iUK,iKinnock).  [assumption].
+8 xsd_string(A) | xsd_integer(A).  [clausify(2)].
+9 -cowlNothing(A).  [clausify(1)].
+10 -xsd_string(A) | -xsd_integer(A).  [clausify(2)].
+11 risEuroMPFrom(A,B) | -rhasEuroMP(B,A).  [clausify(4)].
+12 cEuroMP(A) | -risEuroMPFrom(A,B) | -cowlThing(B).  [clausify(3)].
+13 cEuroMP(A) | -risEuroMPFrom(A,B).  [resolve(6,a,12,c)].
+14 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cEuroMP(iKinnock).  [clausify(5)].
+15 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cEuroMP(iKinnock).  [resolve(6,a,14,a)].
+16 xsd_string(c2) | -xsd_integer(c2) | -cEuroMP(iKinnock).  [resolve(9,a,15,a)].
+17 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cEuroMP(iKinnock).  [clausify(5)].
+18 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cEuroMP(iKinnock).  [resolve(6,a,17,a)].
+19 -xsd_string(c2) | xsd_integer(c2) | -cEuroMP(iKinnock).  [resolve(9,a,18,a)].
+20 risEuroMPFrom(iKinnock,iUK).  [resolve(11,b,7,a)].
+21 xsd_integer(c2) | -cEuroMP(iKinnock) | xsd_integer(c2).  [resolve(19,a,8,a)].
+22 xsd_integer(c2) | -cEuroMP(iKinnock).  [copy(21),merge(c)].
+23 cEuroMP(iKinnock).  [resolve(20,a,13,b)].
+24 xsd_integer(c2).  [resolve(23,a,22,b)].
+25 xsd_string(c2) | -cEuroMP(iKinnock).  [resolve(24,a,16,b)].
+26 xsd_string(c2).  [resolve(23,a,25,b)].
+27 -xsd_string(c2).  [resolve(10,b,24,a)].
+28 $F.  [resolve(26,a,27,a)].
+
+============================== end of proof ==========================

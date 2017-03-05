@@ -1,0 +1,21 @@
+
+
+
+
+5 relation(c11).  [clausify(4)].
+6 function(c11).  [clausify(4)].
+7 in(c10,relation_dom(relation_dom_restriction(c11,c9))).  [clausify(4)].
+8 apply(relation_dom_restriction(c11,c9),c10) != apply(c11,c10).  [clausify(4)].
+9 -relation(A) | relation(relation_dom_restriction(A,B)).  [clausify(1)].
+10 -relation(A) | -function(A) | function(relation_dom_restriction(A,B)).  [clausify(2)].
+11 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != A | -in(D,relation_dom(A)) | apply(B,D) = apply(A,D).  [clausify(3)].
+12 relation(relation_dom_restriction(c11,A)).  [resolve(9,a,5,a)].
+13 -relation(c11) | function(relation_dom_restriction(c11,A)).  [resolve(10,b,6,a)].
+14 function(relation_dom_restriction(c11,A)).  [resolve(5,a,13,a)].
+15 -function(relation_dom_restriction(c11,A)) | -relation(B) | -function(B) | relation_dom_restriction(B,C) != relation_dom_restriction(c11,A) | -in(D,relation_dom(relation_dom_restriction(c11,A))) | apply(B,D) = apply(relation_dom_restriction(c11,A),D).  [resolve(11,a,12,a)].
+16 -function(relation_dom_restriction(c11,A)) | -function(c11) | relation_dom_restriction(c11,B) != relation_dom_restriction(c11,A) | -in(C,relation_dom(relation_dom_restriction(c11,A))) | apply(c11,C) = apply(relation_dom_restriction(c11,A),C).  [resolve(15,b,5,a)].
+17 -function(relation_dom_restriction(c11,A)) | relation_dom_restriction(c11,B) != relation_dom_restriction(c11,A) | -in(C,relation_dom(relation_dom_restriction(c11,A))) | apply(c11,C) = apply(relation_dom_restriction(c11,A),C).  [resolve(16,b,6,a)].
+18 -function(relation_dom_restriction(c11,A)) | -in(B,relation_dom(relation_dom_restriction(c11,A))) | apply(c11,B) = apply(relation_dom_restriction(c11,A),B).  [xx_res(17,b)].
+19 -function(relation_dom_restriction(c11,c9)) | apply(c11,c10) = apply(relation_dom_restriction(c11,c9),c10).  [resolve(18,b,7,a)].
+20 -function(relation_dom_restriction(c11,c9)).  [resolve(19,b,8,a(flip))].
+21 $F.  [resolve(14,a,20,a)].

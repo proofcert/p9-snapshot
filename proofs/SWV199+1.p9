@@ -1,0 +1,77 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n091.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:54:38 CDT 2014
+% CPUTime    : 1.10 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 3867 was started by sandbox on n091.star.cs.uiowa.edu,
+Fri Jun  6 00:54:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_3835_n091.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.91 (+ 0.00) seconds.
+% Length of proof is 28.
+% Level of proof is 6.
+% Maximum clause weight is 15.000.
+% Given clauses 320.
+
+
+1 (all A (leq(n0,A) & leq(A,n0) -> A = n0)).  [assumption].
+2 (all A (leq(n0,A) & leq(A,n2) -> A = n0 | A = n1 | A = n2)).  [assumption].
+3 -(a_select2(rho_defuse,n0) = use & a_select2(rho_defuse,n1) = use & a_select2(rho_defuse,n2) = use & a_select2(sigma_defuse,n0) = use & a_select2(sigma_defuse,n1) = use & a_select2(sigma_defuse,n2) = use & a_select2(sigma_defuse,n3) = use & a_select2(sigma_defuse,n4) = use & a_select2(sigma_defuse,n5) = use & a_select3(u_defuse,n0,n0) = use & a_select3(u_defuse,n1,n0) = use & a_select3(u_defuse,n2,n0) = use & a_select2(xinit_defuse,n3) = use & a_select2(xinit_defuse,n4) = use & a_select2(xinit_defuse,n5) = use & a_select2(xinit_mean_defuse,n0) = use & a_select2(xinit_mean_defuse,n1) = use & a_select2(xinit_mean_defuse,n2) = use & a_select2(xinit_mean_defuse,n3) = use & a_select2(xinit_mean_defuse,n4) = use & a_select2(xinit_mean_defuse,n5) = use & a_select2(xinit_noise_defuse,n0) = use & a_select2(xinit_noise_defuse,n1) = use & a_select2(xinit_noise_defuse,n2) = use & a_select2(xinit_noise_defuse,n3) = use & a_select2(xinit_noise_defuse,n4) = use & a_select2(xinit_noise_defuse,n5) = use & leq(n0,pv5) & leq(pv5,n0) & leq(pv5,n998) & (all A all B (leq(n0,A) & leq(n0,B) & leq(A,n2) & leq(B,pred(pv5)) -> a_select3(u_defuse,A,B) = use)) & (all C all D (leq(n0,C) & leq(n0,D) & leq(C,n2) & leq(D,pred(pv5)) -> a_select3(z_defuse,C,D) = use)) -> (all E all F (leq(n0,E) & leq(n0,F) & leq(E,n2) & leq(F,pv5) -> (-(n0 = E & pv5 = F) & -(n1 = E & pv5 = F) & -(n2 = E & pv5 = F) -> a_select3(z_defuse,E,F) = use)))).  [assumption].
+4 -leq(n0,A) | -leq(A,n0) | n0 = A.  [clausify(1)].
+5 -leq(n0,A) | -leq(A,n2) | n0 = A | n1 = A | n2 = A.  [clausify(2)].
+6 leq(n0,pv5).  [clausify(3)].
+7 leq(pv5,n0).  [clausify(3)].
+8 leq(n0,c1).  [clausify(3)].
+9 leq(n0,c2).  [clausify(3)].
+10 leq(c1,n2).  [clausify(3)].
+11 leq(c2,pv5).  [clausify(3)].
+12 c1 != n0 | pv5 != c2.  [clausify(3)].
+13 c1 != n0 | c2 != pv5.  [copy(12),flip(b)].
+14 n1 != c1 | pv5 != c2.  [clausify(3)].
+15 c1 != n1 | pv5 != c2.  [copy(14),flip(a)].
+16 c1 != n1 | c2 != pv5.  [copy(15),flip(b)].
+17 n2 != c1 | pv5 != c2.  [clausify(3)].
+18 c1 != n2 | pv5 != c2.  [copy(17),flip(a)].
+19 c1 != n2 | c2 != pv5.  [copy(18),flip(b)].
+20 -leq(pv5,n0) | n0 = pv5.  [resolve(6,a,4,a)].
+21 -leq(pv5,n0) | pv5 = n0.  [copy(20),flip(b)].
+22 pv5 = n0.  [resolve(7,a,21,a)].
+23 c1 != n2 | c2 != n0.  [para(22(a,1),19(b,2))].
+24 c1 != n1 | c2 != n0.  [para(22(a,1),16(b,2))].
+25 c1 != n0 | c2 != n0.  [para(22(a,1),13(b,2))].
+26 leq(c2,n0).  [para(22(a,1),11(a,2))].
+27 -leq(c1,n2) | n0 = c1 | n1 = c1 | n2 = c1.  [resolve(8,a,5,a)].
+28 -leq(c1,n2) | c1 = n0 | n1 = c1 | n2 = c1.  [copy(27),flip(b)].
+29 -leq(c1,n2) | c1 = n0 | c1 = n1 | n2 = c1.  [copy(28),flip(c)].
+30 -leq(c1,n2) | c1 = n0 | c1 = n1 | c1 = n2.  [copy(29),flip(d)].
+31 c1 = n0 | c1 = n1 | c1 = n2.  [resolve(10,a,30,a)].
+32 -leq(c2,n0) | n0 = c2.  [resolve(9,a,4,a)].
+33 -leq(c2,n0) | c2 = n0.  [copy(32),flip(b)].
+34 c2 = n0.  [resolve(26,a,33,a)].
+35 c1 != n0 | n0 != n0.  [para(34(a,1),25(b,1))].
+36 c1 != n0.  [copy(35),xx(b)].
+37 c1 != n1 | n0 != n0.  [para(34(a,1),24(b,1))].
+38 c1 != n1.  [copy(37),xx(b)].
+39 c1 != n2 | n0 != n0.  [para(34(a,1),23(b,1))].
+40 c1 != n2.  [copy(39),xx(b)].
+41 c1 = n1 | c1 = n2.  [resolve(36,a,31,a)].
+42 c1 = n2.  [resolve(38,a,41,a)].
+43 $F.  [resolve(40,a,42,a)].
+
+============================== end of proof ==========================

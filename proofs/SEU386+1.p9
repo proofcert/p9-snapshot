@@ -1,0 +1,98 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n164.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 10:54:13 CDT 2014
+% CPUTime    : 0.33 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 39751 was started by sandbox on n164.star.cs.uiowa.edu,
+Fri Jun  6 10:54:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_39706_n164.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.19 (+ 0.00) seconds.
+% Length of proof is 40.
+% Level of proof is 6.
+% Maximum clause weight is 25.000.
+% Given clauses 852.
+
+
+1 (all A (-empty_carrier(A) & topological_space(A) & top_str(A) -> (all B (-empty_carrier(B) & transitive_relstr(B) & directed_relstr(B) & net_str(B,A) -> (all C (element(C,powerset(the_carrier(A))) -> (C = lim_points_of_net(A,B) <-> (all D (element(D,the_carrier(A)) -> (in(D,C) <-> (all E (point_neighbourhood(E,A,D) -> is_eventually_in(A,B,E))))))))))))).  [assumption].
+2 (all A (-empty_carrier(A) & topological_space(A) & top_str(A) -> (all B (-empty_carrier(B) & net_str(B,A) -> (all C (element(C,the_carrier(A)) -> (is_a_cluster_point_of_netstr(A,B,C) <-> (all D (point_neighbourhood(D,A,C) -> is_often_in(A,B,D)))))))))).  [assumption].
+3 (all A all B (-empty_carrier(A) & topological_space(A) & top_str(A) & -empty_carrier(B) & transitive_relstr(B) & directed_relstr(B) & net_str(B,A) -> element(lim_points_of_net(A,B),powerset(the_carrier(A))))).  [assumption].
+4 (all A (top_str(A) -> one_sorted_str(A))).  [assumption].
+5 (all A (-empty_carrier(A) & one_sorted_str(A) -> (all B (-empty_carrier(B) & transitive_relstr(B) & directed_relstr(B) & net_str(B,A) -> (all C (is_eventually_in(A,B,C) -> is_often_in(A,B,C))))))).  [assumption].
+6 -(all A (-empty_carrier(A) & topological_space(A) & top_str(A) -> (all B (-empty_carrier(B) & transitive_relstr(B) & directed_relstr(B) & net_str(B,A) -> (all C (element(C,the_carrier(A)) -> (in(C,lim_points_of_net(A,B)) -> is_a_cluster_point_of_netstr(A,B,C)))))))).  [assumption].
+7 -top_str(A) | one_sorted_str(A).  [clausify(4)].
+8 top_str(c8).  [clausify(6)].
+9 empty_carrier(A) | -topological_space(A) | -top_str(A) | empty_carrier(B) | -transitive_relstr(B) | -directed_relstr(B) | -net_str(B,A) | element(lim_points_of_net(A,B),powerset(the_carrier(A))).  [clausify(3)].
+10 empty_carrier(A) | -topological_space(A) | -top_str(A) | empty_carrier(B) | -net_str(B,A) | -element(C,the_carrier(A)) | is_a_cluster_point_of_netstr(A,B,C) | point_neighbourhood(f4(A,B,C),A,C).  [clausify(2)].
+11 empty_carrier(A) | -topological_space(A) | -top_str(A) | empty_carrier(B) | -net_str(B,A) | -element(C,the_carrier(A)) | is_a_cluster_point_of_netstr(A,B,C) | -is_often_in(A,B,f4(A,B,C)).  [clausify(2)].
+12 empty_carrier(A) | -topological_space(A) | -top_str(A) | empty_carrier(B) | -transitive_relstr(B) | -directed_relstr(B) | -net_str(B,A) | -element(C,powerset(the_carrier(A))) | lim_points_of_net(A,B) != C | -element(D,the_carrier(A)) | -in(D,C) | -point_neighbourhood(E,A,D) | is_eventually_in(A,B,E).  [clausify(1)].
+13 empty_carrier(A) | -one_sorted_str(A) | empty_carrier(B) | -transitive_relstr(B) | -directed_relstr(B) | -net_str(B,A) | -is_eventually_in(A,B,C) | is_often_in(A,B,C).  [clausify(5)].
+14 transitive_relstr(c9).  [clausify(6)].
+15 empty_carrier(c8) | -topological_space(c8) | empty_carrier(A) | -transitive_relstr(A) | -directed_relstr(A) | -net_str(A,c8) | element(lim_points_of_net(c8,A),powerset(the_carrier(c8))).  [resolve(9,c,8,a)].
+16 empty_carrier(c8) | -topological_space(c8) | empty_carrier(A) | -transitive_relstr(A) | -directed_relstr(A) | -net_str(A,c8) | -element(B,powerset(the_carrier(c8))) | lim_points_of_net(c8,A) != B | -element(C,the_carrier(c8)) | -in(C,B) | -point_neighbourhood(D,c8,C) | is_eventually_in(c8,A,D).  [resolve(12,c,8,a)].
+17 topological_space(c8).  [clausify(6)].
+18 directed_relstr(c9).  [clausify(6)].
+19 net_str(c9,c8).  [clausify(6)].
+20 element(c10,the_carrier(c8)).  [clausify(6)].
+21 in(c10,lim_points_of_net(c8,c9)).  [clausify(6)].
+22 -empty_carrier(c8).  [clausify(6)].
+23 -empty_carrier(c9).  [clausify(6)].
+24 -is_a_cluster_point_of_netstr(c8,c9,c10).  [clausify(6)].
+25 one_sorted_str(c8).  [resolve(7,a,8,a)].
+26 empty_carrier(c8) | -topological_space(c8) | empty_carrier(A) | -net_str(A,c8) | -element(B,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,A,B) | point_neighbourhood(f4(c8,A,B),c8,B).  [resolve(10,c,8,a)].
+27 -topological_space(c8) | empty_carrier(A) | -net_str(A,c8) | -element(B,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,A,B) | point_neighbourhood(f4(c8,A,B),c8,B).  [resolve(22,a,26,a)].
+28 empty_carrier(A) | -net_str(A,c8) | -element(B,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,A,B) | point_neighbourhood(f4(c8,A,B),c8,B).  [resolve(17,a,27,a)].
+29 empty_carrier(c8) | -topological_space(c8) | empty_carrier(A) | -net_str(A,c8) | -element(B,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,A,B) | -is_often_in(c8,A,f4(c8,A,B)).  [resolve(11,c,8,a)].
+30 -topological_space(c8) | empty_carrier(A) | -net_str(A,c8) | -element(B,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,A,B) | -is_often_in(c8,A,f4(c8,A,B)).  [resolve(22,a,29,a)].
+31 empty_carrier(A) | -net_str(A,c8) | -element(B,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,A,B) | -is_often_in(c8,A,f4(c8,A,B)).  [resolve(17,a,30,a)].
+32 empty_carrier(A) | -one_sorted_str(A) | empty_carrier(c9) | -directed_relstr(c9) | -net_str(c9,A) | -is_eventually_in(A,c9,B) | is_often_in(A,c9,B).  [resolve(13,d,14,a)].
+33 empty_carrier(A) | -one_sorted_str(A) | -directed_relstr(c9) | -net_str(c9,A) | -is_eventually_in(A,c9,B) | is_often_in(A,c9,B).  [resolve(23,a,32,c)].
+34 empty_carrier(A) | -one_sorted_str(A) | -net_str(c9,A) | -is_eventually_in(A,c9,B) | is_often_in(A,c9,B).  [resolve(18,a,33,c)].
+35 empty_carrier(c8) | -topological_space(c8) | empty_carrier(c9) | -directed_relstr(c9) | -net_str(c9,c8) | element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))).  [resolve(15,d,14,a)].
+36 -topological_space(c8) | empty_carrier(c9) | -directed_relstr(c9) | -net_str(c9,c8) | element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))).  [resolve(22,a,35,a)].
+37 empty_carrier(c9) | -directed_relstr(c9) | -net_str(c9,c8) | element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))).  [resolve(17,a,36,a)].
+38 -directed_relstr(c9) | -net_str(c9,c8) | element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))).  [resolve(23,a,37,a)].
+39 -net_str(c9,c8) | element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))).  [resolve(18,a,38,a)].
+40 element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))).  [resolve(19,a,39,a)].
+41 empty_carrier(c8) | -topological_space(c8) | empty_carrier(c9) | -directed_relstr(c9) | -net_str(c9,c8) | -element(A,powerset(the_carrier(c8))) | lim_points_of_net(c8,c9) != A | -element(B,the_carrier(c8)) | -in(B,A) | -point_neighbourhood(C,c8,B) | is_eventually_in(c8,c9,C).  [resolve(16,d,14,a)].
+42 -topological_space(c8) | empty_carrier(c9) | -directed_relstr(c9) | -net_str(c9,c8) | -element(A,powerset(the_carrier(c8))) | lim_points_of_net(c8,c9) != A | -element(B,the_carrier(c8)) | -in(B,A) | -point_neighbourhood(C,c8,B) | is_eventually_in(c8,c9,C).  [resolve(22,a,41,a)].
+43 empty_carrier(c9) | -directed_relstr(c9) | -net_str(c9,c8) | -element(A,powerset(the_carrier(c8))) | lim_points_of_net(c8,c9) != A | -element(B,the_carrier(c8)) | -in(B,A) | -point_neighbourhood(C,c8,B) | is_eventually_in(c8,c9,C).  [resolve(17,a,42,a)].
+44 -directed_relstr(c9) | -net_str(c9,c8) | -element(A,powerset(the_carrier(c8))) | lim_points_of_net(c8,c9) != A | -element(B,the_carrier(c8)) | -in(B,A) | -point_neighbourhood(C,c8,B) | is_eventually_in(c8,c9,C).  [resolve(23,a,43,a)].
+45 -net_str(c9,c8) | -element(A,powerset(the_carrier(c8))) | lim_points_of_net(c8,c9) != A | -element(B,the_carrier(c8)) | -in(B,A) | -point_neighbourhood(C,c8,B) | is_eventually_in(c8,c9,C).  [resolve(18,a,44,a)].
+46 -element(A,powerset(the_carrier(c8))) | lim_points_of_net(c8,c9) != A | -element(B,the_carrier(c8)) | -in(B,A) | -point_neighbourhood(C,c8,B) | is_eventually_in(c8,c9,C).  [resolve(19,a,45,a)].
+47 empty_carrier(c9) | -element(A,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,c9,A) | point_neighbourhood(f4(c8,c9,A),c8,A).  [resolve(28,b,19,a)].
+48 -element(A,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,c9,A) | point_neighbourhood(f4(c8,c9,A),c8,A).  [resolve(23,a,47,a)].
+49 -net_str(c9,c8) | -element(A,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,c9,A) | -is_often_in(c8,c9,f4(c8,c9,A)).  [resolve(31,a,23,a)].
+50 -element(A,the_carrier(c8)) | is_a_cluster_point_of_netstr(c8,c9,A) | -is_often_in(c8,c9,f4(c8,c9,A)).  [resolve(49,a,19,a)].
+51 is_a_cluster_point_of_netstr(c8,c9,c10) | -is_often_in(c8,c9,f4(c8,c9,c10)).  [resolve(50,a,20,a)].
+52 -is_often_in(c8,c9,f4(c8,c9,c10)).  [resolve(51,a,24,a)].
+53 is_a_cluster_point_of_netstr(c8,c9,c10) | point_neighbourhood(f4(c8,c9,c10),c8,c10).  [resolve(48,a,20,a)].
+54 point_neighbourhood(f4(c8,c9,c10),c8,c10).  [resolve(24,a,53,a)].
+55 -one_sorted_str(c8) | -net_str(c9,c8) | -is_eventually_in(c8,c9,A) | is_often_in(c8,c9,A).  [resolve(34,a,22,a)].
+56 -net_str(c9,c8) | -is_eventually_in(c8,c9,A) | is_often_in(c8,c9,A).  [resolve(55,a,25,a)].
+57 -is_eventually_in(c8,c9,A) | is_often_in(c8,c9,A).  [resolve(56,a,19,a)].
+58 -is_eventually_in(c8,c9,f4(c8,c9,c10)).  [resolve(57,b,52,a)].
+59 -element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))) | -element(A,the_carrier(c8)) | -in(A,lim_points_of_net(c8,c9)) | -point_neighbourhood(B,c8,A) | is_eventually_in(c8,c9,B).  [xx_res(46,b)].
+60 -element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))) | -in(c10,lim_points_of_net(c8,c9)) | -point_neighbourhood(A,c8,c10) | is_eventually_in(c8,c9,A).  [resolve(59,b,20,a)].
+61 -element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))) | -point_neighbourhood(A,c8,c10) | is_eventually_in(c8,c9,A).  [resolve(60,b,21,a)].
+62 -element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))) | is_eventually_in(c8,c9,f4(c8,c9,c10)).  [resolve(61,b,54,a)].
+63 -element(lim_points_of_net(c8,c9),powerset(the_carrier(c8))).  [resolve(62,b,58,a)].
+64 $F.  [resolve(40,a,63,a)].
+
+============================== end of proof ==========================

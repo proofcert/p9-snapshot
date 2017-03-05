@@ -1,0 +1,131 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n165.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 02:12:38 CDT 2014
+% CPUTime    : 23.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 34010 was started by sandbox on n165.star.cs.uiowa.edu,
+Fri Jun  6 02:12:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_33978_n165.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 23.11 (+ 0.09) seconds.
+% Length of proof is 65.
+% Level of proof is 17.
+% Maximum clause weight is 49.000.
+% Given clauses 2578.
+
+
+1 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+2 (all A (relation(A) -> (all B all C (relation(C) -> (C = relation_dom_restriction(A,B) <-> (all D all E (in(ordered_pair(D,E),C) <-> in(D,B) & in(ordered_pair(D,E),A)))))))).  [assumption].
+3 (all A (relation(A) -> (all B (B = relation_dom(A) <-> (all C (in(C,B) <-> (exists D in(ordered_pair(C,D),A)))))))).  [assumption].
+4 (all A all B ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A))).  [assumption].
+5 (all A all B (relation(A) -> relation(relation_dom_restriction(A,B)))).  [assumption].
+6 -(all A all B all C (relation(C) -> (in(A,relation_dom(relation_dom_restriction(C,B))) <-> in(A,B) & in(A,relation_dom(C))))).  [assumption].
+7 relation(c7).  [clausify(6)].
+8 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+9 in(c5,relation_dom(relation_dom_restriction(c7,c6))) | in(c5,c6).  [clausify(6)].
+10 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(4)].
+11 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(8(a,1),10(a,2))].
+12 in(c5,relation_dom(relation_dom_restriction(c7,c6))) | in(c5,relation_dom(c7)).  [clausify(6)].
+13 -in(c5,relation_dom(relation_dom_restriction(c7,c6))) | -in(c5,c6) | -in(c5,relation_dom(c7)).  [clausify(6)].
+14 -relation(A) | relation(relation_dom_restriction(A,B)).  [clausify(5)].
+15 -relation(A) | relation_dom(A) != B | in(C,B) | -in(ordered_pair(C,D),A).  [clausify(3)].
+16 -relation(A) | relation_dom(A) != B | in(C,B) | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A).  [para(11(a,1),15(d,1))].
+17 -relation(A) | -relation(B) | relation_dom_restriction(A,C) != B | -in(ordered_pair(D,E),B) | in(D,C).  [clausify(2)].
+18 -relation(A) | -relation(B) | relation_dom_restriction(A,C) != B | -in(unordered_pair(singleton(D),unordered_pair(D,E)),B) | in(D,C).  [para(11(a,1),17(d,1))].
+19 -relation(A) | relation_dom(A) != B | -in(C,B) | in(ordered_pair(C,f3(A,B,C)),A).  [clausify(3)].
+20 -relation(A) | relation_dom(A) != B | -in(C,B) | in(unordered_pair(singleton(C),unordered_pair(C,f3(A,B,C))),A).  [para(11(a,1),19(d,1))].
+21 -relation(A) | -relation(B) | relation_dom_restriction(A,C) != B | -in(ordered_pair(D,E),B) | in(ordered_pair(D,E),A).  [clausify(2)].
+22 -relation(A) | -relation(B) | relation_dom_restriction(A,C) != B | -in(unordered_pair(singleton(D),unordered_pair(D,E)),B) | in(ordered_pair(D,E),A).  [para(11(a,1),21(d,1))].
+23 -relation(A) | -relation(B) | relation_dom_restriction(A,C) != B | -in(unordered_pair(singleton(D),unordered_pair(D,E)),B) | in(unordered_pair(singleton(D),unordered_pair(D,E)),A).  [para(11(a,1),22(e,1))].
+24 -relation(A) | -relation(B) | relation_dom_restriction(A,C) != B | in(ordered_pair(D,E),B) | -in(D,C) | -in(ordered_pair(D,E),A).  [clausify(2)].
+25 -relation(A) | -relation(B) | relation_dom_restriction(A,C) != B | in(unordered_pair(singleton(D),unordered_pair(D,E)),B) | -in(D,C) | -in(ordered_pair(D,E),A).  [para(11(a,1),24(d,1))].
+26 -relation(A) | -relation(B) | relation_dom_restriction(A,C) != B | in(unordered_pair(singleton(D),unordered_pair(D,E)),B) | -in(D,C) | -in(unordered_pair(singleton(D),unordered_pair(D,E)),A).  [para(11(a,1),25(f,1))].
+27 -relation(A) | -relation(B) | relation_dom_restriction(A,C) = B | in(ordered_pair(f1(A,C,B),f2(A,C,B)),B) | in(ordered_pair(f1(A,C,B),f2(A,C,B)),A).  [clausify(2)].
+28 -relation(A) | -relation(B) | relation_dom_restriction(A,C) = B | in(unordered_pair(singleton(f1(A,C,B)),unordered_pair(f1(A,C,B),f2(A,C,B))),B) | in(ordered_pair(f1(A,C,B),f2(A,C,B)),A).  [para(11(a,1),27(d,1))].
+29 -relation(A) | -relation(B) | relation_dom_restriction(A,C) = B | in(unordered_pair(singleton(f1(A,C,B)),unordered_pair(f1(A,C,B),f2(A,C,B))),B) | in(unordered_pair(singleton(f1(A,C,B)),unordered_pair(f1(A,C,B),f2(A,C,B))),A).  [para(11(a,1),28(e,1))].
+30 -relation(A) | -relation(B) | relation_dom_restriction(A,C) = B | -in(ordered_pair(f1(A,C,B),f2(A,C,B)),B) | -in(f1(A,C,B),C) | -in(ordered_pair(f1(A,C,B),f2(A,C,B)),A).  [clausify(2)].
+31 -relation(A) | -relation(B) | relation_dom_restriction(A,C) = B | -in(unordered_pair(singleton(f1(A,C,B)),unordered_pair(f1(A,C,B),f2(A,C,B))),B) | -in(f1(A,C,B),C) | -in(ordered_pair(f1(A,C,B),f2(A,C,B)),A).  [para(11(a,1),30(d,1))].
+32 -relation(A) | -relation(B) | relation_dom_restriction(A,C) = B | -in(unordered_pair(singleton(f1(A,C,B)),unordered_pair(f1(A,C,B),f2(A,C,B))),B) | -in(f1(A,C,B),C) | -in(unordered_pair(singleton(f1(A,C,B)),unordered_pair(f1(A,C,B),f2(A,C,B))),A).  [para(11(a,1),31(f,1))].
+33 -relation(A) | relation_dom_restriction(A,B) != A | -in(unordered_pair(singleton(C),unordered_pair(C,D)),A) | in(C,B).  [factor(18,a,b)].
+34 -relation(A) | relation_dom_restriction(A,B) = A | in(unordered_pair(singleton(f1(A,B,A)),unordered_pair(f1(A,B,A),f2(A,B,A))),A) | in(unordered_pair(singleton(f1(A,B,A)),unordered_pair(f1(A,B,A),f2(A,B,A))),A).  [factor(29,a,b)].
+35 -relation(A) | relation_dom_restriction(A,B) = A | in(unordered_pair(singleton(f1(A,B,A)),unordered_pair(f1(A,B,A),f2(A,B,A))),A).  [copy(34),merge(d)].
+36 -relation(A) | relation_dom_restriction(A,B) = A | -in(unordered_pair(singleton(f1(A,B,A)),unordered_pair(f1(A,B,A),f2(A,B,A))),A) | -in(f1(A,B,A),B) | -in(unordered_pair(singleton(f1(A,B,A)),unordered_pair(f1(A,B,A),f2(A,B,A))),A).  [factor(32,a,b)].
+37 -relation(A) | relation_dom_restriction(A,B) = A | -in(unordered_pair(singleton(f1(A,B,A)),unordered_pair(f1(A,B,A),f2(A,B,A))),A) | -in(f1(A,B,A),B).  [copy(36),merge(e)].
+38 relation(relation_dom_restriction(c7,A)).  [resolve(14,a,7,a)].
+39 -relation(A) | relation_dom(A) != relation_dom(relation_dom_restriction(c7,c6)) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(A,relation_dom(relation_dom_restriction(c7,c6)),c5))),A) | in(c5,relation_dom(c7)).  [resolve(20,c,12,a)].
+40 -relation(A) | relation_dom(relation_dom_restriction(c7,c6)) != relation_dom(A) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(A,relation_dom(relation_dom_restriction(c7,c6)),c5))),A) | in(c5,relation_dom(c7)).  [copy(39),flip(b)].
+41 -relation(A) | relation_dom(A) != relation_dom(relation_dom_restriction(c7,c6)) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(A,relation_dom(relation_dom_restriction(c7,c6)),c5))),A) | in(c5,c6).  [resolve(20,c,9,a)].
+42 -relation(A) | relation_dom(relation_dom_restriction(c7,c6)) != relation_dom(A) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(A,relation_dom(relation_dom_restriction(c7,c6)),c5))),A) | in(c5,c6).  [copy(41),flip(b)].
+43 -relation(A) | relation_dom_restriction(c7,B) = A | in(unordered_pair(singleton(f1(c7,B,A)),unordered_pair(f1(c7,B,A),f2(c7,B,A))),A) | in(unordered_pair(singleton(f1(c7,B,A)),unordered_pair(f1(c7,B,A),f2(c7,B,A))),c7).  [resolve(29,a,7,a)].
+44 -relation(c7) | relation_dom_restriction(c7,A) = c7 | in(unordered_pair(singleton(f1(c7,A,c7)),unordered_pair(f1(c7,A,c7),f2(c7,A,c7))),c7).  [factor(43,c,d)].
+45 relation_dom_restriction(c7,A) = c7 | in(unordered_pair(singleton(f1(c7,A,c7)),unordered_pair(f1(c7,A,c7),f2(c7,A,c7))),c7).  [resolve(7,a,44,a)].
+46 relation_dom_restriction(relation_dom_restriction(c7,A),B) = relation_dom_restriction(c7,A) | in(unordered_pair(singleton(f1(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A))),unordered_pair(f1(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A)),f2(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A)))),relation_dom_restriction(c7,A)).  [resolve(38,a,35,a)].
+47 relation_dom(relation_dom_restriction(c7,c6)) != relation_dom(relation_dom_restriction(c7,A)) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,A),relation_dom(relation_dom_restriction(c7,c6)),c5))),relation_dom_restriction(c7,A)) | in(c5,relation_dom(c7)).  [resolve(40,a,38,a)].
+48 relation_dom(relation_dom_restriction(c7,c6)) != relation_dom(relation_dom_restriction(c7,A)) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,A),relation_dom(relation_dom_restriction(c7,c6)),c5))),relation_dom_restriction(c7,A)) | in(c5,c6).  [resolve(42,a,38,a)].
+49 relation_dom_restriction(c7,A) = c7 | -relation(c7) | relation_dom_restriction(c7,A) = c7 | -in(f1(c7,A,c7),A).  [resolve(45,b,37,c)].
+50 relation_dom_restriction(c7,A) = c7 | -relation(c7) | -in(f1(c7,A,c7),A).  [copy(49),merge(c)].
+51 relation_dom_restriction(c7,A) = c7 | -in(f1(c7,A,c7),A).  [resolve(7,a,50,b)].
+52 relation_dom_restriction(c7,A) = c7 | -relation(c7) | relation_dom(c7) != B | in(f1(c7,A,c7),B).  [resolve(45,b,16,d)].
+53 relation_dom_restriction(c7,A) = c7 | relation_dom(c7) != B | in(f1(c7,A,c7),B).  [resolve(7,a,52,b)].
+54 relation_dom_restriction(c7,A) = c7 | in(f1(c7,A,c7),relation_dom(c7)).  [xx_res(53,b)].
+55 relation_dom_restriction(c7,relation_dom(c7)) = c7 | relation_dom_restriction(c7,relation_dom(c7)) = c7.  [resolve(54,b,51,b)].
+56 relation_dom_restriction(c7,relation_dom(c7)) = c7.  [copy(55),merge(b)].
+57 relation_dom_restriction(relation_dom_restriction(c7,A),B) = relation_dom_restriction(c7,A) | -relation(relation_dom_restriction(c7,A)) | relation_dom_restriction(relation_dom_restriction(c7,A),B) = relation_dom_restriction(c7,A) | -in(f1(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A)),B).  [resolve(46,b,37,c)].
+58 relation_dom_restriction(relation_dom_restriction(c7,A),B) = relation_dom_restriction(c7,A) | -relation(relation_dom_restriction(c7,A)) | -in(f1(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A)),B).  [copy(57),merge(c)].
+59 relation_dom_restriction(relation_dom_restriction(c7,A),B) = relation_dom_restriction(c7,A) | -in(f1(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A)),B).  [resolve(38,a,58,b)].
+60 relation_dom_restriction(relation_dom_restriction(c7,A),B) = relation_dom_restriction(c7,A) | -relation(relation_dom_restriction(c7,A)) | relation_dom(relation_dom_restriction(c7,A)) != C | in(f1(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A)),C).  [resolve(46,b,16,d)].
+61 relation_dom_restriction(relation_dom_restriction(c7,A),B) = relation_dom_restriction(c7,A) | relation_dom(relation_dom_restriction(c7,A)) != C | in(f1(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A)),C).  [resolve(38,a,60,b)].
+62 in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,c6),relation_dom(relation_dom_restriction(c7,c6)),c5))),relation_dom_restriction(c7,c6)) | in(c5,relation_dom(c7)).  [xx_res(47,a)].
+63 in(c5,relation_dom(c7)) | -relation(A) | -relation(relation_dom_restriction(c7,c6)) | relation_dom_restriction(A,B) != relation_dom_restriction(c7,c6) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,c6),relation_dom(relation_dom_restriction(c7,c6)),c5))),A).  [resolve(62,a,23,d)].
+64 in(c5,relation_dom(c7)) | -relation(A) | -relation(relation_dom_restriction(c7,c6)) | relation_dom_restriction(c7,c6) != relation_dom_restriction(A,B) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,c6),relation_dom(relation_dom_restriction(c7,c6)),c5))),A).  [copy(63),flip(d)].
+65 in(c5,relation_dom(c7)) | -relation(A) | relation_dom_restriction(c7,c6) != relation_dom_restriction(A,B) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,c6),relation_dom(relation_dom_restriction(c7,c6)),c5))),A).  [resolve(38,a,64,c)].
+66 relation_dom_restriction(relation_dom_restriction(c7,A),B) = relation_dom_restriction(c7,A) | in(f1(relation_dom_restriction(c7,A),B,relation_dom_restriction(c7,A)),relation_dom(relation_dom_restriction(c7,A))).  [xx_res(61,b)].
+67 relation_dom_restriction(relation_dom_restriction(c7,A),relation_dom(relation_dom_restriction(c7,A))) = relation_dom_restriction(c7,A) | relation_dom_restriction(relation_dom_restriction(c7,A),relation_dom(relation_dom_restriction(c7,A))) = relation_dom_restriction(c7,A).  [resolve(66,b,59,b)].
+68 relation_dom_restriction(relation_dom_restriction(c7,A),relation_dom(relation_dom_restriction(c7,A))) = relation_dom_restriction(c7,A).  [copy(67),merge(b)].
+69 in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,c6),relation_dom(relation_dom_restriction(c7,c6)),c5))),relation_dom_restriction(c7,c6)) | in(c5,c6).  [xx_res(48,a)].
+70 in(c5,c6) | -relation(A) | -relation(relation_dom_restriction(c7,c6)) | relation_dom_restriction(A,B) != relation_dom_restriction(c7,c6) | in(c5,B).  [resolve(69,a,18,d)].
+71 in(c5,c6) | -relation(A) | -relation(relation_dom_restriction(c7,c6)) | relation_dom_restriction(c7,c6) != relation_dom_restriction(A,B) | in(c5,B).  [copy(70),flip(d)].
+72 in(c5,c6) | -relation(A) | relation_dom_restriction(c7,c6) != relation_dom_restriction(A,B) | in(c5,B).  [resolve(38,a,71,c)].
+73 in(c5,c6) | -relation(A) | relation_dom_restriction(c7,c6) != relation_dom_restriction(A,c6).  [factor(72,a,d)].
+74 in(c5,c6) | relation_dom_restriction(c7,c6) != relation_dom_restriction(c7,c6).  [resolve(73,b,7,a)].
+75 in(c5,c6).  [copy(74),xx(b)].
+76 -in(c5,relation_dom(relation_dom_restriction(c7,c6))) | -in(c5,relation_dom(c7)).  [resolve(75,a,13,b)].
+77 in(c5,relation_dom(c7)) | relation_dom_restriction(c7,c6) != relation_dom_restriction(c7,A) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,c6),relation_dom(relation_dom_restriction(c7,c6)),c5))),c7).  [resolve(65,b,7,a)].
+78 in(c5,relation_dom(c7)) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(relation_dom_restriction(c7,c6),relation_dom(relation_dom_restriction(c7,c6)),c5))),c7).  [copy(77),xx(b)].
+79 in(c5,relation_dom(c7)) | -relation(c7) | relation_dom_restriction(c7,A) != c7 | in(c5,A).  [resolve(78,b,33,c)].
+80 in(c5,relation_dom(c7)) | relation_dom_restriction(c7,A) != c7 | in(c5,A).  [resolve(7,a,79,b)].
+81 in(c5,relation_dom(c7)) | relation_dom_restriction(c7,relation_dom(c7)) != c7.  [factor(80,a,c)].
+82 in(c5,relation_dom(c7)) | c7 != c7.  [para(56(a,1),81(b,1))].
+83 in(c5,relation_dom(c7)).  [copy(82),xx(b)].
+84 -in(c5,relation_dom(relation_dom_restriction(c7,c6))).  [resolve(83,a,76,b)].
+85 -relation(A) | relation_dom(A) != relation_dom(c7) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(A,relation_dom(c7),c5))),A).  [resolve(83,a,20,c)].
+86 -relation(A) | relation_dom(c7) != relation_dom(A) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(A,relation_dom(c7),c5))),A).  [copy(85),flip(b)].
+87 relation_dom(c7) != relation_dom(c7) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(c7,relation_dom(c7),c5))),c7).  [resolve(86,a,7,a)].
+88 in(unordered_pair(singleton(c5),unordered_pair(c5,f3(c7,relation_dom(c7),c5))),c7).  [copy(87),xx(a)].
+89 -relation(c7) | -relation(A) | relation_dom_restriction(c7,B) != A | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(c7,relation_dom(c7),c5))),A) | -in(c5,B).  [resolve(88,a,26,f)].
+90 -relation(A) | relation_dom_restriction(c7,B) != A | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(c7,relation_dom(c7),c5))),A) | -in(c5,B).  [resolve(7,a,89,a)].
+91 -relation(A) | relation_dom_restriction(c7,c6) != A | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(c7,relation_dom(c7),c5))),A).  [resolve(90,d,75,a)].
+92 relation_dom_restriction(c7,c6) != relation_dom_restriction(c7,A) | in(unordered_pair(singleton(c5),unordered_pair(c5,f3(c7,relation_dom(c7),c5))),relation_dom_restriction(c7,A)).  [resolve(91,a,38,a)].
+93 in(unordered_pair(singleton(c5),unordered_pair(c5,f3(c7,relation_dom(c7),c5))),relation_dom_restriction(c7,c6)).  [xx_res(92,a)].
+94 -relation(relation_dom_restriction(c7,A)) | -in(unordered_pair(singleton(B),unordered_pair(B,C)),relation_dom_restriction(c7,A)) | in(B,relation_dom(relation_dom_restriction(c7,A))).  [resolve(33,b,68,a)].
+95 -relation(relation_dom_restriction(c7,c6)) | in(c5,relation_dom(relation_dom_restriction(c7,c6))).  [resolve(94,b,93,a)].
+96 -relation(relation_dom_restriction(c7,c6)).  [resolve(95,b,84,a)].
+97 $F.  [resolve(38,a,96,a)].
+
+============================== end of proof ==========================

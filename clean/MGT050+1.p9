@@ -1,0 +1,49 @@
+
+
+
+
+
+
+
+
+
+
+
+12 -organization(A) | has_endowment(A) | -has_immunity(A,B).  [clausify(4)].
+13 organization(c1).  [clausify(11)].
+14 -organization(A) | stock_of_knowledge(A,B) = stock_of_knowledge(A,C).  [clausify(8)].
+15 -organization(A) | external_ties(A,B) = external_ties(A,C).  [clausify(9)].
+16 -organization(A) | external_ties(A,B) != external_ties(A,C) | position(A,B) = position(A,C).  [clausify(7)].
+17 -organization(A) | -greater(age(A,B),age(A,C)) | greater(internal_friction(A,B),internal_friction(A,C)).  [clausify(10)].
+18 -organization(A) | -smaller_or_equal(stock_of_knowledge(A,B),stock_of_knowledge(A,C)) | -greater(internal_friction(A,B),internal_friction(A,C)) | smaller(capability(A,B),capability(A,C)).  [clausify(6)].
+19 -organization(A) | has_immunity(A,B) | has_immunity(A,C) | -greater(capability(A,C),capability(A,B)) | -greater_or_equal(position(A,C),position(A,B)) | smaller(hazard_of_mortality(A,C),hazard_of_mortality(A,B)).  [clausify(5)].
+20 -smaller(A,B) | greater(B,A).  [clausify(3)].
+21 -smaller_or_equal(stock_of_knowledge(c1,A),stock_of_knowledge(c1,B)) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | smaller(capability(c1,A),capability(c1,B)).  [resolve(18,a,13,a)].
+22 has_immunity(c1,A) | has_immunity(c1,B) | -greater(capability(c1,B),capability(c1,A)) | -greater_or_equal(position(c1,B),position(c1,A)) | smaller(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(19,a,13,a)].
+23 greater(age(c1,c3),age(c1,c2)).  [clausify(11)].
+24 -has_endowment(c1).  [clausify(11)].
+25 -greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c2)).  [clausify(11)].
+26 smaller_or_equal(A,B) | B != A.  [clausify(1)].
+27 greater_or_equal(A,B) | B != A.  [clausify(2)].
+28 has_endowment(c1) | -has_immunity(c1,A).  [resolve(12,a,13,a)].
+29 -has_immunity(c1,A).  [resolve(24,a,28,a)].
+30 stock_of_knowledge(c1,A) = stock_of_knowledge(c1,B).  [resolve(14,a,13,a)].
+31 external_ties(c1,A) = external_ties(c1,B).  [resolve(15,a,13,a)].
+32 external_ties(c1,A) != external_ties(c1,B) | position(c1,A) = position(c1,B).  [resolve(16,a,13,a)].
+33 position(c1,A) = position(c1,B).  [resolve(31,a,32,a)].
+34 -greater(age(c1,A),age(c1,B)) | greater(internal_friction(c1,A),internal_friction(c1,B)).  [resolve(17,a,13,a)].
+35 -smaller_or_equal(stock_of_knowledge(c1,A),stock_of_knowledge(c1,B)) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [resolve(21,c,20,a)].
+36 has_immunity(c1,A) | has_immunity(c1,B) | -greater(capability(c1,B),capability(c1,A)) | -greater_or_equal(position(c1,B),position(c1,A)) | greater(hazard_of_mortality(c1,A),hazard_of_mortality(c1,B)).  [resolve(22,e,20,a)].
+37 has_immunity(c1,A) | -greater(capability(c1,A),capability(c1,B)) | -greater_or_equal(position(c1,A),position(c1,B)) | greater(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(29,a,36,a)].
+38 -greater(capability(c1,A),capability(c1,B)) | -greater_or_equal(position(c1,A),position(c1,B)) | greater(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(29,a,37,a)].
+39 stock_of_knowledge(c1,A) = c_0.  [new_symbol(30)].
+40 -smaller_or_equal(c_0,stock_of_knowledge(c1,B)) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [para(39(a,1),35(a,1))].
+41 -smaller_or_equal(c_0,c_0) | -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [para(39(a,1),40(a,2))].
+42 smaller_or_equal(A,A).  [xx_res(26,b)].
+43 -greater(internal_friction(c1,A),internal_friction(c1,B)) | greater(capability(c1,B),capability(c1,A)).  [resolve(42,a,41,a)].
+44 greater_or_equal(position(c1,A),position(c1,B)).  [resolve(33,a,27,b)].
+45 -greater(capability(c1,A),capability(c1,B)) | greater(hazard_of_mortality(c1,B),hazard_of_mortality(c1,A)).  [resolve(44,a,38,b)].
+46 greater(internal_friction(c1,c3),internal_friction(c1,c2)).  [resolve(34,a,23,a)].
+47 greater(capability(c1,c2),capability(c1,c3)).  [resolve(43,a,46,a)].
+48 greater(hazard_of_mortality(c1,c3),hazard_of_mortality(c1,c2)).  [resolve(45,a,47,a)].
+49 $F.  [resolve(25,a,48,a)].

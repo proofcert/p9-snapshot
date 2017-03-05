@@ -1,0 +1,15 @@
+
+
+3 -sum(A,B,C) | difference(C,A,B).  [clausify(1)].
+4 sum(A,B,C) | -difference(C,A,B).  [clausify(1)].
+5 sum(A,B,C) | difference(C,B,A).  [clausify(2)].
+6 sum(A,B,C) | difference(C,A,B).  [clausify(2)].
+7 -sum(A,B,C) | -difference(C,B,A) | -difference(C,A,B).  [clausify(2)].
+8 -sum(A,A,B) | -difference(B,A,A).  [factor(7,b,c)].
+9 sum(A,B,C) | sum(B,A,C).  [resolve(5,b,4,b)].
+10 sum(A,A,B).  [factor(9,a,b)].
+11 -difference(A,B,B).  [resolve(10,a,8,a)].
+12 sum(A,B,C) | sum(A,B,C).  [resolve(6,b,4,b)].
+13 sum(A,B,C).  [copy(12),merge(b)].
+14 difference(A,B,C).  [resolve(13,a,3,a)].
+15 $F.  [resolve(14,a,11,a)].

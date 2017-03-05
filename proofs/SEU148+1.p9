@@ -1,0 +1,53 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n063.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 21:00:43 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 48246 was started by sandbox on n063.star.cs.uiowa.edu,
+Thu Jun  5 21:00:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_48214_n063.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 13.
+% Level of proof is 3.
+% Maximum clause weight is 11.000.
+% Given clauses 18.
+
+
+1 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+2 (all A singleton(A) != empty_set).  [assumption].
+3 (all A all B (subset(A,singleton(B)) <-> A = empty_set | A = singleton(B))).  [assumption].
+4 -(all A all B (subset(singleton(A),singleton(B)) -> A = B)).  [assumption].
+5 subset(singleton(c3),singleton(c4)).  [clausify(4)].
+6 c4 != c3.  [clausify(4)].
+7 singleton(A) != empty_set.  [clausify(2)].
+8 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+9 singleton(A) != B | in(C,B) | C != A.  [clausify(1)].
+10 -subset(A,singleton(B)) | empty_set = A | singleton(B) = A.  [clausify(3)].
+11 -in(A,singleton(B)) | A = B.  [xx_res(8,a)].
+12 -in(c4,singleton(c3)).  [resolve(11,b,6,a)].
+13 empty_set = singleton(c3) | singleton(c4) = singleton(c3).  [resolve(10,a,5,a)].
+14 singleton(c3) = empty_set | singleton(c4) = singleton(c3).  [copy(13),flip(a)].
+15 singleton(c4) = singleton(c3).  [resolve(7,a,14,a)].
+16 singleton(A) != singleton(c3) | c4 != A.  [resolve(9,b,12,a)].
+17 singleton(c4) != singleton(c3).  [xx_res(16,b)].
+18 singleton(c3) != singleton(c3).  [para(15(a,1),17(a,1))].
+19 $F.  [copy(18),xx(a)].
+
+============================== end of proof ==========================

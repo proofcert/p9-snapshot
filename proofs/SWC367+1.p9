@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n098.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:46:48 CDT 2014
+% CPUTime    : 0.61 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 25840 was started by sandbox on n098.star.cs.uiowa.edu,
+Fri Jun  6 11:46:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_25808_n098.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.40 (+ 0.00) seconds.
+% Length of proof is 15.
+% Level of proof is 6.
+% Maximum clause weight is 6.000.
+% Given clauses 82.
+
+
+1 (all A (ssList(A) -> rearsegP(A,A))).  [assumption].
+2 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | rearsegP(B,A) | (nil != D | nil != C) & (-neq(C,nil) | -rearsegP(D,C)))))))))).  [assumption].
+3 ssList(nil).  [assumption].
+4 -ssList(A) | rearsegP(A,A).  [clausify(1)].
+5 c6 = c4.  [clausify(2)].
+6 c5 = c3.  [clausify(2)].
+7 -rearsegP(c4,c3).  [clausify(2)].
+8 nil = c6 | rearsegP(c6,c5).  [clausify(2)].
+9 nil = c4 | rearsegP(c6,c5).  [para(5(a,1),8(a,2))].
+10 nil = c4 | rearsegP(c4,c5).  [para(5(a,1),9(b,1))].
+11 nil = c4 | rearsegP(c4,c3).  [para(6(a,1),10(b,2))].
+12 c4 = nil | rearsegP(c4,c3).  [copy(11),flip(a)].
+13 c4 = nil.  [resolve(7,a,12,b)].
+14 nil = c5 | rearsegP(c6,c5).  [clausify(2)].
+15 nil = c3 | rearsegP(c6,c5).  [para(6(a,1),14(a,2))].
+16 nil = c3 | rearsegP(c4,c5).  [para(5(a,1),15(b,1))].
+17 nil = c3 | rearsegP(nil,c5).  [para(13(a,1),16(b,1))].
+18 nil = c3 | rearsegP(nil,c3).  [para(6(a,1),17(b,2))].
+19 c3 = nil | rearsegP(nil,c3).  [copy(18),flip(a)].
+20 -rearsegP(nil,c3).  [para(13(a,1),7(a,1))].
+21 c3 = nil.  [resolve(20,a,19,b)].
+22 -rearsegP(nil,nil).  [para(21(a,1),20(a,2))].
+23 rearsegP(nil,nil).  [resolve(4,a,3,a)].
+24 $F.  [resolve(22,a,23,a)].
+
+============================== end of proof ==========================

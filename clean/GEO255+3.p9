@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+8 -equally_directed_lines(A,B) | -unequally_directed_lines(A,B).  [clausify(1)].
+9 equally_directed_lines(A,A).  [clausify(3)].
+10 -before_on_line(A,B,C) | equally_directed_lines(A,line_connecting(B,C)).  [clausify(2)].
+11 -distinct_points(A,B) | equally_directed_lines(line_connecting(A,B),reverse_line(line_connecting(B,A))).  [clausify(6)].
+12 -before_on_line(A,B,C) | distinct_points(B,C).  [clausify(2)].
+13 before_on_line(c1,c2,c3).  [clausify(7)].
+14 before_on_line(c1,c3,c2).  [clausify(7)].
+15 -before_on_line(A,B,C) | -unequally_directed_lines(A,line_connecting(B,C)).  [resolve(10,b,8,a)].
+16 unequally_directed_lines(A,B) | unequally_directed_lines(A,reverse_line(B)).  [clausify(5)].
+17 -unequally_directed_lines(A,B) | unequally_directed_lines(A,C) | unequally_directed_lines(B,C).  [clausify(4)].
+18 -unequally_directed_lines(A,A).  [resolve(8,a,9,a)].
+19 -distinct_points(A,B) | -unequally_directed_lines(line_connecting(A,B),reverse_line(line_connecting(B,A))).  [resolve(11,b,8,a)].
+20 distinct_points(c2,c3).  [resolve(12,a,13,a)].
+21 -unequally_directed_lines(c1,line_connecting(c2,c3)).  [resolve(15,a,13,a)].
+22 -unequally_directed_lines(c1,line_connecting(c3,c2)).  [resolve(15,a,14,a)].
+23 -unequally_directed_lines(line_connecting(c2,c3),reverse_line(line_connecting(c3,c2))).  [resolve(20,a,19,a)].
+24 -unequally_directed_lines(A,B) | unequally_directed_lines(B,A).  [resolve(17,b,18,a)].
+25 -unequally_directed_lines(line_connecting(c2,c3),c1).  [resolve(24,b,21,a)].
+26 -unequally_directed_lines(A,B) | unequally_directed_lines(B,A).  [resolve(17,b,18,a)].
+27 -unequally_directed_lines(line_connecting(c3,c2),c1).  [resolve(26,b,22,a)].
+28 -unequally_directed_lines(line_connecting(c2,c3),A) | unequally_directed_lines(A,c1).  [resolve(17,b,25,a)].
+29 -unequally_directed_lines(line_connecting(c2,c3),line_connecting(c3,c2)).  [resolve(28,b,27,a)].
+30 unequally_directed_lines(line_connecting(c2,c3),line_connecting(c3,c2)).  [resolve(23,a,16,b)].
+31 $F.  [resolve(29,a,30,a)].

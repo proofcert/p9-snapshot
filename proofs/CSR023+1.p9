@@ -1,0 +1,61 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n065.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:05:48 CDT 2014
+% CPUTime    : 0.19 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 51769 was started by sandbox on n065.star.cs.uiowa.edu,
+Thu Jun  5 14:05:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_51737_n065.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.04 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 7.
+% Maximum clause weight is 13.000.
+% Given clauses 355.
+
+
+1 (all A all B all C (happens(A,B) & initiates(A,C,B) -> holdsAt(C,plus(B,n1)))).  [assumption].
+2 (all A all B all C (initiates(A,B,C) <-> A = push & B = forwards & -happens(pull,C) | A = pull & B = backwards & -happens(push,C) | A = pull & B = spinning & happens(push,C))).  [assumption].
+3 (all A all B (happens(A,B) <-> A = push & B = n0 | A = pull & B = n1 | A = pull & B = n2 | A = push & B = n2)).  [assumption].
+4 (all A all B plus(A,B) = plus(B,A)).  [assumption].
+5 -happens(A,B) | -initiates(A,C,B) | holdsAt(C,plus(B,n1)).  [clausify(1)].
+6 initiates(A,B,C) | pull != A | spinning != B | -happens(push,C).  [clausify(2)].
+7 happens(A,B) | pull != A | n2 != B.  [clausify(3)].
+8 happens(A,B) | push != A | n2 != B.  [clausify(3)].
+9 plus(n0,n2) = n2.  [assumption].
+10 plus(n1,n2) = n3.  [assumption].
+11 plus(A,B) = plus(B,A).  [clausify(4)].
+12 -holdsAt(spinning,n3).  [assumption].
+13 plus(n2,n0) = n2.  [para(11(a,1),9(a,1))].
+14 happens(pull,A) | n2 != A.  [xx_res(7,b)].
+15 happens(push,A) | n2 != A.  [xx_res(8,b)].
+16 happens(pull,plus(n2,n0)).  [resolve(14,b,13,a(flip))].
+17 happens(pull,n2).  [para(13(a,1),16(a,2))].
+18 happens(push,plus(n2,n0)).  [resolve(15,b,13,a(flip))].
+19 happens(push,n2).  [para(13(a,1),18(a,2))].
+20 initiates(A,B,n2) | pull != A | spinning != B.  [resolve(19,a,6,d)].
+21 initiates(pull,A,n2) | spinning != A.  [xx_res(20,b)].
+22 initiates(pull,spinning,n2).  [xx_res(21,b)].
+23 -happens(pull,n2) | holdsAt(spinning,plus(n2,n1)).  [resolve(22,a,5,b)].
+24 -happens(pull,n2) | holdsAt(spinning,plus(n1,n2)).  [para(11(a,1),23(b,2))].
+25 -happens(pull,n2) | holdsAt(spinning,n3).  [para(10(a,1),24(b,2))].
+26 holdsAt(spinning,n3).  [resolve(17,a,25,a)].
+27 $F.  [resolve(12,a,26,a)].
+
+============================== end of proof ==========================

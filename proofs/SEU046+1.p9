@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n090.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:30:43 CDT 2014
+% CPUTime    : 4.05 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 8523 was started by sandbox on n090.star.cs.uiowa.edu,
+Thu Jun  5 14:30:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_8491_n090.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 3.81 (+ 0.05) seconds.
+% Length of proof is 22.
+% Level of proof is 5.
+% Maximum clause weight is 21.000.
+% Given clauses 1793.
+
+
+1 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+2 (all A all B (relation(B) -> relation(relation_rng_restriction(A,B)))).  [assumption].
+3 (all A all B (relation(B) & function(B) -> relation(relation_rng_restriction(A,B)) & function(relation_rng_restriction(A,B)))).  [assumption].
+4 (all A all B (relation(B) -> subset(relation_rng(relation_rng_restriction(A,B)),relation_rng(B)))).  [assumption].
+5 (all A all B (relation(B) & function(B) -> (all C (relation(C) & function(C) -> (B = relation_rng_restriction(A,C) <-> (all D (in(D,relation_dom(B)) <-> in(D,relation_dom(C)) & in(apply(C,D),A))) & (all D (in(D,relation_dom(B)) -> apply(B,D) = apply(C,D)))))))).  [assumption].
+6 -(all A all B (relation(B) & function(B) -> subset(relation_dom(relation_rng_restriction(A,B)),relation_dom(B)) & subset(relation_rng(relation_rng_restriction(A,B)),relation_rng(B)))).  [assumption].
+7 relation(c10).  [clausify(6)].
+8 function(c10).  [clausify(6)].
+9 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+10 -subset(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)) | -subset(relation_rng(relation_rng_restriction(c9,c10)),relation_rng(c10)).  [clausify(6)].
+11 -relation(A) | relation(relation_rng_restriction(B,A)).  [clausify(2)].
+12 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+13 -relation(A) | -function(A) | function(relation_rng_restriction(B,A)).  [clausify(3)].
+14 -relation(A) | subset(relation_rng(relation_rng_restriction(B,A)),relation_rng(A)).  [clausify(4)].
+15 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_rng_restriction(C,B) != A | -in(D,relation_dom(A)) | in(D,relation_dom(B)).  [clausify(5)].
+16 relation(relation_rng_restriction(A,c10)).  [resolve(11,a,7,a)].
+17 -relation(c10) | function(relation_rng_restriction(A,c10)).  [resolve(13,b,8,a)].
+18 function(relation_rng_restriction(A,c10)).  [resolve(7,a,17,a)].
+19 subset(relation_rng(relation_rng_restriction(A,c10)),relation_rng(c10)).  [resolve(14,a,7,a)].
+20 -subset(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)).  [resolve(19,a,10,b)].
+21 in(f1(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)),relation_dom(relation_rng_restriction(c9,c10))).  [resolve(20,a,9,a)].
+22 -in(f1(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)),relation_dom(c10)).  [resolve(12,a,20,a)].
+23 -relation(relation_rng_restriction(A,c10)) | -relation(B) | -function(B) | relation_rng_restriction(C,B) != relation_rng_restriction(A,c10) | -in(D,relation_dom(relation_rng_restriction(A,c10))) | in(D,relation_dom(B)).  [resolve(15,b,18,a)].
+24 -relation(relation_rng_restriction(A,c10)) | -function(c10) | relation_rng_restriction(B,c10) != relation_rng_restriction(A,c10) | -in(C,relation_dom(relation_rng_restriction(A,c10))) | in(C,relation_dom(c10)).  [resolve(23,b,7,a)].
+25 -relation(relation_rng_restriction(A,c10)) | relation_rng_restriction(B,c10) != relation_rng_restriction(A,c10) | -in(C,relation_dom(relation_rng_restriction(A,c10))) | in(C,relation_dom(c10)).  [resolve(24,b,8,a)].
+26 -relation(relation_rng_restriction(A,c10)) | -in(B,relation_dom(relation_rng_restriction(A,c10))) | in(B,relation_dom(c10)).  [xx_res(25,b)].
+27 -relation(relation_rng_restriction(c9,c10)) | in(f1(relation_dom(relation_rng_restriction(c9,c10)),relation_dom(c10)),relation_dom(c10)).  [resolve(26,b,21,a)].
+28 -relation(relation_rng_restriction(c9,c10)).  [resolve(27,b,22,a)].
+29 $F.  [resolve(16,a,28,a)].
+
+============================== end of proof ==========================

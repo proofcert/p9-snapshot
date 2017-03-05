@@ -1,0 +1,26 @@
+
+
+
+
+
+6 op_implies_or.  [assumption].
+7 r3.  [assumption].
+8 op_or.  [assumption].
+9 op_implies_and.  [assumption].
+10 -modus_tollens.  [assumption].
+11 -r3 | is_a_theorem(implies(or(A,B),or(B,A))).  [clausify(2)].
+12 is_a_theorem(implies(or(A,B),or(B,A))).  [resolve(7,a,11,a)].
+13 -op_implies_or | or(not(A),B) = implies(A,B).  [clausify(5)].
+14 or(not(A),B) = implies(A,B).  [resolve(6,a,13,a)].
+15 -op_implies_and | not(and(A,not(B))) = implies(A,B).  [clausify(4)].
+16 not(and(A,not(B))) = implies(A,B).  [resolve(9,a,15,a)].
+17 modus_tollens | -is_a_theorem(implies(implies(not(c6),not(c5)),implies(c5,c6))).  [clausify(1)].
+18 -is_a_theorem(implies(implies(not(c6),not(c5)),implies(c5,c6))).  [resolve(10,a,17,a)].
+19 -op_or | or(A,B) = not(and(not(A),not(B))).  [clausify(3)].
+20 -op_or | or(A,B) = implies(not(A),B).  [para(16(a,1),19(b,2))].
+21 or(A,B) = implies(not(A),B).  [resolve(8,a,20,a)].
+22 implies(not(not(A)),B) = implies(A,B).  [para(21(a,1),14(a,1))].
+23 is_a_theorem(implies(implies(not(A),B),or(B,A))).  [para(21(a,1),12(a,1,1))].
+24 is_a_theorem(implies(implies(not(A),B),implies(not(B),A))).  [para(21(a,1),23(a,1,2))].
+25 is_a_theorem(implies(implies(not(A),not(B)),implies(B,A))).  [para(22(a,1),24(a,1,2))].
+26 $F.  [resolve(25,a,18,a)].

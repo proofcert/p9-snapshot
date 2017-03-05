@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n132.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 06:03:13 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 61399 was started by sandbox on n132.star.cs.uiowa.edu,
+Fri Jun  6 06:03:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_61367_n132.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.03 (+ 0.00) seconds.
+% Length of proof is 17.
+% Level of proof is 8.
+% Maximum clause weight is 15.000.
+% Given clauses 64.
+
+
+1 (all A all B all C (member(C,union(A,B)) <-> member(C,A) | member(C,B))).  [assumption].
+2 (all A all B all C (member(C,intersection(A,B)) <-> member(C,A) & member(C,B))).  [assumption].
+3 (all A all B (A = B <-> (all C (member(C,A) <-> member(C,B))))).  [assumption].
+4 -(all A all B union(A,intersection(A,B)) = A).  [assumption].
+5 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(3)].
+6 union(c1,intersection(c1,c2)) != c1.  [clausify(4)].
+7 member(A,union(B,C)) | -member(A,B).  [clausify(1)].
+8 -member(A,intersection(B,C)) | member(A,B).  [clausify(2)].
+9 -member(A,union(B,C)) | member(A,B) | member(A,C).  [clausify(1)].
+10 A = B | -member(f2(B,A),B) | -member(f2(B,A),A).  [clausify(3)].
+11 member(f2(A,B),union(B,C)) | B = A | member(f2(A,B),A).  [resolve(7,b,5,c)].
+12 member(f2(union(A,B),A),union(A,B)) | A = union(A,B).  [factor(11,a,c)].
+13 member(f2(union(A,B),A),union(A,B)) | union(A,B) = A.  [copy(12),flip(b)].
+14 union(A,B) = A | A = union(A,B) | -member(f2(union(A,B),A),A).  [resolve(13,a,10,b)].
+15 union(A,B) = A | union(A,B) = A | -member(f2(union(A,B),A),A).  [copy(14),flip(b)].
+16 union(A,B) = A | -member(f2(union(A,B),A),A).  [copy(15),merge(b)].
+17 -member(f2(union(c1,intersection(c1,c2)),c1),c1).  [resolve(16,a,6,a)].
+18 c1 = union(c1,intersection(c1,c2)) | member(f2(union(c1,intersection(c1,c2)),c1),union(c1,intersection(c1,c2))).  [resolve(17,a,5,c)].
+19 union(c1,intersection(c1,c2)) = c1 | member(f2(union(c1,intersection(c1,c2)),c1),union(c1,intersection(c1,c2))).  [copy(18),flip(a)].
+20 member(f2(union(c1,intersection(c1,c2)),c1),union(c1,intersection(c1,c2))).  [resolve(6,a,19,a)].
+21 member(f2(union(c1,intersection(c1,c2)),c1),c1) | member(f2(union(c1,intersection(c1,c2)),c1),intersection(c1,c2)).  [resolve(20,a,9,a)].
+22 member(f2(union(c1,intersection(c1,c2)),c1),intersection(c1,c2)).  [resolve(17,a,21,a)].
+23 member(f2(union(c1,intersection(c1,c2)),c1),c1).  [resolve(22,a,8,a)].
+24 $F.  [resolve(17,a,23,a)].
+
+============================== end of proof ==========================

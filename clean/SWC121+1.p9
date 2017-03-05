@@ -1,0 +1,18 @@
+
+2 c6 = c4.  [clausify(1)].
+3 c5 = c3.  [clausify(1)].
+4 neq(c4,nil).  [clausify(1)].
+5 neq(c5,nil) | -neq(c6,nil).  [clausify(1)].
+6 neq(c3,nil) | -neq(c6,nil).  [para(3(a,1),5(a,1))].
+7 neq(c3,nil) | -neq(c4,nil).  [para(2(a,1),6(b,1))].
+8 neq(c3,nil).  [resolve(4,a,7,b)].
+9 segmentP(c6,c5) | -neq(c6,nil).  [clausify(1)].
+10 segmentP(c4,c5) | -neq(c6,nil).  [para(2(a,1),9(a,1))].
+11 segmentP(c4,c3) | -neq(c6,nil).  [para(3(a,1),10(a,2))].
+12 segmentP(c4,c3) | -neq(c4,nil).  [para(2(a,1),11(b,1))].
+13 segmentP(c4,c3).  [resolve(4,a,12,b)].
+14 -neq(c3,nil) | -segmentP(c4,c3) | -neq(c6,nil).  [clausify(1)].
+15 -neq(c3,nil) | -segmentP(c4,c3) | -neq(c4,nil).  [para(2(a,1),14(c,1))].
+16 -segmentP(c4,c3) | -neq(c4,nil).  [resolve(8,a,15,a)].
+17 -neq(c4,nil).  [resolve(13,a,16,a)].
+18 $F.  [resolve(4,a,17,a)].

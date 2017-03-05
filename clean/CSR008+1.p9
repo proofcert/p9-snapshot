@@ -1,0 +1,290 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+22 -stoppedIn(A,B,C) | happens(f1(A,B,C),f2(A,B,C)).  [clausify(1)].
+23 -stoppedIn(A,B,C) | less(A,f2(A,B,C)).  [clausify(1)].
+24 -stoppedIn(A,B,C) | less(f2(A,B,C),C).  [clausify(1)].
+25 -stoppedIn(A,B,C) | terminates(f1(A,B,C),B,f2(A,B,C)).  [clausify(1)].
+26 -happens(A,B) | -initiates(A,C,B) | -less(n0,D) | -trajectory(C,B,E,D) | stoppedIn(B,C,plus(B,D)) | holdsAt(E,plus(B,D)).  [clausify(2)].
+27 -releases(A,B,C) | waterLevel(f11(A,B,C)) = B.  [clausify(8)].
+28 releases(A,B,C) | tapOn != A | waterLevel(D) != B.  [clausify(8)].
+29 -happens(A,B) | -initiates(A,C,B) | -less(n0,D) | -trajectory(C,B,E,D) | holdsAt(E,plus(B,D)) | happens(f1(B,C,plus(B,D)),f2(B,C,plus(B,D))).  [resolve(26,e,22,a)].
+30 -holdsAt(waterLevel(A),B) | plus(A,C) != D | trajectory(filling,B,waterLevel(D),C).  [clausify(10)].
+31 -happens(A,B) | -initiates(A,C,B) | -less(n0,D) | -trajectory(C,B,E,D) | holdsAt(E,plus(B,D)) | less(B,f2(B,C,plus(B,D))).  [resolve(26,e,23,a)].
+32 -happens(A,B) | -initiates(A,C,B) | -less(n0,D) | -trajectory(C,B,E,D) | holdsAt(E,plus(B,D)) | less(f2(B,C,plus(B,D)),plus(B,D)).  [resolve(26,e,24,a)].
+33 -happens(A,B) | -initiates(A,C,B) | -less(n0,D) | -trajectory(C,B,E,D) | holdsAt(E,plus(B,D)) | terminates(f1(B,C,plus(B,D)),C,f2(B,C,plus(B,D))).  [resolve(26,e,25,a)].
+34 -holdsAt(A,B) | releasedAt(A,plus(B,n1)) | happens(f5(A,B),B) | holdsAt(A,plus(B,n1)).  [clausify(3)].
+35 -happens(A,B) | -initiates(A,C,B) | holdsAt(C,plus(B,n1)).  [clausify(4)].
+36 -happens(A,B) | -terminates(A,C,B) | -holdsAt(C,plus(B,n1)).  [clausify(5)].
+37 -happens(A,B) | -terminates(A,C,B) | -releasedAt(C,plus(B,n1)).  [clausify(6)].
+38 initiates(A,B,C) | tapOn != A | filling != B.  [clausify(7)].
+39 -happens(A,B) | n0 = B | holdsAt(waterLevel(n3),B).  [clausify(9)].
+40 happens(A,B) | tapOn != A | n0 != B.  [clausify(9)].
+41 -holdsAt(waterLevel(A),B) | -holdsAt(waterLevel(C),B) | C = A.  [clausify(11)].
+42 waterLevel(A) != waterLevel(B) | A = B.  [clausify(12)].
+43 plus(n0,n0) = n0.  [assumption].
+44 plus(n0,n1) = n1.  [assumption].
+45 plus(n0,n2) = n2.  [assumption].
+46 plus(n1,n1) = n2.  [assumption].
+47 plus(A,B) = plus(B,A).  [clausify(13)].
+48 -less_or_equal(A,B) | less(A,B) | B = A.  [clausify(14)].
+49 less_or_equal(A,B) | -less(A,B).  [clausify(14)].
+50 less_or_equal(A,B) | B != A.  [clausify(14)].
+51 -less(A,n0).  [clausify(15)].
+52 -less(A,n1) | less_or_equal(A,n0).  [clausify(16)].
+53 less(A,n1) | -less_or_equal(A,n0).  [clausify(16)].
+54 -less(A,n2) | less_or_equal(A,n1).  [clausify(17)].
+55 less(A,n2) | -less_or_equal(A,n1).  [clausify(17)].
+56 -less(A,n3) | less_or_equal(A,n2).  [clausify(18)].
+57 less(A,n3) | -less_or_equal(A,n2).  [clausify(18)].
+58 -less(A,n4) | less_or_equal(A,n3).  [clausify(19)].
+59 less(A,n4) | -less_or_equal(A,n3).  [clausify(19)].
+60 -less(A,n5) | less_or_equal(A,n4).  [clausify(20)].
+61 less(A,n5) | -less_or_equal(A,n4).  [clausify(20)].
+62 -less(A,B) | -less(B,A).  [clausify(21)].
+63 -less(A,B) | B != A.  [clausify(21)].
+64 less(A,B) | less(B,A) | B = A.  [clausify(21)].
+65 holdsAt(waterLevel(n0),n0).  [assumption].
+66 -holdsAt(waterLevel(n2),n2).  [assumption].
+67 tapOn != A | waterLevel(B) != C | waterLevel(f11(A,C,D)) = C.  [resolve(28,a,27,a)].
+68 -happens(A,B) | -initiates(A,filling,B) | -less(n0,C) | holdsAt(waterLevel(D),plus(B,C)) | happens(f1(B,filling,plus(B,C)),f2(B,filling,plus(B,C))) | -holdsAt(waterLevel(E),B) | plus(E,C) != D.  [resolve(29,d,30,c)].
+69 -happens(A,B) | -initiates(A,filling,B) | -less(n0,C) | holdsAt(waterLevel(D),plus(B,C)) | happens(f1(B,filling,plus(B,C)),f2(B,filling,plus(B,C))) | -holdsAt(waterLevel(E),B) | plus(C,E) != D.  [para(47(a,1),68(g,1))].
+70 -happens(A,B) | -initiates(A,filling,B) | -less(n0,C) | holdsAt(waterLevel(D),plus(B,C)) | less(B,f2(B,filling,plus(B,C))) | -holdsAt(waterLevel(E),B) | plus(E,C) != D.  [resolve(31,d,30,c)].
+71 -happens(A,B) | -initiates(A,filling,B) | -less(n0,C) | holdsAt(waterLevel(D),plus(B,C)) | less(B,f2(B,filling,plus(B,C))) | -holdsAt(waterLevel(E),B) | plus(C,E) != D.  [para(47(a,1),70(g,1))].
+72 -happens(A,B) | -initiates(A,filling,B) | -less(n0,C) | holdsAt(waterLevel(D),plus(B,C)) | less(f2(B,filling,plus(B,C)),plus(B,C)) | -holdsAt(waterLevel(E),B) | plus(E,C) != D.  [resolve(32,d,30,c)].
+73 -happens(A,B) | -initiates(A,filling,B) | -less(n0,C) | holdsAt(waterLevel(D),plus(B,C)) | less(f2(B,filling,plus(B,C)),plus(B,C)) | -holdsAt(waterLevel(E),B) | plus(C,E) != D.  [para(47(a,1),72(g,1))].
+74 -happens(A,B) | -initiates(A,filling,B) | -less(n0,C) | holdsAt(waterLevel(D),plus(B,C)) | terminates(f1(B,filling,plus(B,C)),filling,f2(B,filling,plus(B,C))) | -holdsAt(waterLevel(E),B) | plus(E,C) != D.  [resolve(33,d,30,c)].
+75 -happens(A,B) | -initiates(A,filling,B) | -less(n0,C) | holdsAt(waterLevel(D),plus(B,C)) | terminates(f1(B,filling,plus(B,C)),filling,f2(B,filling,plus(B,C))) | -holdsAt(waterLevel(E),B) | plus(C,E) != D.  [para(47(a,1),74(g,1))].
+76 plus(n1,n0) = n1.  [para(47(a,1),44(a,1))].
+77 -less(A,A).  [factor(62,a,b)].
+78 initiates(tapOn,A,B) | filling != A.  [xx_res(38,b)].
+79 happens(tapOn,A) | n0 != A.  [xx_res(40,b)].
+80 less_or_equal(A,A).  [xx_res(50,b)].
+81 less(n5,A) | n5 = A | less_or_equal(A,n4).  [resolve(64,a,60,a)].
+82 less(n4,A) | n4 = A | less_or_equal(A,n3).  [resolve(64,a,58,a)].
+83 less(n3,A) | n3 = A | less_or_equal(A,n2).  [resolve(64,a,56,a)].
+84 less(n2,A) | n2 = A | less_or_equal(A,n1).  [resolve(64,a,54,a)].
+85 less(n1,A) | n1 = A | less_or_equal(A,n0).  [resolve(64,a,52,a)].
+86 waterLevel(A) != B | waterLevel(f11(tapOn,B,C)) = B.  [xx_res(67,a)].
+87 initiates(tapOn,filling,A).  [xx_res(78,b)].
+88 less(n1,n2).  [resolve(80,a,55,b)].
+89 less(n0,n1).  [resolve(80,a,53,b)].
+90 less_or_equal(n1,n2).  [resolve(88,a,49,b)].
+91 n1 != n0.  [resolve(89,a,63,a)].
+92 n0 != n1.  [copy(91),flip(a)].
+93 less_or_equal(n0,n1).  [resolve(89,a,49,b)].
+94 less(n1,n3).  [resolve(90,a,57,b)].
+95 less(n0,n2).  [resolve(93,a,55,b)].
+96 n3 != n1.  [resolve(94,a,63,a)].
+97 n2 != n0.  [resolve(95,a,63,a)].
+98 less_or_equal(n0,n2).  [resolve(95,a,49,b)].
+99 happens(tapOn,plus(n0,n0)).  [resolve(79,b,43,a(flip))].
+100 happens(tapOn,n0).  [para(43(a,1),99(a,2))].
+101 less(n0,n3).  [resolve(98,a,57,b)].
+102 n3 != n0.  [resolve(101,a,63,a)].
+103 less_or_equal(n0,n3).  [resolve(101,a,49,b)].
+104 less(n0,n4).  [resolve(103,a,59,b)].
+105 n4 != n0.  [resolve(104,a,63,a)].
+106 less_or_equal(n0,n4).  [resolve(104,a,49,b)].
+107 less(n0,n5).  [resolve(106,a,61,b)].
+108 n5 != n0.  [resolve(107,a,63,a)].
+109 less(n5,A) | n5 = A | less(A,n4) | n4 = A.  [resolve(81,c,48,a)].
+110 less(n4,A) | n4 = A | less(A,n3) | n3 = A.  [resolve(82,c,48,a)].
+111 less(n3,A) | n3 = A | less(A,n2) | n2 = A.  [resolve(83,c,48,a)].
+112 less(n2,A) | n2 = A | less(A,n1) | n1 = A.  [resolve(84,c,48,a)].
+113 less(n1,A) | n1 = A | less(A,n0) | n0 = A.  [resolve(85,c,48,a)].
+114 less(n1,A) | n1 = A | n0 = A.  [resolve(51,a,113,c)].
+115 -happens(tapOn,A) | -less(n0,B) | holdsAt(waterLevel(C),plus(A,B)) | terminates(f1(A,filling,plus(A,B)),filling,f2(A,filling,plus(A,B))) | -holdsAt(waterLevel(D),A) | plus(B,D) != C.  [resolve(87,a,75,b)].
+116 -happens(tapOn,A) | -less(n0,B) | holdsAt(waterLevel(C),plus(A,B)) | less(f2(A,filling,plus(A,B)),plus(A,B)) | -holdsAt(waterLevel(D),A) | plus(B,D) != C.  [resolve(87,a,73,b)].
+117 -happens(tapOn,A) | -less(n0,B) | holdsAt(waterLevel(C),plus(A,B)) | less(A,f2(A,filling,plus(A,B))) | -holdsAt(waterLevel(D),A) | plus(B,D) != C.  [resolve(87,a,71,b)].
+118 -happens(tapOn,A) | -less(n0,B) | holdsAt(waterLevel(C),plus(A,B)) | happens(f1(A,filling,plus(A,B)),f2(A,filling,plus(A,B))) | -holdsAt(waterLevel(D),A) | plus(B,D) != C.  [resolve(87,a,69,b)].
+119 -happens(tapOn,A) | holdsAt(filling,plus(A,n1)).  [resolve(87,a,35,b)].
+120 holdsAt(filling,plus(n0,n1)).  [resolve(119,a,100,a)].
+121 holdsAt(filling,plus(n1,n0)).  [para(47(a,1),120(a,2))].
+122 holdsAt(filling,n1).  [para(76(a,1),121(a,2))].
+123 releasedAt(filling,plus(n1,n1)) | happens(f5(filling,n1),n1) | holdsAt(filling,plus(n1,n1)).  [resolve(122,a,34,a)].
+124 releasedAt(filling,n2) | happens(f5(filling,n1),n1) | holdsAt(filling,plus(n1,n1)).  [para(46(a,1),123(a,2))].
+125 releasedAt(filling,n2) | happens(f5(filling,n1),n1) | holdsAt(filling,n2).  [para(46(a,1),124(c,2))].
+126 n1 = A | n0 = A | -less(A,n1).  [resolve(114,a,62,b)].
+127 waterLevel(f11(tapOn,waterLevel(A),B)) = waterLevel(A).  [xx_res(86,a)].
+128 less(n5,A) | n5 = A | n4 = A | -less(n4,A).  [resolve(109,c,62,b)].
+129 less(n4,A) | n4 = A | n3 = A | -less(n3,A).  [resolve(110,c,62,b)].
+130 n3 = A | less(A,n2) | n2 = A | -less(A,n3).  [resolve(111,a,62,b)].
+131 less(n3,A) | n3 = A | n2 = A | -less(n2,A).  [resolve(111,c,62,b)].
+132 less(n2,A) | n2 = A | n1 = A | n1 = A | n0 = A.  [resolve(112,c,126,c)].
+133 less(n2,A) | n2 = A | n1 = A | n0 = A.  [copy(132),merge(d)].
+134 -less(n0,A) | holdsAt(waterLevel(B),plus(n0,A)) | terminates(f1(n0,filling,plus(n0,A)),filling,f2(n0,filling,plus(n0,A))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [resolve(115,a,100,a)].
+135 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | terminates(f1(n0,filling,plus(n0,A)),filling,f2(n0,filling,plus(n0,A))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),134(b,2))].
+136 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | terminates(f1(n0,filling,plus(A,n0)),filling,f2(n0,filling,plus(n0,A))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),135(c,1,3))].
+137 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | terminates(f1(n0,filling,plus(A,n0)),filling,f2(n0,filling,plus(A,n0))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),136(c,3,3))].
+138 -less(n0,A) | holdsAt(waterLevel(B),plus(n0,A)) | less(f2(n0,filling,plus(n0,A)),plus(n0,A)) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [resolve(116,a,100,a)].
+139 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | less(f2(n0,filling,plus(n0,A)),plus(n0,A)) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),138(b,2))].
+140 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | less(f2(n0,filling,plus(A,n0)),plus(n0,A)) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),139(c,1,3))].
+141 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | less(f2(n0,filling,plus(A,n0)),plus(A,n0)) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),140(c,2))].
+142 f11(tapOn,waterLevel(A),B) = A.  [resolve(127,a,42,a)].
+143 -less(n0,A) | holdsAt(waterLevel(B),plus(n0,A)) | less(n0,f2(n0,filling,plus(n0,A))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [resolve(117,a,100,a)].
+144 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | less(n0,f2(n0,filling,plus(n0,A))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),143(b,2))].
+145 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | less(n0,f2(n0,filling,plus(A,n0))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),144(c,2,3))].
+146 -less(n0,A) | holdsAt(waterLevel(B),plus(n0,A)) | happens(f1(n0,filling,plus(n0,A)),f2(n0,filling,plus(n0,A))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [resolve(118,a,100,a)].
+147 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | happens(f1(n0,filling,plus(n0,A)),f2(n0,filling,plus(n0,A))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),146(b,2))].
+148 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | happens(f1(n0,filling,plus(A,n0)),f2(n0,filling,plus(n0,A))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),147(c,1,3))].
+149 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | happens(f1(n0,filling,plus(A,n0)),f2(n0,filling,plus(A,n0))) | -holdsAt(waterLevel(C),n0) | plus(A,C) != B.  [para(47(a,1),148(c,2,3))].
+150 less(n5,A) | n5 = A | n4 = A | n4 = A | less(A,n3) | n3 = A.  [resolve(128,d,110,a)].
+151 less(n5,A) | n5 = A | n4 = A | less(A,n3) | n3 = A.  [copy(150),merge(d)].
+152 less(n4,A) | n4 = A | n3 = A | n3 = A | less(A,n2) | n2 = A.  [resolve(129,d,111,a)].
+153 less(n4,A) | n4 = A | n3 = A | less(A,n2) | n2 = A.  [copy(152),merge(d)].
+154 less(n3,A) | n3 = A | n2 = A | n2 = A | less(A,n1) | n1 = A.  [resolve(131,d,112,a)].
+155 less(n3,A) | n3 = A | n2 = A | less(A,n1) | n1 = A.  [copy(154),merge(d)].
+156 n2 = A | n1 = A | n0 = A | -less(A,n2).  [resolve(133,a,62,b)].
+157 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | terminates(f1(n0,filling,plus(A,n0)),filling,f2(n0,filling,plus(A,n0))) | plus(A,n0) != B.  [resolve(137,d,65,a)].
+158 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | less(f2(n0,filling,plus(A,n0)),plus(A,n0)) | plus(A,n0) != B.  [resolve(141,d,65,a)].
+159 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | less(n0,f2(n0,filling,plus(A,n0))) | plus(A,n0) != B.  [resolve(145,d,65,a)].
+160 less(n5,A) | n5 = A | n4 = A | n3 = A | n3 = A | less(A,n2) | n2 = A.  [resolve(151,d,130,d)].
+161 less(n5,A) | n5 = A | n4 = A | n3 = A | less(A,n2) | n2 = A.  [copy(160),merge(e)].
+162 -less(n0,A) | holdsAt(waterLevel(B),plus(A,n0)) | happens(f1(n0,filling,plus(A,n0)),f2(n0,filling,plus(A,n0))) | plus(A,n0) != B.  [resolve(149,d,65,a)].
+163 holdsAt(waterLevel(A),plus(n2,n0)) | terminates(f1(n0,filling,plus(n2,n0)),filling,f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(157,a,153,d)].
+164 holdsAt(waterLevel(A),plus(n0,n2)) | terminates(f1(n0,filling,plus(n2,n0)),filling,f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),163(a,2))].
+165 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,plus(n2,n0)),filling,f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),164(a,2))].
+166 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,plus(n0,n2)),filling,f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),165(b,1,3))].
+167 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),166(b,1,3))].
+168 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,plus(n0,n2))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),167(b,3,3))].
+169 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),168(b,3,3))].
+170 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)) | plus(n0,n2) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),169(c,1))].
+171 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)) | n2 != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),170(c,1))].
+172 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)) | n2 != A | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(51,a,171,d)].
+173 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)) | n2 != A | n3 = n0 | n2 = n0.  [resolve(105,a,172,d)].
+174 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)) | n2 != A | n2 = n0.  [resolve(102,a,173,d)].
+175 holdsAt(waterLevel(A),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)) | n2 != A.  [resolve(97,a,174,d)].
+176 holdsAt(waterLevel(f11(tapOn,waterLevel(n2),A)),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)).  [resolve(175,c,142,a(flip))].
+177 holdsAt(waterLevel(n2),n2) | terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)).  [para(142(a,1),176(a,1,1))].
+178 terminates(f1(n0,filling,n2),filling,f2(n0,filling,n2)).  [resolve(66,a,177,a)].
+179 -happens(f1(n0,filling,n2),f2(n0,filling,n2)) | -releasedAt(filling,plus(f2(n0,filling,n2),n1)).  [resolve(178,a,37,b)].
+180 -happens(f1(n0,filling,n2),f2(n0,filling,n2)) | -releasedAt(filling,plus(n1,f2(n0,filling,n2))).  [para(47(a,1),179(b,2))].
+181 -happens(f1(n0,filling,n2),f2(n0,filling,n2)) | -holdsAt(filling,plus(f2(n0,filling,n2),n1)).  [resolve(178,a,36,b)].
+182 -happens(f1(n0,filling,n2),f2(n0,filling,n2)) | -holdsAt(filling,plus(n1,f2(n0,filling,n2))).  [para(47(a,1),181(b,2))].
+183 holdsAt(waterLevel(A),plus(n1,n0)) | less(f2(n0,filling,plus(n1,n0)),plus(n1,n0)) | plus(n1,n0) != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [resolve(158,a,155,d)].
+184 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,plus(n1,n0)),plus(n1,n0)) | plus(n1,n0) != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [para(76(a,1),183(a,2))].
+185 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,n1),plus(n1,n0)) | plus(n1,n0) != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [para(76(a,1),184(b,1,3))].
+186 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,n1),n1) | plus(n1,n0) != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [para(76(a,1),185(b,2))].
+187 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,n1),n1) | n1 != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [para(76(a,1),186(c,1))].
+188 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,n1),n1) | n1 != A | less(n3,n0) | n3 = n0 | n2 = n0 | n0 = n1.  [copy(187),flip(g)].
+189 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,n1),n1) | n1 != A | n3 = n0 | n2 = n0 | n0 = n1.  [resolve(51,a,188,d)].
+190 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,n1),n1) | n1 != A | n2 = n0 | n0 = n1.  [resolve(102,a,189,d)].
+191 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,n1),n1) | n1 != A | n0 = n1.  [resolve(97,a,190,d)].
+192 holdsAt(waterLevel(A),n1) | less(f2(n0,filling,n1),n1) | n1 != A.  [resolve(92,a,191,d)].
+193 holdsAt(waterLevel(A),plus(n2,n0)) | less(f2(n0,filling,plus(n2,n0)),plus(n2,n0)) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(158,a,153,d)].
+194 holdsAt(waterLevel(A),plus(n0,n2)) | less(f2(n0,filling,plus(n2,n0)),plus(n2,n0)) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),193(a,2))].
+195 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,plus(n2,n0)),plus(n2,n0)) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),194(a,2))].
+196 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,plus(n0,n2)),plus(n2,n0)) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),195(b,1,3))].
+197 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),plus(n2,n0)) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),196(b,1,3))].
+198 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),plus(n0,n2)) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),197(b,2))].
+199 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),n2) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),198(b,2))].
+200 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),n2) | plus(n0,n2) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),199(c,1))].
+201 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),n2) | n2 != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),200(c,1))].
+202 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),n2) | n2 != A | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(51,a,201,d)].
+203 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),n2) | n2 != A | n3 = n0 | n2 = n0.  [resolve(105,a,202,d)].
+204 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),n2) | n2 != A | n2 = n0.  [resolve(102,a,203,d)].
+205 holdsAt(waterLevel(A),n2) | less(f2(n0,filling,n2),n2) | n2 != A.  [resolve(97,a,204,d)].
+206 holdsAt(waterLevel(f11(tapOn,waterLevel(n1),A)),n1) | less(f2(n0,filling,n1),n1).  [resolve(192,c,142,a(flip))].
+207 holdsAt(waterLevel(n1),n1) | less(f2(n0,filling,n1),n1).  [para(142(a,1),206(a,1,1))].
+208 less(f2(n0,filling,n1),n1) | -holdsAt(waterLevel(A),n1) | n1 = A.  [resolve(207,a,41,b)].
+209 holdsAt(waterLevel(f11(tapOn,waterLevel(n2),A)),n2) | less(f2(n0,filling,n2),n2).  [resolve(205,c,142,a(flip))].
+210 holdsAt(waterLevel(n2),n2) | less(f2(n0,filling,n2),n2).  [para(142(a,1),209(a,1,1))].
+211 less(f2(n0,filling,n2),n2).  [resolve(66,a,210,a)].
+212 n2 = f2(n0,filling,n2) | n1 = f2(n0,filling,n2) | n0 = f2(n0,filling,n2).  [resolve(211,a,156,d)].
+213 f2(n0,filling,n2) = n2 | n1 = f2(n0,filling,n2) | n0 = f2(n0,filling,n2).  [copy(212),flip(a)].
+214 f2(n0,filling,n2) = n2 | f2(n0,filling,n2) = n1 | n0 = f2(n0,filling,n2).  [copy(213),flip(b)].
+215 f2(n0,filling,n2) = n2 | f2(n0,filling,n2) = n1 | f2(n0,filling,n2) = n0.  [copy(214),flip(c)].
+216 n2 != f2(n0,filling,n2).  [resolve(211,a,63,a)].
+217 f2(n0,filling,n2) != n2.  [copy(216),flip(a)].
+218 f2(n0,filling,n2) = n1 | f2(n0,filling,n2) = n0.  [resolve(217,a,215,a)].
+219 holdsAt(waterLevel(A),plus(n1,n0)) | less(n0,f2(n0,filling,plus(n1,n0))) | plus(n1,n0) != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [resolve(159,a,155,d)].
+220 holdsAt(waterLevel(A),n1) | less(n0,f2(n0,filling,plus(n1,n0))) | plus(n1,n0) != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [para(76(a,1),219(a,2))].
+221 holdsAt(waterLevel(A),n1) | less(n0,f2(n0,filling,n1)) | plus(n1,n0) != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [para(76(a,1),220(b,2,3))].
+222 holdsAt(waterLevel(A),n1) | less(n0,f2(n0,filling,n1)) | n1 != A | less(n3,n0) | n3 = n0 | n2 = n0 | n1 = n0.  [para(76(a,1),221(c,1))].
+223 holdsAt(waterLevel(A),n1) | less(n0,f2(n0,filling,n1)) | n1 != A | less(n3,n0) | n3 = n0 | n2 = n0 | n0 = n1.  [copy(222),flip(g)].
+224 holdsAt(waterLevel(A),n1) | less(n0,f2(n0,filling,n1)) | n1 != A | n3 = n0 | n2 = n0 | n0 = n1.  [resolve(51,a,223,d)].
+225 holdsAt(waterLevel(A),n1) | less(n0,f2(n0,filling,n1)) | n1 != A | n2 = n0 | n0 = n1.  [resolve(102,a,224,d)].
+226 holdsAt(waterLevel(A),n1) | less(n0,f2(n0,filling,n1)) | n1 != A | n0 = n1.  [resolve(97,a,225,d)].
+227 holdsAt(waterLevel(A),n1) | less(n0,f2(n0,filling,n1)) | n1 != A.  [resolve(92,a,226,d)].
+228 holdsAt(waterLevel(A),plus(n2,n0)) | less(n0,f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(159,a,153,d)].
+229 holdsAt(waterLevel(A),plus(n0,n2)) | less(n0,f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),228(a,2))].
+230 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),229(a,2))].
+231 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,plus(n0,n2))) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),230(b,2,3))].
+232 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,n2)) | plus(n2,n0) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),231(b,2,3))].
+233 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,n2)) | plus(n0,n2) != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),232(c,1))].
+234 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,n2)) | n2 != A | less(n4,n0) | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),233(c,1))].
+235 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,n2)) | n2 != A | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(51,a,234,d)].
+236 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,n2)) | n2 != A | n3 = n0 | n2 = n0.  [resolve(105,a,235,d)].
+237 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,n2)) | n2 != A | n2 = n0.  [resolve(102,a,236,d)].
+238 holdsAt(waterLevel(A),n2) | less(n0,f2(n0,filling,n2)) | n2 != A.  [resolve(97,a,237,d)].
+239 holdsAt(waterLevel(f11(tapOn,waterLevel(n1),A)),n1) | less(n0,f2(n0,filling,n1)).  [resolve(227,c,142,a(flip))].
+240 holdsAt(waterLevel(n1),n1) | less(n0,f2(n0,filling,n1)).  [para(142(a,1),239(a,1,1))].
+241 less(n0,f2(n0,filling,n1)) | -holdsAt(waterLevel(A),n1) | n1 = A.  [resolve(240,a,41,b)].
+242 holdsAt(waterLevel(f11(tapOn,waterLevel(n2),A)),n2) | less(n0,f2(n0,filling,n2)).  [resolve(238,c,142,a(flip))].
+243 holdsAt(waterLevel(n2),n2) | less(n0,f2(n0,filling,n2)).  [para(142(a,1),242(a,1,1))].
+244 less(n0,f2(n0,filling,n2)).  [resolve(66,a,243,a)].
+245 f2(n0,filling,n2) = n1 | less(n0,n0).  [para(218(b,1),244(a,2))].
+246 f2(n0,filling,n2) = n1.  [resolve(77,a,245,b)].
+247 -happens(f1(n0,filling,n2),n1) | -holdsAt(filling,plus(n1,f2(n0,filling,n2))).  [para(246(a,1),182(a,2))].
+248 -happens(f1(n0,filling,n2),n1) | -holdsAt(filling,plus(n1,n1)).  [para(246(a,1),247(b,2,2))].
+249 -happens(f1(n0,filling,n2),n1) | -holdsAt(filling,n2).  [para(46(a,1),248(b,2))].
+250 -happens(f1(n0,filling,n2),n1) | -releasedAt(filling,plus(n1,f2(n0,filling,n2))).  [para(246(a,1),180(a,2))].
+251 -happens(f1(n0,filling,n2),n1) | -releasedAt(filling,plus(n1,n1)).  [para(246(a,1),250(b,2,2))].
+252 -happens(f1(n0,filling,n2),n1) | -releasedAt(filling,n2).  [para(46(a,1),251(b,2))].
+253 holdsAt(waterLevel(A),plus(n2,n0)) | happens(f1(n0,filling,plus(n2,n0)),f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(162,a,161,e)].
+254 holdsAt(waterLevel(A),plus(n0,n2)) | happens(f1(n0,filling,plus(n2,n0)),f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),253(a,2))].
+255 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,plus(n2,n0)),f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),254(a,2))].
+256 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,plus(n0,n2)),f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),255(b,1,3))].
+257 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),f2(n0,filling,plus(n2,n0))) | plus(n2,n0) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),256(b,1,3))].
+258 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),f2(n0,filling,plus(n0,n2))) | plus(n2,n0) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),257(b,2,3))].
+259 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),f2(n0,filling,n2)) | plus(n2,n0) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),258(b,2,3))].
+260 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),n1) | plus(n2,n0) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(246(a,1),259(b,2))].
+261 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),n1) | plus(n0,n2) != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(47(a,1),260(c,1))].
+262 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),n1) | n2 != A | less(n5,n0) | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [para(45(a,1),261(c,1))].
+263 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),n1) | n2 != A | n5 = n0 | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(51,a,262,d)].
+264 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),n1) | n2 != A | n4 = n0 | n3 = n0 | n2 = n0.  [resolve(108,a,263,d)].
+265 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),n1) | n2 != A | n3 = n0 | n2 = n0.  [resolve(105,a,264,d)].
+266 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),n1) | n2 != A | n2 = n0.  [resolve(102,a,265,d)].
+267 holdsAt(waterLevel(A),n2) | happens(f1(n0,filling,n2),n1) | n2 != A.  [resolve(97,a,266,d)].
+268 -happens(f1(n0,filling,n2),n1) | happens(f5(filling,n1),n1) | holdsAt(filling,n2).  [resolve(252,b,125,a)].
+269 holdsAt(waterLevel(f11(tapOn,waterLevel(n2),A)),n2) | happens(f1(n0,filling,n2),n1).  [resolve(267,c,142,a(flip))].
+270 holdsAt(waterLevel(n2),n2) | happens(f1(n0,filling,n2),n1).  [para(142(a,1),269(a,1,1))].
+271 happens(f1(n0,filling,n2),n1).  [resolve(66,a,270,a)].
+272 happens(f5(filling,n1),n1) | holdsAt(filling,n2).  [resolve(271,a,268,a)].
+273 -holdsAt(filling,n2).  [resolve(271,a,249,a)].
+274 happens(f5(filling,n1),n1).  [resolve(273,a,272,b)].
+275 n0 = n1 | holdsAt(waterLevel(n3),n1).  [resolve(274,a,39,a)].
+276 holdsAt(waterLevel(n3),n1).  [resolve(92,a,275,a)].
+277 less(n0,f2(n0,filling,n1)) | n1 = n3.  [resolve(276,a,241,b)].
+278 less(n0,f2(n0,filling,n1)) | n3 = n1.  [copy(277),flip(b)].
+279 less(n0,f2(n0,filling,n1)).  [resolve(96,a,278,b)].
+280 less(f2(n0,filling,n1),n1) | n1 = n3.  [resolve(276,a,208,b)].
+281 less(f2(n0,filling,n1),n1) | n3 = n1.  [copy(280),flip(b)].
+282 less(f2(n0,filling,n1),n1).  [resolve(96,a,281,b)].
+283 f2(n0,filling,n1) != n0.  [resolve(279,a,63,a)].
+284 n1 = f2(n0,filling,n1) | n0 = f2(n0,filling,n1).  [resolve(282,a,126,c)].
+285 f2(n0,filling,n1) = n1 | n0 = f2(n0,filling,n1).  [copy(284),flip(a)].
+286 f2(n0,filling,n1) = n1 | f2(n0,filling,n1) = n0.  [copy(285),flip(b)].
+287 f2(n0,filling,n1) = n1.  [resolve(283,a,286,b)].
+288 n1 != f2(n0,filling,n1).  [resolve(282,a,63,a)].
+289 n1 != n1.  [para(287(a,1),288(a,2))].
+290 $F.  [copy(289),xx(a)].

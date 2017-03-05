@@ -1,0 +1,54 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n079.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 17:47:58 CDT 2014
+% CPUTime    : 0.17 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 37730 was started by sandbox on n079.star.cs.uiowa.edu,
+Thu Jun  5 17:47:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_37698_n079.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.05 (+ 0.00) seconds.
+% Length of proof is 16.
+% Level of proof is 5.
+% Maximum clause weight is 23.000.
+% Given clauses 81.
+
+
+1 (all A all B set_union2(A,B) = set_union2(B,A)).  [assumption].
+2 (all A all B all C (C = set_union2(A,B) <-> (all D (in(D,C) <-> in(D,A) | in(D,B))))).  [assumption].
+3 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+4 -(all A all B (subset(A,B) -> set_union2(A,B) = B)).  [assumption].
+5 subset(c3,c4).  [clausify(4)].
+6 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+7 set_union2(A,B) = C | in(f2(A,B,C),C) | in(f2(A,B,C),A) | in(f2(A,B,C),B).  [clausify(2)].
+8 set_union2(c3,c4) != c4.  [clausify(4)].
+9 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(3)].
+10 set_union2(A,B) = C | -in(f2(A,B,C),C) | -in(f2(A,B,C),B).  [clausify(2)].
+11 set_union2(A,B) = B | -in(f2(A,B,B),B).  [factor(10,b,c)].
+12 -in(A,c3) | in(A,c4).  [resolve(9,a,5,a)].
+13 -in(f2(c3,c4,c4),c4).  [resolve(11,a,8,a)].
+14 in(f2(c3,A,B),c4) | set_union2(c3,A) = B | in(f2(c3,A,B),B) | in(f2(c3,A,B),A).  [resolve(12,a,7,c)].
+15 in(f2(c3,A,B),c4) | set_union2(A,c3) = B | in(f2(c3,A,B),B) | in(f2(c3,A,B),A).  [para(6(a,1),14(b,1))].
+16 in(f2(c3,A,c4),c4) | set_union2(A,c3) = c4 | in(f2(c3,A,c4),A).  [factor(15,a,c)].
+17 in(f2(c3,c4,c4),c4) | set_union2(c4,c3) = c4.  [factor(16,a,c)].
+18 in(f2(c3,c4,c4),c4) | set_union2(c3,c4) = c4.  [para(6(a,1),17(b,1))].
+19 set_union2(c3,c4) = c4.  [resolve(13,a,18,a)].
+20 $F.  [resolve(8,a,19,a)].
+
+============================== end of proof ==========================

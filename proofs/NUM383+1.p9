@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n051.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 05:58:18 CDT 2014
+% CPUTime    : 0.16 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 42350 was started by sandbox on n051.star.cs.uiowa.edu,
+Fri Jun  6 05:58:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_42318_n051.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 18.
+% Level of proof is 5.
+% Maximum clause weight is 10.000.
+% Given clauses 32.
+
+
+1 (all A all B (in(A,B) -> -in(B,A))).  [assumption].
+2 (all A all B (element(A,B) -> empty(B) | in(A,B))).  [assumption].
+3 (all A all B (element(A,powerset(B)) <-> subset(A,B))).  [assumption].
+4 (all A all B all C (in(A,B) & element(B,powerset(C)) -> element(A,C))).  [assumption].
+5 (all A all B all C -(in(A,B) & element(B,powerset(C)) & empty(C))).  [assumption].
+6 -(all A all B -(in(A,B) & subset(B,A))).  [assumption].
+7 element(A,powerset(B)) | -subset(A,B).  [clausify(3)].
+8 subset(c12,c11).  [clausify(6)].
+9 in(c11,c12).  [clausify(6)].
+10 -in(A,B) | -in(B,A).  [clausify(1)].
+11 -in(A,B) | -element(B,powerset(C)) | -empty(C).  [clausify(5)].
+12 -element(A,B) | empty(B) | in(A,B).  [clausify(2)].
+13 -in(A,B) | -element(B,powerset(C)) | element(A,C).  [clausify(4)].
+14 element(c12,powerset(c11)).  [resolve(7,b,8,a)].
+15 -in(A,A).  [factor(10,a,b)].
+16 -element(c12,powerset(A)) | -empty(A).  [resolve(11,a,9,a)].
+17 -empty(c11).  [resolve(16,a,14,a)].
+18 -element(A,c11) | in(A,c11).  [resolve(12,b,17,a)].
+19 -element(c11,c11).  [resolve(18,b,15,a)].
+20 -in(A,c12) | element(A,c11).  [resolve(13,b,14,a)].
+21 -in(c11,c12).  [resolve(20,b,19,a)].
+22 $F.  [resolve(9,a,21,a)].
+
+============================== end of proof ==========================

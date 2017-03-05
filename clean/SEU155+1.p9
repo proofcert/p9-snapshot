@@ -1,0 +1,14 @@
+
+
+
+4 in(c1,c2).  [clausify(3)].
+5 subset(A,B) | in(f1(A,B),A).  [clausify(1)].
+6 -subset(c1,union(c2)).  [clausify(3)].
+7 subset(A,B) | -in(f1(A,B),B).  [clausify(1)].
+8 union(A) != B | in(C,B) | -in(C,D) | -in(D,A).  [clausify(2)].
+9 in(f1(c1,union(c2)),c1).  [resolve(6,a,5,a)].
+10 -in(f1(c1,union(c2)),union(c2)).  [resolve(7,a,6,a)].
+11 union(c2) != A | in(B,A) | -in(B,c1).  [resolve(8,d,4,a)].
+12 union(c2) != A | in(f1(c1,union(c2)),A).  [resolve(11,c,9,a)].
+13 in(f1(c1,union(c2)),union(c2)).  [xx_res(12,a)].
+14 $F.  [resolve(10,a,13,a)].

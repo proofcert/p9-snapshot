@@ -1,0 +1,109 @@
+
+
+
+
+
+
+
+8 cowlThing(A).  [clausify(2)].
+9 xsd_string(A) | xsd_integer(A).  [clausify(3)].
+10 -cowlNothing(A).  [clausify(2)].
+11 -xsd_string(A) | -xsd_integer(A).  [clausify(3)].
+12 cA_and_B(A) | -cA(A).  [clausify(5)].
+13 cA_and_B(A) | -cB(A).  [clausify(5)].
+14 -cA(A) | ia = A.  [clausify(4)].
+15 cA(A) | ia != A.  [clausify(4)].
+16 -cB(A) | ib = A.  [clausify(6)].
+17 cB(A) | ib != A.  [clausify(6)].
+18 -cA_and_B(A) | cA(A) | cB(A).  [clausify(5)].
+19 A != B | -cA_and_B(B) | cA_and_B(A).  [clausify(1)].
+20 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | ib != c3 | -cowlThing(ia) | -cowlThing(ib).  [clausify(7)].
+21 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | -cowlThing(ia) | -cowlThing(ib).  [copy(20),flip(f)].
+22 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | -cowlThing(ia) | -cowlThing(ib).  [resolve(8,a,21,a)].
+23 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | -cowlThing(ia) | -cowlThing(ib).  [resolve(10,a,22,a)].
+24 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | -cowlThing(ib).  [resolve(8,a,23,e)].
+25 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ib.  [resolve(8,a,24,e)].
+26 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | ia != c3 | -cowlThing(ia) | -cowlThing(ib).  [clausify(7)].
+27 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | -cowlThing(ia) | -cowlThing(ib).  [copy(26),flip(f)].
+28 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | -cowlThing(ia) | -cowlThing(ib).  [resolve(8,a,27,a)].
+29 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | -cowlThing(ia) | -cowlThing(ib).  [resolve(10,a,28,a)].
+30 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | -cowlThing(ib).  [resolve(8,a,29,e)].
+31 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(c3) | c3 != ia.  [resolve(8,a,30,e)].
+32 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | ib != c3 | -cowlThing(ia) | -cowlThing(ib).  [clausify(7)].
+33 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | -cowlThing(ia) | -cowlThing(ib).  [copy(32),flip(f)].
+34 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | -cowlThing(ia) | -cowlThing(ib).  [resolve(8,a,33,a)].
+35 -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | -cowlThing(ia) | -cowlThing(ib).  [resolve(10,a,34,a)].
+36 -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | -cowlThing(ib).  [resolve(8,a,35,e)].
+37 -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ib.  [resolve(8,a,36,e)].
+38 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | ia != c3 | -cowlThing(ia) | -cowlThing(ib).  [clausify(7)].
+39 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | -cowlThing(ia) | -cowlThing(ib).  [copy(38),flip(f)].
+40 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | -cowlThing(ia) | -cowlThing(ib).  [resolve(8,a,39,a)].
+41 -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | -cowlThing(ia) | -cowlThing(ib).  [resolve(10,a,40,a)].
+42 -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | -cowlThing(ib).  [resolve(8,a,41,e)].
+43 -xsd_string(c2) | xsd_integer(c2) | -cA_and_B(c3) | c3 != ia.  [resolve(8,a,42,e)].
+44 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cA_and_B(c3) | ib = c3 | ia = c3 | -cowlThing(ia) | -cowlThing(ib).  [clausify(7)].
+45 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cA_and_B(c3) | c3 = ib | ia = c3 | -cowlThing(ia) | -cowlThing(ib).  [copy(44),flip(f)].
+46 -cowlThing(c1) | cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | -cowlThing(ia) | -cowlThing(ib).  [copy(45),flip(g)].
+47 cowlNothing(c1) | xsd_string(c2) | -xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | -cowlThing(ia) | -cowlThing(ib).  [resolve(8,a,46,a)].
+48 xsd_string(c2) | -xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | -cowlThing(ia) | -cowlThing(ib).  [resolve(10,a,47,a)].
+49 xsd_string(c2) | -xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | -cowlThing(ib).  [resolve(8,a,48,f)].
+50 xsd_string(c2) | -xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia.  [resolve(8,a,49,f)].
+51 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cA_and_B(c3) | ib = c3 | ia = c3 | -cowlThing(ia) | -cowlThing(ib).  [clausify(7)].
+52 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cA_and_B(c3) | c3 = ib | ia = c3 | -cowlThing(ia) | -cowlThing(ib).  [copy(51),flip(f)].
+53 -cowlThing(c1) | cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | -cowlThing(ia) | -cowlThing(ib).  [copy(52),flip(g)].
+54 cowlNothing(c1) | -xsd_string(c2) | xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | -cowlThing(ia) | -cowlThing(ib).  [resolve(8,a,53,a)].
+55 -xsd_string(c2) | xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | -cowlThing(ia) | -cowlThing(ib).  [resolve(10,a,54,a)].
+56 -xsd_string(c2) | xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | -cowlThing(ib).  [resolve(8,a,55,f)].
+57 -xsd_string(c2) | xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia.  [resolve(8,a,56,f)].
+58 cA(ia).  [xx_res(15,b)].
+59 cB(ib).  [xx_res(17,b)].
+60 xsd_integer(c2) | -cA_and_B(c3) | c3 != ib | xsd_integer(c2).  [resolve(37,a,9,a)].
+61 xsd_integer(c2) | -cA_and_B(c3) | c3 != ib.  [copy(60),merge(d)].
+62 xsd_integer(c2) | -cA_and_B(c3) | c3 != ia | xsd_integer(c2).  [resolve(43,a,9,a)].
+63 xsd_integer(c2) | -cA_and_B(c3) | c3 != ia.  [copy(62),merge(d)].
+64 xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia | xsd_integer(c2).  [resolve(57,a,9,a)].
+65 xsd_integer(c2) | cA_and_B(c3) | c3 = ib | c3 = ia.  [copy(64),merge(e)].
+66 cA_and_B(ia).  [resolve(58,a,12,b)].
+67 cA_and_B(ib).  [resolve(59,a,13,b)].
+68 A != ib | cA_and_B(A).  [resolve(67,a,19,b)].
+69 ib != A | cA_and_B(A).  [copy(68),flip(a)].
+70 cA_and_B(c3) | c3 = ib | c3 = ia | xsd_string(c2) | cA_and_B(c3) | c3 = ib | c3 = ia.  [resolve(65,a,50,b)].
+71 cA_and_B(c3) | c3 = ib | c3 = ia | xsd_string(c2) | c3 = ib | c3 = ia.  [copy(70),merge(e)].
+72 cA_and_B(c3) | c3 = ib | c3 = ia | xsd_string(c2) | c3 = ia.  [copy(71),merge(e)].
+73 cA_and_B(c3) | c3 = ib | c3 = ia | xsd_string(c2).  [copy(72),merge(e)].
+74 cA_and_B(c3) | c3 = ib | c3 = ia | -xsd_integer(c2).  [resolve(73,d,11,a)].
+75 cA_and_B(c3) | c3 = ib | c3 = ia | cA_and_B(c3) | c3 = ib | c3 = ia.  [resolve(74,d,65,a)].
+76 cA_and_B(c3) | c3 = ib | c3 = ia | c3 = ib | c3 = ia.  [copy(75),merge(d)].
+77 cA_and_B(c3) | c3 = ib | c3 = ia | c3 = ia.  [copy(76),merge(d)].
+78 cA_and_B(c3) | c3 = ib | c3 = ia.  [copy(77),merge(d)].
+79 c3 = ib | c3 = ia | cA(c3) | cB(c3).  [resolve(78,a,18,a)].
+80 c3 = ib | c3 = ia | cA(c3) | ib = c3.  [resolve(79,d,16,a)].
+81 c3 = ib | c3 = ia | cA(c3) | c3 = ib.  [copy(80),flip(d)].
+82 c3 = ib | c3 = ia | cA(c3).  [copy(81),merge(d)].
+83 c3 = ib | c3 = ia | ia = c3.  [resolve(82,c,14,a)].
+84 c3 = ib | c3 = ia | c3 = ia.  [copy(83),flip(c)].
+85 c3 = ib | c3 = ia.  [copy(84),merge(c)].
+86 c3 = ia | cA_and_B(c3).  [resolve(85,a,69,a(flip))].
+87 c3 = ia | xsd_integer(c2) | -cA_and_B(ib) | c3 != ib.  [para(85(a,1),61(b,1))].
+88 c3 = ia | xsd_integer(c2) | c3 != ib.  [resolve(67,a,87,c)].
+89 c3 = ia | xsd_integer(c2) | c3 = ia.  [resolve(88,c,85,a)].
+90 c3 = ia | xsd_integer(c2).  [copy(89),merge(c)].
+91 c3 = ia | xsd_string(c2) | -cA_and_B(c3) | c3 != ib.  [resolve(90,b,25,b)].
+92 c3 = ia | xsd_string(c2) | c3 != ib | c3 = ia.  [resolve(91,c,86,b)].
+93 c3 = ia | xsd_string(c2) | c3 != ib.  [copy(92),merge(d)].
+94 c3 = ia | xsd_string(c2) | c3 = ia.  [resolve(93,c,85,a)].
+95 c3 = ia | xsd_string(c2).  [copy(94),merge(c)].
+96 c3 = ia | -xsd_integer(c2).  [resolve(95,b,11,a)].
+97 c3 = ia | c3 = ia.  [resolve(96,b,90,b)].
+98 c3 = ia.  [copy(97),merge(b)].
+99 xsd_integer(c2) | -cA_and_B(ia) | c3 != ia.  [para(98(a,1),63(b,1))].
+100 xsd_integer(c2) | -cA_and_B(ia) | ia != ia.  [para(98(a,1),99(c,1))].
+101 xsd_integer(c2) | -cA_and_B(ia).  [copy(100),xx(c)].
+102 xsd_integer(c2).  [resolve(66,a,101,b)].
+103 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(ia) | c3 != ia.  [para(98(a,1),31(c,1))].
+104 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(ia) | ia != ia.  [para(98(a,1),103(d,1))].
+105 xsd_string(c2) | -xsd_integer(c2) | -cA_and_B(ia).  [copy(104),xx(d)].
+106 xsd_string(c2) | -cA_and_B(ia).  [resolve(102,a,105,b)].
+107 xsd_string(c2).  [resolve(66,a,106,b)].
+108 -xsd_string(c2).  [resolve(11,b,102,a)].
+109 $F.  [resolve(107,a,108,a)].

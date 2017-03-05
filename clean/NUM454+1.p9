@@ -1,0 +1,107 @@
+
+
+
+
+
+
+
+
+
+
+11 aInteger0(sz10).  [assumption].
+12 -aInteger0(A) | aInteger0(smndt0(A)).  [clausify(1)].
+13 -aInteger0(A) | -aInteger0(B) | aInteger0(sdtpldt0(A,B)).  [clausify(2)].
+14 -aInteger0(A) | -aInteger0(B) | -aInteger0(C) | sdtpldt0(sdtpldt0(A,B),C) = sdtpldt0(A,sdtpldt0(B,C)).  [clausify(3)].
+15 -aInteger0(A) | -aInteger0(B) | sdtpldt0(B,A) = sdtpldt0(A,B).  [clausify(4)].
+16 -aInteger0(A) | sdtpldt0(A,sz00) = A.  [clausify(5)].
+17 -aInteger0(A) | sdtpldt0(A,smndt0(A)) = sz00.  [clausify(6)].
+18 -aInteger0(A) | sdtpldt0(smndt0(A),A) = sz00.  [clausify(6)].
+19 -aInteger0(A) | sdtasdt0(A,sz10) = A.  [clausify(7)].
+20 -aInteger0(A) | -aInteger0(B) | -aInteger0(C) | sdtasdt0(A,sdtpldt0(B,C)) = sdtpldt0(sdtasdt0(A,B),sdtasdt0(A,C)).  [clausify(8)].
+21 -aInteger0(A) | -aInteger0(B) | -aInteger0(C) | sdtpldt0(sdtasdt0(A,B),sdtasdt0(A,C)) = sdtasdt0(A,sdtpldt0(B,C)).  [copy(20),flip(d)].
+22 -aInteger0(A) | -aInteger0(B) | sdtasdt0(A,B) != sz00 | sz00 = A | B = sz00.  [clausify(9)].
+23 -aInteger0(A) | -aInteger0(B) | sdtasdt0(A,B) != sz00 | sz00 = A | sz00 = B.  [copy(22),flip(e)].
+24 aInteger0(xp).  [assumption].
+25 xp != sz00.  [assumption].
+26 sdtpldt0(sz10,xp) = smndt0(sz10).  [clausify(10)].
+27 sdtpldt0(sz10,smndt0(xp)) = smndt0(sz10).  [clausify(10)].
+28 -aInteger0(A) | aInteger0(sdtpldt0(A,A)).  [factor(13,a,b)].
+29 -aInteger0(A) | -aInteger0(B) | sdtpldt0(sdtpldt0(A,A),B) = sdtpldt0(A,sdtpldt0(A,B)).  [factor(14,a,b)].
+30 -aInteger0(A) | -aInteger0(B) | sdtpldt0(sdtpldt0(A,B),B) = sdtpldt0(A,sdtpldt0(B,B)).  [factor(14,b,c)].
+31 -aInteger0(A) | sdtasdt0(A,A) != sz00 | sz00 = A | sz00 = A.  [factor(23,a,b)].
+32 -aInteger0(A) | sdtasdt0(A,A) != sz00 | sz00 = A.  [copy(31),merge(d)].
+33 aInteger0(smndt0(sz10)).  [resolve(12,a,11,a)].
+34 -aInteger0(A) | -aInteger0(B) | sdtpldt0(sdtpldt0(sz10,A),B) = sdtpldt0(sz10,sdtpldt0(A,B)).  [resolve(14,a,11,a)].
+35 -aInteger0(A) | -aInteger0(B) | sdtpldt0(sdtpldt0(A,B),sz10) = sdtpldt0(A,sdtpldt0(B,sz10)).  [resolve(14,c,11,a)].
+36 -aInteger0(A) | sdtpldt0(sdtpldt0(sz10,A),A) = sdtpldt0(sz10,sdtpldt0(A,A)).  [factor(34,a,b)].
+37 -aInteger0(A) | sdtpldt0(sdtpldt0(A,A),sz10) = sdtpldt0(A,sdtpldt0(A,sz10)).  [factor(35,a,b)].
+38 -aInteger0(A) | sdtpldt0(A,sz10) = sdtpldt0(sz10,A).  [resolve(15,a,11,a)].
+39 -aInteger0(A) | sdtpldt0(sz10,A) = sdtpldt0(A,sz10).  [copy(38),flip(b)].
+40 sdtpldt0(sz10,sz00) = sz10.  [resolve(16,a,11,a)].
+41 sdtpldt0(sz10,smndt0(sz10)) = sz00.  [resolve(17,a,11,a)].
+42 -aInteger0(A) | -aInteger0(B) | sdtpldt0(sdtasdt0(xp,A),sdtasdt0(xp,B)) = sdtasdt0(xp,sdtpldt0(A,B)).  [resolve(24,a,21,a)].
+43 sdtasdt0(xp,sz10) = xp.  [resolve(24,a,19,a)].
+44 sdtpldt0(smndt0(xp),xp) = sz00.  [resolve(24,a,18,a)].
+45 sdtpldt0(xp,sz00) = xp.  [resolve(24,a,16,a)].
+46 -aInteger0(A) | sdtpldt0(xp,A) = sdtpldt0(A,xp).  [resolve(24,a,15,b)].
+47 -aInteger0(A) | -aInteger0(B) | sdtpldt0(sdtpldt0(A,B),xp) = sdtpldt0(A,sdtpldt0(B,xp)).  [resolve(24,a,14,c)].
+48 -aInteger0(A) | aInteger0(sdtpldt0(xp,A)).  [resolve(24,a,13,a)].
+49 aInteger0(smndt0(xp)).  [resolve(24,a,12,a)].
+50 -aInteger0(A) | sdtpldt0(sdtasdt0(xp,A),sdtasdt0(xp,A)) = sdtasdt0(xp,sdtpldt0(A,A)).  [factor(42,a,b)].
+51 -aInteger0(A) | sdtpldt0(sdtpldt0(A,A),xp) = sdtpldt0(A,sdtpldt0(A,xp)).  [factor(47,a,b)].
+52 aInteger0(sdtpldt0(xp,xp)).  [resolve(28,a,24,a)].
+53 aInteger0(sdtpldt0(sz10,sz10)).  [resolve(28,a,11,a)].
+54 -aInteger0(A) | sdtpldt0(sdtpldt0(xp,xp),A) = sdtpldt0(xp,sdtpldt0(xp,A)).  [resolve(29,a,24,a)].
+55 -aInteger0(A) | sdtpldt0(sdtpldt0(A,sz10),sz10) = sdtpldt0(A,sdtpldt0(sz10,sz10)).  [resolve(30,b,11,a)].
+56 sdtasdt0(xp,xp) != sz00 | sz00 = xp.  [resolve(32,a,24,a)].
+57 sdtasdt0(xp,xp) != sz00 | xp = sz00.  [copy(56),flip(b)].
+58 sdtasdt0(xp,xp) != sz00.  [resolve(25,a,57,b)].
+59 -aInteger0(A) | sdtpldt0(sdtpldt0(sz10,smndt0(xp)),A) = sdtpldt0(sz10,sdtpldt0(smndt0(xp),A)).  [resolve(34,a,49,a)].
+60 -aInteger0(A) | sdtpldt0(smndt0(sz10),A) = sdtpldt0(sz10,sdtpldt0(smndt0(xp),A)).  [para(27(a,1),59(b,1,1))].
+61 -aInteger0(A) | sdtpldt0(sz10,sdtpldt0(smndt0(xp),A)) = sdtpldt0(smndt0(sz10),A).  [copy(60),flip(b)].
+62 aInteger0(sdtpldt0(xp,smndt0(sz10))).  [resolve(48,a,33,a)].
+63 sdtpldt0(sdtpldt0(sz10,xp),xp) = sdtpldt0(sz10,sdtpldt0(xp,xp)).  [resolve(36,a,24,a)].
+64 sdtpldt0(smndt0(sz10),xp) = sdtpldt0(sz10,sdtpldt0(xp,xp)).  [para(26(a,1),63(a,1,1))].
+65 sdtpldt0(sz10,sdtpldt0(xp,xp)) = sdtpldt0(smndt0(sz10),xp).  [copy(64),flip(a)].
+66 sdtpldt0(sdtpldt0(xp,xp),sz10) = sdtpldt0(xp,sdtpldt0(xp,sz10)).  [resolve(37,a,24,a)].
+67 sdtpldt0(sz10,sdtpldt0(xp,smndt0(sz10))) = sdtpldt0(sdtpldt0(xp,smndt0(sz10)),sz10).  [resolve(39,a,62,a)].
+68 sdtpldt0(sdtpldt0(xp,smndt0(sz10)),sz10) = sdtpldt0(sz10,sdtpldt0(xp,smndt0(sz10))).  [copy(67),flip(a)].
+69 sdtpldt0(sz10,sdtpldt0(xp,xp)) = sdtpldt0(sdtpldt0(xp,xp),sz10).  [resolve(39,a,52,a)].
+70 sdtpldt0(smndt0(sz10),xp) = sdtpldt0(sdtpldt0(xp,xp),sz10).  [para(65(a,1),69(a,1))].
+71 sdtpldt0(smndt0(sz10),xp) = sdtpldt0(xp,sdtpldt0(xp,sz10)).  [para(66(a,1),70(a,2))].
+72 sdtpldt0(xp,sdtpldt0(xp,sz10)) = sdtpldt0(smndt0(sz10),xp).  [copy(71),flip(a)].
+73 sdtpldt0(sz10,xp) = sdtpldt0(xp,sz10).  [resolve(39,a,24,a)].
+74 smndt0(sz10) = sdtpldt0(xp,sz10).  [para(26(a,1),73(a,1))].
+75 sdtpldt0(xp,sz10) = smndt0(sz10).  [copy(74),flip(a)].
+76 sdtpldt0(sdtpldt0(xp,xp),sz10) = sdtpldt0(xp,smndt0(sz10)).  [para(75(a,1),66(a,2,2))].
+77 sdtpldt0(xp,smndt0(sz10)) = sdtpldt0(smndt0(sz10),xp).  [para(75(a,1),72(a,1,2))].
+78 sdtpldt0(smndt0(sz10),xp) = sdtpldt0(xp,smndt0(sz10)).  [copy(77),flip(a)].
+79 sdtpldt0(xp,sdtpldt0(sz10,sz10)) = sdtpldt0(sdtpldt0(sz10,sz10),xp).  [resolve(46,a,53,a)].
+80 sdtpldt0(sdtpldt0(sz10,sz10),xp) = sdtpldt0(xp,sdtpldt0(sz10,sz10)).  [copy(79),flip(a)].
+81 sdtpldt0(sdtasdt0(xp,sz10),sdtasdt0(xp,sz10)) = sdtasdt0(xp,sdtpldt0(sz10,sz10)).  [resolve(50,a,11,a)].
+82 sdtpldt0(xp,sdtasdt0(xp,sz10)) = sdtasdt0(xp,sdtpldt0(sz10,sz10)).  [para(43(a,1),81(a,1,1))].
+83 sdtpldt0(xp,xp) = sdtasdt0(xp,sdtpldt0(sz10,sz10)).  [para(43(a,1),82(a,1,2))].
+84 sdtasdt0(xp,sdtpldt0(sz10,sz10)) = sdtpldt0(xp,xp).  [copy(83),flip(a)].
+85 sdtpldt0(sdtpldt0(sz10,sz10),xp) = sdtpldt0(sz10,sdtpldt0(sz10,xp)).  [resolve(51,a,11,a)].
+86 sdtpldt0(xp,sdtpldt0(sz10,sz10)) = sdtpldt0(sz10,sdtpldt0(sz10,xp)).  [para(80(a,1),85(a,1))].
+87 sdtpldt0(xp,sdtpldt0(sz10,sz10)) = sdtpldt0(sz10,smndt0(sz10)).  [para(26(a,1),86(a,2,2))].
+88 sdtpldt0(xp,sdtpldt0(sz10,sz10)) = sz00.  [para(41(a,1),87(a,2))].
+89 sdtpldt0(sdtpldt0(sz10,sz10),xp) = sz00.  [para(88(a,1),80(a,2))].
+90 sdtpldt0(sdtpldt0(xp,xp),sdtpldt0(sz10,sz10)) = sdtpldt0(xp,sdtpldt0(xp,sdtpldt0(sz10,sz10))).  [resolve(54,a,53,a)].
+91 sdtpldt0(sdtpldt0(xp,xp),sdtpldt0(sz10,sz10)) = sdtpldt0(xp,sz00).  [para(88(a,1),90(a,2,2))].
+92 sdtpldt0(sdtpldt0(xp,xp),sdtpldt0(sz10,sz10)) = xp.  [para(45(a,1),91(a,2))].
+93 sdtpldt0(sdtpldt0(sdtpldt0(xp,xp),sz10),sz10) = sdtpldt0(sdtpldt0(xp,xp),sdtpldt0(sz10,sz10)).  [resolve(55,a,52,a)].
+94 sdtpldt0(sdtpldt0(xp,smndt0(sz10)),sz10) = sdtpldt0(sdtpldt0(xp,xp),sdtpldt0(sz10,sz10)).  [para(76(a,1),93(a,1,1))].
+95 sdtpldt0(sz10,sdtpldt0(xp,smndt0(sz10))) = sdtpldt0(sdtpldt0(xp,xp),sdtpldt0(sz10,sz10)).  [para(68(a,1),94(a,1))].
+96 sdtpldt0(sz10,sdtpldt0(xp,smndt0(sz10))) = xp.  [para(92(a,1),95(a,2))].
+97 sdtpldt0(sdtpldt0(xp,smndt0(sz10)),sz10) = xp.  [para(96(a,1),68(a,2))].
+98 sdtpldt0(sz10,sdtpldt0(smndt0(xp),xp)) = sdtpldt0(smndt0(sz10),xp).  [resolve(61,a,24,a)].
+99 sdtpldt0(sz10,sz00) = sdtpldt0(smndt0(sz10),xp).  [para(44(a,1),98(a,1,2))].
+100 sz10 = sdtpldt0(smndt0(sz10),xp).  [para(40(a,1),99(a,1))].
+101 sz10 = sdtpldt0(xp,smndt0(sz10)).  [para(78(a,1),100(a,2))].
+102 sdtpldt0(xp,smndt0(sz10)) = sz10.  [copy(101),flip(a)].
+103 sdtpldt0(sz10,sz10) = xp.  [para(102(a,1),97(a,1,1))].
+104 sdtpldt0(xp,xp) = sz00.  [para(103(a,1),89(a,1,1))].
+105 sdtasdt0(xp,xp) = sdtpldt0(xp,xp).  [para(103(a,1),84(a,1,2))].
+106 sdtasdt0(xp,xp) = sz00.  [para(104(a,1),105(a,2))].
+107 $F.  [resolve(58,a,106,a)].

@@ -1,0 +1,129 @@
+
+
+
+
+
+6 subset(c1,c2).  [clausify(5)].
+7 subset(A,B) | in(f2(A,B),A).  [clausify(3)].
+8 set_difference(A,B) = C | in(f3(A,B,C),C) | in(f3(A,B,C),A).  [clausify(4)].
+9 -in(c3,c1).  [clausify(5)].
+10 -in(A,B) | -in(B,A).  [clausify(1)].
+11 -subset(c1,set_difference(c2,singleton(c3))).  [clausify(5)].
+12 set_difference(A,B) != C | -in(D,C) | -in(D,B).  [clausify(4)].
+13 subset(A,B) | -in(f2(A,B),B).  [clausify(3)].
+14 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(3)].
+15 singleton(A) != B | -in(C,B) | C = A.  [clausify(2)].
+16 singleton(A) != B | in(C,B) | C != A.  [clausify(2)].
+17 set_difference(A,B) != C | -in(D,C) | in(D,A).  [clausify(4)].
+18 set_difference(A,B) != C | in(D,C) | -in(D,A) | in(D,B).  [clausify(4)].
+19 set_difference(A,B) = C | -in(f3(A,B,C),C) | -in(f3(A,B,C),A) | in(f3(A,B,C),B).  [clausify(4)].
+20 set_difference(A,B) = A | in(f3(A,B,A),A).  [factor(8,b,c)].
+21 -in(A,A).  [factor(10,a,b)].
+22 set_difference(A,B) = A | -in(f3(A,B,A),A) | in(f3(A,B,A),B).  [factor(19,b,c)].
+23 in(f2(c1,set_difference(c2,singleton(c3))),c1).  [resolve(11,a,7,a)].
+24 -in(f2(c1,set_difference(c2,singleton(c3))),set_difference(c2,singleton(c3))).  [resolve(13,a,11,a)].
+25 -in(A,B) | in(A,C) | in(f2(B,C),B).  [resolve(14,a,7,a)].
+26 -in(A,c1) | in(A,c2).  [resolve(14,a,6,a)].
+27 in(A,singleton(B)) | A != B.  [xx_res(16,a)].
+28 singleton(A) != B | in(A,B).  [xx_res(16,c)].
+29 -in(A,set_difference(B,C)) | in(A,B).  [xx_res(17,a)].
+30 -in(c3,set_difference(c1,A)).  [resolve(29,b,9,a)].
+31 set_difference(A,B) = A | set_difference(C,A) != D | -in(f3(A,B,A),D).  [resolve(20,b,12,c)].
+32 set_difference(A,B) = A | set_difference(C,D) != A | -in(f3(A,B,A),D).  [resolve(20,b,12,b)].
+33 -in(A,set_difference(B,C)) | in(A,B).  [xx_res(17,a)].
+34 -in(A,set_difference(A,B)).  [resolve(33,b,21,a)].
+35 singleton(A) != B | B != A.  [resolve(16,b,21,a)].
+36 singleton(A) != A.  [xx_res(35,b)].
+37 set_difference(A,B) = A | in(f3(A,B,A),B) | set_difference(A,B) = A.  [resolve(22,b,20,b)].
+38 set_difference(A,B) = A | in(f3(A,B,A),B).  [copy(37),merge(c)].
+39 -in(A,singleton(B)) | A = B.  [xx_res(15,a)].
+40 -in(A,singleton(singleton(A))).  [resolve(39,b,36,a(flip))].
+41 in(A,singleton(A)).  [xx_res(27,b)].
+42 set_difference(singleton(A),B) != C | in(A,C) | in(A,B).  [resolve(41,a,18,c)].
+43 -subset(singleton(A),B) | in(A,B).  [resolve(14,b,41,a)].
+44 -subset(singleton(A),A).  [resolve(43,b,21,a)].
+45 in(f2(singleton(A),A),singleton(A)).  [resolve(44,a,7,a)].
+46 singleton(A) != singleton(B) | f2(singleton(B),B) = A.  [resolve(45,a,15,b)].
+47 in(f2(c1,set_difference(c2,singleton(c3))),c2).  [resolve(23,a,26,a)].
+48 set_difference(c1,A) != B | in(f2(c1,set_difference(c2,singleton(c3))),B) | in(f2(c1,set_difference(c2,singleton(c3))),A).  [resolve(23,a,18,c)].
+49 set_difference(c2,A) != B | in(f2(c1,set_difference(c2,singleton(c3))),B) | in(f2(c1,set_difference(c2,singleton(c3))),A).  [resolve(47,a,18,c)].
+50 -in(A,set_difference(B,C)) | -in(A,C).  [xx_res(12,a)].
+51 -in(f2(c1,set_difference(c2,singleton(c3))),set_difference(A,c2)).  [resolve(50,b,47,a)].
+52 set_difference(A,B) != C | -in(C,A) | in(C,B).  [resolve(18,b,21,a)].
+53 set_difference(singleton(A),B) != A | in(A,B).  [resolve(52,b,41,a)].
+54 set_difference(singleton(A),singleton(singleton(A))) != A.  [resolve(53,b,40,a)].
+55 in(A,B) | in(f2(singleton(A),B),singleton(A)).  [resolve(25,a,41,a)].
+56 in(A,B) | singleton(C) != singleton(A) | f2(singleton(A),B) = C.  [resolve(55,b,15,b)].
+57 set_difference(A,B) = A | singleton(C) != B | f3(A,B,A) = C.  [resolve(38,b,15,b)].
+58 f2(singleton(A),A) = A.  [xx_res(46,a)].
+59 in(A,f2(singleton(set_difference(singleton(A),B)),set_difference(singleton(A),B))) | in(A,B).  [resolve(42,a,58,a(flip))].
+60 in(A,set_difference(singleton(A),B)) | in(A,B).  [para(58(a,1),59(a,2))].
+61 in(A,B) | -in(set_difference(singleton(A),B),A).  [resolve(60,a,10,b)].
+62 set_difference(A,B) = A | set_difference(C,A) != B | set_difference(A,B) = A.  [resolve(31,c,38,b)].
+63 set_difference(A,B) = A | set_difference(C,A) != B.  [copy(62),merge(c)].
+64 -in(set_difference(singleton(A),A),A).  [resolve(61,a,21,a)].
+65 set_difference(A,B) = A | set_difference(C,B) != A | set_difference(A,B) = A.  [resolve(32,c,38,b)].
+66 set_difference(A,B) = A | set_difference(C,B) != A.  [copy(65),merge(c)].
+67 singleton(set_difference(singleton(A),A)) != A.  [resolve(28,b,64,a)].
+68 set_difference(A,f2(singleton(set_difference(B,A)),set_difference(B,A))) = A.  [resolve(63,b,58,a(flip))].
+69 set_difference(A,set_difference(B,A)) = A.  [para(58(a,1),68(a,1,2))].
+70 set_difference(set_difference(A,B),B) = set_difference(A,B).  [resolve(69,a,63,b)].
+71 -in(A,set_difference(singleton(B),set_difference(C,singleton(B)))) | A = B.  [resolve(15,a,69,a(flip))].
+72 -in(A,set_difference(singleton(singleton(set_difference(singleton(A),A))),set_difference(B,singleton(singleton(set_difference(singleton(A),A)))))).  [resolve(71,b,67,a(flip))].
+73 -in(A,singleton(singleton(set_difference(singleton(A),A)))).  [para(69(a,1),72(a,2))].
+74 -in(A,set_difference(singleton(B),set_difference(C,singleton(B)))) | A = B.  [resolve(15,a,69,a(flip))].
+75 -in(A,set_difference(singleton(set_difference(singleton(A),singleton(singleton(A)))),set_difference(B,singleton(set_difference(singleton(A),singleton(singleton(A))))))).  [resolve(74,b,54,a(flip))].
+76 -in(A,singleton(set_difference(singleton(A),singleton(singleton(A))))).  [para(69(a,1),75(a,2))].
+77 c2 != A | in(f2(c1,set_difference(c2,singleton(c3))),A) | in(f2(c1,set_difference(c2,singleton(c3))),set_difference(B,c2)).  [para(69(a,1),49(a,1))].
+78 c2 != A | in(f2(c1,set_difference(c2,singleton(c3))),A).  [resolve(51,a,77,c)].
+79 c2 != set_difference(c2,singleton(c3)).  [resolve(78,b,24,a)].
+80 set_difference(c2,singleton(c3)) != c2.  [copy(79),flip(a)].
+81 c2 != f2(c1,set_difference(c2,singleton(c3))).  [resolve(78,b,21,a)].
+82 f2(c1,set_difference(c2,singleton(c3))) != c2.  [copy(81),flip(a)].
+83 set_difference(A,singleton(c3)) != c2.  [resolve(66,a,80,a)].
+84 set_difference(A,B) != c2 | -in(f3(c2,singleton(c3),c2),B).  [resolve(32,a,80,a)].
+85 -in(f3(c2,singleton(c3),c2),set_difference(A,c2)).  [resolve(84,a,69,a)].
+86 -in(A,set_difference(singleton(B),set_difference(C,singleton(B)))) | A = B.  [resolve(15,a,69,a(flip))].
+87 -in(set_difference(A,singleton(c3)),set_difference(singleton(c2),set_difference(B,singleton(c2)))).  [resolve(86,b,83,a)].
+88 -in(set_difference(A,singleton(c3)),singleton(c2)).  [para(69(a,1),87(a,2))].
+89 in(A,B) | f2(singleton(A),B) = A.  [xx_res(56,b)].
+90 f2(singleton(set_difference(A,singleton(c3))),singleton(c2)) = set_difference(A,singleton(c3)).  [resolve(89,a,88,a)].
+91 f2(singleton(A),set_difference(A,B)) = A.  [resolve(89,a,34,a)].
+92 f2(singleton(A),singleton(singleton(set_difference(singleton(A),A)))) = A.  [resolve(73,a,89,a)].
+93 set_difference(A,f2(singleton(singleton(B)),set_difference(singleton(B),C))) = A | f3(A,f2(singleton(singleton(B)),set_difference(singleton(B),C)),A) = B.  [resolve(57,b,91,a(flip))].
+94 set_difference(A,singleton(B)) = A | f3(A,f2(singleton(singleton(B)),set_difference(singleton(B),C)),A) = B.  [para(91(a,1),93(a,1,2))].
+95 set_difference(A,singleton(B)) = A | f3(A,singleton(B),A) = B.  [para(91(a,1),94(b,1,2))].
+96 -in(A,f2(singleton(singleton(B)),singleton(singleton(set_difference(singleton(singleton(B)),singleton(B)))))) | A = B.  [resolve(15,a,92,a(flip))].
+97 -in(f2(c1,set_difference(c2,singleton(c3))),f2(singleton(singleton(c2)),singleton(singleton(set_difference(singleton(singleton(c2)),singleton(c2)))))).  [resolve(96,b,82,a)].
+98 -in(f2(c1,set_difference(c2,singleton(c3))),singleton(c2)).  [para(92(a,1),97(a,2))].
+99 in(f2(c1,set_difference(c2,singleton(c3))),f2(singleton(set_difference(c2,singleton(c3))),singleton(c2))) | in(f2(c1,set_difference(c2,singleton(c3))),singleton(c3)).  [resolve(90,a,49,a(flip))].
+100 in(f2(c1,set_difference(c2,singleton(c3))),set_difference(c2,singleton(c3))) | in(f2(c1,set_difference(c2,singleton(c3))),singleton(c3)).  [para(90(a,1),99(a,2))].
+101 in(f2(c1,set_difference(c2,singleton(c3))),singleton(c3)).  [resolve(24,a,100,a)].
+102 f2(singleton(A),singleton(set_difference(singleton(A),singleton(singleton(A))))) = A.  [resolve(76,a,89,a)].
+103 in(f3(c2,singleton(c3),c2),c2).  [resolve(85,a,60,a)].
+104 set_difference(c2,singleton(c3)) = c2 | -in(f3(c2,singleton(c3),c2),c2) | in(f3(c2,singleton(c3),c2),singleton(c3)).  [resolve(103,a,19,c)].
+105 -in(f3(c2,singleton(c3),c2),c2) | in(f3(c2,singleton(c3),c2),singleton(c3)).  [resolve(83,a,104,a)].
+106 in(f3(c2,singleton(c3),c2),singleton(c3)).  [resolve(103,a,105,a)].
+107 singleton(A) != singleton(c3) | f3(c2,singleton(c3),c2) = A.  [resolve(106,a,15,b)].
+108 singleton(c3) != singleton(A) | f3(c2,singleton(c3),c2) = A.  [copy(107),flip(a)].
+109 f3(c2,singleton(c3),c2) = c3.  [xx_res(108,a)].
+110 in(c3,c2).  [para(109(a,1),103(a,1))].
+111 set_difference(A,B) != c2 | in(c3,A).  [resolve(17,b,110,a)].
+112 set_difference(c1,A) != c2.  [resolve(111,b,9,a)].
+113 -in(A,f2(singleton(singleton(B)),singleton(set_difference(singleton(singleton(B)),singleton(singleton(singleton(B))))))) | A = B.  [resolve(15,a,102,a(flip))].
+114 -in(set_difference(c1,A),f2(singleton(singleton(c2)),singleton(set_difference(singleton(singleton(c2)),singleton(singleton(singleton(c2))))))).  [resolve(113,b,112,a)].
+115 -in(set_difference(c1,A),singleton(c2)).  [para(102(a,1),114(a,2))].
+116 in(A,set_difference(set_difference(B,C),C)) | -in(A,B) | in(A,C).  [resolve(18,a,70,a(flip))].
+117 -in(set_difference(A,B),A) | in(set_difference(A,B),B).  [resolve(116,a,34,a)].
+118 -in(set_difference(c1,singleton(c2)),c1).  [resolve(117,b,115,a)].
+119 f2(singleton(set_difference(c1,singleton(c2))),c1) = set_difference(c1,singleton(c2)).  [resolve(118,a,89,a)].
+120 in(f2(c1,set_difference(c2,singleton(c3))),f2(singleton(set_difference(c1,singleton(c2))),c1)) | in(f2(c1,set_difference(c2,singleton(c3))),singleton(c2)).  [resolve(119,a,48,a(flip))].
+121 in(f2(c1,set_difference(c2,singleton(c3))),set_difference(c1,singleton(c2))) | in(f2(c1,set_difference(c2,singleton(c3))),singleton(c2)).  [para(119(a,1),120(a,2))].
+122 in(f2(c1,set_difference(c2,singleton(c3))),set_difference(c1,singleton(c2))).  [resolve(98,a,121,b)].
+123 set_difference(A,B) != set_difference(c1,singleton(c2)) | -in(f2(c1,set_difference(c2,singleton(c3))),B).  [resolve(12,b,122,a)].
+124 set_difference(A,singleton(c3)) != set_difference(c1,singleton(c2)).  [resolve(123,b,101,a)].
+125 set_difference(c1,singleton(c2)) != set_difference(A,singleton(c3)).  [copy(124),flip(a)].
+126 set_difference(A,singleton(B)) = A | set_difference(A,singleton(B)) = A | in(B,A).  [para(95(b,1),20(b,1))].
+127 set_difference(A,singleton(B)) = A | in(B,A).  [copy(126),merge(b)].
+128 set_difference(set_difference(c1,A),singleton(c3)) = set_difference(c1,A).  [resolve(127,b,30,a)].
+129 $F.  [resolve(128,a,125,a(flip))].

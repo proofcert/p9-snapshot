@@ -1,0 +1,69 @@
+
+
+
+4 element(c1).  [clausify(3)].
+5 element(c2).  [clausify(3)].
+6 times(c1,c2) = c3.  [clausify(3)].
+7 c3 = times(c1,c2).  [copy(6),flip(a)].
+8 times(times(A,B),C) = times(B,times(C,A)).  [clausify(1)].
+9 -element(c3).  [clausify(3)].
+10 -element(times(c1,c2)).  [para(7(a,1),9(a,1))].
+11 -element(A) | times(A,f1(A)) = A.  [clausify(2)].
+12 -element(A) | times(A,A) = f1(A).  [clausify(2)].
+13 element(A) | times(A,B) != A | times(A,A) != B.  [clausify(2)].
+14 times(times(A,times(B,C)),D) = times(B,times(D,times(C,A))).  [para(8(a,1),8(a,1,1))].
+15 times(times(B,C),times(D,A)) = times(B,times(D,times(C,A))).  [para(8(a,1),14(a,1))].
+16 times(C,times(times(D,A),B)) = times(B,times(D,times(C,A))).  [para(8(a,1),15(a,1))].
+17 times(A,times(B,times(C,D))) = times(C,times(D,times(A,B))).  [para(8(a,1),16(a,1,2))].
+18 times(c2,f1(c2)) = c2.  [resolve(11,a,5,a)].
+19 times(c1,f1(c1)) = c1.  [resolve(11,a,4,a)].
+20 times(c2,c2) = f1(c2).  [resolve(12,a,5,a)].
+21 times(c1,c1) = f1(c1).  [resolve(12,a,4,a)].
+22 times(times(c1,c2),A) != times(c1,c2) | times(times(c1,c2),times(c1,c2)) != A.  [resolve(13,a,10,a)].
+23 times(times(c1,c2),times(c2,times(times(c1,c2),c1))) != times(c1,c2).  [resolve(22,b,8,a)].
+24 times(times(c1,c2),times(c2,times(c2,times(c1,c1)))) != times(c1,c2).  [para(8(a,1),23(a,1,2,2))].
+25 times(times(c1,c2),times(c2,times(c2,f1(c1)))) != times(c1,c2).  [para(21(a,1),24(a,1,2,2,2))].
+26 times(c2,times(times(c2,times(c2,f1(c1))),c1)) != times(c1,c2).  [para(8(a,1),25(a,1))].
+27 times(c2,times(times(c2,f1(c1)),times(c1,c2))) != times(c1,c2).  [para(8(a,1),26(a,1,2))].
+28 times(c2,times(f1(c1),times(times(c1,c2),c2))) != times(c1,c2).  [para(8(a,1),27(a,1,2))].
+29 times(c2,times(f1(c1),times(c2,times(c2,c1)))) != times(c1,c2).  [para(8(a,1),28(a,1,2,2))].
+30 times(c2,times(c2,times(c1,times(f1(c1),c2)))) != times(c1,c2).  [para(17(a,1),29(a,1,2))].
+31 times(c1,times(times(f1(c1),c2),times(c2,c2))) != times(c1,c2).  [para(17(a,1),30(a,1))].
+32 times(c1,times(times(f1(c1),c2),f1(c2))) != times(c1,c2).  [para(20(a,1),31(a,1,2,2))].
+33 times(c1,times(c2,times(f1(c2),f1(c1)))) != times(c1,c2).  [para(8(a,1),32(a,1,2))].
+34 times(c2,A) = times(f1(c2),times(A,c2)).  [para(18(a,1),8(a,1,1))].
+35 times(f1(c2),times(A,c2)) = times(c2,A).  [copy(34),flip(a)].
+36 times(c1,A) = times(f1(c1),times(A,c1)).  [para(19(a,1),8(a,1,1))].
+37 times(f1(c1),times(A,c1)) = times(c1,A).  [copy(36),flip(a)].
+38 times(f1(c2),A) = times(c2,times(A,c2)).  [para(20(a,1),8(a,1,1))].
+39 times(c2,times(A,c2)) = times(f1(c2),A).  [copy(38),flip(a)].
+40 times(f1(c1),A) = times(c1,times(A,c1)).  [para(21(a,1),8(a,1,1))].
+41 times(c1,times(A,c1)) = times(f1(c1),A).  [copy(40),flip(a)].
+42 times(f1(c2),times(f1(c1),times(c1,c2))) != times(c1,c2).  [para(17(a,1),33(a,1))].
+43 times(times(times(A,c2),B),f1(c2)) = times(B,times(c2,A)).  [para(35(a,1),8(a,2,2))].
+44 times(times(c2,times(B,A)),f1(c2)) = times(B,times(c2,A)).  [para(8(a,1),43(a,1,1))].
+45 times(times(B,A),times(f1(c2),c2)) = times(B,times(c2,A)).  [para(8(a,1),44(a,1))].
+46 times(A,times(times(f1(c2),c2),B)) = times(B,times(c2,A)).  [para(8(a,1),45(a,1))].
+47 times(A,times(c2,times(B,f1(c2)))) = times(B,times(c2,A)).  [para(8(a,1),46(a,1,2))].
+48 times(times(times(A,c1),B),f1(c1)) = times(B,times(c1,A)).  [para(37(a,1),8(a,2,2))].
+49 times(times(c1,times(B,A)),f1(c1)) = times(B,times(c1,A)).  [para(8(a,1),48(a,1,1))].
+50 times(times(B,A),times(f1(c1),c1)) = times(B,times(c1,A)).  [para(8(a,1),49(a,1))].
+51 times(A,times(times(f1(c1),c1),B)) = times(B,times(c1,A)).  [para(8(a,1),50(a,1))].
+52 times(A,times(c1,times(B,f1(c1)))) = times(B,times(c1,A)).  [para(8(a,1),51(a,1,2))].
+53 times(c2,f1(c2)) = times(f1(c2),c2).  [para(20(a,1),39(a,1,2))].
+54 c2 = times(f1(c2),c2).  [para(18(a,1),53(a,1))].
+55 times(f1(c2),c2) = c2.  [copy(54),flip(a)].
+56 times(c2,A) = times(c2,times(A,f1(c2))).  [para(55(a,1),8(a,1,1))].
+57 times(c2,times(A,f1(c2))) = times(c2,A).  [copy(56),flip(a)].
+58 times(A,times(c2,B)) = times(B,times(c2,A)).  [para(57(a,1),47(a,1,2))].
+59 times(c1,f1(c1)) = times(f1(c1),c1).  [para(21(a,1),41(a,1,2))].
+60 c1 = times(f1(c1),c1).  [para(19(a,1),59(a,1))].
+61 times(f1(c1),c1) = c1.  [copy(60),flip(a)].
+62 times(c1,A) = times(c1,times(A,f1(c1))).  [para(61(a,1),8(a,1,1))].
+63 times(c1,times(A,f1(c1))) = times(c1,A).  [copy(62),flip(a)].
+64 times(A,times(c1,B)) = times(B,times(c1,A)).  [para(63(a,1),52(a,1,2))].
+65 times(f1(c2),times(c2,times(c1,f1(c1)))) != times(c1,c2).  [para(64(a,1),42(a,1,2))].
+66 times(f1(c2),times(c2,c1)) != times(c1,c2).  [para(19(a,1),65(a,1,2,2))].
+67 times(c1,times(c2,f1(c2))) != times(c1,c2).  [para(58(a,1),66(a,1))].
+68 times(c1,c2) != times(c1,c2).  [para(18(a,1),67(a,1,2))].
+69 $F.  [copy(68),xx(a)].

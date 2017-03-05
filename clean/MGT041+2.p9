@@ -1,0 +1,23 @@
+
+
+
+
+
+6 -organisation_at_time(A,B) | first_mover(A) | efficient_producer(A).  [clausify(5)].
+7 organisation_at_time(c1,c2).  [clausify(4)].
+8 -organisation_at_time(A,B) | -efficient_producer(A) | -founding_time(A,B) | has_elaborated_routines(A,B).  [clausify(2)].
+9 -organisation_at_time(A,B) | -first_mover(A) | -founding_time(A,B) | number_of_routines(A,B,low).  [clausify(3)].
+10 -efficient_producer(c1) | -founding_time(c1,c2) | has_elaborated_routines(c1,c2).  [resolve(8,a,7,a)].
+11 founding_time(c1,c2).  [clausify(4)].
+12 -first_mover(c1) | -founding_time(c1,c2) | number_of_routines(c1,c2,low).  [resolve(9,a,7,a)].
+13 -efficient_producer(c1) | has_elaborated_routines(c1,c2).  [resolve(10,b,11,a)].
+14 -has_elaborated_routines(c1,c2).  [clausify(4)].
+15 -first_mover(c1) | number_of_routines(c1,c2,low).  [resolve(12,b,11,a)].
+16 first_mover(c1) | efficient_producer(c1).  [resolve(6,a,7,a)].
+17 number_of_routines(c1,c2,low) | efficient_producer(c1).  [resolve(15,a,16,a)].
+18 -efficient_producer(c1).  [resolve(13,b,14,a)].
+19 number_of_routines(c1,c2,high).  [clausify(4)].
+20 -number_of_routines(A,B,low) | -number_of_routines(A,B,high).  [clausify(1)].
+21 number_of_routines(c1,c2,low).  [resolve(17,b,18,a)].
+22 -number_of_routines(c1,c2,low).  [resolve(20,b,19,a)].
+23 $F.  [resolve(21,a,22,a)].

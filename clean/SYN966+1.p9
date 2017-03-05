@@ -1,0 +1,16 @@
+
+2 -eq(c2,c1).  [clausify(1)].
+3 eq(c1,c2).  [clausify(1)].
+4 eq(A,B) | a_member_of(f1(A,B),A) | a_member_of(f1(A,B),B).  [clausify(1)].
+5 -eq(A,B) | -a_member_of(C,A) | a_member_of(C,B).  [clausify(1)].
+6 -eq(A,B) | a_member_of(C,A) | -a_member_of(C,B).  [clausify(1)].
+7 eq(A,B) | -a_member_of(f1(A,B),A) | -a_member_of(f1(A,B),B).  [clausify(1)].
+8 a_member_of(f1(c2,c1),c2) | a_member_of(f1(c2,c1),c1).  [resolve(2,a,4,a)].
+9 -a_member_of(A,c1) | a_member_of(A,c2).  [resolve(5,a,3,a)].
+10 a_member_of(A,c1) | -a_member_of(A,c2).  [resolve(6,a,3,a)].
+11 -a_member_of(f1(c2,c1),c2) | -a_member_of(f1(c2,c1),c1).  [resolve(7,a,2,a)].
+12 a_member_of(f1(c2,c1),c1) | a_member_of(f1(c2,c1),c1).  [resolve(10,b,8,a)].
+13 a_member_of(f1(c2,c1),c1).  [copy(12),merge(b)].
+14 -a_member_of(f1(c2,c1),c2).  [resolve(13,a,11,b)].
+15 a_member_of(f1(c2,c1),c2).  [resolve(13,a,9,a)].
+16 $F.  [resolve(14,a,15,a)].

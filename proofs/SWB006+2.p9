@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n124.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:53:53 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 22181 was started by sandbox on n124.star.cs.uiowa.edu,
+Thu Jun  5 13:53:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_22149_n124.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds: testcase_conclusion_fullish_006_Literal_Values_represented_by_URIs_and_Blank_Nodes.
+% Length of proof is 13.
+% Level of proof is 6.
+% Maximum clause weight is 7.000.
+% Given clauses 5.
+
+
+1 (all A all B (iext(uri_owl_sameAs,A,B) <-> A = B)).  [assumption].
+2 (exists A (iext(uri_owl_sameAs,uri_ex_u,literal_plain(dat_str_abc)) & iext(uri_owl_sameAs,A,literal_plain(dat_str_abc)) & iext(uri_owl_sameAs,A,uri_ex_w))).  [assumption].
+3 iext(uri_owl_sameAs,c1,uri_ex_w).  [clausify(2)].
+4 iext(uri_owl_sameAs,uri_ex_u,literal_plain(dat_str_abc)).  [clausify(2)].
+5 iext(uri_owl_sameAs,c1,literal_plain(dat_str_abc)).  [clausify(2)].
+6 -iext(uri_owl_sameAs,uri_ex_u,uri_ex_w).  [assumption].
+7 -iext(uri_owl_sameAs,A,B) | B = A.  [clausify(1)].
+8 literal_plain(dat_str_abc) = c1.  [resolve(7,a,5,a)].
+9 literal_plain(dat_str_abc) = uri_ex_u.  [resolve(7,a,4,a)].
+10 c1 = uri_ex_u.  [para(8(a,1),9(a,1))].
+11 uri_ex_w = c1.  [resolve(7,a,3,a)].
+12 uri_ex_w = uri_ex_u.  [para(10(a,1),11(a,2))].
+13 iext(uri_owl_sameAs,uri_ex_u,literal_plain(dat_str_abc)).  [para(10(a,1),5(a,2))].
+14 iext(uri_owl_sameAs,uri_ex_u,c1).  [para(8(a,1),13(a,3))].
+15 iext(uri_owl_sameAs,uri_ex_u,uri_ex_u).  [para(10(a,1),14(a,3))].
+16 -iext(uri_owl_sameAs,uri_ex_u,uri_ex_u).  [para(12(a,1),6(a,3))].
+17 $F.  [resolve(16,a,15,a)].
+
+============================== end of proof ==========================

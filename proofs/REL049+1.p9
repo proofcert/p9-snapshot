@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n128.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:34:48 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 52155 was started by sandbox on n128.star.cs.uiowa.edu,
+Fri Jun  6 00:34:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_52123_n128.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: goals.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 11.000.
+% Given clauses 0.
+
+
+1 (all A all B join(A,B) = join(B,A)).  [assumption].
+2 (all A all B all C join(A,join(B,C)) = join(join(A,B),C)).  [assumption].
+3 -(all A all B all C (join(A,B) = B & join(C,B) = B -> join(join(A,C),B) = B)).  [assumption].
+4 join(c1,c2) = c2.  [clausify(3)].
+5 join(c3,c2) = c2.  [clausify(3)].
+6 join(A,B) = join(B,A).  [clausify(1)].
+7 join(join(A,B),C) = join(A,join(B,C)).  [clausify(2)].
+8 join(C,join(A,B)) = join(A,join(B,C)).  [para(6(a,1),7(a,1))].
+9 join(A,join(B,C)) = join(C,join(A,B)).  [copy(8),flip(a)].
+10 join(join(c1,c3),c2) != c2.  [clausify(3)].
+11 join(c2,join(c1,c3)) != c2.  [para(6(a,1),10(a,1))].
+12 join(c1,join(c3,c2)) != c2.  [para(9(a,2),11(a,1))].
+13 join(c1,join(c2,c3)) != c2.  [para(6(a,1),12(a,1,2))].
+14 join(c2,c3) = c2.  [para(6(a,1),5(a,1))].
+15 join(c1,c2) != c2.  [para(14(a,1),13(a,1,2))].
+16 c2 != c2.  [para(4(a,1),15(a,1))].
+17 $F.  [copy(16),xx(a)].
+
+============================== end of proof ==========================

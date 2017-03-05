@@ -1,0 +1,11 @@
+
+
+3 -accept_population(A,atheist,n75) | -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [clausify(1)].
+4 -accept_city(muslimcountrybhumanitarianorganization,towna).  [assumption].
+5 accept_population(A,B,C).  [clausify(2)].
+6 -accept_population(A,christian,n24) | -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(5,a,3,a)].
+7 -accept_population(A,muslim,n1) | -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(5,a,6,a)].
+8 -accept_population(A,native,n0) | -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(5,a,7,a)].
+9 -accept_population(A,other,n0) | accept_city(A,towna).  [resolve(5,a,8,a)].
+10 accept_city(A,towna).  [resolve(5,a,9,a)].
+11 $F.  [resolve(10,a,4,a)].

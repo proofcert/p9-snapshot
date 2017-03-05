@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n072.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:55:13 CDT 2014
+% CPUTime    : 7.41 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 42421 was started by sandbox on n072.star.cs.uiowa.edu,
+Fri Jun  6 01:55:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_42389_n072.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 7.13 (+ 0.14) seconds.
+% Length of proof is 20.
+% Level of proof is 5.
+% Maximum clause weight is 17.000.
+% Given clauses 3928.
+
+
+1 (all A all B (subclass(A,B) <-> (all C (member(C,A) -> member(C,B))))).  [assumption].
+2 (all A subclass(A,universal_class)).  [assumption].
+3 (all A all B all C (member(A,unordered_pair(B,C)) <-> member(A,universal_class) & (A = B | A = C))).  [assumption].
+4 (all A singleton(A) = unordered_pair(A,A)).  [assumption].
+5 (all A (A != null_class -> (exists B (member(B,universal_class) & member(B,A) & disjoint(B,A))))).  [assumption].
+6 -(all A (-member(A,universal_class) -> singleton(A) = null_class)).  [assumption].
+7 subclass(A,universal_class).  [clausify(2)].
+8 singleton(A) = unordered_pair(A,A).  [clausify(4)].
+9 null_class = A | member(f5(A),universal_class).  [clausify(5)].
+10 null_class = A | member(f5(A),A).  [clausify(5)].
+11 -member(c3,universal_class).  [clausify(6)].
+12 singleton(c3) != null_class.  [clausify(6)].
+13 unordered_pair(c3,c3) != null_class.  [para(8(a,1),12(a,1))].
+14 -subclass(A,B) | -member(C,A) | member(C,B).  [clausify(1)].
+15 -member(A,unordered_pair(B,C)) | A = B | A = C.  [clausify(3)].
+16 -member(A,B) | member(A,universal_class).  [resolve(14,a,7,a)].
+17 -member(c3,A).  [resolve(16,b,11,a)].
+18 f5(unordered_pair(A,B)) = A | f5(unordered_pair(A,B)) = B | null_class = unordered_pair(A,B).  [resolve(15,a,10,b)].
+19 f5(unordered_pair(A,B)) = A | f5(unordered_pair(A,B)) = B | unordered_pair(A,B) = null_class.  [copy(18),flip(c)].
+20 f5(unordered_pair(A,A)) = A | unordered_pair(A,A) = null_class.  [factor(19,a,b)].
+21 unordered_pair(A,A) = null_class | null_class = unordered_pair(A,A) | member(A,universal_class).  [para(20(a,1),9(b,1))].
+22 unordered_pair(A,A) = null_class | unordered_pair(A,A) = null_class | member(A,universal_class).  [copy(21),flip(b)].
+23 unordered_pair(A,A) = null_class | member(A,universal_class).  [copy(22),merge(b)].
+24 unordered_pair(c3,c3) = null_class.  [resolve(23,b,17,a)].
+25 $F.  [resolve(13,a,24,a)].
+
+============================== end of proof ==========================

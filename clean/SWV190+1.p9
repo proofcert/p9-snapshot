@@ -1,0 +1,21 @@
+
+
+
+
+
+6 -gt(A,A).  [clausify(1)].
+7 -leq(A,B) | leq(A,succ(B)).  [clausify(2)].
+8 -leq(A,B) | gt(succ(B),A).  [clausify(3)].
+9 succ(tptp_minus_1) = n0.  [assumption].
+10 -leq(n0,A) | -leq(A,n0) | n0 = A.  [clausify(4)].
+11 leq(n0,c2).  [clausify(5)].
+12 leq(c2,tptp_minus_1).  [clausify(5)].
+13 -leq(c2,n0) | n0 = c2.  [resolve(11,a,10,a)].
+14 -leq(c2,n0) | c2 = n0.  [copy(13),flip(b)].
+15 gt(succ(tptp_minus_1),c2).  [resolve(12,a,8,a)].
+16 gt(n0,c2).  [para(9(a,1),15(a,1))].
+17 leq(c2,succ(tptp_minus_1)).  [resolve(12,a,7,a)].
+18 leq(c2,n0).  [para(9(a,1),17(a,2))].
+19 c2 = n0.  [resolve(18,a,14,a)].
+20 gt(n0,n0).  [para(19(a,1),16(a,2))].
+21 $F.  [resolve(6,a,20,a)].

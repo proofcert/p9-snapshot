@@ -1,0 +1,46 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n057.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 23:18:03 CDT 2014
+% CPUTime    : 0.61 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 7428 was started by sandbox on n057.star.cs.uiowa.edu,
+Fri Jun  6 23:18:03 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_7396_n057.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.48 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 5.
+% Maximum clause weight is 10.000.
+% Given clauses 276.
+
+
+1 (all A all B all C (member(A,union(B,C)) <-> member(A,B) | member(A,C))).  [assumption].
+2 (all A all B (member(A,singleton(B)) <-> A = B)).  [assumption].
+3 (all A all B (member(B,suc(A)) <-> member(B,union(A,singleton(A))))).  [assumption].
+4 -(all A (member(A,on) -> member(A,suc(A)))).  [assumption].
+5 -member(c1,suc(c1)).  [clausify(4)].
+6 member(A,singleton(B)) | A != B.  [clausify(2)].
+7 member(A,union(B,C)) | -member(A,C).  [clausify(1)].
+8 member(A,suc(B)) | -member(A,union(B,singleton(B))).  [clausify(3)].
+9 member(A,singleton(A)).  [xx_res(6,b)].
+10 member(A,union(B,singleton(A))).  [resolve(9,a,7,b)].
+11 member(A,suc(A)).  [resolve(10,a,8,b)].
+12 $F.  [resolve(11,a,5,a)].
+
+============================== end of proof ==========================

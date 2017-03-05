@@ -1,0 +1,14 @@
+
+
+
+
+5 ilf_type(A,set_type).  [clausify(3)].
+6 ilf_type(c2,binary_relation_type).  [clausify(4)].
+7 -ilf_type(c2,relation_type(domain_of(c2),range_of(c2))).  [clausify(4)].
+8 -ilf_type(A,set_type) | subset(A,A).  [clausify(2)].
+9 subset(A,A).  [resolve(5,a,8,a)].
+10 -ilf_type(A,set_type) | -ilf_type(B,binary_relation_type) | -subset(domain_of(B),A) | ilf_type(B,relation_type(A,range_of(B))).  [clausify(1)].
+11 -ilf_type(A,binary_relation_type) | -subset(domain_of(A),B) | ilf_type(A,relation_type(B,range_of(A))).  [resolve(5,a,10,a)].
+12 -ilf_type(A,binary_relation_type) | ilf_type(A,relation_type(domain_of(A),range_of(A))).  [resolve(11,b,9,a)].
+13 -ilf_type(c2,binary_relation_type).  [resolve(12,b,7,a)].
+14 $F.  [resolve(6,a,13,a)].

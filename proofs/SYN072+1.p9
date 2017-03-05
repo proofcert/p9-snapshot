@@ -1,0 +1,62 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n109.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:37:18 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 42605 was started by sandbox on n109.star.cs.uiowa.edu,
+Thu Jun  5 18:37:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_42573_n109.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 20.
+% Level of proof is 7.
+% Maximum clause weight is 6.000.
+% Given clauses 17.
+
+
+1 (exists A exists B all C (C = A | C = B)).  [assumption].
+2 -(all A big_p(A)).  [assumption].
+3 big_p(a).  [assumption].
+4 big_p(b).  [assumption].
+5 A = c1 | A = c2.  [clausify(1)].
+6 c1 = A | A = c2.  [copy(5),flip(a)].
+7 c1 = A | c2 = A.  [copy(6),flip(b)].
+8 -big_p(c3).  [clausify(2)].
+9 a != b.  [assumption].
+10 b != a.  [copy(9),flip(a)].
+11 c1 = a | big_p(c2).  [para(7(b,2),3(a,1))].
+12 c1 = b | big_p(c2).  [para(7(b,2),4(a,1))].
+13 c1 = c3 | -big_p(c2).  [para(7(b,2),8(a,1))].
+14 c3 = c1 | -big_p(c2).  [copy(13),flip(a)].
+15 c1 = b | c2 != a.  [para(7(b,2),10(a,1))].
+16 c3 = c1 | c1 = b.  [resolve(14,b,12,b)].
+17 c3 = c1 | c1 = a.  [resolve(14,b,11,b)].
+18 c1 = b | c1 = a.  [resolve(15,b,7,b)].
+19 c1 = b | -big_p(c1).  [para(16(a,1),8(a,1))].
+20 c1 = a | -big_p(c1).  [para(17(a,1),8(a,1))].
+21 c1 = a | c1 = a | -big_p(b).  [para(18(a,1),20(b,1))].
+22 c1 = a | -big_p(b).  [copy(21),merge(b)].
+23 c1 = a.  [resolve(4,a,22,b)].
+24 a = b | -big_p(c1).  [para(23(a,1),19(a,1))].
+25 a = b | -big_p(a).  [para(23(a,1),24(b,1))].
+26 b = a | -big_p(a).  [copy(25),flip(a)].
+27 -big_p(a).  [resolve(10,a,26,a)].
+28 $F.  [resolve(3,a,27,a)].
+
+============================== end of proof ==========================

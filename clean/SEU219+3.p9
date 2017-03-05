@@ -1,0 +1,23 @@
+
+
+
+4 one_to_one(c9).  [clausify(3)].
+5 -relation(A) | -function(A) | -one_to_one(A) | relation_inverse(A) = function_inverse(A).  [clausify(1)].
+6 relation(c9).  [clausify(3)].
+7 function(c9).  [clausify(3)].
+8 relation_rng(c9) != relation_dom(function_inverse(c9)) | relation_rng(function_inverse(c9)) != relation_dom(c9).  [clausify(3)].
+9 relation_dom(function_inverse(c9)) != relation_rng(c9) | relation_rng(function_inverse(c9)) != relation_dom(c9).  [copy(8),flip(a)].
+10 -relation(A) | relation_rng(A) = relation_dom(relation_inverse(A)).  [clausify(2)].
+11 -relation(A) | relation_dom(relation_inverse(A)) = relation_rng(A).  [copy(10),flip(b)].
+12 -relation(A) | relation_rng(relation_inverse(A)) = relation_dom(A).  [clausify(2)].
+13 -relation(c9) | -function(c9) | relation_inverse(c9) = function_inverse(c9).  [resolve(5,c,4,a)].
+14 -relation(c9) | -function(c9) | function_inverse(c9) = relation_inverse(c9).  [copy(13),flip(c)].
+15 -function(c9) | function_inverse(c9) = relation_inverse(c9).  [resolve(6,a,14,a)].
+16 function_inverse(c9) = relation_inverse(c9).  [resolve(7,a,15,a)].
+17 relation_dom(relation_inverse(c9)) != relation_rng(c9) | relation_rng(function_inverse(c9)) != relation_dom(c9).  [para(16(a,1),9(a,1,1))].
+18 relation_dom(relation_inverse(c9)) != relation_rng(c9) | relation_rng(relation_inverse(c9)) != relation_dom(c9).  [para(16(a,1),17(b,1,1))].
+19 relation_dom(relation_inverse(c9)) = relation_rng(c9).  [resolve(11,a,6,a)].
+20 relation_rng(c9) != relation_rng(c9) | relation_rng(relation_inverse(c9)) != relation_dom(c9).  [para(19(a,1),18(a,1))].
+21 relation_rng(relation_inverse(c9)) != relation_dom(c9).  [copy(20),xx(a)].
+22 relation_rng(relation_inverse(c9)) = relation_dom(c9).  [resolve(12,a,6,a)].
+23 $F.  [resolve(21,a,22,a)].

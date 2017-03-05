@@ -1,0 +1,56 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n121.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:16:58 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 54974 was started by sandbox on n121.star.cs.uiowa.edu,
+Fri Jun  6 00:16:58 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_54942_n121.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 19.
+% Level of proof is 7.
+% Maximum clause weight is 10.000.
+% Given clauses 30.
+
+
+1 (all A all B -(disjoint(singleton(A),B) & in(A,B))).  [assumption].
+2 (all A all B (-in(A,B) -> disjoint(singleton(A),B))).  [assumption].
+3 (all A all B (disjoint(A,B) -> disjoint(B,A))).  [assumption].
+4 (all A all B (disjoint(A,B) <-> set_difference(A,B) = A)).  [assumption].
+5 -(all A all B (set_difference(A,singleton(B)) = A <-> -in(B,A))).  [assumption].
+6 in(A,B) | disjoint(singleton(A),B).  [clausify(2)].
+7 -disjoint(singleton(A),B) | -in(A,B).  [clausify(1)].
+8 -disjoint(A,B) | disjoint(B,A).  [clausify(3)].
+9 -disjoint(A,B) | set_difference(A,B) = A.  [clausify(4)].
+10 disjoint(A,B) | set_difference(A,B) != A.  [clausify(4)].
+11 set_difference(c3,singleton(c4)) = c3 | -in(c4,c3).  [clausify(5)].
+12 set_difference(c3,singleton(c4)) != c3 | in(c4,c3).  [clausify(5)].
+13 set_difference(c3,singleton(c4)) = c3 | disjoint(singleton(c4),c3).  [resolve(11,b,6,a)].
+14 set_difference(c3,singleton(c4)) = c3 | disjoint(c3,singleton(c4)).  [resolve(13,b,8,a)].
+15 set_difference(c3,singleton(c4)) = c3 | set_difference(c3,singleton(c4)) = c3.  [resolve(14,b,9,a)].
+16 set_difference(c3,singleton(c4)) = c3.  [copy(15),merge(b)].
+17 c3 != c3 | in(c4,c3).  [para(16(a,1),12(a,1))].
+18 in(c4,c3).  [copy(17),xx(a)].
+19 -disjoint(singleton(c4),c3).  [resolve(18,a,7,b)].
+20 disjoint(c3,singleton(c4)).  [resolve(16,a,10,b)].
+21 -disjoint(c3,singleton(c4)).  [resolve(8,b,19,a)].
+22 $F.  [resolve(20,a,21,a)].
+
+============================== end of proof ==========================

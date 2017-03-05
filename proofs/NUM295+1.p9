@@ -1,0 +1,48 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n112.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:39:18 CDT 2014
+% CPUTime    : 0.87 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 59731 was started by sandbox on n112.star.cs.uiowa.edu,
+Fri Jun  6 03:39:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_59699_n112.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.61 (+ 0.00) seconds.
+% Length of proof is 13.
+% Level of proof is 5.
+% Maximum clause weight is 11.000.
+% Given clauses 413.
+
+
+1 (all A all B all C all D (rdn_translate(A,rdn_neg(C)) & rdn_translate(B,rdn_pos(D)) -> less(A,B))).  [assumption].
+2 (all A all B (less(A,B) <-> -less(B,A) & B != A)).  [assumption].
+3 -(exists A exists B less(A,B)).  [assumption].
+4 rdn_translate(nn128,rdn_neg(rdn(rdnn(n8),rdn(rdnn(n2),rdnn(n1))))).  [assumption].
+5 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_pos(D)) | less(A,C).  [clausify(1)].
+6 less(A,B) | less(B,A) | B = A.  [clausify(2)].
+7 -less(A,B).  [clausify(3)].
+8 less(A,B) | A = B.  [resolve(7,a,6,a)].
+9 A = B.  [resolve(7,a,8,a)].
+10 -rdn_translate(A,rdn_neg(B)) | -rdn_translate(C,rdn_pos(D)).  [resolve(7,a,5,c)].
+11 rdn_translate(nn128,A).  [para(9(a,1),4(a,2))].
+12 -rdn_translate(A,B) | -rdn_translate(C,rdn_pos(D)).  [para(9(a,1),10(a,2))].
+13 -rdn_translate(A,rdn_pos(B)).  [factor(12,a,b)].
+14 $F.  [resolve(13,a,11,a)].
+
+============================== end of proof ==========================

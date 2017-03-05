@@ -1,0 +1,45 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n044.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:36:38 CDT 2014
+% CPUTime    : 0.15 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 11526 was started by sandbox on n044.star.cs.uiowa.edu,
+Thu Jun  5 16:36:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_11494_n044.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 9.
+% Level of proof is 3.
+% Maximum clause weight is 11.000.
+% Given clauses 54.
+
+
+1 (all A all B all C (member(A,unordered_pair(B,C)) <-> member(A,universal_class) & (A = B | A = C))).  [assumption].
+2 (all A singleton(A) = unordered_pair(A,A)).  [assumption].
+3 -(all A (member(A,universal_class) -> member(A,singleton(A)))).  [assumption].
+4 member(c3,universal_class).  [clausify(3)].
+5 singleton(A) = unordered_pair(A,A).  [clausify(2)].
+6 -member(c3,singleton(c3)).  [clausify(3)].
+7 -member(c3,unordered_pair(c3,c3)).  [para(5(a,1),6(a,2))].
+8 member(A,unordered_pair(B,C)) | -member(A,universal_class) | A != B.  [clausify(1)].
+9 -member(c3,universal_class) | c3 != c3.  [resolve(8,a,7,a)].
+10 -member(c3,universal_class).  [xx_res(9,b)].
+11 $F.  [resolve(4,a,10,a)].
+
+============================== end of proof ==========================

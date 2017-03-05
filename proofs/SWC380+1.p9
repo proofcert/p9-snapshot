@@ -1,0 +1,74 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n084.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 12:19:38 CDT 2014
+% CPUTime    : 20.48 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 22540 was started by sandbox on n084.star.cs.uiowa.edu,
+Fri Jun  6 12:19:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_22508_n084.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 20.07 (+ 0.20) seconds.
+% Length of proof is 24.
+% Level of proof is 6.
+% Maximum clause weight is 14.000.
+% Given clauses 4073.
+
+
+1 (all A (ssItem(A) -> (all B (ssItem(B) -> (all C (ssList(C) -> (memberP(cons(B,C),A) <-> A = B | memberP(C,A)))))))).  [assumption].
+2 (all A (ssList(A) -> (all B (ssItem(B) -> cons(B,A) = app(cons(B,nil),A))))).  [assumption].
+3 -(all A (ssList(A) -> (all B (ssList(B) -> (all C (ssList(C) -> (all D (ssList(D) -> B != D | A != C | (-neq(B,nil) | (exists E (ssItem(E) & cons(E,nil) = A & memberP(B,E))) | (all F (ssItem(F) -> (all V6 (ssList(V6) -> cons(F,nil) != C | app(cons(F,nil),V6) != D))))) & (-neq(B,nil) | neq(D,nil)))))))))).  [assumption].
+4 -ssItem(A) | -ssItem(B) | -ssList(C) | memberP(cons(B,C),A) | B != A.  [clausify(1)].
+5 -ssList(A) | -ssItem(B) | app(cons(B,nil),A) = cons(B,A).  [clausify(2)].
+6 c6 = c4.  [clausify(3)].
+7 c5 = c3.  [clausify(3)].
+8 neq(c4,nil).  [clausify(3)].
+9 -ssItem(A) | cons(A,nil) != c3 | -memberP(c4,A) | -neq(c6,nil).  [clausify(3)].
+10 -ssItem(A) | cons(A,nil) != c3 | -memberP(c4,A) | -neq(c4,nil).  [para(6(a,1),9(d,1))].
+11 -ssItem(A) | cons(A,nil) != c3 | -memberP(c4,A).  [resolve(8,a,10,d)].
+12 ssItem(c7) | -neq(c6,nil).  [clausify(3)].
+13 ssItem(c7) | -neq(c4,nil).  [para(6(a,1),12(b,1))].
+14 ssItem(c7).  [resolve(8,a,13,b)].
+15 ssList(c8) | -neq(c6,nil).  [clausify(3)].
+16 ssList(c8) | -neq(c4,nil).  [para(6(a,1),15(b,1))].
+17 ssList(c8).  [resolve(8,a,16,b)].
+18 cons(c7,nil) = c5 | -neq(c6,nil).  [clausify(3)].
+19 cons(c7,nil) = c3 | -neq(c6,nil).  [para(7(a,1),18(a,2))].
+20 cons(c7,nil) = c3 | -neq(c4,nil).  [para(6(a,1),19(b,1))].
+21 cons(c7,nil) = c3.  [resolve(8,a,20,b)].
+22 app(cons(c7,nil),c8) = c6 | -neq(c6,nil).  [clausify(3)].
+23 app(c3,c8) = c6 | -neq(c6,nil).  [para(21(a,1),22(a,1,1))].
+24 app(c3,c8) = c4 | -neq(c6,nil).  [para(6(a,1),23(a,2))].
+25 app(c3,c8) = c4 | -neq(c4,nil).  [para(6(a,1),24(b,1))].
+26 app(c3,c8) = c4.  [resolve(8,a,25,b)].
+27 -ssItem(A) | -ssList(B) | memberP(cons(A,B),A) | A != A.  [factor(4,a,b)].
+28 -ssItem(A) | -ssList(B) | memberP(cons(A,B),A).  [copy(27),xx(d)].
+29 -ssList(A) | app(cons(c7,nil),A) = cons(c7,A).  [resolve(14,a,5,b)].
+30 -ssList(A) | app(c3,A) = cons(c7,A).  [para(21(a,1),29(b,1,1))].
+31 -ssList(A) | memberP(cons(c7,A),c7).  [resolve(28,a,14,a)].
+32 app(c3,c8) = cons(c7,c8).  [resolve(30,a,17,a)].
+33 c4 = cons(c7,c8).  [para(26(a,1),32(a,1))].
+34 cons(c7,c8) = c4.  [copy(33),flip(a)].
+35 memberP(cons(c7,c8),c7).  [resolve(31,a,17,a)].
+36 memberP(c4,c7).  [para(34(a,1),35(a,1))].
+37 -ssItem(c7) | cons(c7,nil) != c3.  [resolve(36,a,11,c)].
+38 -ssItem(c7) | c3 != c3.  [para(21(a,1),37(b,1))].
+39 -ssItem(c7).  [copy(38),xx(b)].
+40 $F.  [resolve(14,a,39,a)].
+
+============================== end of proof ==========================

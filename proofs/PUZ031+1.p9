@@ -1,0 +1,117 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n052.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 15:13:43 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 23545 was started by sandbox on n052.star.cs.uiowa.edu,
+Thu Jun  5 15:13:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_23513_n052.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 70.
+% Level of proof is 9.
+% Maximum clause weight is 13.000.
+% Given clauses 31.
+
+
+1 (all A (wolf(A) -> animal(A))).  [assumption].
+2 (exists A wolf(A)).  [assumption].
+3 (all A (fox(A) -> animal(A))).  [assumption].
+4 (exists A fox(A)).  [assumption].
+5 (all A (bird(A) -> animal(A))).  [assumption].
+6 (exists A bird(A)).  [assumption].
+7 (all A (snail(A) -> animal(A))).  [assumption].
+8 (exists A snail(A)).  [assumption].
+9 (exists A grain(A)).  [assumption].
+10 (all A (grain(A) -> plant(A))).  [assumption].
+11 (all A (animal(A) -> (all B (plant(B) -> eats(A,B))) | (all C (animal(C) & much_smaller(C,A) & (exists D (plant(D) & eats(C,D))) -> eats(A,C))))).  [assumption].
+12 (all A all B (bird(B) & (snail(A) | caterpillar(A)) -> much_smaller(A,B))).  [assumption].
+13 (all A all B (bird(A) & fox(B) -> much_smaller(A,B))).  [assumption].
+14 (all A all B (fox(A) & wolf(B) -> much_smaller(A,B))).  [assumption].
+15 (all A all B (wolf(A) & (fox(B) | grain(B)) -> -eats(A,B))).  [assumption].
+16 (all A all B (bird(A) & snail(B) -> -eats(A,B))).  [assumption].
+17 (all A (caterpillar(A) | snail(A) -> (exists B (plant(B) & eats(A,B))))).  [assumption].
+18 -(exists A exists B (animal(A) & animal(B) & (exists C (grain(C) & eats(B,C) & eats(A,B))))).  [assumption].
+19 -wolf(A) | -fox(B) | -eats(A,B).  [clausify(15)].
+20 wolf(c1).  [clausify(2)].
+21 -wolf(A) | -grain(B) | -eats(A,B).  [clausify(15)].
+22 -wolf(A) | animal(A).  [clausify(1)].
+23 -fox(A) | -wolf(B) | much_smaller(A,B).  [clausify(14)].
+24 -fox(A) | animal(A).  [clausify(3)].
+25 fox(c2).  [clausify(4)].
+26 -bird(A) | -fox(B) | much_smaller(A,B).  [clausify(13)].
+27 -fox(A) | -eats(c1,A).  [resolve(19,a,20,a)].
+28 -fox(A) | much_smaller(A,c1).  [resolve(23,b,20,a)].
+29 -bird(A) | -snail(B) | -eats(A,B).  [clausify(16)].
+30 bird(c3).  [clausify(6)].
+31 -bird(A) | animal(A).  [clausify(5)].
+32 -bird(A) | -snail(B) | much_smaller(B,A).  [clausify(12)].
+33 -bird(A) | much_smaller(A,c2).  [resolve(26,b,25,a)].
+34 -snail(A) | animal(A).  [clausify(7)].
+35 snail(c5).  [clausify(8)].
+36 -snail(A) | plant(f1(A)).  [clausify(17)].
+37 -snail(A) | eats(A,f1(A)).  [clausify(17)].
+38 -snail(A) | -eats(c3,A).  [resolve(29,a,30,a)].
+39 -snail(A) | much_smaller(A,c3).  [resolve(32,a,30,a)].
+40 -animal(A) | -animal(B) | -grain(C) | -eats(B,C) | -eats(A,B).  [clausify(18)].
+41 grain(c6).  [clausify(9)].
+42 -grain(A) | plant(A).  [clausify(10)].
+43 -grain(A) | -eats(c1,A).  [resolve(21,a,20,a)].
+44 much_smaller(c2,c1).  [resolve(28,a,25,a)].
+45 -animal(A) | -plant(B) | eats(A,B) | -animal(C) | -much_smaller(C,A) | -plant(D) | -eats(C,D) | eats(A,C).  [clausify(11)].
+46 much_smaller(c3,c2).  [resolve(33,a,30,a)].
+47 much_smaller(c5,c3).  [resolve(39,a,35,a)].
+48 animal(c1).  [resolve(22,a,20,a)].
+49 animal(c2).  [resolve(24,a,25,a)].
+50 -eats(c1,c2).  [resolve(27,a,25,a)].
+51 animal(c3).  [resolve(31,a,30,a)].
+52 animal(c5).  [resolve(34,a,35,a)].
+53 plant(f1(c5)).  [resolve(36,a,35,a)].
+54 eats(c5,f1(c5)).  [resolve(37,a,35,a)].
+55 -eats(c3,c5).  [resolve(38,a,35,a)].
+56 -animal(A) | -animal(B) | -eats(B,c6) | -eats(A,B).  [resolve(40,c,41,a)].
+57 plant(c6).  [resolve(42,a,41,a)].
+58 -eats(c1,c6).  [resolve(43,a,41,a)].
+59 -animal(c1) | -plant(A) | eats(c1,A) | -animal(c2) | -plant(B) | -eats(c2,B) | eats(c1,c2).  [resolve(44,a,45,e)].
+60 -plant(A) | eats(c1,A) | -animal(c2) | -plant(B) | -eats(c2,B) | eats(c1,c2).  [resolve(48,a,59,a)].
+61 -plant(A) | eats(c1,A) | -plant(B) | -eats(c2,B) | eats(c1,c2).  [resolve(49,a,60,c)].
+62 -plant(A) | eats(c1,A) | -plant(B) | -eats(c2,B).  [resolve(50,a,61,e)].
+63 -animal(c2) | -plant(A) | eats(c2,A) | -animal(c3) | -plant(B) | -eats(c3,B) | eats(c2,c3).  [resolve(46,a,45,e)].
+64 -plant(A) | eats(c2,A) | -animal(c3) | -plant(B) | -eats(c3,B) | eats(c2,c3).  [resolve(49,a,63,a)].
+65 -plant(A) | eats(c2,A) | -plant(B) | -eats(c3,B) | eats(c2,c3).  [resolve(51,a,64,c)].
+66 -animal(c3) | -plant(A) | eats(c3,A) | -animal(c5) | -plant(B) | -eats(c5,B) | eats(c3,c5).  [resolve(47,a,45,e)].
+67 -plant(A) | eats(c3,A) | -animal(c5) | -plant(B) | -eats(c5,B) | eats(c3,c5).  [resolve(51,a,66,a)].
+68 -plant(A) | eats(c3,A) | -plant(B) | -eats(c5,B) | eats(c3,c5).  [resolve(52,a,67,c)].
+69 -plant(A) | eats(c3,A) | -plant(B) | -eats(c5,B).  [resolve(55,a,68,e)].
+70 -plant(A) | eats(c2,A) | -eats(c3,A) | eats(c2,c3).  [factor(65,a,c)].
+71 eats(c1,c6) | -plant(A) | -eats(c2,A).  [resolve(62,a,57,a)].
+72 -plant(A) | -eats(c2,A).  [resolve(71,a,58,a)].
+73 -eats(c2,c6).  [resolve(72,a,57,a)].
+74 -plant(A) | eats(c3,A) | -plant(f1(c5)).  [resolve(69,d,54,a)].
+75 -plant(A) | eats(c3,A).  [resolve(53,a,74,c)].
+76 eats(c3,c6).  [resolve(75,a,57,a)].
+77 -plant(c6) | eats(c2,c6) | eats(c2,c3).  [resolve(76,a,70,c)].
+78 eats(c2,c6) | eats(c2,c3).  [resolve(57,a,77,a)].
+79 eats(c2,c3).  [resolve(73,a,78,a)].
+80 -animal(A) | -eats(A,c6) | -eats(c2,A).  [resolve(56,a,49,a)].
+81 -eats(c3,c6) | -eats(c2,c3).  [resolve(80,a,51,a)].
+82 -eats(c2,c3).  [resolve(81,a,76,a)].
+83 $F.  [resolve(79,a,82,a)].
+
+============================== end of proof ==========================

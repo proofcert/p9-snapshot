@@ -1,0 +1,42 @@
+
+
+
+
+
+6 relation(c9).  [clausify(5)].
+7 function(c9).  [clausify(5)].
+8 relation(identity_relation(A)).  [clausify(1)].
+9 function(identity_relation(A)).  [clausify(2)].
+10 in(c8,relation_dom(relation_composition(c9,identity_relation(c7)))) | in(c8,relation_dom(c9)).  [clausify(5)].
+11 in(c8,relation_dom(relation_composition(c9,identity_relation(c7)))) | in(apply(c9,c8),c7).  [clausify(5)].
+12 -in(c8,relation_dom(relation_composition(c9,identity_relation(c7)))) | -in(c8,relation_dom(c9)) | -in(apply(c9,c8),c7).  [clausify(5)].
+13 -relation(A) | -function(A) | identity_relation(B) != A | relation_dom(A) = B.  [clausify(4)].
+14 -relation(A) | -function(A) | -relation(B) | -function(B) | -in(C,relation_dom(relation_composition(B,A))) | in(C,relation_dom(B)).  [clausify(3)].
+15 -relation(A) | -function(A) | -relation(B) | -function(B) | -in(C,relation_dom(relation_composition(B,A))) | in(apply(B,C),relation_dom(A)).  [clausify(3)].
+16 -relation(A) | -function(A) | -relation(B) | -function(B) | in(C,relation_dom(relation_composition(B,A))) | -in(C,relation_dom(B)) | -in(apply(B,C),relation_dom(A)).  [clausify(3)].
+17 -relation(identity_relation(A)) | identity_relation(B) != identity_relation(A) | relation_dom(identity_relation(A)) = B.  [resolve(13,b,9,a)].
+18 identity_relation(A) != identity_relation(B) | relation_dom(identity_relation(B)) = A.  [resolve(8,a,17,a)].
+19 -relation(identity_relation(c7)) | -function(identity_relation(c7)) | -relation(c9) | -function(c9) | in(c8,relation_dom(c9)) | in(c8,relation_dom(c9)).  [resolve(14,e,10,a)].
+20 -relation(identity_relation(c7)) | -function(identity_relation(c7)) | -relation(c9) | -function(c9) | in(c8,relation_dom(c9)).  [copy(19),merge(f)].
+21 -function(identity_relation(c7)) | -relation(c9) | -function(c9) | in(c8,relation_dom(c9)).  [resolve(8,a,20,a)].
+22 -relation(c9) | -function(c9) | in(c8,relation_dom(c9)).  [resolve(9,a,21,a)].
+23 -function(c9) | in(c8,relation_dom(c9)).  [resolve(6,a,22,a)].
+24 in(c8,relation_dom(c9)).  [resolve(7,a,23,a)].
+25 -in(c8,relation_dom(relation_composition(c9,identity_relation(c7)))) | -in(apply(c9,c8),c7).  [resolve(24,a,12,b)].
+26 -relation(identity_relation(c7)) | -function(identity_relation(c7)) | -relation(c9) | -function(c9) | in(apply(c9,c8),relation_dom(identity_relation(c7))) | in(apply(c9,c8),c7).  [resolve(15,e,11,a)].
+27 -function(identity_relation(c7)) | -relation(c9) | -function(c9) | in(apply(c9,c8),relation_dom(identity_relation(c7))) | in(apply(c9,c8),c7).  [resolve(8,a,26,a)].
+28 -relation(c9) | -function(c9) | in(apply(c9,c8),relation_dom(identity_relation(c7))) | in(apply(c9,c8),c7).  [resolve(9,a,27,a)].
+29 -function(c9) | in(apply(c9,c8),relation_dom(identity_relation(c7))) | in(apply(c9,c8),c7).  [resolve(6,a,28,a)].
+30 in(apply(c9,c8),relation_dom(identity_relation(c7))) | in(apply(c9,c8),c7).  [resolve(7,a,29,a)].
+31 relation_dom(identity_relation(A)) = A.  [xx_res(18,a)].
+32 in(apply(c9,c8),c7) | in(apply(c9,c8),c7).  [para(31(a,1),30(a,2))].
+33 in(apply(c9,c8),c7).  [copy(32),merge(b)].
+34 -in(c8,relation_dom(relation_composition(c9,identity_relation(c7)))).  [resolve(33,a,25,b)].
+35 -function(identity_relation(A)) | -relation(B) | -function(B) | in(C,relation_dom(relation_composition(B,identity_relation(A)))) | -in(C,relation_dom(B)) | -in(apply(B,C),relation_dom(identity_relation(A))).  [resolve(16,a,8,a)].
+36 -relation(A) | -function(A) | in(B,relation_dom(relation_composition(A,identity_relation(C)))) | -in(B,relation_dom(A)) | -in(apply(A,B),relation_dom(identity_relation(C))).  [resolve(35,a,9,a)].
+37 -function(c9) | in(A,relation_dom(relation_composition(c9,identity_relation(B)))) | -in(A,relation_dom(c9)) | -in(apply(c9,A),relation_dom(identity_relation(B))).  [resolve(36,a,6,a)].
+38 in(A,relation_dom(relation_composition(c9,identity_relation(B)))) | -in(A,relation_dom(c9)) | -in(apply(c9,A),relation_dom(identity_relation(B))).  [resolve(37,a,7,a)].
+39 -in(c8,relation_dom(c9)) | -in(apply(c9,c8),relation_dom(identity_relation(c7))).  [resolve(38,a,34,a)].
+40 -in(apply(c9,c8),relation_dom(identity_relation(c7))).  [resolve(39,a,24,a)].
+41 -in(apply(c9,c8),c7).  [para(31(a,1),40(a,2))].
+42 $F.  [resolve(33,a,41,a)].

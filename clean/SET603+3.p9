@@ -1,0 +1,20 @@
+
+
+
+
+5 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(3)].
+6 -member(A,empty_set).  [clausify(2)].
+7 difference(c1,empty_set) != c1.  [clausify(4)].
+8 -member(A,difference(B,C)) | member(A,B).  [clausify(1)].
+9 member(A,difference(B,C)) | -member(A,B) | member(A,C).  [clausify(1)].
+10 A = B | -member(f2(B,A),B) | -member(f2(B,A),A).  [clausify(3)].
+11 member(f2(A,difference(B,C)),B) | difference(B,C) = A | member(f2(A,difference(B,C)),A).  [resolve(8,a,5,c)].
+12 member(f2(A,difference(A,B)),A) | difference(A,B) = A.  [factor(11,a,c)].
+13 member(f2(A,B),difference(A,C)) | member(f2(A,B),C) | B = A | member(f2(A,B),B).  [resolve(9,b,5,b)].
+14 difference(A,B) = A | difference(A,B) = A | -member(f2(A,difference(A,B)),difference(A,B)).  [resolve(12,a,10,b)].
+15 difference(A,B) = A | -member(f2(A,difference(A,B)),difference(A,B)).  [copy(14),merge(b)].
+16 -member(f2(c1,difference(c1,empty_set)),difference(c1,empty_set)).  [resolve(15,a,7,a)].
+17 member(f2(c1,difference(c1,empty_set)),empty_set) | difference(c1,empty_set) = c1 | member(f2(c1,difference(c1,empty_set)),difference(c1,empty_set)).  [resolve(16,a,13,a)].
+18 difference(c1,empty_set) = c1 | member(f2(c1,difference(c1,empty_set)),difference(c1,empty_set)).  [resolve(6,a,17,a)].
+19 member(f2(c1,difference(c1,empty_set)),difference(c1,empty_set)).  [resolve(7,a,18,a)].
+20 $F.  [resolve(16,a,19,a)].

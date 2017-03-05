@@ -1,0 +1,16 @@
+
+
+
+
+5 -status(A,B,C) | -status(A,B,D) | mighta(C,D).  [clausify(3)].
+6 -mighta(eqv,thm).  [assumption].
+7 -model(f10(A,B),B) | status(A,B,thm).  [clausify(1)].
+8 -model(A,B) | -model(f11(B,C),B) | -model(f11(B,C),C) | status(B,C,eqv).  [clausify(2)].
+9 model(A,c1).  [clausify(4)].
+10 -status(A,B,eqv) | -status(A,B,thm).  [resolve(6,a,5,c)].
+11 -model(f11(A,A),A) | -model(f11(A,A),A) | status(A,A,eqv).  [factor(8,a,c)].
+12 -model(f11(A,A),A) | status(A,A,eqv).  [copy(11),merge(b)].
+13 status(A,c1,thm).  [resolve(9,a,7,a)].
+14 status(c1,c1,eqv).  [resolve(12,a,9,a)].
+15 -status(A,c1,eqv).  [resolve(13,a,10,b)].
+16 $F.  [resolve(15,a,14,a)].

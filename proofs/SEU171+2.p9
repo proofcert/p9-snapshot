@@ -1,0 +1,168 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n076.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 01:03:43 CDT 2014
+% CPUTime    : 53.44 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 37866 was started by sandbox on n076.star.cs.uiowa.edu,
+Fri Jun  6 01:03:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_37834_n076.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 52.57 (+ 0.68) seconds.
+% Length of proof is 110.
+% Level of proof is 11.
+% Maximum clause weight is 16.000.
+% Given clauses 20616.
+
+
+1 (all A all B set_union2(A,B) = set_union2(B,A)).  [assumption].
+2 (all A all B set_intersection2(A,B) = set_intersection2(B,A)).  [assumption].
+3 (all A (A = empty_set <-> (all B -in(B,A)))).  [assumption].
+4 (all A all B ((-empty(A) -> (element(B,A) <-> in(B,A))) & (empty(A) -> (element(B,A) <-> empty(B))))).  [assumption].
+5 (all A all B all C (C = set_union2(A,B) <-> (all D (in(D,C) <-> in(D,A) | in(D,B))))).  [assumption].
+6 (all A all B (element(B,powerset(A)) -> subset_complement(A,B) = set_difference(A,B))).  [assumption].
+7 (all A all B (proper_subset(A,B) <-> subset(A,B) & A != B)).  [assumption].
+8 (all A -empty(powerset(A))).  [assumption].
+9 (all A all B (set_difference(A,B) = empty_set <-> subset(A,B))).  [assumption].
+10 (all A all B (in(A,B) -> subset(A,union(B)))).  [assumption].
+11 (all A all B subset(A,A)).  [assumption].
+12 (all A all B (subset(A,B) -> set_union2(A,B) = B)).  [assumption].
+13 (all A all B all C (subset(A,B) & subset(A,C) -> subset(A,set_intersection2(B,C)))).  [assumption].
+14 (all A set_intersection2(A,empty_set) = empty_set).  [assumption].
+15 (all A all B all C (subset(A,B) -> subset(set_difference(A,C),set_difference(B,C)))).  [assumption].
+16 (all A all B subset(set_difference(A,B),A)).  [assumption].
+17 (all A all B all C (subset(unordered_pair(A,B),C) <-> in(A,C) & in(B,C))).  [assumption].
+18 (all A all B set_union2(A,set_difference(B,A)) = set_union2(A,B)).  [assumption].
+19 (all A set_difference(A,empty_set) = A).  [assumption].
+20 (all A all B (-(-disjoint(A,B) & (all C -(in(C,A) & in(C,B)))) & -((exists C (in(C,A) & in(C,B))) & disjoint(A,B)))).  [assumption].
+21 (all A all B set_difference(set_union2(A,B),B) = set_difference(A,B)).  [assumption].
+22 (all A all B set_difference(A,set_difference(A,B)) = set_intersection2(A,B)).  [assumption].
+23 (all A set_difference(empty_set,A) = empty_set).  [assumption].
+24 (all A all B -(subset(A,B) & proper_subset(B,A))).  [assumption].
+25 (all A all B (set_difference(A,singleton(B)) = A <-> -in(B,A))).  [assumption].
+26 (all A unordered_pair(A,A) = singleton(A)).  [assumption].
+27 (all A all B -(in(A,B) & empty(B))).  [assumption].
+28 (all A all B subset(A,set_union2(A,B))).  [assumption].
+29 (all A all B (disjoint(A,B) <-> set_difference(A,B) = A)).  [assumption].
+30 (all A union(powerset(A)) = A).  [assumption].
+31 (all A exists B (in(A,B) & (all C all D (in(C,B) & subset(D,C) -> in(D,B))) & (all C -(in(C,B) & (all D -(in(D,B) & (all E (subset(E,C) -> in(E,D))))))) & (all C -(subset(C,B) & -are_equipotent(C,B) & -in(C,B))))).  [assumption].
+32 -(all A (A != empty_set -> (all B (element(B,powerset(A)) -> (all C (element(C,A) -> (-in(C,B) -> in(C,subset_complement(A,B))))))))).  [assumption].
+33 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+34 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(2)].
+35 empty_set != A | -in(B,A).  [clausify(3)].
+36 empty_set = A | in(f2(A),A).  [clausify(3)].
+37 empty(A) | -element(B,A) | in(B,A).  [clausify(4)].
+38 set_union2(A,B) != C | -in(D,C) | in(D,A) | in(D,B).  [clausify(5)].
+39 -element(A,powerset(B)) | subset_complement(B,A) = set_difference(B,A).  [clausify(6)].
+40 proper_subset(A,B) | -subset(A,B) | B = A.  [clausify(7)].
+41 -empty(powerset(A)).  [clausify(8)].
+42 set_difference(A,B) = empty_set | -subset(A,B).  [clausify(9)].
+43 -in(A,B) | subset(A,union(B)).  [clausify(10)].
+44 subset(A,A).  [clausify(11)].
+45 -subset(A,B) | set_union2(A,B) = B.  [clausify(12)].
+46 -subset(A,B) | -subset(A,C) | subset(A,set_intersection2(B,C)).  [clausify(13)].
+47 set_intersection2(A,empty_set) = empty_set.  [clausify(14)].
+48 -subset(A,B) | subset(set_difference(A,C),set_difference(B,C)).  [clausify(15)].
+49 subset(set_difference(A,B),A).  [clausify(16)].
+50 -subset(unordered_pair(A,B),C) | in(A,C).  [clausify(17)].
+51 subset(unordered_pair(A,B),C) | -in(A,C) | -in(B,C).  [clausify(17)].
+52 set_union2(A,set_difference(B,A)) = set_union2(A,B).  [clausify(18)].
+53 set_difference(A,empty_set) = A.  [clausify(19)].
+54 -in(A,B) | -in(A,C) | -disjoint(B,C).  [clausify(20)].
+55 set_difference(set_union2(A,B),B) = set_difference(A,B).  [clausify(21)].
+56 set_difference(A,set_difference(A,B)) = set_intersection2(A,B).  [clausify(22)].
+57 set_intersection2(A,B) = set_difference(A,set_difference(A,B)).  [copy(56),flip(a)].
+58 set_difference(empty_set,A) = empty_set.  [clausify(23)].
+59 -subset(A,B) | -proper_subset(B,A).  [clausify(24)].
+60 set_difference(A,singleton(B)) = A | in(B,A).  [clausify(25)].
+61 singleton(A) = unordered_pair(A,A).  [clausify(26)].
+62 -in(A,B) | -empty(B).  [clausify(27)].
+63 subset(A,set_union2(A,B)).  [clausify(28)].
+64 disjoint(A,B) | set_difference(A,B) != A.  [clausify(29)].
+65 union(powerset(A)) = A.  [clausify(30)].
+66 in(A,f24(A)).  [clausify(31)].
+67 empty_set != c3.  [clausify(32)].
+68 c3 != empty_set.  [copy(67),flip(a)].
+69 element(c4,powerset(c3)).  [clausify(32)].
+70 element(c5,c3).  [clausify(32)].
+71 -in(c5,c4).  [clausify(32)].
+72 -in(c5,subset_complement(c3,c4)).  [clausify(32)].
+73 subset(unordered_pair(A,A),B) | -in(A,B).  [factor(51,b,c)].
+74 -in(A,B) | -disjoint(B,B).  [factor(54,a,b)].
+75 set_difference(A,set_difference(A,empty_set)) = empty_set.  [para(57(a,1),47(a,1))].
+76 set_difference(A,A) = empty_set.  [para(53(a,1),75(a,1,2))].
+77 -subset(A,B) | -subset(A,C) | subset(A,set_difference(B,set_difference(B,C))).  [para(57(a,1),46(c,2))].
+78 set_difference(A,set_difference(A,B)) = set_intersection2(B,A).  [para(57(a,1),34(a,1))].
+79 set_difference(A,set_difference(A,B)) = set_difference(B,set_difference(B,A)).  [para(57(a,1),78(a,2))].
+80 set_difference(A,unordered_pair(B,B)) = A | in(B,A).  [para(61(a,1),60(a,1,2))].
+81 set_union2(A,B) != C | in(f2(C),A) | in(f2(C),B) | empty_set = C.  [resolve(38,b,36,b)].
+82 proper_subset(set_difference(A,B),A) | A = set_difference(A,B).  [resolve(49,a,40,b)].
+83 proper_subset(set_difference(A,B),A) | set_difference(A,B) = A.  [copy(82),flip(b)].
+84 in(A,unordered_pair(A,B)).  [resolve(50,a,44,a)].
+85 set_difference(set_union2(A,B),set_difference(B,A)) = set_difference(A,set_difference(B,A)).  [para(52(a,1),55(a,1,1))].
+86 set_difference(A,set_union2(A,B)) = empty_set.  [resolve(63,a,42,b)].
+87 disjoint(empty_set,A).  [resolve(64,b,58,a)].
+88 subset_complement(c3,c4) = set_difference(c3,c4).  [resolve(69,a,39,a)].
+89 empty(powerset(c3)) | in(c4,powerset(c3)).  [resolve(69,a,37,b)].
+90 in(c4,powerset(c3)).  [resolve(41,a,89,a)].
+91 -in(c5,set_difference(c3,c4)).  [para(88(a,1),72(a,2))].
+92 empty(c3) | in(c5,c3).  [resolve(70,a,37,b)].
+93 subset(unordered_pair(A,A),f24(A)).  [resolve(73,b,66,a)].
+94 -subset(A,B) | subset(A,set_difference(B,set_difference(B,A))).  [resolve(77,b,44,a)].
+95 set_difference(A,set_difference(A,set_union2(B,A))) = set_difference(set_union2(B,A),set_difference(B,A)).  [para(55(a,1),79(a,2,2))].
+96 set_difference(A,set_difference(A,set_union2(A,B))) = set_difference(set_union2(B,A),set_difference(B,A)).  [para(33(a,1),95(a,1,2,2))].
+97 set_difference(A,empty_set) = set_difference(set_union2(B,A),set_difference(B,A)).  [para(86(a,1),96(a,1,2))].
+98 A = set_difference(set_union2(B,A),set_difference(B,A)).  [para(53(a,1),97(a,1))].
+99 A = set_difference(set_union2(A,B),set_difference(B,A)).  [para(33(a,1),98(a,2,1))].
+100 A = set_difference(A,set_difference(B,A)).  [para(85(a,1),99(a,2))].
+101 set_difference(A,set_difference(B,A)) = A.  [copy(100),flip(a)].
+102 set_difference(c4,unordered_pair(c5,c5)) = c4.  [resolve(80,b,71,a)].
+103 -in(A,empty_set).  [resolve(87,a,74,b)].
+104 set_difference(set_difference(c3,c4),unordered_pair(c5,c5)) = set_difference(c3,c4).  [resolve(91,a,80,b)].
+105 subset(c4,union(powerset(c3))).  [resolve(90,a,43,a)].
+106 subset(c4,c3).  [para(65(a,1),105(a,2))].
+107 set_union2(c4,c3) = c3.  [resolve(106,a,45,a)].
+108 set_union2(c3,c4) = c3.  [para(33(a,1),107(a,1))].
+109 set_difference(c4,c3) = empty_set.  [resolve(106,a,42,b)].
+110 empty_set != unordered_pair(A,B).  [resolve(84,a,35,b)].
+111 unordered_pair(A,B) != empty_set.  [copy(110),flip(a)].
+112 empty(c3) | subset(unordered_pair(c5,c5),c3).  [resolve(92,b,73,b)].
+113 set_union2(c3,set_difference(c4,c3)) = c3.  [para(108(a,1),52(a,2))].
+114 set_union2(c3,empty_set) = c3.  [para(109(a,1),113(a,1,2))].
+115 set_union2(empty_set,c3) = c3.  [para(33(a,1),114(a,1))].
+116 set_difference(unordered_pair(A,A),f24(A)) = empty_set.  [resolve(93,a,42,b)].
+117 in(f2(c3),empty_set) | in(f2(c3),c3) | empty_set = c3.  [resolve(81,a,115,a)].
+118 in(f2(c3),empty_set) | in(f2(c3),c3) | c3 = empty_set.  [copy(117),flip(c)].
+119 in(f2(c3),c3) | c3 = empty_set.  [resolve(103,a,118,a)].
+120 in(f2(c3),c3).  [resolve(68,a,119,b)].
+121 -empty(c3).  [resolve(120,a,62,a)].
+122 subset(unordered_pair(c5,c5),c3).  [resolve(121,a,112,a)].
+123 subset(set_difference(unordered_pair(c5,c5),A),set_difference(c3,A)).  [resolve(122,a,48,a)].
+124 set_difference(unordered_pair(c5,c5),c4) = unordered_pair(c5,c5).  [para(102(a,1),101(a,1,2))].
+125 proper_subset(empty_set,unordered_pair(A,A)) | set_difference(unordered_pair(A,A),f24(A)) = unordered_pair(A,A).  [para(116(a,1),83(a,1))].
+126 proper_subset(empty_set,unordered_pair(A,A)) | empty_set = unordered_pair(A,A).  [para(116(a,1),125(b,1))].
+127 proper_subset(empty_set,unordered_pair(A,A)) | unordered_pair(A,A) = empty_set.  [copy(126),flip(b)].
+128 proper_subset(empty_set,unordered_pair(A,A)).  [resolve(111,a,127,b)].
+129 -subset(unordered_pair(A,A),empty_set).  [resolve(128,a,59,b)].
+130 subset(unordered_pair(c5,c5),set_difference(c3,c4)).  [para(124(a,1),123(a,1))].
+131 subset(unordered_pair(c5,c5),set_difference(set_difference(c3,c4),set_difference(set_difference(c3,c4),unordered_pair(c5,c5)))).  [resolve(130,a,94,a)].
+132 subset(unordered_pair(c5,c5),set_difference(set_difference(c3,c4),set_difference(c3,c4))).  [para(104(a,1),131(a,2,2))].
+133 subset(unordered_pair(c5,c5),empty_set).  [para(76(a,1),132(a,2))].
+134 $F.  [resolve(129,a,133,a)].
+
+============================== end of proof ==========================

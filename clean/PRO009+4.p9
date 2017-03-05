@@ -1,0 +1,86 @@
+
+
+
+
+
+
+
+
+
+
+
+12 -leaf_occ(A,B) | leaf(A,f9(A,B)).  [clausify(4)].
+13 -leaf(A,B) | -min_precedes(A,C,B).  [clausify(3)].
+14 -leaf(A,B) | root(A,B) | min_precedes(f7(A,B),A,B).  [clausify(3)].
+15 leaf(A,B) | -min_precedes(C,A,B) | min_precedes(A,f8(A,B),B).  [clausify(3)].
+16 -root_occ(A,B) | root(A,f10(A,B)).  [clausify(5)].
+17 -min_precedes(A,B,C) | -root(B,C).  [clausify(6)].
+18 -min_precedes(A,B,C) | min_precedes(B,f8(B,C),C) | root(B,C) | min_precedes(f7(B,C),B,C).  [resolve(15,a,14,a)].
+19 -occurrence_of(A,tptp0) | next_subocc(f13(A),f14(A),tptp0).  [clausify(10)].
+20 -next_subocc(A,B,C) | arboreal(A).  [clausify(8)].
+21 -next_subocc(A,B,C) | min_precedes(A,B,C).  [clausify(9)].
+22 -occurrence_of(A,tptp0) | next_subocc(f14(A),f15(A),tptp0).  [clausify(10)].
+23 occurrence_of(c1,tptp0).  [clausify(11)].
+24 -occurrence_of(A,tptp3) | -root_occ(A,c1) | -occurrence_of(B,tptp2) | -min_precedes(A,B,tptp0) | -leaf_occ(B,c1).  [clausify(11)].
+25 -occurrence_of(A,tptp3) | -root_occ(A,c1) | -occurrence_of(B,tptp1) | -min_precedes(A,B,tptp0) | -leaf_occ(B,c1).  [clausify(11)].
+26 -root_occ(A,B) | subactivity_occurrence(A,B).  [clausify(5)].
+27 -occurrence_of(A,tptp0) | occurrence_of(f13(A),tptp3).  [clausify(10)].
+28 -occurrence_of(A,tptp0) | root_occ(f13(A),A).  [clausify(10)].
+29 -occurrence_of(A,tptp0) | leaf_occ(f15(A),A).  [clausify(10)].
+30 -leaf_occ(A,B) | occurrence_of(B,f9(A,B)).  [clausify(4)].
+31 -root_occ(A,B) | occurrence_of(B,f10(A,B)).  [clausify(5)].
+32 -occurrence_of(A,B) | -occurrence_of(A,C) | C = B.  [clausify(2)].
+33 -min_precedes(A,B,C) | min_precedes(f11(A,B,C),B,C).  [clausify(7)].
+34 -occurrence_of(A,tptp0) | occurrence_of(f15(A),tptp2) | occurrence_of(f15(A),tptp1).  [clausify(10)].
+35 -occurrence_of(A,B) | -subactivity_occurrence(C,A) | -leaf_occ(D,A) | -arboreal(C) | min_precedes(C,D,B) | D = C.  [clausify(1)].
+36 -leaf_occ(A,B) | -min_precedes(A,C,f9(A,B)).  [resolve(12,b,13,a)].
+37 -root_occ(A,B) | -min_precedes(C,A,f10(A,B)).  [resolve(16,b,17,b)].
+38 -min_precedes(A,B,C) | min_precedes(B,f8(B,C),C) | min_precedes(f7(B,C),B,C) | -min_precedes(D,B,C).  [resolve(18,c,17,b)].
+39 -occurrence_of(A,tptp0) | arboreal(f13(A)).  [resolve(19,b,20,a)].
+40 -occurrence_of(A,tptp0) | min_precedes(f14(A),f15(A),tptp0).  [resolve(22,b,21,a)].
+41 -min_precedes(A,B,C) | min_precedes(B,f8(B,C),C) | min_precedes(f7(B,C),B,C).  [factor(38,a,d)].
+42 occurrence_of(f13(c1),tptp3).  [resolve(27,a,23,a)].
+43 root_occ(f13(c1),c1).  [resolve(28,a,23,a)].
+44 leaf_occ(f15(c1),c1).  [resolve(29,a,23,a)].
+45 -occurrence_of(c1,A) | A = tptp0.  [resolve(32,a,23,a)].
+46 -occurrence_of(c1,A) | tptp0 = A.  [copy(45),flip(b)].
+47 occurrence_of(f15(c1),tptp2) | occurrence_of(f15(c1),tptp1).  [resolve(34,a,23,a)].
+48 arboreal(f13(c1)).  [resolve(39,a,23,a)].
+49 min_precedes(f14(c1),f15(c1),tptp0).  [resolve(40,a,23,a)].
+50 occurrence_of(c1,f10(f13(c1),c1)).  [resolve(43,a,31,a)].
+51 subactivity_occurrence(f13(c1),c1).  [resolve(43,a,26,a)].
+52 occurrence_of(c1,f9(f15(c1),c1)).  [resolve(44,a,30,a)].
+53 -occurrence_of(c1,A) | -leaf_occ(B,c1) | -arboreal(f13(c1)) | min_precedes(f13(c1),B,A) | B = f13(c1).  [resolve(51,a,35,b)].
+54 -occurrence_of(c1,A) | -leaf_occ(B,c1) | -arboreal(f13(c1)) | min_precedes(f13(c1),B,A) | f13(c1) = B.  [copy(53),flip(e)].
+55 -occurrence_of(c1,A) | -leaf_occ(B,c1) | min_precedes(f13(c1),B,A) | f13(c1) = B.  [resolve(48,a,54,c)].
+56 min_precedes(f15(c1),f8(f15(c1),tptp0),tptp0) | min_precedes(f7(f15(c1),tptp0),f15(c1),tptp0).  [resolve(49,a,41,a)].
+57 tptp0 = f10(f13(c1),c1).  [resolve(50,a,46,a)].
+58 f10(f13(c1),c1) = tptp0.  [copy(57),flip(a)].
+59 tptp0 = f9(f15(c1),c1).  [resolve(52,a,46,a)].
+60 f9(f15(c1),c1) = tptp0.  [copy(59),flip(a)].
+61 -root_occ(f13(c1),c1) | -min_precedes(A,f13(c1),tptp0).  [para(58(a,1),37(b,3))].
+62 -min_precedes(A,f13(c1),tptp0).  [resolve(43,a,61,a)].
+63 -leaf_occ(f15(c1),c1) | -min_precedes(f15(c1),A,tptp0).  [para(60(a,1),36(b,3))].
+64 -min_precedes(f15(c1),A,tptp0).  [resolve(44,a,63,a)].
+65 min_precedes(f7(f15(c1),tptp0),f15(c1),tptp0).  [resolve(64,a,56,a)].
+66 -occurrence_of(c1,A) | min_precedes(f13(c1),f15(c1),A) | f13(c1) = f15(c1).  [resolve(55,b,44,a)].
+67 -occurrence_of(c1,A) | min_precedes(f13(c1),f15(c1),A) | f15(c1) = f13(c1).  [copy(66),flip(c)].
+68 min_precedes(f11(f7(f15(c1),tptp0),f15(c1),tptp0),f15(c1),tptp0).  [resolve(65,a,33,a)].
+69 min_precedes(f11(f11(f7(f15(c1),tptp0),f15(c1),tptp0),f15(c1),tptp0),f15(c1),tptp0).  [resolve(68,a,33,a)].
+70 min_precedes(f13(c1),f15(c1),tptp0) | f15(c1) = f13(c1).  [resolve(67,a,23,a)].
+71 f15(c1) = f13(c1) | -occurrence_of(f13(c1),tptp3) | -root_occ(f13(c1),c1) | -occurrence_of(f15(c1),tptp1) | -leaf_occ(f15(c1),c1).  [resolve(70,a,25,d)].
+72 f15(c1) = f13(c1) | -root_occ(f13(c1),c1) | -occurrence_of(f15(c1),tptp1) | -leaf_occ(f15(c1),c1).  [resolve(42,a,71,b)].
+73 f15(c1) = f13(c1) | -occurrence_of(f15(c1),tptp1) | -leaf_occ(f15(c1),c1).  [resolve(43,a,72,b)].
+74 f15(c1) = f13(c1) | -occurrence_of(f15(c1),tptp1).  [resolve(44,a,73,c)].
+75 f15(c1) = f13(c1) | -occurrence_of(f13(c1),tptp3) | -root_occ(f13(c1),c1) | -occurrence_of(f15(c1),tptp2) | -leaf_occ(f15(c1),c1).  [resolve(70,a,24,d)].
+76 f15(c1) = f13(c1) | -root_occ(f13(c1),c1) | -occurrence_of(f15(c1),tptp2) | -leaf_occ(f15(c1),c1).  [resolve(42,a,75,b)].
+77 f15(c1) = f13(c1) | -occurrence_of(f15(c1),tptp2) | -leaf_occ(f15(c1),c1).  [resolve(43,a,76,b)].
+78 f15(c1) = f13(c1) | -occurrence_of(f15(c1),tptp2).  [resolve(44,a,77,c)].
+79 f15(c1) = f13(c1) | occurrence_of(f15(c1),tptp1).  [resolve(78,b,47,a)].
+80 f15(c1) = f13(c1) | f15(c1) = f13(c1).  [resolve(79,b,74,b)].
+81 f15(c1) = f13(c1).  [copy(80),merge(b)].
+82 min_precedes(f11(f11(f7(f13(c1),tptp0),f15(c1),tptp0),f15(c1),tptp0),f15(c1),tptp0).  [para(81(a,1),69(a,1,1,1,1))].
+83 min_precedes(f11(f11(f7(f13(c1),tptp0),f13(c1),tptp0),f15(c1),tptp0),f15(c1),tptp0).  [para(81(a,1),82(a,1,1,2))].
+84 min_precedes(f11(f11(f7(f13(c1),tptp0),f13(c1),tptp0),f13(c1),tptp0),f15(c1),tptp0).  [para(81(a,1),83(a,1,2))].
+85 min_precedes(f11(f11(f7(f13(c1),tptp0),f13(c1),tptp0),f13(c1),tptp0),f13(c1),tptp0).  [para(81(a,1),84(a,2))].
+86 $F.  [resolve(62,a,85,a)].

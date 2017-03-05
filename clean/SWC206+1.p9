@@ -1,0 +1,59 @@
+
+
+
+
+
+
+
+8 -ssList(A) | -ssList(B) | -neq(A,B) | B != A.  [clausify(1)].
+9 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(1)].
+10 ssList(nil).  [assumption].
+11 -ssList(A) | app(nil,A) = A.  [clausify(2)].
+12 -ssList(A) | -ssList(B) | -segmentP(A,B) | -segmentP(B,A) | B = A.  [clausify(3)].
+13 -ssList(A) | -ssList(B) | -ssList(C) | -ssList(D) | -segmentP(A,B) | segmentP(app(app(C,A),D),B).  [clausify(4)].
+14 -ssList(A) | segmentP(A,nil).  [clausify(5)].
+15 -ssList(A) | -ssList(B) | -ssList(C) | app(app(A,B),C) = app(A,app(B,C)).  [clausify(6)].
+16 ssList(c3).  [clausify(7)].
+17 c6 = c4.  [clausify(7)].
+18 c5 = c3.  [clausify(7)].
+19 neq(c4,nil).  [clausify(7)].
+20 -neq(c3,nil).  [clausify(7)].
+21 ssList(c7) | -neq(c6,nil).  [clausify(7)].
+22 ssList(c7) | -neq(c4,nil).  [para(17(a,1),21(b,1))].
+23 ssList(c7).  [resolve(19,a,22,b)].
+24 neq(c7,nil) | -neq(c6,nil).  [clausify(7)].
+25 neq(c7,nil) | -neq(c4,nil).  [para(17(a,1),24(b,1))].
+26 neq(c7,nil).  [resolve(19,a,25,b)].
+27 segmentP(c5,c7) | -neq(c6,nil).  [clausify(7)].
+28 segmentP(c3,c7) | -neq(c6,nil).  [para(18(a,1),27(a,1))].
+29 segmentP(c3,c7) | -neq(c4,nil).  [para(17(a,1),28(b,1))].
+30 segmentP(c3,c7).  [resolve(19,a,29,b)].
+31 -ssList(A) | -ssList(B) | -ssList(C) | -segmentP(A,B) | segmentP(app(app(A,A),C),B).  [factor(13,a,c)].
+32 -ssList(A) | -ssList(B) | app(app(A,A),B) = app(A,app(A,B)).  [factor(15,a,b)].
+33 -ssList(A) | -ssList(B) | -segmentP(A,B) | segmentP(app(app(A,A),A),B).  [factor(31,a,c)].
+34 -ssList(A) | app(app(A,A),A) = app(A,app(A,A)).  [factor(32,a,b)].
+35 -ssList(A) | neq(A,nil) | nil = A.  [resolve(10,a,9,b)].
+36 app(nil,nil) = nil.  [resolve(11,a,10,a)].
+37 segmentP(c7,nil).  [resolve(23,a,14,a)].
+38 -ssList(c7) | -ssList(nil) | nil != c7.  [resolve(26,a,8,c)].
+39 -ssList(c7) | -ssList(nil) | c7 != nil.  [copy(38),flip(c)].
+40 -ssList(nil) | c7 != nil.  [resolve(23,a,39,a)].
+41 c7 != nil.  [resolve(10,a,40,a)].
+42 -ssList(c3) | -ssList(c7) | segmentP(app(app(c3,c3),c3),c7).  [resolve(33,c,30,a)].
+43 -ssList(c7) | segmentP(app(app(c3,c3),c3),c7).  [resolve(16,a,42,a)].
+44 segmentP(app(app(c3,c3),c3),c7).  [resolve(23,a,43,a)].
+45 app(app(c3,c3),c3) = app(c3,app(c3,c3)).  [resolve(34,a,16,a)].
+46 segmentP(app(c3,app(c3,c3)),c7).  [para(45(a,1),44(a,1))].
+47 -ssList(nil) | -ssList(c7) | -segmentP(nil,c7) | c7 = nil.  [resolve(37,a,12,d)].
+48 -ssList(c7) | -segmentP(nil,c7) | c7 = nil.  [resolve(10,a,47,a)].
+49 -segmentP(nil,c7) | c7 = nil.  [resolve(23,a,48,a)].
+50 -segmentP(nil,c7).  [resolve(41,a,49,b)].
+51 neq(c3,nil) | nil = c3.  [resolve(35,a,16,a)].
+52 neq(c3,nil) | c3 = nil.  [copy(51),flip(b)].
+53 c3 = nil.  [resolve(20,a,52,a)].
+54 segmentP(app(nil,app(c3,c3)),c7).  [para(53(a,1),46(a,1,1))].
+55 segmentP(app(nil,app(nil,c3)),c7).  [para(53(a,1),54(a,1,2,1))].
+56 segmentP(app(nil,app(nil,nil)),c7).  [para(53(a,1),55(a,1,2,2))].
+57 segmentP(app(nil,nil),c7).  [para(36(a,1),56(a,1,2))].
+58 segmentP(nil,c7).  [para(36(a,1),57(a,1))].
+59 $F.  [resolve(50,a,58,a)].

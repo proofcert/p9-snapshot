@@ -1,0 +1,80 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n039.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:26:18 CDT 2014
+% CPUTime    : 0.22 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 2593 was started by sandbox on n039.star.cs.uiowa.edu,
+Fri Jun  6 09:26:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_2553_n039.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.06 (+ 0.00) seconds.
+% Length of proof is 35.
+% Level of proof is 10.
+% Maximum clause weight is 15.000.
+% Given clauses 289.
+
+
+1 (all A (-empty_carrier(A) & lattice(A) & latt_str(A) -> (all B (element(B,the_carrier(A)) -> cast_to_el_of_LattPOSet(A,B) = B)))).  [assumption].
+2 (all A (-empty_carrier(A) & lattice(A) & latt_str(A) -> (all B (element(B,the_carrier(poset_of_lattice(A))) -> cast_to_el_of_lattice(A,B) = B)))).  [assumption].
+3 (all A all B (-empty_carrier(A) & lattice(A) & latt_str(A) & element(B,the_carrier(poset_of_lattice(A))) -> element(cast_to_el_of_lattice(A,B),the_carrier(A)))).  [assumption].
+4 (all A all B (-empty_carrier(B) & lattice(B) & latt_str(B) -> (all C (element(C,the_carrier(B)) -> (latt_set_smaller(B,C,A) <-> relstr_element_smaller(poset_of_lattice(B),A,cast_to_el_of_LattPOSet(B,C))))))).  [assumption].
+5 -(all A all B (-empty_carrier(B) & lattice(B) & latt_str(B) -> (all C (element(C,the_carrier(poset_of_lattice(B))) -> (relstr_element_smaller(poset_of_lattice(B),A,C) <-> latt_set_smaller(B,cast_to_el_of_lattice(B,C),A)))))).  [assumption].
+6 empty_carrier(A) | -lattice(A) | -latt_str(A) | -element(B,the_carrier(A)) | cast_to_el_of_LattPOSet(A,B) = B.  [clausify(1)].
+7 empty_carrier(A) | -lattice(A) | -latt_str(A) | -element(B,the_carrier(poset_of_lattice(A))) | cast_to_el_of_lattice(A,B) = B.  [clausify(2)].
+8 empty_carrier(A) | -lattice(A) | -latt_str(A) | -element(B,the_carrier(poset_of_lattice(A))) | element(cast_to_el_of_lattice(A,B),the_carrier(A)).  [clausify(3)].
+9 empty_carrier(A) | -lattice(A) | -latt_str(A) | -element(B,the_carrier(A)) | -latt_set_smaller(A,B,C) | relstr_element_smaller(poset_of_lattice(A),C,cast_to_el_of_LattPOSet(A,B)).  [clausify(4)].
+10 empty_carrier(A) | -lattice(A) | -latt_str(A) | -element(B,the_carrier(A)) | latt_set_smaller(A,B,C) | -relstr_element_smaller(poset_of_lattice(A),C,cast_to_el_of_LattPOSet(A,B)).  [clausify(4)].
+11 latt_str(c12).  [clausify(5)].
+12 -empty_carrier(c12).  [clausify(5)].
+13 lattice(c12).  [clausify(5)].
+14 element(c13,the_carrier(poset_of_lattice(c12))).  [clausify(5)].
+15 relstr_element_smaller(poset_of_lattice(c12),c11,c13) | latt_set_smaller(c12,cast_to_el_of_lattice(c12,c13),c11).  [clausify(5)].
+16 -relstr_element_smaller(poset_of_lattice(c12),c11,c13) | -latt_set_smaller(c12,cast_to_el_of_lattice(c12,c13),c11).  [clausify(5)].
+17 empty_carrier(c12) | -lattice(c12) | -element(A,the_carrier(c12)) | cast_to_el_of_LattPOSet(c12,A) = A.  [resolve(11,a,6,c)].
+18 -lattice(c12) | -element(A,the_carrier(c12)) | cast_to_el_of_LattPOSet(c12,A) = A.  [resolve(12,a,17,a)].
+19 -element(A,the_carrier(c12)) | cast_to_el_of_LattPOSet(c12,A) = A.  [resolve(13,a,18,a)].
+20 empty_carrier(c12) | -lattice(c12) | -element(A,the_carrier(poset_of_lattice(c12))) | cast_to_el_of_lattice(c12,A) = A.  [resolve(11,a,7,c)].
+21 -lattice(c12) | -element(A,the_carrier(poset_of_lattice(c12))) | cast_to_el_of_lattice(c12,A) = A.  [resolve(12,a,20,a)].
+22 -element(A,the_carrier(poset_of_lattice(c12))) | cast_to_el_of_lattice(c12,A) = A.  [resolve(13,a,21,a)].
+23 empty_carrier(c12) | -lattice(c12) | -element(A,the_carrier(poset_of_lattice(c12))) | element(cast_to_el_of_lattice(c12,A),the_carrier(c12)).  [resolve(11,a,8,c)].
+24 -lattice(c12) | -element(A,the_carrier(poset_of_lattice(c12))) | element(cast_to_el_of_lattice(c12,A),the_carrier(c12)).  [resolve(12,a,23,a)].
+25 -element(A,the_carrier(poset_of_lattice(c12))) | element(cast_to_el_of_lattice(c12,A),the_carrier(c12)).  [resolve(13,a,24,a)].
+26 empty_carrier(c12) | -lattice(c12) | -element(A,the_carrier(c12)) | -latt_set_smaller(c12,A,B) | relstr_element_smaller(poset_of_lattice(c12),B,cast_to_el_of_LattPOSet(c12,A)).  [resolve(11,a,9,c)].
+27 -lattice(c12) | -element(A,the_carrier(c12)) | -latt_set_smaller(c12,A,B) | relstr_element_smaller(poset_of_lattice(c12),B,cast_to_el_of_LattPOSet(c12,A)).  [resolve(12,a,26,a)].
+28 -element(A,the_carrier(c12)) | -latt_set_smaller(c12,A,B) | relstr_element_smaller(poset_of_lattice(c12),B,cast_to_el_of_LattPOSet(c12,A)).  [resolve(13,a,27,a)].
+29 empty_carrier(c12) | -lattice(c12) | -element(A,the_carrier(c12)) | latt_set_smaller(c12,A,B) | -relstr_element_smaller(poset_of_lattice(c12),B,cast_to_el_of_LattPOSet(c12,A)).  [resolve(11,a,10,c)].
+30 -lattice(c12) | -element(A,the_carrier(c12)) | latt_set_smaller(c12,A,B) | -relstr_element_smaller(poset_of_lattice(c12),B,cast_to_el_of_LattPOSet(c12,A)).  [resolve(12,a,29,a)].
+31 -element(A,the_carrier(c12)) | latt_set_smaller(c12,A,B) | -relstr_element_smaller(poset_of_lattice(c12),B,cast_to_el_of_LattPOSet(c12,A)).  [resolve(13,a,30,a)].
+32 cast_to_el_of_lattice(c12,c13) = c13.  [resolve(22,a,14,a)].
+33 -relstr_element_smaller(poset_of_lattice(c12),c11,c13) | -latt_set_smaller(c12,c13,c11).  [para(32(a,1),16(b,2))].
+34 relstr_element_smaller(poset_of_lattice(c12),c11,c13) | latt_set_smaller(c12,c13,c11).  [para(32(a,1),15(b,2))].
+35 element(cast_to_el_of_lattice(c12,c13),the_carrier(c12)).  [resolve(25,a,14,a)].
+36 element(c13,the_carrier(c12)).  [para(32(a,1),35(a,1))].
+37 cast_to_el_of_LattPOSet(c12,c13) = c13.  [resolve(36,a,19,a)].
+38 -element(c13,the_carrier(c12)) | latt_set_smaller(c12,c13,A) | -relstr_element_smaller(poset_of_lattice(c12),A,c13).  [para(37(a,1),31(c,3))].
+39 latt_set_smaller(c12,c13,A) | -relstr_element_smaller(poset_of_lattice(c12),A,c13).  [resolve(36,a,38,a)].
+40 latt_set_smaller(c12,c13,c11) | latt_set_smaller(c12,c13,c11).  [resolve(39,b,34,a)].
+41 latt_set_smaller(c12,c13,c11).  [copy(40),merge(b)].
+42 -relstr_element_smaller(poset_of_lattice(c12),c11,c13).  [resolve(41,a,33,b)].
+43 -element(c13,the_carrier(c12)) | relstr_element_smaller(poset_of_lattice(c12),c11,cast_to_el_of_LattPOSet(c12,c13)).  [resolve(41,a,28,b)].
+44 -element(c13,the_carrier(c12)) | relstr_element_smaller(poset_of_lattice(c12),c11,c13).  [para(37(a,1),43(b,3))].
+45 relstr_element_smaller(poset_of_lattice(c12),c11,c13).  [resolve(36,a,44,a)].
+46 $F.  [resolve(42,a,45,a)].
+
+============================== end of proof ==========================

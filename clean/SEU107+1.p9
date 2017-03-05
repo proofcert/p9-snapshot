@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+8 preboolean(c5).  [clausify(7)].
+9 empty(A) | -preboolean(A) | -element(B,A) | -element(C,A) | element(prebool_difference(A,B,C),A).  [clausify(1)].
+10 empty(A) | -preboolean(A) | -element(B,A) | -element(C,A) | set_difference(B,C) = prebool_difference(A,B,C).  [clausify(3)].
+11 subset(A,A).  [clausify(4)].
+12 set_difference(A,B) = empty_set | -subset(A,B).  [clausify(6)].
+13 element(f1(A),A).  [clausify(2)].
+14 -empty(c5).  [clausify(7)].
+15 -in(empty_set,c5).  [clausify(7)].
+16 -element(A,B) | empty(B) | in(A,B).  [clausify(5)].
+17 empty(c5) | -element(A,c5) | -element(B,c5) | element(prebool_difference(c5,A,B),c5).  [resolve(9,b,8,a)].
+18 -element(A,c5) | -element(B,c5) | element(prebool_difference(c5,A,B),c5).  [resolve(14,a,17,a)].
+19 empty(c5) | -element(A,c5) | -element(B,c5) | set_difference(A,B) = prebool_difference(c5,A,B).  [resolve(10,b,8,a)].
+20 empty(c5) | -element(A,c5) | -element(B,c5) | prebool_difference(c5,A,B) = set_difference(A,B).  [copy(19),flip(d)].
+21 -element(A,c5) | -element(B,c5) | prebool_difference(c5,A,B) = set_difference(A,B).  [resolve(14,a,20,a)].
+22 set_difference(A,A) = empty_set.  [resolve(12,b,11,a)].
+23 -element(A,c5) | element(prebool_difference(c5,A,A),c5).  [factor(18,a,b)].
+24 -element(A,c5) | prebool_difference(c5,A,A) = set_difference(A,A).  [factor(21,a,b)].
+25 -element(A,c5) | prebool_difference(c5,A,A) = empty_set.  [para(22(a,1),24(b,2))].
+26 -element(A,c5) | in(A,c5).  [resolve(16,b,14,a)].
+27 -element(empty_set,c5).  [resolve(26,b,15,a)].
+28 element(prebool_difference(c5,f1(c5),f1(c5)),c5).  [resolve(23,a,13,a)].
+29 prebool_difference(c5,f1(c5),f1(c5)) = empty_set.  [resolve(25,a,13,a)].
+30 element(empty_set,c5).  [para(29(a,1),28(a,1))].
+31 $F.  [resolve(27,a,30,a)].

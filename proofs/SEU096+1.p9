@@ -1,0 +1,52 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n162.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:17:28 CDT 2014
+% CPUTime    : 0.29 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 32536 was started by sandbox on n162.star.cs.uiowa.edu,
+Thu Jun  5 16:17:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_32504_n162.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.02 (+ 0.00) seconds.
+% Length of proof is 17.
+% Level of proof is 5.
+% Maximum clause weight is 11.000.
+% Given clauses 94.
+
+
+1 (all A all B (relation(A) & function(A) & finite(B) -> finite(relation_image(A,B)))).  [assumption].
+2 (all A all B (relation(B) & function(B) -> (subset(A,relation_rng(B)) -> relation_image(B,relation_inverse_image(B,A)) = A))).  [assumption].
+3 -(all A all B (relation(B) & function(B) -> (subset(A,relation_rng(B)) & finite(relation_inverse_image(B,A)) -> finite(A)))).  [assumption].
+4 -relation(A) | -function(A) | -finite(B) | finite(relation_image(A,B)).  [clausify(1)].
+5 -relation(A) | -function(A) | -subset(B,relation_rng(A)) | relation_image(A,relation_inverse_image(A,B)) = B.  [clausify(2)].
+6 function(c23).  [clausify(3)].
+7 relation(c23).  [clausify(3)].
+8 subset(c22,relation_rng(c23)).  [clausify(3)].
+9 finite(relation_inverse_image(c23,c22)).  [clausify(3)].
+10 -finite(c22).  [clausify(3)].
+11 -relation(c23) | -finite(A) | finite(relation_image(c23,A)).  [resolve(6,a,4,b)].
+12 -finite(A) | finite(relation_image(c23,A)).  [resolve(7,a,11,a)].
+13 -relation(c23) | -subset(A,relation_rng(c23)) | relation_image(c23,relation_inverse_image(c23,A)) = A.  [resolve(6,a,5,b)].
+14 -subset(A,relation_rng(c23)) | relation_image(c23,relation_inverse_image(c23,A)) = A.  [resolve(7,a,13,a)].
+15 finite(relation_image(c23,relation_inverse_image(c23,c22))).  [resolve(12,a,9,a)].
+16 relation_image(c23,relation_inverse_image(c23,c22)) = c22.  [resolve(14,a,8,a)].
+17 finite(c22).  [para(16(a,1),15(a,1))].
+18 $F.  [resolve(10,a,17,a)].
+
+============================== end of proof ==========================

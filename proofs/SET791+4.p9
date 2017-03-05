@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n098.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 23:01:18 CDT 2014
+% CPUTime    : 1.37 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 9152 was started by sandbox on n098.star.cs.uiowa.edu,
+Fri Jun  6 23:01:18 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_9093_n098.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.23 (+ 0.00) seconds.
+% Length of proof is 26.
+% Level of proof is 8.
+% Maximum clause weight is 17.000.
+% Given clauses 669.
+
+
+1 (all A all B (order(A,B) <-> (all C (member(C,B) -> apply(A,C,C))) & (all C all D (member(C,B) & member(D,B) -> (apply(A,C,D) & apply(A,D,C) -> C = D))) & (all C all D all E (member(C,B) & member(D,B) & member(E,B) -> (apply(A,C,D) & apply(A,D,E) -> apply(A,C,E)))))).  [assumption].
+2 (all A all B all C (greatest(C,A,B) <-> member(C,B) & (all D (member(D,B) -> apply(A,D,C))))).  [assumption].
+3 (all A all B all C (max(C,A,B) <-> member(C,B) & (all D (member(D,B) & apply(A,C,D) -> C = D)))).  [assumption].
+4 -(all A all B all C (order(A,B) & greatest(C,A,B) -> max(C,A,B))).  [assumption].
+5 -order(A,B) | -member(C,B) | -member(D,B) | -apply(A,C,D) | -apply(A,D,C) | D = C.  [clausify(1)].
+6 order(c1,c2).  [clausify(4)].
+7 -greatest(A,B,C) | member(A,C).  [clausify(2)].
+8 -greatest(A,B,C) | -member(D,C) | apply(B,D,A).  [clausify(2)].
+9 greatest(c3,c1,c2).  [clausify(4)].
+10 max(A,B,C) | -member(A,C) | member(f13(B,C,A),C).  [clausify(3)].
+11 max(A,B,C) | -member(A,C) | apply(B,A,f13(B,C,A)).  [clausify(3)].
+12 max(A,B,C) | -member(A,C) | A != f13(B,C,A).  [clausify(3)].
+13 max(A,B,C) | -member(A,C) | f13(B,C,A) != A.  [copy(12),flip(c)].
+14 -max(c3,c1,c2).  [clausify(4)].
+15 -member(A,c2) | -member(B,c2) | -apply(c1,A,B) | -apply(c1,B,A) | B = A.  [resolve(6,a,5,a)].
+16 member(c3,c2).  [resolve(9,a,7,a)].
+17 -member(A,c2) | apply(c1,A,c3).  [resolve(9,a,8,a)].
+18 max(c3,A,c2) | f13(A,c2,c3) != c3.  [resolve(16,a,13,b)].
+19 max(c3,A,c2) | apply(A,c3,f13(A,c2,c3)).  [resolve(16,a,11,b)].
+20 max(c3,A,c2) | member(f13(A,c2,c3),c2).  [resolve(16,a,10,b)].
+21 member(f13(c1,c2,c3),c2).  [resolve(20,a,14,a)].
+22 apply(c1,f13(c1,c2,c3),c3).  [resolve(21,a,17,a)].
+23 -member(c3,c2) | -member(f13(c1,c2,c3),c2) | -apply(c1,c3,f13(c1,c2,c3)) | f13(c1,c2,c3) = c3.  [resolve(22,a,15,d)].
+24 -member(f13(c1,c2,c3),c2) | -apply(c1,c3,f13(c1,c2,c3)) | f13(c1,c2,c3) = c3.  [resolve(16,a,23,a)].
+25 -apply(c1,c3,f13(c1,c2,c3)) | f13(c1,c2,c3) = c3.  [resolve(21,a,24,a)].
+26 apply(c1,c3,f13(c1,c2,c3)).  [resolve(19,a,14,a)].
+27 f13(c1,c2,c3) = c3.  [resolve(26,a,25,a)].
+28 max(c3,c1,c2).  [resolve(27,a,18,b)].
+29 $F.  [resolve(14,a,28,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,217 @@
+
+
+
+
+
+
+
+
+
+
+
+12 mult(A,unit) = A.  [clausify(5)].
+13 mult(unit,A) = A.  [clausify(6)].
+14 mult(A,ld(A,B)) = B.  [clausify(1)].
+15 ld(A,mult(A,B)) = B.  [clausify(2)].
+16 mult(rd(A,B),B) = A.  [clausify(3)].
+17 rd(mult(A,B),B) = A.  [clausify(4)].
+18 mult(f(A),f(A)) = A.  [clausify(9)].
+19 mult(mult(A,B),A) = mult(A,mult(B,A)).  [clausify(8)].
+20 mult(mult(A,mult(mult(B,C),B)),C) = mult(mult(A,B),mult(mult(C,B),C)).  [clausify(7)].
+21 mult(mult(A,mult(B,mult(C,B))),C) = mult(mult(A,B),mult(mult(C,B),C)).  [para(19(a,1),20(a,1,1,2))].
+22 mult(mult(A,mult(B,mult(C,B))),C) = mult(mult(A,B),mult(C,mult(B,C))).  [para(19(a,1),21(a,2,2))].
+23 mult(a,mult(b,mult(a,c))) != mult(mult(mult(a,b),a),c).  [assumption].
+24 mult(a,mult(b,mult(a,c))) != mult(mult(a,mult(b,a)),c).  [para(19(a,1),23(a,2,1))].
+25 mult(mult(a,mult(b,a)),c) != mult(a,mult(b,mult(a,c))).  [copy(24),flip(a)].
+26 mult(mult(mult(A,B),C),B) != mult(A,mult(B,mult(C,B))) | mult(mult(mult(B,A),B),C) = mult(B,mult(A,mult(B,C))).  [clausify(10)].
+27 mult(mult(mult(A,B),C),B) != mult(A,mult(B,mult(C,B))) | mult(mult(B,mult(A,B)),C) = mult(B,mult(A,mult(B,C))).  [para(19(a,1),26(b,1,1))].
+28 mult(mult(A,mult(B,C)),A) != mult(mult(A,B),mult(C,A)) | mult(mult(mult(A,B),A),C) = mult(A,mult(B,mult(A,C))).  [clausify(11)].
+29 mult(A,mult(mult(B,C),A)) != mult(mult(A,B),mult(C,A)) | mult(mult(mult(A,B),A),C) = mult(A,mult(B,mult(A,C))).  [para(19(a,1),28(a,1))].
+30 mult(A,mult(mult(B,C),A)) != mult(mult(A,B),mult(C,A)) | mult(mult(A,mult(B,A)),C) = mult(A,mult(B,mult(A,C))).  [para(19(a,1),29(b,1,1))].
+31 mult(mult(A,B),mult(C,A)) != mult(A,mult(mult(B,C),A)) | mult(mult(A,mult(B,A)),C) = mult(A,mult(B,mult(A,C))).  [copy(30),flip(a)].
+32 ld(A,A) = unit.  [para(12(a,1),15(a,1,2))].
+33 ld(rd(A,B),A) = B.  [para(16(a,1),15(a,1,2))].
+34 rd(A,ld(B,A)) = B.  [para(14(a,1),17(a,1,1))].
+35 mult(A,B) = mult(B,mult(ld(B,A),B)).  [para(14(a,1),19(a,1,1))].
+36 mult(A,mult(ld(A,B),A)) = mult(B,A).  [copy(35),flip(a)].
+37 mult(A,rd(A,B)) = mult(rd(A,B),mult(B,rd(A,B))).  [para(16(a,1),19(a,1,1))].
+38 mult(rd(A,B),mult(B,rd(A,B))) = mult(A,rd(A,B)).  [copy(37),flip(a)].
+39 rd(mult(A,mult(B,A)),A) = mult(A,B).  [para(19(a,1),17(a,1,1))].
+40 mult(A,f(A)) = mult(f(A),mult(f(A),f(A))).  [para(18(a,1),19(a,1,1))].
+41 mult(A,f(A)) = mult(f(A),A).  [para(18(a,1),40(a,2,2))].
+42 mult(f(A),A) = mult(A,f(A)).  [copy(41),flip(a)].
+43 mult(mult(A,B),mult(unit,mult(B,unit))) = mult(A,mult(B,mult(unit,B))).  [para(22(a,1),12(a,1))].
+44 mult(mult(A,B),mult(unit,B)) = mult(A,mult(B,mult(unit,B))).  [para(12(a,1),43(a,1,2,2))].
+45 mult(mult(A,B),B) = mult(A,mult(B,mult(unit,B))).  [para(13(a,1),44(a,1,2))].
+46 mult(mult(A,B),B) = mult(A,mult(B,B)).  [para(13(a,1),45(a,2,2,2))].
+47 mult(mult(A,mult(B,A)),B) = mult(mult(unit,A),mult(B,mult(A,B))).  [para(13(a,1),22(a,1,1))].
+48 mult(mult(A,mult(B,A)),B) = mult(A,mult(B,mult(A,B))).  [para(13(a,1),47(a,2,1))].
+49 mult(mult(A,mult(B,mult(ld(B,C),B))),ld(B,C)) = mult(mult(A,B),mult(ld(B,C),C)).  [para(14(a,1),22(a,2,2,2))].
+50 mult(mult(A,mult(B,C)),ld(C,B)) = mult(mult(A,C),mult(ld(C,B),B)).  [para(36(a,1),49(a,1,1,2))].
+51 mult(A,B) = mult(mult(rd(A,mult(C,mult(B,C))),C),mult(B,mult(C,B))).  [para(16(a,1),22(a,1,1))].
+52 mult(mult(rd(A,mult(B,mult(C,B))),B),mult(C,mult(B,C))) = mult(A,C).  [copy(51),flip(a)].
+53 mult(mult(A,B),A) != mult(unit,mult(A,mult(B,A))) | mult(mult(A,mult(unit,A)),B) = mult(A,mult(unit,mult(A,B))).  [para(13(a,1),27(a,1,1,1))].
+54 mult(A,mult(B,A)) != mult(unit,mult(A,mult(B,A))) | mult(mult(A,mult(unit,A)),B) = mult(A,mult(unit,mult(A,B))).  [para(19(a,1),53(a,1))].
+55 mult(A,mult(B,A)) != mult(A,mult(B,A)) | mult(mult(A,mult(unit,A)),B) = mult(A,mult(unit,mult(A,B))).  [para(13(a,1),54(a,2))].
+56 mult(A,mult(B,A)) != mult(A,mult(B,A)) | mult(mult(A,A),B) = mult(A,mult(unit,mult(A,B))).  [para(13(a,1),55(b,1,1,2))].
+57 mult(A,mult(B,A)) != mult(A,mult(B,A)) | mult(mult(A,A),B) = mult(A,mult(A,B)).  [para(13(a,1),56(b,2,2))].
+58 mult(mult(A,A),B) = mult(A,mult(A,B)).  [copy(57),xx(a)].
+59 mult(mult(A,B),C) != mult(rd(A,C),mult(C,mult(B,C))) | mult(mult(C,mult(rd(A,C),C)),B) = mult(C,mult(rd(A,C),mult(C,B))).  [para(16(a,1),27(a,1,1,1))].
+60 mult(mult(A,B),C) != mult(rd(A,C),mult(C,mult(B,C))) | mult(mult(C,A),B) = mult(C,mult(rd(A,C),mult(C,B))).  [para(16(a,1),59(b,1,1,2))].
+61 mult(rd(A,C),mult(C,mult(B,C))) != mult(mult(A,B),C) | mult(mult(C,A),B) = mult(C,mult(rd(A,C),mult(C,B))).  [copy(60),flip(a)].
+62 mult(rd(A,B),mult(B,mult(C,B))) != mult(mult(A,C),B) | mult(B,mult(rd(A,B),mult(B,C))) = mult(mult(B,A),C).  [copy(61),flip(b)].
+63 mult(mult(a,b),mult(c,a)) != mult(a,mult(mult(b,c),a)).  [resolve(31,b,25,a)].
+64 mult(A,mult(B,f(A))) != mult(f(A),mult(mult(f(A),B),f(A))) | mult(mult(f(A),mult(f(A),f(A))),B) = mult(f(A),mult(f(A),mult(f(A),B))).  [para(18(a,1),31(a,1,1))].
+65 mult(A,mult(B,f(A))) != mult(f(A),mult(f(A),mult(B,f(A)))) | mult(mult(f(A),mult(f(A),f(A))),B) = mult(f(A),mult(f(A),mult(f(A),B))).  [para(19(a,1),64(a,2,2))].
+66 mult(A,mult(B,f(A))) != mult(f(A),mult(f(A),mult(B,f(A)))) | mult(mult(f(A),A),B) = mult(f(A),mult(f(A),mult(f(A),B))).  [para(18(a,1),65(b,1,1,2))].
+67 mult(A,mult(B,f(A))) != mult(f(A),mult(f(A),mult(B,f(A)))) | mult(mult(A,f(A)),B) = mult(f(A),mult(f(A),mult(f(A),B))).  [para(42(a,1),66(b,1,1))].
+68 mult(f(A),mult(f(A),mult(B,f(A)))) != mult(A,mult(B,f(A))) | mult(mult(A,f(A)),B) = mult(f(A),mult(f(A),mult(f(A),B))).  [copy(67),flip(a)].
+69 mult(f(A),mult(f(A),mult(B,f(A)))) != mult(A,mult(B,f(A))) | mult(f(A),mult(f(A),mult(f(A),B))) = mult(mult(A,f(A)),B).  [copy(68),flip(b)].
+70 rd(mult(A,f(A)),A) = f(A).  [para(42(a,1),17(a,1,1))].
+71 ld(A,mult(B,A)) = mult(ld(A,B),A).  [para(36(a,1),15(a,1,2))].
+72 mult(mult(A,B),B) = mult(B,mult(mult(ld(B,A),B),B)).  [para(36(a,1),19(a,1,1))].
+73 mult(A,mult(B,B)) = mult(B,mult(mult(ld(B,A),B),B)).  [para(46(a,1),72(a,1))].
+74 mult(A,mult(B,B)) = mult(B,mult(ld(B,A),mult(B,B))).  [para(46(a,1),73(a,2,2))].
+75 mult(A,mult(ld(A,B),mult(A,A))) = mult(B,mult(A,A)).  [copy(74),flip(a)].
+76 rd(mult(A,B),A) = mult(A,rd(B,A)).  [para(16(a,1),39(a,1,1,2))].
+77 rd(mult(A,mult(mult(ld(A,B),A),A)),A) = mult(B,A).  [para(36(a,1),39(a,2))].
+78 rd(mult(A,mult(ld(A,B),mult(A,A))),A) = mult(B,A).  [para(46(a,1),77(a,1,1,2))].
+79 rd(mult(A,mult(B,B)),B) = mult(A,B).  [para(75(a,1),78(a,1,1))].
+80 mult(A,rd(f(A),A)) = f(A).  [para(76(a,1),70(a,1))].
+81 ld(A,f(A)) = rd(f(A),A).  [para(80(a,1),15(a,1,2))].
+82 rd(f(A),A) = ld(A,f(A)).  [copy(81),flip(a)].
+83 mult(mult(A,mult(B,mult(rd(f(B),B),B))),rd(f(B),B)) = mult(mult(A,B),mult(rd(f(B),B),f(B))).  [para(80(a,1),22(a,2,2,2))].
+84 mult(mult(A,mult(B,mult(ld(B,f(B)),B))),rd(f(B),B)) = mult(mult(A,B),mult(rd(f(B),B),f(B))).  [para(82(a,1),83(a,1,1,2,2,1))].
+85 mult(mult(A,mult(f(B),B)),rd(f(B),B)) = mult(mult(A,B),mult(rd(f(B),B),f(B))).  [para(36(a,1),84(a,1,1,2))].
+86 mult(mult(A,mult(B,f(B))),rd(f(B),B)) = mult(mult(A,B),mult(rd(f(B),B),f(B))).  [para(42(a,1),85(a,1,1,2))].
+87 mult(mult(A,mult(B,f(B))),ld(B,f(B))) = mult(mult(A,B),mult(rd(f(B),B),f(B))).  [para(82(a,1),86(a,1,2))].
+88 mult(mult(A,mult(B,f(B))),ld(B,f(B))) = mult(mult(A,B),mult(ld(B,f(B)),f(B))).  [para(82(a,1),87(a,2,2,1))].
+89 mult(ld(A,f(A)),A) = f(A).  [para(82(a,1),16(a,1,1))].
+90 mult(ld(A,f(A)),mult(A,rd(f(A),A))) = mult(f(A),rd(f(A),A)).  [para(82(a,1),38(a,1,1))].
+91 mult(ld(A,f(A)),mult(A,ld(A,f(A)))) = mult(f(A),rd(f(A),A)).  [para(82(a,1),90(a,1,2,2))].
+92 mult(ld(A,f(A)),f(A)) = mult(f(A),rd(f(A),A)).  [para(14(a,1),91(a,1,2))].
+93 mult(ld(A,f(A)),f(A)) = mult(f(A),ld(A,f(A))).  [para(82(a,1),92(a,2,2))].
+94 mult(mult(A,mult(B,f(B))),ld(B,f(B))) = mult(mult(A,B),mult(f(B),ld(B,f(B)))).  [para(93(a,1),88(a,2,2))].
+95 mult(A,mult(A,ld(mult(A,A),B))) = B.  [para(58(a,1),14(a,1))].
+96 rd(mult(A,mult(A,B)),B) = mult(A,A).  [para(58(a,1),17(a,1,1))].
+97 mult(A,B) = mult(f(A),mult(f(A),B)).  [para(18(a,1),58(a,1,1))].
+98 mult(f(A),mult(f(A),B)) = mult(A,B).  [copy(97),flip(a)].
+99 mult(A,mult(B,f(A))) != mult(A,mult(B,f(A))) | mult(f(A),mult(f(A),mult(f(A),B))) = mult(mult(A,f(A)),B).  [para(98(a,1),69(a,1))].
+100 mult(A,mult(B,f(A))) != mult(A,mult(B,f(A))) | mult(f(A),mult(A,B)) = mult(mult(A,f(A)),B).  [para(98(a,1),99(b,1,2))].
+101 mult(A,mult(B,f(A))) != mult(A,mult(B,f(A))) | mult(mult(A,f(A)),B) = mult(f(A),mult(A,B)).  [copy(100),flip(b)].
+102 mult(mult(A,f(A)),B) = mult(f(A),mult(A,B)).  [copy(101),xx(a)].
+103 ld(A,A) = mult(ld(A,unit),A).  [para(13(a,1),71(a,1,2))].
+104 unit = mult(ld(A,unit),A).  [para(32(a,1),103(a,1))].
+105 mult(ld(A,unit),A) = unit.  [copy(104),flip(a)].
+106 rd(unit,A) = ld(A,unit).  [para(105(a,1),17(a,1,1))].
+107 mult(unit,A) = mult(ld(A,unit),mult(A,A)).  [para(105(a,1),46(a,1,1))].
+108 A = mult(ld(A,unit),mult(A,A)).  [para(13(a,1),107(a,1))].
+109 mult(ld(A,unit),mult(A,A)) = A.  [copy(108),flip(a)].
+110 mult(mult(rd(A,B),mult(B,rd(A,B))),B) = mult(rd(A,B),mult(B,A)).  [para(16(a,1),48(a,2,2,2))].
+111 mult(mult(A,rd(A,B)),B) = mult(rd(A,B),mult(B,A)).  [para(38(a,1),110(a,1,1))].
+112 ld(ld(A,unit),A) = mult(A,A).  [para(109(a,1),15(a,1,2))].
+113 rd(A,mult(A,A)) = ld(A,unit).  [para(109(a,1),17(a,1,1))].
+114 mult(ld(f(A),unit),A) = f(A).  [para(18(a,1),109(a,1,2))].
+115 ld(A,rd(unit,A)) = mult(rd(unit,A),rd(unit,A)).  [para(33(a,1),112(a,1,1))].
+116 ld(A,ld(A,unit)) = mult(rd(unit,A),rd(unit,A)).  [para(106(a,1),115(a,1,2))].
+117 ld(A,ld(A,unit)) = mult(ld(A,unit),rd(unit,A)).  [para(106(a,1),116(a,2,1))].
+118 ld(A,ld(A,unit)) = mult(ld(A,unit),ld(A,unit)).  [para(106(a,1),117(a,2,2))].
+119 mult(ld(A,unit),ld(A,unit)) = ld(A,ld(A,unit)).  [copy(118),flip(a)].
+120 rd(f(A),A) = ld(f(A),unit).  [para(18(a,1),113(a,1,2))].
+121 ld(A,f(A)) = ld(f(A),unit).  [para(82(a,1),120(a,1))].
+122 ld(f(A),unit) = ld(A,f(A)).  [copy(121),flip(a)].
+123 mult(f(A),ld(f(A),unit)) = mult(ld(f(A),unit),mult(A,ld(f(A),unit))).  [para(114(a,1),19(a,1,1))].
+124 unit = mult(ld(f(A),unit),mult(A,ld(f(A),unit))).  [para(14(a,1),123(a,1))].
+125 mult(ld(f(A),unit),mult(A,ld(f(A),unit))) = unit.  [copy(124),flip(a)].
+126 mult(mult(ld(f(A),unit),mult(A,ld(f(A),unit))),A) = mult(ld(f(A),unit),mult(A,f(A))).  [para(114(a,1),48(a,2,2,2))].
+127 mult(unit,A) = mult(ld(f(A),unit),mult(A,f(A))).  [para(125(a,1),126(a,1,1))].
+128 A = mult(ld(f(A),unit),mult(A,f(A))).  [para(13(a,1),127(a,1))].
+129 mult(ld(f(A),unit),mult(A,f(A))) = A.  [copy(128),flip(a)].
+130 mult(f(A),ld(A,f(A))) = unit.  [para(122(a,1),14(a,1,2))].
+131 rd(unit,ld(A,f(A))) = f(A).  [para(122(a,1),34(a,1,2))].
+132 ld(ld(A,f(A)),unit) = f(A).  [para(106(a,1),131(a,1))].
+133 mult(mult(A,mult(B,f(B))),ld(B,f(B))) = mult(mult(A,B),unit).  [para(130(a,1),94(a,2,2))].
+134 mult(mult(A,mult(B,f(B))),ld(B,f(B))) = mult(A,B).  [para(12(a,1),133(a,2))].
+135 mult(ld(A,f(A)),f(A)) = unit.  [para(130(a,1),93(a,2))].
+136 ld(f(A),ld(A,f(A))) = mult(ld(A,f(A)),ld(A,f(A))).  [para(132(a,1),112(a,1,1))].
+137 mult(ld(A,f(A)),ld(A,f(A))) = ld(f(A),ld(A,f(A))).  [copy(136),flip(a)].
+138 mult(mult(ld(A,f(A)),ld(A,f(A))),f(A)) = mult(ld(A,f(A)),unit).  [para(135(a,1),58(a,2,2))].
+139 mult(ld(f(A),ld(A,f(A))),f(A)) = mult(ld(A,f(A)),unit).  [para(137(a,1),138(a,1,1))].
+140 mult(ld(f(A),ld(A,f(A))),f(A)) = ld(A,f(A)).  [para(12(a,1),139(a,2))].
+141 rd(A,B) = mult(rd(A,mult(B,B)),B).  [para(16(a,1),79(a,1,1))].
+142 mult(rd(A,mult(B,B)),B) = rd(A,B).  [copy(141),flip(a)].
+143 ld(A,B) = mult(A,ld(mult(A,A),B)).  [para(95(a,1),15(a,1,2))].
+144 mult(A,ld(mult(A,A),B)) = ld(A,B).  [copy(143),flip(a)].
+145 rd(mult(A,B),ld(A,B)) = mult(A,A).  [para(14(a,1),96(a,1,1,2))].
+146 rd(mult(ld(A,f(A)),f(A)),A) = mult(ld(A,f(A)),ld(A,f(A))).  [para(89(a,1),96(a,1,1,2))].
+147 rd(unit,A) = mult(ld(A,f(A)),ld(A,f(A))).  [para(135(a,1),146(a,1,1))].
+148 ld(A,unit) = mult(ld(A,f(A)),ld(A,f(A))).  [para(106(a,1),147(a,1))].
+149 ld(A,unit) = ld(f(A),ld(A,f(A))).  [para(137(a,1),148(a,2))].
+150 ld(f(A),ld(A,f(A))) = ld(A,unit).  [copy(149),flip(a)].
+151 rd(mult(ld(f(A),unit),f(A)),A) = mult(ld(f(A),unit),ld(f(A),unit)).  [para(114(a,1),96(a,1,1,2))].
+152 rd(unit,A) = mult(ld(f(A),unit),ld(f(A),unit)).  [para(105(a,1),151(a,1,1))].
+153 ld(A,unit) = mult(ld(f(A),unit),ld(f(A),unit)).  [para(106(a,1),152(a,1))].
+154 ld(A,unit) = ld(f(A),ld(f(A),unit)).  [para(119(a,1),153(a,2))].
+155 ld(f(A),ld(f(A),unit)) = ld(A,unit).  [copy(154),flip(a)].
+156 mult(ld(A,unit),f(A)) = ld(A,f(A)).  [para(150(a,1),140(a,1,1))].
+157 mult(f(A),B) = mult(A,ld(f(A),B)).  [para(14(a,1),98(a,1,2))].
+158 mult(A,ld(f(A),B)) = mult(f(A),B).  [copy(157),flip(a)].
+159 mult(mult(f(A),f(A)),mult(f(A),B)) = mult(f(A),mult(A,B)).  [para(98(a,1),58(a,2,2))].
+160 mult(A,mult(f(A),B)) = mult(f(A),mult(A,B)).  [para(18(a,1),159(a,1,1))].
+161 mult(f(A),mult(A,B)) = mult(A,mult(f(A),B)).  [copy(160),flip(a)].
+162 mult(mult(A,f(A)),B) = mult(A,mult(f(A),B)).  [para(161(a,1),102(a,2))].
+163 mult(mult(ld(f(A),unit),ld(f(A),unit)),mult(A,f(A))) = mult(ld(f(A),unit),A).  [para(129(a,1),58(a,2,2))].
+164 mult(ld(f(A),ld(f(A),unit)),mult(A,f(A))) = mult(ld(f(A),unit),A).  [para(119(a,1),163(a,1,1))].
+165 mult(ld(A,unit),mult(A,f(A))) = mult(ld(f(A),unit),A).  [para(155(a,1),164(a,1,1))].
+166 mult(ld(A,unit),mult(A,f(A))) = f(A).  [para(114(a,1),165(a,2))].
+167 mult(f(A),ld(A,B)) = ld(f(A),B).  [para(18(a,1),144(a,1,2,1))].
+168 mult(mult(rd(A,mult(mult(B,f(B)),f(B))),mult(B,f(B))),mult(ld(B,unit),mult(mult(B,f(B)),ld(B,unit)))) = mult(A,ld(B,unit)).  [para(166(a,1),52(a,1,1,1,2,2))].
+169 mult(mult(rd(A,mult(B,mult(f(B),f(B)))),mult(B,f(B))),mult(ld(B,unit),mult(mult(B,f(B)),ld(B,unit)))) = mult(A,ld(B,unit)).  [para(46(a,1),168(a,1,1,1,2))].
+170 mult(mult(rd(A,mult(B,B)),mult(B,f(B))),mult(ld(B,unit),mult(mult(B,f(B)),ld(B,unit)))) = mult(A,ld(B,unit)).  [para(18(a,1),169(a,1,1,1,2,2))].
+171 mult(mult(rd(A,mult(B,B)),mult(B,f(B))),mult(ld(B,unit),mult(B,mult(f(B),ld(B,unit))))) = mult(A,ld(B,unit)).  [para(162(a,1),170(a,1,2,2))].
+172 mult(mult(rd(A,mult(B,B)),mult(B,f(B))),mult(ld(B,unit),mult(B,ld(f(B),unit)))) = mult(A,ld(B,unit)).  [para(167(a,1),171(a,1,2,2,2))].
+173 mult(mult(rd(A,mult(B,B)),mult(B,f(B))),mult(ld(B,unit),mult(f(B),unit))) = mult(A,ld(B,unit)).  [para(158(a,1),172(a,1,2,2))].
+174 mult(mult(rd(A,mult(B,B)),mult(B,f(B))),mult(ld(B,unit),f(B))) = mult(A,ld(B,unit)).  [para(12(a,1),173(a,1,2,2))].
+175 mult(mult(rd(A,mult(B,B)),mult(B,f(B))),ld(B,f(B))) = mult(A,ld(B,unit)).  [para(156(a,1),174(a,1,2))].
+176 mult(rd(A,mult(B,B)),B) = mult(A,ld(B,unit)).  [para(134(a,1),175(a,1))].
+177 rd(A,B) = mult(A,ld(B,unit)).  [para(142(a,1),176(a,1))].
+178 mult(A,ld(B,unit)) = rd(A,B).  [copy(177),flip(a)].
+179 ld(A,rd(A,B)) = ld(B,unit).  [para(178(a,1),15(a,1,2))].
+180 mult(A,B) = rd(A,rd(unit,B)).  [para(33(a,1),178(a,1,2))].
+181 mult(A,B) = rd(A,ld(B,unit)).  [para(106(a,1),180(a,2,2))].
+182 rd(A,ld(B,unit)) = mult(A,B).  [copy(181),flip(a)].
+183 mult(mult(A,rd(B,C)),ld(ld(C,unit),B)) = mult(mult(A,ld(C,unit)),mult(ld(ld(C,unit),B),B)).  [para(178(a,1),50(a,1,1,2))].
+184 mult(mult(A,rd(B,C)),ld(ld(C,unit),B)) = mult(rd(A,C),mult(ld(ld(C,unit),B),B)).  [para(178(a,1),183(a,2,1))].
+185 rd(mult(A,rd(A,B)),ld(B,unit)) = mult(A,A).  [para(178(a,1),96(a,1,1,2))].
+186 mult(mult(A,rd(A,B)),B) = mult(A,A).  [para(182(a,1),185(a,1))].
+187 mult(rd(A,B),mult(B,A)) = mult(A,A).  [para(111(a,1),186(a,1))].
+188 mult(f(A),rd(f(A),B)) = mult(A,ld(B,unit)).  [para(178(a,1),98(a,1,2))].
+189 mult(f(A),rd(f(A),B)) = rd(A,B).  [para(178(a,1),188(a,2))].
+190 ld(A,B) = ld(ld(B,A),unit).  [para(34(a,1),179(a,1,2))].
+191 ld(ld(A,B),unit) = ld(B,A).  [copy(190),flip(a)].
+192 ld(mult(A,B),mult(A,A)) = ld(ld(A,B),unit).  [para(145(a,1),179(a,1,2))].
+193 ld(mult(A,B),mult(A,A)) = ld(B,A).  [para(191(a,1),192(a,2))].
+194 mult(rd(A,B),mult(B,mult(C,mult(B,B)))) != mult(mult(A,mult(C,B)),B) | mult(B,mult(rd(A,B),mult(B,mult(C,B)))) = mult(mult(B,A),mult(C,B)).  [para(46(a,1),62(a,1,2,2))].
+195 ld(rd(A,B),mult(A,A)) = mult(B,A).  [para(187(a,1),15(a,1,2))].
+196 mult(mult(A,rd(B,C)),ld(rd(f(B),C),f(B))) = mult(mult(A,rd(f(B),C)),mult(ld(rd(f(B),C),f(B)),f(B))).  [para(189(a,1),50(a,1,1,2))].
+197 mult(mult(A,rd(B,C)),C) = mult(mult(A,rd(f(B),C)),mult(ld(rd(f(B),C),f(B)),f(B))).  [para(33(a,1),196(a,1,2))].
+198 mult(mult(A,rd(B,C)),C) = mult(mult(A,rd(f(B),C)),mult(C,f(B))).  [para(33(a,1),197(a,2,2,1))].
+199 mult(mult(A,rd(f(B),C)),mult(C,f(B))) = mult(mult(A,rd(B,C)),C).  [copy(198),flip(a)].
+200 ld(rd(A,B),mult(A,A)) = ld(ld(B,unit),A).  [para(178(a,1),193(a,1,1))].
+201 mult(B,A) = ld(ld(B,unit),A).  [para(195(a,1),200(a,1))].
+202 ld(ld(A,unit),B) = mult(A,B).  [copy(201),flip(a)].
+203 mult(mult(A,rd(B,C)),mult(C,B)) = mult(rd(A,C),mult(ld(ld(C,unit),B),B)).  [para(202(a,1),184(a,1,2))].
+204 mult(mult(A,rd(B,C)),mult(C,B)) = mult(rd(A,C),mult(mult(C,B),B)).  [para(202(a,1),203(a,2,2,1))].
+205 mult(mult(A,rd(B,C)),mult(C,B)) = mult(rd(A,C),mult(C,mult(B,B))).  [para(46(a,1),204(a,2,2))].
+206 mult(rd(A,C),mult(C,mult(f(B),f(B)))) = mult(mult(A,rd(B,C)),C).  [para(205(a,1),199(a,1))].
+207 mult(rd(A,C),mult(C,B)) = mult(mult(A,rd(B,C)),C).  [para(18(a,1),206(a,1,2,2))].
+208 mult(mult(A,rd(B,C)),C) = mult(rd(A,C),mult(C,B)).  [copy(207),flip(a)].
+209 mult(mult(A,B),C) = mult(rd(A,C),mult(C,mult(B,C))).  [para(17(a,1),208(a,1,1,2))].
+210 mult(rd(A,B),mult(B,mult(C,B))) = mult(mult(A,C),B).  [copy(209),flip(a)].
+211 mult(mult(A,mult(B,C)),C) = mult(rd(A,C),mult(C,mult(B,mult(C,C)))).  [para(79(a,1),208(a,1,1,2))].
+212 mult(rd(A,B),mult(B,mult(C,mult(B,B)))) = mult(mult(A,mult(C,B)),B).  [copy(211),flip(a)].
+213 mult(mult(A,mult(C,B)),B) != mult(mult(A,mult(C,B)),B) | mult(B,mult(rd(A,B),mult(B,mult(C,B)))) = mult(mult(B,A),mult(C,B)).  [para(212(a,1),194(a,1))].
+214 mult(mult(A,mult(C,B)),B) != mult(mult(A,mult(C,B)),B) | mult(B,mult(mult(A,C),B)) = mult(mult(B,A),mult(C,B)).  [para(210(a,1),213(b,1,2))].
+215 mult(mult(A,mult(C,B)),B) != mult(mult(A,mult(C,B)),B) | mult(mult(B,A),mult(C,B)) = mult(B,mult(mult(A,C),B)).  [copy(214),flip(b)].
+216 mult(mult(A,B),mult(C,A)) = mult(A,mult(mult(B,C),A)).  [copy(215),xx(a)].
+217 $F.  [resolve(216,a,63,a)].

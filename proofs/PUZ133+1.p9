@@ -1,0 +1,134 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n053.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 23:57:48 CDT 2014
+% CPUTime    : 0.52 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 1671 was started by sandbox on n053.star.cs.uiowa.edu,
+Thu Jun  5 23:57:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_1639_n053.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.40 (+ 0.00) seconds.
+% Length of proof is 66.
+% Level of proof is 10.
+% Maximum clause weight is 42.000.
+% Given clauses 1070.
+
+
+1 queens_p -> (all A all B (le(s(n0),A) & le(A,n) & le(s(A),B) & le(B,n) -> p(A) != p(B) & plus(p(A),A) != plus(p(B),B) & minus(p(A),A) != minus(p(B),B))).  [assumption].
+2 (all A perm(A) = minus(s(n),A)).  [assumption].
+3 (all A all B (le(s(n0),A) & le(A,n) & le(s(A),B) & le(B,n) & (le(s(A),B) <-> le(s(perm(B)),perm(A))) -> q(A) != q(B) & plus(q(A),A) != plus(q(B),B) & minus(q(A),A) != minus(q(B),B))) -> queens_q.  [assumption].
+4 (all A (le(s(n0),A) & le(A,n) -> le(s(n0),perm(A)) & le(perm(A),n))).  [assumption].
+5 (all A all B minus(B,A) = minus(perm(A),perm(B))).  [assumption].
+6 (all A all B all C (le(A,B) & le(B,C) -> le(A,C))).  [assumption].
+7 (all A le(A,s(A))).  [assumption].
+8 (all A all B all C all D (plus(A,B) = plus(C,D) <-> minus(A,C) = minus(D,B))).  [assumption].
+9 (all A all B all C all D (minus(A,B) = minus(C,D) <-> minus(A,C) = minus(B,D))).  [assumption].
+10 -(queens_p & (all A q(A) = p(perm(A))) -> queens_q).  [assumption].
+11 queens_p.  [clausify(10)].
+12 le(c1,n) | queens_q.  [clausify(3)].
+13 le(c2,n) | queens_q.  [clausify(3)].
+14 le(A,s(A)).  [clausify(7)].
+15 le(s(n0),c1) | queens_q.  [clausify(3)].
+16 le(s(c1),c2) | queens_q.  [clausify(3)].
+17 q(A) = p(perm(A)).  [clausify(10)].
+18 perm(A) = minus(s(n),A).  [clausify(2)].
+19 minus(perm(A),perm(B)) = minus(B,A).  [clausify(5)].
+20 minus(minus(s(n),A),perm(B)) = minus(B,A).  [para(18(a,1),19(a,1,1))].
+21 minus(minus(s(n),A),minus(s(n),B)) = minus(B,A).  [para(18(a,1),20(a,1,2))].
+22 q(c2) = q(c1) | plus(q(c2),c2) = plus(q(c1),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [clausify(3)].
+23 p(perm(c2)) = q(c1) | plus(q(c2),c2) = plus(q(c1),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [para(17(a,1),22(a,1))].
+24 p(minus(s(n),c2)) = q(c1) | plus(q(c2),c2) = plus(q(c1),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [para(18(a,1),23(a,1,1))].
+25 p(minus(s(n),c2)) = p(perm(c1)) | plus(q(c2),c2) = plus(q(c1),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [para(17(a,1),24(a,2))].
+26 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(q(c2),c2) = plus(q(c1),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [para(18(a,1),25(a,2,1))].
+27 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(perm(c2)),c2) = plus(q(c1),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [para(17(a,1),26(b,1,1))].
+28 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(minus(s(n),c2)),c2) = plus(q(c1),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [para(18(a,1),27(b,1,1,1))].
+29 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(minus(s(n),c2)),c2) = plus(p(perm(c1)),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [para(17(a,1),28(b,2,1))].
+30 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(minus(s(n),c2)),c2) = plus(p(minus(s(n),c1)),c1) | minus(q(c2),c2) = minus(q(c1),c1) | queens_q.  [para(18(a,1),29(b,2,1,1))].
+31 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(minus(s(n),c2)),c2) = plus(p(minus(s(n),c1)),c1) | minus(p(perm(c2)),c2) = minus(q(c1),c1) | queens_q.  [para(17(a,1),30(c,1,1))].
+32 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(minus(s(n),c2)),c2) = plus(p(minus(s(n),c1)),c1) | minus(p(minus(s(n),c2)),c2) = minus(q(c1),c1) | queens_q.  [para(18(a,1),31(c,1,1,1))].
+33 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(minus(s(n),c2)),c2) = plus(p(minus(s(n),c1)),c1) | minus(p(minus(s(n),c2)),c2) = minus(p(perm(c1)),c1) | queens_q.  [para(17(a,1),32(c,2,1))].
+34 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(minus(s(n),c2)),c2) = plus(p(minus(s(n),c1)),c1) | minus(p(minus(s(n),c2)),c2) = minus(p(minus(s(n),c1)),c1) | queens_q.  [para(18(a,1),33(c,2,1,1))].
+35 -queens_q.  [clausify(10)].
+36 -queens_p | -le(s(n0),A) | -le(A,n) | -le(s(A),B) | -le(B,n) | p(B) != p(A).  [clausify(1)].
+37 -le(s(n0),A) | -le(A,n) | -le(s(A),B) | -le(B,n) | p(B) != p(A).  [resolve(11,a,36,a)].
+38 -queens_p | -le(s(n0),A) | -le(A,n) | -le(s(A),B) | -le(B,n) | plus(p(B),B) != plus(p(A),A).  [clausify(1)].
+39 -le(s(n0),A) | -le(A,n) | -le(s(A),B) | -le(B,n) | plus(p(B),B) != plus(p(A),A).  [resolve(11,a,38,a)].
+40 -queens_p | -le(s(n0),A) | -le(A,n) | -le(s(A),B) | -le(B,n) | minus(p(B),B) != minus(p(A),A).  [clausify(1)].
+41 -le(s(n0),A) | -le(A,n) | -le(s(A),B) | -le(B,n) | minus(p(B),B) != minus(p(A),A).  [resolve(11,a,40,a)].
+42 -le(A,B) | -le(B,C) | le(A,C).  [clausify(6)].
+43 -le(s(c1),c2) | le(s(perm(c2)),perm(c1)) | queens_q.  [clausify(3)].
+44 -le(s(c1),c2) | le(s(minus(s(n),c2)),perm(c1)) | queens_q.  [para(18(a,1),43(b,1,1))].
+45 -le(s(c1),c2) | le(s(minus(s(n),c2)),minus(s(n),c1)) | queens_q.  [para(18(a,1),44(b,2))].
+46 -le(s(c1),c2) | le(s(minus(s(n),c2)),minus(s(n),c1)).  [resolve(35,a,45,c)].
+47 -le(s(n0),A) | -le(A,n) | le(perm(A),n).  [clausify(4)].
+48 -le(s(n0),A) | -le(A,n) | le(minus(s(n),A),n).  [para(18(a,1),47(c,1))].
+49 -le(s(n0),A) | -le(A,n) | le(s(n0),perm(A)).  [clausify(4)].
+50 -le(s(n0),A) | -le(A,n) | le(s(n0),minus(s(n),A)).  [para(18(a,1),49(c,2))].
+51 plus(A,B) != plus(C,D) | minus(B,D) = minus(C,A).  [clausify(8)].
+52 plus(A,B) = plus(C,D) | minus(B,D) != minus(C,A).  [clausify(8)].
+53 minus(A,B) != minus(C,D) | minus(D,B) = minus(C,A).  [clausify(9)].
+54 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(p(minus(s(n),c2)),c2) = plus(p(minus(s(n),c1)),c1) | minus(p(minus(s(n),c2)),c2) = minus(p(minus(s(n),c1)),c1).  [resolve(35,a,34,d)].
+55 le(s(c1),c2).  [resolve(35,a,16,b)].
+56 le(s(n0),c1).  [resolve(35,a,15,b)].
+57 le(c2,n).  [resolve(35,a,13,b)].
+58 le(c1,n).  [resolve(35,a,12,b)].
+59 le(s(minus(s(n),c2)),minus(s(n),c1)).  [resolve(55,a,46,a)].
+60 -le(s(A),B) | le(A,B).  [resolve(42,a,14,a)].
+61 plus(A,B) = plus(B,A).  [xx_res(52,b)].
+62 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(c2,p(minus(s(n),c2))) = plus(p(minus(s(n),c1)),c1) | minus(p(minus(s(n),c2)),c2) = minus(p(minus(s(n),c1)),c1).  [para(61(a,1),54(b,1))].
+63 p(minus(s(n),c2)) = p(minus(s(n),c1)) | plus(c2,p(minus(s(n),c2))) = plus(c1,p(minus(s(n),c1))) | minus(p(minus(s(n),c2)),c2) = minus(p(minus(s(n),c1)),c1).  [para(61(a,1),62(b,2))].
+64 -le(s(n0),A) | -le(A,n) | -le(s(A),B) | -le(B,n) | plus(B,p(B)) != plus(p(A),A).  [para(61(a,1),39(e,1))].
+65 -le(s(n0),A) | -le(A,n) | -le(s(A),B) | -le(B,n) | plus(B,p(B)) != plus(A,p(A)).  [para(61(a,1),64(e,2))].
+66 minus(A,B) != minus(C,D) | minus(D,minus(s(n),A)) = minus(C,minus(s(n),B)).  [para(21(a,1),53(a,1))].
+67 -le(c1,n) | le(minus(s(n),c1),n).  [resolve(56,a,48,a)].
+68 le(minus(s(n),c1),n).  [resolve(58,a,67,a)].
+69 -le(s(n0),minus(s(n),c2)) | -le(minus(s(n),c2),n) | -le(minus(s(n),c1),n) | minus(p(minus(s(n),c1)),minus(s(n),c1)) != minus(p(minus(s(n),c2)),minus(s(n),c2)).  [resolve(59,a,41,c)].
+70 -le(s(n0),minus(s(n),c2)) | -le(minus(s(n),c2),n) | -le(minus(s(n),c1),n) | minus(p(minus(s(n),c2)),minus(s(n),c2)) != minus(p(minus(s(n),c1)),minus(s(n),c1)).  [copy(69),flip(d)].
+71 -le(s(n0),minus(s(n),c2)) | -le(minus(s(n),c2),n) | minus(p(minus(s(n),c2)),minus(s(n),c2)) != minus(p(minus(s(n),c1)),minus(s(n),c1)).  [resolve(68,a,70,c)].
+72 -le(s(n0),minus(s(n),c2)) | -le(minus(s(n),c2),n) | -le(minus(s(n),c1),n) | p(minus(s(n),c1)) != p(minus(s(n),c2)).  [resolve(59,a,37,c)].
+73 -le(s(n0),minus(s(n),c2)) | -le(minus(s(n),c2),n) | -le(minus(s(n),c1),n) | p(minus(s(n),c2)) != p(minus(s(n),c1)).  [copy(72),flip(d)].
+74 -le(s(n0),minus(s(n),c2)) | -le(minus(s(n),c2),n) | p(minus(s(n),c2)) != p(minus(s(n),c1)).  [resolve(68,a,73,c)].
+75 le(c1,c2).  [resolve(60,a,55,a)].
+76 -le(A,c1) | le(A,c2).  [resolve(75,a,42,b)].
+77 le(s(n0),c2).  [resolve(76,a,56,a)].
+78 -le(c2,n) | le(s(n0),minus(s(n),c2)).  [resolve(77,a,50,a)].
+79 le(s(n0),minus(s(n),c2)).  [resolve(57,a,78,a)].
+80 -le(c2,n) | le(minus(s(n),c2),n).  [resolve(77,a,48,a)].
+81 le(minus(s(n),c2),n).  [resolve(57,a,80,a)].
+82 -le(minus(s(n),c2),n) | p(minus(s(n),c2)) != p(minus(s(n),c1)).  [resolve(79,a,74,a)].
+83 p(minus(s(n),c2)) != p(minus(s(n),c1)).  [resolve(81,a,82,a)].
+84 -le(minus(s(n),c2),n) | minus(p(minus(s(n),c2)),minus(s(n),c2)) != minus(p(minus(s(n),c1)),minus(s(n),c1)).  [resolve(79,a,71,a)].
+85 minus(p(minus(s(n),c2)),minus(s(n),c2)) != minus(p(minus(s(n),c1)),minus(s(n),c1)).  [resolve(81,a,84,a)].
+86 plus(c2,p(minus(s(n),c2))) = plus(c1,p(minus(s(n),c1))) | minus(p(minus(s(n),c2)),c2) = minus(p(minus(s(n),c1)),c1).  [resolve(83,a,63,a)].
+87 -le(s(n0),minus(s(n),c2)) | -le(minus(s(n),c2),n) | -le(minus(s(n),c1),n) | plus(minus(s(n),c1),p(minus(s(n),c1))) != plus(minus(s(n),c2),p(minus(s(n),c2))).  [resolve(65,c,59,a)].
+88 -le(s(n0),minus(s(n),c2)) | -le(minus(s(n),c2),n) | -le(minus(s(n),c1),n) | plus(minus(s(n),c2),p(minus(s(n),c2))) != plus(minus(s(n),c1),p(minus(s(n),c1))).  [copy(87),flip(d)].
+89 -le(minus(s(n),c2),n) | -le(minus(s(n),c1),n) | plus(minus(s(n),c2),p(minus(s(n),c2))) != plus(minus(s(n),c1),p(minus(s(n),c1))).  [resolve(79,a,88,a)].
+90 -le(minus(s(n),c1),n) | plus(minus(s(n),c2),p(minus(s(n),c2))) != plus(minus(s(n),c1),p(minus(s(n),c1))).  [resolve(81,a,89,a)].
+91 plus(minus(s(n),c2),p(minus(s(n),c2))) != plus(minus(s(n),c1),p(minus(s(n),c1))).  [resolve(68,a,90,a)].
+92 minus(c1,c2) != minus(p(minus(s(n),c2)),p(minus(s(n),c1))).  [resolve(66,b,85,a(flip))].
+93 minus(p(minus(s(n),c2)),p(minus(s(n),c1))) != minus(c1,c2).  [copy(92),flip(a)].
+94 minus(p(minus(s(n),c2)),c2) = minus(p(minus(s(n),c1)),c1) | minus(p(minus(s(n),c2)),p(minus(s(n),c1))) = minus(c1,c2).  [resolve(86,a,51,a)].
+95 minus(p(minus(s(n),c2)),c2) = minus(p(minus(s(n),c1)),c1).  [resolve(93,a,94,b)].
+96 minus(p(minus(s(n),c2)),p(minus(s(n),c1))) != minus(minus(s(n),c1),minus(s(n),c2)).  [resolve(52,a,91,a)].
+97 minus(p(minus(s(n),c2)),p(minus(s(n),c1))) != minus(c2,c1).  [para(21(a,1),96(a,2))].
+98 minus(p(minus(s(n),c1)),c1) != minus(p(minus(s(n),c2)),c2).  [resolve(53,b,97,a(flip))].
+99 minus(p(minus(s(n),c1)),c1) != minus(p(minus(s(n),c1)),c1).  [para(95(a,1),98(a,2))].
+100 $F.  [copy(99),xx(a)].
+
+============================== end of proof ==========================

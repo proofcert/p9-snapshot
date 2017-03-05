@@ -1,0 +1,15 @@
+
+
+
+
+5 set_intersection2(A,B) = set_intersection2(B,A).  [clausify(1)].
+6 in(A,B) | disjoint(singleton(A),B).  [clausify(2)].
+7 -disjoint(singleton(c3),c4).  [clausify(4)].
+8 singleton(c3) != set_intersection2(singleton(c3),c4).  [clausify(4)].
+9 singleton(c3) != set_intersection2(c4,singleton(c3)).  [para(5(a,1),8(a,2))].
+10 set_intersection2(c4,singleton(c3)) != singleton(c3).  [copy(9),flip(a)].
+11 -in(A,B) | singleton(A) = set_intersection2(B,singleton(A)).  [clausify(3)].
+12 -in(A,B) | set_intersection2(B,singleton(A)) = singleton(A).  [copy(11),flip(b)].
+13 -in(c3,c4).  [resolve(12,b,10,a)].
+14 disjoint(singleton(c3),c4).  [resolve(13,a,6,a)].
+15 $F.  [resolve(7,a,14,a)].

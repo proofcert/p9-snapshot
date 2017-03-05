@@ -1,0 +1,17 @@
+
+
+
+
+5 subset(c1,empty_set) | equal_set(c1,empty_set).  [clausify(4)].
+6 subset(A,B) | member(f1(A,B),A).  [clausify(1)].
+7 -member(A,empty_set).  [clausify(3)].
+8 -subset(c1,empty_set) | -equal_set(c1,empty_set).  [clausify(4)].
+9 -equal_set(A,B) | subset(A,B).  [clausify(2)].
+10 equal_set(A,B) | -subset(A,B) | -subset(B,A).  [clausify(2)].
+11 subset(c1,empty_set) | subset(c1,empty_set).  [resolve(9,a,5,b)].
+12 subset(c1,empty_set).  [copy(11),merge(b)].
+13 -equal_set(c1,empty_set).  [resolve(12,a,8,a)].
+14 equal_set(c1,empty_set) | -subset(empty_set,c1).  [resolve(12,a,10,b)].
+15 -subset(empty_set,c1).  [resolve(13,a,14,a)].
+16 member(f1(empty_set,c1),empty_set).  [resolve(15,a,6,a)].
+17 $F.  [resolve(7,a,16,a)].

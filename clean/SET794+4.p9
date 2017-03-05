@@ -1,0 +1,31 @@
+
+
+
+
+5 total_order(c1,c2).  [clausify(4)].
+6 -total_order(A,B) | -member(C,B) | -member(D,B) | apply(A,C,D) | apply(A,D,C).  [clausify(1)].
+7 -min(A,B,C) | member(A,C).  [clausify(3)].
+8 -min(A,B,C) | -member(D,C) | -apply(B,D,A) | A = D.  [clausify(3)].
+9 min(c3,c1,c2).  [clausify(4)].
+10 least(A,B,C) | -member(A,C) | member(f12(B,C,A),C).  [clausify(2)].
+11 least(A,B,C) | -member(A,C) | -apply(B,A,f12(B,C,A)).  [clausify(2)].
+12 -least(c3,c1,c2).  [clausify(4)].
+13 -member(A,c2) | -member(B,c2) | apply(c1,A,B) | apply(c1,B,A).  [resolve(5,a,6,a)].
+14 member(c3,c2).  [resolve(9,a,7,a)].
+15 -member(A,c2) | -apply(c1,A,c3) | c3 = A.  [resolve(9,a,8,a)].
+16 -member(A,c2) | apply(c1,A,c3) | apply(c1,c3,A).  [resolve(14,a,13,b)].
+17 least(c3,A,c2) | member(f12(A,c2,c3),c2).  [resolve(14,a,10,b)].
+18 -member(c3,c2) | apply(c1,c3,c3).  [factor(16,b,c)].
+19 apply(c1,c3,c3).  [resolve(14,a,18,a)].
+20 member(f12(c1,c2,c3),c2).  [resolve(17,a,12,a)].
+21 apply(c1,f12(c1,c2,c3),c3) | apply(c1,c3,f12(c1,c2,c3)).  [resolve(16,a,20,a)].
+22 apply(c1,c3,f12(c1,c2,c3)) | -member(f12(c1,c2,c3),c2) | c3 = f12(c1,c2,c3).  [resolve(21,a,15,b)].
+23 apply(c1,c3,f12(c1,c2,c3)) | -member(f12(c1,c2,c3),c2) | f12(c1,c2,c3) = c3.  [copy(22),flip(c)].
+24 apply(c1,c3,f12(c1,c2,c3)) | f12(c1,c2,c3) = c3.  [resolve(20,a,23,b)].
+25 f12(c1,c2,c3) = c3 | least(c3,c1,c2) | -member(c3,c2).  [resolve(24,a,11,c)].
+26 f12(c1,c2,c3) = c3 | -member(c3,c2).  [resolve(12,a,25,b)].
+27 f12(c1,c2,c3) = c3.  [resolve(14,a,26,b)].
+28 least(c3,c1,c2) | -member(c3,c2) | -apply(c1,c3,c3).  [para(27(a,1),11(c,3))].
+29 -member(c3,c2) | -apply(c1,c3,c3).  [resolve(12,a,28,a)].
+30 -apply(c1,c3,c3).  [resolve(14,a,29,a)].
+31 $F.  [resolve(19,a,30,a)].

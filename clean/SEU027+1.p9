@@ -1,0 +1,70 @@
+
+
+
+
+
+6 -relation(A) | -function(A) | -one_to_one(A) | -relation(B) | -function(B) | function_inverse(A) != B | relation_rng(A) = relation_dom(B).  [clausify(3)].
+7 one_to_one(c9).  [clausify(5)].
+8 -relation(A) | -function(A) | -one_to_one(A) | -relation(B) | -function(B) | function_inverse(A) != B | -in(C,relation_dom(A)) | apply(A,C) != D | apply(B,D) = C.  [clausify(3)].
+9 relation(c9).  [clausify(5)].
+10 function(c9).  [clausify(5)].
+11 relation(c10).  [clausify(5)].
+12 function(c10).  [clausify(5)].
+13 relation_rng(c10) = relation_dom(c9).  [clausify(5)].
+14 relation_rng(c9) = relation_dom(c10).  [clausify(5)].
+15 function_inverse(c9) != c10.  [clausify(5)].
+16 -relation(A) | -function(A) | relation(function_inverse(A)).  [clausify(2)].
+17 -relation(A) | -function(A) | function(function_inverse(A)).  [clausify(2)].
+18 -in(A,relation_dom(c9)) | -in(B,relation_dom(c10)) | apply(c9,A) = B | apply(c10,B) != A.  [clausify(5)].
+19 -relation(A) | -function(A) | relation_rng(A) != B | in(C,B) | -in(D,relation_dom(A)) | apply(A,D) != C.  [clausify(1)].
+20 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom(B) != relation_dom(A) | in(f9(A,B),relation_dom(A)) | B = A.  [clausify(4)].
+21 -relation(A) | -function(A) | -relation(B) | -function(B) | relation_dom(B) != relation_dom(A) | apply(B,f9(A,B)) != apply(A,f9(A,B)) | B = A.  [clausify(4)].
+22 -relation(c9) | -function(c9) | -relation(A) | -function(A) | function_inverse(c9) != A | relation_rng(c9) = relation_dom(A).  [resolve(6,c,7,a)].
+23 -relation(c9) | -function(c9) | -relation(A) | -function(A) | function_inverse(c9) != A | relation_dom(c10) = relation_dom(A).  [para(14(a,1),22(f,1))].
+24 -function(c9) | -relation(A) | -function(A) | function_inverse(c9) != A | relation_dom(c10) = relation_dom(A).  [resolve(9,a,23,a)].
+25 -relation(A) | -function(A) | function_inverse(c9) != A | relation_dom(c10) = relation_dom(A).  [resolve(10,a,24,a)].
+26 -relation(c9) | -function(c9) | -relation(A) | -function(A) | function_inverse(c9) != A | -in(B,relation_dom(c9)) | apply(c9,B) != C | apply(A,C) = B.  [resolve(8,c,7,a)].
+27 -function(c9) | -relation(A) | -function(A) | function_inverse(c9) != A | -in(B,relation_dom(c9)) | apply(c9,B) != C | apply(A,C) = B.  [resolve(9,a,26,a)].
+28 -relation(A) | -function(A) | function_inverse(c9) != A | -in(B,relation_dom(c9)) | apply(c9,B) != C | apply(A,C) = B.  [resolve(10,a,27,a)].
+29 -relation(c9) | relation(function_inverse(c9)).  [resolve(16,b,10,a)].
+30 relation(function_inverse(c9)).  [resolve(9,a,29,a)].
+31 -relation(c9) | function(function_inverse(c9)).  [resolve(17,b,10,a)].
+32 function(function_inverse(c9)).  [resolve(9,a,31,a)].
+33 -relation(c10) | -relation(A) | -function(A) | relation_dom(A) != relation_dom(c10) | in(f9(c10,A),relation_dom(c10)) | A = c10.  [resolve(20,b,12,a)].
+34 -relation(c10) | -relation(A) | -function(A) | relation_dom(c10) != relation_dom(A) | in(f9(c10,A),relation_dom(c10)) | A = c10.  [copy(33),flip(d)].
+35 -relation(c10) | -relation(A) | -function(A) | relation_dom(c10) != relation_dom(A) | in(f9(c10,A),relation_dom(c10)) | c10 = A.  [copy(34),flip(f)].
+36 -relation(A) | -function(A) | relation_dom(c10) != relation_dom(A) | in(f9(c10,A),relation_dom(c10)) | c10 = A.  [resolve(11,a,35,a)].
+37 -relation(function_inverse(c9)) | function_inverse(c9) != function_inverse(c9) | relation_dom(c10) = relation_dom(function_inverse(c9)).  [resolve(32,a,25,b)].
+38 -relation(function_inverse(c9)) | function_inverse(c9) != function_inverse(c9) | relation_dom(function_inverse(c9)) = relation_dom(c10).  [copy(37),flip(c)].
+39 -relation(function_inverse(c9)) | relation_dom(function_inverse(c9)) = relation_dom(c10).  [copy(38),xx(b)].
+40 relation_dom(function_inverse(c9)) = relation_dom(c10).  [resolve(30,a,39,a)].
+41 -function(c10) | -relation(A) | -function(A) | relation_dom(A) != relation_dom(c10) | apply(A,f9(c10,A)) != apply(c10,f9(c10,A)) | A = c10.  [resolve(21,a,11,a)].
+42 -relation(A) | -function(A) | relation_dom(A) != relation_dom(c10) | apply(A,f9(c10,A)) != apply(c10,f9(c10,A)) | A = c10.  [resolve(41,a,12,a)].
+43 -function(function_inverse(c9)) | relation_dom(function_inverse(c9)) != relation_dom(c10) | apply(function_inverse(c9),f9(c10,function_inverse(c9))) != apply(c10,f9(c10,function_inverse(c9))) | function_inverse(c9) = c10.  [resolve(42,a,30,a)].
+44 relation_dom(function_inverse(c9)) != relation_dom(c10) | apply(function_inverse(c9),f9(c10,function_inverse(c9))) != apply(c10,f9(c10,function_inverse(c9))) | function_inverse(c9) = c10.  [resolve(43,a,32,a)].
+45 apply(function_inverse(c9),f9(c10,function_inverse(c9))) != apply(c10,f9(c10,function_inverse(c9))) | function_inverse(c9) = c10.  [resolve(44,a,40,a)].
+46 apply(function_inverse(c9),f9(c10,function_inverse(c9))) != apply(c10,f9(c10,function_inverse(c9))).  [resolve(45,b,15,a)].
+47 -relation(function_inverse(c9)) | relation_dom(c10) != relation_dom(function_inverse(c9)) | in(f9(c10,function_inverse(c9)),relation_dom(c10)) | c10 = function_inverse(c9).  [resolve(36,b,32,a)].
+48 -relation(function_inverse(c9)) | relation_dom(c10) != relation_dom(c10) | in(f9(c10,function_inverse(c9)),relation_dom(c10)) | c10 = function_inverse(c9).  [para(40(a,1),47(b,2))].
+49 -relation(function_inverse(c9)) | relation_dom(c10) != relation_dom(c10) | in(f9(c10,function_inverse(c9)),relation_dom(c10)) | function_inverse(c9) = c10.  [copy(48),flip(d)].
+50 -relation(function_inverse(c9)) | in(f9(c10,function_inverse(c9)),relation_dom(c10)) | function_inverse(c9) = c10.  [copy(49),xx(b)].
+51 in(f9(c10,function_inverse(c9)),relation_dom(c10)) | function_inverse(c9) = c10.  [resolve(30,a,50,a)].
+52 in(f9(c10,function_inverse(c9)),relation_dom(c10)).  [resolve(15,a,51,b)].
+53 -relation(c10) | -function(c10) | relation_rng(c10) != A | in(B,A) | apply(c10,f9(c10,function_inverse(c9))) != B.  [resolve(52,a,19,e)].
+54 -relation(c10) | -function(c10) | relation_dom(c9) != A | in(B,A) | apply(c10,f9(c10,function_inverse(c9))) != B.  [para(13(a,1),53(c,1))].
+55 -function(c10) | relation_dom(c9) != A | in(B,A) | apply(c10,f9(c10,function_inverse(c9))) != B.  [resolve(11,a,54,a)].
+56 relation_dom(c9) != A | in(B,A) | apply(c10,f9(c10,function_inverse(c9))) != B.  [resolve(12,a,55,a)].
+57 -in(A,relation_dom(c9)) | apply(c9,A) = f9(c10,function_inverse(c9)) | apply(c10,f9(c10,function_inverse(c9))) != A.  [resolve(52,a,18,b)].
+58 -in(A,relation_dom(c9)) | f9(c10,function_inverse(c9)) = apply(c9,A) | apply(c10,f9(c10,function_inverse(c9))) != A.  [copy(57),flip(b)].
+59 in(A,relation_rng(c10)) | apply(c10,f9(c10,function_inverse(c9))) != A.  [resolve(56,a,13,a(flip))].
+60 in(A,relation_dom(c9)) | apply(c10,f9(c10,function_inverse(c9))) != A.  [para(13(a,1),59(a,2))].
+61 in(apply(c10,f9(c10,function_inverse(c9))),relation_dom(c9)).  [xx_res(60,b)].
+62 f9(c10,function_inverse(c9)) = apply(c9,apply(c10,f9(c10,function_inverse(c9)))) | apply(c10,f9(c10,function_inverse(c9))) != apply(c10,f9(c10,function_inverse(c9))).  [resolve(58,a,61,a)].
+63 apply(c9,apply(c10,f9(c10,function_inverse(c9)))) = f9(c10,function_inverse(c9)) | apply(c10,f9(c10,function_inverse(c9))) != apply(c10,f9(c10,function_inverse(c9))).  [copy(62),flip(a)].
+64 apply(c9,apply(c10,f9(c10,function_inverse(c9)))) = f9(c10,function_inverse(c9)).  [copy(63),xx(b)].
+65 -relation(function_inverse(c9)) | function_inverse(c9) != function_inverse(c9) | -in(A,relation_dom(c9)) | apply(c9,A) != B | apply(function_inverse(c9),B) = A.  [resolve(28,b,32,a)].
+66 -relation(function_inverse(c9)) | -in(A,relation_dom(c9)) | apply(c9,A) != B | apply(function_inverse(c9),B) = A.  [xx_res(65,b)].
+67 -relation(function_inverse(c9)) | apply(c9,apply(c10,f9(c10,function_inverse(c9)))) != A | apply(function_inverse(c9),A) = apply(c10,f9(c10,function_inverse(c9))).  [resolve(66,b,61,a)].
+68 -relation(function_inverse(c9)) | apply(function_inverse(c9),f9(c10,function_inverse(c9))) = apply(c10,f9(c10,function_inverse(c9))).  [resolve(67,b,64,a)].
+69 -relation(function_inverse(c9)).  [resolve(68,b,46,a)].
+70 $F.  [resolve(30,a,69,a)].

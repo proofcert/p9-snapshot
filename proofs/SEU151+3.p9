@@ -1,0 +1,50 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n158.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 21:58:53 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 61989 was started by sandbox on n158.star.cs.uiowa.edu,
+Thu Jun  5 21:58:53 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_61957_n158.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 14.000.
+% Given clauses 18.
+
+
+1 (all A all B unordered_pair(A,B) = unordered_pair(B,A)).  [assumption].
+2 (all A all B all C (C = unordered_pair(A,B) <-> (all D (in(D,C) <-> D = A | D = B)))).  [assumption].
+3 -(all A all B all C all D -(unordered_pair(A,B) = unordered_pair(C,D) & A != C & A != D)).  [assumption].
+4 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+5 unordered_pair(c5,c6) = unordered_pair(c3,c4).  [clausify(3)].
+6 c5 != c3.  [clausify(3)].
+7 c6 != c3.  [clausify(3)].
+8 unordered_pair(A,B) != C | in(D,C) | D != B.  [clausify(2)].
+9 unordered_pair(A,B) != C | -in(D,C) | D = A | D = B.  [clausify(2)].
+10 -in(A,unordered_pair(c3,c4)) | A = c5 | A = c6.  [resolve(9,a,5,a)].
+11 -in(c3,unordered_pair(c3,c4)) | c3 = c6.  [resolve(10,b,6,a(flip))].
+12 -in(c3,unordered_pair(c3,c4)).  [resolve(11,b,7,a(flip))].
+13 unordered_pair(A,B) != unordered_pair(c3,c4) | c3 != B.  [resolve(8,b,12,a)].
+14 unordered_pair(A,c3) != unordered_pair(c3,c4).  [xx_res(13,b)].
+15 unordered_pair(c3,c4) != unordered_pair(A,c3).  [copy(14),flip(a)].
+16 $F.  [resolve(15,a,4,a)].
+
+============================== end of proof ==========================

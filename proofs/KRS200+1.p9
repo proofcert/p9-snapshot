@@ -1,0 +1,51 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n152.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 00:20:43 CDT 2014
+% CPUTime    : 0.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 13436 was started by sandbox on n152.star.cs.uiowa.edu,
+Fri Jun  6 00:20:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_13404_n152.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.13 (+ 0.00) seconds.
+% Length of proof is 16.
+% Level of proof is 5.
+% Maximum clause weight is 10.000.
+% Given clauses 166.
+
+
+1 (all A all B ((-(exists C model(C,A)) -> -(exists D model(D,B))) <-> status(A,B,unp))).  [assumption].
+2 (all A all B ((all C (model(C,A) -> model(C,B))) <-> status(A,B,thm))).  [assumption].
+3 (all A all B ((exists C exists D (status(C,D,A) & -status(C,D,B))) <-> nota(A,B))).  [assumption].
+4 (exists A all B model(B,A)).  [assumption].
+5 (exists A exists B exists C (model(A,B) & -model(A,C) & (exists D model(D,C)))).  [assumption].
+6 -status(A,B,C) | status(A,B,D) | nota(C,D).  [clausify(3)].
+7 -nota(unp,thm).  [assumption].
+8 -model(A,B) | status(B,C,unp).  [clausify(1)].
+9 -model(A,B) | model(A,C) | -status(B,C,thm).  [clausify(2)].
+10 model(A,c1).  [clausify(4)].
+11 -model(c15,c17).  [clausify(5)].
+12 -status(A,B,unp) | status(A,B,thm).  [resolve(7,a,6,c)].
+13 status(c1,A,unp).  [resolve(10,a,8,a)].
+14 status(c1,A,thm).  [resolve(13,a,12,a)].
+15 -model(A,c1) | model(A,B).  [resolve(14,a,9,c)].
+16 model(A,B).  [resolve(10,a,15,a)].
+17 $F.  [resolve(16,a,11,a)].
+
+============================== end of proof ==========================

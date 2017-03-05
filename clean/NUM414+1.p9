@@ -1,0 +1,25 @@
+
+
+
+
+5 proper_subset(A,B) | -subset(A,B) | B = A.  [clausify(2)].
+6 -ordinal(A) | -ordinal(B) | -ordinal_subset(A,B) | subset(A,B).  [clausify(3)].
+7 ordinal(c15).  [clausify(4)].
+8 ordinal(c16).  [clausify(4)].
+9 -proper_subset(c15,c16).  [clausify(4)].
+10 c16 != c15.  [clausify(4)].
+11 -proper_subset(c16,c15).  [clausify(4)].
+12 -ordinal(A) | -ordinal(B) | ordinal_subset(A,B) | ordinal_subset(B,A).  [clausify(1)].
+13 -ordinal(A) | -ordinal(B) | -ordinal_subset(A,B) | proper_subset(A,B) | B = A.  [resolve(6,d,5,b)].
+14 -ordinal(A) | -ordinal_subset(c16,A) | proper_subset(c16,A) | A = c16.  [resolve(13,a,8,a)].
+15 -ordinal_subset(c16,c15) | proper_subset(c16,c15) | c15 = c16.  [resolve(14,a,7,a)].
+16 -ordinal_subset(c16,c15) | c15 = c16.  [resolve(15,b,11,a)].
+17 -ordinal_subset(c16,c15).  [resolve(16,b,10,a(flip))].
+18 -ordinal(A) | -ordinal_subset(c15,A) | proper_subset(c15,A) | A = c15.  [resolve(13,a,7,a)].
+19 -ordinal_subset(c15,c16) | proper_subset(c15,c16) | c16 = c15.  [resolve(18,a,8,a)].
+20 -ordinal_subset(c15,c16) | c16 = c15.  [resolve(19,b,9,a)].
+21 -ordinal_subset(c15,c16).  [resolve(20,b,10,a)].
+22 -ordinal(A) | ordinal_subset(A,c15) | ordinal_subset(c15,A).  [resolve(12,b,7,a)].
+23 -ordinal(c16) | ordinal_subset(c15,c16).  [resolve(22,b,17,a)].
+24 -ordinal(c16).  [resolve(23,b,21,a)].
+25 $F.  [resolve(8,a,24,a)].

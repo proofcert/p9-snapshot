@@ -1,0 +1,59 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n132.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:23:28 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 33873 was started by sandbox on n132.star.cs.uiowa.edu,
+Fri Jun  6 08:23:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_33841_n132.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 20.
+% Level of proof is 6.
+% Maximum clause weight is 14.000.
+% Given clauses 19.
+
+
+1 (all A all B (element(B,powerset(A)) -> element(subset_complement(A,B),powerset(A)))).  [assumption].
+2 (all A all B (element(B,powerset(A)) -> subset_complement(A,subset_complement(A,B)) = B)).  [assumption].
+3 (all A (top_str(A) -> (all B (element(B,powerset(the_carrier(A))) -> (closed_subset(B,A) <-> open_subset(subset_complement(the_carrier(A),B),A)))))).  [assumption].
+4 -(all A (top_str(A) -> (all B (element(B,powerset(the_carrier(A))) -> (open_subset(B,A) <-> closed_subset(subset_complement(the_carrier(A),B),A)))))).  [assumption].
+5 top_str(c3).  [clausify(4)].
+6 -top_str(A) | -element(B,powerset(the_carrier(A))) | -closed_subset(B,A) | open_subset(subset_complement(the_carrier(A),B),A).  [clausify(3)].
+7 -top_str(A) | -element(B,powerset(the_carrier(A))) | closed_subset(B,A) | -open_subset(subset_complement(the_carrier(A),B),A).  [clausify(3)].
+8 element(c4,powerset(the_carrier(c3))).  [clausify(4)].
+9 open_subset(c4,c3) | closed_subset(subset_complement(the_carrier(c3),c4),c3).  [clausify(4)].
+10 -open_subset(c4,c3) | -closed_subset(subset_complement(the_carrier(c3),c4),c3).  [clausify(4)].
+11 -element(A,powerset(B)) | element(subset_complement(B,A),powerset(B)).  [clausify(1)].
+12 -element(A,powerset(B)) | subset_complement(B,subset_complement(B,A)) = A.  [clausify(2)].
+13 -element(A,powerset(the_carrier(c3))) | -closed_subset(A,c3) | open_subset(subset_complement(the_carrier(c3),A),c3).  [resolve(6,a,5,a)].
+14 -element(A,powerset(the_carrier(c3))) | closed_subset(A,c3) | -open_subset(subset_complement(the_carrier(c3),A),c3).  [resolve(7,a,5,a)].
+15 element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))).  [resolve(11,a,8,a)].
+16 subset_complement(the_carrier(c3),subset_complement(the_carrier(c3),c4)) = c4.  [resolve(12,a,8,a)].
+17 -element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))) | closed_subset(subset_complement(the_carrier(c3),c4),c3) | -open_subset(c4,c3).  [para(16(a,1),14(c,1))].
+18 closed_subset(subset_complement(the_carrier(c3),c4),c3) | -open_subset(c4,c3).  [resolve(15,a,17,a)].
+19 closed_subset(subset_complement(the_carrier(c3),c4),c3) | closed_subset(subset_complement(the_carrier(c3),c4),c3).  [resolve(18,b,9,a)].
+20 closed_subset(subset_complement(the_carrier(c3),c4),c3).  [copy(19),merge(b)].
+21 -open_subset(c4,c3).  [resolve(20,a,10,b)].
+22 -element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))) | open_subset(subset_complement(the_carrier(c3),subset_complement(the_carrier(c3),c4)),c3).  [resolve(20,a,13,b)].
+23 -element(subset_complement(the_carrier(c3),c4),powerset(the_carrier(c3))) | open_subset(c4,c3).  [para(16(a,1),22(b,1))].
+24 open_subset(c4,c3).  [resolve(15,a,23,a)].
+25 $F.  [resolve(21,a,24,a)].
+
+============================== end of proof ==========================

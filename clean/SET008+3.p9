@@ -1,0 +1,26 @@
+
+
+
+
+
+
+7 intersection(A,B) = intersection(B,A).  [clausify(4)].
+8 A = B | member(f3(B,A),B) | member(f3(B,A),A).  [clausify(5)].
+9 -member(A,empty_set).  [clausify(3)].
+10 intersection(difference(c1,c2),c2) != empty_set.  [clausify(6)].
+11 intersection(c2,difference(c1,c2)) != empty_set.  [para(7(a,1),10(a,1))].
+12 -member(A,difference(B,C)) | -member(A,C).  [clausify(2)].
+13 -member(A,intersection(B,C)) | member(A,B).  [clausify(1)].
+14 A = empty_set | member(f3(empty_set,A),A).  [resolve(9,a,8,b)].
+15 empty_set = A | member(f3(empty_set,A),A).  [copy(14),flip(a)].
+16 member(f3(A,intersection(B,C)),B) | intersection(B,C) = A | member(f3(A,intersection(B,C)),A).  [resolve(13,a,8,c)].
+17 empty_set = intersection(A,B) | member(f3(empty_set,intersection(A,B)),A).  [resolve(15,b,13,a)].
+18 intersection(A,B) = empty_set | member(f3(empty_set,intersection(A,B)),A).  [copy(17),flip(a)].
+19 intersection(difference(A,B),C) = D | member(f3(D,intersection(difference(A,B),C)),D) | -member(f3(D,intersection(difference(A,B),C)),B).  [resolve(16,a,12,a)].
+20 intersection(C,difference(A,B)) = D | member(f3(D,intersection(difference(A,B),C)),D) | -member(f3(D,intersection(difference(A,B),C)),B).  [para(7(a,1),19(a,1))].
+21 intersection(C,difference(A,B)) = D | member(f3(D,intersection(C,difference(A,B))),D) | -member(f3(D,intersection(difference(A,B),C)),B).  [para(7(a,1),20(b,1,2))].
+22 intersection(A,difference(B,C)) = D | member(f3(D,intersection(A,difference(B,C))),D) | -member(f3(D,intersection(A,difference(B,C))),C).  [para(7(a,1),21(c,1,2))].
+23 intersection(A,difference(B,A)) = empty_set | member(f3(empty_set,intersection(A,difference(B,A))),empty_set) | intersection(A,difference(B,A)) = empty_set.  [resolve(22,c,18,b)].
+24 intersection(A,difference(B,A)) = empty_set | member(f3(empty_set,intersection(A,difference(B,A))),empty_set).  [copy(23),merge(c)].
+25 intersection(A,difference(B,A)) = empty_set.  [resolve(9,a,24,b)].
+26 $F.  [resolve(25,a,11,a)].

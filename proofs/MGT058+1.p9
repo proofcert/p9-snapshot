@@ -1,0 +1,77 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n158.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 18:55:33 CDT 2014
+% CPUTime    : 0.14 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 22936 was started by sandbox on n158.star.cs.uiowa.edu,
+Thu Jun  5 18:55:33 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_22904_n158.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 38.
+% Level of proof is 10.
+% Maximum clause weight is 8.000.
+% Given clauses 45.
+
+
+1 (all A all B (smaller_or_equal(A,B) <-> smaller(A,B) | A = B)).  [assumption].
+2 (all A all B (greater_or_equal(A,B) <-> greater(A,B) | A = B)).  [assumption].
+3 (all A all B (smaller(A,B) <-> greater(B,A))).  [assumption].
+4 (all A (fragile_position(A) <-> (all B ((smaller_or_equal(age(A,B),sigma) -> positional_advantage(A,B)) & (greater(age(A,B),sigma) -> -positional_advantage(A,B)))))).  [assumption].
+5 (all A (robust_position(A) <-> (all B ((smaller_or_equal(age(A,B),tau) -> -positional_advantage(A,B)) & (greater(age(A,B),tau) -> positional_advantage(A,B)))))).  [assumption].
+6 -(all A (organization(A) & (exists B age(A,B) = zero) & greater_or_equal(sigma,zero) & greater_or_equal(tau,zero) -> -(fragile_position(A) & robust_position(A)))).  [assumption].
+7 fragile_position(c1).  [clausify(6)].
+8 -fragile_position(A) | -smaller_or_equal(age(A,B),sigma) | positional_advantage(A,B).  [clausify(4)].
+9 -robust_position(A) | -smaller_or_equal(age(A,B),tau) | -positional_advantage(A,B).  [clausify(5)].
+10 robust_position(c1).  [clausify(6)].
+11 -greater_or_equal(A,B) | greater(A,B) | B = A.  [clausify(2)].
+12 greater_or_equal(sigma,zero).  [clausify(6)].
+13 greater_or_equal(tau,zero).  [clausify(6)].
+14 smaller_or_equal(A,B) | -smaller(A,B).  [clausify(1)].
+15 smaller(A,B) | -greater(B,A).  [clausify(3)].
+16 age(c1,c2) = zero.  [clausify(6)].
+17 smaller_or_equal(A,B) | B != A.  [clausify(1)].
+18 -smaller_or_equal(age(c1,A),sigma) | positional_advantage(c1,A).  [resolve(8,a,7,a)].
+19 -smaller_or_equal(age(c1,A),tau) | -positional_advantage(c1,A).  [resolve(9,a,10,a)].
+20 greater(sigma,zero) | zero = sigma.  [resolve(11,a,12,a)].
+21 greater(tau,zero) | zero = tau.  [resolve(11,a,13,a)].
+22 -greater(A,B) | smaller_or_equal(B,A).  [resolve(15,a,14,b)].
+23 smaller_or_equal(A,A).  [xx_res(17,b)].
+24 -smaller_or_equal(zero,sigma) | positional_advantage(c1,c2).  [para(16(a,1),18(a,1))].
+25 -smaller_or_equal(zero,tau) | -positional_advantage(c1,c2).  [para(16(a,1),19(a,1))].
+26 smaller_or_equal(zero,tau) | zero = tau.  [resolve(22,a,21,a)].
+27 smaller_or_equal(zero,sigma) | zero = sigma.  [resolve(22,a,20,a)].
+28 zero = tau | -positional_advantage(c1,c2).  [resolve(26,a,25,a)].
+29 zero = sigma | positional_advantage(c1,c2).  [resolve(27,a,24,a)].
+30 zero = sigma | zero = tau.  [resolve(29,b,28,b)].
+31 zero = sigma | -smaller_or_equal(tau,tau) | -positional_advantage(c1,c2).  [para(30(b,1),25(a,1))].
+32 zero = sigma | -positional_advantage(c1,c2).  [resolve(23,a,31,b)].
+33 zero = sigma | zero = sigma.  [resolve(32,b,29,b)].
+34 zero = sigma.  [copy(33),merge(b)].
+35 sigma = tau | -positional_advantage(c1,c2).  [para(34(a,1),28(a,1))].
+36 tau = sigma | -positional_advantage(c1,c2).  [copy(35),flip(a)].
+37 -smaller_or_equal(sigma,tau) | -positional_advantage(c1,c2).  [para(34(a,1),25(a,1))].
+38 -smaller_or_equal(sigma,sigma) | positional_advantage(c1,c2).  [para(34(a,1),24(a,1))].
+39 positional_advantage(c1,c2).  [resolve(23,a,38,a)].
+40 -smaller_or_equal(sigma,tau).  [resolve(39,a,37,b)].
+41 tau = sigma.  [resolve(39,a,36,b)].
+42 -smaller_or_equal(sigma,sigma).  [para(41(a,1),40(a,2))].
+43 $F.  [resolve(23,a,42,a)].
+
+============================== end of proof ==========================

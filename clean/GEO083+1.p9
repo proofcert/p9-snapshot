@@ -1,0 +1,24 @@
+
+
+
+4 part_of(c11,c12).  [clausify(3)].
+5 part_of(A,B) | incident_c(f1(B,A),A).  [clausify(1)].
+6 -part_of(sum(c10,c11),sum(c10,c12)).  [clausify(3)].
+7 part_of(A,B) | -incident_c(f1(B,A),B).  [clausify(1)].
+8 -part_of(A,B) | -incident_c(C,A) | incident_c(C,B).  [clausify(1)].
+9 sum(A,B) != C | incident_c(D,C) | -incident_c(D,A).  [clausify(2)].
+10 sum(A,B) != C | incident_c(D,C) | -incident_c(D,B).  [clausify(2)].
+11 sum(A,B) != C | -incident_c(D,C) | incident_c(D,A) | incident_c(D,B).  [clausify(2)].
+12 incident_c(f1(sum(c10,c12),sum(c10,c11)),sum(c10,c11)).  [resolve(6,a,5,a)].
+13 -incident_c(f1(sum(c10,c12),sum(c10,c11)),sum(c10,c12)).  [resolve(7,a,6,a)].
+14 -incident_c(A,c11) | incident_c(A,c12).  [resolve(8,a,4,a)].
+15 sum(A,B) != sum(c10,c11) | incident_c(f1(sum(c10,c12),sum(c10,c11)),A) | incident_c(f1(sum(c10,c12),sum(c10,c11)),B).  [resolve(12,a,11,b)].
+16 sum(c10,c11) != sum(A,B) | incident_c(f1(sum(c10,c12),sum(c10,c11)),A) | incident_c(f1(sum(c10,c12),sum(c10,c11)),B).  [copy(15),flip(a)].
+17 incident_c(A,sum(B,C)) | -incident_c(A,C).  [xx_res(10,a)].
+18 -incident_c(f1(sum(c10,c12),sum(c10,c11)),c12).  [resolve(17,a,13,a)].
+19 incident_c(A,sum(B,C)) | -incident_c(A,B).  [xx_res(9,a)].
+20 -incident_c(f1(sum(c10,c12),sum(c10,c11)),c10).  [resolve(19,a,13,a)].
+21 incident_c(f1(sum(c10,c12),sum(c10,c11)),c10) | incident_c(f1(sum(c10,c12),sum(c10,c11)),c11).  [xx_res(16,a)].
+22 incident_c(f1(sum(c10,c12),sum(c10,c11)),c11).  [resolve(20,a,21,a)].
+23 incident_c(f1(sum(c10,c12),sum(c10,c11)),c12).  [resolve(22,a,14,a)].
+24 $F.  [resolve(18,a,23,a)].

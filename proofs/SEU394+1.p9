@@ -1,0 +1,71 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n161.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 11:13:08 CDT 2014
+% CPUTime    : 40.39 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 6437 was started by sandbox on n161.star.cs.uiowa.edu,
+Fri Jun  6 11:13:09 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_6405_n161.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 39.03 (+ 0.60) seconds.
+% Length of proof is 25.
+% Level of proof is 6.
+% Maximum clause weight is 35.000.
+% Given clauses 20436.
+
+
+1 (all A (-empty_carrier(A) & one_sorted_str(A) -> -empty(cast_as_carrier_subset(A)))).  [assumption].
+2 (all A (-empty_carrier(A) & one_sorted_str(A) -> (all B (-empty(B) & filtered_subset(B,boole_POSet(cast_as_carrier_subset(A))) & upper_relstr_subset(B,boole_POSet(cast_as_carrier_subset(A))) & element(B,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(A))))) -> set_difference(B,singleton(empty_set)) = filter_of_net_str(A,net_of_bool_filter(A,cast_as_carrier_subset(A),B)))))).  [assumption].
+3 (all A (-empty(A) -> (all B (-empty(B) & filtered_subset(B,boole_POSet(A)) & upper_relstr_subset(B,boole_POSet(A)) & proper_element(B,powerset(the_carrier(boole_POSet(A)))) & element(B,powerset(the_carrier(boole_POSet(A)))) -> (all C -(in(C,B) & empty(C))))))).  [assumption].
+4 (all A all B (set_difference(A,singleton(B)) = A <-> -in(B,A))).  [assumption].
+5 -(all A (-empty_carrier(A) & one_sorted_str(A) -> (all B (-empty(B) & filtered_subset(B,boole_POSet(cast_as_carrier_subset(A))) & upper_relstr_subset(B,boole_POSet(cast_as_carrier_subset(A))) & proper_element(B,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(A))))) & element(B,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(A))))) -> B = filter_of_net_str(A,net_of_bool_filter(A,cast_as_carrier_subset(A),B)))))).  [assumption].
+6 empty(empty_set).  [assumption].
+7 empty_carrier(A) | -one_sorted_str(A) | -empty(cast_as_carrier_subset(A)).  [clausify(1)].
+8 empty_carrier(A) | -one_sorted_str(A) | empty(B) | -filtered_subset(B,boole_POSet(cast_as_carrier_subset(A))) | -upper_relstr_subset(B,boole_POSet(cast_as_carrier_subset(A))) | -element(B,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(A))))) | set_difference(B,singleton(empty_set)) = filter_of_net_str(A,net_of_bool_filter(A,cast_as_carrier_subset(A),B)).  [clausify(2)].
+9 empty_carrier(A) | -one_sorted_str(A) | empty(B) | -filtered_subset(B,boole_POSet(cast_as_carrier_subset(A))) | -upper_relstr_subset(B,boole_POSet(cast_as_carrier_subset(A))) | -element(B,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(A))))) | filter_of_net_str(A,net_of_bool_filter(A,cast_as_carrier_subset(A),B)) = set_difference(B,singleton(empty_set)).  [copy(8),flip(g)].
+10 empty(A) | empty(B) | -filtered_subset(B,boole_POSet(A)) | -upper_relstr_subset(B,boole_POSet(A)) | -proper_element(B,powerset(the_carrier(boole_POSet(A)))) | -element(B,powerset(the_carrier(boole_POSet(A)))) | -in(C,B) | -empty(C).  [clausify(3)].
+11 set_difference(A,singleton(B)) = A | in(B,A).  [clausify(4)].
+12 -empty_carrier(c16).  [clausify(5)].
+13 one_sorted_str(c16).  [clausify(5)].
+14 -empty(c17).  [clausify(5)].
+15 filtered_subset(c17,boole_POSet(cast_as_carrier_subset(c16))).  [clausify(5)].
+16 upper_relstr_subset(c17,boole_POSet(cast_as_carrier_subset(c16))).  [clausify(5)].
+17 proper_element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))).  [clausify(5)].
+18 element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))).  [clausify(5)].
+19 filter_of_net_str(c16,net_of_bool_filter(c16,cast_as_carrier_subset(c16),c17)) != c17.  [clausify(5)].
+20 empty_carrier(c16) | -one_sorted_str(c16) | empty(c17) | -filtered_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | filter_of_net_str(c16,net_of_bool_filter(c16,cast_as_carrier_subset(c16),c17)) = set_difference(c17,singleton(empty_set)).  [resolve(16,a,9,e)].
+21 -one_sorted_str(c16) | empty(c17) | -filtered_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | filter_of_net_str(c16,net_of_bool_filter(c16,cast_as_carrier_subset(c16),c17)) = set_difference(c17,singleton(empty_set)).  [resolve(12,a,20,a)].
+22 empty(c17) | -filtered_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | filter_of_net_str(c16,net_of_bool_filter(c16,cast_as_carrier_subset(c16),c17)) = set_difference(c17,singleton(empty_set)).  [resolve(13,a,21,a)].
+23 -filtered_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | filter_of_net_str(c16,net_of_bool_filter(c16,cast_as_carrier_subset(c16),c17)) = set_difference(c17,singleton(empty_set)).  [resolve(14,a,22,a)].
+24 -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | filter_of_net_str(c16,net_of_bool_filter(c16,cast_as_carrier_subset(c16),c17)) = set_difference(c17,singleton(empty_set)).  [resolve(15,a,23,a)].
+25 filter_of_net_str(c16,net_of_bool_filter(c16,cast_as_carrier_subset(c16),c17)) = set_difference(c17,singleton(empty_set)).  [resolve(18,a,24,a)].
+26 set_difference(c17,singleton(empty_set)) != c17.  [para(25(a,1),19(a,1))].
+27 empty(cast_as_carrier_subset(c16)) | empty(c17) | -filtered_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -upper_relstr_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | -in(A,c17) | -empty(A).  [resolve(17,a,10,e)].
+28 empty(cast_as_carrier_subset(c16)) | -filtered_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -upper_relstr_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | -in(A,c17) | -empty(A).  [resolve(14,a,27,b)].
+29 empty(cast_as_carrier_subset(c16)) | -upper_relstr_subset(c17,boole_POSet(cast_as_carrier_subset(c16))) | -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | -in(A,c17) | -empty(A).  [resolve(15,a,28,b)].
+30 empty(cast_as_carrier_subset(c16)) | -element(c17,powerset(the_carrier(boole_POSet(cast_as_carrier_subset(c16))))) | -in(A,c17) | -empty(A).  [resolve(16,a,29,b)].
+31 empty(cast_as_carrier_subset(c16)) | -in(A,c17) | -empty(A).  [resolve(18,a,30,b)].
+32 empty(cast_as_carrier_subset(c16)) | -empty(A) | set_difference(c17,singleton(A)) = c17.  [resolve(31,b,11,b)].
+33 empty(cast_as_carrier_subset(c16)) | set_difference(c17,singleton(empty_set)) = c17.  [resolve(32,b,6,a)].
+34 empty(cast_as_carrier_subset(c16)).  [resolve(26,a,33,b)].
+35 empty_carrier(c16) | -one_sorted_str(c16).  [resolve(34,a,7,c)].
+36 -one_sorted_str(c16).  [resolve(12,a,35,a)].
+37 $F.  [resolve(13,a,36,a)].
+
+============================== end of proof ==========================

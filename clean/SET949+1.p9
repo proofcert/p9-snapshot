@@ -1,0 +1,16 @@
+
+
+
+
+5 in(c3,cartesian_product2(c4,c5)).  [clausify(4)].
+6 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+7 ordered_pair(A,B) = unordered_pair(unordered_pair(A,B),singleton(A)).  [clausify(3)].
+8 ordered_pair(A,B) = unordered_pair(singleton(A),unordered_pair(A,B)).  [para(6(a,1),7(a,2))].
+9 ordered_pair(A,B) != c3.  [clausify(4)].
+10 unordered_pair(singleton(A),unordered_pair(A,B)) != c3.  [para(8(a,1),9(a,1))].
+11 cartesian_product2(A,B) != C | -in(D,C) | ordered_pair(f1(A,B,C,D),f2(A,B,C,D)) = D.  [clausify(2)].
+12 cartesian_product2(A,B) != C | -in(D,C) | unordered_pair(singleton(f1(A,B,C,D)),unordered_pair(f1(A,B,C,D),f2(A,B,C,D))) = D.  [para(8(a,1),11(c,1))].
+13 cartesian_product2(A,B) != cartesian_product2(c4,c5) | unordered_pair(singleton(f1(A,B,cartesian_product2(c4,c5),c3)),unordered_pair(f1(A,B,cartesian_product2(c4,c5),c3),f2(A,B,cartesian_product2(c4,c5),c3))) = c3.  [resolve(12,b,5,a)].
+14 cartesian_product2(A,B) != cartesian_product2(c4,c5).  [resolve(13,b,10,a)].
+15 cartesian_product2(c4,c5) != cartesian_product2(A,B).  [copy(14),flip(a)].
+16 $F.  [copy(15),xx(a)].

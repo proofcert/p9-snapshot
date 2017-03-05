@@ -1,0 +1,78 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n097.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:24:28 CDT 2014
+% CPUTime    : 0.26 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 42732 was started by sandbox on n097.star.cs.uiowa.edu,
+Fri Jun  6 03:24:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_42700_n097.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.06 (+ 0.00) seconds.
+% Length of proof is 24.
+% Level of proof is 6.
+% Maximum clause weight is 25.000.
+% Given clauses 108.
+
+
+1 (all A (relation(A) & function(A) -> (all B all C ((in(B,relation_dom(A)) -> (C = apply(A,B) <-> in(ordered_pair(B,C),A))) & (-in(B,relation_dom(A)) -> (C = apply(A,B) <-> C = empty_set)))))).  [assumption].
+2 (all A all B (relation(A) & relation(B) -> relation(relation_composition(A,B)))).  [assumption].
+3 (all A all B (relation(A) & function(A) & relation(B) & function(B) -> relation(relation_composition(A,B)) & function(relation_composition(A,B)))).  [assumption].
+4 (all A all B (relation(B) & function(B) -> (all C (relation(C) & function(C) -> (in(A,relation_dom(relation_composition(C,B))) <-> in(A,relation_dom(C)) & in(apply(C,A),relation_dom(B))))))).  [assumption].
+5 (all A all B (relation(B) & function(B) -> (all C (relation(C) & function(C) -> (in(A,relation_dom(relation_composition(C,B))) -> apply(relation_composition(C,B),A) = apply(B,apply(C,A))))))).  [assumption].
+6 -(all A all B (relation(B) & function(B) -> (all C (relation(C) & function(C) -> (in(A,relation_dom(B)) -> apply(relation_composition(B,C),A) = apply(C,apply(B,A))))))).  [assumption].
+7 relation(c8).  [clausify(6)].
+8 function(c8).  [clausify(6)].
+9 relation(c9).  [clausify(6)].
+10 function(c9).  [clausify(6)].
+11 in(c7,relation_dom(c8)).  [clausify(6)].
+12 apply(relation_composition(c8,c9),c7) != apply(c9,apply(c8,c7)).  [clausify(6)].
+13 -relation(A) | -relation(B) | relation(relation_composition(A,B)).  [clausify(2)].
+14 -relation(A) | -function(A) | -relation(B) | -function(B) | function(relation_composition(A,B)).  [clausify(3)].
+15 -relation(A) | -function(A) | in(B,relation_dom(A)) | apply(A,B) = C | empty_set != C.  [clausify(1)].
+16 -relation(A) | -function(A) | -relation(B) | -function(B) | in(C,relation_dom(relation_composition(B,A))) | -in(C,relation_dom(B)) | -in(apply(B,C),relation_dom(A)).  [clausify(4)].
+17 -relation(A) | -function(A) | -relation(B) | -function(B) | -in(C,relation_dom(relation_composition(B,A))) | apply(relation_composition(B,A),C) = apply(A,apply(B,C)).  [clausify(5)].
+18 -relation(A) | relation(relation_composition(c8,A)).  [resolve(13,a,7,a)].
+19 -function(c9) | -relation(A) | -function(A) | -in(B,relation_dom(relation_composition(A,c9))) | apply(relation_composition(A,c9),B) = apply(c9,apply(A,B)).  [resolve(17,a,9,a)].
+20 -relation(A) | -function(A) | -in(B,relation_dom(relation_composition(A,c9))) | apply(relation_composition(A,c9),B) = apply(c9,apply(A,B)).  [resolve(19,a,10,a)].
+21 -function(c8) | -in(A,relation_dom(relation_composition(c8,c9))) | apply(relation_composition(c8,c9),A) = apply(c9,apply(c8,A)).  [resolve(20,a,7,a)].
+22 -in(A,relation_dom(relation_composition(c8,c9))) | apply(relation_composition(c8,c9),A) = apply(c9,apply(c8,A)).  [resolve(21,a,8,a)].
+23 -in(c7,relation_dom(relation_composition(c8,c9))).  [resolve(22,b,12,a)].
+24 -function(c9) | -relation(A) | -function(A) | in(B,relation_dom(relation_composition(A,c9))) | -in(B,relation_dom(A)) | -in(apply(A,B),relation_dom(c9)).  [resolve(16,a,9,a)].
+25 -relation(A) | -function(A) | in(B,relation_dom(relation_composition(A,c9))) | -in(B,relation_dom(A)) | -in(apply(A,B),relation_dom(c9)).  [resolve(24,a,10,a)].
+26 -function(c8) | in(A,relation_dom(relation_composition(c8,c9))) | -in(A,relation_dom(c8)) | -in(apply(c8,A),relation_dom(c9)).  [resolve(25,a,7,a)].
+27 in(A,relation_dom(relation_composition(c8,c9))) | -in(A,relation_dom(c8)) | -in(apply(c8,A),relation_dom(c9)).  [resolve(26,a,8,a)].
+28 -in(c7,relation_dom(c8)) | -in(apply(c8,c7),relation_dom(c9)).  [resolve(27,a,23,a)].
+29 -in(apply(c8,c7),relation_dom(c9)).  [resolve(28,a,11,a)].
+30 relation(relation_composition(c8,c9)).  [resolve(18,a,9,a)].
+31 -function(c9) | in(A,relation_dom(c9)) | apply(c9,A) = B | empty_set != B.  [resolve(15,a,9,a)].
+32 in(A,relation_dom(c9)) | apply(c9,A) = B | empty_set != B.  [resolve(31,a,10,a)].
+33 apply(c9,apply(c8,c7)) = A | empty_set != A.  [resolve(32,a,29,a)].
+34 empty_set != apply(relation_composition(c8,c9),c7).  [resolve(33,a,12,a(flip))].
+35 apply(relation_composition(c8,c9),c7) != empty_set.  [copy(34),flip(a)].
+36 -function(relation_composition(c8,c9)) | in(A,relation_dom(relation_composition(c8,c9))) | apply(relation_composition(c8,c9),A) = B | empty_set != B.  [resolve(15,a,30,a)].
+37 -function(relation_composition(c8,c9)) | apply(relation_composition(c8,c9),c7) = A | empty_set != A.  [resolve(36,b,23,a)].
+38 -function(relation_composition(c8,c9)) | empty_set != empty_set.  [resolve(37,b,35,a)].
+39 -function(relation_composition(c8,c9)).  [xx_res(38,b)].
+40 -relation(c8) | -relation(A) | -function(A) | function(relation_composition(c8,A)).  [resolve(14,b,8,a)].
+41 -relation(c8) | -function(c9) | function(relation_composition(c8,c9)).  [resolve(40,b,9,a)].
+42 -relation(c8) | function(relation_composition(c8,c9)).  [resolve(41,b,10,a)].
+43 -relation(c8).  [resolve(42,b,39,a)].
+44 $F.  [resolve(7,a,43,a)].
+
+============================== end of proof ==========================

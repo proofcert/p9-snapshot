@@ -1,0 +1,17 @@
+
+
+
+
+
+6 test(c1).  [clausify(5)].
+7 -test(A) | c(A) != B | complement(A,B).  [clausify(4)].
+8 multiplication(one,A) = A.  [clausify(2)].
+9 addition(A,B) = addition(B,A).  [clausify(1)].
+10 addition(c1,c(c1)) != one.  [clausify(5)].
+11 -complement(A,B) | addition(B,A) = one.  [clausify(3)].
+12 -complement(A,B) | addition(A,B) = one.  [para(9(a,1),11(b,1))].
+13 c(c1) != A | complement(c1,A).  [resolve(7,a,6,a)].
+14 -complement(c1,c(c1)).  [resolve(12,b,10,a)].
+15 complement(c1,multiplication(one,c(c1))).  [resolve(13,a,8,a(flip))].
+16 complement(c1,c(c1)).  [para(8(a,1),15(a,2))].
+17 $F.  [resolve(14,a,16,a)].

@@ -1,0 +1,14 @@
+
+
+
+4 singleton(c3) = unordered_pair(c4,c5).  [clausify(3)].
+5 unordered_pair(c4,c5) = singleton(c3).  [copy(4),flip(a)].
+6 unordered_pair(A,B) = unordered_pair(B,A).  [clausify(1)].
+7 c5 != c4.  [clausify(3)].
+8 singleton(A) != unordered_pair(B,C) | B = A.  [clausify(2)].
+9 c4 = c3.  [resolve(8,a,5,a(flip))].
+10 singleton(c4) != unordered_pair(c5,A).  [resolve(8,b,7,a)].
+11 singleton(c3) != unordered_pair(c5,A).  [para(9(a,1),10(a,1,1))].
+12 singleton(c3) != unordered_pair(A,c5).  [para(6(a,1),11(a,2))].
+13 unordered_pair(A,c5) != singleton(c3).  [copy(12),flip(a)].
+14 $F.  [resolve(13,a,5,a)].

@@ -1,0 +1,47 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n114.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 13:57:38 CDT 2014
+% CPUTime    : 0.11 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 40688 was started by sandbox on n114.star.cs.uiowa.edu,
+Fri Jun  6 13:57:38 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_40656_n114.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.00 (+ 0.00) seconds: prove_th15.
+% Length of proof is 12.
+% Level of proof is 4.
+% Maximum clause weight is 8.000.
+% Given clauses 8.
+
+
+1 (all A all B (intersect(A,B) <-> (exists C (member(C,A) & member(C,B))))).  [assumption].
+2 (all A all B (intersect(A,B) -> intersect(B,A))).  [assumption].
+3 -(all A all B (intersect(A,B) -> (exists C (member(C,A) & member(C,B))))).  [assumption].
+4 intersect(c1,c2).  [clausify(3)].
+5 -member(A,c1) | -member(A,c2).  [clausify(3)].
+6 -intersect(A,B) | intersect(B,A).  [clausify(2)].
+7 -intersect(A,B) | member(f1(A,B),A).  [clausify(1)].
+8 -intersect(A,B) | member(f1(A,B),B).  [clausify(1)].
+9 intersect(c2,c1).  [resolve(6,a,4,a)].
+10 -intersect(c2,A) | -member(f1(c2,A),c1).  [resolve(7,b,5,b)].
+11 member(f1(c2,c1),c1).  [resolve(8,a,9,a)].
+12 -member(f1(c2,c1),c1).  [resolve(10,a,9,a)].
+13 $F.  [resolve(11,a,12,a)].
+
+============================== end of proof ==========================

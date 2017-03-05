@@ -1,0 +1,81 @@
+
+
+
+
+
+
+
+
+
+
+11 ssItem(c2).  [clausify(1)].
+12 -ssList(A) | -ssList(B) | neq(A,B) | B = A.  [clausify(2)].
+13 -ssList(A) | -ssItem(B) | ssList(cons(B,A)).  [clausify(3)].
+14 ssList(nil).  [assumption].
+15 -ssList(A) | -ssItem(B) | cons(B,A) != nil.  [clausify(4)].
+16 -ssList(A) | -ssItem(B) | tl(cons(B,A)) = A.  [clausify(5)].
+17 -ssList(A) | -ssList(B) | ssList(app(A,B)).  [clausify(6)].
+18 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = B.  [clausify(7)].
+19 -ssList(A) | -ssList(B) | app(A,B) != nil | nil = A.  [clausify(7)].
+20 -ssList(A) | app(A,nil) = A.  [clausify(8)].
+21 -ssList(A) | -ssList(B) | nil = A | tl(app(A,B)) = app(tl(A),B).  [clausify(9)].
+22 ssList(c3).  [clausify(10)].
+23 ssList(c4).  [clausify(10)].
+24 c6 = c4.  [clausify(10)].
+25 c5 = c3.  [clausify(10)].
+26 ssList(c7).  [clausify(10)].
+27 ssList(c8).  [clausify(10)].
+28 app(c7,c8) = c6.  [clausify(10)].
+29 app(c7,c8) = c4.  [para(24(a,1),28(a,2))].
+30 ssItem(c9).  [clausify(10)].
+31 app(app(c7,cons(c9,nil)),c8) = c5.  [clausify(10)].
+32 app(app(c7,cons(c9,nil)),c8) = c3.  [para(25(a,1),31(a,2))].
+33 -neq(c3,nil).  [clausify(10)].
+34 -ssList(A) | ssList(cons(c2,A)).  [resolve(13,b,11,a)].
+35 -ssList(A) | neq(A,nil) | nil = A.  [resolve(14,a,12,b)].
+36 -ssList(A) | cons(c2,A) != nil.  [resolve(15,b,11,a)].
+37 -ssList(A) | tl(cons(c2,A)) = A.  [resolve(16,b,11,a)].
+38 -ssList(A) | app(c4,A) != nil | nil = A.  [resolve(23,a,18,a)].
+39 -ssList(A) | ssList(app(c4,A)).  [resolve(23,a,17,a)].
+40 -ssList(A) | ssList(app(c7,A)).  [resolve(26,a,17,a)].
+41 -ssList(A) | nil = A | tl(app(A,c8)) = app(tl(A),c8).  [resolve(27,a,21,b)].
+42 -ssList(A) | app(A,c8) != nil | nil = A.  [resolve(27,a,19,b)].
+43 -ssList(A) | app(A,c8) != nil | nil = c8.  [resolve(27,a,18,b)].
+44 -ssList(A) | app(A,c8) != nil | c8 = nil.  [copy(43),flip(c)].
+45 -ssList(A) | cons(c9,A) != nil.  [resolve(30,a,15,b)].
+46 -ssList(A) | ssList(cons(c9,A)).  [resolve(30,a,13,b)].
+47 cons(c2,c7) != nil.  [resolve(36,a,26,a)].
+48 cons(c9,c8) != nil.  [resolve(45,a,27,a)].
+49 ssList(cons(c2,c7)).  [resolve(34,a,26,a)].
+50 neq(c3,nil) | nil = c3.  [resolve(35,a,22,a)].
+51 neq(c3,nil) | c3 = nil.  [copy(50),flip(b)].
+52 c3 = nil.  [resolve(33,a,51,a)].
+53 app(app(c7,cons(c9,nil)),c8) = nil.  [para(52(a,1),32(a,2))].
+54 app(cons(c2,c7),nil) = cons(c2,c7).  [resolve(49,a,20,a)].
+55 tl(cons(c2,c7)) = c7.  [resolve(37,a,26,a)].
+56 ssList(cons(c9,c8)).  [resolve(46,a,27,a)].
+57 ssList(cons(c9,nil)).  [resolve(46,a,14,a)].
+58 ssList(app(c4,cons(c9,c8))).  [resolve(56,a,39,a)].
+59 ssList(app(c7,cons(c9,nil))).  [resolve(57,a,40,a)].
+60 app(c4,cons(c9,c8)) != nil | nil = cons(c9,c8).  [resolve(38,a,56,a)].
+61 app(c4,cons(c9,c8)) != nil | cons(c9,c8) = nil.  [copy(60),flip(b)].
+62 app(c4,cons(c9,c8)) != nil.  [resolve(48,a,61,b)].
+63 nil = cons(c2,c7) | tl(app(cons(c2,c7),c8)) = app(tl(cons(c2,c7)),c8).  [resolve(41,a,49,a)].
+64 nil = cons(c2,c7) | tl(app(cons(c2,c7),c8)) = app(c7,c8).  [para(55(a,1),63(b,2,1))].
+65 nil = cons(c2,c7) | tl(app(cons(c2,c7),c8)) = c4.  [para(29(a,1),64(b,2))].
+66 cons(c2,c7) = nil | tl(app(cons(c2,c7),c8)) = c4.  [copy(65),flip(a)].
+67 tl(app(cons(c2,c7),c8)) = c4.  [resolve(47,a,66,a)].
+68 app(app(c4,cons(c9,c8)),c8) != nil | nil = app(c4,cons(c9,c8)).  [resolve(58,a,42,a)].
+69 app(app(c4,cons(c9,c8)),c8) != nil | app(c4,cons(c9,c8)) = nil.  [copy(68),flip(b)].
+70 app(app(c4,cons(c9,c8)),c8) != nil.  [resolve(62,a,69,b)].
+71 app(app(c7,cons(c9,nil)),c8) != nil | c8 = nil.  [resolve(59,a,44,a)].
+72 nil != nil | c8 = nil.  [para(53(a,1),71(a,1))].
+73 c8 = nil.  [copy(72),xx(a)].
+74 app(app(c4,cons(c9,nil)),c8) != nil.  [para(73(a,1),70(a,1,1,2,2))].
+75 app(app(c4,cons(c9,nil)),nil) != nil.  [para(73(a,1),74(a,1,2))].
+76 tl(app(cons(c2,c7),nil)) = c4.  [para(73(a,1),67(a,1,1,2))].
+77 tl(cons(c2,c7)) = c4.  [para(54(a,1),76(a,1,1))].
+78 c7 = c4.  [para(55(a,1),77(a,1))].
+79 app(app(c4,cons(c9,nil)),c8) = nil.  [para(78(a,1),53(a,1,1,1))].
+80 app(app(c4,cons(c9,nil)),nil) = nil.  [para(73(a,1),79(a,1,2))].
+81 $F.  [resolve(75,a,80,a)].

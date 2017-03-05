@@ -1,0 +1,44 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n145.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 08:36:28 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 37028 was started by sandbox on n145.star.cs.uiowa.edu,
+Fri Jun  6 08:36:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_36996_n145.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 8.
+% Level of proof is 3.
+% Maximum clause weight is 13.000.
+% Given clauses 31.
+
+
+1 (all A all B all C all D (pair_in_list(A,B,C) & less_than(D,C) -> pair_in_list(update_slb(A,D),B,C))).  [assumption].
+2 -(all A all B all C all D (pair_in_list(A,B,C) & strictly_less_than(B,D) & less_than(D,C) -> (exists E (pair_in_list(update_slb(A,D),B,E) & less_than(D,E))))).  [assumption].
+3 less_than(c4,c3).  [clausify(2)].
+4 pair_in_list(c1,c2,c3).  [clausify(2)].
+5 -pair_in_list(update_slb(c1,c4),c2,A) | -less_than(c4,A).  [clausify(2)].
+6 -pair_in_list(A,B,C) | -less_than(D,C) | pair_in_list(update_slb(A,D),B,C).  [clausify(1)].
+7 -pair_in_list(update_slb(c1,c4),c2,c3).  [resolve(5,b,3,a)].
+8 -pair_in_list(A,B,c3) | pair_in_list(update_slb(A,c4),B,c3).  [resolve(6,b,3,a)].
+9 -pair_in_list(c1,c2,c3).  [resolve(8,b,7,a)].
+10 $F.  [resolve(4,a,9,a)].
+
+============================== end of proof ==========================

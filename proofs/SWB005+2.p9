@@ -1,0 +1,68 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n077.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 13:43:48 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 47812 was started by sandbox on n077.star.cs.uiowa.edu,
+Thu Jun  5 13:43:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_47780_n077.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: testcase_conclusion_fullish_005_Everything_is_a_Resource.
+% Length of proof is 28.
+% Level of proof is 6.
+% Maximum clause weight is 32.000.
+% Given clauses 6.
+
+
+1 (all A ir(A)).  [assumption].
+2 (all A all B all C (iext(B,A,C) -> ip(B))).  [assumption].
+3 (all A (iext(uri_rdf_type,A,uri_rdf_Property) <-> ip(A))).  [assumption].
+4 (all A all B (iext(uri_rdf_type,A,B) <-> icext(B,A))).  [assumption].
+5 (all A (ir(A) <-> icext(uri_rdfs_Resource,A))).  [assumption].
+6 (all A (icext(uri_owl_Thing,A) <-> ir(A))).  [assumption].
+7 (all A (icext(uri_owl_ObjectProperty,A) <-> ip(A))).  [assumption].
+8 -(iext(uri_rdf_type,uri_ex_s,uri_rdfs_Resource) & iext(uri_rdf_type,uri_ex_s,uri_owl_Thing) & iext(uri_rdf_type,uri_ex_p,uri_rdfs_Resource) & iext(uri_rdf_type,uri_ex_p,uri_owl_Thing) & iext(uri_rdf_type,uri_ex_p,uri_rdf_Property) & iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty) & iext(uri_rdf_type,uri_ex_o,uri_rdfs_Resource) & iext(uri_rdf_type,uri_ex_o,uri_owl_Thing)).  [assumption].
+9 -ir(A) | icext(uri_rdfs_Resource,A).  [clausify(5)].
+10 ir(A).  [clausify(1)].
+11 icext(uri_owl_Thing,A) | -ir(A).  [clausify(6)].
+12 icext(uri_owl_ObjectProperty,A) | -ip(A).  [clausify(7)].
+13 iext(uri_rdf_type,A,B) | -icext(B,A).  [clausify(4)].
+14 icext(uri_rdfs_Resource,A).  [resolve(9,a,10,a)].
+15 icext(uri_owl_Thing,A).  [resolve(11,b,10,a)].
+16 iext(uri_rdf_type,A,uri_rdf_Property) | -ip(A).  [clausify(3)].
+17 -iext(A,B,C) | ip(A).  [clausify(2)].
+18 iext(uri_rdf_type,A,uri_owl_ObjectProperty) | -ip(A).  [resolve(13,b,12,a)].
+19 iext(uri_ex_p,uri_ex_s,uri_ex_o).  [assumption].
+20 -iext(uri_rdf_type,uri_ex_s,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_s,uri_owl_Thing) | -iext(uri_rdf_type,uri_ex_p,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_p,uri_owl_Thing) | -iext(uri_rdf_type,uri_ex_p,uri_rdf_Property) | -iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty) | -iext(uri_rdf_type,uri_ex_o,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_o,uri_owl_Thing).  [clausify(8)].
+21 iext(uri_rdf_type,A,uri_rdfs_Resource).  [resolve(14,a,13,b)].
+22 iext(uri_rdf_type,A,uri_owl_Thing).  [resolve(15,a,13,b)].
+23 iext(uri_rdf_type,A,uri_rdf_Property) | -iext(A,B,C).  [resolve(16,b,17,b)].
+24 iext(uri_rdf_type,A,uri_owl_ObjectProperty) | -iext(A,B,C).  [resolve(18,b,17,b)].
+25 -iext(uri_rdf_type,uri_ex_s,uri_owl_Thing) | -iext(uri_rdf_type,uri_ex_p,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_p,uri_owl_Thing) | -iext(uri_rdf_type,uri_ex_p,uri_rdf_Property) | -iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty) | -iext(uri_rdf_type,uri_ex_o,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_o,uri_owl_Thing).  [resolve(21,a,20,a)].
+26 -iext(uri_rdf_type,uri_ex_p,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_p,uri_owl_Thing) | -iext(uri_rdf_type,uri_ex_p,uri_rdf_Property) | -iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty) | -iext(uri_rdf_type,uri_ex_o,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_o,uri_owl_Thing).  [resolve(22,a,25,a)].
+27 -iext(uri_rdf_type,uri_ex_p,uri_owl_Thing) | -iext(uri_rdf_type,uri_ex_p,uri_rdf_Property) | -iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty) | -iext(uri_rdf_type,uri_ex_o,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_o,uri_owl_Thing).  [resolve(21,a,26,a)].
+28 -iext(uri_rdf_type,uri_ex_p,uri_rdf_Property) | -iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty) | -iext(uri_rdf_type,uri_ex_o,uri_rdfs_Resource) | -iext(uri_rdf_type,uri_ex_o,uri_owl_Thing).  [resolve(22,a,27,a)].
+29 -iext(uri_rdf_type,uri_ex_p,uri_rdf_Property) | -iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty) | -iext(uri_rdf_type,uri_ex_o,uri_owl_Thing).  [resolve(21,a,28,c)].
+30 -iext(uri_rdf_type,uri_ex_p,uri_rdf_Property) | -iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty).  [resolve(22,a,29,c)].
+31 iext(uri_rdf_type,uri_ex_p,uri_rdf_Property).  [resolve(23,b,19,a)].
+32 -iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty).  [resolve(31,a,30,a)].
+33 iext(uri_rdf_type,uri_ex_p,uri_owl_ObjectProperty).  [resolve(24,b,19,a)].
+34 $F.  [resolve(32,a,33,a)].
+
+============================== end of proof ==========================

@@ -1,0 +1,24 @@
+
+
+
+4 subset(A,A).  [clausify(1)].
+5 subset(c3,singleton(c4)) | empty_set = c3 | singleton(c4) = c3.  [clausify(3)].
+6 subset(c3,singleton(c4)) | c3 = empty_set | singleton(c4) = c3.  [copy(5),flip(b)].
+7 -subset(c3,singleton(c4)) | empty_set != c3.  [clausify(3)].
+8 -subset(c3,singleton(c4)) | c3 != empty_set.  [copy(7),flip(b)].
+9 -subset(c3,singleton(c4)) | singleton(c4) != c3.  [clausify(3)].
+10 subset(A,singleton(B)) | empty_set != A.  [clausify(2)].
+11 -subset(A,singleton(B)) | empty_set = A | singleton(B) = A.  [clausify(2)].
+12 subset(empty_set,singleton(A)).  [xx_res(10,b)].
+13 empty_set = c3 | singleton(c4) = c3 | c3 = empty_set | singleton(c4) = c3.  [resolve(11,a,6,a)].
+14 c3 = empty_set | singleton(c4) = c3 | c3 = empty_set | singleton(c4) = c3.  [copy(13),flip(a)].
+15 c3 = empty_set | singleton(c4) = c3 | singleton(c4) = c3.  [copy(14),merge(c)].
+16 c3 = empty_set | singleton(c4) = c3.  [copy(15),merge(c)].
+17 c3 = empty_set | -subset(c3,c3) | singleton(c4) != c3.  [para(16(b,1),9(a,2))].
+18 c3 = empty_set | singleton(c4) != c3.  [resolve(4,a,17,b)].
+19 c3 = empty_set | c3 = empty_set.  [resolve(18,b,16,b)].
+20 c3 = empty_set.  [copy(19),merge(b)].
+21 -subset(empty_set,singleton(c4)) | c3 != empty_set.  [para(20(a,1),8(a,1))].
+22 -subset(empty_set,singleton(c4)) | empty_set != empty_set.  [para(20(a,1),21(b,1))].
+23 -subset(empty_set,singleton(c4)).  [copy(22),xx(b)].
+24 $F.  [resolve(12,a,23,a)].

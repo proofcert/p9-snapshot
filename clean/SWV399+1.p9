@@ -1,0 +1,32 @@
+
+
+
+
+
+
+7 -strictly_less_than(A,B) | -less_than(B,A).  [clausify(3)].
+8 strictly_less_than(c2,c3).  [clausify(6)].
+9 -pair_in_list(update_slb(c1,c4),A,B) | -strictly_less_than(A,B).  [clausify(6)].
+10 strictly_less_than(A,B) | -less_than(A,B) | less_than(B,A).  [clausify(3)].
+11 -pair_in_list(A,B,C) | -strictly_less_than(C,D) | pair_in_list(update_slb(A,D),B,D).  [clausify(5)].
+12 pair_in_list(c1,c2,c3).  [clausify(6)].
+13 less_than(A,B) | less_than(B,A).  [clausify(2)].
+14 -less_than(A,B) | -less_than(B,C) | less_than(A,C).  [clausify(1)].
+15 -pair_in_list(A,B,C) | -less_than(D,C) | pair_in_list(update_slb(A,D),B,C).  [clausify(4)].
+16 -less_than(c3,c2).  [resolve(7,a,8,a)].
+17 -pair_in_list(update_slb(c1,c4),c2,c3).  [resolve(9,b,8,a)].
+18 -less_than(A,B) | less_than(B,A) | -pair_in_list(update_slb(c1,c4),A,B).  [resolve(10,a,9,b)].
+19 -pair_in_list(A,B,C) | pair_in_list(update_slb(A,D),B,D) | -less_than(C,D) | less_than(D,C).  [resolve(11,b,10,a)].
+20 -less_than(A,B) | less_than(C,B) | less_than(A,C).  [resolve(14,a,13,b)].
+21 -less_than(A,c3) | pair_in_list(update_slb(c1,A),c2,c3).  [resolve(15,a,12,a)].
+22 -less_than(c4,c3).  [resolve(21,b,17,a)].
+23 less_than(c3,c4).  [resolve(22,a,13,b)].
+24 -less_than(A,c2) | less_than(A,c3).  [resolve(20,b,16,a)].
+25 -less_than(c4,c2).  [resolve(24,b,22,a)].
+26 less_than(c2,c4).  [resolve(25,a,13,b)].
+27 less_than(c4,c2) | -pair_in_list(update_slb(c1,c4),c2,c4).  [resolve(18,a,26,a)].
+28 -pair_in_list(update_slb(c1,c4),c2,c4).  [resolve(27,a,25,a)].
+29 -pair_in_list(c1,c2,A) | -less_than(A,c4) | less_than(c4,A).  [resolve(19,b,28,a)].
+30 -pair_in_list(c1,c2,c3) | less_than(c4,c3).  [resolve(29,b,23,a)].
+31 -pair_in_list(c1,c2,c3).  [resolve(30,b,22,a)].
+32 $F.  [resolve(12,a,31,a)].

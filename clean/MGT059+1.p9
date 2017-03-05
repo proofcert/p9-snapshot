@@ -1,0 +1,18 @@
+
+
+3 -organization(A) | -has_immunity(A,B) | hazard_of_mortality(A,B) = very_low.  [clausify(1)].
+4 organization(c1).  [clausify(2)].
+5 has_immunity(c1,c2).  [clausify(2)].
+6 has_immunity(c1,c3).  [clausify(2)].
+7 hazard_of_mortality(c1,c2) != hazard_of_mortality(c1,c3).  [clausify(2)].
+8 hazard_of_mortality(c1,c3) != hazard_of_mortality(c1,c2).  [copy(7),flip(a)].
+9 -has_immunity(c1,A) | hazard_of_mortality(c1,A) = very_low.  [resolve(3,a,4,a)].
+10 hazard_of_mortality(c1,c3) = c_0.  [new_symbol(8)].
+11 c_0 != hazard_of_mortality(c1,c2).  [para(10(a,1),8(a,1))].
+12 hazard_of_mortality(c1,c2) != c_0.  [copy(11),flip(a)].
+13 hazard_of_mortality(c1,c3) = very_low.  [resolve(9,a,6,a)].
+14 c_0 = very_low.  [para(10(a,1),13(a,1))].
+15 hazard_of_mortality(c1,c2) = very_low.  [resolve(9,a,5,a)].
+16 very_low != c_0.  [para(15(a,1),12(a,1))].
+17 very_low != very_low.  [para(14(a,1),16(a,2))].
+18 $F.  [copy(17),xx(a)].

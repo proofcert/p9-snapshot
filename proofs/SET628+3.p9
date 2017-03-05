@@ -1,0 +1,63 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n109.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 16:57:13 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 34966 was started by sandbox on n109.star.cs.uiowa.edu,
+Fri Jun  6 16:57:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_34934_n109.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 21.
+% Level of proof is 5.
+% Maximum clause weight is 13.000.
+% Given clauses 22.
+
+
+1 (all A all B (intersect(A,B) <-> (exists C (member(C,A) & member(C,B))))).  [assumption].
+2 (all A -member(A,empty_set)).  [assumption].
+3 (all A all B (A = B <-> (all C (member(C,A) <-> member(C,B))))).  [assumption].
+4 (all A all B (not_equal(A,B) <-> A != B)).  [assumption].
+5 -(all A (intersect(A,A) <-> not_equal(A,empty_set))).  [assumption].
+6 not_equal(A,B) | B = A.  [clausify(4)].
+7 intersect(c1,c1) | not_equal(c1,empty_set).  [clausify(5)].
+8 A = B | member(f2(B,A),B) | member(f2(B,A),A).  [clausify(3)].
+9 -member(A,empty_set).  [clausify(2)].
+10 -not_equal(A,B) | B != A.  [clausify(4)].
+11 -intersect(c1,c1) | -not_equal(c1,empty_set).  [clausify(5)].
+12 -intersect(A,B) | member(f1(A,B),B).  [clausify(1)].
+13 intersect(A,B) | -member(C,A) | -member(C,B).  [clausify(1)].
+14 intersect(A,A) | -member(B,A).  [factor(13,b,c)].
+15 empty_set = A | member(f2(A,empty_set),A).  [resolve(9,a,8,c)].
+16 empty_set != c1 | intersect(c1,c1).  [resolve(10,a,7,b)].
+17 c1 != empty_set | intersect(c1,c1).  [copy(16),flip(a)].
+18 -intersect(c1,c1) | empty_set = c1.  [resolve(11,b,6,a)].
+19 -intersect(c1,c1) | c1 = empty_set.  [copy(18),flip(b)].
+20 -intersect(A,empty_set).  [resolve(12,b,9,a)].
+21 empty_set = A | intersect(A,A).  [resolve(15,b,14,b)].
+22 empty_set = c1 | c1 = empty_set.  [resolve(21,b,19,a)].
+23 c1 = empty_set | c1 = empty_set.  [copy(22),flip(a)].
+24 c1 = empty_set.  [copy(23),merge(b)].
+25 empty_set != empty_set | intersect(c1,c1).  [para(24(a,1),17(a,1))].
+26 empty_set != empty_set | intersect(empty_set,c1).  [para(24(a,1),25(b,1))].
+27 empty_set != empty_set | intersect(empty_set,empty_set).  [para(24(a,1),26(b,2))].
+28 intersect(empty_set,empty_set).  [copy(27),xx(a)].
+29 $F.  [resolve(20,a,28,a)].
+
+============================== end of proof ==========================

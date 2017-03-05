@@ -1,0 +1,117 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n127.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 09:56:08 CDT 2014
+% CPUTime    : 0.24 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 7811 was started by sandbox on n127.star.cs.uiowa.edu,
+Fri Jun  6 09:56:08 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_7779_n127.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.11 (+ 0.00) seconds.
+% Length of proof is 66.
+% Level of proof is 17.
+% Maximum clause weight is 30.000.
+% Given clauses 443.
+
+
+1 (all A (rel_str(A) -> (lower_bounded_relstr(A) <-> (exists B (element(B,the_carrier(A)) & relstr_element_smaller(A,the_carrier(A),B)))))).  [assumption].
+2 (all A (rel_str(A) -> (all B all C (element(C,the_carrier(A)) -> (relstr_element_smaller(A,B,C) <-> (all D (element(D,the_carrier(A)) -> (in(D,B) -> related(A,C,D))))))))).  [assumption].
+3 (all A (rel_str(A) -> one_sorted_str(A))).  [assumption].
+4 (all A (-empty_carrier(A) & one_sorted_str(A) -> -empty(the_carrier(A)))).  [assumption].
+5 (all A (antisymmetric_relstr(A) & rel_str(A) -> (all B (ex_sup_of_relstr_set(A,B) <-> (exists C (element(C,the_carrier(A)) & relstr_set_smaller(A,B,C) & (all D (element(D,the_carrier(A)) -> (relstr_set_smaller(A,B,D) -> related(A,C,D)))))))))).  [assumption].
+6 (all A (antisymmetric_relstr(A) & rel_str(A) -> (all B (ex_inf_of_relstr_set(A,B) <-> (exists C (element(C,the_carrier(A)) & relstr_element_smaller(A,B,C) & (all D (element(D,the_carrier(A)) -> (relstr_element_smaller(A,B,D) -> related(A,D,C)))))))))).  [assumption].
+7 (all A all B (element(A,B) -> empty(B) | in(A,B))).  [assumption].
+8 (all A (rel_str(A) -> (all B (element(B,the_carrier(A)) -> relstr_set_smaller(A,empty_set,B) & relstr_element_smaller(A,empty_set,B))))).  [assumption].
+9 -(all A (-empty_carrier(A) & antisymmetric_relstr(A) & lower_bounded_relstr(A) & rel_str(A) -> ex_sup_of_relstr_set(A,empty_set) & ex_inf_of_relstr_set(A,the_carrier(A)))).  [assumption].
+10 -rel_str(A) | one_sorted_str(A).  [clausify(3)].
+11 rel_str(c7).  [clausify(9)].
+12 -rel_str(A) | -lower_bounded_relstr(A) | element(f1(A),the_carrier(A)).  [clausify(1)].
+13 -rel_str(A) | -lower_bounded_relstr(A) | relstr_element_smaller(A,the_carrier(A),f1(A)).  [clausify(1)].
+14 -rel_str(A) | -element(B,the_carrier(A)) | relstr_set_smaller(A,empty_set,B).  [clausify(8)].
+15 -rel_str(A) | -element(B,the_carrier(A)) | -relstr_element_smaller(A,C,B) | -element(D,the_carrier(A)) | -in(D,C) | related(A,B,D).  [clausify(2)].
+16 -antisymmetric_relstr(A) | -rel_str(A) | ex_sup_of_relstr_set(A,B) | -element(C,the_carrier(A)) | -relstr_set_smaller(A,B,C) | element(f5(A,B,C),the_carrier(A)).  [clausify(5)].
+17 -antisymmetric_relstr(A) | -rel_str(A) | ex_sup_of_relstr_set(A,B) | -element(C,the_carrier(A)) | -relstr_set_smaller(A,B,C) | -related(A,C,f5(A,B,C)).  [clausify(5)].
+18 -antisymmetric_relstr(A) | -rel_str(A) | ex_inf_of_relstr_set(A,B) | -element(C,the_carrier(A)) | -relstr_element_smaller(A,B,C) | element(f7(A,B,C),the_carrier(A)).  [clausify(6)].
+19 -antisymmetric_relstr(A) | -rel_str(A) | ex_inf_of_relstr_set(A,B) | -element(C,the_carrier(A)) | -relstr_element_smaller(A,B,C) | relstr_element_smaller(A,B,f7(A,B,C)).  [clausify(6)].
+20 -antisymmetric_relstr(A) | -rel_str(A) | ex_inf_of_relstr_set(A,B) | -element(C,the_carrier(A)) | -relstr_element_smaller(A,B,C) | -related(A,f7(A,B,C),C).  [clausify(6)].
+21 empty_carrier(A) | -one_sorted_str(A) | -empty(the_carrier(A)).  [clausify(4)].
+22 one_sorted_str(c7).  [resolve(10,a,11,a)].
+23 antisymmetric_relstr(c7).  [clausify(9)].
+24 lower_bounded_relstr(c7).  [clausify(9)].
+25 -empty_carrier(c7).  [clausify(9)].
+26 -ex_sup_of_relstr_set(c7,empty_set) | -ex_inf_of_relstr_set(c7,the_carrier(c7)).  [clausify(9)].
+27 -element(A,B) | empty(B) | in(A,B).  [clausify(7)].
+28 -lower_bounded_relstr(c7) | element(f1(c7),the_carrier(c7)).  [resolve(12,a,11,a)].
+29 element(f1(c7),the_carrier(c7)).  [resolve(24,a,28,a)].
+30 -lower_bounded_relstr(c7) | relstr_element_smaller(c7,the_carrier(c7),f1(c7)).  [resolve(13,a,11,a)].
+31 relstr_element_smaller(c7,the_carrier(c7),f1(c7)).  [resolve(24,a,30,a)].
+32 -element(A,the_carrier(c7)) | relstr_set_smaller(c7,empty_set,A).  [resolve(14,a,11,a)].
+33 -element(A,the_carrier(c7)) | -relstr_element_smaller(c7,B,A) | -element(C,the_carrier(c7)) | -in(C,B) | related(c7,A,C).  [resolve(15,a,11,a)].
+34 -antisymmetric_relstr(c7) | ex_sup_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_set_smaller(c7,A,B) | element(f5(c7,A,B),the_carrier(c7)).  [resolve(16,b,11,a)].
+35 ex_sup_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_set_smaller(c7,A,B) | element(f5(c7,A,B),the_carrier(c7)).  [resolve(23,a,34,a)].
+36 -antisymmetric_relstr(c7) | ex_sup_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_set_smaller(c7,A,B) | -related(c7,B,f5(c7,A,B)).  [resolve(17,b,11,a)].
+37 ex_sup_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_set_smaller(c7,A,B) | -related(c7,B,f5(c7,A,B)).  [resolve(23,a,36,a)].
+38 -antisymmetric_relstr(c7) | ex_inf_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_element_smaller(c7,A,B) | element(f7(c7,A,B),the_carrier(c7)).  [resolve(18,b,11,a)].
+39 ex_inf_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_element_smaller(c7,A,B) | element(f7(c7,A,B),the_carrier(c7)).  [resolve(23,a,38,a)].
+40 -antisymmetric_relstr(c7) | ex_inf_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_element_smaller(c7,A,B) | relstr_element_smaller(c7,A,f7(c7,A,B)).  [resolve(19,b,11,a)].
+41 ex_inf_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_element_smaller(c7,A,B) | relstr_element_smaller(c7,A,f7(c7,A,B)).  [resolve(23,a,40,a)].
+42 -antisymmetric_relstr(c7) | ex_inf_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_element_smaller(c7,A,B) | -related(c7,f7(c7,A,B),B).  [resolve(20,b,11,a)].
+43 ex_inf_of_relstr_set(c7,A) | -element(B,the_carrier(c7)) | -relstr_element_smaller(c7,A,B) | -related(c7,f7(c7,A,B),B).  [resolve(23,a,42,a)].
+44 empty_carrier(c7) | -empty(the_carrier(c7)).  [resolve(22,a,21,b)].
+45 -empty(the_carrier(c7)).  [resolve(25,a,44,a)].
+46 empty(the_carrier(c7)) | in(f1(c7),the_carrier(c7)).  [resolve(29,a,27,a)].
+47 in(f1(c7),the_carrier(c7)).  [resolve(45,a,46,a)].
+48 relstr_set_smaller(c7,empty_set,f1(c7)).  [resolve(32,a,29,a)].
+49 -element(f1(c7),the_carrier(c7)) | -element(A,the_carrier(c7)) | -in(A,the_carrier(c7)) | related(c7,f1(c7),A).  [resolve(33,b,31,a)].
+50 -element(A,the_carrier(c7)) | -in(A,the_carrier(c7)) | related(c7,f1(c7),A).  [resolve(29,a,49,a)].
+51 ex_inf_of_relstr_set(c7,the_carrier(c7)) | -element(f1(c7),the_carrier(c7)) | element(f7(c7,the_carrier(c7),f1(c7)),the_carrier(c7)).  [resolve(39,c,31,a)].
+52 ex_inf_of_relstr_set(c7,the_carrier(c7)) | element(f7(c7,the_carrier(c7),f1(c7)),the_carrier(c7)).  [resolve(29,a,51,b)].
+53 ex_inf_of_relstr_set(c7,the_carrier(c7)) | -element(f1(c7),the_carrier(c7)) | relstr_element_smaller(c7,the_carrier(c7),f7(c7,the_carrier(c7),f1(c7))).  [resolve(41,c,31,a)].
+54 ex_inf_of_relstr_set(c7,the_carrier(c7)) | relstr_element_smaller(c7,the_carrier(c7),f7(c7,the_carrier(c7),f1(c7))).  [resolve(29,a,53,b)].
+55 ex_sup_of_relstr_set(c7,empty_set) | -element(f1(c7),the_carrier(c7)) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [resolve(48,a,35,c)].
+56 ex_sup_of_relstr_set(c7,empty_set) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [resolve(29,a,55,b)].
+57 element(f5(c7,empty_set,f1(c7)),the_carrier(c7)) | -ex_inf_of_relstr_set(c7,the_carrier(c7)).  [resolve(56,a,26,a)].
+58 element(f7(c7,the_carrier(c7),f1(c7)),the_carrier(c7)) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [resolve(52,a,57,b)].
+59 ex_inf_of_relstr_set(c7,the_carrier(c7)) | -element(f7(c7,the_carrier(c7),f1(c7)),the_carrier(c7)) | -element(A,the_carrier(c7)) | -in(A,the_carrier(c7)) | related(c7,f7(c7,the_carrier(c7),f1(c7)),A).  [resolve(54,b,33,b)].
+60 ex_inf_of_relstr_set(c7,the_carrier(c7)) | -element(f7(c7,the_carrier(c7),f1(c7)),the_carrier(c7)) | -element(f1(c7),the_carrier(c7)) | related(c7,f7(c7,the_carrier(c7),f1(c7)),f1(c7)).  [resolve(59,d,47,a)].
+61 ex_inf_of_relstr_set(c7,the_carrier(c7)) | -element(f7(c7,the_carrier(c7),f1(c7)),the_carrier(c7)) | related(c7,f7(c7,the_carrier(c7),f1(c7)),f1(c7)).  [resolve(29,a,60,c)].
+62 ex_inf_of_relstr_set(c7,the_carrier(c7)) | related(c7,f7(c7,the_carrier(c7),f1(c7)),f1(c7)) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [resolve(61,b,58,a)].
+63 ex_inf_of_relstr_set(c7,the_carrier(c7)) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)) | ex_inf_of_relstr_set(c7,the_carrier(c7)) | -element(f1(c7),the_carrier(c7)) | -relstr_element_smaller(c7,the_carrier(c7),f1(c7)).  [resolve(62,b,43,d)].
+64 ex_inf_of_relstr_set(c7,the_carrier(c7)) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)) | -element(f1(c7),the_carrier(c7)) | -relstr_element_smaller(c7,the_carrier(c7),f1(c7)).  [copy(63),merge(c)].
+65 ex_inf_of_relstr_set(c7,the_carrier(c7)) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)) | -relstr_element_smaller(c7,the_carrier(c7),f1(c7)).  [resolve(29,a,64,c)].
+66 ex_inf_of_relstr_set(c7,the_carrier(c7)) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [resolve(31,a,65,c)].
+67 element(f5(c7,empty_set,f1(c7)),the_carrier(c7)) | element(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [resolve(66,a,57,b)].
+68 element(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [copy(67),merge(b)].
+69 empty(the_carrier(c7)) | in(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [resolve(68,a,27,a)].
+70 in(f5(c7,empty_set,f1(c7)),the_carrier(c7)).  [resolve(45,a,69,a)].
+71 -element(f5(c7,empty_set,f1(c7)),the_carrier(c7)) | related(c7,f1(c7),f5(c7,empty_set,f1(c7))).  [resolve(70,a,50,b)].
+72 related(c7,f1(c7),f5(c7,empty_set,f1(c7))).  [resolve(68,a,71,a)].
+73 ex_sup_of_relstr_set(c7,empty_set) | -element(f1(c7),the_carrier(c7)) | -relstr_set_smaller(c7,empty_set,f1(c7)).  [resolve(72,a,37,d)].
+74 ex_sup_of_relstr_set(c7,empty_set) | -relstr_set_smaller(c7,empty_set,f1(c7)).  [resolve(29,a,73,b)].
+75 ex_sup_of_relstr_set(c7,empty_set).  [resolve(48,a,74,b)].
+76 -ex_inf_of_relstr_set(c7,the_carrier(c7)).  [resolve(75,a,26,a)].
+77 -element(f7(c7,the_carrier(c7),f1(c7)),the_carrier(c7)) | related(c7,f7(c7,the_carrier(c7),f1(c7)),f1(c7)).  [resolve(76,a,61,a)].
+78 element(f7(c7,the_carrier(c7),f1(c7)),the_carrier(c7)).  [resolve(76,a,52,a)].
+79 related(c7,f7(c7,the_carrier(c7),f1(c7)),f1(c7)).  [resolve(78,a,77,a)].
+80 -element(A,the_carrier(c7)) | -relstr_element_smaller(c7,the_carrier(c7),A) | -related(c7,f7(c7,the_carrier(c7),A),A).  [resolve(43,a,76,a)].
+81 -relstr_element_smaller(c7,the_carrier(c7),f1(c7)) | -related(c7,f7(c7,the_carrier(c7),f1(c7)),f1(c7)).  [resolve(80,a,29,a)].
+82 -related(c7,f7(c7,the_carrier(c7),f1(c7)),f1(c7)).  [resolve(81,a,31,a)].
+83 $F.  [resolve(79,a,82,a)].
+
+============================== end of proof ==========================

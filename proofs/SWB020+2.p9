@@ -1,0 +1,110 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n052.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 16:17:28 CDT 2014
+% CPUTime    : 4.36 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 45426 was started by sandbox on n052.star.cs.uiowa.edu,
+Thu Jun  5 16:17:28 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_45394_n052.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 4.23 (+ 0.01) seconds.
+% Length of proof is 57.
+% Level of proof is 11.
+% Maximum clause weight is 40.000.
+% Given clauses 1358.
+
+
+1 (all A all B (iext(uri_owl_disjointWith,A,B) -> ic(A) & ic(B))).  [assumption].
+2 (all A all B (iext(uri_owl_complementOf,A,B) -> ic(A) & ic(B) & (all C (icext(A,C) <-> -icext(B,C))))).  [assumption].
+3 (all A all B all C all D all E (iext(uri_rdf_first,B,C) & iext(uri_rdf_rest,B,D) & iext(uri_rdf_first,D,E) & iext(uri_rdf_rest,D,uri_rdf_nil) -> (iext(uri_owl_intersectionOf,A,B) <-> ic(A) & ic(C) & ic(E) & (all F (icext(A,F) <-> icext(C,F) & icext(E,F)))))).  [assumption].
+4 (all A all B all C all D all E all F all V6 (iext(uri_rdf_first,B,C) & iext(uri_rdf_rest,B,D) & iext(uri_rdf_first,D,E) & iext(uri_rdf_rest,D,F) & iext(uri_rdf_first,F,V6) & iext(uri_rdf_rest,F,uri_rdf_nil) -> (iext(uri_owl_unionOf,A,B) <-> ic(A) & ic(C) & ic(E) & ic(V6) & (all V7 (icext(A,V7) <-> icext(C,V7) | icext(E,V7) | icext(V6,V7)))))).  [assumption].
+5 (all A all B (iext(uri_rdfs_subClassOf,A,B) <-> ic(A) & ic(B) & (all C (icext(A,C) -> icext(B,C))))).  [assumption].
+6 (all A all B (iext(uri_owl_disjointWith,A,B) <-> ic(A) & ic(B) & (all C -(icext(A,C) & icext(B,C))))).  [assumption].
+7 (exists A exists B exists C exists D exists E exists F exists V6 (iext(uri_owl_unionOf,uri_ex_c,C) & iext(uri_rdf_first,C,uri_ex_c1) & iext(uri_rdf_rest,C,D) & iext(uri_rdf_first,D,uri_ex_c2) & iext(uri_rdf_rest,D,E) & iext(uri_rdf_first,E,uri_ex_c3) & iext(uri_rdf_rest,E,uri_rdf_nil) & iext(uri_owl_disjointWith,uri_ex_d,uri_ex_c1) & iext(uri_rdfs_subClassOf,uri_ex_d,A) & iext(uri_owl_intersectionOf,A,F) & iext(uri_rdf_first,F,uri_ex_c) & iext(uri_rdf_rest,F,V6) & iext(uri_rdf_first,V6,B) & iext(uri_rdf_rest,V6,uri_rdf_nil) & iext(uri_owl_complementOf,B,uri_ex_c2))).  [assumption].
+8 iext(uri_owl_unionOf,uri_ex_c,c3).  [clausify(7)].
+9 iext(uri_rdf_first,c3,uri_ex_c1).  [clausify(7)].
+10 iext(uri_rdf_rest,c3,c4).  [clausify(7)].
+11 iext(uri_rdf_first,c4,uri_ex_c2).  [clausify(7)].
+12 iext(uri_rdf_rest,c4,c5).  [clausify(7)].
+13 iext(uri_rdf_first,c5,uri_ex_c3).  [clausify(7)].
+14 iext(uri_rdf_rest,c5,uri_rdf_nil).  [clausify(7)].
+15 iext(uri_owl_disjointWith,uri_ex_d,uri_ex_c1).  [clausify(7)].
+16 iext(uri_rdfs_subClassOf,uri_ex_d,c1).  [clausify(7)].
+17 iext(uri_owl_intersectionOf,c1,c6).  [clausify(7)].
+18 iext(uri_rdf_first,c6,uri_ex_c).  [clausify(7)].
+19 iext(uri_rdf_rest,c6,c7).  [clausify(7)].
+20 iext(uri_rdf_first,c7,c2).  [clausify(7)].
+21 iext(uri_rdf_rest,c7,uri_rdf_nil).  [clausify(7)].
+22 iext(uri_owl_complementOf,c2,uri_ex_c2).  [clausify(7)].
+23 -iext(uri_rdfs_subClassOf,uri_ex_d,uri_ex_c3).  [assumption].
+24 -iext(uri_owl_complementOf,A,B) | -icext(A,C) | -icext(B,C).  [clausify(2)].
+25 -iext(uri_owl_disjointWith,A,B) | -icext(A,C) | -icext(B,C).  [clausify(6)].
+26 -iext(uri_owl_disjointWith,A,B) | ic(A).  [clausify(1)].
+27 -iext(uri_rdfs_subClassOf,A,B) | -icext(A,C) | icext(B,C).  [clausify(5)].
+28 iext(uri_rdfs_subClassOf,A,B) | -ic(A) | -ic(B) | icext(A,f3(A,B)).  [clausify(5)].
+29 iext(uri_rdfs_subClassOf,A,B) | -ic(A) | -ic(B) | -icext(B,f3(A,B)).  [clausify(5)].
+30 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_intersectionOf,E,A) | -icext(E,F) | icext(B,F).  [clausify(3)].
+31 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_intersectionOf,E,A) | -icext(E,F) | icext(D,F).  [clausify(3)].
+32 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,E) | -iext(uri_rdf_first,E,F) | -iext(uri_rdf_rest,E,uri_rdf_nil) | -iext(uri_owl_unionOf,V6,A) | ic(F).  [clausify(4)].
+33 -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,E) | -iext(uri_rdf_first,E,F) | -iext(uri_rdf_rest,E,uri_rdf_nil) | -iext(uri_owl_unionOf,V6,A) | -icext(V6,V7) | icext(B,V7) | icext(D,V7) | icext(F,V7).  [clausify(4)].
+34 -icext(c2,A) | -icext(uri_ex_c2,A).  [resolve(24,a,22,a)].
+35 -icext(uri_ex_d,A) | -icext(uri_ex_c1,A).  [resolve(25,a,15,a)].
+36 ic(uri_ex_d).  [resolve(26,a,15,a)].
+37 -icext(uri_ex_d,A) | icext(c1,A).  [resolve(27,a,16,a)].
+38 -iext(uri_rdf_rest,c6,A) | -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,uri_rdf_nil) | -iext(uri_owl_intersectionOf,C,c6) | -icext(C,D) | icext(uri_ex_c,D).  [resolve(30,a,18,a)].
+39 -iext(uri_rdf_rest,c6,A) | -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,uri_rdf_nil) | -iext(uri_owl_intersectionOf,C,c6) | -icext(C,D) | icext(B,D).  [resolve(31,a,18,a)].
+40 -iext(uri_rdf_rest,c3,A) | -iext(uri_rdf_first,A,B) | -iext(uri_rdf_rest,A,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_unionOf,E,c3) | ic(D).  [resolve(32,a,9,a)].
+41 iext(uri_rdfs_subClassOf,uri_ex_d,A) | -ic(A) | icext(uri_ex_d,f3(uri_ex_d,A)).  [resolve(36,a,28,b)].
+42 -iext(uri_rdf_rest,c6,c7) | -iext(uri_rdf_rest,c7,uri_rdf_nil) | -iext(uri_owl_intersectionOf,A,c6) | -icext(A,B) | icext(uri_ex_c,B).  [resolve(38,b,20,a)].
+43 -iext(uri_rdf_rest,c7,uri_rdf_nil) | -iext(uri_owl_intersectionOf,A,c6) | -icext(A,B) | icext(uri_ex_c,B).  [resolve(19,a,42,a)].
+44 -iext(uri_owl_intersectionOf,A,c6) | -icext(A,B) | icext(uri_ex_c,B).  [resolve(21,a,43,a)].
+45 -icext(c1,A) | icext(uri_ex_c,A).  [resolve(44,a,17,a)].
+46 -iext(uri_rdf_rest,c6,c7) | -iext(uri_rdf_rest,c7,uri_rdf_nil) | -iext(uri_owl_intersectionOf,A,c6) | -icext(A,B) | icext(c2,B).  [resolve(39,b,20,a)].
+47 -iext(uri_rdf_rest,c7,uri_rdf_nil) | -iext(uri_owl_intersectionOf,A,c6) | -icext(A,B) | icext(c2,B).  [resolve(19,a,46,a)].
+48 -iext(uri_owl_intersectionOf,A,c6) | -icext(A,B) | icext(c2,B).  [resolve(21,a,47,a)].
+49 -icext(c1,A) | icext(c2,A).  [resolve(48,a,17,a)].
+50 -iext(uri_rdf_rest,c3,c4) | -iext(uri_rdf_first,c4,A) | -iext(uri_rdf_first,c5,B) | -iext(uri_rdf_rest,c5,uri_rdf_nil) | -iext(uri_owl_unionOf,C,c3) | ic(B).  [resolve(40,c,12,a)].
+51 -iext(uri_rdf_first,c4,A) | -iext(uri_rdf_first,c5,B) | -iext(uri_rdf_rest,c5,uri_rdf_nil) | -iext(uri_owl_unionOf,C,c3) | ic(B).  [resolve(10,a,50,a)].
+52 -iext(uri_rdf_first,c4,A) | -iext(uri_rdf_first,c5,B) | -iext(uri_owl_unionOf,C,c3) | ic(B).  [resolve(14,a,51,c)].
+53 -iext(uri_rdf_first,c5,A) | -iext(uri_owl_unionOf,B,c3) | ic(A).  [resolve(52,a,11,a)].
+54 -iext(uri_owl_unionOf,A,c3) | ic(uri_ex_c3).  [resolve(53,a,13,a)].
+55 ic(uri_ex_c3).  [resolve(54,a,8,a)].
+56 iext(uri_rdfs_subClassOf,uri_ex_d,uri_ex_c3) | icext(uri_ex_d,f3(uri_ex_d,uri_ex_c3)).  [resolve(55,a,41,b)].
+57 icext(uri_ex_d,f3(uri_ex_d,uri_ex_c3)).  [resolve(23,a,56,a)].
+58 -ic(uri_ex_d) | -ic(uri_ex_c3) | -icext(uri_ex_c3,f3(uri_ex_d,uri_ex_c3)).  [resolve(29,a,23,a)].
+59 -ic(uri_ex_c3) | -icext(uri_ex_c3,f3(uri_ex_d,uri_ex_c3)).  [resolve(58,a,36,a)].
+60 -icext(uri_ex_c3,f3(uri_ex_d,uri_ex_c3)).  [resolve(59,a,55,a)].
+61 icext(c1,f3(uri_ex_d,uri_ex_c3)).  [resolve(57,a,37,a)].
+62 -icext(uri_ex_c1,f3(uri_ex_d,uri_ex_c3)).  [resolve(57,a,35,a)].
+63 icext(c2,f3(uri_ex_d,uri_ex_c3)).  [resolve(61,a,49,a)].
+64 icext(uri_ex_c,f3(uri_ex_d,uri_ex_c3)).  [resolve(61,a,45,a)].
+65 -icext(uri_ex_c2,f3(uri_ex_d,uri_ex_c3)).  [resolve(63,a,34,a)].
+66 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_first,c4,B) | -iext(uri_rdf_rest,c4,C) | -iext(uri_rdf_first,C,D) | -iext(uri_rdf_rest,C,uri_rdf_nil) | -iext(uri_owl_unionOf,E,c3) | -icext(E,F) | icext(A,F) | icext(B,F) | icext(D,F).  [resolve(33,b,10,a)].
+67 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c4,B) | -iext(uri_rdf_first,B,C) | -iext(uri_rdf_rest,B,uri_rdf_nil) | -iext(uri_owl_unionOf,D,c3) | -icext(D,E) | icext(A,E) | icext(uri_ex_c2,E) | icext(C,E).  [resolve(66,b,11,a)].
+68 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_first,c5,B) | -iext(uri_rdf_rest,c5,uri_rdf_nil) | -iext(uri_owl_unionOf,C,c3) | -icext(C,D) | icext(A,D) | icext(uri_ex_c2,D) | icext(B,D).  [resolve(67,b,12,a)].
+69 -iext(uri_rdf_first,c3,A) | -iext(uri_rdf_rest,c5,uri_rdf_nil) | -iext(uri_owl_unionOf,B,c3) | -icext(B,C) | icext(A,C) | icext(uri_ex_c2,C) | icext(uri_ex_c3,C).  [resolve(68,b,13,a)].
+70 -iext(uri_rdf_first,c3,A) | -iext(uri_owl_unionOf,B,c3) | -icext(B,C) | icext(A,C) | icext(uri_ex_c2,C) | icext(uri_ex_c3,C).  [resolve(69,b,14,a)].
+71 -iext(uri_rdf_first,c3,A) | -icext(uri_ex_c,B) | icext(A,B) | icext(uri_ex_c2,B) | icext(uri_ex_c3,B).  [resolve(70,b,8,a)].
+72 -iext(uri_rdf_first,c3,A) | icext(A,f3(uri_ex_d,uri_ex_c3)) | icext(uri_ex_c2,f3(uri_ex_d,uri_ex_c3)) | icext(uri_ex_c3,f3(uri_ex_d,uri_ex_c3)).  [resolve(71,b,64,a)].
+73 -iext(uri_rdf_first,c3,uri_ex_c1) | icext(uri_ex_c2,f3(uri_ex_d,uri_ex_c3)) | icext(uri_ex_c3,f3(uri_ex_d,uri_ex_c3)).  [resolve(72,b,62,a)].
+74 -iext(uri_rdf_first,c3,uri_ex_c1) | icext(uri_ex_c3,f3(uri_ex_d,uri_ex_c3)).  [resolve(73,b,65,a)].
+75 -iext(uri_rdf_first,c3,uri_ex_c1).  [resolve(74,b,60,a)].
+76 $F.  [resolve(9,a,75,a)].
+
+============================== end of proof ==========================

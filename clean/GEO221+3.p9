@@ -1,0 +1,20 @@
+
+
+
+
+
+
+7 -incident_point_and_line(A,B) | -apart_point_and_line(A,B).  [clausify(5)].
+8 incident_point_and_line(c2,orthogonal_through_point(c3,c1)).  [clausify(6)].
+9 equal_lines(A,B) | distinct_lines(A,B).  [clausify(4)].
+10 -equal_lines(orthogonal_through_point(c3,c1),orthogonal_through_point(c3,c2)).  [clausify(6)].
+11 -unorthogonal_lines(orthogonal_through_point(A,B),A).  [clausify(1)].
+12 -apart_point_and_line(A,orthogonal_through_point(B,A)).  [clausify(2)].
+13 -distinct_lines(A,B) | apart_point_and_line(C,A) | apart_point_and_line(C,B) | unorthogonal_lines(A,D) | unorthogonal_lines(B,D).  [clausify(3)].
+14 -apart_point_and_line(c2,orthogonal_through_point(c3,c1)).  [resolve(7,a,8,a)].
+15 distinct_lines(orthogonal_through_point(c3,c1),orthogonal_through_point(c3,c2)).  [resolve(10,a,9,a)].
+16 -distinct_lines(orthogonal_through_point(c3,c1),A) | apart_point_and_line(c2,A) | unorthogonal_lines(orthogonal_through_point(c3,c1),B) | unorthogonal_lines(A,B).  [resolve(13,b,14,a)].
+17 -distinct_lines(orthogonal_through_point(c3,c1),orthogonal_through_point(A,c2)) | unorthogonal_lines(orthogonal_through_point(c3,c1),B) | unorthogonal_lines(orthogonal_through_point(A,c2),B).  [resolve(16,b,12,a)].
+18 -distinct_lines(orthogonal_through_point(c3,c1),orthogonal_through_point(A,c2)) | unorthogonal_lines(orthogonal_through_point(A,c2),c3).  [resolve(17,b,11,a)].
+19 -distinct_lines(orthogonal_through_point(c3,c1),orthogonal_through_point(c3,c2)).  [resolve(18,b,11,a)].
+20 $F.  [resolve(15,a,19,a)].

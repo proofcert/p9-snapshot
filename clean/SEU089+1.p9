@@ -1,0 +1,15 @@
+
+
+
+4 cartesian_product3(A,B,C) = cartesian_product2(cartesian_product2(A,B),C).  [clausify(1)].
+5 -finite(A) | -finite(B) | finite(cartesian_product2(A,B)).  [clausify(2)].
+6 finite(c22).  [clausify(3)].
+7 finite(c23).  [clausify(3)].
+8 finite(c24).  [clausify(3)].
+9 -finite(cartesian_product3(c22,c23,c24)).  [clausify(3)].
+10 -finite(cartesian_product2(cartesian_product2(c22,c23),c24)).  [para(4(a,1),9(a,1))].
+11 -finite(A) | finite(cartesian_product2(c22,A)).  [resolve(6,a,5,a)].
+12 -finite(A) | finite(cartesian_product2(A,c24)).  [resolve(5,b,8,a)].
+13 -finite(cartesian_product2(c22,c23)).  [resolve(12,b,10,a)].
+14 finite(cartesian_product2(c22,c23)).  [resolve(11,a,7,a)].
+15 $F.  [resolve(13,a,14,a)].

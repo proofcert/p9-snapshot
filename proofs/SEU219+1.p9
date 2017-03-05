@@ -1,0 +1,57 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n169.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Fri Jun  6 03:40:48 CDT 2014
+% CPUTime    : 0.12 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 29697 was started by sandbox on n169.star.cs.uiowa.edu,
+Fri Jun  6 03:40:48 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_29665_n169.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds: t55_funct_1.
+% Length of proof is 18.
+% Level of proof is 6.
+% Maximum clause weight is 12.000.
+% Given clauses 12.
+
+
+1 (all A (relation(A) & function(A) -> (one_to_one(A) -> function_inverse(A) = relation_inverse(A)))).  [assumption].
+2 (all A (relation(A) -> relation_rng(A) = relation_dom(relation_inverse(A)) & relation_dom(A) = relation_rng(relation_inverse(A)))).  [assumption].
+3 -(all A (relation(A) & function(A) -> (one_to_one(A) -> relation_rng(A) = relation_dom(function_inverse(A)) & relation_dom(A) = relation_rng(function_inverse(A))))).  [assumption].
+4 one_to_one(c3).  [clausify(3)].
+5 -relation(A) | -function(A) | -one_to_one(A) | relation_inverse(A) = function_inverse(A).  [clausify(1)].
+6 relation(c3).  [clausify(3)].
+7 function(c3).  [clausify(3)].
+8 relation_dom(function_inverse(c3)) != relation_rng(c3) | relation_dom(c3) != relation_rng(function_inverse(c3)).  [clausify(3)].
+9 relation_dom(function_inverse(c3)) != relation_rng(c3) | relation_rng(function_inverse(c3)) != relation_dom(c3).  [copy(8),flip(b)].
+10 -relation(A) | relation_dom(relation_inverse(A)) = relation_rng(A).  [clausify(2)].
+11 -relation(A) | relation_dom(A) = relation_rng(relation_inverse(A)).  [clausify(2)].
+12 -relation(A) | relation_rng(relation_inverse(A)) = relation_dom(A).  [copy(11),flip(b)].
+13 -relation(c3) | -function(c3) | relation_inverse(c3) = function_inverse(c3).  [resolve(5,c,4,a)].
+14 -relation(c3) | -function(c3) | function_inverse(c3) = relation_inverse(c3).  [copy(13),flip(c)].
+15 -function(c3) | function_inverse(c3) = relation_inverse(c3).  [resolve(6,a,14,a)].
+16 function_inverse(c3) = relation_inverse(c3).  [resolve(7,a,15,a)].
+17 relation_dom(relation_inverse(c3)) != relation_rng(c3) | relation_rng(function_inverse(c3)) != relation_dom(c3).  [para(16(a,1),9(a,1,1))].
+18 relation_dom(relation_inverse(c3)) != relation_rng(c3) | relation_rng(relation_inverse(c3)) != relation_dom(c3).  [para(16(a,1),17(b,1,1))].
+19 relation_dom(relation_inverse(c3)) = relation_rng(c3).  [resolve(10,a,6,a)].
+20 relation_rng(c3) != relation_rng(c3) | relation_rng(relation_inverse(c3)) != relation_dom(c3).  [para(19(a,1),18(a,1))].
+21 relation_rng(relation_inverse(c3)) != relation_dom(c3).  [copy(20),xx(a)].
+22 relation_rng(relation_inverse(c3)) = relation_dom(c3).  [resolve(12,a,6,a)].
+23 $F.  [resolve(21,a,22,a)].
+
+============================== end of proof ==========================

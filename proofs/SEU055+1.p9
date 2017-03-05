@@ -1,0 +1,118 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n055.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 14:54:23 CDT 2014
+% CPUTime    : 1.40 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 51429 was started by sandbox on n055.star.cs.uiowa.edu,
+Thu Jun  5 14:54:23 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_51397_n055.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.19 (+ 0.02) seconds.
+% Length of proof is 57.
+% Level of proof is 9.
+% Maximum clause weight is 19.000.
+% Given clauses 1386.
+
+
+1 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+2 (all A (relation(A) & function(A) -> (one_to_one(A) <-> (all B all C (in(B,relation_dom(A)) & in(C,relation_dom(A)) & apply(A,B) = apply(A,C) -> B = C))))).  [assumption].
+3 (all A all B subset(A,A)).  [assumption].
+4 (all A all B (relation(B) & function(B) -> (in(A,relation_dom(B)) -> relation_image(B,singleton(A)) = singleton(apply(B,A))))).  [assumption].
+5 (all A all B (set_difference(singleton(A),singleton(B)) = singleton(A) <-> A != B)).  [assumption].
+6 (all A all B (set_difference(A,B) = empty_set <-> subset(A,B))).  [assumption].
+7 (all A set_difference(A,empty_set) = A).  [assumption].
+8 (all A all B -(in(A,B) & empty(B))).  [assumption].
+9 -(all A (relation(A) & function(A) -> ((all B all C relation_image(A,set_difference(B,C)) = set_difference(relation_image(A,B),relation_image(A,C))) -> one_to_one(A)))).  [assumption].
+10 function(c9).  [clausify(9)].
+11 -relation(A) | -function(A) | one_to_one(A) | in(f2(A),relation_dom(A)).  [clausify(2)].
+12 -relation(A) | -function(A) | one_to_one(A) | in(f3(A),relation_dom(A)).  [clausify(2)].
+13 -relation(A) | -function(A) | one_to_one(A) | f3(A) != f2(A).  [clausify(2)].
+14 -relation(A) | -function(A) | one_to_one(A) | apply(A,f3(A)) = apply(A,f2(A)).  [clausify(2)].
+15 -relation(A) | -function(A) | -in(B,relation_dom(A)) | relation_image(A,singleton(B)) = singleton(apply(A,B)).  [clausify(4)].
+16 subset(A,A).  [clausify(3)].
+17 set_difference(A,B) = empty_set | -subset(A,B).  [clausify(6)].
+18 empty(empty_set).  [assumption].
+19 relation(c9).  [clausify(9)].
+20 set_difference(A,empty_set) = A.  [clausify(7)].
+21 set_difference(singleton(A),singleton(B)) = singleton(A) | B = A.  [clausify(5)].
+22 relation_image(c9,set_difference(A,B)) = set_difference(relation_image(c9,A),relation_image(c9,B)).  [clausify(9)].
+23 set_difference(relation_image(c9,A),relation_image(c9,B)) = relation_image(c9,set_difference(A,B)).  [copy(22),flip(a)].
+24 singleton(A) = B | in(f1(A,B),B) | f1(A,B) = A.  [clausify(1)].
+25 -one_to_one(c9).  [clausify(9)].
+26 -in(A,B) | -empty(B).  [clausify(8)].
+27 set_difference(singleton(A),singleton(B)) != singleton(A) | B != A.  [clausify(5)].
+28 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+29 singleton(A) != B | in(C,B) | C != A.  [clausify(1)].
+30 -relation(c9) | one_to_one(c9) | in(f2(c9),relation_dom(c9)).  [resolve(11,b,10,a)].
+31 one_to_one(c9) | in(f2(c9),relation_dom(c9)).  [resolve(19,a,30,a)].
+32 in(f2(c9),relation_dom(c9)).  [resolve(25,a,31,a)].
+33 -relation(c9) | one_to_one(c9) | in(f3(c9),relation_dom(c9)).  [resolve(12,b,10,a)].
+34 one_to_one(c9) | in(f3(c9),relation_dom(c9)).  [resolve(19,a,33,a)].
+35 in(f3(c9),relation_dom(c9)).  [resolve(25,a,34,a)].
+36 -relation(c9) | one_to_one(c9) | f3(c9) != f2(c9).  [resolve(13,b,10,a)].
+37 one_to_one(c9) | f3(c9) != f2(c9).  [resolve(19,a,36,a)].
+38 f3(c9) != f2(c9).  [resolve(25,a,37,a)].
+39 -relation(c9) | one_to_one(c9) | apply(c9,f3(c9)) = apply(c9,f2(c9)).  [resolve(14,b,10,a)].
+40 one_to_one(c9) | apply(c9,f3(c9)) = apply(c9,f2(c9)).  [resolve(19,a,39,a)].
+41 apply(c9,f3(c9)) = apply(c9,f2(c9)).  [resolve(25,a,40,a)].
+42 -relation(c9) | -in(A,relation_dom(c9)) | relation_image(c9,singleton(A)) = singleton(apply(c9,A)).  [resolve(15,b,10,a)].
+43 -relation(c9) | -in(A,relation_dom(c9)) | singleton(apply(c9,A)) = relation_image(c9,singleton(A)).  [copy(42),flip(c)].
+44 -in(A,relation_dom(c9)) | singleton(apply(c9,A)) = relation_image(c9,singleton(A)).  [resolve(19,a,43,a)].
+45 set_difference(A,A) = empty_set.  [resolve(17,b,16,a)].
+46 f3(c9) = c_0.  [new_symbol(38)].
+47 apply(c9,c_0) = apply(c9,f2(c9)).  [para(46(a,1),41(a,1,2))].
+48 apply(c9,f2(c9)) = apply(c9,c_0).  [copy(47),flip(a)].
+49 c_0 != f2(c9).  [para(46(a,1),38(a,1))].
+50 f2(c9) != c_0.  [copy(49),flip(a)].
+51 in(c_0,relation_dom(c9)).  [para(46(a,1),35(a,1))].
+52 A = B | set_difference(relation_image(c9,singleton(B)),relation_image(c9,singleton(A))) = relation_image(c9,singleton(B)).  [para(21(a,1),23(a,2,2))].
+53 A = B | relation_image(c9,set_difference(singleton(B),singleton(A))) = relation_image(c9,singleton(B)).  [para(23(a,1),52(b,1))].
+54 -in(A,empty_set).  [resolve(26,b,18,a)].
+55 set_difference(singleton(A),singleton(set_difference(A,empty_set))) != singleton(A).  [resolve(27,b,20,a)].
+56 set_difference(singleton(A),singleton(A)) != singleton(A).  [para(20(a,1),55(a,1,2,1))].
+57 empty_set != singleton(A).  [para(45(a,1),56(a,1))].
+58 singleton(A) != empty_set.  [copy(57),flip(a)].
+59 singleton(apply(c9,f2(c9))) = relation_image(c9,singleton(f2(c9))).  [resolve(44,a,32,a)].
+60 singleton(apply(c9,c_0)) = relation_image(c9,singleton(f2(c9))).  [para(48(a,1),59(a,1,1))].
+61 relation_image(c9,singleton(f2(c9))) = singleton(apply(c9,c_0)).  [copy(60),flip(a)].
+62 empty_set = relation_image(c9,set_difference(A,A)).  [para(45(a,1),23(a,1))].
+63 empty_set = relation_image(c9,empty_set).  [para(45(a,1),62(a,2,2))].
+64 relation_image(c9,empty_set) = empty_set.  [copy(63),flip(a)].
+65 singleton(apply(c9,c_0)) = relation_image(c9,singleton(c_0)).  [resolve(51,a,44,a)].
+66 relation_image(c9,singleton(f2(c9))) = relation_image(c9,singleton(c_0)).  [para(65(a,1),61(a,2))].
+67 A = B | singleton(relation_image(c9,set_difference(singleton(B),singleton(A)))) != C | in(relation_image(c9,singleton(B)),C).  [resolve(53,b,29,c(flip))].
+68 singleton(A) = empty_set | f1(A,empty_set) = A.  [resolve(54,a,24,b)].
+69 f1(A,empty_set) = A.  [resolve(58,a,68,a)].
+70 singleton(A) != empty_set | B != A.  [resolve(29,b,54,a)].
+71 singleton(apply(c9,c_0)) != empty_set.  [resolve(70,b,48,a)].
+72 relation_image(c9,singleton(c_0)) != empty_set.  [para(65(a,1),71(a,1))].
+73 -in(A,f1(singleton(B),empty_set)) | A = B.  [resolve(28,a,69,a(flip))].
+74 -in(relation_image(c9,singleton(c_0)),f1(singleton(empty_set),empty_set)).  [resolve(73,b,72,a)].
+75 -in(relation_image(c9,singleton(c_0)),singleton(empty_set)).  [para(69(a,1),74(a,2))].
+76 set_difference(relation_image(c9,A),relation_image(c9,singleton(c_0))) = relation_image(c9,set_difference(A,singleton(f2(c9)))).  [para(66(a,1),23(a,1,2))].
+77 relation_image(c9,set_difference(A,singleton(c_0))) = relation_image(c9,set_difference(A,singleton(f2(c9)))).  [para(23(a,1),76(a,1))].
+78 relation_image(c9,set_difference(A,singleton(f2(c9)))) = relation_image(c9,set_difference(A,singleton(c_0))).  [copy(77),flip(a)].
+79 singleton(relation_image(c9,set_difference(singleton(c_0),singleton(f2(c9))))) != A | in(relation_image(c9,singleton(c_0)),A).  [resolve(67,a,50,a)].
+80 singleton(relation_image(c9,set_difference(singleton(c_0),singleton(f2(c9))))) != singleton(empty_set).  [resolve(79,b,75,a)].
+81 singleton(relation_image(c9,set_difference(singleton(c_0),singleton(c_0)))) != singleton(empty_set).  [para(78(a,1),80(a,1,1))].
+82 singleton(relation_image(c9,empty_set)) != singleton(empty_set).  [para(45(a,1),81(a,1,1,2))].
+83 singleton(empty_set) != singleton(empty_set).  [para(64(a,1),82(a,1,1))].
+84 $F.  [copy(83),xx(a)].
+
+============================== end of proof ==========================

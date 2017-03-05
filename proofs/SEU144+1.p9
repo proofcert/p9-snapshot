@@ -1,0 +1,58 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n077.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Thu Jun  5 20:06:43 CDT 2014
+% CPUTime    : 0.13 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 32180 was started by sandbox on n077.star.cs.uiowa.edu,
+Thu Jun  5 20:06:43 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_32148_n077.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 22.
+% Level of proof is 8.
+% Maximum clause weight is 11.000.
+% Given clauses 71.
+
+
+1 (all A all B (B = singleton(A) <-> (all C (in(C,B) <-> C = A)))).  [assumption].
+2 (all A all B (subset(A,B) <-> (all C (in(C,A) -> in(C,B))))).  [assumption].
+3 -(all A all B (subset(singleton(A),B) <-> in(A,B))).  [assumption].
+4 subset(singleton(c1),c2) | in(c1,c2).  [clausify(3)].
+5 subset(A,B) | in(f2(A,B),A).  [clausify(2)].
+6 -subset(singleton(c1),c2) | -in(c1,c2).  [clausify(3)].
+7 subset(A,B) | -in(f2(A,B),B).  [clausify(2)].
+8 -subset(A,B) | -in(C,A) | in(C,B).  [clausify(2)].
+9 singleton(A) != B | -in(C,B) | C = A.  [clausify(1)].
+10 singleton(A) != B | in(C,B) | C != A.  [clausify(1)].
+11 -in(c1,c2) | in(f2(singleton(c1),c2),singleton(c1)).  [resolve(6,a,5,a)].
+12 -in(A,singleton(c1)) | in(A,c2) | in(c1,c2).  [resolve(8,a,4,a)].
+13 -in(c1,singleton(c1)) | in(c1,c2).  [factor(12,b,c)].
+14 in(A,singleton(B)) | A != B.  [xx_res(10,a)].
+15 in(A,singleton(A)).  [xx_res(14,b)].
+16 in(c1,c2).  [resolve(15,a,13,a)].
+17 in(f2(singleton(c1),c2),singleton(c1)).  [resolve(16,a,11,a)].
+18 -subset(singleton(c1),c2).  [resolve(16,a,6,b)].
+19 -in(f2(singleton(c1),c2),c2).  [resolve(7,a,18,a)].
+20 singleton(A) != singleton(c1) | f2(singleton(c1),c2) = A.  [resolve(17,a,9,b)].
+21 singleton(c1) != singleton(A) | f2(singleton(c1),c2) = A.  [copy(20),flip(a)].
+22 f2(singleton(c1),c2) = c1.  [xx_res(21,a)].
+23 -in(c1,c2).  [para(22(a,1),19(a,1))].
+24 $F.  [resolve(16,a,23,a)].
+
+============================== end of proof ==========================

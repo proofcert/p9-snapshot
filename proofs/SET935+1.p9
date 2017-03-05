@@ -1,0 +1,86 @@
+============================== prooftrans ============================
+% Command    : vampire_rel --proof tptp --output_axiom_names on --mode casc -t %d %s
+% Computer   : n065.star.cs.uiowa.edu
+% Model      : x86_64 x86_64
+% CPU        : Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz
+% Memory     : 32286.75MB
+% OS         : Linux 2.6.32-431.11.2.el6.x86_64
+% CPULimit   : 300
+% DateTime   : Sat Jun  7 00:54:13 CDT 2014
+% CPUTime    : 1.39 
+============================== Prover9 ===============================
+Prover9 (32) version 2009-11A, November 2009.
+Process 3614 was started by sandbox on n065.star.cs.uiowa.edu,
+Sat Jun  7 00:54:13 2014
+The command was "./prover9 -t 300 -f /tmp/Prover9_3582_n065.star.cs.uiowa.edu".
+============================== end of head ===========================
+
+set(prolog_style_variables).
+============================== end of input ==========================
+
+============================== PROOF =================================
+
+% -------- Comments from original proof --------
+% SZS status Theorem
+% SZS output start Refutation
+% Proof 1 at 1.24 (+ 0.03) seconds.
+% Length of proof is 44.
+% Level of proof is 14.
+% Maximum clause weight is 16.000.
+% Given clauses 482.
+
+
+1 (all A all B set_union2(A,B) = set_union2(B,A)).  [assumption].
+2 (all A all B (A = B <-> subset(A,B) & subset(B,A))).  [assumption].
+3 (all A all B (B = powerset(A) <-> (all C (in(C,B) <-> subset(C,A))))).  [assumption].
+4 (all A all B all C (C = set_union2(A,B) <-> (all D (in(D,C) <-> in(D,A) | in(D,B))))).  [assumption].
+5 (all A all B (inclusion_comparable(A,B) <-> subset(A,B) | subset(B,A))).  [assumption].
+6 (all A all B set_union2(A,A) = A).  [assumption].
+7 (all A all B subset(A,A)).  [assumption].
+8 (all A all B (inclusion_comparable(A,B) -> inclusion_comparable(B,A))).  [assumption].
+9 (all A all B subset(A,set_union2(A,B))).  [assumption].
+10 -(all A all B (set_union2(powerset(A),powerset(B)) = powerset(set_union2(A,B)) -> inclusion_comparable(A,B))).  [assumption].
+11 subset(A,A).  [clausify(7)].
+12 set_union2(A,A) = A.  [clausify(6)].
+13 subset(A,set_union2(A,B)).  [clausify(9)].
+14 set_union2(A,B) = set_union2(B,A).  [clausify(1)].
+15 powerset(set_union2(c3,c4)) = set_union2(powerset(c3),powerset(c4)).  [clausify(10)].
+16 -inclusion_comparable(c3,c4).  [clausify(10)].
+17 inclusion_comparable(A,B) | -subset(A,B).  [clausify(5)].
+18 -inclusion_comparable(A,B) | inclusion_comparable(B,A).  [clausify(8)].
+19 A = B | -subset(B,A) | -subset(A,B).  [clausify(2)].
+20 powerset(A) != B | -in(C,B) | subset(C,A).  [clausify(3)].
+21 powerset(A) != B | in(C,B) | -subset(C,A).  [clausify(3)].
+22 set_union2(A,B) != C | in(D,C) | -in(D,B).  [clausify(4)].
+23 set_union2(A,B) != C | -in(D,C) | in(D,A) | in(D,B).  [clausify(4)].
+24 -subset(c3,c4).  [resolve(17,a,16,a)].
+25 -inclusion_comparable(c4,c3).  [resolve(18,b,16,a)].
+26 set_union2(A,B) = A | -subset(set_union2(A,B),A).  [resolve(19,b,13,a)].
+27 powerset(A) != B | in(A,B).  [resolve(21,c,11,a)].
+28 in(A,set_union2(powerset(A),powerset(A))).  [resolve(27,a,12,a(flip))].
+29 in(A,powerset(A)).  [para(12(a,1),28(a,2))].
+30 set_union2(A,B) != powerset(C) | in(C,A) | in(C,B).  [resolve(29,a,23,b)].
+31 powerset(A) != set_union2(B,C) | in(A,B) | in(A,C).  [copy(30),flip(a)].
+32 set_union2(A,powerset(B)) != C | in(B,C).  [resolve(29,a,22,c)].
+33 in(A,set_union2(powerset(A),B)).  [resolve(32,a,14,a)].
+34 in(A,set_union2(B,powerset(A))).  [para(14(a,1),33(a,2))].
+35 powerset(A) != set_union2(B,powerset(C)) | subset(C,A).  [resolve(34,a,20,b)].
+36 subset(c4,set_union2(c3,c4)).  [resolve(35,a,15,a)].
+37 c4 = set_union2(c3,c4) | -subset(set_union2(c3,c4),c4).  [resolve(36,a,19,c)].
+38 set_union2(c3,c4) = c4 | -subset(set_union2(c3,c4),c4).  [copy(37),flip(a)].
+39 inclusion_comparable(c4,set_union2(c3,c4)).  [resolve(36,a,17,b)].
+40 in(set_union2(c3,c4),powerset(c3)) | in(set_union2(c3,c4),powerset(c4)).  [resolve(31,a,15,a)].
+41 in(set_union2(c3,c4),powerset(c3)) | powerset(A) != powerset(c4) | subset(set_union2(c3,c4),A).  [resolve(40,b,20,b)].
+42 in(set_union2(c3,c4),powerset(c3)) | powerset(c4) != powerset(A) | subset(set_union2(c3,c4),A).  [copy(41),flip(b)].
+43 in(set_union2(c3,c4),powerset(c3)) | subset(set_union2(c3,c4),c4).  [xx_res(42,b)].
+44 in(set_union2(c3,c4),powerset(c3)) | set_union2(c3,c4) = c4.  [resolve(43,b,38,b)].
+45 set_union2(c3,c4) = c4 | powerset(A) != powerset(c3) | subset(set_union2(c3,c4),A).  [resolve(44,a,20,b)].
+46 set_union2(c3,c4) = c4 | powerset(c3) != powerset(A) | subset(set_union2(c3,c4),A).  [copy(45),flip(b)].
+47 set_union2(c3,c4) = c4 | subset(set_union2(c3,c4),c3).  [xx_res(46,b)].
+48 set_union2(c3,c4) = c4 | set_union2(c3,c4) = c3.  [resolve(47,b,26,b)].
+49 set_union2(c3,c4) = c3 | subset(c3,c4).  [para(48(a,1),13(a,2))].
+50 set_union2(c3,c4) = c3.  [resolve(24,a,49,b)].
+51 inclusion_comparable(c4,c3).  [para(50(a,1),39(a,2))].
+52 $F.  [resolve(25,a,51,a)].
+
+============================== end of proof ==========================
